@@ -20,7 +20,7 @@ define( function( require ) {
   function MolarityTab() {
 
     this.name = MStrings.concentration;
-    this.icon = new Rectangle( 0, 0, 10, 10, { fill: "white" } );  //TODO joist: support null icons for single-tab sims
+    this.icon = new Rectangle( 0, 0, 10, 10, { fill: "white" } );  //TODO joist#15, icon should not be required for sim-tab sims
     this.backgroundColor = "white";
 
     var mvt = ModelViewTransform2.createIdentity();
