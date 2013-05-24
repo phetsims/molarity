@@ -18,6 +18,7 @@ define( function( require ) {
   MSymbols.COBALT_CHLORIDE = ChemUtils.toSubscript( "CoCl2" );
   MSymbols.COPPER_SULFATE = ChemUtils.toSubscript( "CuSO4" );
   MSymbols.DRINK_MIX = MStrings.drinkMix;
+  MSymbols.GOLD_III_CHLORIDE = ChemUtils.toSubscript( "AuCl3" );
   MSymbols.NICKEL_II_CHLORIDE = ChemUtils.toSubscript( "NiCl2" );
   MSymbols.POTASSIUM_CHROMATE = ChemUtils.toSubscript( "K2CrO4" );
   MSymbols.POTASSIUM_DICHROMATE = ChemUtils.toSubscript( "K2Cr2O7" );

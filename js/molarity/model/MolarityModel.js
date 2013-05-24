@@ -33,13 +33,13 @@ define( function( require ) {
     thisModel.solutes = [
         new Solute( MStrings.drinkMix, MSymbols.DRINK_MIX, 5.95, new ColorRange( new Color( 255, 225, 225 ), Color.RED ) ),
         new Solute( MStrings.cobaltIINitrate, MSymbols.COBALT_II_NITRATE, 5.65, new ColorRange( new Color( 255, 225, 225 ), Color.RED ) ),
-        new Solute( MStrings.cobaltChloride, MSymbols.COBALT_CHLORIDE, 4.35, new ColorRange( new Color( 255, 242, 242 ), new Color( 0xFF6A6A ) ) ),
-        new Solute( MStrings.potassiumDichromate, MSymbols.POTASSIUM_DICHROMATE, 0.50, new ColorRange( new Color( 255, 232, 210 ), new Color( 0xFF7F00 ) ) ),
-        new Solute( MStrings.goldIIIChloride, MSymbols.GOLD_III_CHLORIDE, 2.25, new ColorRange( new Color( 255, 255, 199 ), new Color( 0xFFD700 ) ) ),
+        new Solute( MStrings.cobaltChloride, MSymbols.COBALT_CHLORIDE, 4.35, new ColorRange( new Color( 255, 242, 242 ), new Color( 255, 106, 106 ) ) ),
+        new Solute( MStrings.potassiumDichromate, MSymbols.POTASSIUM_DICHROMATE, 0.50, new ColorRange( new Color( 255, 232, 210 ), new Color( 255, 127, 0 ) ) ),
+        new Solute( MStrings.goldIIIChloride, MSymbols.GOLD_III_CHLORIDE, 2.25, new ColorRange( new Color( 255, 255, 199 ), new Color( 255, 215, 0 ) ) ),
         new Solute( MStrings.potassiumChromate, MSymbols.POTASSIUM_CHROMATE, 3.35, new ColorRange( new Color( 255, 255, 199 ), Color.YELLOW ) ),
-        new Solute( MStrings.nickelIIChloride, MSymbols.NICKEL_II_CHLORIDE, 5.2, new ColorRange( new Color( 234, 244, 234 ), new Color( 0x008000 ) ) ),
-        new Solute( MStrings.copperSulfate, MSymbols.COPPER_SULFATE, 1.40, new ColorRange( new Color( 222, 238, 255 ), new Color( 0x1E90FF ) ) ),
-        new Solute( MStrings.potassiumPermanganate, MSymbols.POTASSIUM_PERMANGANATE, 0.50, new ColorRange( new Color( 255, 0, 255 ), new Color( 0x8B008B ) ), Color.BLACK )
+        new Solute( MStrings.nickelIIChloride, MSymbols.NICKEL_II_CHLORIDE, 5.2, new ColorRange( new Color( 234, 244, 234 ), new Color( 0, 128, 0 ) ) ),
+        new Solute( MStrings.copperSulfate, MSymbols.COPPER_SULFATE, 1.40, new ColorRange( new Color( 222, 238, 255 ), new Color( 30, 144, 255 ) ) ),
+        new Solute( MStrings.potassiumPermanganate, MSymbols.POTASSIUM_PERMANGANATE, 0.50, new ColorRange( new Color( 255, 0, 255 ), new Color( 139, 0, 139 ) ), Color.BLACK )
     ];
 
     thisModel.solution = new Solution( Water, thisModel.solutes[0], SOLUTE_AMOUNT_RANGE.defaultValue, SOLUTION_VOLUME_RANGE.defaultValue );
