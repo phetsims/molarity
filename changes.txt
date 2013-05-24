@@ -1,3 +1,4 @@
+5/24/13 partial port of beaker view
 5/24/13 model ported from Java to JS
 5/24/13 set up skeleton for Molarity sim
 5/24/13 create molarity repo in GitHub

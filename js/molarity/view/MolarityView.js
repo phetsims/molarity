@@ -9,9 +9,13 @@ define( function( require ) {
   "use strict";
 
   // imports
+  var BeakerNode = require( "molarity/view/BeakerNode" );
   var Bounds2 = require( "DOT/Bounds2" );
+  var Dimension2 = require( "DOT/Dimension2" );
   var inherit = require( "PHET_CORE/inherit" );
   var MFont = require( "molarity/MFont" );
+  var MStrings = require( "molarity/MStrings" );
+  var Property = require( "PHETCOMMON/model/property/Property" );
   var ResetAllButton = require( "SCENERY_PHET/ResetAllButton" );
   var TabView = require( "JOIST/TabView" );
 
@@ -25,16 +29,36 @@ define( function( require ) {
     var thisView = this;
     TabView.call( thisView );
 
-     // Reset All button
+    var valuesVisible = new Property( false );
+
+    // beaker, with solution and precipitate inside of it
+    var beakerNode = new BeakerNode( model.solution,
+                                     model.getSolutionVolumeRange().max,
+                                     MStrings.units_liters,
+                                     MStrings.units_molarity,
+                                     new MFont( 28, "bold" ),
+                                     new MFont( 16 ),
+                                     new Dimension2( 180, 80 ),
+                                     0.75, 0.75,
+                                     valuesVisible );
+
+    // Reset All button
     var resetAllButton = new ResetAllButton( function() {
+      valuesVisible.reset();
       model.reset();
     } );
 
     // rendering order
+    this.addChild( beakerNode );
     this.addChild( resetAllButton );
 
     // layout for things that don't have a location in the model
-    //TODO
+    {
+      beakerNode.left = 100;
+      beakerNode.top = 100;
+      resetAllButton.left = beakerNode.right + 50;
+      resetAllButton.bottom = beakerNode.bottom;
+    }
   }
 
   inherit( MolarityView, TabView, { layoutBounds: new Bounds2( 0, 0, 1024, 700 ) } );
