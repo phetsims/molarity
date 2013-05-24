@@ -1,6 +1,14 @@
+TODO list for molarity (HTML5 port)
 
-migrate duplicate copies of ChemUtils (BLL and Molarity) to common
-migrate duplicate copies of ColorRange (BLL and Molarity) to common
-migrate duplicate copies of ColorUtils (BLL and Molarity) to common
+BUGS
 
-make dot.Range agnostic wrt the type of min/max/defaultValue
+HIGH
+
+MEDIUM
+
+LOW
+
+MIGRATE TO COMMON
+- ChemUtils (BLL and Molarity)
+- ColorRange (BLL and Molarity)
+- ColorUtils (BLL and Molarity)
