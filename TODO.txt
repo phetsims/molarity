@@ -3,6 +3,7 @@ TODO list for molarity (HTML5 port)
 BUGS
 
 HIGH
+- finish BeakerNode port (ticks, label)
 
 MEDIUM
 
