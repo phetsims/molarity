@@ -18,6 +18,7 @@ define( function( require ) {
   var MStrings = require( "molarity/MStrings" );
   var Property = require( "PHETCOMMON/model/property/Property" );
   var ResetAllButton = require( "SCENERY_PHET/ResetAllButton" );
+  var SaturatedIndicator = require( "molarity/view/SaturatedIndicator" );
   var SoluteComboBox = require( "molarity/view/SoluteComboBox" );
   var SolutionNode = require( "molarity/view/SolutionNode" );
   var TabView = require( "JOIST/TabView" );
@@ -37,7 +38,9 @@ define( function( require ) {
 
     // beaker, with solution and precipitate inside of it
     var beakerNode = new BeakerNode( model.solution, model.getSolutionVolumeRange().max, valuesVisible );
-    var solutionNode = new SolutionNode( beakerNode.getCylinderSize(), beakerNode.getCylinderEndHeight(), model.solution, model.getSolutionVolumeRange().max );
+    var cylinderSize = beakerNode.getCylinderSize();
+    var solutionNode = new SolutionNode( cylinderSize, beakerNode.getCylinderEndHeight(), model.solution, model.getSolutionVolumeRange().max );
+    var saturatedIndicator = new SaturatedIndicator( model.solution );
 
     // solute control
     var soluteComboBox = new SoluteComboBox( model.solutes, model.solution.solute );
@@ -54,6 +57,7 @@ define( function( require ) {
     // rendering order
     this.addChild( solutionNode );
     this.addChild( beakerNode );
+    this.addChild( saturatedIndicator );
     this.addChild( showValuesCheckBox );
     this.addChild( resetAllButton );
     this.addChild( soluteComboBox );
@@ -68,6 +72,9 @@ define( function( require ) {
       // centered below beaker
       soluteComboBox.centerX = beakerNode.centerX;
       soluteComboBox.top = beakerNode.bottom + 50;
+      // toward bottom of the beaker
+      saturatedIndicator.centerX = beakerNode.x + ( cylinderSize.width / 2 );
+      saturatedIndicator.bottom = beakerNode.bottom - ( 0.2 * cylinderSize.height );
       showValuesCheckBox.left = beakerNode.right + 50;
       showValuesCheckBox.top = beakerNode.top;
       resetAllButton.left = beakerNode.right + 50;
