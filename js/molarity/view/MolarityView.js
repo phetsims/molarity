@@ -16,6 +16,7 @@ define( function( require ) {
   var inherit = require( "PHET_CORE/inherit" );
   var MFont = require( "molarity/MFont" );
   var MStrings = require( "molarity/MStrings" );
+  var PrecipitateNode = require( "molarity/view/PrecipitateNode" );
   var Property = require( "PHETCOMMON/model/property/Property" );
   var ResetAllButton = require( "SCENERY_PHET/ResetAllButton" );
   var SaturatedIndicator = require( "molarity/view/SaturatedIndicator" );
@@ -40,6 +41,7 @@ define( function( require ) {
     var beakerNode = new BeakerNode( model.solution, model.getSolutionVolumeRange().max, valuesVisible );
     var cylinderSize = beakerNode.getCylinderSize();
     var solutionNode = new SolutionNode( cylinderSize, beakerNode.getCylinderEndHeight(), model.solution, model.getSolutionVolumeRange().max );
+    var precipitateNode = new PrecipitateNode( model.solution, cylinderSize, beakerNode.getCylinderEndHeight() );
     var saturatedIndicator = new SaturatedIndicator( model.solution );
 
     // solute control
@@ -57,6 +59,7 @@ define( function( require ) {
     // rendering order
     this.addChild( solutionNode );
     this.addChild( beakerNode );
+    this.addChild( precipitateNode );
     this.addChild( saturatedIndicator );
     this.addChild( showValuesCheckBox );
     this.addChild( resetAllButton );
@@ -69,6 +72,9 @@ define( function( require ) {
       // same coordinate frame as beaker
       solutionNode.x = beakerNode.x;
       solutionNode.y = beakerNode.y;
+      // same coordinate frame as beaker
+      precipitateNode.x = beakerNode.x;
+      precipitateNode.y = beakerNode.y;
       // centered below beaker
       soluteComboBox.centerX = beakerNode.centerX;
       soluteComboBox.top = beakerNode.bottom + 50;
