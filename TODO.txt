@@ -4,6 +4,9 @@ BUGS
 
 HIGH
 - PrecipitateNode is ridiculously slow when adding particles
+- Solute Amount (moles) slider
+- Solution Volume (Liters) slider
+- Concentration (Molarity) display
 
 MEDIUM
 

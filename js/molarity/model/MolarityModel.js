@@ -20,8 +20,8 @@ define( function( require ) {
   var Water = require( "molarity/model/Water" );
 
   // constants
-  var SOLUTE_AMOUNT_RANGE = new Range( 0, 1, 0.5 ); // moles
-  var SOLUTION_VOLUME_RANGE = new Range( 0.2, 1, 0.5 ); // liters
+  var SOLUTE_AMOUNT_RANGE = new Range( 0, 1, 1 ); // moles
+  var SOLUTION_VOLUME_RANGE = new Range( 0.2, 1, 0.2 ); // liters
   var CONCENTRATION_RANGE = new Range( SOLUTE_AMOUNT_RANGE.min / SOLUTION_VOLUME_RANGE.max, SOLUTE_AMOUNT_RANGE.max / SOLUTION_VOLUME_RANGE.min ); // M
   var CONCENTRATION_DISPLAY_RANGE = CONCENTRATION_RANGE; // M
 
