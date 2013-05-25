@@ -9,6 +9,7 @@ HIGH
 - Concentration (Molarity) display
 
 MEDIUM
+- scenery needs a way to get number of children, and to remove the last child that was added
 
 LOW
 - port CompositeProperty, use in Solution
