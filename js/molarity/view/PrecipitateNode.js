@@ -53,17 +53,18 @@ define( function( require ) {
     var updateParticles = function() {
       var particleNode;
       var numberOfParticles = thisNode.getNumberOfParticles();
-      if ( numberOfParticles == 0 ) {
+      if ( numberOfParticles === 0 ) {
         removeAllParticles();
       }
       else if ( numberOfParticles > particleNodes.length ) {
         // add particles
-        while ( numberOfParticles > particleNodes.length ) {
+        var numberToAdd = numberOfParticles - particleNodes.length;
+        for ( var i = 0; i < numberToAdd; i++ ) {
           console.log( "PrecipitateNode.updateParticles: numberOfParticles=" + numberOfParticles + " particleNodes.length=" + particleNodes.length );//XXX
           particleNode = new PrecipitateParticleNode( solution.solute.get() );
           thisNode.addChild( particleNode );
           particleNodes.push( particleNode );
-          particleNode.translate = thisNode.getRandomOffset( particleNode );
+          particleNode.translation = thisNode.getRandomOffset( particleNode );
         }
       }
       else {
