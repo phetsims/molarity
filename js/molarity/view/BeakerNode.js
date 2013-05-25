@@ -28,7 +28,7 @@ define( function( require ) {
   var Vector2 = require( "DOT/Vector2" );
 
   // constants
-  var DEBUG_SHAPES = true;
+  var DEBUG_SHAPES = false;
   var TICK_COLOR = Color.GRAY;
   var MINOR_TICK_SPACING = 0.1; // L
   var MINOR_TICKS_PER_MAJOR_TICK = 5;
@@ -46,7 +46,7 @@ define( function( require ) {
   function BeakerNode( solution, maxVolume, valuesVisible ) {
 
     var thisNode = this;
-    Node.call( thisNode );
+    Node.call( thisNode, { pickable: false } );
 
     // the glass beaker
     thisNode._beakerImageNode = new BeakerImageNode();
