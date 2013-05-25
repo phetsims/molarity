@@ -11,6 +11,7 @@ define( function( require ) {
 
   // imports
   var BeakerImageNode = require( "molarity/view/BeakerImageNode" );
+  var BeakerLabelNode = require( "molarity/view/BeakerLabelNode" );
   var Color = require( "SCENERY/util/Color" );
   var Image = require( "SCENERY/nodes/Image" );
   var inherit = require( "PHET_CORE/inherit" );
@@ -73,9 +74,10 @@ define( function( require ) {
     thisNode._tickLabelNodes = []; //XXX
 
     // label on the beaker
-//    var labelNode = new BeakerLabelNode( solution, labelSize, formulaFont, concentrationFont, concentrationUnits, valuesVisible );
-//    thisNode.addChild( labelNode );
-//    labelNode.setOffset( ( cylinderSize.getWidth() / 2 ), ( 0.15 * cylinderSize.getHeight() ) );
+    var labelNode = new BeakerLabelNode( solution, labelSize, formulaFont, concentrationFont, concentrationUnits, valuesVisible );
+    thisNode.addChild( labelNode );
+    labelNode.x = cylinderSize.width / 2;
+    labelNode.y = 0.15 * cylinderSize.height;
 
     valuesVisible.addObserver( function( visible ) {
       thisNode._setValuesVisible( visible );
