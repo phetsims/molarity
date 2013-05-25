@@ -18,6 +18,7 @@ define( function( require ) {
   var MStrings = require( "molarity/MStrings" );
   var Property = require( "PHETCOMMON/model/property/Property" );
   var ResetAllButton = require( "SCENERY_PHET/ResetAllButton" );
+  var SoluteComboBox = require( "molarity/view/SoluteComboBox" );
   var SolutionNode = require( "molarity/view/SolutionNode" );
   var TabView = require( "JOIST/TabView" );
   var Text = require( "SCENERY/nodes/Text" );
@@ -38,6 +39,9 @@ define( function( require ) {
     var beakerNode = new BeakerNode( model.solution, model.getSolutionVolumeRange().max, valuesVisible );
     var solutionNode = new SolutionNode( beakerNode.getCylinderSize(), beakerNode.getCylinderEndHeight(), model.solution, model.getSolutionVolumeRange().max );
 
+    // solute control
+    var soluteComboBox = new SoluteComboBox( model.solutes, model.solution.solute );
+
     // Show Values check box
     var showValuesCheckBox = new CheckBox( new Text( MStrings.showValues, { font: new MFont( 22 ) } ), valuesVisible );
 
@@ -52,6 +56,7 @@ define( function( require ) {
     this.addChild( beakerNode );
     this.addChild( showValuesCheckBox );
     this.addChild( resetAllButton );
+    this.addChild( soluteComboBox );
 
     // layout for things that don't have a location in the model
     {
@@ -60,6 +65,9 @@ define( function( require ) {
       // same coordinate frame as beaker
       solutionNode.x = beakerNode.x;
       solutionNode.y = beakerNode.y;
+      // centered below beaker
+      soluteComboBox.centerX = beakerNode.centerX;
+      soluteComboBox.top = beakerNode.bottom + 50;
       showValuesCheckBox.left = beakerNode.right + 50;
       showValuesCheckBox.top = beakerNode.top;
       resetAllButton.left = beakerNode.right + 50;
