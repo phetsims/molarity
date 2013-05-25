@@ -2,8 +2,7 @@
 
 /**
  * Label that appears on the beaker in a frosty, translucent frame.
- * Displays solute formula and (optionally) solution concentration.
- * Origin at top center.
+ * Displays solute formula. Origin at top center.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
