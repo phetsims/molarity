@@ -18,6 +18,9 @@ define( function( require ) {
   var MFont = require( "molarity/MFont" );
   var MImages = require( "molarity/MImages" );
   var Node = require( "SCENERY/nodes/Node" );
+  var Path = require( "SCENERY/nodes/Path" );
+  var Shape = require( "KITE/Shape" );
+  var Util = require( "DOT/Util" );
 
   // tick mark properties
   var TICK_COLOR = Color.GRAY;
@@ -53,14 +56,11 @@ define( function( require ) {
     thisNode._beakerImageNode.y = -cylinderOffset.y;
 
     // inside bottom line
-//            PPath bottomNode = new PPath() {{
-//                setPathTo( new Arc2D.Double( 0, cylinderSize.getHeight() - ( cylinderEndHeight / 2 ), cylinderSize.getWidth(), cylinderEndHeight,
-//                                             5, 170, Arc2D.OPEN ) );
-//                setStroke( new BasicStroke( 2f ) );
-//                setStrokePaint( new Color( 150, 150, 150, 100 ) );
-//            }};
-//
-//    thisNode.addChild( bottomNode );
+    var bottomShape = new Shape().ellipticalArc( cylinderSize.width/2, cylinderSize.height,
+                                                 cylinderSize.width/2, cylinderEndHeight/2,
+                                                 Util.toRadians( 0 ), Util.toRadians( 180 ), false );
+    var bottomNode = new Path( { shape: bottomShape, stroke: new Color( 150, 150, 150, 100 ), lineWidth: 2 } );
+    thisNode.addChild( bottomNode );
 
     thisNode.addChild( thisNode._beakerImageNode );
 

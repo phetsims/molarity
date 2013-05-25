@@ -1,3 +1,4 @@
+5/24/13 add visual cue for inside-bottom of beaker
 5/24/13 add label to beaker
 5/24/13 use rgb values for solute colors
 5/24/13 partial port of beaker view
