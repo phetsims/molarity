@@ -13,23 +13,25 @@ define( function( require ) {
   var BeakerImageNode = require( "molarity/view/BeakerImageNode" );
   var BeakerLabelNode = require( "molarity/view/BeakerLabelNode" );
   var Color = require( "SCENERY/util/Color" );
+  var DebugOriginNode = require( "common/util/DebugOriginNode" );
   var Image = require( "SCENERY/nodes/Image" );
   var inherit = require( "PHET_CORE/inherit" );
   var MFont = require( "molarity/MFont" );
   var MImages = require( "molarity/MImages" );
+  var MStrings = require( "molarity/MStrings" );
   var Node = require( "SCENERY/nodes/Node" );
   var Path = require( "SCENERY/nodes/Path" );
+  var Rectangle = require( "SCENERY/nodes/Rectangle" );
   var Shape = require( "KITE/Shape" );
+  var Text = require( "SCENERY/nodes/Text" );
   var Util = require( "DOT/Util" );
+  var Vector2 = require( "DOT/Vector2" );
 
-  // tick mark properties
+  // constants
+  var DEBUG_SHAPES = true;
   var TICK_COLOR = Color.GRAY;
   var MINOR_TICK_SPACING = 0.1; // L
   var MINOR_TICKS_PER_MAJOR_TICK = 5;
-//      var MAJOR_TICK_STROKE = new BasicStroke( 2f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL );
-//      var MINOR_TICK_STROKE = new BasicStroke( 2f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL );
-
-  // tick label properties
   var MAJOR_TICK_LABELS = [ "\u00bd", "1" ]; // 1/2L, 1L
   var TICK_LABEL_FONT = new MFont( 20 );
   var TICK_LABEL_COLOR = Color.DARK_GRAY;
@@ -52,40 +54,76 @@ define( function( require ) {
     var cylinderSize = thisNode._beakerImageNode.getCylinderSize();
     var cylinderOffset = thisNode._beakerImageNode.getCylinderOffset();
     var cylinderEndHeight = thisNode._beakerImageNode.getCylinderEndHeight();
-    thisNode._beakerImageNode.x = -cylinderOffset.x;
-    thisNode._beakerImageNode.y = -cylinderOffset.y;
+    thisNode._beakerImageNode.translation = new Vector2( -cylinderOffset.x, -cylinderOffset.y );
 
     // inside bottom line
-    var bottomShape = new Shape().ellipticalArc( cylinderSize.width/2, cylinderSize.height,
+    var bottomShape = new Shape().ellipticalArc( cylinderSize.width / 2, cylinderSize.height,
                                                  cylinderSize.width/2, cylinderEndHeight/2,
-                                                 Util.toRadians( 0 ), Util.toRadians( 180 ), false );
+                                                 0, Util.toRadians( 0 ), Util.toRadians( 180 ), true );
     var bottomNode = new Path( { shape: bottomShape, stroke: new Color( 150, 150, 150, 100 ), lineWidth: 2 } );
-    thisNode.addChild( bottomNode );
-
-    thisNode.addChild( thisNode._beakerImageNode );
-
-    thisNode._tickLabelNodes = []; //XXX
 
     // label on the beaker
     var labelNode = new BeakerLabelNode( solution );
-    thisNode.addChild( labelNode );
     labelNode.x = cylinderSize.width / 2;
     labelNode.y = 0.15 * cylinderSize.height;
 
-    valuesVisible.addObserver( function( visible ) {
-      thisNode._setValuesVisible( visible );
-    } );
+    // parents for tick marks and labels
+    var tickMarkNodes = new Node();
+    var tickLabelNodes = new Node();
 
+    // rendering order
+    thisNode.addChild( bottomNode );
+    thisNode.addChild( thisNode._beakerImageNode );
+    thisNode.addChild( tickMarkNodes );
+    thisNode.addChild( tickLabelNodes );
+    thisNode.addChild( labelNode );
+
+    // tick marks, arcs that wrap around the edge of the beaker's cylinder
+    var numberOfTicks = Math.round( maxVolume / MINOR_TICK_SPACING );
+    var bottomY = cylinderSize.height; // don't use bounds or position will be off because of stroke width
+    var deltaY = cylinderSize.height / numberOfTicks;
+    var y, markShape, markNode, labelIndex, label, labelNode; // vars used inside the for-loop
+    for ( var i = 1; i <= numberOfTicks; i++ ) {
+      y = bottomY - ( i * deltaY );
+      if ( i % MINOR_TICKS_PER_MAJOR_TICK === 0 ) {
+
+        // major tick mark
+        markShape = new Shape().ellipticalArc( cylinderSize.width/2, y, cylinderSize.width/2, cylinderEndHeight/2, 0, Util.toRadians( 165 ), Util.toRadians( 135 ), true );
+        markNode = new Path( { shape: markShape, stroke: TICK_COLOR, lineWidth: 2 } );
+        tickMarkNodes.addChild( markNode );
+
+        // major tick label
+        labelIndex = ( i / MINOR_TICKS_PER_MAJOR_TICK ) - 1;
+        if ( labelIndex < MAJOR_TICK_LABELS.length ) {
+          label = MAJOR_TICK_LABELS[labelIndex] + MStrings.units_liters; //TODO localize order
+          labelNode = new Text( label, { font: TICK_LABEL_FONT, stroke: TICK_LABEL_COLOR } );
+          tickLabelNodes.addChild( labelNode );
+          labelNode.left = markNode.right + TICK_LABEL_X_SPACING;
+          labelNode.centerY = markNode.bottom;
+        }
+      }
+      else {
+        // minor tick mark, no label
+        markShape = new Shape().ellipticalArc( cylinderSize.width/2, y, cylinderSize.width/2, cylinderEndHeight/2, 0, Util.toRadians( 165 ), Util.toRadians( 150 ), true );
+        markNode = new Path( { shape: markShape, stroke: TICK_COLOR, lineWidth: 2 } );
+        tickMarkNodes.addChild( markNode );
+      }
+    }
+
+    if ( DEBUG_SHAPES ) {
+      // draw the cylinder that represents the beaker's interior
+      var cylinderSize = thisNode.getCylinderSize();
+      thisNode.addChild( new Rectangle( 0, 0, cylinderSize.width, cylinderSize.height, { stroke: 'red' } ) );
+      // show the origin
+      thisNode.addChild( new DebugOriginNode() );
+    }
+
+    valuesVisible.addObserver( function( visible ) {
+      tickLabelNodes.visible = visible;
+    } );
   }
 
   inherit( BeakerNode, Node );
-
-  // Controls visibility of tick mark values
-  BeakerNode.prototype._setValuesVisible = function( visible ) {
-    for ( var i = 0; i < this._tickLabelNodes.length; i++ ) {
-      this._tickLabelNodes[i].visible = visible;
-    }
-  };
 
   BeakerNode.prototype.getCylinderSize = function() {
     return this._beakerImageNode.getCylinderSize();
@@ -97,44 +135,3 @@ define( function( require ) {
 
   return BeakerNode;
 } );
-
-//        // tick marks, arcs that wrap around the edge of the beaker's cylinder
-//        tickLabelNodes = new ArrayList<PText>();
-//        PComposite ticksNode = new PComposite();
-//        addChild( ticksNode );
-//        int numberOfTicks = (int) Math.round( maxVolume / MINOR_TICK_SPACING );
-//        final double bottomY = cylinderSize.getHeight(); // don't use bounds or position will be off because of stroke width
-//        double deltaY = cylinderSize.getHeight() / numberOfTicks;
-//        for ( int i = 1; i <= numberOfTicks; i++ ) {
-//            final double y = bottomY - ( i * deltaY ) - ( cylinderEndHeight / 2 );
-//            if ( i % MINOR_TICKS_PER_MAJOR_TICK == 0 ) {
-//                // major tick
-//                PPath tickNode = new PPath( new Arc2D.Double( 0, y, cylinderSize.getWidth(), cylinderEndHeight, 195, 30, Arc2D.OPEN ) ) {{
-//                    setStroke( MAJOR_TICK_STROKE );
-//                    setStrokePaint( TICK_COLOR );
-//                }};
-//                ticksNode.addChild( tickNode );
-//
-//                // major tick label
-//                int labelIndex = ( i / MINOR_TICKS_PER_MAJOR_TICK ) - 1;
-//                if ( labelIndex < MAJOR_TICK_LABELS.length ) {
-//                    String label = MAJOR_TICK_LABELS[labelIndex] + volumeUnits;
-//                    PText textNode = new PText( label ) {{
-//                        setFont( TICK_LABEL_FONT );
-//                        setTextPaint( TICK_LABEL_COLOR );
-//                    }};
-//                    ticksNode.addChild( textNode );
-//                    textNode.setOffset( tickNode.getFullBounds().getMaxX() + TICK_LABEL_X_SPACING,
-//                                        tickNode.getFullBounds().getMaxY() - ( textNode.getFullBoundsReference().getHeight() / 2 ) );
-//                    tickLabelNodes.add( textNode );
-//                }
-//            }
-//            else {
-//                // minor tick, no label
-//                PPath tickNode = new PPath( new Arc2D.Double( 0, y, cylinderSize.getWidth(), cylinderEndHeight, 195, 15, Arc2D.OPEN ) ) {{
-//                    setStroke( MINOR_TICK_STROKE );
-//                    setStrokePaint( TICK_COLOR );
-//                }};
-//                ticksNode.addChild( tickNode );
-//            }
-//        }

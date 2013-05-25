@@ -29,7 +29,7 @@ define( function( require ) {
     var thisView = this;
     TabView.call( thisView );
 
-    var valuesVisible = new Property( false );
+    var valuesVisible = new Property( true );
 
     // beaker, with solution and precipitate inside of it
     var beakerNode = new BeakerNode( model.solution, model.getSolutionVolumeRange().max, valuesVisible );
