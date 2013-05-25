@@ -11,6 +11,7 @@ define( function( require ) {
   // imports
   var BeakerNode = require( "molarity/view/BeakerNode" );
   var Bounds2 = require( "DOT/Bounds2" );
+  var CheckBox = require( "common/util/CheckBox" );
   var Dimension2 = require( "DOT/Dimension2" );
   var inherit = require( "PHET_CORE/inherit" );
   var MFont = require( "molarity/MFont" );
@@ -18,6 +19,7 @@ define( function( require ) {
   var Property = require( "PHETCOMMON/model/property/Property" );
   var ResetAllButton = require( "SCENERY_PHET/ResetAllButton" );
   var TabView = require( "JOIST/TabView" );
+  var Text = require( "SCENERY/nodes/Text" );
 
   /**
    * @param {MolarityModel} model
@@ -34,6 +36,9 @@ define( function( require ) {
     // beaker, with solution and precipitate inside of it
     var beakerNode = new BeakerNode( model.solution, model.getSolutionVolumeRange().max, valuesVisible );
 
+    // Show Values check box
+    var showValuesCheckBox = new CheckBox( new Text( MStrings.showValues, { font: new MFont( 22 ) } ), valuesVisible );
+
     // Reset All button
     var resetAllButton = new ResetAllButton( function() {
       valuesVisible.reset();
@@ -42,12 +47,15 @@ define( function( require ) {
 
     // rendering order
     this.addChild( beakerNode );
+    this.addChild( showValuesCheckBox );
     this.addChild( resetAllButton );
 
     // layout for things that don't have a location in the model
     {
       beakerNode.left = 100;
       beakerNode.top = 100;
+      showValuesCheckBox.left = beakerNode.right + 50;
+      showValuesCheckBox.top = beakerNode.top;
       resetAllButton.left = beakerNode.right + 50;
       resetAllButton.bottom = beakerNode.bottom;
     }
