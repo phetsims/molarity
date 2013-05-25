@@ -32,15 +32,7 @@ define( function( require ) {
     var valuesVisible = new Property( false );
 
     // beaker, with solution and precipitate inside of it
-    var beakerNode = new BeakerNode( model.solution,
-                                     model.getSolutionVolumeRange().max,
-                                     MStrings.units_liters,
-                                     MStrings.units_molarity,
-                                     new MFont( 28, "bold" ),
-                                     new MFont( 16 ),
-                                     new Dimension2( 180, 80 ),
-                                     0.75, 0.75,
-                                     valuesVisible );
+    var beakerNode = new BeakerNode( model.solution, model.getSolutionVolumeRange().max, valuesVisible );
 
     // Reset All button
     var resetAllButton = new ResetAllButton( function() {

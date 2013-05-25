@@ -35,24 +35,17 @@ define( function( require ) {
   /**
    * @param {Solution} solution
    * @param {Number} maxVolume
-   * @param {String} volumeUnits
-   * @param {String} concentrationUnits
-   * @param {Font} formulaFont
-   * @param {Font} concentrationFont
-   * @param {Dimension2} labelSize
-   * @param {Number} imageScaleX
-   * @param {Number} imageScaleY
    * @param {Property<Boolean>} valuesVisible
    * @constructor
    */
-  function BeakerNode( solution, maxVolume, volumeUnits, concentrationUnits, formulaFont, concentrationFont, labelSize, imageScaleX, imageScaleY, valuesVisible ) {
+  function BeakerNode( solution, maxVolume, valuesVisible ) {
 
     var thisNode = this;
     Node.call( thisNode );
 
     // the glass beaker
     thisNode._beakerImageNode = new BeakerImageNode();
-    thisNode._beakerImageNode.scale( imageScaleX, imageScaleY );
+    thisNode._beakerImageNode.scale( 0.75, 0.75 );
     var cylinderSize = thisNode._beakerImageNode.getCylinderSize();
     var cylinderOffset = thisNode._beakerImageNode.getCylinderOffset();
     var cylinderEndHeight = thisNode._beakerImageNode.getCylinderEndHeight();
@@ -74,7 +67,7 @@ define( function( require ) {
     thisNode._tickLabelNodes = []; //XXX
 
     // label on the beaker
-    var labelNode = new BeakerLabelNode( solution, labelSize, formulaFont, concentrationFont, concentrationUnits, valuesVisible );
+    var labelNode = new BeakerLabelNode( solution );
     thisNode.addChild( labelNode );
     labelNode.x = cylinderSize.width / 2;
     labelNode.y = 0.15 * cylinderSize.height;

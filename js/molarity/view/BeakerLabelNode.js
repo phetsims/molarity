@@ -11,25 +11,29 @@ define( function( require ) {
 
   // imports
   var Color = require( "SCENERY/util/Color" );
+  var Dimension2 = require( "DOT/Dimension2" );
   var HTMLText = require( "SCENERY/nodes/HTMLText" );
   var inherit = require( "PHET_CORE/inherit" );
+  var MFont = require( "molarity/MFont" );
   var MSymbols = require( "molarity/MSymbols" );
   var Node = require( "SCENERY/nodes/Node" );
   var Rectangle = require( "SCENERY/nodes/Rectangle" );
 
+  // constants
+  var LABEL_SIZE = new Dimension2( 180, 80 );
+  var LABEL_FONT = new MFont( 28, "bold" );
+
   /**
    * @param {Solution} solution
-   * @param {Dimension2} labelSize
-   * @param {Font} font
    * @constructor
    */
-  function BeakerLabelNode( solution, labelSize, font ) {
+  function BeakerLabelNode( solution ) {
 
     var thisNode = this;
     Node.call( thisNode );
 
-    var formulaNode = new HTMLText( "?", { font: font } );
-    var backgroundNode = new Rectangle( -labelSize.width / 2, 0, labelSize.width, labelSize.height, 10, 10,
+    var formulaNode = new HTMLText( "?", { font: LABEL_FONT } );
+    var backgroundNode = new Rectangle( -LABEL_SIZE.width / 2, 0, LABEL_SIZE.width, LABEL_SIZE.height, 10, 10,
                                         { fill: new Color( 255, 255, 255, 150 ), stroke: Color.LIGHT_GRAY } );
 
     thisNode.addChild( backgroundNode );
