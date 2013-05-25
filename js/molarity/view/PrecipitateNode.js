@@ -31,9 +31,9 @@ define( function( require ) {
     var thisNode = this;
     Node.call( thisNode, { pickable: false } );
 
-    this.solution = solution;
-    this.cylinderSize = cylinderSize;
-    this.cylinderEndHeight = cylinderEndHeight;
+    thisNode.solution = solution;
+    thisNode.cylinderSize = cylinderSize;
+    thisNode.cylinderEndHeight = cylinderEndHeight;
 
     var particleNodes = [];
 
