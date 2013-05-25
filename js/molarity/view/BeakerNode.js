@@ -8,6 +8,7 @@
 * @author Chris Malley (PixelZoom, Inc.)
 */
 define( function( require ) {
+  "use strict";
 
   // imports
   var BeakerImageNode = require( "molarity/view/BeakerImageNode" );
@@ -82,37 +83,36 @@ define( function( require ) {
     var numberOfTicks = Math.round( maxVolume / MINOR_TICK_SPACING );
     var bottomY = cylinderSize.height; // don't use bounds or position will be off because of stroke width
     var deltaY = cylinderSize.height / numberOfTicks;
-    var y, markShape, markNode, labelIndex, label, labelNode; // vars used inside the for-loop
+    var y, tickMarkShape, tickMarkNode, tickLabelIndex, tickLabel, tickLabelNode; // vars used inside the for-loop
     for ( var i = 1; i <= numberOfTicks; i++ ) {
       y = bottomY - ( i * deltaY );
       if ( i % MINOR_TICKS_PER_MAJOR_TICK === 0 ) {
 
         // major tick mark
-        markShape = new Shape().ellipticalArc( cylinderSize.width/2, y, cylinderSize.width/2, cylinderEndHeight/2, 0, Util.toRadians( 165 ), Util.toRadians( 135 ), true );
-        markNode = new Path( { shape: markShape, stroke: TICK_COLOR, lineWidth: 2 } );
-        tickMarkNodes.addChild( markNode );
+        tickMarkShape = new Shape().ellipticalArc( cylinderSize.width/2, y, cylinderSize.width/2, cylinderEndHeight/2, 0, Util.toRadians( 165 ), Util.toRadians( 135 ), true );
+        tickMarkNode = new Path( { shape: tickMarkShape, stroke: TICK_COLOR, lineWidth: 2 } );
+        tickMarkNodes.addChild( tickMarkNode );
 
         // major tick label
-        labelIndex = ( i / MINOR_TICKS_PER_MAJOR_TICK ) - 1;
-        if ( labelIndex < MAJOR_TICK_LABELS.length ) {
-          label = MAJOR_TICK_LABELS[labelIndex] + MStrings.units_liters; //TODO localize order
-          labelNode = new Text( label, { font: TICK_LABEL_FONT, stroke: TICK_LABEL_COLOR } );
-          tickLabelNodes.addChild( labelNode );
-          labelNode.left = markNode.right + TICK_LABEL_X_SPACING;
-          labelNode.centerY = markNode.bottom;
+        tickLabelIndex = ( i / MINOR_TICKS_PER_MAJOR_TICK ) - 1;
+        if ( tickLabelIndex < MAJOR_TICK_LABELS.length ) {
+          tickLabel = MAJOR_TICK_LABELS[tickLabelIndex] + MStrings.units_liters; //TODO localize order
+          tickLabelNode = new Text( tickLabel, { font: TICK_LABEL_FONT, stroke: TICK_LABEL_COLOR } );
+          tickLabelNodes.addChild( tickLabelNode );
+          tickLabelNode.left = tickMarkNode.right + TICK_LABEL_X_SPACING;
+          tickLabelNode.centerY = tickMarkNode.bottom;
         }
       }
       else {
         // minor tick mark, no label
-        markShape = new Shape().ellipticalArc( cylinderSize.width/2, y, cylinderSize.width/2, cylinderEndHeight/2, 0, Util.toRadians( 165 ), Util.toRadians( 150 ), true );
-        markNode = new Path( { shape: markShape, stroke: TICK_COLOR, lineWidth: 2 } );
-        tickMarkNodes.addChild( markNode );
+        tickMarkShape = new Shape().ellipticalArc( cylinderSize.width/2, y, cylinderSize.width/2, cylinderEndHeight/2, 0, Util.toRadians( 165 ), Util.toRadians( 150 ), true );
+        tickMarkNode = new Path( { shape: tickMarkShape, stroke: TICK_COLOR, lineWidth: 2 } );
+        tickMarkNodes.addChild( tickMarkNode );
       }
     }
 
     if ( DEBUG_SHAPES ) {
       // draw the cylinder that represents the beaker's interior
-      var cylinderSize = thisNode.getCylinderSize();
       thisNode.addChild( new Rectangle( 0, 0, cylinderSize.width, cylinderSize.height, { stroke: 'red' } ) );
       // show the origin
       thisNode.addChild( new DebugOriginNode() );

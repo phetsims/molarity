@@ -9,6 +9,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 define( function( require ) {
+  "use strict";
 
   // import
   var Dimension2 = require( "DOT/Dimension2" );

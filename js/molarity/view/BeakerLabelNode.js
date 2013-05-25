@@ -41,10 +41,10 @@ define( function( require ) {
 
     var updateFormula = function( solute ) {
       // use solute formula
-      if ( solution.volume.get() == 0 ) {
+      if ( solution.volume.get() === 0 ) {
         formulaNode.text = "";
       }
-      else if ( solution.concentration.get() == 0 ) {
+      else if ( solution.concentration.get() === 0 ) {
         formulaNode.text = MSymbols.WATER;
       }
       else {
