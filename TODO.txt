@@ -3,7 +3,6 @@ TODO list for molarity (HTML5 port)
 BUGS
 
 HIGH
-- precipitate particles don't render when there are more than ~35 of them
 - PrecipitateNode is ridiculously slow when adding particles
 - Solute Amount (moles) slider
 - Solution Volume (Liters) slider

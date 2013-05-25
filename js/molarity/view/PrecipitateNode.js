@@ -44,10 +44,10 @@ define( function( require ) {
     }
 
     var removeAllParticles = function() {
-      for ( var i = 0; i < particleNodes.length; i++ ) {
-        thisNode.removeChild( particleNodes[i] );
+      console.log( "PrecipitateNode.removeAllParticles" );//XXX
+      while ( particleNodes.length > 0 ) {
+        thisNode.removeChild( particleNodes.pop() );
       }
-      particleNodes.splice(); // clears the array
     };
 
     // Updates the number of particles to match the saturation of the solution.
@@ -92,7 +92,6 @@ define( function( require ) {
 
     // when the solute changes, remove all particles and create new particles for the solute
     solution.solute.addObserver( function() {
-      removeAllParticles();
       updateParticles();
       updateValue();
     } );
