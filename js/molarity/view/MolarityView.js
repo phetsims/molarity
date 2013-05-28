@@ -79,10 +79,15 @@ define( function( require ) {
       soluteComboBox.centerX = beakerNode.centerX;
       soluteComboBox.top = beakerNode.bottom + 50;
       // toward bottom of the beaker
+      var saturatedIndicatorVisible = saturatedIndicator.visible; // so we can layout an invisible node
+      saturatedIndicator.visible = true;
       saturatedIndicator.centerX = beakerNode.x + ( cylinderSize.width / 2 );
       saturatedIndicator.bottom = beakerNode.bottom - ( 0.2 * cylinderSize.height );
+      saturatedIndicator.visible = saturatedIndicatorVisible;
+      //TODO
       showValuesCheckBox.left = beakerNode.right + 50;
       showValuesCheckBox.top = beakerNode.top;
+      //TODO
       resetAllButton.left = beakerNode.right + 50;
       resetAllButton.bottom = beakerNode.bottom;
     }
