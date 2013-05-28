@@ -19,7 +19,7 @@ define( function( require ) {
   var Vector2 = require( "DOT/Vector2" );
 
   // constants
-  var DEBUG = false;
+  var SHOW_PARTICLE_COUNT = false; // for debugging
 
   /**
    * @param {Solution} solution
@@ -39,7 +39,7 @@ define( function( require ) {
 
     var valueNode = new Text( "?", { font: new MFont( 12 ), fill: "red" } );
 
-    if ( DEBUG ) {
+    if ( SHOW_PARTICLE_COUNT ) {
       thisNode.addChild( valueNode );
     }
 
