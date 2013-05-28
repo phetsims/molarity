@@ -16,6 +16,9 @@ define( function( require ) {
   var Rectangle = require( "SCENERY/nodes/Rectangle" );
   var Text = require( "SCENERY/nodes/Text" );
 
+  // constants
+  var DEBUG_BOUNDS = false;
+
   /**
    * @param {String} quantitativeValue
    * @param {String} qualitativeValue
@@ -37,7 +40,11 @@ define( function( require ) {
     qualitativeNode.centerY = quantitativeNode.centerY;
 
     // add an invisible rectangle so that bounds don't change
-    thisNode.addChild( new Rectangle( thisNode.left, thisNode.top, thisNode.width, thisNode.height ) );
+    var boundsNode = new Rectangle( thisNode.left, thisNode.top, thisNode.width, thisNode.height );
+    if ( DEBUG_BOUNDS ) {
+      boundsNode.stroke = "red";
+    }
+    thisNode.addChild( boundsNode );
 
     // switch between qualitative and quantitative
     isQuantitative.addObserver( function( isQuantitative ) {
