@@ -44,7 +44,6 @@ define( function( require ) {
     }
 
     var removeAllParticles = function() {
-      console.log( "PrecipitateNode.removeAllParticles" );//XXX
       while ( particleNodes.length > 0 ) {
         thisNode.removeChild( particleNodes.pop() );
       }
@@ -60,9 +59,7 @@ define( function( require ) {
       else if ( numberOfParticles > particleNodes.length ) {
         // add particles
         var numberToAdd = numberOfParticles - particleNodes.length;
-        console.log( "adding " + numberToAdd + " particles" );//XXX
         for ( var i = 0; i < numberToAdd; i++ ) {
-//          console.log( "PrecipitateNode.updateParticles: numberOfParticles=" + numberOfParticles + " particleNodes.length=" + particleNodes.length );//XXX
           particleNode = new PrecipitateParticleNode( solution.solute.get() );
           thisNode.addChild( particleNode );
           particleNodes.push( particleNode );
@@ -87,14 +84,12 @@ define( function( require ) {
 
     // when the saturation changes, update the number of precipitate particles
     solution.precipitateAmount.addObserver( function( precipitateAmount ) {
-      console.log( "precipitate amount changed, value=" + precipitateAmount );//XXX
       updateParticles();
       updateValue();
     } );
 
     // when the solute changes, remove all particles and create new particles for the solute
     solution.solute.addObserver( function( solute ) {
-      console.log( "solute changed, formula=" + solute.formula );//XXX
       removeAllParticles();
       updateParticles();
       updateValue();
