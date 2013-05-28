@@ -123,7 +123,7 @@ define( function( require ) {
       saturatedIndicator.visible = saturatedIndicatorVisible;
       // right of beaker
       concentrationDisplay.left = beakerNode.right + 50;
-      concentrationDisplay.top = beakerNode.top;
+      concentrationDisplay.bottom = beakerNode.bottom;
       // left of combo box
       showValuesCheckBox.right = soluteComboBox.left - 50;
       showValuesCheckBox.centerY = soluteComboBox.centerY;
