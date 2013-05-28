@@ -19,7 +19,7 @@ define( function( require ) {
   var Vector2 = require( "DOT/Vector2" );
 
   // constants
-  var DEBUG = true; //TODO set this based on ?dev query parameter
+  var DEBUG = false;
 
   /**
    * @param {Solution} solution
