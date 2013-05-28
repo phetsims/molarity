@@ -38,7 +38,7 @@ define( function( require ) {
     var thisView = this;
     TabView.call( thisView );
 
-    var valuesVisible = new Property( true );
+    var valuesVisible = new Property( false );
 
     // beaker, with solution and precipitate inside of it
     var beakerNode = new BeakerNode( model.solution, model.getSolutionVolumeRange().max, valuesVisible );
@@ -101,10 +101,10 @@ define( function( require ) {
       soluteAmountSlider.left = 10;
       soluteAmountSlider.top = 100;
       // to the right of the Solute Amount slider
-      solutionVolumeSlider.left = soluteAmountSlider.right + 20;
+      solutionVolumeSlider.left = soluteAmountSlider.left + soluteAmountSlider.getCompleteBounds().width + 20;
       solutionVolumeSlider.y = soluteAmountSlider.y;
       // to the right of the Solution Volume slider
-      beakerNode.left = solutionVolumeSlider.right + 20;
+      beakerNode.left = solutionVolumeSlider.left + solutionVolumeSlider.getCompleteBounds().width + 20;
       beakerNode.y = soluteAmountSlider.y;
       // same coordinate frame as beaker
       solutionNode.x = beakerNode.x;

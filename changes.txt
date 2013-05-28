@@ -1,3 +1,4 @@
+5/28/13 use getCompleteBounds to position sliders, since their values may initially be invisible
 5/28/13 update value positions only when type are visible, or scenery barfs
 5/28/13 fix bug in saturation indicator
 5/28/13 fix layout problem with slider range values
