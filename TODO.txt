@@ -4,7 +4,8 @@ BUGS
 - adding a node to an array (for keeping an internal collection) seems to keep it from being added to the scenegraph
 
 HIGH
-- if MolarityView.visibleValue is initially false, sim freezes when "Show values" is clicked
+- sliders lag when solution is saturated (particles)
+- switching solute combo box is slow if it involves creating particles
 - layout problem with min/max values in ConcentrationDisplay (DualLabelNode rectangle has incorrect bounds)
 - "Solution<br>Concentration" title in ConcentrationDisplay causes only HTMLText node to display
 - "<center>Solution<br>Concentration" title in ConcentrationDisplay cause HTMLText node layout to be incorrect
