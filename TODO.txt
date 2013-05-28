@@ -8,6 +8,8 @@ HIGH
 - Solution Volume (Liters) slider
 
 MEDIUM
+- "Solution<br>Concentration" title in ConcentrationDisplay causes only HTMLText node to display
+- "<center>Solution<br>Concentration" title in ConcentrationDisplay cause HTMLText node layout to be incorrect
 - title on concentration display isn't positioned or justified properly
 - scenery needs a way to get number of children, and to remove the last child that was added
 
