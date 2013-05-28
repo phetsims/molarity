@@ -114,7 +114,7 @@ define( function( require ) {
     var barNode = new Rectangle( 0, 0, barSize.width, barSize.height, { stroke: "black" } );
     var saturatedBarNode = new Rectangle( 0, 0, barSize.width, barSize.height, { stroke: "black", fill: Color.LIGHT_GRAY } )
     var maxNode = new DualLabelNode( concentrationRange.max.toFixed( RANGE_DECIMAL_PLACES ), MStrings.high, valuesVisible, { font: RANGE_FONT } );
-    var minNode = new DualLabelNode( concentrationRange.min.toFixed( 0 ), MStrings.zero, valuesVisible, { font: RANGE_FONT } );
+    var minNode = new DualLabelNode( concentrationRange.min.toFixed( concentrationRange.min === 0 ? 0 : RANGE_DECIMAL_PLACES ), MStrings.zero, valuesVisible, { font: RANGE_FONT } );
     var pointerNode = new Pointer( solution, concentrationRange, barSize, valuesVisible );
 
     // rendering order
