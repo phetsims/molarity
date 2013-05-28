@@ -1,3 +1,4 @@
+5/28/13 ***** FEATURE COMPLETE *****
 5/28/13 fix lint errors
 5/28/13 show no decimal places for "0" range value
 5/28/13 align concentration display with bottom of beaker
