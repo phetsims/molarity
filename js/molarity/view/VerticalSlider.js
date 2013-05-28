@@ -159,6 +159,13 @@ define( function( require ) {
     thumbNode.centerX = trackNode.centerX;
     thumbNode.centerY = trackNode.centerY;
 
+    var updateValuePosition = function() {
+      if ( valueNode.visible ) {
+        valueNode.left = thumbNode.right + 5;
+        valueNode.centerY = thumbNode.centerY;
+      }
+    };
+
     // move the slider thumb to reflect the model value
     property.addObserver( function( value ) {
       // move the thumb
@@ -166,13 +173,13 @@ define( function( require ) {
       thumbNode.y = Util.clamp( y, 0, trackSize.height );
       // update the value
       valueNode.text = StringUtils.format( MStrings.pattern_0value_1units, [value.toFixed( VALUE_DECIMAL_PLACES ), units] );
-      valueNode.left = thumbNode.right + 5;
-      valueNode.centerY = thumbNode.centerY;
+      updateValuePosition();
     } );
 
-     // switch between quantitative and qualitative display
+    // switch between quantitative and qualitative display
     valuesVisible.addObserver( function( visible ) {
       valueNode.setVisible( visible );
+      updateValuePosition();
     } );
   }
 
