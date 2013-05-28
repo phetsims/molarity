@@ -23,7 +23,7 @@ define( function( require ) {
 
     options = _.extend(
         {
-          spacing: 8,
+          spacing: 5,
           boxScale: 0.75
         }, options );
 
