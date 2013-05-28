@@ -6,20 +6,87 @@
 *
 * @author Chris Malley (PixelZoom, Inc.)
 */
-define( function(require){
+define( function( require ) {
 
+  // imports
+  var DualLabelNode = require( "molarity/view/DualLabelNode" );
+  var HTMLText = require( "SCENERY/nodes/HTMLText" );
   var inherit = require( "PHET_CORE/inherit" );
+  var MFont = require( "molarity/MFont" );
   var Node = require( "SCENERY/nodes/Node" );
+  var Rectangle = require( "SCENERY/nodes/Rectangle" );
+  var SimpleDragHandler = require( "SCENERY/input/SimpleDragHandler" );
+  var Util = require( "DOT/Util" );
+
+  // constants
+  var TITLE_FONT = new MFont( 24, "bold" );
+  var SUBTITLE_FONT = new MFont( 22 );
+  var RANGE_FONT = new MFont( 20 );
+  var VALUE_FONT = new MFont( 20 );
+  var RANGE_DECIMAL_PLACES = 1;
+  var VALUE_DECIMAL_PLACES = 2;
+
+  // Track that the thumb moves in, origin at upper left. Clicking in the track changes the value.
+  function Track( size, property, range, viewToModel ) {
+
+    var thisNode = this;
+    Rectangle.call( thisNode, 0, 0, size.width, size.height, { fill: "black", cursor: "pointer" } );
+
+    // click in the track to change the value, continue dragging if desired
+    var handleEvent = function( event ) {
+      var y = thisNode.globalToLocalPoint( event.pointer.point ).y;
+      var value = Util.linear( 0, range.max, size.height, range.min, y );
+      property.set( Util.clamp( value, range.min, range.max ) );
+    };
+    thisNode.addInputListener( new SimpleDragHandler(
+        {
+          start: function( event ) {
+            handleEvent( event );
+          },
+          drag: function( event ) {
+            handleEvent( event );
+          },
+          translate: function() {
+            // do nothing, override default behavior
+          }
+        } ) );
+  }
+
+  inherit( Track, Rectangle );
 
   function VerticalSlider( title, subtitle, minLabel, maxLabel, trackSize, modelValue, range, units, valuesVisible ) {
+
     var thisNode = this;
     Node.call( thisNode );
+
+    var titleNode = new HTMLText( title, { font: TITLE_FONT } );
+    var subtitleNode = new HTMLText( subtitle, { font: SUBTITLE_FONT } );
+    var minNode = new DualLabelNode( range.min.toFixed( RANGE_DECIMAL_PLACES ), minLabel, valuesVisible, RANGE_FONT );
+    var maxNode = new DualLabelNode( range.max.toFixed( RANGE_DECIMAL_PLACES ), maxLabel, valuesVisible, RANGE_FONT );
+    var trackNode = new Track( trackSize, modelValue, range );
+
+    // rendering order
+    thisNode.addChild( titleNode );
+    thisNode.addChild( subtitleNode );
+    thisNode.addChild( minNode );
+    thisNode.addChild( maxNode );
+    thisNode.addChild( trackNode );
+
+    // layout
+    maxNode.centerX = trackNode.centerX;
+    maxNode.bottom = trackNode.top - 5;
+    minNode.centerX = trackNode.centerX;
+    minNode.top = trackNode.bottom + 5;
+    subtitleNode.bottom = maxNode.top - 5;
+    subtitleNode.centerX = trackNode.centerX;
+    titleNode.bottom = subtitleNode.top - 5;
+    titleNode.centerX = trackNode.centerX;
   }
 
   inherit( VerticalSlider, Node );
 
   return VerticalSlider;
-});
+} );
 
 //public class VerticalSliderNode extends PhetPNode {
 //

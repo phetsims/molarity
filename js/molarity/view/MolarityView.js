@@ -23,8 +23,10 @@ define( function( require ) {
   var SaturatedIndicator = require( "molarity/view/SaturatedIndicator" );
   var SoluteComboBox = require( "molarity/view/SoluteComboBox" );
   var SolutionNode = require( "molarity/view/SolutionNode" );
+  var StringUtils = require( "common/util/StringUtils" );
   var TabView = require( "JOIST/TabView" );
   var Text = require( "SCENERY/nodes/Text" );
+  var VerticalSlider = require( "molarity/view/VerticalSlider" );
 
   /**
    * @param {MolarityModel} model
@@ -48,6 +50,16 @@ define( function( require ) {
     // solute control
     var soluteComboBox = new SoluteComboBox( model.solutes, model.solution.solute );
 
+     // slider for controlling amount of solute
+    var soluteAmountSlider = new VerticalSlider( MStrings.soluteAmount,
+                                                 StringUtils.format( MStrings.pattern_parentheses_0text, [MStrings.moles] ),
+                                                 MStrings.none, MStrings.lots,
+                                                 new Dimension2( 5, cylinderSize.height ),
+                                                 model.solution.soluteAmount,
+                                                 model.getSoluteAmountRange(),
+                                                 MStrings.units_moles,
+                                                 valuesVisible );
+
     // concentration display
     var concentrationBarSize = new Dimension2( 40, cylinderSize.height + 50 );
     var concentrationDisplay = new ConcentrationDisplay( model.solution, model.getConcentrationDisplayRange(), valuesVisible, concentrationBarSize );
@@ -66,6 +78,7 @@ define( function( require ) {
     this.addChild( beakerNode );
     this.addChild( precipitateNode );
     this.addChild( saturatedIndicator );
+    this.addChild( soluteAmountSlider );
     this.addChild( concentrationDisplay );
     this.addChild( showValuesCheckBox );
     this.addChild( resetAllButton );
@@ -73,6 +86,8 @@ define( function( require ) {
 
     // layout for things that don't have a location in the model
     {
+      soluteAmountSlider.left = 50;
+      soluteAmountSlider.top = 100;
       beakerNode.left = 300;
       beakerNode.top = 100;
       // same coordinate frame as beaker

@@ -9,7 +9,7 @@ HIGH
 - Solution Volume (Liters) slider
 
 MEDIUM
-- layout problem with min/max values in ConcentrationDisplay
+- layout problem with min/max values in ConcentrationDisplay (DualLabelNode rectangle has incorrect bounds)
 - "Solution<br>Concentration" title in ConcentrationDisplay causes only HTMLText node to display
 - "<center>Solution<br>Concentration" title in ConcentrationDisplay cause HTMLText node layout to be incorrect
 - title on concentration display isn't positioned or justified properly
