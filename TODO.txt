@@ -19,8 +19,11 @@ LOW
 - port CompositeProperty, use in Solution
 
 MIGRATE TO COMMON
+- CheckBox to sun
 - ChemUtils (BLL and Molarity)
 - ColorRange (BLL and Molarity)
 - ColorUtils (BLL and Molarity)
 - DebugOriginNode (BLL and Molarity)
-- CheckBox to sun
+- StringUtils (BLL and Molarity)
+
+
