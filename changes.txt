@@ -1,4 +1,5 @@
-5/28/12 replace LinearFunction with dot.Util.linear
+5/28/13 "Solute Amount" slider, with some text layout problems
+5/28/13 replace LinearFunction with dot.Util.linear
 5/28/13 add concentration display (has title layout problem)
 5/28/13 workaround for layout of invisible SaturatedIndicator, due to change in semantics of scenery bounds
 5/24/13 fix lint errors
