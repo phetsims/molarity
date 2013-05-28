@@ -14,11 +14,11 @@ define( function( require ) {
   var Color = require( "SCENERY/util/Color" );
   var DebugOriginNode = require( "common/util/DebugOriginNode" );
   var inherit = require( "PHET_CORE/inherit" );
-  var LinearFunction = require( "common/util/LinearFunction" );
   var Node = require( "SCENERY/nodes/Node" );
   var Path = require( "SCENERY/nodes/Path" );
   var Range = require( "DOT/Range" );
   var Shape = require( "KITE/Shape" );
+  var Util = require( "DOT/Util" );
 
   // constants
   var DEBUG_ORIGIN = false;
@@ -76,8 +76,7 @@ define( function( require ) {
       bottomNode.fill = color;
 
       // shape
-      var volumeToHeight = new LinearFunction( new Range( 0, maxVolume ), new Range( 0, cylinderSize.height ) );
-      var height = volumeToHeight.evaluate( solution.volume.get() );
+      var height = Util.linear( 0, 0, maxVolume, cylinderSize.height, solution.volume.get() );
       topNode.setShape( createTopShape( height ) );
       middleNode.setShape( createMiddleShape( height ) );
       bottomNode.setShape( createBottomShape( height ) );

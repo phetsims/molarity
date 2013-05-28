@@ -18,7 +18,6 @@ define( function( require ) {
   var DualLabelNode = require( "molarity/view/DualLabelNode" );
   var HTMLText = require( "SCENERY/nodes/HTMLText" );
   var inherit = require( "PHET_CORE/inherit" );
-  var LinearFunction = require( "common/util/LinearFunction" );
   var LinearGradient = require( "SCENERY/util/LinearGradient" );
   var MFont = require( "molarity/MFont" );
   var MStrings = require( "molarity/MStrings" );
@@ -29,6 +28,7 @@ define( function( require ) {
   var Shape = require( "KITE/Shape" );
   var StringUtils = require( "common/util/StringUtils" );
   var Text = require( "SCENERY/nodes/Text" );
+  var Util = require( "DOT/Util" );
 
   // constants
   var TITLE_FONT = new MFont( 24, "bold" );
@@ -65,12 +65,11 @@ define( function( require ) {
     } );
 
     // when the concentration or solute changes...
-    var concentrationToHeight = new LinearFunction( concentrationRange, new Range( 0, barSize.height ) );
     var update = function( concentration ) {
 
       // update the arrow
       var x = barSize.width;
-      var y = barSize.height - concentrationToHeight.evaluate( concentration );
+      var y = barSize.height - Util.linear( concentrationRange.min, 0, concentrationRange.max, barSize.height, concentration );
       var arrowShape = new Shape()
           .moveTo( x, y )
           .lineTo( x + ARROW_HEAD_HEIGHT, y - (ARROW_HEAD_WIDTH / 2) )
