@@ -50,7 +50,7 @@ define( function( require ) {
     // solute control
     var soluteComboBox = new SoluteComboBox( model.solutes, model.solution.solute );
 
-     // slider for controlling amount of solute
+    // slider for controlling amount of solute
     var soluteAmountSlider = new VerticalSlider( MStrings.soluteAmount,
                                                  StringUtils.format( MStrings.pattern_parentheses_0text, [MStrings.moles] ),
                                                  MStrings.none, MStrings.lots,
@@ -59,6 +59,17 @@ define( function( require ) {
                                                  model.getSoluteAmountRange(),
                                                  MStrings.units_moles,
                                                  valuesVisible );
+
+    // slider for controlling volume of solution, sized to match tick marks on the beaker
+    var volumeSliderHeight = ( model.getSolutionVolumeRange().getLength() / model.getSolutionVolumeRange().max ) * cylinderSize.height;
+    var solutionVolumeSlider = new VerticalSlider( MStrings.solutionVolume,
+                                                   StringUtils.format( MStrings.pattern_parentheses_0text, [MStrings.liters] ),
+                                                   MStrings.low, MStrings.full,
+                                                   new Dimension2( 5, volumeSliderHeight ),
+                                                   model.solution.volume,
+                                                   model.getSolutionVolumeRange(),
+                                                   MStrings.units_liters,
+                                                   valuesVisible );
 
     // concentration display
     var concentrationBarSize = new Dimension2( 40, cylinderSize.height + 50 );
@@ -79,6 +90,7 @@ define( function( require ) {
     this.addChild( precipitateNode );
     this.addChild( saturatedIndicator );
     this.addChild( soluteAmountSlider );
+    this.addChild( solutionVolumeSlider );
     this.addChild( concentrationDisplay );
     this.addChild( showValuesCheckBox );
     this.addChild( resetAllButton );
@@ -86,10 +98,14 @@ define( function( require ) {
 
     // layout for things that don't have a location in the model
     {
-      soluteAmountSlider.left = 50;
+      soluteAmountSlider.left = 10;
       soluteAmountSlider.top = 100;
-      beakerNode.left = 300;
-      beakerNode.top = 100;
+      // to the right of the Solute Amount slider
+      solutionVolumeSlider.left = soluteAmountSlider.right + 20;
+      solutionVolumeSlider.y = soluteAmountSlider.y;
+      // to the right of the Solution Volume slider
+      beakerNode.left = solutionVolumeSlider.right + 20;
+      beakerNode.y = soluteAmountSlider.y;
       // same coordinate frame as beaker
       solutionNode.x = beakerNode.x;
       solutionNode.y = beakerNode.y;

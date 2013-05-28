@@ -1,3 +1,4 @@
+5/28/13 "Solution Volume" slider, with some text layout problems
 5/28/13 "Solute Amount" slider, with some text layout problems
 5/28/13 replace LinearFunction with dot.Util.linear
 5/28/13 add concentration display (has title layout problem)
