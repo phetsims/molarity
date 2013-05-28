@@ -9,7 +9,9 @@ define( function( require ) {
   "use strict";
 
   // imports
+  var LinearFunction = require( "common/util/LinearFunction" );
   var Property = require( "PHETCOMMON/model/property/Property" );
+  var Range = require( "DOT/Range" );
 
   /**
    * @param {Solvent} solvent
@@ -59,6 +61,17 @@ define( function( require ) {
 
   Solution.prototype.isSaturated = function() {
     return this.precipitateAmount.get() !== 0;
+  };
+
+  Solution.prototype.getColor = function() {
+    if ( this.concentration.get() > 0 ) {
+      var concentrationToColorScale = new LinearFunction( new Range( 0, this.getSaturatedConcentration() ), new Range( 0, 1 ) );
+      var colorScale = concentrationToColorScale.evaluate( this.concentration.get() );
+      return this.solute.get().solutionColor.interpolateLinear( colorScale );
+    }
+    else {
+      return this.solvent.color;
+    }
   };
 
   return Solution;

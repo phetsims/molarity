@@ -70,13 +70,7 @@ define( function( require ) {
     var update = function() {
 
       // color
-      var color = solution.solvent.color;
-      if ( solution.concentration.get() > 0 ) {
-        // compute the color based on concentration
-        var concentrationToColorScale = new LinearFunction( new Range( 0, solution.getSaturatedConcentration() ), new Range( 0, 1 ) );
-        var colorScale = concentrationToColorScale.evaluate( solution.concentration.get() );
-        color = solution.solute.get().solutionColor.interpolateLinear( colorScale );
-      }
+      var color = solution.getColor();
       topNode.fill = color;
       middleNode.fill = color;
       bottomNode.fill = color;

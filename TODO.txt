@@ -6,9 +6,9 @@ HIGH
 - PrecipitateNode is ridiculously slow when adding particles
 - Solute Amount (moles) slider
 - Solution Volume (Liters) slider
-- Concentration (Molarity) display
 
 MEDIUM
+- title on concentration display isn't positioned or justified properly
 - scenery needs a way to get number of children, and to remove the last child that was added
 
 LOW

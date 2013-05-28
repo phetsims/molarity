@@ -12,6 +12,7 @@ define( function( require ) {
   var BeakerNode = require( "molarity/view/BeakerNode" );
   var Bounds2 = require( "DOT/Bounds2" );
   var CheckBox = require( "common/util/CheckBox" );
+  var ConcentrationDisplay = require( "molarity/view/ConcentrationDisplay" );
   var Dimension2 = require( "DOT/Dimension2" );
   var inherit = require( "PHET_CORE/inherit" );
   var MFont = require( "molarity/MFont" );
@@ -47,6 +48,10 @@ define( function( require ) {
     // solute control
     var soluteComboBox = new SoluteComboBox( model.solutes, model.solution.solute );
 
+    // concentration display
+    var concentrationBarSize = new Dimension2( 40, cylinderSize.height + 50 );
+    var concentrationDisplay = new ConcentrationDisplay( model.solution, model.getConcentrationDisplayRange(), valuesVisible, concentrationBarSize );
+
     // Show Values check box
     var showValuesCheckBox = new CheckBox( new Text( MStrings.showValues, { font: new MFont( 22 ) } ), valuesVisible );
 
@@ -61,13 +66,14 @@ define( function( require ) {
     this.addChild( beakerNode );
     this.addChild( precipitateNode );
     this.addChild( saturatedIndicator );
+    this.addChild( concentrationDisplay );
     this.addChild( showValuesCheckBox );
     this.addChild( resetAllButton );
     this.addChild( soluteComboBox );
 
     // layout for things that don't have a location in the model
     {
-      beakerNode.left = 100;
+      beakerNode.left = 300;
       beakerNode.top = 100;
       // same coordinate frame as beaker
       solutionNode.x = beakerNode.x;
@@ -84,12 +90,15 @@ define( function( require ) {
       saturatedIndicator.centerX = beakerNode.x + ( cylinderSize.width / 2 );
       saturatedIndicator.bottom = beakerNode.bottom - ( 0.2 * cylinderSize.height );
       saturatedIndicator.visible = saturatedIndicatorVisible;
-      //TODO
-      showValuesCheckBox.left = beakerNode.right + 50;
-      showValuesCheckBox.top = beakerNode.top;
-      //TODO
-      resetAllButton.left = beakerNode.right + 50;
-      resetAllButton.bottom = beakerNode.bottom;
+      // right of beaker
+      concentrationDisplay.left = beakerNode.right + 50;
+      concentrationDisplay.top = beakerNode.top;
+      // left of combo box
+      showValuesCheckBox.right = soluteComboBox.left - 50;
+      showValuesCheckBox.centerY = soluteComboBox.centerY;
+      // right of combo box
+      resetAllButton.left = soluteComboBox.right + 100;
+      resetAllButton.centerY = showValuesCheckBox.centerY;
     }
   }
 
