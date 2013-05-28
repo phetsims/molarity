@@ -1,6 +1,7 @@
 TODO list for molarity (HTML5 port)
 
 BUGS
+- adding a node to an array (for keeping an internal collection) seems to keep it from being added to the scenegraph
 
 HIGH
 - PrecipitateNode is ridiculously slow when adding particles
