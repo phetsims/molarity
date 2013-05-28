@@ -126,7 +126,7 @@ define( function( require ) {
 
     // nodes
     var titleNode = new HTMLText( title, { font: TITLE_FONT } );
-    var subtitleNode = new HTMLText( subtitle, { font: SUBTITLE_FONT } );
+    var subtitleNode = new Text( subtitle, { font: SUBTITLE_FONT } );
     var minNode = new DualLabelNode( range.min.toFixed( RANGE_DECIMAL_PLACES ), minLabel, valuesVisible, RANGE_FONT );
     var maxNode = new DualLabelNode( range.max.toFixed( RANGE_DECIMAL_PLACES ), maxLabel, valuesVisible, RANGE_FONT );
     var trackNode = new Track( trackSize, property, range );
@@ -151,7 +151,7 @@ define( function( require ) {
     maxNode.centerX = centerX;
     maxNode.bottom = backgroundNode.top - 5;
     minNode.centerX = centerX;
-    minNode.top = trackNode.bottom + 5;
+    minNode.top = backgroundNode.bottom + 5;
     subtitleNode.centerX = centerX;
     subtitleNode.bottom = maxNode.top - 5;
     titleNode.centerX = centerX;
