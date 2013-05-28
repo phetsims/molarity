@@ -127,7 +127,7 @@ define( function( require ) {
     // nodes
     var titleNode = new HTMLText( title, { font: TITLE_FONT } );
     var subtitleNode = new Text( subtitle, { font: SUBTITLE_FONT } );
-    var minNode = new DualLabelNode( range.min.toFixed( RANGE_DECIMAL_PLACES ), minLabel, valuesVisible, RANGE_FONT );
+    var minNode = new DualLabelNode( range.min.toFixed( range.min === 0 ? 0 : RANGE_DECIMAL_PLACES ), minLabel, valuesVisible, RANGE_FONT );
     var maxNode = new DualLabelNode( range.max.toFixed( RANGE_DECIMAL_PLACES ), maxLabel, valuesVisible, RANGE_FONT );
     var trackNode = new Track( trackSize, property, range );
     var xMargin = 7, yMargin = 7, cornerRadius = 10;
