@@ -1,3 +1,5 @@
+5/28/13 enable bounds debugging for range labels
+# 0.0.0-1 5/28/13
 5/28/13 ***** FEATURE COMPLETE *****
 5/28/13 fix lint errors
 5/28/13 show no decimal places for "0" range value
