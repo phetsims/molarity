@@ -24,6 +24,7 @@ define( function( require ) {
   var Path = require( "SCENERY/nodes/Path" );
   var Rectangle = require( "SCENERY/nodes/Rectangle" );
   var Shape = require( "KITE/Shape" );
+  var StringUtils = require( "common/util/StringUtils" );
   var Text = require( "SCENERY/nodes/Text" );
   var Util = require( "DOT/Util" );
   var Vector2 = require( "DOT/Vector2" );
@@ -96,7 +97,7 @@ define( function( require ) {
         // major tick label
         tickLabelIndex = ( i / MINOR_TICKS_PER_MAJOR_TICK ) - 1;
         if ( tickLabelIndex < MAJOR_TICK_LABELS.length ) {
-          tickLabel = MAJOR_TICK_LABELS[tickLabelIndex] + MStrings.units_liters; //TODO localize order
+          tickLabel = StringUtils.format( MStrings.pattern_0value_1units, [MAJOR_TICK_LABELS[tickLabelIndex], MStrings.units_liters] ); //TODO localize order
           tickLabelNode = new Text( tickLabel, { font: TICK_LABEL_FONT, stroke: TICK_LABEL_COLOR } );
           tickLabelNodes.addChild( tickLabelNode );
           tickLabelNode.left = tickMarkNode.right + TICK_LABEL_X_SPACING;

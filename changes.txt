@@ -1,3 +1,4 @@
+5/29/13 localize tick labels on beaker
 5/29/13 fix water formula
 5/29/13 use Fort.model instead of Fort.property (second phase)
 5/29/13 use Fort.property instead of phetcommon.Property (first phase)

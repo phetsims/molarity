@@ -4,6 +4,8 @@ BUGS
 - adding a node to an array (for keeping an internal collection) seems to keep it from being added to the scenegraph
 
 HIGH
+- how to wrap valuesVisible property in a Fort.Model?
+- cleanup of Solution after converting to Fort.Model
 - sliders lag when solution is saturated (particles)
 - switching solute combo box is slow if it involves creating particles
 - multi-line center-justified text, for slider and concentration display titles
