@@ -13,8 +13,8 @@ define( function( require ) {
   // imports
   var BeakerImageNode = require( "molarity/view/BeakerImageNode" );
   var BeakerLabelNode = require( "molarity/view/BeakerLabelNode" );
+  var Circle = require( "SCENERY/nodes/Circle" );
   var Color = require( "SCENERY/util/Color" );
-  var DebugOriginNode = require( "common/util/DebugOriginNode" );
   var Image = require( "SCENERY/nodes/Image" );
   var inherit = require( "PHET_CORE/inherit" );
   var MFont = require( "molarity/MFont" );
@@ -114,8 +114,8 @@ define( function( require ) {
     if ( DEBUG_SHAPES ) {
       // draw the cylinder that represents the beaker's interior
       thisNode.addChild( new Rectangle( 0, 0, cylinderSize.width, cylinderSize.height, { stroke: 'red' } ) );
-      // show the origin
-      thisNode.addChild( new DebugOriginNode() );
+      // draw a circle at the origin
+      thisNode.addChild( new Circle( { radius: 3, fill: 'red' } ) );
     }
 
     valuesVisible.addObserver( function( visible ) {
