@@ -17,7 +17,7 @@ define( function( require ) {
   var Text = require( "SCENERY/nodes/Text" );
 
   // constants
-  var DEBUG_BOUNDS = true;
+  var DEBUG_BOUNDS = false;
 
   /**
    * @param {String} quantitativeValue
