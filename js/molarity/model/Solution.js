@@ -9,69 +9,74 @@ define( function( require ) {
   "use strict";
 
   // imports
+  var Fort = require( "FORT/Fort" );
   var property = require( "FORT/Fort" ).property;
   var Range = require( "DOT/Range" );
   var Util = require( "DOT/Util" );
 
-  /**
-   * @param {Solvent} solvent
-   * @param {Solute} solute
-   * @param {Number} soluteAmount moles
-   * @param {Number} volume Liters
-   * @constructor
-   */
-  function Solution( solvent, solute, soluteAmount, volume ) {
+  var Solution = Fort.Model.extend(
+      {
+        //TODO why aren't these automatically promoted?
+        defaults: {
+          solvent: undefined,
+          solute: undefined,
+          soluteAmount: undefined,
+          volume: undefined,
+          concentration: undefined,
+          precipitateAmount: undefined
+        },
 
-    var thisSolution = this;
+        /**
+         * @param {Solvent} solvent
+         * @param {Solute} solute
+         * @param {Number} soluteAmount moles
+         * @param {Number} volume Liters
+         */
+        init: function( solvent, solute, soluteAmount, volume ) {
 
-    thisSolution.solvent = solvent;
-    thisSolution.solute = property( solute );
-    thisSolution.soluteAmount = property( soluteAmount );
-    thisSolution.volume = property( volume );
+          var thisSolution = this;
 
-    // derived properties
-    thisSolution.concentration = property( 0 ); // molarity, moles/Liter (derived property)
-    thisSolution.precipitateAmount = property( 0 ); // moles (derived property)
-    var update = function() {
-      if ( thisSolution.volume.value > 0 ) {
-        thisSolution.concentration.value = Math.min( thisSolution.getSaturatedConcentration(), thisSolution.soluteAmount.value / thisSolution.volume.value ); // M = mol/L
-        thisSolution.precipitateAmount.value = Math.max( 0, thisSolution.volume.value * ( ( thisSolution.soluteAmount.value / thisSolution.volume.value ) - thisSolution.getSaturatedConcentration() ) );
-      }
-      else {
-        thisSolution.concentration.value = 0;
-        thisSolution.precipitateAmount.value = thisSolution.soluteAmount.value;
-      }
-    };
-    thisSolution.solute.link( update );
-    thisSolution.soluteAmount.link( update );
-    thisSolution.volume.link( update );
-  }
+          thisSolution.solvent = solvent;
+          thisSolution.solute = solute;
+          thisSolution.soluteAmount = soluteAmount;
+          thisSolution.volume = volume;
 
-  Solution.prototype.reset = function() {
-    this.solute.reset();
-    this.soluteAmount.reset();
-    this.volume.reset();
-    // concentration and precipitateAmount are derived
-  };
+          // derived properties
+          thisSolution.concentration = 0; // molarity, moles/Liter (derived property)
+          thisSolution.precipitateAmount = 0; // moles (derived property)
+          var update = function() {
+            if ( thisSolution.volume > 0 ) {
+              thisSolution.concentration = Math.min( thisSolution.getSaturatedConcentration(), thisSolution.soluteAmount / thisSolution.volume ); // M = mol/L
+              thisSolution.precipitateAmount = Math.max( 0, thisSolution.volume * ( ( thisSolution.soluteAmount / thisSolution.volume ) - thisSolution.getSaturatedConcentration() ) );
+            }
+            else {
+              thisSolution.concentration = 0;
+              thisSolution.precipitateAmount = thisSolution.soluteAmount;
+            }
+          };
+          thisSolution.link( 'solute', update );
+          thisSolution.link( 'soluteAmount', update );
+          thisSolution.link( 'volume', update );
+        },
 
-  // Convenience method
-  Solution.prototype.getSaturatedConcentration = function() {
-    return this.solute.value.saturatedConcentration;
-  };
+        getSaturatedConcentration: function() {
+          return this.solute.saturatedConcentration;
+        },
 
-  Solution.prototype.isSaturated = function() {
-    return this.precipitateAmount.value !== 0;
-  };
+        isSaturated: function() {
+          return this.precipitateAmount !== 0;
+        },
 
-  Solution.prototype.getColor = function() {
-    if ( this.concentration.value > 0 ) {
-      var colorScale = Util.linear( 0, 0, this.getSaturatedConcentration(), 1, this.concentration.value );
-      return this.solute.value.solutionColor.interpolateLinear( colorScale );
-    }
-    else {
-      return this.solvent.color;
-    }
-  };
+        getColor: function() {
+          if ( this.concentration > 0 ) {
+            var colorScale = Util.linear( 0, 0, this.getSaturatedConcentration(), 1, this.concentration );
+            return this.solute.solutionColor.interpolateLinear( colorScale );
+          }
+          else {
+            return this.solvent.color;
+          }
+        }
+      } );
 
   return Solution;
 } );

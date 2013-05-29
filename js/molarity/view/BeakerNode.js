@@ -41,7 +41,7 @@ define( function( require ) {
   /**
    * @param {Solution} solution
    * @param {Number} maxVolume
-   * @param {Property<Boolean>} valuesVisible
+   * @param {*} valuesVisible
    * @constructor
    */
   function BeakerNode( solution, maxVolume, valuesVisible ) {

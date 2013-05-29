@@ -48,14 +48,14 @@ define( function( require ) {
     var saturatedIndicator = new SaturatedIndicator( model.solution );
 
     // solute control
-    var soluteComboBox = new SoluteComboBox( model.solutes, model.solution.solute );
+    var soluteComboBox = new SoluteComboBox( model.solutes, model.solution.property( 'solute' ) );
 
     // slider for controlling amount of solute
     var soluteAmountSlider = new VerticalSlider( MStrings.soluteAmount,
                                                  StringUtils.format( MStrings.pattern_parentheses_0text, [MStrings.moles] ),
                                                  MStrings.none, MStrings.lots,
                                                  new Dimension2( 5, cylinderSize.height ),
-                                                 model.solution.soluteAmount,
+                                                 model.solution.property( 'soluteAmount' ),
                                                  model.getSoluteAmountRange(),
                                                  MStrings.units_moles,
                                                  valuesVisible );
@@ -66,7 +66,7 @@ define( function( require ) {
                                                    StringUtils.format( MStrings.pattern_parentheses_0text, [MStrings.liters] ),
                                                    MStrings.low, MStrings.full,
                                                    new Dimension2( 5, volumeSliderHeight ),
-                                                   model.solution.volume,
+                                                   model.solution.property( 'volume' ),
                                                    model.getSolutionVolumeRange(),
                                                    MStrings.units_liters,
                                                    valuesVisible );

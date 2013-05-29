@@ -94,11 +94,11 @@ define( function( require ) {
       valueNode.text = StringUtils.format( MStrings.pattern_0value_1units, [ concentration.toFixed( VALUE_DECIMAL_PLACES ), MStrings.units_molarity ] );
       updateValuePosition();
     };
-    solution.concentration.link( function( concentration ) {
+    solution.link( 'concentration', function( concentration ) {
       update( concentration );
     } );
-    solution.solute.link( function( solute ) {
-      update( solution.concentration.value );
+    solution.link( 'solute', function( solute ) {
+      update( solution.concentration );
     } );
   }
 
@@ -141,13 +141,13 @@ define( function( require ) {
     title.bottom = subtitle.top - 5;
 
     // when the solute changes...
-    solution.solute.link( function( concentration ) {
+    solution.link( 'solute', function( concentration ) {
 
       // Color the bar using a gradient that corresponds to the solute's color range.
       var y = barSize.height - ( barSize.height * ( solution.getSaturatedConcentration() / concentrationRange.max ) );
       barNode.fill = new LinearGradient( 0, y, 0, barSize.height )
-          .addColorStop( 0, solution.solute.value.solutionColor.max )
-          .addColorStop( 1, solution.solute.value.solutionColor.min );
+          .addColorStop( 0, solution.solute.solutionColor.max )
+          .addColorStop( 1, solution.solute.solutionColor.min );
 
       // Cover the saturated portion of the range with a gray rectangle.
       saturatedBarNode.visible = ( solution.getSaturatedConcentration() < concentrationRange.max );
