@@ -1,3 +1,4 @@
+5/29/13 use new scenery features (getChildrenCount, getChildAt) to manage precipitate particles
 5/29/13 fix layout problem with min/max values in concentration display
 5/28/13 enable bounds debugging for range labels
 # 0.0.0-1 5/28/13

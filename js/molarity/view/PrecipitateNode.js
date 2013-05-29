@@ -35,7 +35,8 @@ define( function( require ) {
     thisNode.cylinderSize = cylinderSize;
     thisNode.cylinderEndHeight = cylinderEndHeight;
 
-    var particleNodes = [];
+    var particlesParent = new Node();
+    thisNode.addChild( particlesParent );
 
     var valueNode = new Text( "?", { font: new MFont( 12 ), fill: "red" } );
 
@@ -44,9 +45,7 @@ define( function( require ) {
     }
 
     var removeAllParticles = function() {
-      while ( particleNodes.length > 0 ) {
-        thisNode.removeChild( particleNodes.pop() );
-      }
+      particlesParent.removeAllChildren();
     };
 
     // Updates the number of particles to match the saturation of the solution.
@@ -56,20 +55,21 @@ define( function( require ) {
       if ( numberOfParticles === 0 ) {
         removeAllParticles();
       }
-      else if ( numberOfParticles > particleNodes.length ) {
+      else if ( numberOfParticles > particlesParent.getChildrenCount() ) {
         // add particles
-        var numberToAdd = numberOfParticles - particleNodes.length;
+        var numberToAdd = numberOfParticles - particlesParent.getChildrenCount();
         for ( var i = 0; i < numberToAdd; i++ ) {
           particleNode = new PrecipitateParticleNode( solution.solute.get() );
-          thisNode.addChild( particleNode );
-          particleNodes.push( particleNode );
+          particlesParent.addChild( particleNode );
           particleNode.translation = thisNode.getRandomOffset( particleNode );
         }
       }
       else {
         // remove particles
-        while ( numberOfParticles < particleNodes.length ) {
-          thisNode.removeChild( particleNodes.pop() );
+        var numberToRemove = particlesParent.getChildrenCount() - numberOfParticles;
+        while ( numberToRemove > 0 ) {
+          particlesParent.removeChild( particlesParent.getChildAt( particlesParent.getChildrenCount() - 1 ) );
+          numberToRemove--;
         }
       }
     };
