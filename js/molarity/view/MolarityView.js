@@ -38,6 +38,7 @@ define( function( require ) {
     var thisView = this;
     TabView.call( thisView );
 
+    // Since here is only one view property, don't bother creating a Fort.Model
     var valuesVisible = property( false );
 
     // beaker, with solution and precipitate inside of it
