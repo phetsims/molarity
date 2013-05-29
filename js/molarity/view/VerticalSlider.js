@@ -51,7 +51,7 @@ define( function( require ) {
     var handleEvent = function( event ) {
       var y = thisNode.globalToLocalPoint( event.pointer.point ).y;
       var value = Util.linear( 0, range.max, size.height, range.min, y );
-      property.set( Util.clamp( value, range.min, range.max ) );
+      property.value = Util.clamp( value, range.min, range.max );
     };
     thisNode.addInputListener( new SimpleDragHandler(
         {
@@ -96,7 +96,7 @@ define( function( require ) {
   /**
    * Drag handler for the slider thumb.
    * @param {Node} dragNode
-   * @param {Property<Number>} property
+   * @param {*} property
    * @param {Range} valueRange
    * @param {Range} positionRange
    * @constructor
@@ -110,7 +110,7 @@ define( function( require ) {
       drag: function( event ) {
         var y = dragNode.globalToParentPoint( event.pointer.point ).y - clickYOffset;
         var value = Util.linear( positionRange.min, valueRange.max, positionRange.max, valueRange.min, y );
-        property.set( Util.clamp( value, valueRange.min, valueRange.max ) );
+        property.value = Util.clamp( value, valueRange.min, valueRange.max );
       },
       translate: function() {
         // do nothing, override default behavior
@@ -168,7 +168,7 @@ define( function( require ) {
     };
 
     // move the slider thumb to reflect the model value
-    property.addObserver( function( value ) {
+    property.link( function( value ) {
       // move the thumb
       var y = Util.linear( range.min, trackSize.height, range.max, 0, value );
       thumbNode.y = Util.clamp( y, 0, trackSize.height );
@@ -178,7 +178,7 @@ define( function( require ) {
     } );
 
     // switch between quantitative and qualitative display
-    valuesVisible.addObserver( function( visible ) {
+    valuesVisible.link( function( visible ) {
       valueNode.setVisible( visible );
       updateValuePosition();
     } );

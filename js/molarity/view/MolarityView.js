@@ -18,7 +18,7 @@ define( function( require ) {
   var MFont = require( "molarity/MFont" );
   var MStrings = require( "molarity/MStrings" );
   var PrecipitateNode = require( "molarity/view/PrecipitateNode" );
-  var Property = require( "PHETCOMMON/model/property/Property" );
+  var property = require( "FORT/Fort" ).property;
   var ResetAllButton = require( "SCENERY_PHET/ResetAllButton" );
   var SaturatedIndicator = require( "molarity/view/SaturatedIndicator" );
   var SoluteComboBox = require( "molarity/view/SoluteComboBox" );
@@ -38,7 +38,7 @@ define( function( require ) {
     var thisView = this;
     TabView.call( thisView );
 
-    var valuesVisible = new Property( false );
+    var valuesVisible = property( false );
 
     // beaker, with solution and precipitate inside of it
     var beakerNode = new BeakerNode( model.solution, model.getSolutionVolumeRange().max, valuesVisible );

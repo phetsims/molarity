@@ -9,7 +9,7 @@ define( function( require ) {
   "use strict";
 
   // imports
-  var Property = require( "PHETCOMMON/model/property/Property" );
+  var property = require( "FORT/Fort" ).property;
   var Range = require( "DOT/Range" );
   var Util = require( "DOT/Util" );
 
@@ -25,26 +25,26 @@ define( function( require ) {
     var thisSolution = this;
 
     thisSolution.solvent = solvent;
-    thisSolution.solute = new Property( solute );
-    thisSolution.soluteAmount = new Property( soluteAmount );
-    thisSolution.volume = new Property( volume );
+    thisSolution.solute = property( solute );
+    thisSolution.soluteAmount = property( soluteAmount );
+    thisSolution.volume = property( volume );
 
     // derived properties
-    thisSolution.concentration = new Property( 0 ); // molarity, moles/Liter (derived property)
-    thisSolution.precipitateAmount = new Property( 0 ); // moles (derived property)
+    thisSolution.concentration = property( 0 ); // molarity, moles/Liter (derived property)
+    thisSolution.precipitateAmount = property( 0 ); // moles (derived property)
     var update = function() {
-      if ( thisSolution.volume.get() > 0 ) {
-        thisSolution.concentration.set( Math.min( thisSolution.getSaturatedConcentration(), thisSolution.soluteAmount.get() / thisSolution.volume.get() ) ); // M = mol/L
-        thisSolution.precipitateAmount.set( Math.max( 0, thisSolution.volume.get() * ( ( thisSolution.soluteAmount.get() / thisSolution.volume.get() ) - thisSolution.getSaturatedConcentration() ) ) );
+      if ( thisSolution.volume.value > 0 ) {
+        thisSolution.concentration.value = Math.min( thisSolution.getSaturatedConcentration(), thisSolution.soluteAmount.value / thisSolution.volume.value ); // M = mol/L
+        thisSolution.precipitateAmount.value = Math.max( 0, thisSolution.volume.value * ( ( thisSolution.soluteAmount.value / thisSolution.volume.value ) - thisSolution.getSaturatedConcentration() ) );
       }
       else {
-        thisSolution.concentration.set( 0 );
-        thisSolution.precipitateAmount.set( thisSolution.soluteAmount.get() );
+        thisSolution.concentration.value = 0;
+        thisSolution.precipitateAmount.value = thisSolution.soluteAmount.value;
       }
     };
-    thisSolution.solute.addObserver( update );
-    thisSolution.soluteAmount.addObserver( update );
-    thisSolution.volume.addObserver( update );
+    thisSolution.solute.link( update );
+    thisSolution.soluteAmount.link( update );
+    thisSolution.volume.link( update );
   }
 
   Solution.prototype.reset = function() {
@@ -56,17 +56,17 @@ define( function( require ) {
 
   // Convenience method
   Solution.prototype.getSaturatedConcentration = function() {
-    return this.solute.get().saturatedConcentration;
+    return this.solute.value.saturatedConcentration;
   };
 
   Solution.prototype.isSaturated = function() {
-    return this.precipitateAmount.get() !== 0;
+    return this.precipitateAmount.value !== 0;
   };
 
   Solution.prototype.getColor = function() {
-    if ( this.concentration.get() > 0 ) {
-      var colorScale = Util.linear( 0, 0, this.getSaturatedConcentration(), 1, this.concentration.get() );
-      return this.solute.get().solutionColor.interpolateLinear( colorScale );
+    if ( this.concentration.value > 0 ) {
+      var colorScale = Util.linear( 0, 0, this.getSaturatedConcentration(), 1, this.concentration.value );
+      return this.solute.value.solutionColor.interpolateLinear( colorScale );
     }
     else {
       return this.solvent.color;
