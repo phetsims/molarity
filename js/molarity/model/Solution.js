@@ -10,7 +10,6 @@ define( function( require ) {
 
   // imports
   var Fort = require( "FORT/Fort" );
-  var property = require( "FORT/Fort" ).property;
   var Range = require( "DOT/Range" );
   var Util = require( "DOT/Util" );
 
