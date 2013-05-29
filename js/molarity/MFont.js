@@ -21,7 +21,7 @@ define( function( require ) {
   function MFont( size, weight ) {
     Font.call( this, {
       family: '"Arial", sans-serif',
-      size: ( Math.floor( size ) + "px" ),
+      size: ( size + "px" ),
       weight: weight || "normal"
     } );
   }
