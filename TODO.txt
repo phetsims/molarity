@@ -6,9 +6,7 @@ BUGS
 HIGH
 - sliders lag when solution is saturated (particles)
 - switching solute combo box is slow if it involves creating particles
-- "Solution<br>Concentration" title in ConcentrationDisplay causes only HTMLText node to display
-- "<center>Solution<br>Concentration" title in ConcentrationDisplay cause HTMLText node layout to be incorrect
-- title on concentration display isn't positioned or justified properly
+- multi-line center-justified text, for slider and concentration display titles
 
 MEDIUM
 - scenery needs a way to get number of children, and to remove the last child that was added
