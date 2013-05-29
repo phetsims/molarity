@@ -10,7 +10,7 @@ define( function( require ) {
 
   // imports
   var Color = require( "SCENERY/util/Color" );
-  var MStrings = require( "molarity/MStrings" );
+  var MSymbols = require( "molarity/MSymbols" );
 
-  return { formula: MStrings.water, color: new Color( 224, 255, 255 ) };
+  return { formula: MSymbols.WATER, color: new Color( 224, 255, 255 ) };
 });
