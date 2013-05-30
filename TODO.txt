@@ -3,6 +3,7 @@ TODO list for molarity (HTML5 port)
 BUGS
 
 HIGH
+- move amount and volume sliders back to left side
 - multi-line center-justified text, for slider and concentration display titles
 
 MEDIUM
