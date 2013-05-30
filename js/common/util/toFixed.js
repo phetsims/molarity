@@ -12,5 +12,5 @@ define( function() {
   return function toFixed( number, precision ) {
     var multiplier = Math.pow( 10, precision );
     return Math.round( number * multiplier ) / multiplier;
-  }
+  };
 } );
