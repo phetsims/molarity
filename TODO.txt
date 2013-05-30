@@ -1,7 +1,7 @@
 TODO list for molarity (HTML5 port)
 
 BUGS
-- adding a node to an array (for keeping an internal collection) seems to keep it from being added to the scenegraph
+- displayed values don't match computed values (eg, 0.3 moles / 0.3 L = 1.01 M or 0.99 M)
 
 HIGH
 - how to wrap valuesVisible property in a Fort.Model?
