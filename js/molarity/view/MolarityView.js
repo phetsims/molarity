@@ -57,7 +57,7 @@ define( function( require ) {
 
     // slider for controlling amount of solute
     var soluteAmountSlider = new VerticalSlider( MStrings.soluteAmount,
-                                                 StringUtils.format( MStrings.pattern_parentheses_0text, [MStrings.moles] ),
+                                                 StringUtils.format( MStrings.pattern_parentheses_0text, MStrings.moles ),
                                                  MStrings.none, MStrings.lots,
                                                  new Dimension2( 5, cylinderSize.height ),
                                                  model.solution.property( 'soluteAmount' ),
@@ -69,7 +69,7 @@ define( function( require ) {
     // slider for controlling volume of solution, sized to match tick marks on the beaker
     var volumeSliderHeight = ( model.getSolutionVolumeRange().getLength() / model.getSolutionVolumeRange().max ) * cylinderSize.height;
     var solutionVolumeSlider = new VerticalSlider( MStrings.solutionVolume,
-                                                   StringUtils.format( MStrings.pattern_parentheses_0text, [MStrings.liters] ),
+                                                   StringUtils.format( MStrings.pattern_parentheses_0text, MStrings.liters ),
                                                    MStrings.low, MStrings.full,
                                                    new Dimension2( 5, volumeSliderHeight ),
                                                    model.solution.property( 'volume' ),

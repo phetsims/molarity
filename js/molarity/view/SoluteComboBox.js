@@ -27,7 +27,7 @@ define( function( require ) {
   function SoluteComboBox( solutes, selectedSolute ) {
 
     // "Solute" label
-    var labelNode = new Text( StringUtils.format( MStrings.pattern_0label, [ MStrings.solute ] ),
+    var labelNode = new Text( StringUtils.format( MStrings.pattern_0label, MStrings.solute ),
                               { font: new MFont( 22 ) } );
 
     // items

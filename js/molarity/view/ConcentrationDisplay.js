@@ -91,7 +91,7 @@ define( function( require ) {
       thisNode.arrowNode.fill = solution.getColor();
 
       // update the value
-      valueNode.text = StringUtils.format( MStrings.pattern_0value_1units, [ concentration.toFixed( VALUE_DECIMAL_PLACES ), MStrings.units_molarity ] );
+      valueNode.text = StringUtils.format( MStrings.pattern_0value_1units, concentration.toFixed( VALUE_DECIMAL_PLACES ), MStrings.units_molarity );
       updateValuePosition();
     };
     solution.link( 'concentration', function( concentration ) {
@@ -110,7 +110,7 @@ define( function( require ) {
     Node.call( thisNode, { pickable: false } );
 
     var title = new HTMLText( MStrings.solutionConcentration, { font: TITLE_FONT } );
-    var subtitle = new Text( StringUtils.format( MStrings.pattern_parentheses_0text, [ MStrings.molarity ] ), { font: SUBTITLE_FONT } );
+    var subtitle = new Text( StringUtils.format( MStrings.pattern_parentheses_0text, MStrings.molarity ), { font: SUBTITLE_FONT } );
     var maxNode = new DualLabelNode( concentrationRange.min.toFixed( RANGE_DECIMAL_PLACES ), MStrings.high, valuesVisible, RANGE_FONT );
     var minNode = new DualLabelNode( concentrationRange.min.toFixed( concentrationRange.min === 0 ? 0 : RANGE_DECIMAL_PLACES ), MStrings.zero, valuesVisible, RANGE_FONT );
     var barNode = new Rectangle( 0, 0, barSize.width, barSize.height, { stroke: "black" } );

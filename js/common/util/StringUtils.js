@@ -6,18 +6,19 @@ define( function() {
   function StringUtils() {
   }
 
-  /*
-   * Similar to Java's MessageFormat.
-   * Eg, StringUtils.format( "{0} + {1}", [2,3] ) -> "2 + 3"
+  /**
+   * http://mobzish.blogspot.com/2008/10/simple-messageformat-for-javascript.html
+   * Similar to Java's MessageFormat, supports simple substitution, simple substitution only.
+   * The full MessageFormat specification allows conditional formatting, for example to support pluralisation.
+   * <p>
+   * Eg, StringUtils.format( "{0} + {1}", 2, 3 ) -> "2 + 3"
    *
    * @param {String} pattern pattern string, with N placeholders, where N is an integer
-   * @param {Array} args array of values to be substituted for placeholders in pattern
    * @return {String}
    */
-  StringUtils.format = function( pattern, args ) {
-    return pattern.replace( /\{(\d+)\}/g, function() {
-      return args[arguments[1]];
-    } );
+  StringUtils.format = function( pattern ) {
+    var args = arguments;
+    return pattern.replace( /{(\d)}/g, function( r, n ) { return args[+n + 1];} );
   };
 
   return StringUtils;

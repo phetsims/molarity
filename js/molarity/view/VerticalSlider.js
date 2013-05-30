@@ -175,7 +175,7 @@ define( function( require ) {
       var y = Util.linear( range.min, trackSize.height, range.max, 0, value );
       thumbNode.y = Util.clamp( y, 0, trackSize.height );
       // update the value
-      valueNode.text = StringUtils.format( MStrings.pattern_0value_1units, [value.toFixed( VALUE_DECIMAL_PLACES ), units] );
+      valueNode.text = StringUtils.format( MStrings.pattern_0value_1units, value.toFixed( VALUE_DECIMAL_PLACES ), units );
       updateValuePosition();
     } );
 
