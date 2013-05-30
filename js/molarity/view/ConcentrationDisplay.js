@@ -146,8 +146,8 @@ define( function( require ) {
       // Color the bar using a gradient that corresponds to the solute's color range.
       var y = barSize.height - ( barSize.height * ( solution.getSaturatedConcentration() / concentrationRange.max ) );
       barNode.fill = new LinearGradient( 0, y, 0, barSize.height )
-          .addColorStop( 0, solution.solute.solutionColor.max )
-          .addColorStop( 1, solution.solute.solutionColor.min );
+          .addColorStop( 0, solution.solute.maxColor )
+          .addColorStop( 1, solution.solute.minColor );
 
       // Cover the saturated portion of the range with a gray rectangle.
       saturatedBarNode.visible = ( solution.getSaturatedConcentration() < concentrationRange.max );

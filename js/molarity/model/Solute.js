@@ -12,12 +12,13 @@ define( function( require ) {
    * @param {String} name
    * @param {String} formula
    * @param {Number} saturatedConcentration M (moles/L)
-   * @param {ColorRange} solutionColor color range for a solution with non-zero concentration
-   * @param {Color} particleColor the solute's color as a particle, defaults to solutionColor.max
+   * @param {Color} minColor solution color for smallest non-zero concentration
+   * @param {Color} maxColor solution color for saturated concentration
+   * @param {Color} particleColor the solute's color as a particle, defaults to maxColor
    * @param {*} options
    * @constructor
    */
-  function Solute( name, formula, saturatedConcentration, solutionColor, particleColor, options ) {
+  function Solute( name, formula, saturatedConcentration, minColor, maxColor, particleColor, options ) {
 
     options = _.extend(
         {
@@ -28,8 +29,9 @@ define( function( require ) {
     this.name = name;
     this.formula = formula;
     this.saturatedConcentration = saturatedConcentration;
-    this.solutionColor = solutionColor;
-    this.particleColor = particleColor || solutionColor.max;
+    this.minColor = minColor;
+    this.maxColor = maxColor;
+    this.particleColor = particleColor || maxColor;
     this.particleSize = options.particleSize;
     this.particlesPerMole = options.particlesPerMole;
   }

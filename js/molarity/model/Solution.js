@@ -15,6 +15,7 @@ define( function( require ) {
   "use strict";
 
   // imports
+  var ColorUtils = require( "common/util/ColorUtils" );
   var Fort = require( "FORT/Fort" );
   var Range = require( "DOT/Range" );
   var toFixed = require( "common/util/toFixed" );
@@ -63,7 +64,7 @@ define( function( require ) {
         getColor: function() {
           if ( this.concentration > 0 ) {
             var colorScale = Util.linear( 0, 0, this.getSaturatedConcentration(), 1, this.concentration );
-            return this.solute.solutionColor.interpolateLinear( colorScale );
+            return ColorUtils.interpolateRBGA( this.solute.minColor, this.solute.maxColor, colorScale );
           }
           else {
             return this.solvent.color;

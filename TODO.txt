@@ -14,7 +14,6 @@ LOW
 MIGRATE TO COMMON
 - CheckBox to sun
 - ChemUtils (BLL and Molarity)
-- ColorRange (BLL and Molarity)
 - ColorUtils (BLL and Molarity)
 - FillHighlighter (BLL and Molarity)
 - StringUtils (BLL and Molarity)

@@ -54,7 +54,7 @@ define( function( require ) {
 
     // node
     var node = new Node();
-    var colorNode = new Rectangle( 0, 0, 20, 20, { fill: solute.solutionColor.max, stroke: solute.solutionColor.max.darkerColor() } );
+    var colorNode = new Rectangle( 0, 0, 20, 20, { fill: solute.maxColor, stroke: solute.maxColor.darkerColor() } );
     var textNode = new Text( solute.name, { font: new MFont( 20 ) } );
     node.addChild( colorNode );
     node.addChild( textNode );
