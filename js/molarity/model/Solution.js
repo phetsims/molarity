@@ -21,9 +21,11 @@ define( function( require ) {
 
   var Solution = Fort.Model.extend(
       {
-        init: function( ){
+        init: function( args, solvent ){
 
           var thisSolution = this;
+
+          this.solvent = solvent;
 
           var computeConcentration = function() {
             return thisSolution.volume > 0 ? Math.min( thisSolution.getSaturatedConcentration(), thisSolution.soluteAmount / thisSolution.volume ) : 0;
