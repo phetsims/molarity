@@ -21,7 +21,7 @@ define( function( require ) {
 
   var Solution = Fort.Model.extend(
       {
-        init: function( args, solvent ){
+        init: function( args, solvent ) {
 
           var thisSolution = this;
 

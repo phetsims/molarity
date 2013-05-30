@@ -13,4 +13,4 @@ define( function( require ) {
   var MSymbols = require( "molarity/MSymbols" );
 
   return { formula: MSymbols.WATER, color: new Color( 224, 255, 255 ) };
-});
+} );

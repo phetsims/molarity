@@ -1,12 +1,12 @@
 // Copyright 2002-2013, University of Colorado
 
 /**
-* Visual representation of a beaker.
-* 3D perspective is provided by an image (see BeakerImageNode).
-* Other elements (ticks, label, ...) are added programmatically.
-*
-* @author Chris Malley (PixelZoom, Inc.)
-*/
+ * Visual representation of a beaker.
+ * 3D perspective is provided by an image (see BeakerImageNode).
+ * Other elements (ticks, label, ...) are added programmatically.
+ *
+ * @author Chris Malley (PixelZoom, Inc.)
+ */
 define( function( require ) {
   "use strict";
 
@@ -60,7 +60,7 @@ define( function( require ) {
 
     // inside bottom line
     var bottomShape = new Shape().ellipticalArc( cylinderSize.width / 2, cylinderSize.height,
-                                                 cylinderSize.width/2, cylinderEndHeight/2,
+                                                 cylinderSize.width / 2, cylinderEndHeight / 2,
                                                  0, Util.toRadians( 0 ), Util.toRadians( 180 ), true );
     var bottomNode = new Path( { shape: bottomShape, stroke: new Color( 150, 150, 150, 100 ), lineWidth: 2 } );
 
@@ -90,7 +90,7 @@ define( function( require ) {
       if ( i % MINOR_TICKS_PER_MAJOR_TICK === 0 ) {
 
         // major tick mark
-        tickMarkShape = new Shape().ellipticalArc( cylinderSize.width/2, y, cylinderSize.width/2, cylinderEndHeight/2, 0, Util.toRadians( 165 ), Util.toRadians( 135 ), true );
+        tickMarkShape = new Shape().ellipticalArc( cylinderSize.width / 2, y, cylinderSize.width / 2, cylinderEndHeight / 2, 0, Util.toRadians( 165 ), Util.toRadians( 135 ), true );
         tickMarkNode = new Path( { shape: tickMarkShape, stroke: TICK_COLOR, lineWidth: 2 } );
         tickMarkNodes.addChild( tickMarkNode );
 
@@ -106,7 +106,7 @@ define( function( require ) {
       }
       else {
         // minor tick mark, no label
-        tickMarkShape = new Shape().ellipticalArc( cylinderSize.width/2, y, cylinderSize.width/2, cylinderEndHeight/2, 0, Util.toRadians( 165 ), Util.toRadians( 150 ), true );
+        tickMarkShape = new Shape().ellipticalArc( cylinderSize.width / 2, y, cylinderSize.width / 2, cylinderEndHeight / 2, 0, Util.toRadians( 165 ), Util.toRadians( 150 ), true );
         tickMarkNode = new Path( { shape: tickMarkShape, stroke: TICK_COLOR, lineWidth: 2 } );
         tickMarkNodes.addChild( tickMarkNode );
       }
