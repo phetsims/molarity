@@ -118,7 +118,7 @@ define( function( require ) {
       precipitateNode.y = beakerNode.y;
       // centered below beaker
       soluteComboBox.centerX = beakerNode.centerX;
-      soluteComboBox.top = beakerNode.bottom + 50;
+      soluteComboBox.top = beakerNode.bottom + 30;
       // toward bottom of the beaker
       var saturatedIndicatorVisible = saturatedIndicator.visible; // so we can layout an invisible node
       saturatedIndicator.visible = true;
@@ -135,7 +135,7 @@ define( function( require ) {
       showValuesCheckBox.right = soluteComboBox.left - 50;
       showValuesCheckBox.centerY = soluteComboBox.centerY;
       // right of combo box
-      resetAllButton.left = soluteComboBox.right + 100;
+      resetAllButton.centerX = solutionVolumeSlider.centerX;
       resetAllButton.centerY = showValuesCheckBox.centerY;
     }
   }
