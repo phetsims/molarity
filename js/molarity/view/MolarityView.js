@@ -18,7 +18,7 @@ define( function( require ) {
   var MFont = require( "molarity/MFont" );
   var MStrings = require( "molarity/MStrings" );
   var PrecipitateNode = require( "molarity/view/PrecipitateNode" );
-  var property = require( "FORT/Fort" ).property;
+  var property = require( "FORT/property" );
   var ResetAllButton = require( "SCENERY_PHET/ResetAllButton" );
   var SaturatedIndicator = require( "molarity/view/SaturatedIndicator" );
   var SoluteComboBox = require( "molarity/view/SoluteComboBox" );
