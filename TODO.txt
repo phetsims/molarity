@@ -1,7 +1,6 @@
 TODO list for molarity (HTML5 port)
 
 BUGS
-- displayed values don't match computed values (eg, 0.3 moles / 0.3 L = 1.01 M or 0.99 M)
 
 HIGH
 - multi-line center-justified text, for slider and concentration display titles

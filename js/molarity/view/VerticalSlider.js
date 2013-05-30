@@ -26,6 +26,7 @@ define( function( require ) {
   var SimpleDragHandler = require( "SCENERY/input/SimpleDragHandler" );
   var StringUtils = require( "common/util/StringUtils" );
   var Text = require( "SCENERY/nodes/Text" );
+  var toFixed = require( "common/util/toFixed" );
   var Util = require( "DOT/Util" );
 
   // constants
@@ -42,7 +43,7 @@ define( function( require ) {
   var THUMB_CENTER_LINE_COLOR = Color.WHITE;
 
   // Track that the thumb moves in, origin at upper left. Clicking in the track changes the value.
-  function Track( size, property, range ) {
+  function Track( size, property, range, decimalPlaces ) {
 
     var thisNode = this;
     Rectangle.call( thisNode, 0, 0, size.width, size.height, { fill: "black", cursor: "pointer" } );
@@ -51,7 +52,7 @@ define( function( require ) {
     var handleEvent = function( event ) {
       var y = thisNode.globalToLocalPoint( event.pointer.point ).y;
       var value = Util.linear( 0, range.max, size.height, range.min, y );
-      property.value = Util.clamp( value, range.min, range.max );
+      property.value = toFixed( Util.clamp( value, range.min, range.max ), decimalPlaces );
     };
     thisNode.addInputListener( new SimpleDragHandler(
         {
@@ -70,7 +71,7 @@ define( function( require ) {
   inherit( Track, Rectangle );
 
   // The slider thumb, a rounded rectangle with a horizontal line through its center. Origin is at the thumb's geometric center.
-  function Thumb( size, property, valueRange, positionRange ) {
+  function Thumb( size, property, valueRange, decimalPlaces, positionRange ) {
 
     var thisNode = this;
     Node.call( this );
@@ -87,7 +88,7 @@ define( function( require ) {
 
     // interactivity
     thisNode.cursor = "pointer";
-    thisNode.addInputListener( new ThumbDragHandler( thisNode, property, valueRange, positionRange ) );
+    thisNode.addInputListener( new ThumbDragHandler( thisNode, property, valueRange, decimalPlaces, positionRange ) );
     thisNode.addInputListener( new FillHighlighter( bodyNode, THUMB_NORMAL_COLOR, THUMB_HIGHLIGHT_COLOR ) );
   }
 
@@ -98,10 +99,11 @@ define( function( require ) {
    * @param {Node} dragNode
    * @param {*} property
    * @param {Range} valueRange
+   * @param {Number} decimalPlaces
    * @param {Range} positionRange
    * @constructor
    */
-  function ThumbDragHandler( dragNode, property, valueRange, positionRange ) {
+  function ThumbDragHandler( dragNode, property, valueRange, decimalPlaces, positionRange ) {
     var clickYOffset; // y-offset between initial click and thumb's origin
     SimpleDragHandler.call( this, {
       start: function( event ) {
@@ -110,7 +112,7 @@ define( function( require ) {
       drag: function( event ) {
         var y = dragNode.globalToParentPoint( event.pointer.point ).y - clickYOffset;
         var value = Util.linear( positionRange.min, valueRange.max, positionRange.max, valueRange.min, y );
-        property.value = Util.clamp( value, valueRange.min, valueRange.max );
+        property.value = toFixed( Util.clamp( value, valueRange.min, valueRange.max ), decimalPlaces );
       },
       translate: function() {
         // do nothing, override default behavior
@@ -120,7 +122,7 @@ define( function( require ) {
 
   inherit( ThumbDragHandler, SimpleDragHandler );
 
-  function VerticalSlider( title, subtitle, minLabel, maxLabel, trackSize, property, range, units, valuesVisible ) {
+  function VerticalSlider( title, subtitle, minLabel, maxLabel, trackSize, property, range, decimalPlaces, units, valuesVisible ) {
 
     var thisNode = this;
     Node.call( thisNode );
@@ -130,11 +132,11 @@ define( function( require ) {
     var subtitleNode = new Text( subtitle, { font: SUBTITLE_FONT } );
     var minNode = new DualLabelNode( range.min.toFixed( range.min === 0 ? 0 : RANGE_DECIMAL_PLACES ), minLabel, valuesVisible, RANGE_FONT );
     var maxNode = new DualLabelNode( range.max.toFixed( RANGE_DECIMAL_PLACES ), maxLabel, valuesVisible, RANGE_FONT );
-    var trackNode = new Track( trackSize, property, range );
+    var trackNode = new Track( trackSize, property, range, decimalPlaces );
     var xMargin = 7, yMargin = 7, cornerRadius = 10;
     var backgroundNode = new Rectangle( -xMargin, -yMargin, trackSize.width + ( 2 * xMargin ), trackSize.height + ( 2 * yMargin ), cornerRadius, cornerRadius,
                                         { fill: new Color( 200, 200, 200, 140 ) } );
-    var thumbNode = new Thumb( THUMB_SIZE, property, range, new Range( 0, trackSize.height ) );
+    var thumbNode = new Thumb( THUMB_SIZE, property, range, decimalPlaces, new Range( 0, trackSize.height ) );
     var valueNode = new Text( "?", { font: VALUE_FONT } );
 
     // rendering order
@@ -150,9 +152,9 @@ define( function( require ) {
     // layout
     var centerX = backgroundNode.centerX;
     maxNode.centerX = centerX;
-    maxNode.bottom = backgroundNode.top - 5;
+    maxNode.bottom = backgroundNode.top - ( thumbNode.height / 2 );
     minNode.centerX = centerX;
-    minNode.top = backgroundNode.bottom + 5;
+    minNode.top = backgroundNode.bottom + ( thumbNode.height / 2 );
     subtitleNode.centerX = centerX;
     subtitleNode.bottom = maxNode.top - 5;
     titleNode.centerX = centerX;

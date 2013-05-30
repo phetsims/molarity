@@ -28,6 +28,10 @@ define( function( require ) {
   var Text = require( "SCENERY/nodes/Text" );
   var VerticalSlider = require( "molarity/view/VerticalSlider" );
 
+  // constants
+  var SOLUTE_AMOUNT_DECIMAL_PLACES = 2;
+  var VOLUME_DECIMAL_PLACES = 2;
+
   /**
    * @param {MolarityModel} model
    * @param {ModelViewTransform2} mvt
@@ -58,6 +62,7 @@ define( function( require ) {
                                                  new Dimension2( 5, cylinderSize.height ),
                                                  model.solution.property( 'soluteAmount' ),
                                                  model.getSoluteAmountRange(),
+                                                 SOLUTE_AMOUNT_DECIMAL_PLACES,
                                                  MStrings.units_moles,
                                                  valuesVisible );
 
@@ -69,6 +74,7 @@ define( function( require ) {
                                                    new Dimension2( 5, volumeSliderHeight ),
                                                    model.solution.property( 'volume' ),
                                                    model.getSolutionVolumeRange(),
+                                                   VOLUME_DECIMAL_PLACES,
                                                    MStrings.units_liters,
                                                    valuesVisible );
 

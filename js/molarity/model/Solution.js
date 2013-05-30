@@ -17,7 +17,11 @@ define( function( require ) {
   // imports
   var Fort = require( "FORT/Fort" );
   var Range = require( "DOT/Range" );
+  var toFixed = require( "common/util/toFixed" );
   var Util = require( "DOT/Util" );
+
+  // constants
+  var CONCENTRATION_DECIMALS = 2;
 
   var Solution = Fort.Model.extend(
       {
@@ -28,7 +32,7 @@ define( function( require ) {
           this.solvent = solvent;
 
           var computeConcentration = function() {
-            return thisSolution.volume > 0 ? Math.min( thisSolution.getSaturatedConcentration(), thisSolution.soluteAmount / thisSolution.volume ) : 0;
+            return toFixed( thisSolution.volume > 0 ? Math.min( thisSolution.getSaturatedConcentration(), thisSolution.soluteAmount / thisSolution.volume ) : 0, CONCENTRATION_DECIMALS );
           };
 
           var computePrecipitateAmount = function() {
