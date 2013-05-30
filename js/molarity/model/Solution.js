@@ -15,47 +15,38 @@ define( function( require ) {
 
   var Solution = Fort.Model.extend(
       {
-        //TODO why aren't these automatically promoted?
-        defaults: {
-          solvent: undefined,
-          solute: undefined,
-          soluteAmount: undefined,
-          volume: undefined,
-          concentration: undefined,
-          precipitateAmount: undefined
-        },
-
         /**
          * @param {Solvent} solvent
          * @param {Solute} solute
          * @param {Number} soluteAmount moles
          * @param {Number} volume Liters
          */
-        init: function( solvent, solute, soluteAmount, volume ) {
+        init: function( ){
 
           var thisSolution = this;
 
-          thisSolution.solvent = solvent;
-          thisSolution.solute = solute;
-          thisSolution.soluteAmount = soluteAmount;
-          thisSolution.volume = volume;
-
-          // derived properties
-          thisSolution.concentration = 0; // molarity, moles/Liter (derived property)
-          thisSolution.precipitateAmount = 0; // moles (derived property)
-          var update = function() {
-            if ( thisSolution.volume > 0 ) {
-              thisSolution.concentration = Math.min( thisSolution.getSaturatedConcentration(), thisSolution.soluteAmount / thisSolution.volume ); // M = mol/L
-              thisSolution.precipitateAmount = Math.max( 0, thisSolution.volume * ( ( thisSolution.soluteAmount / thisSolution.volume ) - thisSolution.getSaturatedConcentration() ) );
-            }
-            else {
-              thisSolution.concentration = 0;
-              thisSolution.precipitateAmount = thisSolution.soluteAmount;
-            }
+          var computeConcentration = function() {
+            return thisSolution.volume > 0 ? Math.min( thisSolution.getSaturatedConcentration(), thisSolution.soluteAmount / thisSolution.volume ) : 0;
           };
-          thisSolution.link( 'solute', update );
-          thisSolution.link( 'soluteAmount', update );
-          thisSolution.link( 'volume', update );
+
+          var computePrecipitateAmount = function() {
+            return thisSolution.volume > 0 ? Math.max( 0, thisSolution.volume * ( ( thisSolution.soluteAmount / thisSolution.volume ) - thisSolution.getSaturatedConcentration() ) ) : thisSolution.soluteAmount;
+          };
+
+          
+          this.set({
+
+                      // derived properties
+                      // molarity, moles/Liter (derived property)
+                      concentration: computeConcentration(),
+
+                      // moles (derived property)
+                      precipitateAmount: computePrecipitateAmount()} );
+
+          thisSolution.on( 'change:solute change:soluteAmount change:volume', function() {
+            thisSolution.concentration = computeConcentration();
+            thisSolution.precipitateAmount = computePrecipitateAmount();
+          } );
         },
 
         getSaturatedConcentration: function() {
