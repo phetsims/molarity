@@ -1,3 +1,4 @@
+5/30/13 make slider thumbs a bit taller, to improve usability on tablets
 5/30/13 try the sliders on the right and the concentration read-out on the left
 5/29/13 localize tick labels on beaker
 5/29/13 fix water formula

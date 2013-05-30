@@ -35,7 +35,7 @@ define( function( require ) {
   var VALUE_FONT = new MFont( 20 );
   var RANGE_DECIMAL_PLACES = 1;
   var VALUE_DECIMAL_PLACES = 2;
-  var THUMB_SIZE = new Dimension2( 68, 22 );
+  var THUMB_SIZE = new Dimension2( 68, 30 );
   var THUMB_NORMAL_COLOR = new Color( 89, 156, 212 );
   var THUMB_HIGHLIGHT_COLOR = THUMB_NORMAL_COLOR.brighterColor();
   var THUMB_STROKE_COLOR = Color.BLACK;
