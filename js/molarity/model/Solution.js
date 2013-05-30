@@ -1,7 +1,13 @@
 // Copyright 2002-2011, University of Colorado
 
 /**
- * Simple model of a solution
+ * Simple model of a solution.
+ * <p>
+ * Parameters required for constructor are:
+ * @param {Solvent} solvent
+ * @param {Solute} solute
+ * @param {Number} soluteAmount moles
+ * @param {Number} volume Liters
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -15,12 +21,6 @@ define( function( require ) {
 
   var Solution = Fort.Model.extend(
       {
-        /**
-         * @param {Solvent} solvent
-         * @param {Solute} solute
-         * @param {Number} soluteAmount moles
-         * @param {Number} volume Liters
-         */
         init: function( ){
 
           var thisSolution = this;
@@ -33,15 +33,12 @@ define( function( require ) {
             return thisSolution.volume > 0 ? Math.max( 0, thisSolution.volume * ( ( thisSolution.soluteAmount / thisSolution.volume ) - thisSolution.getSaturatedConcentration() ) ) : thisSolution.soluteAmount;
           };
 
-          
-          this.set({
-
-                      // derived properties
-                      // molarity, moles/Liter (derived property)
-                      concentration: computeConcentration(),
-
-                      // moles (derived property)
-                      precipitateAmount: computePrecipitateAmount()} );
+          // derived properties
+          this.set(
+              {
+                concentration: computeConcentration(), // molarity, moles/Liter (derived property)
+                precipitateAmount: computePrecipitateAmount() // moles (derived property)
+              } );
 
           thisSolution.on( 'change:solute change:soluteAmount change:volume', function() {
             thisSolution.concentration = computeConcentration();
