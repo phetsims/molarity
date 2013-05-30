@@ -13,7 +13,6 @@ HIGH
 MEDIUM
 
 LOW
-- port CompositeProperty, use in Solution
 
 MIGRATE TO COMMON
 - CheckBox to sun
