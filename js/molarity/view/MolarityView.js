@@ -99,14 +99,11 @@ define( function( require ) {
 
     // layout for things that don't have a location in the model
     {
-      soluteAmountSlider.left = 10;
-      soluteAmountSlider.top = 100;
-      // to the right of the Solute Amount slider
-      solutionVolumeSlider.left = soluteAmountSlider.left + soluteAmountSlider.getCompleteBounds().width + 20;
-      solutionVolumeSlider.y = soluteAmountSlider.y;
-      // to the right of the Solution Volume slider
-      beakerNode.left = solutionVolumeSlider.left + solutionVolumeSlider.getCompleteBounds().width + 20;
-      beakerNode.y = soluteAmountSlider.y;
+      concentrationDisplay.left = 50;
+      concentrationDisplay.top = 50;
+       // to the right of the concentration display
+      beakerNode.left = concentrationDisplay.left + concentrationDisplay.getCompleteBounds().width + 50;
+      beakerNode.bottom = concentrationDisplay.bottom;
       // same coordinate frame as beaker
       solutionNode.x = beakerNode.x;
       solutionNode.y = beakerNode.y;
@@ -123,8 +120,11 @@ define( function( require ) {
       saturatedIndicator.bottom = beakerNode.bottom - ( 0.2 * cylinderSize.height );
       saturatedIndicator.visible = saturatedIndicatorVisible;
       // right of beaker
-      concentrationDisplay.left = beakerNode.right + 50;
-      concentrationDisplay.bottom = beakerNode.bottom;
+      soluteAmountSlider.left = beakerNode.right + 50;
+      soluteAmountSlider.bottom = beakerNode.bottom;
+       // to the right of the Solute Amount slider
+      solutionVolumeSlider.left = soluteAmountSlider.left + soluteAmountSlider.getCompleteBounds().width + 20;
+      solutionVolumeSlider.y = soluteAmountSlider.y;
       // left of combo box
       showValuesCheckBox.right = soluteComboBox.left - 50;
       showValuesCheckBox.centerY = soluteComboBox.centerY;
