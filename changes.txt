@@ -1,3 +1,4 @@
+5/30/13 make beaker label transparent
 5/30/13 provide a predictable implementation of toFixed, so that model computations are accurate to the desired number of decimal places
 5/30/13 make slider thumbs a bit taller, to improve usability on tablets
 5/30/13 try the sliders on the right and the concentration read-out on the left
