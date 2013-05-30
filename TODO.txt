@@ -11,6 +11,7 @@ HIGH
 - multi-line center-justified text, for slider and concentration display titles
 
 MEDIUM
+- revert to Property.js?
 
 LOW
 
