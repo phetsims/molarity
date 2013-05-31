@@ -1,3 +1,5 @@
+# 0.0.0-2 5/31/13
+5/30/13 publish dev version with sliders on the right
 5/30/13 ditch getCompleteBounds calls, after scenery reverted to bounds===completeBounds
 5/30/13 varargs implementation of StringUtil.format
 5/30/13 replace ColorRange with minColor and maxColor properties for Solute
