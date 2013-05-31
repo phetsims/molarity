@@ -24,7 +24,7 @@ define( function( require ) {
   var Path = require( "SCENERY/nodes/Path" );
   var Rectangle = require( "SCENERY/nodes/Rectangle" );
   var Shape = require( "KITE/Shape" );
-  var StringUtils = require( "common/util/StringUtils" );
+  var StringUtils = require( "PHETCOMMON/util/StringUtils" );
   var Text = require( "SCENERY/nodes/Text" );
   var Util = require( "DOT/Util" );
   var Vector2 = require( "DOT/Vector2" );

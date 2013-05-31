@@ -24,7 +24,7 @@ define( function( require ) {
   var Rectangle = require( "SCENERY/nodes/Rectangle" );
   var Shape = require( "KITE/Shape" );
   var SimpleDragHandler = require( "SCENERY/input/SimpleDragHandler" );
-  var StringUtils = require( "common/util/StringUtils" );
+  var StringUtils = require( "PHETCOMMON/util/StringUtils" );
   var Text = require( "SCENERY/nodes/Text" );
   var toFixed = require( "common/util/toFixed" );
   var Util = require( "DOT/Util" );

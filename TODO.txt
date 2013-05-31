@@ -15,6 +15,5 @@ MIGRATE TO COMMON
 - ChemUtils (BLL and Molarity)
 - ColorUtils (BLL and Molarity)
 - FillHighlighter (BLL and Molarity)
-- StringUtils (BLL and Molarity)
 
 

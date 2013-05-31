@@ -23,7 +23,7 @@ define( function( require ) {
   var SaturatedIndicator = require( "molarity/view/SaturatedIndicator" );
   var SoluteComboBox = require( "molarity/view/SoluteComboBox" );
   var SolutionNode = require( "molarity/view/SolutionNode" );
-  var StringUtils = require( "common/util/StringUtils" );
+  var StringUtils = require( "PHETCOMMON/util/StringUtils" );
   var TabView = require( "JOIST/TabView" );
   var Text = require( "SCENERY/nodes/Text" );
   var VerticalSlider = require( "molarity/view/VerticalSlider" );
