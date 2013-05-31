@@ -29,6 +29,7 @@ require.config(
         FORT: "../../fort/js",
         JOIST: "../../joist/js",
         KITE: "../../kite/js",
+        NITROGLYCERIN: "../../nitroglycerin/js",
         PHET_CORE: "../../phet-core/js",
         PHETCOMMON: "../../phetcommon/js",
         SCENERY: "../../scenery/js",
