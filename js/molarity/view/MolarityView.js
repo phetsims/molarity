@@ -108,7 +108,7 @@ define( function( require ) {
       concentrationDisplay.left = 50;
       concentrationDisplay.top = 50;
        // to the right of the concentration display
-      beakerNode.left = concentrationDisplay.left + concentrationDisplay.getCompleteBounds().width + 50;
+      beakerNode.left = concentrationDisplay.right + 50;
       beakerNode.bottom = concentrationDisplay.bottom;
       // same coordinate frame as beaker
       solutionNode.x = beakerNode.x;
@@ -129,7 +129,7 @@ define( function( require ) {
       soluteAmountSlider.left = beakerNode.right + 50;
       soluteAmountSlider.bottom = beakerNode.bottom;
        // to the right of the Solute Amount slider
-      solutionVolumeSlider.left = soluteAmountSlider.left + soluteAmountSlider.getCompleteBounds().width + 20;
+      solutionVolumeSlider.left = soluteAmountSlider.right + 20;
       solutionVolumeSlider.y = soluteAmountSlider.y;
       // left of combo box
       showValuesCheckBox.right = soluteComboBox.left - 50;

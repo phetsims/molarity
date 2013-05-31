@@ -1,3 +1,4 @@
+5/30/13 ditch getCompleteBounds calls, after scenery reverted to bounds===completeBounds
 5/30/13 varargs implementation of StringUtil.format
 5/30/13 replace ColorRange with minColor and maxColor properties for Solute
 5/30/13 make beaker label transparent
