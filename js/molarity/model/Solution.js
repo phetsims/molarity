@@ -18,7 +18,6 @@ define( function( require ) {
   var Fort = require( "FORT/Fort" );
   var interpolateRBGA = require( "SCENERY/util/Color" ).interpolateRBGA;
   var Range = require( "DOT/Range" );
-  var toFixed = require( "common/util/toFixed" );
   var Util = require( "DOT/Util" );
 
   // constants
@@ -33,7 +32,7 @@ define( function( require ) {
           this.solvent = solvent;
 
           var computeConcentration = function() {
-            return toFixed( thisSolution.volume > 0 ? Math.min( thisSolution.getSaturatedConcentration(), thisSolution.soluteAmount / thisSolution.volume ) : 0, CONCENTRATION_DECIMALS );
+            return Util.toFixed( thisSolution.volume > 0 ? Math.min( thisSolution.getSaturatedConcentration(), thisSolution.soluteAmount / thisSolution.volume ) : 0, CONCENTRATION_DECIMALS );
           };
 
           var computePrecipitateAmount = function() {

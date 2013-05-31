@@ -26,7 +26,6 @@ define( function( require ) {
   var SimpleDragHandler = require( "SCENERY/input/SimpleDragHandler" );
   var StringUtils = require( "PHETCOMMON/util/StringUtils" );
   var Text = require( "SCENERY/nodes/Text" );
-  var toFixed = require( "common/util/toFixed" );
   var Util = require( "DOT/Util" );
 
   // constants
@@ -52,7 +51,7 @@ define( function( require ) {
     var handleEvent = function( event ) {
       var y = thisNode.globalToLocalPoint( event.pointer.point ).y;
       var value = Util.linear( 0, range.max, size.height, range.min, y );
-      property.value = toFixed( Util.clamp( value, range.min, range.max ), decimalPlaces );
+      property.value = Util.toFixed( Util.clamp( value, range.min, range.max ), decimalPlaces );
     };
     thisNode.addInputListener( new SimpleDragHandler(
         {
@@ -112,7 +111,7 @@ define( function( require ) {
       drag: function( event ) {
         var y = dragNode.globalToParentPoint( event.pointer.point ).y - clickYOffset;
         var value = Util.linear( positionRange.min, valueRange.max, positionRange.max, valueRange.min, y );
-        property.value = toFixed( Util.clamp( value, valueRange.min, valueRange.max ), decimalPlaces );
+        property.value = Util.toFixed( Util.clamp( value, valueRange.min, valueRange.max ), decimalPlaces );
       },
       translate: function() {
         // do nothing, override default behavior

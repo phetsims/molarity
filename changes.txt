@@ -1,3 +1,4 @@
+5/31/13 migrate toFixed to dot.Util
 5/31/13 migrate ChemUtils to nitroglycerin.ChemUtils
 5/31/13 migrate ColorUtils.interpolateRGBA to scenery.Color
 5/31/13 migrate StringUtils to phetcommon.util
