@@ -105,11 +105,14 @@ define( function( require ) {
 
     // layout for things that don't have a location in the model
     {
-      concentrationDisplay.left = 50;
-      concentrationDisplay.top = 50;
-       // to the right of the concentration display
-      beakerNode.left = concentrationDisplay.right + 50;
-      beakerNode.bottom = concentrationDisplay.bottom;
+      soluteAmountSlider.left = 10;
+      soluteAmountSlider.top = 100;
+      // to the right of the Solute Amount slider
+      solutionVolumeSlider.left = soluteAmountSlider.right + 20;
+      solutionVolumeSlider.y = soluteAmountSlider.y;
+      // to the right of the Solution Volume slider
+      beakerNode.left = solutionVolumeSlider.right + 20;
+      beakerNode.y = soluteAmountSlider.y;
       // same coordinate frame as beaker
       solutionNode.x = beakerNode.x;
       solutionNode.y = beakerNode.y;
@@ -118,7 +121,7 @@ define( function( require ) {
       precipitateNode.y = beakerNode.y;
       // centered below beaker
       soluteComboBox.centerX = beakerNode.centerX;
-      soluteComboBox.top = beakerNode.bottom + 30;
+      soluteComboBox.top = beakerNode.bottom + 50;
       // toward bottom of the beaker
       var saturatedIndicatorVisible = saturatedIndicator.visible; // so we can layout an invisible node
       saturatedIndicator.visible = true;
@@ -126,16 +129,13 @@ define( function( require ) {
       saturatedIndicator.bottom = beakerNode.bottom - ( 0.2 * cylinderSize.height );
       saturatedIndicator.visible = saturatedIndicatorVisible;
       // right of beaker
-      soluteAmountSlider.left = beakerNode.right + 50;
-      soluteAmountSlider.bottom = beakerNode.bottom;
-       // to the right of the Solute Amount slider
-      solutionVolumeSlider.left = soluteAmountSlider.right + 20;
-      solutionVolumeSlider.y = soluteAmountSlider.y;
+      concentrationDisplay.left = beakerNode.right + 50;
+      concentrationDisplay.bottom = beakerNode.bottom;
       // left of combo box
       showValuesCheckBox.right = soluteComboBox.left - 50;
       showValuesCheckBox.centerY = soluteComboBox.centerY;
       // right of combo box
-      resetAllButton.centerX = solutionVolumeSlider.centerX;
+      resetAllButton.left = soluteComboBox.right + 100;
       resetAllButton.centerY = showValuesCheckBox.centerY;
     }
   }
