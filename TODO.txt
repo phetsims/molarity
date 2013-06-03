@@ -6,6 +6,7 @@ HIGH
 - multi-line center-justified text, for slider and concentration display titles
 
 MEDIUM
+- Safari 5: text is very tiny, scenery#61
 - revert to Property.js?
 
 LOW
