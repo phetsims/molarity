@@ -41,7 +41,7 @@ define( function( require ) {
       new Solute( MStrings.potassiumPermanganate, MSymbols.POTASSIUM_PERMANGANATE, 0.50, new Color( 255, 0, 255 ), new Color( 139, 0, 139 ), Color.BLACK )
     ];
 
-    thisModel.solution = new Solution( { solute: thisModel.solutes[0], soluteAmount: SOLUTE_AMOUNT_RANGE.defaultValue, volume: SOLUTION_VOLUME_RANGE.defaultValue}, Water );
+    thisModel.solution = new Solution( Water, thisModel.solutes[0], SOLUTE_AMOUNT_RANGE.defaultValue, SOLUTION_VOLUME_RANGE.defaultValue );
   }
 
   // Resets all model elements

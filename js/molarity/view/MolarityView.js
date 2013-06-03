@@ -18,7 +18,7 @@ define( function( require ) {
   var MFont = require( "molarity/MFont" );
   var MStrings = require( "molarity/MStrings" );
   var PrecipitateNode = require( "molarity/view/PrecipitateNode" );
-  var property = require( "FORT/property" );
+  var Property = require( "PHETCOMMON/model/property/Property" );
   var ResetAllButton = require( "SCENERY_PHET/ResetAllButton" );
   var SaturatedIndicator = require( "molarity/view/SaturatedIndicator" );
   var SoluteComboBox = require( "molarity/view/SoluteComboBox" );
@@ -42,8 +42,7 @@ define( function( require ) {
     var thisView = this;
     TabView.call( thisView );
 
-    // Since here is only one view property, don't bother creating a Fort.Model
-    var valuesVisible = property( false );
+    var valuesVisible = new Property( false );
 
     // beaker, with solution and precipitate inside of it
     var beakerNode = new BeakerNode( model.solution, model.getSolutionVolumeRange().max, valuesVisible );
@@ -53,14 +52,14 @@ define( function( require ) {
     var saturatedIndicator = new SaturatedIndicator( model.solution );
 
     // solute control
-    var soluteComboBox = new SoluteComboBox( model.solutes, model.solution.property( 'solute' ) );
+    var soluteComboBox = new SoluteComboBox( model.solutes, model.solution.solute );
 
     // slider for controlling amount of solute
     var soluteAmountSlider = new VerticalSlider( MStrings.soluteAmount,
                                                  StringUtils.format( MStrings.pattern_parentheses_0text, MStrings.moles ),
                                                  MStrings.none, MStrings.lots,
                                                  new Dimension2( 5, cylinderSize.height ),
-                                                 model.solution.property( 'soluteAmount' ),
+                                                 model.solution.soluteAmount,
                                                  model.getSoluteAmountRange(),
                                                  SOLUTE_AMOUNT_DECIMAL_PLACES,
                                                  MStrings.units_moles,
@@ -72,7 +71,7 @@ define( function( require ) {
                                                    StringUtils.format( MStrings.pattern_parentheses_0text, MStrings.liters ),
                                                    MStrings.low, MStrings.full,
                                                    new Dimension2( 5, volumeSliderHeight ),
-                                                   model.solution.property( 'volume' ),
+                                                   model.solution.volume,
                                                    model.getSolutionVolumeRange(),
                                                    VOLUME_DECIMAL_PLACES,
                                                    MStrings.units_liters,

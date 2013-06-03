@@ -96,7 +96,7 @@ define( function( require ) {
   /**
    * Drag handler for the slider thumb.
    * @param {Node} dragNode
-   * @param {*} property
+   * @param {Property<Number>} property
    * @param {Range} valueRange
    * @param {Number} decimalPlaces
    * @param {Range} positionRange
@@ -169,7 +169,7 @@ define( function( require ) {
     };
 
     // move the slider thumb to reflect the model value
-    property.link( function( value ) {
+    property.addObserver( function( value ) {
       // move the thumb
       var y = Util.linear( range.min, trackSize.height, range.max, 0, value );
       thumbNode.y = Util.clamp( y, 0, trackSize.height );
@@ -179,7 +179,7 @@ define( function( require ) {
     } );
 
     // switch between quantitative and qualitative display
-    valuesVisible.link( function( visible ) {
+    valuesVisible.addObserver( function( visible ) {
       valueNode.setVisible( visible );
       updateValuePosition();
     } );

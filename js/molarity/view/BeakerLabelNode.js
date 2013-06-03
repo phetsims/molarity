@@ -41,22 +41,22 @@ define( function( require ) {
 
     var updateFormula = function( solute ) {
       // use solute formula
-      if ( solution.volume === 0 ) {
+      if ( solution.volume.get() === 0 ) {
         formulaNode.text = "";
       }
-      else if ( solution.concentration === 0 ) {
+      else if ( solution.concentration.get() === 0 ) {
         formulaNode.text = MSymbols.WATER;
       }
       else {
-        formulaNode.text = solution.solute.formula;
+        formulaNode.text = solution.solute.get().formula;
       }
       // center formula in background
       formulaNode.centerX = backgroundNode.centerX;
       formulaNode.centerY = backgroundNode.centerY;
     };
-    solution.link( 'solute', updateFormula );
-    solution.link( 'volume', updateFormula );
-    solution.link( 'concentration', updateFormula );
+    solution.solute.addObserver( updateFormula );
+    solution.volume.addObserver(  updateFormula );
+    solution.concentration.addObserver( updateFormula );
   }
 
   inherit( BeakerLabelNode, Node );

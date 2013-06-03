@@ -16,7 +16,7 @@ define( function( require ) {
 
   /**
    * @param {Node} content
-   * @param {*} property
+   * @param {Property<Boolean>} property
    * @constructor
    */
   function CheckBox( content, property, options ) {
@@ -53,7 +53,7 @@ define( function( require ) {
         } );
 
     // sync with property
-    property.link( function( checked ) {
+    property.addObserver( function( checked ) {
       checkedNode.visible = checked;
       uncheckedNode.visible = !checked;
     } );
