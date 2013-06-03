@@ -1,6 +1,4 @@
 /* Copyright 2002-2013, University of Colorado */
 
-/* TODO joist#6 should handle this */
-/* get rid of left and top margin around scene in browser window */
-html, body { padding: 0; margin: 0 }
+/* Put sim-specific CSS in this file. */
 
