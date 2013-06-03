@@ -59,7 +59,7 @@ define( function( require ) {
         // add particles
         var numberToAdd = numberOfParticles - particlesParent.getChildrenCount();
         for ( var i = 0; i < numberToAdd; i++ ) {
-          particleNode = new PrecipitateParticleNode( solution.solute.get() );
+          particleNode = new PrecipitateParticleNode( solution.solute.value );
           particlesParent.addChild( particleNode );
           particleNode.translation = thisNode.getRandomOffset( particleNode );
         }
@@ -76,7 +76,7 @@ define( function( require ) {
 
     // Updates the debug output to show how we're mapping saturation to number of particles.
     var updateValue = function() {
-      var precipitateAmount = solution.precipitateAmount.get();
+      var precipitateAmount = solution.precipitateAmount.value;
       var numberOfParticles = thisNode.getNumberOfParticles();
       // developer only, no i18n required
       valueNode.text = "dev: precipitate = " + precipitateAmount.toFixed( 4 ) + " mol, " + numberOfParticles + " particles";
@@ -104,8 +104,8 @@ define( function( require ) {
 
   // Gets the number of particles used to represent the solution's saturation.
   PrecipitateNode.prototype.getNumberOfParticles = function() {
-    var numberOfParticles = Math.floor( this.solution.solute.get().particlesPerMole * this.solution.precipitateAmount.get() );
-    if ( numberOfParticles === 0 && this.solution.precipitateAmount.get() > 0 ) {
+    var numberOfParticles = Math.floor( this.solution.solute.value.particlesPerMole * this.solution.precipitateAmount.value );
+    if ( numberOfParticles === 0 && this.solution.precipitateAmount.value > 0 ) {
       numberOfParticles = 1;
     }
     return numberOfParticles;

@@ -41,19 +41,19 @@ define( function( require ) {
 
     var computeConcentration = function() {
       // M = moles/liter
-      return Util.toFixed( thisSolution.volume.get() > 0 ? Math.min( thisSolution.getSaturatedConcentration(), thisSolution.soluteAmount.get() / thisSolution.volume.get() ) : 0, CONCENTRATION_DECIMALS );
+      return Util.toFixed( thisSolution.volume.value > 0 ? Math.min( thisSolution.getSaturatedConcentration(), thisSolution.soluteAmount.value / thisSolution.volume.value ) : 0, CONCENTRATION_DECIMALS );
     };
 
     var computePrecipitateAmount = function() {
-      return thisSolution.volume.get() > 0 ? Math.max( 0, thisSolution.volume.get() * ( ( thisSolution.soluteAmount.get() / thisSolution.volume.get() ) - thisSolution.getSaturatedConcentration() ) ) : thisSolution.soluteAmount.get();
+      return thisSolution.volume.value > 0 ? Math.max( 0, thisSolution.volume.value * ( ( thisSolution.soluteAmount.value / thisSolution.volume.value ) - thisSolution.getSaturatedConcentration() ) ) : thisSolution.soluteAmount.value;
     };
 
     // derived properties
     thisSolution.concentration = new Property( computeConcentration() ); // molarity, moles/Liter (derived property)
     thisSolution.precipitateAmount = new Property( computePrecipitateAmount() ); // moles (derived property)
     var update = function() {
-      thisSolution.concentration.set( computeConcentration() );
-      thisSolution.precipitateAmount.set( computePrecipitateAmount() );
+      thisSolution.concentration.value = computeConcentration();
+      thisSolution.precipitateAmount.value = computePrecipitateAmount();
     };
     thisSolution.solute.addObserver( update );
     thisSolution.soluteAmount.addObserver( update );
@@ -69,17 +69,17 @@ define( function( require ) {
 
   // Convenience method
   Solution.prototype.getSaturatedConcentration = function() {
-    return this.solute.get().saturatedConcentration;
+    return this.solute.value.saturatedConcentration;
   };
 
   Solution.prototype.isSaturated = function() {
-    return this.precipitateAmount.get() !== 0;
+    return this.precipitateAmount.value !== 0;
   };
 
   Solution.prototype.getColor = function() {
-    if ( this.concentration.get() > 0 ) {
-      var colorScale = Util.linear( 0, 0, this.getSaturatedConcentration(), 1, this.concentration.get() );
-      return interpolateRBGA( this.solute.get().minColor, this.solute.get().maxColor, colorScale );
+    if ( this.concentration.value > 0 ) {
+      var colorScale = Util.linear( 0, 0, this.getSaturatedConcentration(), 1, this.concentration.value );
+      return interpolateRBGA( this.solute.value.minColor, this.solute.value.maxColor, colorScale );
     }
     else {
       return this.solvent.color;

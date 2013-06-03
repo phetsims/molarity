@@ -98,7 +98,7 @@ define( function( require ) {
       update( concentration );
     } );
     solution.solute.addObserver( function( solute ) {
-      update( solution.concentration.get() );
+      update( solution.concentration.value );
     } );
   }
 
@@ -146,8 +146,8 @@ define( function( require ) {
       // Color the bar using a gradient that corresponds to the solute's color range.
       var y = barSize.height - ( barSize.height * ( solution.getSaturatedConcentration() / concentrationRange.max ) );
       barNode.fill = new LinearGradient( 0, y, 0, barSize.height )
-          .addColorStop( 0, solution.solute.get().maxColor )
-          .addColorStop( 1, solution.solute.get().minColor );
+          .addColorStop( 0, solution.solute.value.maxColor )
+          .addColorStop( 1, solution.solute.value.minColor );
 
       // Cover the saturated portion of the range with a gray rectangle.
       saturatedBarNode.visible = ( solution.getSaturatedConcentration() < concentrationRange.max );

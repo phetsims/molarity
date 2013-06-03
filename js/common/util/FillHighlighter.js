@@ -42,7 +42,7 @@ define( function( require ) {
     };
 
     var setHighlighted = function( highlighted ) {
-      if ( enabled.get() ) {
+      if ( enabled.value ) {
         node.fill = highlighted ? highlightFill : normalFill;
       }
     };
