@@ -40,6 +40,7 @@ define( function( require ) {
     thisSolution.volume = new Property( volume );
 
     var computeConcentration = function() {
+      // M = moles/liter
       return Util.toFixed( thisSolution.volume.get() > 0 ? Math.min( thisSolution.getSaturatedConcentration(), thisSolution.soluteAmount.get() / thisSolution.volume.get() ) : 0, CONCENTRATION_DECIMALS );
     };
 
