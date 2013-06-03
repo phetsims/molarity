@@ -83,13 +83,13 @@ define( function( require ) {
     };
 
     // when the saturation changes, update the number of precipitate particles
-    solution.precipitateAmount.addObserver( function( precipitateAmount ) {
+    solution.precipitateAmount.link( function( precipitateAmount ) {
       updateParticles();
       updateValue();
     } );
 
     // when the solute changes, remove all particles and create new particles for the solute
-    solution.solute.addObserver( function( solute ) {
+    solution.solute.link( function( solute ) {
       removeAllParticles();
       updateParticles();
       updateValue();

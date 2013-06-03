@@ -54,9 +54,9 @@ define( function( require ) {
       formulaNode.centerX = backgroundNode.centerX;
       formulaNode.centerY = backgroundNode.centerY;
     };
-    solution.solute.addObserver( updateFormula );
-    solution.volume.addObserver(  updateFormula );
-    solution.concentration.addObserver( updateFormula );
+    solution.solute.link( updateFormula );
+    solution.volume.link(  updateFormula );
+    solution.concentration.link( updateFormula );
   }
 
   inherit( BeakerLabelNode, Node );

@@ -119,7 +119,7 @@ define( function( require ) {
       thisNode.addChild( new Circle( { radius: 3, fill: 'red' } ) );
     }
 
-    valuesVisible.addObserver( function( visible ) {
+    valuesVisible.link( function( visible ) {
       tickLabelNodes.visible = visible;
     } );
   }

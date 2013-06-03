@@ -67,7 +67,7 @@ define( function( require ) {
     };
 
     // show/hide value
-    valuesVisible.addObserver( function( visible ) {
+    valuesVisible.link( function( visible ) {
       valueNode.setVisible( visible );
       updateValuePosition();
     } );
@@ -94,10 +94,10 @@ define( function( require ) {
       valueNode.text = StringUtils.format( MStrings.pattern_0value_1units, concentration.toFixed( VALUE_DECIMAL_PLACES ), MStrings.units_molarity );
       updateValuePosition();
     };
-    solution.concentration.addObserver( function( concentration ) {
+    solution.concentration.link( function( concentration ) {
       update( concentration );
     } );
-    solution.solute.addObserver( function( solute ) {
+    solution.solute.link( function( solute ) {
       update( solution.concentration.value );
     } );
   }
@@ -141,7 +141,7 @@ define( function( require ) {
     title.bottom = subtitle.top - 5;
 
     // when the solute changes...
-    solution.solute.addObserver( function( concentration ) {
+    solution.solute.link( function( concentration ) {
 
       // Color the bar using a gradient that corresponds to the solute's color range.
       var y = barSize.height - ( barSize.height * ( solution.getSaturatedConcentration() / concentrationRange.max ) );

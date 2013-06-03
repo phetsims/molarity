@@ -55,9 +55,9 @@ define( function( require ) {
       thisSolution.concentration.value = computeConcentration();
       thisSolution.precipitateAmount.value = computePrecipitateAmount();
     };
-    thisSolution.solute.addObserver( update );
-    thisSolution.soluteAmount.addObserver( update );
-    thisSolution.volume.addObserver( update );
+    thisSolution.solute.link( update );
+    thisSolution.soluteAmount.link( update );
+    thisSolution.volume.link( update );
   }
 
   Solution.prototype.reset = function() {

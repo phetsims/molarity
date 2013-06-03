@@ -81,9 +81,9 @@ define( function( require ) {
       middleNode.setShape( createMiddleShape( height ) );
       bottomNode.setShape( createBottomShape( height ) );
     };
-    solution.concentration.addObserver( update );
-    solution.solute.addObserver( update );
-    solution.volume.addObserver( update );
+    solution.concentration.link( update );
+    solution.solute.link( update );
+    solution.volume.link( update );
 
     if ( DEBUG_ORIGIN ) {
       thisNode.addChild( new Circle( { radius: 3, fill: 'red' } ) );

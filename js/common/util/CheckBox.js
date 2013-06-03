@@ -53,7 +53,7 @@ define( function( require ) {
         } );
 
     // sync with property
-    property.addObserver( function( checked ) {
+    property.link( function( checked ) {
       checkedNode.visible = checked;
       uncheckedNode.visible = !checked;
     } );

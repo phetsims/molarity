@@ -47,7 +47,7 @@ define( function( require ) {
     thisNode.addChild( boundsNode );
 
     // switch between qualitative and quantitative
-    isQuantitative.addObserver( function( isQuantitative ) {
+    isQuantitative.link( function( isQuantitative ) {
       quantitativeNode.setVisible( isQuantitative );
       qualitativeNode.setVisible( !isQuantitative );
     } );

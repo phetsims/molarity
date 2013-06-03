@@ -169,7 +169,7 @@ define( function( require ) {
     };
 
     // move the slider thumb to reflect the model value
-    property.addObserver( function( value ) {
+    property.link( function( value ) {
       // move the thumb
       var y = Util.linear( range.min, trackSize.height, range.max, 0, value );
       thumbNode.y = Util.clamp( y, 0, trackSize.height );
@@ -179,7 +179,7 @@ define( function( require ) {
     } );
 
     // switch between quantitative and qualitative display
-    valuesVisible.addObserver( function( visible ) {
+    valuesVisible.link( function( visible ) {
       valueNode.setVisible( visible );
       updateValuePosition();
     } );
