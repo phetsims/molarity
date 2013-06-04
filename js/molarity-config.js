@@ -26,7 +26,6 @@ require.config(
         // PhET libs, uppercase names to identify them in require.js imports
         ASSERT: "../../assert/js",
         DOT: "../../dot/js",
-        FORT: "../../fort/js",
         JOIST: "../../joist/js",
         KITE: "../../kite/js",
         NITROGLYCERIN: "../../nitroglycerin/js",
