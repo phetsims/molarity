@@ -1,3 +1,4 @@
+6/4/13 fix "Molarity" tab name
 6/3/13 delete backbone from lib/, delete FORT from config.js
 6/3/13 delete css for scrollbars that was addressed in joist#6
 6/3/13 use Property.link/unlink instead of addObserver/removeObserver
