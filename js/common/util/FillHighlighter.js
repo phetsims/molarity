@@ -21,12 +21,12 @@ define( function( require ) {
    * @param {Node} node
    * @param {Color|String} normalFill
    * @param {Color|String} highlightFill
-   * @param {Property<Boolean>} enabled
+   * @param {Property<Boolean>} enabledProperty
    * @constructor
    */
-  function FillHighlighter( node, normalFill, highlightFill, enabled ) {
+  function FillHighlighter( node, normalFill, highlightFill, enabledProperty ) {
 
-    enabled = _.isUndefined( enabled ) ? new Property( true ) : enabled;
+    enabledProperty = _.isUndefined( enabledProperty ) ? new Property( true ) : enabledProperty;
 
     var isMouseInside = false;
     var isMousePressed = false;
@@ -42,7 +42,7 @@ define( function( require ) {
     };
 
     var setHighlighted = function( highlighted ) {
-      if ( enabled.value ) {
+      if ( enabledProperty.value ) {
         node.fill = highlighted ? highlightFill : normalFill;
       }
     };

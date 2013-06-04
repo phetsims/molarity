@@ -21,10 +21,10 @@ define( function( require ) {
 
   /**
    * @param {Array<Solute>} solutes
-   * @param {Property<Solute>} selectedSolute
+   * @param {Property<Solute>} selectedSoluteProperty
    * @constructor
    */
-  function SoluteComboBox( solutes, selectedSolute ) {
+  function SoluteComboBox( solutes, selectedSoluteProperty ) {
 
     // "Solute" label
     var labelNode = new Text( StringUtils.format( MStrings.pattern_0label, MStrings.solute ),
@@ -37,7 +37,7 @@ define( function( require ) {
       items[i] = this._createItem( solute );
     }
 
-    ComboBox.call( this, items, selectedSolute,
+    ComboBox.call( this, items, selectedSoluteProperty,
                    { labelNode: labelNode,
                      listPosition: "above",
                      itemHighlightFill: "rgb(218,255,255)" } );

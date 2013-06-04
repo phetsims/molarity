@@ -41,7 +41,14 @@ define( function( require ) {
   var THUMB_STROKE_COLOR = Color.BLACK;
   var THUMB_CENTER_LINE_COLOR = Color.WHITE;
 
-  // Track that the thumb moves in, origin at upper left. Clicking in the track changes the value.
+  /**
+   * Track that the thumb moves in, origin at upper left. Clicking in the track changes the value.
+   * @param {Dimension2} size
+   * @param {Property<Number>} property
+   * @param {Range} range
+   * @param {Number} decimalPlaces
+   * @constructor
+   */
   function Track( size, property, range, decimalPlaces ) {
 
     var thisNode = this;
@@ -69,7 +76,15 @@ define( function( require ) {
 
   inherit( Track, Rectangle );
 
-  // The slider thumb, a rounded rectangle with a horizontal line through its center. Origin is at the thumb's geometric center.
+  /**
+   * The slider thumb, a rounded rectangle with a horizontal line through its center. Origin is at the thumb's geometric center.
+   * @param {Dimension2} size
+   * @param {Property<Number>} property
+   * @param {Range} valueRange
+   * @param {Number} decimalPlaces
+   * @param {Range} positionRange
+   * @constructor
+   */
   function Thumb( size, property, valueRange, decimalPlaces, positionRange ) {
 
     var thisNode = this;
@@ -121,6 +136,19 @@ define( function( require ) {
 
   inherit( ThumbDragHandler, SimpleDragHandler );
 
+  /**
+   * @param {String} title
+   * @param {String} subtitle
+   * @param {String} minLabel
+   * @param {String} maxLabel
+   * @param {Dimension2} trackSize
+   * @param {Property<Number>} property
+   * @param {Range} range
+   * @param {Number} decimalPlaces
+   * @param {String} units
+   * @param {Property<Boolean>} valuesVisibleProperty
+   * @constructor
+   */
   function VerticalSlider( title, subtitle, minLabel, maxLabel, trackSize, property, range, decimalPlaces, units, valuesVisibleProperty ) {
 
     var thisNode = this;
