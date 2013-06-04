@@ -21,7 +21,7 @@ define( function( require ) {
 
   /**
    * @param {Array<Solute>} solutes
-   * @param {*} selectedSolute
+   * @param {Property<Solute>} selectedSolute
    * @constructor
    */
   function SoluteComboBox( solutes, selectedSolute ) {

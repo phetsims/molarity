@@ -42,28 +42,28 @@ define( function( require ) {
     var thisView = this;
     TabView.call( thisView );
 
-    var valuesVisible = new Property( false );
+    var valuesVisibleProperty = new Property( false );
 
     // beaker, with solution and precipitate inside of it
-    var beakerNode = new BeakerNode( model.solution, model.getSolutionVolumeRange().max, valuesVisible );
+    var beakerNode = new BeakerNode( model.solution, model.getSolutionVolumeRange().max, valuesVisibleProperty );
     var cylinderSize = beakerNode.getCylinderSize();
     var solutionNode = new SolutionNode( cylinderSize, beakerNode.getCylinderEndHeight(), model.solution, model.getSolutionVolumeRange().max );
     var precipitateNode = new PrecipitateNode( model.solution, cylinderSize, beakerNode.getCylinderEndHeight() );
     var saturatedIndicator = new SaturatedIndicator( model.solution );
 
     // solute control
-    var soluteComboBox = new SoluteComboBox( model.solutes, model.solution.solute );
+    var soluteComboBox = new SoluteComboBox( model.solutes, model.solution.soluteProperty );
 
     // slider for controlling amount of solute
     var soluteAmountSlider = new VerticalSlider( MStrings.soluteAmount,
                                                  StringUtils.format( MStrings.pattern_parentheses_0text, MStrings.moles ),
                                                  MStrings.none, MStrings.lots,
                                                  new Dimension2( 5, cylinderSize.height ),
-                                                 model.solution.soluteAmount,
+                                                 model.solution.soluteAmountProperty,
                                                  model.getSoluteAmountRange(),
                                                  SOLUTE_AMOUNT_DECIMAL_PLACES,
                                                  MStrings.units_moles,
-                                                 valuesVisible );
+                                                 valuesVisibleProperty );
 
     // slider for controlling volume of solution, sized to match tick marks on the beaker
     var volumeSliderHeight = ( model.getSolutionVolumeRange().getLength() / model.getSolutionVolumeRange().max ) * cylinderSize.height;
@@ -71,22 +71,22 @@ define( function( require ) {
                                                    StringUtils.format( MStrings.pattern_parentheses_0text, MStrings.liters ),
                                                    MStrings.low, MStrings.full,
                                                    new Dimension2( 5, volumeSliderHeight ),
-                                                   model.solution.volume,
+                                                   model.solution.volumeProperty,
                                                    model.getSolutionVolumeRange(),
                                                    VOLUME_DECIMAL_PLACES,
                                                    MStrings.units_liters,
-                                                   valuesVisible );
+                                                   valuesVisibleProperty );
 
     // concentration display
     var concentrationBarSize = new Dimension2( 40, cylinderSize.height + 50 );
-    var concentrationDisplay = new ConcentrationDisplay( model.solution, model.getConcentrationDisplayRange(), valuesVisible, concentrationBarSize );
+    var concentrationDisplay = new ConcentrationDisplay( model.solution, model.getConcentrationDisplayRange(), valuesVisibleProperty, concentrationBarSize );
 
     // Show Values check box
-    var showValuesCheckBox = new CheckBox( new Text( MStrings.showValues, { font: new MFont( 22 ) } ), valuesVisible );
+    var showValuesCheckBox = new CheckBox( new Text( MStrings.showValues, { font: new MFont( 22 ) } ), valuesVisibleProperty );
 
     // Reset All button
     var resetAllButton = new ResetAllButton( function() {
-      valuesVisible.reset();
+      valuesVisibleProperty.reset();
       model.reset();
     } );
 

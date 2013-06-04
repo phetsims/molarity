@@ -46,9 +46,9 @@ define( function( require ) {
    * @param {Solution} solution
    * @param {Range} concentrationRange
    * @param {Dimension2} barSize
-   * @param {Property<Boolean>} valuesVisible
+   * @param {Property<Boolean>} valuesVisibleProperty
    */
-  function Pointer( solution, concentrationRange, barSize, valuesVisible ) {
+  function Pointer( solution, concentrationRange, barSize, valuesVisibleProperty ) {
 
     var thisNode = this;
     Node.call( thisNode );
@@ -67,7 +67,7 @@ define( function( require ) {
     };
 
     // show/hide value
-    valuesVisible.link( function( visible ) {
+    valuesVisibleProperty.link( function( visible ) {
       valueNode.setVisible( visible );
       updateValuePosition();
     } );
@@ -94,28 +94,28 @@ define( function( require ) {
       valueNode.text = StringUtils.format( MStrings.pattern_0value_1units, concentration.toFixed( VALUE_DECIMAL_PLACES ), MStrings.units_molarity );
       updateValuePosition();
     };
-    solution.concentration.link( function( concentration ) {
+    solution.concentrationProperty.link( function( concentration ) {
       update( concentration );
     } );
-    solution.solute.link( function( solute ) {
-      update( solution.concentration.value );
+    solution.soluteProperty.link( function() {
+      update( solution.concentration );
     } );
   }
 
   inherit( Pointer, Node );
 
-  function ConcentrationDisplay( solution, concentrationRange, valuesVisible, barSize ) {
+  function ConcentrationDisplay( solution, concentrationRange, valuesVisibleProperty, barSize ) {
 
     var thisNode = this;
     Node.call( thisNode, { pickable: false } );
 
     var title = new HTMLText( MStrings.solutionConcentration, { font: TITLE_FONT } );
     var subtitle = new Text( StringUtils.format( MStrings.pattern_parentheses_0text, MStrings.molarity ), { font: SUBTITLE_FONT } );
-    var maxNode = new DualLabelNode( concentrationRange.min.toFixed( RANGE_DECIMAL_PLACES ), MStrings.high, valuesVisible, RANGE_FONT );
-    var minNode = new DualLabelNode( concentrationRange.min.toFixed( concentrationRange.min === 0 ? 0 : RANGE_DECIMAL_PLACES ), MStrings.zero, valuesVisible, RANGE_FONT );
+    var maxNode = new DualLabelNode( concentrationRange.min.toFixed( RANGE_DECIMAL_PLACES ), MStrings.high, valuesVisibleProperty, RANGE_FONT );
+    var minNode = new DualLabelNode( concentrationRange.min.toFixed( concentrationRange.min === 0 ? 0 : RANGE_DECIMAL_PLACES ), MStrings.zero, valuesVisibleProperty, RANGE_FONT );
     var barNode = new Rectangle( 0, 0, barSize.width, barSize.height, { stroke: "black" } );
     var saturatedBarNode = new Rectangle( 0, 0, barSize.width, barSize.height, { stroke: "black", fill: Color.LIGHT_GRAY } );
-    var pointerNode = new Pointer( solution, concentrationRange, barSize, valuesVisible );
+    var pointerNode = new Pointer( solution, concentrationRange, barSize, valuesVisibleProperty );
 
     // rendering order
     thisNode.addChild( title );
@@ -141,16 +141,16 @@ define( function( require ) {
     title.bottom = subtitle.top - 5;
 
     // when the solute changes...
-    solution.solute.link( function( concentration ) {
+    solution.soluteProperty.link( function( solute ) {
 
       // Color the bar using a gradient that corresponds to the solute's color range.
-      var y = barSize.height - ( barSize.height * ( solution.getSaturatedConcentration() / concentrationRange.max ) );
+      var y = barSize.height - ( barSize.height * ( solute.saturatedConcentration / concentrationRange.max ) );
       barNode.fill = new LinearGradient( 0, y, 0, barSize.height )
-          .addColorStop( 0, solution.solute.value.maxColor )
-          .addColorStop( 1, solution.solute.value.minColor );
+          .addColorStop( 0, solute.maxColor )
+          .addColorStop( 1, solute.minColor );
 
       // Cover the saturated portion of the range with a gray rectangle.
-      saturatedBarNode.visible = ( solution.getSaturatedConcentration() < concentrationRange.max );
+      saturatedBarNode.visible = ( solute.saturatedConcentration < concentrationRange.max );
       saturatedBarNode.setRect( 0, 0, barSize.width, y );
     } );
   }

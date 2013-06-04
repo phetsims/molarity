@@ -41,7 +41,7 @@ define( function( require ) {
     label.centerY = background.centerY;
 
     // make this node visible when the solution is saturated
-    solution.precipitateAmount.link( function() {
+    solution.precipitateAmountProperty.link( function() {
       thisNode.visible = solution.isSaturated();
     } );
   }

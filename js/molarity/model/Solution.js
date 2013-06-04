@@ -15,9 +15,9 @@ define( function( require ) {
   "use strict";
 
   // imports
+  var inherit = require( "PHET_CORE/inherit" );
   var interpolateRBGA = require( "SCENERY/util/Color" ).interpolateRBGA;
-  var Property = require( "PHETCOMMON/model/property/Property" );
-  var Range = require( "DOT/Range" );
+  var PropertySetB = require( "PHETCOMMON/model/property/PropertySetB" );
   var Util = require( "DOT/Util" );
 
   // constants
@@ -34,52 +34,30 @@ define( function( require ) {
 
     var thisSolution = this;
 
+    PropertySetB.call( this, { solute: solute, soluteAmount: soluteAmount, volume: volume } );
+
     thisSolution.solvent = solvent;
-    thisSolution.solute = new Property( solute );
-    thisSolution.soluteAmount = new Property( soluteAmount );
-    thisSolution.volume = new Property( volume );
 
-    var computeConcentration = function() {
-      // M = moles/liter
-      return Util.toFixed( thisSolution.volume.value > 0 ? Math.min( thisSolution.getSaturatedConcentration(), thisSolution.soluteAmount.value / thisSolution.volume.value ) : 0, CONCENTRATION_DECIMALS );
-    };
+    // M = moles/liter
+    thisSolution.addDerivedProperty( 'concentration', ['solute', 'soluteAmount', 'volume'], function( solute, soluteAmount, volume ) {
+      return Util.toFixed( volume > 0 ? Math.min( solute.saturatedConcentration, soluteAmount / volume ) : 0, CONCENTRATION_DECIMALS );
+    } );
 
-    var computePrecipitateAmount = function() {
-      return thisSolution.volume.value > 0 ? Math.max( 0, thisSolution.volume.value * ( ( thisSolution.soluteAmount.value / thisSolution.volume.value ) - thisSolution.getSaturatedConcentration() ) ) : thisSolution.soluteAmount.value;
-    };
-
-    // derived properties
-    thisSolution.concentration = new Property( computeConcentration() ); // molarity, moles/Liter (derived property)
-    thisSolution.precipitateAmount = new Property( computePrecipitateAmount() ); // moles (derived property)
-    var update = function() {
-      thisSolution.concentration.value = computeConcentration();
-      thisSolution.precipitateAmount.value = computePrecipitateAmount();
-    };
-    thisSolution.solute.link( update );
-    thisSolution.soluteAmount.link( update );
-    thisSolution.volume.link( update );
+    thisSolution.addDerivedProperty( 'precipitateAmount', ['solute', 'soluteAmount', 'volume'], function( solute, soluteAmount, volume ) {
+      return volume > 0 ? Math.max( 0, volume * ( ( soluteAmount / volume ) - thisSolution.solute.saturatedConcentration ) ) : soluteAmount;
+    } );
   }
 
-  Solution.prototype.reset = function() {
-    this.solute.reset();
-    this.soluteAmount.reset();
-    this.volume.reset();
-    // concentration and precipitateAmount are derived
-  };
-
-  // Convenience method
-  Solution.prototype.getSaturatedConcentration = function() {
-    return this.solute.value.saturatedConcentration;
-  };
+  inherit( Solution, PropertySetB );
 
   Solution.prototype.isSaturated = function() {
-    return this.precipitateAmount.value !== 0;
+    return this.precipitateAmount !== 0;
   };
 
   Solution.prototype.getColor = function() {
-    if ( this.concentration.value > 0 ) {
-      var colorScale = Util.linear( 0, 0, this.getSaturatedConcentration(), 1, this.concentration.value );
-      return interpolateRBGA( this.solute.value.minColor, this.solute.value.maxColor, colorScale );
+    if ( this.concentration > 0 ) {
+      var colorScale = Util.linear( 0, 0, this.solute.saturatedConcentration, 1, this.concentration );
+      return interpolateRBGA( this.solute.minColor, this.solute.maxColor, colorScale );
     }
     else {
       return this.solvent.color;

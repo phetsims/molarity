@@ -76,14 +76,14 @@ define( function( require ) {
       bottomNode.fill = color;
 
       // shape
-      var height = Util.linear( 0, 0, maxVolume, cylinderSize.height, solution.volume.value );
+      var height = Util.linear( 0, 0, maxVolume, cylinderSize.height, solution.volume );
       topNode.setShape( createTopShape( height ) );
       middleNode.setShape( createMiddleShape( height ) );
       bottomNode.setShape( createBottomShape( height ) );
     };
-    solution.concentration.link( update );
-    solution.solute.link( update );
-    solution.volume.link( update );
+    solution.concentrationProperty.link( update );
+    solution.soluteProperty.link( update );
+    solution.volumeProperty.link( update );
 
     if ( DEBUG_ORIGIN ) {
       thisNode.addChild( new Circle( { radius: 3, fill: 'red' } ) );

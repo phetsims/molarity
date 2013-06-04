@@ -42,10 +42,10 @@ define( function( require ) {
   /**
    * @param {Solution} solution
    * @param {Number} maxVolume
-   * @param {Property<Boolean>} valuesVisible
+   * @param {Property<Boolean>} valuesVisibleProperty
    * @constructor
    */
-  function BeakerNode( solution, maxVolume, valuesVisible ) {
+  function BeakerNode( solution, maxVolume, valuesVisibleProperty ) {
 
     var thisNode = this;
     Node.call( thisNode, { pickable: false } );
@@ -119,7 +119,7 @@ define( function( require ) {
       thisNode.addChild( new Circle( { radius: 3, fill: 'red' } ) );
     }
 
-    valuesVisible.link( function( visible ) {
+    valuesVisibleProperty.link( function( visible ) {
       tickLabelNodes.visible = visible;
     } );
   }
