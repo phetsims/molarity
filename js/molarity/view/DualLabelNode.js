@@ -22,11 +22,11 @@ define( function( require ) {
   /**
    * @param {String} quantitativeValue
    * @param {String} qualitativeValue
-   * @param {Property<Boolean>} isQuantitative
+   * @param {Property<Boolean>} isQuantitativeProperty
    * @param {Font} font
    * @constructor
    */
-  function DualLabelNode( quantitativeValue, qualitativeValue, isQuantitative, font ) {
+  function DualLabelNode( quantitativeValue, qualitativeValue, isQuantitativeProperty, font ) {
 
     var thisNode = this;
     Node.call( thisNode, { pickable: false } );
@@ -47,7 +47,7 @@ define( function( require ) {
     thisNode.addChild( boundsNode );
 
     // switch between qualitative and quantitative
-    isQuantitative.link( function( isQuantitative ) {
+    isQuantitativeProperty.link( function( isQuantitative ) {
       quantitativeNode.setVisible( isQuantitative );
       qualitativeNode.setVisible( !isQuantitative );
     } );
