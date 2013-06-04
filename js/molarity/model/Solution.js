@@ -39,7 +39,7 @@ define( function( require ) {
 
     // derive the amount of precipitate
     thisSolution.addDerivedProperty( 'precipitateAmount', ['solute', 'soluteAmount', 'volume'], function( solute, soluteAmount, volume ) {
-      return volume > 0 ? Math.max( 0, volume * ( ( soluteAmount / volume ) - thisSolution.solute.saturatedConcentration ) ) : soluteAmount;
+      return volume > 0 ? Math.max( 0, volume * ( ( soluteAmount / volume ) - solute.saturatedConcentration ) ) : soluteAmount;
     } );
   }
 
