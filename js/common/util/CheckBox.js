@@ -9,6 +9,7 @@ define( function( require ) {
   "use strict";
 
   // imports
+  var ButtonListener = require( "SCENERY/input/ButtonListener" );
   var FontAwesomeNode = require( "SUN/FontAwesomeNode" );
   var inherit = require( "PHET_CORE/inherit" );
   var Node = require( "SCENERY/nodes/Node" );
@@ -45,12 +46,11 @@ define( function( require ) {
 
     // interactivity
     thisNode.cursor = "pointer";
-    thisNode.addInputListener(
-        {
-          up: function() {
-            property.value = !property.value;
-          }
-        } );
+    thisNode.addInputListener( new ButtonListener( {
+      fire: function() {
+        property.value = !property.value;
+      }
+    } ) );
 
     // sync with property
     property.link( function( checked ) {
