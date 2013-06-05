@@ -11,7 +11,7 @@ define( function( require ) {
   // imports
   var inherit = require( "PHET_CORE/inherit" );
   var interpolateRBGA = require( "SCENERY/util/Color" ).interpolateRBGA;
-  var PropertySetB = require( "PHETCOMMON/model/property/PropertySetB" );
+  var PropertySet = require( "PHETCOMMON/model/property/PropertySet" );
   var Util = require( "DOT/Util" );
 
   // constants
@@ -28,7 +28,7 @@ define( function( require ) {
 
     var thisSolution = this;
 
-    PropertySetB.call( this, { solute: solute, soluteAmount: soluteAmount, volume: volume } );
+    PropertySet.call( this, { solute: solute, soluteAmount: soluteAmount, volume: volume } );
 
     thisSolution.solvent = solvent;
 
@@ -43,7 +43,7 @@ define( function( require ) {
     } );
   }
 
-  inherit( Solution, PropertySetB, {
+  inherit( Solution, PropertySet, {
 
     isSaturated: function() {
       return this.precipitateAmount !== 0;
