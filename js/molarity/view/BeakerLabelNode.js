@@ -39,24 +39,21 @@ define( function( require ) {
     thisNode.addChild( backgroundNode );
     thisNode.addChild( formulaNode );
 
-    var updateFormula = function( solute ) {
+    solution.multilink( ['solute', 'volume', 'concentration'], function( solute, volume, concentration ) {
       // use solute formula
-      if ( solution.volume === 0 ) {
+      if ( volume === 0 ) {
         formulaNode.text = "";
       }
-      else if ( solution.concentration === 0 ) {
+      else if ( concentration === 0 ) {
         formulaNode.text = MSymbols.WATER;
       }
       else {
-        formulaNode.text = solution.solute.formula;
+        formulaNode.text = solute.formula;
       }
       // center formula in background
       formulaNode.centerX = backgroundNode.centerX;
       formulaNode.centerY = backgroundNode.centerY;
-    };
-    solution.soluteProperty.link( updateFormula );
-    solution.volumeProperty.link(  updateFormula );
-    solution.concentrationProperty.link( updateFormula );
+    } );
   }
 
   inherit( BeakerLabelNode, Node );

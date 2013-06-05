@@ -1,3 +1,4 @@
+6/5/13 use PropertySet.multilink in BeakerLabelNode
 6/4/13 integrate scenery.ButtonListener with molarity.CheckBox
 6/4/13 convert to PropertySetB and DerivedProperty
 6/4/13 fix "Molarity" tab name
