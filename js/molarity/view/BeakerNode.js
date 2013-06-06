@@ -124,7 +124,7 @@ define( function( require ) {
     } );
   }
 
-  inherit( BeakerNode, Node );
+  inherit( Node, BeakerNode );
 
   BeakerNode.prototype.getCylinderSize = function() {
     return this._beakerImageNode.getCylinderSize();

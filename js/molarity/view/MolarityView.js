@@ -139,7 +139,7 @@ define( function( require ) {
     }
   }
 
-  inherit( MolarityView, TabView, { layoutBounds: new Bounds2( 0, 0, 1024, 700 ) } );
+  inherit( TabView, MolarityView, { layoutBounds: new Bounds2( 0, 0, 1024, 700 ) } );
 
   return MolarityView;
 } );

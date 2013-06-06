@@ -53,7 +53,7 @@ define( function( require ) {
     } );
   }
 
-  inherit( DualLabelNode, Node );
+  inherit( Node, DualLabelNode );
 
   return DualLabelNode;
 } );

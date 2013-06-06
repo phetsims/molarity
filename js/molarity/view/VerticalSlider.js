@@ -74,7 +74,7 @@ define( function( require ) {
         } ) );
   }
 
-  inherit( Track, Rectangle );
+  inherit( Rectangle, Track );
 
   /**
    * The slider thumb, a rounded rectangle with a horizontal line through its center. Origin is at the thumb's geometric center.
@@ -106,7 +106,7 @@ define( function( require ) {
     bodyNode.addInputListener( new FillHighlighter( THUMB_NORMAL_COLOR, THUMB_HIGHLIGHT_COLOR ) );
   }
 
-  inherit( Thumb, Node );
+  inherit( Node, Thumb );
 
   /**
    * Drag handler for the slider thumb.
@@ -134,7 +134,7 @@ define( function( require ) {
     } );
   }
 
-  inherit( ThumbDragHandler, SimpleDragHandler );
+  inherit( SimpleDragHandler, ThumbDragHandler );
 
   /**
    * @param {String} title
@@ -213,7 +213,7 @@ define( function( require ) {
     } );
   }
 
-  inherit( VerticalSlider, Node );
+  inherit( Node, VerticalSlider );
 
   return VerticalSlider;
 } );

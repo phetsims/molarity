@@ -59,7 +59,7 @@ define( function( require ) {
     } );
   }
 
-  inherit( CheckBox, Node );
+  inherit( Node, CheckBox );
 
   return CheckBox;
 } );

@@ -26,7 +26,7 @@ define( function( require ) {
     } );
   }
 
-  inherit( MFont, Font );
+  inherit( Font, MFont );
 
   return MFont;
 } );

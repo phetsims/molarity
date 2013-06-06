@@ -24,7 +24,7 @@ define( function( require ) {
     this.rotate( Math.random() * 2 * Math.PI );
   }
 
-  inherit( PrecipitateParticleNode, Rectangle );
+  inherit( Rectangle, PrecipitateParticleNode );
 
   return PrecipitateParticleNode;
 } );

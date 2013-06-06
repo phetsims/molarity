@@ -90,7 +90,7 @@ define( function( require ) {
     }
   }
 
-  inherit( SolutionNode, Node );
+  inherit( Node, SolutionNode );
 
   return SolutionNode;
 } );

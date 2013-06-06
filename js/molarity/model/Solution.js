@@ -43,7 +43,7 @@ define( function( require ) {
     } );
   }
 
-  inherit( Solution, PropertySet, {
+  inherit( PropertySet, Solution, {
 
     isSaturated: function() {
       return this.precipitateAmount !== 0;

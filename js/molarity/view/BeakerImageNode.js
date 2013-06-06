@@ -28,7 +28,7 @@ define( function( require ) {
     Image.call( this, MImages.getImage( "beaker.png" ) );
   }
 
-  inherit( BeakerImageNode, Image );
+  inherit( Image, BeakerImageNode );
 
   // Gets the cylinder dimensions.
   BeakerImageNode.prototype.getCylinderSize = function() {

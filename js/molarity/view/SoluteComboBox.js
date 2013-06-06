@@ -43,7 +43,7 @@ define( function( require ) {
                      itemHighlightFill: "rgb(218,255,255)" } );
   }
 
-  inherit( SoluteComboBox, ComboBox );
+  inherit( ComboBox, SoluteComboBox );
 
   /**
    * Creates an item for the combo box.

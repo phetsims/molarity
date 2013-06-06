@@ -102,7 +102,7 @@ define( function( require ) {
     } );
   }
 
-  inherit( Pointer, Node );
+  inherit( Node, Pointer );
 
   function ConcentrationDisplay( solution, concentrationRange, valuesVisibleProperty, barSize ) {
 
@@ -155,7 +155,7 @@ define( function( require ) {
     } );
   }
 
-  inherit( ConcentrationDisplay, Node );
+  inherit( Node, ConcentrationDisplay );
 
   return ConcentrationDisplay;
 } );

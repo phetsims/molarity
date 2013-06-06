@@ -100,7 +100,7 @@ define( function( require ) {
     valueNode.top = cylinderSize.height + cylinderEndHeight + 5;
   }
 
-  inherit( PrecipitateNode, Node );
+  inherit( Node, PrecipitateNode );
 
   // Gets the number of particles used to represent the solution's saturation.
   PrecipitateNode.prototype.getNumberOfParticles = function() {
