@@ -103,7 +103,7 @@ define( function( require ) {
     // interactivity
     thisNode.cursor = "pointer";
     thisNode.addInputListener( new ThumbDragHandler( thisNode, property, valueRange, decimalPlaces, positionRange ) );
-    thisNode.addInputListener( new FillHighlighter( bodyNode, THUMB_NORMAL_COLOR, THUMB_HIGHLIGHT_COLOR ) );
+    bodyNode.addInputListener( new FillHighlighter( THUMB_NORMAL_COLOR, THUMB_HIGHLIGHT_COLOR ) );
   }
 
   inherit( Thumb, Node );

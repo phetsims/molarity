@@ -1,3 +1,4 @@
+6/5/13 remove redundant first arg from FillHighlighter constructor, node can be obtained via event.currentTarget
 6/5/13 use PropertySet.multilink in BeakerLabelNode
 6/4/13 integrate scenery.ButtonListener with molarity.CheckBox
 6/4/13 convert to PropertySetB and DerivedProperty

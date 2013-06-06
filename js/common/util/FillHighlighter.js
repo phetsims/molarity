@@ -18,19 +18,19 @@ define( function( require ) {
   var Property = require( "PHETCOMMON/model/property/Property" );
 
   /**
-   * @param {Node} node
    * @param {Color|String} normalFill
    * @param {Color|String} highlightFill
-   * @param {Property<Boolean>} enabledProperty
+   * @param {Property<Boolean>} enabled
    * @constructor
    */
-  function FillHighlighter( node, normalFill, highlightFill, enabledProperty ) {
+  function FillHighlighter( normalFill, highlightFill, enabled ) {
 
-    enabledProperty = _.isUndefined( enabledProperty ) ? new Property( true ) : enabledProperty;
+    enabled = _.isUndefined( enabled ) ? new Property( true ) : enabled;
 
     var isMouseInside = false;
     var isMousePressed = false;
-    var downPointer; // the pointer that received the "down" event
+    var downNode, downPointer; // the node and pointer that received the "down" event
+
     // listener added to "down" pointer to received corresponding "up" event
     var upListener = {
       up: function() {
@@ -41,50 +41,51 @@ define( function( require ) {
       }
     };
 
-    var setHighlighted = function( highlighted ) {
-      if ( enabledProperty.value ) {
+    var setHighlighted = function( node, highlighted ) {
+      if ( enabled.get() ) {
         node.fill = highlighted ? highlightFill : normalFill;
       }
     };
 
-    var enter = function() {
+    var enter = function( node ) {
       isMouseInside = true;
-      setHighlighted( true );
+      setHighlighted( node, true );
     };
 
-    var exit = function() {
+    var exit = function( node ) {
       isMouseInside = false;
       if ( !isMousePressed ) {
-        setHighlighted( false );
+        setHighlighted( node, false );
       }
     };
 
-    var down = function( event ) {
-      downPointer = event.pointer;
+    var down = function( node, pointer ) {
+      downNode = node;
+      downPointer = pointer;
       isMousePressed = true;
-      setHighlighted( true );
+      setHighlighted( node, true );
       // scenery doesn't deliver down/up as event pairs, 'up' must be handled by attaching a listener to pointer
-      event.pointer.addInputListener( upListener );
+      pointer.addInputListener( upListener );
     };
 
     var up = function() {
       isMousePressed = false;
       if ( !isMouseInside ) {
-        setHighlighted( false );
+        setHighlighted( downNode, false );
       }
       downPointer.removeInputListener( upListener );
     };
 
-    this.enter = function() {
-      enter();
+    this.enter = function( event ) {
+      enter( event.currentTarget );
     };
 
-    this.exit = function() {
-      exit();
+    this.exit = function( event ) {
+      exit( event.currentTarget );
     };
 
     this.down = function( event ) {
-      down( event );
+      down( event.currentTarget, event.pointer );
     };
   }
 
