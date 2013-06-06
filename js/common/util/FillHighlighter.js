@@ -15,7 +15,7 @@ define( function( require ) {
 
   // imports
   var inherit = require( "PHET_CORE/inherit" );
-  var Property = require( "PHETCOMMON/model/property/Property" );
+  var Property = require( "AXON/Property" );
 
   /**
    * @param {Color|String} normalFill

@@ -11,7 +11,7 @@ define( function( require ) {
   // imports
   var inherit = require( "PHET_CORE/inherit" );
   var interpolateRBGA = require( "SCENERY/util/Color" ).interpolateRBGA;
-  var PropertySet = require( "PHETCOMMON/model/property/PropertySet" );
+  var PropertySet = require( "AXON/PropertySet" );
   var Util = require( "DOT/Util" );
 
   // constants
