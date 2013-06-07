@@ -1,3 +1,4 @@
+6/5/13 upgrade from lodash-1.0.0-rc3 to lodash-1.2.1, fixes Chrome "source URL declaration is deprecated" warning
 6/5/13 replace imagesloaded jquery plugin with PxLoader, integrate SimLauncher
 6/5/13 remove redundant first arg from FillHighlighter constructor, node can be obtained via event.currentTarget
 6/5/13 use PropertySet.multilink in BeakerLabelNode
