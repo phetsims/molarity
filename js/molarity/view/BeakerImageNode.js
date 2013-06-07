@@ -15,7 +15,7 @@ define( function( require ) {
   var Dimension2 = require( "DOT/Dimension2" );
   var Image = require( "SCENERY/nodes/Image" );
   var inherit = require( "PHET_CORE/inherit" );
-  var MImages = require( "imageLoader" );
+  var MImages = require( "molarity/MImages" );
   var Vector2 = require( "DOT/Vector2" );
 
   // points of interest in the image file

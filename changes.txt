@@ -1,4 +1,4 @@
-6/5/13 replace imagesloaded jquery plugin with PxLoader
+6/5/13 replace imagesloaded jquery plugin with PxLoader, integrate SimLauncher
 6/5/13 remove redundant first arg from FillHighlighter constructor, node can be obtained via event.currentTarget
 6/5/13 use PropertySet.multilink in BeakerLabelNode
 6/4/13 integrate scenery.ButtonListener with molarity.CheckBox

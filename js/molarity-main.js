@@ -5,11 +5,11 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-require( [ "JOIST/SimLauncher", "JOIST/Sim", "molarity/MolarityTab", "molarity/MStrings" ],
-  function( SimLauncher, Sim, MolarityTab, MStrings ) {
+require( [ "JOIST/SimLauncher", "JOIST/Sim", "molarity/MolarityTab", "molarity/MStrings", "molarity/MImages" ],
+  function( SimLauncher, Sim, MolarityTab, MStrings, MImages ) {
     "use strict";
 
-    SimLauncher.launch( "beaker.png", function() {
+    SimLauncher.launch( MImages, function() {
       var sim = new Sim( MStrings.molarity, [ new MolarityTab() ] );
       sim.start();
     } );
