@@ -5,20 +5,13 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-require(
-    [
-      "JOIST/Sim",
-      "PHETCOMMON/util/ImagesLoader",
-      "molarity/MolarityTab",
-      "SCENERY/util/Util",
-      "molarity/MStrings",
-      "molarity/MImages"
-    ],
-    function( Sim, ImagesLoader, MolarityTab, Util, MStrings, MImages ) {
-      "use strict";
+require( [ "JOIST/SimLauncher", "JOIST/Sim", "molarity/MolarityTab", "molarity/MStrings" ],
+  function( SimLauncher, Sim, MolarityTab, MStrings ) {
+    "use strict";
 
-      var loader = new ImagesLoader( function( loader ) {
-        MImages.getImage = loader.getImage;
-        new Sim( MStrings.molarity, [ new MolarityTab() ] ).start();
-      } );
+    SimLauncher.launch( "beaker.png", function() {
+      var sim = new Sim( MStrings.molarity, [ new MolarityTab() ] );
+      sim.start();
     } );
+
+  } );

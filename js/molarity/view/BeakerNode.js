@@ -18,7 +18,6 @@ define( function( require ) {
   var Image = require( "SCENERY/nodes/Image" );
   var inherit = require( "PHET_CORE/inherit" );
   var MFont = require( "molarity/MFont" );
-  var MImages = require( "molarity/MImages" );
   var MStrings = require( "molarity/MStrings" );
   var Node = require( "SCENERY/nodes/Node" );
   var Path = require( "SCENERY/nodes/Path" );

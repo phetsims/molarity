@@ -12,7 +12,6 @@ define( function( require ) {
   var ModelViewTransform2 = require( "PHETCOMMON/view/ModelViewTransform2" );
   var MolarityModel = require( "molarity/model/MolarityModel" );
   var MolarityView = require( "molarity/view/MolarityView" );
-  var MImages = require( "molarity/MImages" );
   var MStrings = require( "molarity/MStrings" );
   var Rectangle = require( "SCENERY/nodes/Rectangle" );
   var Vector2 = require( "DOT/Vector2" );
