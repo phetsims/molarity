@@ -51,7 +51,7 @@ define( function( require ) {
 
     getColor: function() {
       if ( this.concentration > 0 ) {
-        var colorScale = Util.linear( 0, 0, this.solute.saturatedConcentration, 1, this.concentration );
+        var colorScale = Util.linear( 0, this.solute.saturatedConcentration, 0, 1, this.concentration );
         return interpolateRBGA( this.solute.minColor, this.solute.maxColor, colorScale );
       }
       else {

@@ -77,7 +77,7 @@ define( function( require ) {
 
       // update the arrow
       var x = barSize.width;
-      var y = barSize.height - Util.linear( concentrationRange.min, 0, concentrationRange.max, barSize.height, concentration );
+      var y = barSize.height - Util.linear( concentrationRange.min, concentrationRange.max, 0, barSize.height, concentration );
       var arrowShape = new Shape()
           .moveTo( x, y )
           .lineTo( x + ARROW_HEAD_HEIGHT, y - (ARROW_HEAD_WIDTH / 2) )

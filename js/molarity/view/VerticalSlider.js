@@ -57,7 +57,7 @@ define( function( require ) {
     // click in the track to change the value, continue dragging if desired
     var handleEvent = function( event ) {
       var y = thisNode.globalToLocalPoint( event.pointer.point ).y;
-      var value = Util.linear( 0, range.max, size.height, range.min, y );
+      var value = Util.linear( 0, size.height, range.max, range.min, y );
       property.value = Util.toFixed( Util.clamp( value, range.min, range.max ), decimalPlaces );
     };
     thisNode.addInputListener( new SimpleDragHandler(
@@ -125,7 +125,7 @@ define( function( require ) {
       },
       drag: function( event ) {
         var y = dragNode.globalToParentPoint( event.pointer.point ).y - clickYOffset;
-        var value = Util.linear( positionRange.min, valueRange.max, positionRange.max, valueRange.min, y );
+        var value = Util.linear( positionRange.min, positionRange.max, valueRange.max, valueRange.min, y );
         property.value = Util.toFixed( Util.clamp( value, valueRange.min, valueRange.max ), decimalPlaces );
       },
       translate: function() {
@@ -199,7 +199,7 @@ define( function( require ) {
     // move the slider thumb to reflect the model value
     property.link( function( value ) {
       // move the thumb
-      var y = Util.linear( range.min, trackSize.height, range.max, 0, value );
+      var y = Util.linear( range.min, range.max, trackSize.height, 0, value );
       thumbNode.y = Util.clamp( y, 0, trackSize.height );
       // update the value
       valueNode.text = StringUtils.format( MStrings.pattern_0value_1units, value.toFixed( VALUE_DECIMAL_PLACES ), units );

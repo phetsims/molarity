@@ -76,7 +76,7 @@ define( function( require ) {
       bottomNode.fill = color;
 
       // shape
-      var height = Util.linear( 0, 0, maxVolume, cylinderSize.height, solution.volume );
+      var height = Util.linear( 0, maxVolume, 0, cylinderSize.height, solution.volume );
       topNode.setShape( createTopShape( height ) );
       middleNode.setShape( createMiddleShape( height ) );
       bottomNode.setShape( createBottomShape( height ) );
