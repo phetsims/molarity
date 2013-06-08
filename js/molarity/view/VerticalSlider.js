@@ -13,7 +13,7 @@ define( function( require ) {
   var Color = require( "SCENERY/util/Color" );
   var Dimension2 = require( "DOT/Dimension2" );
   var DualLabelNode = require( "molarity/view/DualLabelNode" );
-  var FillHighlighter = require( "SCENERY_PHET/input/FillHighlighter" );
+  var FillHighlightListener = require( "SCENERY_PHET/input/FillHighlightListener" );
   var HTMLText = require( "SCENERY/nodes/HTMLText" );
   var inherit = require( "PHET_CORE/inherit" );
   var MFont = require( "molarity/MFont" );
@@ -103,7 +103,7 @@ define( function( require ) {
     // interactivity
     thisNode.cursor = "pointer";
     thisNode.addInputListener( new ThumbDragHandler( thisNode, property, valueRange, decimalPlaces, positionRange ) );
-    bodyNode.addInputListener( new FillHighlighter( THUMB_NORMAL_COLOR, THUMB_HIGHLIGHT_COLOR ) );
+    bodyNode.addInputListener( new FillHighlightListener( THUMB_NORMAL_COLOR, THUMB_HIGHLIGHT_COLOR ) );
   }
 
   inherit( Node, Thumb );
