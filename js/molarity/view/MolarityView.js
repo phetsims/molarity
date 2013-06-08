@@ -11,7 +11,7 @@ define( function( require ) {
   // imports
   var BeakerNode = require( "molarity/view/BeakerNode" );
   var Bounds2 = require( "DOT/Bounds2" );
-  var CheckBox = require( "common/util/CheckBox" );
+  var CheckBox = require( "SUN/CheckBox" );
   var ConcentrationDisplay = require( "molarity/view/ConcentrationDisplay" );
   var Dimension2 = require( "DOT/Dimension2" );
   var inherit = require( "PHET_CORE/inherit" );
@@ -56,26 +56,26 @@ define( function( require ) {
 
     // slider for controlling amount of solute
     var soluteAmountSlider = new VerticalSlider( MStrings.soluteAmount,
-                                                 StringUtils.format( MStrings.pattern_parentheses_0text, MStrings.moles ),
-                                                 MStrings.none, MStrings.lots,
-                                                 new Dimension2( 5, cylinderSize.height ),
-                                                 model.solution.soluteAmountProperty,
-                                                 model.getSoluteAmountRange(),
-                                                 SOLUTE_AMOUNT_DECIMAL_PLACES,
-                                                 MStrings.units_moles,
-                                                 valuesVisibleProperty );
+      StringUtils.format( MStrings.pattern_parentheses_0text, MStrings.moles ),
+      MStrings.none, MStrings.lots,
+      new Dimension2( 5, cylinderSize.height ),
+      model.solution.soluteAmountProperty,
+      model.getSoluteAmountRange(),
+      SOLUTE_AMOUNT_DECIMAL_PLACES,
+      MStrings.units_moles,
+      valuesVisibleProperty );
 
     // slider for controlling volume of solution, sized to match tick marks on the beaker
     var volumeSliderHeight = ( model.getSolutionVolumeRange().getLength() / model.getSolutionVolumeRange().max ) * cylinderSize.height;
     var solutionVolumeSlider = new VerticalSlider( MStrings.solutionVolume,
-                                                   StringUtils.format( MStrings.pattern_parentheses_0text, MStrings.liters ),
-                                                   MStrings.low, MStrings.full,
-                                                   new Dimension2( 5, volumeSliderHeight ),
-                                                   model.solution.volumeProperty,
-                                                   model.getSolutionVolumeRange(),
-                                                   VOLUME_DECIMAL_PLACES,
-                                                   MStrings.units_liters,
-                                                   valuesVisibleProperty );
+      StringUtils.format( MStrings.pattern_parentheses_0text, MStrings.liters ),
+      MStrings.low, MStrings.full,
+      new Dimension2( 5, volumeSliderHeight ),
+      model.solution.volumeProperty,
+      model.getSolutionVolumeRange(),
+      VOLUME_DECIMAL_PLACES,
+      MStrings.units_liters,
+      valuesVisibleProperty );
 
     // concentration display
     var concentrationBarSize = new Dimension2( 40, cylinderSize.height + 50 );
