@@ -3,6 +3,7 @@ TODO list for molarity (HTML5 port)
 BUGS
 
 HIGH
+- VerticalSlider.Thumb is flagged by IDEA editor with "Cyclic inheritance involving Thumb"
 - multi-line center-justified text, for slider and concentration display titles
 
 MEDIUM
