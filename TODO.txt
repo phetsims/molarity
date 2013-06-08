@@ -7,12 +7,10 @@ HIGH
 
 MEDIUM
 - Safari 5: text is very tiny, scenery#61
-- revert to Property.js?
 
 LOW
 
 MIGRATE TO COMMON
 - CheckBox to sun
-- FillHighlighter (BLL and Molarity)
 
 

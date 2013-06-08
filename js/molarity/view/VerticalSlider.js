@@ -13,7 +13,7 @@ define( function( require ) {
   var Color = require( "SCENERY/util/Color" );
   var Dimension2 = require( "DOT/Dimension2" );
   var DualLabelNode = require( "molarity/view/DualLabelNode" );
-  var FillHighlighter = require( "common/util/FillHighlighter" );
+  var FillHighlighter = require( "SCENERY_PHET/input/FillHighlighter" );
   var HTMLText = require( "SCENERY/nodes/HTMLText" );
   var inherit = require( "PHET_CORE/inherit" );
   var MFont = require( "molarity/MFont" );
