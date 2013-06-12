@@ -7,7 +7,7 @@ HIGH
 - multi-line center-justified text, for slider and concentration display titles
 
 MEDIUM
-- draw particles directly to canvas
+- draw particles directly to canvas (requires adding Precipitate and Particle to model)
 
 LOW
 
