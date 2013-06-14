@@ -12,6 +12,5 @@ MEDIUM
 LOW
 
 MIGRATE TO COMMON
-- CheckBox to sun (SR already copied?)
 
 
