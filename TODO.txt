@@ -2,6 +2,7 @@ TODO list for molarity (HTML5 port)
 
 BUGS
 - Safari 5: text is very tiny, scenery#61
+- text quality issues, molarity#1
 
 HIGH
 - multi-line center-justified text, for slider and concentration display titles
