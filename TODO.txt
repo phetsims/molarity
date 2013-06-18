@@ -13,6 +13,7 @@ MEDIUM
 LOW
 - update to latest version of lib/ dependencies, including jQuery 2.x
 - credits
+- TODO items in code
 
 MIGRATE TO COMMON
 
