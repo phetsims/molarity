@@ -5,7 +5,7 @@ BUGS
 - text quality issues, molarity#1
 
 HIGH
-- multi-line center-justified text, for slider and concentration display titles
+- multi-line center-justified text, for slider and concentration display titles (refine and use MultiLineTextWorkaround ?)
 
 MEDIUM
 - draw particles directly to canvas (requires adding Precipitate and Particle to model)
