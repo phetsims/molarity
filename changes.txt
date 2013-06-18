@@ -1,3 +1,4 @@
+6/18/13 add 'allowTouchSnag: true' to drag handlers for slider thumbs
 # 0.0.0-4 6/11/13
 6/7/13 migrate FillHighlighter to scenery-phet from molarity and beers-law-lab
 6/7/13 change order of args to dot.Util.linear

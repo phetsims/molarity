@@ -62,6 +62,7 @@ define( function( require ) {
     };
     thisNode.addInputListener( new SimpleDragHandler(
         {
+          allowTouchSnag: true,
           start: function( event ) {
             handleEvent( event );
           },
