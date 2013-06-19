@@ -1,6 +1,7 @@
 TODO list for molarity (HTML5 port)
 
 BUGS
+- iPad: crashes (repaints) when you drag a slider as first action, slider is unresponsive
 - Safari 5: text is very tiny, scenery#61
 - text quality issues, molarity#1
 
