@@ -11,7 +11,7 @@ MEDIUM
 - draw particles directly to canvas (requires adding Precipitate and Particle to model)
 
 LOW
-- update to latest version of lib/ dependencies, including jQuery 2.x
+- update to latest version of lib/ dependencies
 - credits
 - TODO items in code
 
