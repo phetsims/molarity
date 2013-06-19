@@ -97,12 +97,15 @@ define( function( require ) {
     var centerLineNode = new Path( { shape: Shape.lineSegment( -( size.width / 2 ) + 3, 0, ( size.width / 2 ) - 3, 0 ),
                                      stroke: THUMB_CENTER_LINE_COLOR } );
 
-    // touch area, expanded height since thumb is not very tall and drag direction is vertical
-    thisNode.touchArea = Shape.rectangle( -size.width / 2, 2 * -size.height / 2, size.width, 2 * size.height );
-
     // rendering order
     thisNode.addChild( bodyNode );
     thisNode.addChild( centerLineNode );
+
+    // touch area
+    var touchXMargin = 0 * thisNode.width; // thumb seems wide enough, so zero for now
+    var touchYMargin = 0.5 * thisNode.height; // expand height since thumb is not very tall and drag direction is vertical
+    thisNode.touchArea = Shape.rectangle( thisNode.left - touchXMargin, thisNode.top - touchYMargin,
+      thisNode.width + ( 2 * touchXMargin ), thisNode.height + ( 2 * touchYMargin ) );
 
     // interactivity
     thisNode.cursor = "pointer";
