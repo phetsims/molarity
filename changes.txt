@@ -1,3 +1,4 @@
+6/19/13 upgrade from lodash 1.2.1 to 1.3.1
 6/18/13 add 'allowTouchSnag: true' to drag handlers for slider thumbs
 # 0.0.0-4 6/11/13
 6/7/13 migrate FillHighlighter to scenery-phet from molarity and beers-law-lab
