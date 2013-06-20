@@ -5,13 +5,12 @@ BUGS
 - text quality issues, molarity#1
 
 HIGH
+- render text using SVG to improve quality
 - multi-line center-justified text, for slider and concentration display titles (refine and use MultiLineTextWorkaround ?)
 
 MEDIUM
-- draw particles directly to canvas (requires adding Precipitate and Particle to model)
 
 LOW
-- update to latest version of lib/ dependencies
 - credits
 - TODO items in code
 
