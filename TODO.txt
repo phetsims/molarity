@@ -6,7 +6,6 @@ BUGS
 
 HIGH
 - render text using SVG to improve quality
-- multi-line center-justified text, for slider and concentration display titles (refine and use MultiLineTextWorkaround ?)
 
 MEDIUM
 

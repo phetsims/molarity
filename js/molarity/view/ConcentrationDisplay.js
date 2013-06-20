@@ -16,11 +16,11 @@ define( function( require ) {
   // imports
   var Color = require( "SCENERY/util/Color" );
   var DualLabelNode = require( "molarity/view/DualLabelNode" );
-  var HTMLText = require( "SCENERY/nodes/HTMLText" );
   var inherit = require( "PHET_CORE/inherit" );
   var LinearGradient = require( "SCENERY/util/LinearGradient" );
   var MFont = require( "molarity/MFont" );
   var MStrings = require( "molarity/MStrings" );
+  var MultiLineText = require( "SCENERY_PHET/MultiLineText" );
   var Node = require( "SCENERY/nodes/Node" );
   var Path = require( "SCENERY/nodes/Path" );
   var Range = require( "DOT/Range" );
@@ -109,7 +109,7 @@ define( function( require ) {
     var thisNode = this;
     Node.call( thisNode, { pickable: false } );
 
-    var title = new HTMLText( MStrings.solutionConcentration, { font: TITLE_FONT } );
+    var title = new MultiLineText( MStrings.solutionConcentration, { align: 'center', font: TITLE_FONT } );
     var subtitle = new Text( StringUtils.format( MStrings.pattern_parentheses_0text, MStrings.molarity ), { font: SUBTITLE_FONT } );
     var maxNode = new DualLabelNode( concentrationRange.min.toFixed( RANGE_DECIMAL_PLACES ), MStrings.high, valuesVisibleProperty, RANGE_FONT );
     var minNode = new DualLabelNode( concentrationRange.min.toFixed( concentrationRange.min === 0 ? 0 : RANGE_DECIMAL_PLACES ), MStrings.zero, valuesVisibleProperty, RANGE_FONT );

@@ -14,10 +14,10 @@ define( function( require ) {
   var Dimension2 = require( "DOT/Dimension2" );
   var DualLabelNode = require( "molarity/view/DualLabelNode" );
   var FillHighlightListener = require( "SCENERY_PHET/input/FillHighlightListener" );
-  var HTMLText = require( "SCENERY/nodes/HTMLText" );
   var inherit = require( "PHET_CORE/inherit" );
   var MFont = require( "molarity/MFont" );
   var MStrings = require( "molarity/MStrings" );
+  var MultiLineText = require( "SCENERY_PHET/MultiLineText" );
   var Node = require( "SCENERY/nodes/Node" );
   var Path = require( "SCENERY/nodes/Path" );
   var Range = require( "DOT/Range" );
@@ -162,7 +162,7 @@ define( function( require ) {
     Node.call( thisNode );
 
     // nodes
-    var titleNode = new HTMLText( title, { font: TITLE_FONT } );
+    var titleNode = new MultiLineText( title, { font: TITLE_FONT } );
     var subtitleNode = new Text( subtitle, { font: SUBTITLE_FONT } );
     var minNode = new DualLabelNode( range.min.toFixed( range.min === 0 ? 0 : RANGE_DECIMAL_PLACES ), minLabel, valuesVisibleProperty, RANGE_FONT );
     var maxNode = new DualLabelNode( range.max.toFixed( RANGE_DECIMAL_PLACES ), maxLabel, valuesVisibleProperty, RANGE_FONT );

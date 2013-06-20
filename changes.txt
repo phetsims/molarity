@@ -1,3 +1,4 @@
+6/20/13 add multi-line text to sliders and concentration display
 6/19/13 expand height of touch area for slider thumbs
 6/19/13 upgrade from require 2.1.4 to 2.1.6
 6/19/13 upgrade from jquery 1.9.1 to 2.0.2
