@@ -104,7 +104,7 @@ define( function( require ) {
     // touch area
     var touchXMargin = 0 * thisNode.width; // thumb seems wide enough, so zero for now
     var touchYMargin = 1 * thisNode.height; // expand height since thumb is not very tall and drag direction is vertical
-    thisNode.touchArea = Shape.rectangle( thisNode.left - touchXMargin, thisNode.top - touchYMargin,
+    bodyNode.touchArea = Shape.rectangle( thisNode.left - touchXMargin, thisNode.top - touchYMargin,
       thisNode.width + ( 2 * touchXMargin ), thisNode.height + ( 2 * touchYMargin ) );
 
     // interactivity
