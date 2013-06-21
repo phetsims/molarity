@@ -1,3 +1,4 @@
+6/21/13 increase the height of items in the Solute combo box, to improve tablet usability
 6/21/13 reformat code
 6/21/13 provide prototype properties via inherit() instead of attaching to Type.prototype
 # 0.0.0-5 6/21/13

@@ -39,6 +39,7 @@ define( function( require ) {
     ComboBox.call( this, items, selectedSoluteProperty, {
       labelNode: labelNode,
       listPosition: "above",
+      itemYMargin: 12,
       itemHighlightFill: "rgb(218,255,255)" } );
   }
 
