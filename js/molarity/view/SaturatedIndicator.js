@@ -30,7 +30,7 @@ define( function( require ) {
 
     // translucent light-gray background, so this shows up on all solution colors
     var background = new Rectangle( 0, 0, 1.2 * label.width, 1.2 * label.height, 8, 8,
-                                    { fill: "rgba( 240, 240, 240, 0.6 )" } );
+      { fill: "rgba( 240, 240, 240, 0.6 )" } );
 
     // rendering order
     thisNode.addChild( background );

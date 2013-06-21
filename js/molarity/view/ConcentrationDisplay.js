@@ -79,14 +79,14 @@ define( function( require ) {
       var x = barSize.width;
       var y = barSize.height - Util.linear( concentrationRange.min, concentrationRange.max, 0, barSize.height, concentration );
       var arrowShape = new Shape()
-          .moveTo( x, y )
-          .lineTo( x + ARROW_HEAD_HEIGHT, y - (ARROW_HEAD_WIDTH / 2) )
-          .lineTo( x + ARROW_HEAD_HEIGHT, y - (ARROW_TAIL_WIDTH / 2) )
-          .lineTo( x + ARROW_LENGTH, y - (ARROW_TAIL_WIDTH / 2) )
-          .lineTo( x + ARROW_LENGTH, y + (ARROW_TAIL_WIDTH / 2) )
-          .lineTo( x + ARROW_HEAD_HEIGHT, y + (ARROW_TAIL_WIDTH / 2) )
-          .lineTo( x + ARROW_HEAD_HEIGHT, y + (ARROW_HEAD_WIDTH / 2) )
-          .close();
+        .moveTo( x, y )
+        .lineTo( x + ARROW_HEAD_HEIGHT, y - (ARROW_HEAD_WIDTH / 2) )
+        .lineTo( x + ARROW_HEAD_HEIGHT, y - (ARROW_TAIL_WIDTH / 2) )
+        .lineTo( x + ARROW_LENGTH, y - (ARROW_TAIL_WIDTH / 2) )
+        .lineTo( x + ARROW_LENGTH, y + (ARROW_TAIL_WIDTH / 2) )
+        .lineTo( x + ARROW_HEAD_HEIGHT, y + (ARROW_TAIL_WIDTH / 2) )
+        .lineTo( x + ARROW_HEAD_HEIGHT, y + (ARROW_HEAD_WIDTH / 2) )
+        .close();
       thisNode.arrowNode.setShape( arrowShape );
       thisNode.arrowNode.fill = solution.getColor();
 
@@ -151,8 +151,8 @@ define( function( require ) {
         console.log( "solute.saturatedConcentration=" + solute.saturatedConcentration + " concentrationRange.max=" + concentrationRange.max );
       }
       barNode.fill = new LinearGradient( 0, y, 0, barSize.height )
-          .addColorStop( 0, solute.maxColor )
-          .addColorStop( 1, solute.minColor );
+        .addColorStop( 0, solute.maxColor )
+        .addColorStop( 1, solute.minColor );
 
       // Cover the saturated portion of the range with a gray rectangle.
       saturatedBarNode.visible = ( solute.saturatedConcentration < concentrationRange.max );

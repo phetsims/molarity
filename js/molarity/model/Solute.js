@@ -20,11 +20,10 @@ define( function( require ) {
    */
   function Solute( name, formula, saturatedConcentration, minColor, maxColor, particleColor, options ) {
 
-    options = _.extend(
-        {
-          particleSize: 5,    // particles are square, this is the length of one side
-          particlesPerMole: 200 // number of particles to show per mol of saturation
-        }, options );
+    options = _.extend( {
+      particleSize: 5,    // particles are square, this is the length of one side
+      particlesPerMole: 200 // number of particles to show per mol of saturation
+    }, options );
 
     this.name = name;
     this.formula = formula;

@@ -61,18 +61,18 @@ define( function( require ) {
       property.value = Util.toFixed( Util.clamp( value, range.min, range.max ), decimalPlaces );
     };
     thisNode.addInputListener( new SimpleDragHandler(
-        {
-          allowTouchSnag: true,
-          start: function( event ) {
-            handleEvent( event );
-          },
-          drag: function( event ) {
-            handleEvent( event );
-          },
-          translate: function() {
-            // do nothing, override default behavior
-          }
-        } ) );
+      {
+        allowTouchSnag: true,
+        start: function( event ) {
+          handleEvent( event );
+        },
+        drag: function( event ) {
+          handleEvent( event );
+        },
+        translate: function() {
+          // do nothing, override default behavior
+        }
+      } ) );
   }
 
   inherit( Rectangle, Track );
@@ -93,9 +93,9 @@ define( function( require ) {
 
     // nodes
     var bodyNode = new Rectangle( -size.width / 2, -size.height / 2, size.width, size.height, 10, 10,
-                                  { fill: THUMB_NORMAL_COLOR, stroke: THUMB_STROKE_COLOR, lineWidth: 1 } );
+      { fill: THUMB_NORMAL_COLOR, stroke: THUMB_STROKE_COLOR, lineWidth: 1 } );
     var centerLineNode = new Path( { shape: Shape.lineSegment( -( size.width / 2 ) + 3, 0, ( size.width / 2 ) - 3, 0 ),
-                                     stroke: THUMB_CENTER_LINE_COLOR } );
+      stroke: THUMB_CENTER_LINE_COLOR } );
 
     // rendering order
     thisNode.addChild( bodyNode );
@@ -169,7 +169,7 @@ define( function( require ) {
     var trackNode = new Track( trackSize, property, range, decimalPlaces );
     var xMargin = 7, yMargin = 7, cornerRadius = 10;
     var backgroundNode = new Rectangle( -xMargin, -yMargin, trackSize.width + ( 2 * xMargin ), trackSize.height + ( 2 * yMargin ), cornerRadius, cornerRadius,
-                                        { fill: new Color( 200, 200, 200, 140 ) } );
+      { fill: new Color( 200, 200, 200, 140 ) } );
     var thumbNode = new Thumb( THUMB_SIZE, property, range, decimalPlaces, new Range( 0, trackSize.height ) );
     var valueNode = new Text( "?", { font: VALUE_FONT } );
 

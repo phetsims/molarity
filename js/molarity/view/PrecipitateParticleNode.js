@@ -18,9 +18,8 @@ define( function( require ) {
    * @constructor
    */
   function PrecipitateParticleNode( solute ) {
-    Rectangle.call( this,
-                    0, 0, solute.particleSize, solute.particleSize,
-                    { fill: solute.particleColor, stroke: solute.particleColor.darkerColor() } );
+    Rectangle.call( this, 0, 0, solute.particleSize, solute.particleSize,
+      { fill: solute.particleColor, stroke: solute.particleColor.darkerColor() } );
     this.rotate( Math.random() * 2 * Math.PI );
   }
 

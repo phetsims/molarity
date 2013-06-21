@@ -59,8 +59,8 @@ define( function( require ) {
 
     // inside bottom line
     var bottomShape = new Shape().ellipticalArc( cylinderSize.width / 2, cylinderSize.height,
-                                                 cylinderSize.width / 2, cylinderEndHeight / 2,
-                                                 0, Util.toRadians( 0 ), Util.toRadians( 180 ), true );
+      cylinderSize.width / 2, cylinderEndHeight / 2,
+      0, Util.toRadians( 0 ), Util.toRadians( 180 ), true );
     var bottomNode = new Path( { shape: bottomShape, stroke: new Color( 150, 150, 150, 100 ), lineWidth: 2 } );
 
     // label on the beaker

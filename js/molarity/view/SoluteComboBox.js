@@ -27,8 +27,7 @@ define( function( require ) {
   function SoluteComboBox( solutes, selectedSoluteProperty ) {
 
     // "Solute" label
-    var labelNode = new Text( StringUtils.format( MStrings.pattern_0label, MStrings.solute ),
-                              { font: new MFont( 22 ) } );
+    var labelNode = new Text( StringUtils.format( MStrings.pattern_0label, MStrings.solute ), { font: new MFont( 22 ) } );
 
     // items
     var items = [];
@@ -37,10 +36,10 @@ define( function( require ) {
       items[i] = this._createItem( solute );
     }
 
-    ComboBox.call( this, items, selectedSoluteProperty,
-                   { labelNode: labelNode,
-                     listPosition: "above",
-                     itemHighlightFill: "rgb(218,255,255)" } );
+    ComboBox.call( this, items, selectedSoluteProperty, {
+      labelNode: labelNode,
+      listPosition: "above",
+      itemHighlightFill: "rgb(218,255,255)" } );
   }
 
   inherit( ComboBox, SoluteComboBox );

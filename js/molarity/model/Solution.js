@@ -58,7 +58,7 @@ define( function( require ) {
         return this.solvent.color;
       }
     }
-  });
+  } );
 
   return Solution;
 } );
