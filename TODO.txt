@@ -2,10 +2,9 @@ TODO list for molarity (HTML5 port)
 
 BUGS
 - Safari 5: text is very tiny, scenery#61
-- text quality issues, molarity#1
 
 HIGH
-- render text using SVG to improve quality
+- text quality issues, try SVG, molarity#1
 
 MEDIUM
 
