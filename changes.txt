@@ -1,3 +1,4 @@
+6/21/13 adjust layout so that play area content is vertically centered
 6/21/13 fix max value on ConcentrationDisplay
 6/21/13 limit scale to 1 in ConcentrationDisplay, to prevent negative rectangle height
 6/20/13 add multi-line text to sliders and concentration display

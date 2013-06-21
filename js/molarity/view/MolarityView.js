@@ -40,7 +40,7 @@ define( function( require ) {
   function MolarityView( model, mvt ) {
 
     var thisView = this;
-    TabView.call( thisView );
+    TabView.call( thisView, { renderer: 'svg' } );
 
     var valuesVisibleProperty = new Property( false );
 
@@ -105,7 +105,7 @@ define( function( require ) {
     // layout for things that don't have a location in the model
     {
       soluteAmountSlider.left = 10;
-      soluteAmountSlider.top = 100;
+      soluteAmountSlider.top = 65;
       // to the right of the Solute Amount slider
       solutionVolumeSlider.left = soluteAmountSlider.right + 20;
       solutionVolumeSlider.y = soluteAmountSlider.y;
