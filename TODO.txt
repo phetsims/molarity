@@ -4,7 +4,6 @@ BUGS
 - Safari 5: text is very tiny, scenery#61
 
 HIGH
-- text quality issues, try SVG, molarity#1
 
 MEDIUM
 
