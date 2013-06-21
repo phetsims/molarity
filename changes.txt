@@ -1,3 +1,4 @@
+# 0.0.0-5 6/21/13
 6/21/13 delete unused mvt
 6/21/13 adjust layout so that play area content is vertically centered
 6/21/13 switch to SVG renderer to improve text quality (molarity#1)
