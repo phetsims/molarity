@@ -9,7 +9,6 @@ define( function( require ) {
   "use strict";
 
   // imports
-  var ModelViewTransform2 = require( "PHETCOMMON/view/ModelViewTransform2" );
   var MolarityModel = require( "molarity/model/MolarityModel" );
   var MolarityView = require( "molarity/view/MolarityView" );
   var MStrings = require( "molarity/MStrings" );
@@ -22,14 +21,12 @@ define( function( require ) {
     this.icon = new Rectangle( 0, 0, 10, 10, { fill: "white" } );  //TODO joist#15, icon should not be required for single-tab sims
     this.backgroundColor = "white";
 
-    var mvt = ModelViewTransform2.createIdentity();
-
     this.createModel = function() {
       return new MolarityModel();
     };
 
     this.createView = function( model ) {
-      return new MolarityView( model, mvt );
+      return new MolarityView( model );
     };
   }
 

@@ -34,10 +34,9 @@ define( function( require ) {
 
   /**
    * @param {MolarityModel} model
-   * @param {ModelViewTransform2} mvt
    * @constructor
    */
-  function MolarityView( model, mvt ) {
+  function MolarityView( model ) {
 
     var thisView = this;
     TabView.call( thisView, { renderer: 'svg' } );
