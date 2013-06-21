@@ -44,30 +44,33 @@ define( function( require ) {
     thisModel.solution = new Solution( Water, thisModel.solutes[0], SOLUTE_AMOUNT_RANGE.defaultValue, SOLUTION_VOLUME_RANGE.defaultValue );
   }
 
-  // Resets all model elements
-  MolarityModel.prototype.reset = function() {
-    this.solution.reset();
-  };
+  MolarityModel.prototype = {
 
-  MolarityModel.prototype.step = function( deltaSeconds ) {
-    // no animation in this model
-  };
+    // Resets all model elements
+    reset: function() {
+      this.solution.reset();
+    },
 
-  MolarityModel.prototype.getSoluteAmountRange = function() {
-    return SOLUTE_AMOUNT_RANGE;
-  };
+    step: function( deltaSeconds ) {
+      // no animation in this model
+    },
 
-  MolarityModel.prototype.getSolutionVolumeRange = function() {
-    return SOLUTION_VOLUME_RANGE;
-  };
+    getSoluteAmountRange: function() {
+      return SOLUTE_AMOUNT_RANGE;
+    },
 
-  MolarityModel.prototype.getConcentrationRange = function() {
-    return CONCENTRATION_RANGE;
-  };
+    getSolutionVolumeRange: function() {
+      return SOLUTION_VOLUME_RANGE;
+    },
 
-  // Range to use for concentration display, possibly different than full range of model.
-  MolarityModel.prototype.getConcentrationDisplayRange = function() {
-    return CONCENTRATION_DISPLAY_RANGE;
+    getConcentrationRange: function() {
+      return CONCENTRATION_RANGE;
+    },
+
+    // Range to use for concentration display, possibly different than full range of model.
+    getConcentrationDisplayRange: function() {
+      return CONCENTRATION_DISPLAY_RANGE;
+    }
   };
 
   return MolarityModel;

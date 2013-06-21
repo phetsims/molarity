@@ -28,28 +28,29 @@ define( function( require ) {
     Image.call( this, MImages.getImage( "beaker.png" ) );
   }
 
-  inherit( Image, BeakerImageNode );
+  inherit( Image, BeakerImageNode, {
 
-  // Gets the cylinder dimensions.
-  BeakerImageNode.prototype.getCylinderSize = function() {
-    var pUpperLeft = this._getTransformedPoint( CYLINDER_UPPER_LEFT );
-    var pLowerRight = this._getTransformedPoint( CYLINDER_LOWER_RIGHT );
-    return new Dimension2( pLowerRight.x - pUpperLeft.x, pLowerRight.y - pUpperLeft.y );
-  };
+    // Gets the cylinder dimensions.
+    getCylinderSize: function() {
+      var pUpperLeft = this._getTransformedPoint( CYLINDER_UPPER_LEFT );
+      var pLowerRight = this._getTransformedPoint( CYLINDER_LOWER_RIGHT );
+      return new Dimension2( pLowerRight.x - pUpperLeft.x, pLowerRight.y - pUpperLeft.y );
+    },
 
-  // Gets the offset of the cylinder from the upper-left corner of the image.
-  BeakerImageNode.prototype.getCylinderOffset = function() {
-    return this._getTransformedPoint( CYLINDER_UPPER_LEFT );
-  };
+    // Gets the offset of the cylinder from the upper-left corner of the image.
+    getCylinderOffset: function() {
+      return this._getTransformedPoint( CYLINDER_UPPER_LEFT );
+    },
 
-  // Gets the 2D height of the cylinder's end cap.
-  BeakerImageNode.prototype.getCylinderEndHeight = function() {
-    return this._getTransformedPoint( CYLINDER_END_FOREGROUND ).y - this._getTransformedPoint( CYLINDER_END_BACKGROUND ).y;
-  };
+    // Gets the 2D height of the cylinder's end cap.
+    getCylinderEndHeight: function() {
+      return this._getTransformedPoint( CYLINDER_END_FOREGROUND ).y - this._getTransformedPoint( CYLINDER_END_BACKGROUND ).y;
+    },
 
-  BeakerImageNode.prototype._getTransformedPoint = function( p ) {
-    return this.getTransform().transformPosition2( p );
-  };
+    _getTransformedPoint: function( p ) {
+      return this.getTransform().transformPosition2( p );
+    }
+  } );
 
   return BeakerImageNode;
 } );

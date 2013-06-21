@@ -100,29 +100,30 @@ define( function( require ) {
     valueNode.top = cylinderSize.height + cylinderEndHeight + 5;
   }
 
-  inherit( Node, PrecipitateNode );
+  inherit( Node, PrecipitateNode, {
 
-  // Gets the number of particles used to represent the solution's saturation.
-  PrecipitateNode.prototype.getNumberOfParticles = function() {
-    var numberOfParticles = Math.floor( this.solution.solute.particlesPerMole * this.solution.precipitateAmount );
-    if ( numberOfParticles === 0 && this.solution.precipitateAmount > 0 ) {
-      numberOfParticles = 1;
+    // Gets the number of particles used to represent the solution's saturation.
+    getNumberOfParticles: function() {
+      var numberOfParticles = Math.floor( this.solution.solute.particlesPerMole * this.solution.precipitateAmount );
+      if ( numberOfParticles === 0 && this.solution.precipitateAmount > 0 ) {
+        numberOfParticles = 1;
+      }
+      return numberOfParticles;
+    },
+
+    // Gets a random offset for a particle on the bottom of the beaker.
+    getRandomOffset: function( particleNode ) {
+      var xMargin = particleNode.width;
+      var yMargin = particleNode.height;
+      var angle = Math.random() * 2 * Math.PI;
+      var p = PrecipitateNode.getRandomPointInsideEllipse( angle, this.cylinderSize.width - ( 2 * xMargin ), this.cylinderEndHeight - ( 2 * yMargin ) );
+      var x = ( this.cylinderSize.width / 2 ) + p.x;
+      var y = this.cylinderSize.height - p.y - ( yMargin / 2 );
+      return new Vector2( x, y );
     }
-    return numberOfParticles;
-  };
+  } );
 
-  // Gets a random offset for a particle on the bottom of the beaker.
-  PrecipitateNode.prototype.getRandomOffset = function( particleNode ) {
-    var xMargin = particleNode.width;
-    var yMargin = particleNode.height;
-    var angle = Math.random() * 2 * Math.PI;
-    var p = PrecipitateNode.getRandomPointInsideEllipse( angle, this.cylinderSize.width - ( 2 * xMargin ), this.cylinderEndHeight - ( 2 * yMargin ) );
-    var x = ( this.cylinderSize.width / 2 ) + p.x;
-    var y = this.cylinderSize.height - p.y - ( yMargin / 2 );
-    return new Vector2( x, y );
-  };
-
-  // Gets a random point inside an ellipse with origin at its center.
+  // Gets a random point inside an ellipse, with origin at its center.
   PrecipitateNode.getRandomPointInsideEllipse = function( theta, width, height ) {
 
     // Generate a random point inside a circle of radius 1.

@@ -123,15 +123,16 @@ define( function( require ) {
     } );
   }
 
-  inherit( Node, BeakerNode );
+  inherit( Node, BeakerNode, {
 
-  BeakerNode.prototype.getCylinderSize = function() {
-    return this._beakerImageNode.getCylinderSize();
-  };
+    getCylinderSize: function() {
+      return this._beakerImageNode.getCylinderSize();
+    },
 
-  BeakerNode.prototype.getCylinderEndHeight = function() {
-    return this._beakerImageNode.getCylinderEndHeight();
-  };
+    getCylinderEndHeight: function() {
+      return this._beakerImageNode.getCylinderEndHeight();
+    }
+  } );
 
   return BeakerNode;
 } );
