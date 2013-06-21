@@ -144,14 +144,18 @@ define( function( require ) {
     solution.soluteProperty.link( function( solute ) {
 
       // Color the bar using a gradient that corresponds to the solute's color range.
-      var y = barSize.height - ( barSize.height * ( solute.saturatedConcentration / concentrationRange.max ) );
+      var concentrationScale = Math.min( 1, solute.saturatedConcentration / concentrationRange.max );
+      var y = barSize.height - ( barSize.height * concentrationScale );
+      if ( y < 0 ) {
+        console.log( "solute.saturatedConcentration=" + solute.saturatedConcentration + " concentrationRange.max=" + concentrationRange.max );
+      }
       barNode.fill = new LinearGradient( 0, y, 0, barSize.height )
           .addColorStop( 0, solute.maxColor )
           .addColorStop( 1, solute.minColor );
 
       // Cover the saturated portion of the range with a gray rectangle.
       saturatedBarNode.visible = ( solute.saturatedConcentration < concentrationRange.max );
-      saturatedBarNode.setRect( 0, 0, barSize.width, Math.max( 0, y ) );
+      saturatedBarNode.setRect( 0, 0, barSize.width, y );
     } );
   }
 
