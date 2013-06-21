@@ -111,7 +111,7 @@ define( function( require ) {
 
     var title = new MultiLineText( MStrings.solutionConcentration, { align: 'center', font: TITLE_FONT } );
     var subtitle = new Text( StringUtils.format( MStrings.pattern_parentheses_0text, MStrings.molarity ), { font: SUBTITLE_FONT } );
-    var maxNode = new DualLabelNode( concentrationRange.min.toFixed( RANGE_DECIMAL_PLACES ), MStrings.high, valuesVisibleProperty, RANGE_FONT );
+    var maxNode = new DualLabelNode( concentrationRange.max.toFixed( RANGE_DECIMAL_PLACES ), MStrings.high, valuesVisibleProperty, RANGE_FONT );
     var minNode = new DualLabelNode( concentrationRange.min.toFixed( concentrationRange.min === 0 ? 0 : RANGE_DECIMAL_PLACES ), MStrings.zero, valuesVisibleProperty, RANGE_FONT );
     var barNode = new Rectangle( 0, 0, barSize.width, barSize.height, { stroke: "black" } );
     var saturatedBarNode = new Rectangle( 0, 0, barSize.width, barSize.height, { stroke: "black", fill: Color.LIGHT_GRAY } );

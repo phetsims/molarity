@@ -1,4 +1,5 @@
-6/20/13 limit scale to 1 in ConcentrationDisplay, to prevent negative rectangle height
+6/21/13 fix max value on ConcentrationDisplay
+6/21/13 limit scale to 1 in ConcentrationDisplay, to prevent negative rectangle height
 6/20/13 add multi-line text to sliders and concentration display
 6/19/13 expand height of touch area for slider thumbs
 6/19/13 upgrade from require 2.1.4 to 2.1.6
