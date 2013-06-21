@@ -133,7 +133,7 @@ define( function( require ) {
       showValuesCheckBox.right = soluteComboBox.left - 50;
       showValuesCheckBox.centerY = soluteComboBox.centerY;
       // right of combo box
-      resetAllButton.left = soluteComboBox.right + 100;
+      resetAllButton.left = Math.max( soluteComboBox.right + 10, concentrationDisplay.centerX - ( resetAllButton.width / 2 ) );
       resetAllButton.centerY = showValuesCheckBox.centerY;
     }
   }
