@@ -151,7 +151,7 @@ define( function( require ) {
 
       // Cover the saturated portion of the range with a gray rectangle.
       saturatedBarNode.visible = ( solute.saturatedConcentration < concentrationRange.max );
-      saturatedBarNode.setRect( 0, 0, barSize.width, y );
+      saturatedBarNode.setRect( 0, 0, barSize.width, Math.max( 0, y ) );
     } );
   }
 
