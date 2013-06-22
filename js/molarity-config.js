@@ -7,39 +7,39 @@
  * @author Chris Malley
  */
 
-require.config(
-  {
-    deps: ["molarity-main"],
+require.config( {
 
-    config: {
-      i18n: {
-        locale: "en_us"
-      }
-    },
+  deps: ["molarity-main"],
 
-    paths: {
+  config: {
+    i18n: {
+      locale: "en_us"
+    }
+  },
 
-      // third-party libs
-      i18n: "../lib/i18n-2.0.2",
+  paths: {
 
-      // PhET libs, uppercase names to identify them in require.js imports
-      ASSERT: "../../assert/js",
-      AXON: '../../axon/js',
-      DOT: "../../dot/js",
-      JOIST: "../../joist/js",
-      KITE: "../../kite/js",
-      NITROGLYCERIN: "../../nitroglycerin/js",
-      PHET_CORE: "../../phet-core/js",
-      PHETCOMMON: "../../phetcommon/js",
-      SCENERY: "../../scenery/js",
-      SCENERY_PHET: "../../scenery-phet/js",
-      SUN: "../../sun/js"
-    },
+    // third-party libs
+    i18n: "../lib/i18n-2.0.2",
 
-    shim: {
-      jquery: { exports: "$" }
-    },
+    // PhET libs, uppercase names to identify them in require.js imports
+    ASSERT: "../../assert/js",
+    AXON: '../../axon/js',
+    DOT: "../../dot/js",
+    JOIST: "../../joist/js",
+    KITE: "../../kite/js",
+    NITROGLYCERIN: "../../nitroglycerin/js",
+    PHET_CORE: "../../phet-core/js",
+    PHETCOMMON: "../../phetcommon/js",
+    SCENERY: "../../scenery/js",
+    SCENERY_PHET: "../../scenery-phet/js",
+    SUN: "../../sun/js"
+  },
 
-    //TODO remove this before deploy
-    urlArgs: new Date().getTime()  // cache buster to make browser refresh load all included scripts
-  } );
+  shim: {
+    jquery: { exports: "$" }
+  },
+
+  //TODO remove this before deploy
+  urlArgs: new Date().getTime()  // cache buster to make browser refresh load all included scripts
+} );
