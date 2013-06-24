@@ -1,3 +1,4 @@
+6/24/13 add credits
 6/21/13 center Reset All button under concentration display, account for i18n of combo box
 6/21/13 increase the height of items in the Solute combo box, to improve tablet usability
 6/21/13 reformat code

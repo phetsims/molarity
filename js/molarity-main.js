@@ -9,8 +9,19 @@ require( [ "JOIST/SimLauncher", "JOIST/Sim", "molarity/MolarityTab", "molarity/M
   function( SimLauncher, Sim, MolarityTab, MStrings, MImages ) {
     "use strict";
 
+    var simOptions = {
+      credits: "PhET Development Team -\n" +
+               "Lead Design: Julia Chamberlain\n" +
+               "Software Development: Chris Malley\n" +
+               "Design Team: Kelly Lancaster, Robert Parson, Kathy Perkins"
+    };
+
+    if ( window.phetcommon.getQueryParameter( "dev" ) ) {
+      simOptions = _.extend( { showHomeScreen: false, tabIndex: 1 }, simOptions );
+    }
+
     SimLauncher.launch( MImages, function() {
-      var sim = new Sim( MStrings.molarity, [ new MolarityTab() ] );
+      var sim = new Sim( MStrings.molarity, [ new MolarityTab() ], simOptions );
       sim.start();
     } );
 

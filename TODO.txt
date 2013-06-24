@@ -8,7 +8,6 @@ HIGH
 MEDIUM
 
 LOW
-- credits
 - TODO items in code
 
 MIGRATE TO COMMON
