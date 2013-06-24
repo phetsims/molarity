@@ -1,4 +1,4 @@
-TODO list for molarity (HTML5 port)
+TODO list for molarity (HTML port)
 
 BUGS
 - Safari 5: text is very tiny, scenery#61
