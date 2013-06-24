@@ -9,6 +9,7 @@ require( [ "JOIST/SimLauncher", "JOIST/Sim", "molarity/MolarityTab", "molarity/M
   function( SimLauncher, Sim, MolarityTab, MStrings, MImages ) {
     "use strict";
 
+    //TODO i18n?
     var simOptions = {
       credits: "PhET Development Team -\n" +
                "Lead Design: Julia Chamberlain\n" +
