@@ -8,6 +8,7 @@ HIGH
 MEDIUM
 
 LOW
+- add '_' prefix to private fields
 - TODO items in code
 
 MIGRATE TO COMMON
