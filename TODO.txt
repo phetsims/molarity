@@ -4,6 +4,7 @@ BUGS
 - Safari 5: text is very tiny, scenery#61
 
 HIGH
+- artifacts (horizontal lines) left by slider thumbs
 
 MEDIUM
 
