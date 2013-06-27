@@ -1,4 +1,4 @@
-// Copyright 2002-2013, University of Colorado
+// Copyright 2002-2013, University of Colorado Boulder
 
 /**
  * The "Molarity" tab. Conforms to the contract specified in joist/Tab

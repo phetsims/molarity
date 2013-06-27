@@ -1,4 +1,4 @@
-// Copyright 2002-2013, University of Colorado
+// Copyright 2002-2013, University of Colorado Boulder
 
 /**
  * Combo box for choosing a solute.

@@ -1,4 +1,4 @@
-// Copyright 2002-2013, University of Colorado
+// Copyright 2002-2013, University of Colorado Boulder
 
 /**
  * This node manages the precipitate that forms on the bottom of the beaker when the solution is saturated.

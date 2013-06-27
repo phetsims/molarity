@@ -1,4 +1,4 @@
-// Copyright 2002-2013, University of Colorado
+// Copyright 2002-2013, University of Colorado Boulder
 
 /**
  * This class encapsulates knowledge about points in the beaker image.
