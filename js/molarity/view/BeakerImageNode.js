@@ -32,24 +32,19 @@ define( function( require ) {
 
     // Gets the cylinder dimensions.
     getCylinderSize: function() {
-      var pUpperLeft = this._getTransformedPoint( CYLINDER_UPPER_LEFT );
-      var pLowerRight = this._getTransformedPoint( CYLINDER_LOWER_RIGHT );
+      var pUpperLeft = this.localToParentPoint( CYLINDER_UPPER_LEFT );
+      var pLowerRight = this.localToParentPoint( CYLINDER_LOWER_RIGHT );
       return new Dimension2( pLowerRight.x - pUpperLeft.x, pLowerRight.y - pUpperLeft.y );
     },
 
     // Gets the offset of the cylinder from the upper-left corner of the image.
     getCylinderOffset: function() {
-      return this._getTransformedPoint( CYLINDER_UPPER_LEFT );
+      return this.localToParentPoint( CYLINDER_UPPER_LEFT );
     },
 
     // Gets the 2D height of the cylinder's end cap.
     getCylinderEndHeight: function() {
-      return this._getTransformedPoint( CYLINDER_END_FOREGROUND ).y - this._getTransformedPoint( CYLINDER_END_BACKGROUND ).y;
-    },
-
-    //TODO replace this with the something like Node.globalToLocalPoint
-    _getTransformedPoint: function( p ) {
-      return this.getTransform().transformPosition2( p );
+      return this.localToParentPoint( CYLINDER_END_FOREGROUND ).y - this.localToParentPoint( CYLINDER_END_BACKGROUND ).y;
     }
   } );
 
