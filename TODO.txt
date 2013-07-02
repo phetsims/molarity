@@ -4,7 +4,7 @@ BUGS
 - Safari 5: text bounds are wrong, text is small (scenery#61)
 
 HIGH
-- artifacts (horizontal lines) left by slider thumbs
+- artifacts (horizontal lines) left by slider thumbs on Mac+Canary 30.0.1553.2
 
 MEDIUM
 
