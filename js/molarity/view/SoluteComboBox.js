@@ -33,7 +33,7 @@ define( function( require ) {
     var items = [];
     for ( var i = 0; i < solutes.length; i++ ) {
       var solute = solutes[i];
-      items[i] = this._createItem( solute );
+      items[i] = createItem( solute );
     }
 
     ComboBox.call( this, items, selectedSoluteProperty, {
@@ -50,9 +50,8 @@ define( function( require ) {
    * @param solute
    * @returns {*|{node: *, value: *}}
    */
-  SoluteComboBox.prototype._createItem = function( solute ) {
+  var createItem = function( solute ) {
 
-    // node
     var node = new Node();
     var colorNode = new Rectangle( 0, 0, 20, 20, { fill: solute.maxColor, stroke: solute.maxColor.darkerColor() } );
     var textNode = new Text( solute.name, { font: new MFont( 20 ) } );

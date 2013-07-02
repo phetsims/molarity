@@ -127,14 +127,17 @@ define( function( require ) {
   function ThumbDragHandler( dragNode, property, valueRange, decimalPlaces, positionRange ) {
     var clickYOffset; // y-offset between initial click and thumb's origin
     SimpleDragHandler.call( this, {
+
       start: function( event ) {
         clickYOffset = dragNode.globalToParentPoint( event.pointer.point ).y - event.currentTarget.y;
       },
+
       drag: function( event ) {
         var y = dragNode.globalToParentPoint( event.pointer.point ).y - clickYOffset;
         var value = Util.linear( positionRange.min, positionRange.max, valueRange.max, valueRange.min, y );
         property.value = Util.toFixed( Util.clamp( value, valueRange.min, valueRange.max ), decimalPlaces );
       },
+
       translate: function() {
         // do nothing, override default behavior
       }
@@ -158,8 +161,7 @@ define( function( require ) {
    */
   function VerticalSlider( title, subtitle, minLabel, maxLabel, trackSize, property, range, decimalPlaces, units, valuesVisibleProperty ) {
 
-    var thisNode = this;
-    Node.call( thisNode );
+    Node.call( this );
 
     // nodes
     var titleNode = new MultiLineText( title, { font: TITLE_FONT } );
@@ -174,14 +176,14 @@ define( function( require ) {
     var valueNode = new Text( "?", { font: VALUE_FONT } );
 
     // rendering order
-    thisNode.addChild( titleNode );
-    thisNode.addChild( subtitleNode );
-    thisNode.addChild( minNode );
-    thisNode.addChild( maxNode );
-    thisNode.addChild( backgroundNode );
-    thisNode.addChild( trackNode );
-    thisNode.addChild( thumbNode );
-    thisNode.addChild( valueNode );
+    this.addChild( titleNode );
+    this.addChild( subtitleNode );
+    this.addChild( minNode );
+    this.addChild( maxNode );
+    this.addChild( backgroundNode );
+    this.addChild( trackNode );
+    this.addChild( thumbNode );
+    this.addChild( valueNode );
 
     // layout
     var centerX = backgroundNode.centerX;

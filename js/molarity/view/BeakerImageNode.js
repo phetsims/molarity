@@ -47,6 +47,7 @@ define( function( require ) {
       return this._getTransformedPoint( CYLINDER_END_FOREGROUND ).y - this._getTransformedPoint( CYLINDER_END_BACKGROUND ).y;
     },
 
+    //TODO replace this with the something like Node.globalToLocalPoint
     _getTransformedPoint: function( p ) {
       return this.getTransform().transformPosition2( p );
     }

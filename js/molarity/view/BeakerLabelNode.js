@@ -29,15 +29,14 @@ define( function( require ) {
    */
   function BeakerLabelNode( solution ) {
 
-    var thisNode = this;
-    Node.call( thisNode );
+    Node.call( this );
 
     var formulaNode = new HTMLText( "?", { font: LABEL_FONT } );
     var backgroundNode = new Rectangle( -LABEL_SIZE.width / 2, 0, LABEL_SIZE.width, LABEL_SIZE.height, 10, 10,
       { fill: new Color( 255, 255, 255, 0.6 ), stroke: Color.LIGHT_GRAY } );
 
-    thisNode.addChild( backgroundNode );
-    thisNode.addChild( formulaNode );
+    this.addChild( backgroundNode );
+    this.addChild( formulaNode );
 
     solution.multilink( ['solute', 'volume', 'concentration'], function( solute, volume, concentration ) {
       // use solute formula

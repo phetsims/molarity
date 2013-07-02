@@ -38,10 +38,10 @@ define( function( require ) {
     var particlesParent = new Node();
     thisNode.addChild( particlesParent );
 
-    var valueNode = new Text( "?", { font: new MFont( 12 ), fill: "red" } );
+    var particleCountNode = new Text( "?", { font: new MFont( 12 ), fill: "red" } );
 
     if ( SHOW_PARTICLE_COUNT ) {
-      thisNode.addChild( valueNode );
+      thisNode.addChild( particleCountNode );
     }
 
     var removeAllParticles = function() {
@@ -79,7 +79,7 @@ define( function( require ) {
       var precipitateAmount = solution.precipitateAmount;
       var numberOfParticles = thisNode.getNumberOfParticles();
       // developer only, no i18n required
-      valueNode.text = "dev: precipitate = " + precipitateAmount.toFixed( 4 ) + " mol, " + numberOfParticles + " particles";
+      particleCountNode.text = "dev: precipitate = " + precipitateAmount.toFixed( 4 ) + " mol, " + numberOfParticles + " particles";
     };
 
     // when the saturation changes, update the number of precipitate particles
@@ -96,8 +96,8 @@ define( function( require ) {
     } );
 
     // layout after value has been set
-    valueNode.centerX = cylinderSize.width / 2;
-    valueNode.top = cylinderSize.height + cylinderEndHeight + 5;
+    particleCountNode.centerX = cylinderSize.width / 2;
+    particleCountNode.top = cylinderSize.height + cylinderEndHeight + 5;
   }
 
   inherit( Node, PrecipitateNode, {
