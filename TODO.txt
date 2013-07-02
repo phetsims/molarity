@@ -1,7 +1,7 @@
 TODO list for molarity (HTML port)
 
 BUGS
-- Safari 5: text is very tiny, scenery#61
+- Safari 5: text bounds are wrong, text is small (scenery#61)
 
 HIGH
 - artifacts (horizontal lines) left by slider thumbs
@@ -9,7 +9,6 @@ HIGH
 MEDIUM
 
 LOW
-- add '_' prefix to private fields
 - TODO items in code
 
 MIGRATE TO COMMON
