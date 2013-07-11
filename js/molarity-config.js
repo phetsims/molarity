@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /*
- * RequireJS configuration file for the "Molarity" sim.
+ * RequireJS configuration file for the 'Molarity' sim.
  * Paths are relative to the location of this file.
  *
  * @author Chris Malley
@@ -9,35 +9,35 @@
 
 require.config( {
 
-  deps: ["molarity-main"],
+  deps: ['molarity-main'],
 
   config: {
     i18n: {
-      locale: "en_us"
+      locale: 'en_us'
     }
   },
 
   paths: {
 
     // third-party libs
-    i18n: "../lib/i18n-2.0.2",
+    i18n: '../lib/i18n-2.0.2',
 
     // PhET libs, uppercase names to identify them in require.js imports
-    ASSERT: "../../assert/js",
+    ASSERT: '../../assert/js',
     AXON: '../../axon/js',
-    DOT: "../../dot/js",
-    JOIST: "../../joist/js",
-    KITE: "../../kite/js",
-    NITROGLYCERIN: "../../nitroglycerin/js",
-    PHET_CORE: "../../phet-core/js",
-    PHETCOMMON: "../../phetcommon/js",
-    SCENERY: "../../scenery/js",
-    SCENERY_PHET: "../../scenery-phet/js",
-    SUN: "../../sun/js"
+    DOT: '../../dot/js',
+    JOIST: '../../joist/js',
+    KITE: '../../kite/js',
+    NITROGLYCERIN: '../../nitroglycerin/js',
+    PHET_CORE: '../../phet-core/js',
+    PHETCOMMON: '../../phetcommon/js',
+    SCENERY: '../../scenery/js',
+    SCENERY_PHET: '../../scenery-phet/js',
+    SUN: '../../sun/js'
   },
 
   shim: {
-    jquery: { exports: "$" }
+    jquery: { exports: '$' }
   },
 
   //TODO remove this before deploy

@@ -11,7 +11,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 define( function() {
-  "use strict";
+  'use strict';
   return {
     imageNames: [ 'beaker.png' ]
   };
