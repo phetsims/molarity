@@ -6,18 +6,18 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 define( function( require ) {
-  "use strict";
+  'use strict';
 
   // imports
-  var assert = require( "ASSERT/assert" )( "beers-law-lab" );
-  var ComboBox = require( "SUN/ComboBox" );
-  var inherit = require( "PHET_CORE/inherit" );
-  var MFont = require( "molarity/MFont" );
-  var MStrings = require( "molarity/MStrings" );
-  var Node = require( "SCENERY/nodes/Node" );
-  var Rectangle = require( "SCENERY/nodes/Rectangle" );
-  var StringUtils = require( "PHETCOMMON/util/StringUtils" );
-  var Text = require( "SCENERY/nodes/Text" );
+  var assert = require( 'ASSERT/assert' )( 'beers-law-lab' );
+  var ComboBox = require( 'SUN/ComboBox' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var MFont = require( 'molarity/MFont' );
+  var MStrings = require( 'molarity/MStrings' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  var Text = require( 'SCENERY/nodes/Text' );
 
   /**
    * @param {Array<Solute>} solutes
@@ -26,7 +26,7 @@ define( function( require ) {
    */
   function SoluteComboBox( solutes, selectedSoluteProperty ) {
 
-    // "Solute" label
+    // 'Solute' label
     var labelNode = new Text( StringUtils.format( MStrings.pattern_0label, MStrings.solute ), { font: new MFont( 22 ) } );
 
     // items
@@ -38,9 +38,9 @@ define( function( require ) {
 
     ComboBox.call( this, items, selectedSoluteProperty, {
       labelNode: labelNode,
-      listPosition: "above",
+      listPosition: 'above',
       itemYMargin: 12,
-      itemHighlightFill: "rgb(218,255,255)" } );
+      itemHighlightFill: 'rgb(218,255,255)' } );
   }
 
   inherit( ComboBox, SoluteComboBox );

@@ -9,14 +9,14 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 define( function( require ) {
-  "use strict";
+  'use strict';
 
   // import
-  var Dimension2 = require( "DOT/Dimension2" );
-  var Image = require( "SCENERY/nodes/Image" );
-  var inherit = require( "PHET_CORE/inherit" );
-  var MImages = require( "molarity/MImages" );
-  var Vector2 = require( "DOT/Vector2" );
+  var Dimension2 = require( 'DOT/Dimension2' );
+  var Image = require( 'SCENERY/nodes/Image' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var MImages = require( 'molarity/MImages' );
+  var Vector2 = require( 'DOT/Vector2' );
 
   // points of interest in the image file
   var CYLINDER_UPPER_LEFT = new Vector2( 98, 192 );
@@ -25,7 +25,7 @@ define( function( require ) {
   var CYLINDER_END_FOREGROUND = new Vector2( 210, 218 );
 
   function BeakerImageNode() {
-    Image.call( this, MImages.getImage( "beaker.png" ) );
+    Image.call( this, MImages.getImage( 'beaker.png' ) );
   }
 
   inherit( Image, BeakerImageNode, {

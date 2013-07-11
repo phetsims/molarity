@@ -8,32 +8,32 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 define( function( require ) {
-  "use strict";
+  'use strict';
 
   // imports
-  var BeakerImageNode = require( "molarity/view/BeakerImageNode" );
-  var BeakerLabelNode = require( "molarity/view/BeakerLabelNode" );
-  var Circle = require( "SCENERY/nodes/Circle" );
-  var Color = require( "SCENERY/util/Color" );
-  var Image = require( "SCENERY/nodes/Image" );
-  var inherit = require( "PHET_CORE/inherit" );
-  var MFont = require( "molarity/MFont" );
-  var MStrings = require( "molarity/MStrings" );
-  var Node = require( "SCENERY/nodes/Node" );
-  var Path = require( "SCENERY/nodes/Path" );
-  var Rectangle = require( "SCENERY/nodes/Rectangle" );
-  var Shape = require( "KITE/Shape" );
-  var StringUtils = require( "PHETCOMMON/util/StringUtils" );
-  var Text = require( "SCENERY/nodes/Text" );
-  var Util = require( "DOT/Util" );
-  var Vector2 = require( "DOT/Vector2" );
+  var BeakerImageNode = require( 'molarity/view/BeakerImageNode' );
+  var BeakerLabelNode = require( 'molarity/view/BeakerLabelNode' );
+  var Circle = require( 'SCENERY/nodes/Circle' );
+  var Color = require( 'SCENERY/util/Color' );
+  var Image = require( 'SCENERY/nodes/Image' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var MFont = require( 'molarity/MFont' );
+  var MStrings = require( 'molarity/MStrings' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var Path = require( 'SCENERY/nodes/Path' );
+  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var Shape = require( 'KITE/Shape' );
+  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  var Text = require( 'SCENERY/nodes/Text' );
+  var Util = require( 'DOT/Util' );
+  var Vector2 = require( 'DOT/Vector2' );
 
   // constants
   var DEBUG_SHAPES = false;
   var TICK_COLOR = Color.GRAY;
   var MINOR_TICK_SPACING = 0.1; // L
   var MINOR_TICKS_PER_MAJOR_TICK = 5;
-  var MAJOR_TICK_LABELS = [ "\u00bd", "1" ]; // 1/2L, 1L
+  var MAJOR_TICK_LABELS = [ '\u00bd', '1' ]; // 1/2L, 1L
   var TICK_LABEL_FONT = new MFont( 20 );
   var TICK_LABEL_COLOR = Color.DARK_GRAY;
   var TICK_LABEL_X_SPACING = 8;

@@ -1,32 +1,32 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * View for the "Molarity" tab.
+ * View for the 'Molarity' tab.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
 define( function( require ) {
-  "use strict";
+  'use strict';
 
   // imports
-  var BeakerNode = require( "molarity/view/BeakerNode" );
-  var Bounds2 = require( "DOT/Bounds2" );
-  var CheckBox = require( "SUN/CheckBox" );
-  var ConcentrationDisplay = require( "molarity/view/ConcentrationDisplay" );
-  var Dimension2 = require( "DOT/Dimension2" );
-  var inherit = require( "PHET_CORE/inherit" );
-  var MFont = require( "molarity/MFont" );
-  var MStrings = require( "molarity/MStrings" );
-  var PrecipitateNode = require( "molarity/view/PrecipitateNode" );
-  var Property = require( "AXON/Property" );
-  var ResetAllButton = require( "SCENERY_PHET/ResetAllButton" );
-  var SaturatedIndicator = require( "molarity/view/SaturatedIndicator" );
-  var SoluteComboBox = require( "molarity/view/SoluteComboBox" );
-  var SolutionNode = require( "molarity/view/SolutionNode" );
-  var StringUtils = require( "PHETCOMMON/util/StringUtils" );
-  var TabView = require( "JOIST/TabView" );
-  var Text = require( "SCENERY/nodes/Text" );
-  var VerticalSlider = require( "molarity/view/VerticalSlider" );
+  var BeakerNode = require( 'molarity/view/BeakerNode' );
+  var Bounds2 = require( 'DOT/Bounds2' );
+  var CheckBox = require( 'SUN/CheckBox' );
+  var ConcentrationDisplay = require( 'molarity/view/ConcentrationDisplay' );
+  var Dimension2 = require( 'DOT/Dimension2' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var MFont = require( 'molarity/MFont' );
+  var MStrings = require( 'molarity/MStrings' );
+  var PrecipitateNode = require( 'molarity/view/PrecipitateNode' );
+  var Property = require( 'AXON/Property' );
+  var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
+  var SaturatedIndicator = require( 'molarity/view/SaturatedIndicator' );
+  var SoluteComboBox = require( 'molarity/view/SoluteComboBox' );
+  var SolutionNode = require( 'molarity/view/SolutionNode' );
+  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  var TabView = require( 'JOIST/TabView' );
+  var Text = require( 'SCENERY/nodes/Text' );
+  var VerticalSlider = require( 'molarity/view/VerticalSlider' );
 
   // constants
   var SOLUTE_AMOUNT_DECIMAL_PLACES = 2;

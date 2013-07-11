@@ -8,13 +8,13 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 define( function( require ) {
-  "use strict";
+  'use strict';
 
   // imports
-  var inherit = require( "PHET_CORE/inherit" );
-  var Node = require( "SCENERY/nodes/Node" );
-  var Rectangle = require( "SCENERY/nodes/Rectangle" );
-  var Text = require( "SCENERY/nodes/Text" );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var Text = require( 'SCENERY/nodes/Text' );
 
   // constants
   var DEBUG_BOUNDS = false;
@@ -42,7 +42,7 @@ define( function( require ) {
     // add an invisible rectangle so that bounds don't change
     var boundsNode = new Rectangle( thisNode.left, thisNode.top, thisNode.width, thisNode.height );
     if ( DEBUG_BOUNDS ) {
-      boundsNode.stroke = "red";
+      boundsNode.stroke = 'red';
     }
     thisNode.addChild( boundsNode );
 

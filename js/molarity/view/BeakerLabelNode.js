@@ -7,21 +7,21 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 define( function( require ) {
-  "use strict";
+  'use strict';
 
   // imports
-  var Color = require( "SCENERY/util/Color" );
-  var Dimension2 = require( "DOT/Dimension2" );
-  var HTMLText = require( "SCENERY/nodes/HTMLText" );
-  var inherit = require( "PHET_CORE/inherit" );
-  var MFont = require( "molarity/MFont" );
-  var MSymbols = require( "molarity/MSymbols" );
-  var Node = require( "SCENERY/nodes/Node" );
-  var Rectangle = require( "SCENERY/nodes/Rectangle" );
+  var Color = require( 'SCENERY/util/Color' );
+  var Dimension2 = require( 'DOT/Dimension2' );
+  var HTMLText = require( 'SCENERY/nodes/HTMLText' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var MFont = require( 'molarity/MFont' );
+  var MSymbols = require( 'molarity/MSymbols' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
 
   // constants
   var LABEL_SIZE = new Dimension2( 180, 80 );
-  var LABEL_FONT = new MFont( 28, "bold" );
+  var LABEL_FONT = new MFont( 28, 'bold' );
 
   /**
    * @param {Solution} solution
@@ -31,7 +31,7 @@ define( function( require ) {
 
     Node.call( this );
 
-    var formulaNode = new HTMLText( "?", { font: LABEL_FONT } );
+    var formulaNode = new HTMLText( '?', { font: LABEL_FONT } );
     var backgroundNode = new Rectangle( -LABEL_SIZE.width / 2, 0, LABEL_SIZE.width, LABEL_SIZE.height, 10, 10,
       { fill: new Color( 255, 255, 255, 0.6 ), stroke: Color.LIGHT_GRAY } );
 
@@ -41,7 +41,7 @@ define( function( require ) {
     solution.multilink( ['solute', 'volume', 'concentration'], function( solute, volume, concentration ) {
       // use solute formula
       if ( volume === 0 ) {
-        formulaNode.text = "";
+        formulaNode.text = '';
       }
       else if ( concentration === 0 ) {
         formulaNode.text = MSymbols.WATER;

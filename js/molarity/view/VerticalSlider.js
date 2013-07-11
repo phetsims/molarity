@@ -7,29 +7,29 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 define( function( require ) {
-  "use strict";
+  'use strict';
 
   // imports
-  var Color = require( "SCENERY/util/Color" );
-  var Dimension2 = require( "DOT/Dimension2" );
-  var DualLabelNode = require( "molarity/view/DualLabelNode" );
-  var FillHighlightListener = require( "SCENERY_PHET/input/FillHighlightListener" );
-  var inherit = require( "PHET_CORE/inherit" );
-  var MFont = require( "molarity/MFont" );
-  var MStrings = require( "molarity/MStrings" );
-  var MultiLineText = require( "SCENERY_PHET/MultiLineText" );
-  var Node = require( "SCENERY/nodes/Node" );
-  var Path = require( "SCENERY/nodes/Path" );
-  var Range = require( "DOT/Range" );
-  var Rectangle = require( "SCENERY/nodes/Rectangle" );
-  var Shape = require( "KITE/Shape" );
-  var SimpleDragHandler = require( "SCENERY/input/SimpleDragHandler" );
-  var StringUtils = require( "PHETCOMMON/util/StringUtils" );
-  var Text = require( "SCENERY/nodes/Text" );
-  var Util = require( "DOT/Util" );
+  var Color = require( 'SCENERY/util/Color' );
+  var Dimension2 = require( 'DOT/Dimension2' );
+  var DualLabelNode = require( 'molarity/view/DualLabelNode' );
+  var FillHighlightListener = require( 'SCENERY_PHET/input/FillHighlightListener' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var MFont = require( 'molarity/MFont' );
+  var MStrings = require( 'molarity/MStrings' );
+  var MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var Path = require( 'SCENERY/nodes/Path' );
+  var Range = require( 'DOT/Range' );
+  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var Shape = require( 'KITE/Shape' );
+  var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
+  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  var Text = require( 'SCENERY/nodes/Text' );
+  var Util = require( 'DOT/Util' );
 
   // constants
-  var TITLE_FONT = new MFont( 24, "bold" );
+  var TITLE_FONT = new MFont( 24, 'bold' );
   var SUBTITLE_FONT = new MFont( 22 );
   var RANGE_FONT = new MFont( 20 );
   var VALUE_FONT = new MFont( 20 );
@@ -52,7 +52,7 @@ define( function( require ) {
   function Track( size, property, range, decimalPlaces ) {
 
     var thisNode = this;
-    Rectangle.call( thisNode, 0, 0, size.width, size.height, { fill: "black", cursor: "pointer" } );
+    Rectangle.call( thisNode, 0, 0, size.width, size.height, { fill: 'black', cursor: 'pointer' } );
 
     // click in the track to change the value, continue dragging if desired
     var handleEvent = function( event ) {
@@ -108,7 +108,7 @@ define( function( require ) {
       bodyNode.width + ( 2 * touchXMargin ), bodyNode.height + ( 2 * touchYMargin ) );
 
     // interactivity
-    thisNode.cursor = "pointer";
+    thisNode.cursor = 'pointer';
     thisNode.addInputListener( new ThumbDragHandler( thisNode, property, valueRange, decimalPlaces, positionRange ) );
     bodyNode.addInputListener( new FillHighlightListener( THUMB_NORMAL_COLOR, THUMB_HIGHLIGHT_COLOR ) );
   }
@@ -173,7 +173,7 @@ define( function( require ) {
     var backgroundNode = new Rectangle( -xMargin, -yMargin, trackSize.width + ( 2 * xMargin ), trackSize.height + ( 2 * yMargin ), cornerRadius, cornerRadius,
       { fill: new Color( 200, 200, 200, 140 ) } );
     var thumbNode = new Thumb( THUMB_SIZE, property, range, decimalPlaces, new Range( 0, trackSize.height ) );
-    var valueNode = new Text( "?", { font: VALUE_FONT } );
+    var valueNode = new Text( '?', { font: VALUE_FONT } );
 
     // rendering order
     this.addChild( titleNode );

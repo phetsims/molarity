@@ -11,27 +11,27 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 define( function( require ) {
-  "use strict";
+  'use strict';
 
   // imports
-  var Color = require( "SCENERY/util/Color" );
-  var DualLabelNode = require( "molarity/view/DualLabelNode" );
-  var inherit = require( "PHET_CORE/inherit" );
-  var LinearGradient = require( "SCENERY/util/LinearGradient" );
-  var MFont = require( "molarity/MFont" );
-  var MStrings = require( "molarity/MStrings" );
-  var MultiLineText = require( "SCENERY_PHET/MultiLineText" );
-  var Node = require( "SCENERY/nodes/Node" );
-  var Path = require( "SCENERY/nodes/Path" );
-  var Range = require( "DOT/Range" );
-  var Rectangle = require( "SCENERY/nodes/Rectangle" );
-  var Shape = require( "KITE/Shape" );
-  var StringUtils = require( "PHETCOMMON/util/StringUtils" );
-  var Text = require( "SCENERY/nodes/Text" );
-  var Util = require( "DOT/Util" );
+  var Color = require( 'SCENERY/util/Color' );
+  var DualLabelNode = require( 'molarity/view/DualLabelNode' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var LinearGradient = require( 'SCENERY/util/LinearGradient' );
+  var MFont = require( 'molarity/MFont' );
+  var MStrings = require( 'molarity/MStrings' );
+  var MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var Path = require( 'SCENERY/nodes/Path' );
+  var Range = require( 'DOT/Range' );
+  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var Shape = require( 'KITE/Shape' );
+  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  var Text = require( 'SCENERY/nodes/Text' );
+  var Util = require( 'DOT/Util' );
 
   // constants
-  var TITLE_FONT = new MFont( 24, "bold" );
+  var TITLE_FONT = new MFont( 24, 'bold' );
   var SUBTITLE_FONT = new MFont( 22 );
   var RANGE_FONT = new MFont( 20 );
   var VALUE_FONT = new MFont( 20 );
@@ -54,8 +54,8 @@ define( function( require ) {
     Node.call( thisNode );
 
     // nodes
-    var valueNode = new Text( "?", { font: VALUE_FONT } );
-    thisNode.arrowNode = new Path( { stroke: "black" } );
+    var valueNode = new Text( '?', { font: VALUE_FONT } );
+    thisNode.arrowNode = new Path( { stroke: 'black' } );
     this.addChild( valueNode );
     this.addChild( thisNode.arrowNode );
 
@@ -114,8 +114,8 @@ define( function( require ) {
     var subtitle = new Text( StringUtils.format( MStrings.pattern_parentheses_0text, MStrings.molarity ), { font: SUBTITLE_FONT } );
     var maxNode = new DualLabelNode( concentrationRange.max.toFixed( RANGE_DECIMAL_PLACES ), MStrings.high, valuesVisibleProperty, RANGE_FONT );
     var minNode = new DualLabelNode( concentrationRange.min.toFixed( concentrationRange.min === 0 ? 0 : RANGE_DECIMAL_PLACES ), MStrings.zero, valuesVisibleProperty, RANGE_FONT );
-    var barNode = new Rectangle( 0, 0, barSize.width, barSize.height, { stroke: "black" } );
-    var saturatedBarNode = new Rectangle( 0, 0, barSize.width, barSize.height, { stroke: "black", fill: Color.LIGHT_GRAY } );
+    var barNode = new Rectangle( 0, 0, barSize.width, barSize.height, { stroke: 'black' } );
+    var saturatedBarNode = new Rectangle( 0, 0, barSize.width, barSize.height, { stroke: 'black', fill: Color.LIGHT_GRAY } );
     var pointerNode = new Pointer( solution, concentrationRange, barSize, valuesVisibleProperty );
 
     // rendering order
@@ -148,7 +148,7 @@ define( function( require ) {
       var concentrationScale = Math.min( 1, solute.saturatedConcentration / concentrationRange.max );
       var y = barSize.height - ( barSize.height * concentrationScale );
       if ( y < 0 ) {
-        console.log( "solute.saturatedConcentration=" + solute.saturatedConcentration + " concentrationRange.max=" + concentrationRange.max );
+        console.log( 'solute.saturatedConcentration=' + solute.saturatedConcentration + ' concentrationRange.max=' + concentrationRange.max );
       }
       barNode.fill = new LinearGradient( 0, y, 0, barSize.height )
         .addColorStop( 0, solute.maxColor )

@@ -8,17 +8,17 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 define( function( require ) {
-  "use strict";
+  'use strict';
 
   // imports
-  var Circle = require( "SCENERY/nodes/Circle" );
-  var Color = require( "SCENERY/util/Color" );
-  var inherit = require( "PHET_CORE/inherit" );
-  var Node = require( "SCENERY/nodes/Node" );
-  var Path = require( "SCENERY/nodes/Path" );
-  var Range = require( "DOT/Range" );
-  var Shape = require( "KITE/Shape" );
-  var Util = require( "DOT/Util" );
+  var Circle = require( 'SCENERY/nodes/Circle' );
+  var Color = require( 'SCENERY/util/Color' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var Path = require( 'SCENERY/nodes/Path' );
+  var Range = require( 'DOT/Range' );
+  var Shape = require( 'KITE/Shape' );
+  var Util = require( 'DOT/Util' );
 
   // constants
   var DEBUG_ORIGIN = false;
