@@ -1,22 +1,22 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * Model container for the "Molarity" tab.
+ * Model container for the 'Molarity' tab.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
 define( function( require ) {
-  "use strict";
+  'use strict';
 
   // imports
-  var assert = require( "ASSERT/assert" )( "molarity" );
-  var Color = require( "SCENERY/util/Color" );
-  var MStrings = require( "molarity/MStrings" );
-  var MSymbols = require( "molarity/MSymbols" );
-  var Range = require( "DOT/Range" );
-  var Solute = require( "molarity/model/Solute" );
-  var Solution = require( "molarity/model/Solution" );
-  var Water = require( "molarity/model/Water" );
+  var assert = require( 'ASSERT/assert' )( 'molarity' );
+  var Color = require( 'SCENERY/util/Color' );
+  var MStrings = require( 'molarity/MStrings' );
+  var MSymbols = require( 'molarity/MSymbols' );
+  var Range = require( 'DOT/Range' );
+  var Solute = require( 'molarity/model/Solute' );
+  var Solution = require( 'molarity/model/Solution' );
+  var Water = require( 'molarity/model/Water' );
 
   // constants
   var SOLUTE_AMOUNT_RANGE = new Range( 0, 1, 0.5 ); // moles

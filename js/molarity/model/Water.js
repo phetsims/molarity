@@ -6,11 +6,11 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 define( function( require ) {
-  "use strict";
+  'use strict';
 
   // imports
-  var Color = require( "SCENERY/util/Color" );
-  var MSymbols = require( "molarity/MSymbols" );
+  var Color = require( 'SCENERY/util/Color' );
+  var MSymbols = require( 'molarity/MSymbols' );
 
   return { formula: MSymbols.WATER, color: new Color( 224, 255, 255 ) };
 } );

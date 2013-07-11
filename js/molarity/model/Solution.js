@@ -6,13 +6,13 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 define( function( require ) {
-  "use strict";
+  'use strict';
 
   // imports
-  var inherit = require( "PHET_CORE/inherit" );
-  var interpolateRBGA = require( "SCENERY/util/Color" ).interpolateRBGA;
-  var PropertySet = require( "AXON/PropertySet" );
-  var Util = require( "DOT/Util" );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var interpolateRBGA = require( 'SCENERY/util/Color' ).interpolateRBGA;
+  var PropertySet = require( 'AXON/PropertySet' );
+  var Util = require( 'DOT/Util' );
 
   // constants
   var CONCENTRATION_DECIMALS = 2;
