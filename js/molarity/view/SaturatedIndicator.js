@@ -10,10 +10,10 @@ define( function( require ) {
   'use strict';
 
   // imports
-  var MFont = require( 'molarity/MFont' );
   var MStrings = require( 'molarity/MStrings' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Text = require( 'SCENERY/nodes/Text' );
 
@@ -26,7 +26,7 @@ define( function( require ) {
     var thisNode = this;
     Node.call( thisNode );
 
-    var label = new Text( MStrings.saturated, { font: new MFont( 22 ) } );
+    var label = new Text( MStrings.saturated, { font: new PhetFont( 22 ) } );
 
     // translucent light-gray background, so this shows up on all solution colors
     var background = new Rectangle( 0, 0, 1.2 * label.width, 1.2 * label.height, 8, 8,

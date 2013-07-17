@@ -18,11 +18,11 @@ define( function( require ) {
   var DualLabelNode = require( 'molarity/view/DualLabelNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var LinearGradient = require( 'SCENERY/util/LinearGradient' );
-  var MFont = require( 'molarity/MFont' );
   var MStrings = require( 'molarity/MStrings' );
   var MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Range = require( 'DOT/Range' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
@@ -31,10 +31,10 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
 
   // constants
-  var TITLE_FONT = new MFont( 24, 'bold' );
-  var SUBTITLE_FONT = new MFont( 22 );
-  var RANGE_FONT = new MFont( 20 );
-  var VALUE_FONT = new MFont( 20 );
+  var TITLE_FONT = new PhetFont( 24, 'bold' );
+  var SUBTITLE_FONT = new PhetFont( 22 );
+  var RANGE_FONT = new PhetFont( 20 );
+  var VALUE_FONT = new PhetFont( 20 );
   var ARROW_LENGTH = 55;
   var ARROW_HEAD_HEIGHT = 0.6 * ARROW_LENGTH;
   var ARROW_HEAD_WIDTH = 0.7 * ARROW_LENGTH;

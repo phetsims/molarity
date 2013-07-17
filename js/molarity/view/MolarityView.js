@@ -15,8 +15,8 @@ define( function( require ) {
   var ConcentrationDisplay = require( 'molarity/view/ConcentrationDisplay' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var MFont = require( 'molarity/MFont' );
   var MStrings = require( 'molarity/MStrings' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PrecipitateNode = require( 'molarity/view/PrecipitateNode' );
   var Property = require( 'AXON/Property' );
   var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
@@ -81,7 +81,7 @@ define( function( require ) {
     var concentrationDisplay = new ConcentrationDisplay( model.solution, model.getConcentrationDisplayRange(), valuesVisibleProperty, concentrationBarSize );
 
     // Show Values check box
-    var showValuesCheckBox = new CheckBox( new Text( MStrings.showValues, { font: new MFont( 22 ) } ), valuesVisibleProperty );
+    var showValuesCheckBox = new CheckBox( new Text( MStrings.showValues, { font: new PhetFont( 22 ) } ), valuesVisibleProperty );
 
     // Reset All button
     var resetAllButton = new ResetAllButton( function() {

@@ -14,14 +14,14 @@ define( function( require ) {
   var Dimension2 = require( 'DOT/Dimension2' );
   var HTMLText = require( 'SCENERY/nodes/HTMLText' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var MFont = require( 'molarity/MFont' );
   var MSymbols = require( 'molarity/MSymbols' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
 
   // constants
   var LABEL_SIZE = new Dimension2( 180, 80 );
-  var LABEL_FONT = new MFont( 28, 'bold' );
+  var LABEL_FONT = new PhetFont( 28, 'bold' );
 
   /**
    * @param {Solution} solution

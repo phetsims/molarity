@@ -12,8 +12,8 @@ define( function( require ) {
 
   // imports
   var inherit = require( 'PHET_CORE/inherit' );
-  var MFont = require( 'molarity/MFont' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PrecipitateParticleNode = require( 'molarity/view/PrecipitateParticleNode' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Vector2 = require( 'DOT/Vector2' );
@@ -38,7 +38,7 @@ define( function( require ) {
     var particlesParent = new Node();
     thisNode.addChild( particlesParent );
 
-    var particleCountNode = new Text( '?', { font: new MFont( 12 ), fill: 'red' } );
+    var particleCountNode = new Text( '?', { font: new PhetFont( 12 ), fill: 'red' } );
 
     if ( SHOW_PARTICLE_COUNT ) {
       thisNode.addChild( particleCountNode );
