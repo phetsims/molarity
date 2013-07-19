@@ -1,6 +1,5 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
-//REVIEW - Is this too specialized to add to SUN?  Other than the show values stuff, it seems pretty reusable after a quick glance.
 /**
  * Vertical sliders in the Molarity simulation.
  * Can be switched between qualitative and quantitative display of range and value.
