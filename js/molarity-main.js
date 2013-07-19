@@ -18,7 +18,9 @@ require( [ 'JOIST/SimLauncher', 'JOIST/Sim', 'molarity/MolarityTab', 'molarity/M
     };
 
     if ( window.phetcommon.getQueryParameter( 'dev' ) ) {
-      simOptions = _.extend( { showHomeScreen: false, tabIndex: 1 }, simOptions );
+      simOptions = _.extend( {
+        // add dev-specific options here
+      }, simOptions );
     }
 
     SimLauncher.launch( MImages, function() {

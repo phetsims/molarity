@@ -1,3 +1,4 @@
+7/19/13 fix behavior for 'dev' query param
 7/19/13 address REVIEW comments
 7/19/13 delete placeholder icon for MolarityTab, fixed by joist#15
 7/17/13 replace MFont with PhetFont
