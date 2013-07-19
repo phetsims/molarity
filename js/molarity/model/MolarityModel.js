@@ -18,14 +18,8 @@ define( function( require ) {
   var Solution = require( 'molarity/model/Solution' );
   var Water = require( 'molarity/model/Water' );
 
-  // constants
-  var SOLUTE_AMOUNT_RANGE = new Range( 0, 1, 0.5 ); // moles
-  var SOLUTION_VOLUME_RANGE = new Range( 0.2, 1, 0.5 ); // liters
-  var CONCENTRATION_RANGE = new Range( SOLUTE_AMOUNT_RANGE.min / SOLUTION_VOLUME_RANGE.max, SOLUTE_AMOUNT_RANGE.max / SOLUTION_VOLUME_RANGE.min ); // M
-  var CONCENTRATION_DISPLAY_RANGE = CONCENTRATION_RANGE; // M
-
   function MolarityModel() {
-    assert && assert( SOLUTION_VOLUME_RANGE.min > 0 ); // model doesn't work for zero volume
+    assert && assert( MolarityModel.SOLUTION_VOLUME_RANGE.min > 0 ); // model doesn't work for zero volume
 
     var thisModel = this;
 
@@ -41,8 +35,14 @@ define( function( require ) {
       new Solute( MStrings.potassiumPermanganate, MSymbols.POTASSIUM_PERMANGANATE, 0.50, new Color( 255, 0, 255 ), new Color( 139, 0, 139 ), Color.BLACK )
     ];
 
-    thisModel.solution = new Solution( Water, thisModel.solutes[0], SOLUTE_AMOUNT_RANGE.defaultValue, SOLUTION_VOLUME_RANGE.defaultValue );
+    thisModel.solution = new Solution( Water, thisModel.solutes[0], MolarityModel.SOLUTE_AMOUNT_RANGE.defaultValue, MolarityModel.SOLUTION_VOLUME_RANGE.defaultValue );
   }
+
+  // public constants
+  MolarityModel.SOLUTE_AMOUNT_RANGE = new Range( 0, 1, 0.5 ); // moles
+  MolarityModel.SOLUTION_VOLUME_RANGE = new Range( 0.2, 1, 0.5 ); // liters
+  MolarityModel.CONCENTRATION_RANGE = new Range( MolarityModel.SOLUTE_AMOUNT_RANGE.min / MolarityModel.SOLUTION_VOLUME_RANGE.max, MolarityModel.SOLUTE_AMOUNT_RANGE.max / MolarityModel.SOLUTION_VOLUME_RANGE.min ); // M
+  MolarityModel.CONCENTRATION_DISPLAY_RANGE = MolarityModel.CONCENTRATION_RANGE; // M
 
   MolarityModel.prototype = {
 
@@ -53,24 +53,6 @@ define( function( require ) {
 
     step: function( deltaSeconds ) {
       // no animation in this model
-    },
-
-    //REVIEW - Why is this a function instead of attaching to prototype or making it a static constant?  Suggest doc or change. Same for similar instances below.
-    getSoluteAmountRange: function() {
-      return SOLUTE_AMOUNT_RANGE;
-    },
-
-    getSolutionVolumeRange: function() {
-      return SOLUTION_VOLUME_RANGE;
-    },
-
-    getConcentrationRange: function() {
-      return CONCENTRATION_RANGE;
-    },
-
-    // Range to use for concentration display, possibly different than full range of model.
-    getConcentrationDisplayRange: function() {
-      return CONCENTRATION_DISPLAY_RANGE;
     }
   };
 

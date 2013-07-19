@@ -15,6 +15,7 @@ define( function( require ) {
   var ConcentrationDisplay = require( 'molarity/view/ConcentrationDisplay' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var MolarityModel = require( 'molarity/model/MolarityModel' );
   var MStrings = require( 'molarity/MStrings' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PrecipitateNode = require( 'molarity/view/PrecipitateNode' );
@@ -44,9 +45,9 @@ define( function( require ) {
     var valuesVisibleProperty = new Property( false );
 
     // beaker, with solution and precipitate inside of it
-    var beakerNode = new BeakerNode( model.solution, model.getSolutionVolumeRange().max, valuesVisibleProperty );
+    var beakerNode = new BeakerNode( model.solution, MolarityModel.SOLUTION_VOLUME_RANGE.max, valuesVisibleProperty );
     var cylinderSize = beakerNode.getCylinderSize();
-    var solutionNode = new SolutionNode( cylinderSize, beakerNode.getCylinderEndHeight(), model.solution, model.getSolutionVolumeRange().max );
+    var solutionNode = new SolutionNode( cylinderSize, beakerNode.getCylinderEndHeight(), model.solution, MolarityModel.SOLUTION_VOLUME_RANGE.max );
     var precipitateNode = new PrecipitateNode( model.solution, cylinderSize, beakerNode.getCylinderEndHeight() );
     var saturatedIndicator = new SaturatedIndicator( model.solution );
 
@@ -59,26 +60,26 @@ define( function( require ) {
       MStrings.none, MStrings.lots,
       new Dimension2( 5, cylinderSize.height ),
       model.solution.soluteAmountProperty,
-      model.getSoluteAmountRange(),
+      MolarityModel.SOLUTE_AMOUNT_RANGE,
       SOLUTE_AMOUNT_DECIMAL_PLACES,
       MStrings.units_moles,
       valuesVisibleProperty );
 
     // slider for controlling volume of solution, sized to match tick marks on the beaker
-    var volumeSliderHeight = ( model.getSolutionVolumeRange().getLength() / model.getSolutionVolumeRange().max ) * cylinderSize.height;
+    var volumeSliderHeight = ( MolarityModel.SOLUTION_VOLUME_RANGE.getLength() / MolarityModel.SOLUTION_VOLUME_RANGE.max ) * cylinderSize.height;
     var solutionVolumeSlider = new VerticalSlider( MStrings.solutionVolume,
       StringUtils.format( MStrings.pattern_parentheses_0text, MStrings.liters ),
       MStrings.low, MStrings.full,
       new Dimension2( 5, volumeSliderHeight ),
       model.solution.volumeProperty,
-      model.getSolutionVolumeRange(),
+      MolarityModel.SOLUTE_AMOUNT_RANGE,
       VOLUME_DECIMAL_PLACES,
       MStrings.units_liters,
       valuesVisibleProperty );
 
     // concentration display
     var concentrationBarSize = new Dimension2( 40, cylinderSize.height + 50 );
-    var concentrationDisplay = new ConcentrationDisplay( model.solution, model.getConcentrationDisplayRange(), valuesVisibleProperty, concentrationBarSize );
+    var concentrationDisplay = new ConcentrationDisplay( model.solution, MolarityModel.CONCENTRATION_DISPLAY_RANGE, valuesVisibleProperty, concentrationBarSize );
 
     // Show Values check box
     var showValuesCheckBox = new CheckBox( new Text( MStrings.showValues, { font: new PhetFont( 22 ) } ), valuesVisibleProperty );

@@ -1,3 +1,4 @@
+7/19/13 address REVIEW comments
 7/19/13 delete placeholder icon for MolarityTab, fixed by joist#15
 7/17/13 replace MFont with PhetFont
 7/11/13 remove jquery shim from config.js
