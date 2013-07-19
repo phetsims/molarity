@@ -50,9 +50,7 @@ define( function( require ) {
     Node.call( thisNode, { pickable: false } );
 
     // the glass beaker
-    //REVIEW - I find thisNode._beakerImageNode = new BeakerImageNode().mutate( { scale: 0.75 } ) more readable & compact.
-    thisNode._beakerImageNode = new BeakerImageNode();
-    thisNode._beakerImageNode.scale( 0.75, 0.75 );
+    thisNode._beakerImageNode = new BeakerImageNode( { scale: 0.75 } );
     var cylinderSize = thisNode._beakerImageNode.getCylinderSize();
     var cylinderOffset = thisNode._beakerImageNode.getCylinderOffset();
     var cylinderEndHeight = thisNode._beakerImageNode.getCylinderEndHeight();
