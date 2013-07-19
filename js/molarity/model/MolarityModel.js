@@ -55,6 +55,7 @@ define( function( require ) {
       // no animation in this model
     },
 
+    //REVIEW - Why is this a function instead of attaching to prototype or making it a static constant?  Suggest doc or change. Same for similar instances below.
     getSoluteAmountRange: function() {
       return SOLUTE_AMOUNT_RANGE;
     },

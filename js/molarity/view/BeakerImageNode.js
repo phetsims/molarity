@@ -1,5 +1,6 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
+//REVIEW This comment is a bit confusing because it just talks about points in the image, but it actually includes the image and thus represents the beaker itself (without solution).
 /**
  * This class encapsulates knowledge about points in the beaker image.
  * The image was built around the 2D projection of a 3D cylinder,

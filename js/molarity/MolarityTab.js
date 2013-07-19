@@ -18,6 +18,7 @@ define( function( require ) {
   function MolarityTab() {
 
     this.name = MStrings.molarity;
+    //REVIEW - I think this is fixed and the icon can be removed.
     this.icon = new Rectangle( 0, 0, 10, 10, { fill: 'white' } );  //TODO joist#15, icon should not be required for single-tab sims
     this.backgroundColor = 'white';
 

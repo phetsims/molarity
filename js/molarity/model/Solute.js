@@ -1,5 +1,6 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
+//REVIEW Not really immutable in JavaScript-land.  Might want to indicate that intent somehow if important.
 /**
  * Model of a solute, an immutable data structure.
  *
