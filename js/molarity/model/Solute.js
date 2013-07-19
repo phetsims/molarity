@@ -1,8 +1,9 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
-//REVIEW Not really immutable in JavaScript-land.  Might want to indicate that intent somehow if important.
 /**
  * Model of a solute, an immutable data structure.
+ * This model is immutable in the sense that you should not change any of its fields after construction,
+ * since they do not provide change notification. If you do change any field values, you will hose yourself.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
