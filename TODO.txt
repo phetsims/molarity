@@ -1,6 +1,7 @@
 TODO list for molarity (HTML port)
 
-- artifacts (horizontal lines) left by slider thumbs on Mac+Canary 30.0.1553.2
+- scenery#80: artifacts left by slider thumbs
+- scenery#78: using 'svg' renderer throws an error in Path.js
 - TODO items in code
 
 
