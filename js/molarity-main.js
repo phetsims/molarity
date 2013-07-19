@@ -17,6 +17,7 @@ require( [ 'JOIST/SimLauncher', 'JOIST/Sim', 'molarity/MolarityTab', 'molarity/M
                'Design Team: Kelly Lancaster, Robert Parson, Kathy Perkins'
     };
 
+    // Appending '?dev' to the URL will enable developer-only features.
     if ( window.phetcommon.getQueryParameter( 'dev' ) ) {
       simOptions = _.extend( {
         // add dev-specific options here
