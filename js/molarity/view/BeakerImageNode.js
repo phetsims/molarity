@@ -1,11 +1,10 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
-//REVIEW This comment is a bit confusing because it just talks about points in the image, but it actually includes the image and thus represents the beaker itself (without solution).
 /**
- * This class encapsulates knowledge about points in the beaker image.
- * The image was built around the 2D projection of a 3D cylinder,
- * and we can programmatically fill that cylinder with solution.
- * Methods are provided to access points of interest in the image file.
+ * This class encapsulates the beaker image, including "points of interest" in that image.
+ * The image was built around the 2D projection of a 3D cylinder.
+ * Methods are provided to access the points of interest, allowing client code to construct
+ * a shape that looks like solution inside the beaker cylinder.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
