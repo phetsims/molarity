@@ -1,7 +1,10 @@
 TODO list for molarity (HTML port)
 
+HIGH:
 - revert to sun.ResetAllButton
 - scenery#80: artifacts left by slider thumbs
+
+LOW:
 - TODO items in code
 
 
