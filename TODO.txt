@@ -1,7 +1,7 @@
 TODO list for molarity (HTML port)
 
+- revert to sun.ResetAllButton
 - scenery#80: artifacts left by slider thumbs
-- scenery#78: using 'svg' renderer throws an error in Path.js
 - TODO items in code
 
 
