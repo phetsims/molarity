@@ -20,7 +20,7 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PrecipitateNode = require( 'molarity/view/PrecipitateNode' );
   var Property = require( 'AXON/Property' );
-  var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
+  var ResetAllButton = require( 'molarity/view/ResetAllButton' );
   var SaturatedIndicator = require( 'molarity/view/SaturatedIndicator' );
   var SoluteComboBox = require( 'molarity/view/SoluteComboBox' );
   var SolutionNode = require( 'molarity/view/SolutionNode' );
