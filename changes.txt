@@ -1,5 +1,6 @@
+7/23/13 fix range of Volume slider (bug introduced when making an unnecessary change to address a REVIEW comment)
 # 0.0.0-6 7/22/13
-7/19/13 create local ResetAllButton that uses images provided by SST
+7/22/13 create local ResetAllButton that uses images provided by SST
 7/19/13 fix behavior for 'dev' query param
 7/19/13 address REVIEW comments
 7/19/13 delete placeholder icon for MolarityTab, fixed by joist#15

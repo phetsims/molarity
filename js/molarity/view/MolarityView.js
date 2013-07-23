@@ -72,7 +72,7 @@ define( function( require ) {
       MStrings.low, MStrings.full,
       new Dimension2( 5, volumeSliderHeight ),
       model.solution.volumeProperty,
-      MolarityModel.SOLUTE_AMOUNT_RANGE,
+      MolarityModel.SOLUTION_VOLUME_RANGE,
       VOLUME_DECIMAL_PLACES,
       MStrings.units_liters,
       valuesVisibleProperty );
