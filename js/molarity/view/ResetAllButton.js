@@ -1,6 +1,6 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
-//TODO This should eventually replace sun.ResetAllButton
+//TODO this is a local copy, duplicated in all sims, migrate to sun.ResetAllButton
 /**
  * @author Chris Malley (PixelZoom, Inc.)
  */
