@@ -1,3 +1,4 @@
+# 0.0.0-7 7/23/13
 7/23/13 fix range of Volume slider (bug introduced when making an unnecessary change to address a REVIEW comment)
 # 0.0.0-6 7/22/13
 7/22/13 create local ResetAllButton that uses images provided by SST
