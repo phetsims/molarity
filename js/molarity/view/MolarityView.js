@@ -104,7 +104,7 @@ define( function( require ) {
 
     // layout for things that don't have a location in the model
     {
-      soluteAmountSlider.left = 10;
+      soluteAmountSlider.left = 35;
       soluteAmountSlider.top = 65;
       // to the right of the Solute Amount slider
       solutionVolumeSlider.left = soluteAmountSlider.right + 20;
@@ -139,7 +139,7 @@ define( function( require ) {
     }
   }
 
-  inherit( TabView, MolarityView, { layoutBounds: new Bounds2( 0, 0, 1060, 700 ) } );
+  inherit( TabView, MolarityView, { layoutBounds: new Bounds2( 0, 0, 1100, 700 ) } );
 
   return MolarityView;
 } );

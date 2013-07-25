@@ -1,4 +1,5 @@
 # 0.0.0-8 7/25/13
+7/25/13 add a bit of space between left-edge of play area and the "Solute Amount" slider
 7/25/13 increase width of play area so that concentration value doesn't fall off right edge when "Show values" is checked
 # 0.0.0-7 7/23/13
 7/23/13 fix range of Volume slider (bug introduced when making an unnecessary change to address a REVIEW comment)
