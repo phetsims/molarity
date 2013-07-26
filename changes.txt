@@ -1,3 +1,4 @@
+# 0.0.0-9 7/26/13
 7/26/13 fix up package.json to work with build.sh changes (chipper#12)
 # 0.0.0-8 7/25/13
 7/25/13 add a bit of space between left-edge of play area and the "Solute Amount" slider
