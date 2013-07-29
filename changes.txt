@@ -1,4 +1,5 @@
 # 1.0.0-0 7/29/13
+7/29/13 add google-analytics.js to html and package.json
 7/29/13 add meta tags that are in chipper.sim.html
 7/29/13 use English string as default <title>
 7/29/13 pull change to scenery.SVGLayer that fixes beers-law-lab#20
