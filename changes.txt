@@ -1,3 +1,6 @@
+# 1.0.0-0 7/29/13
+7/29/13 use English string as default <title>
+7/29/13 pull change to scenery.SVGLayer that fixes beers-law-lab#20
 # 0.0.0-9 7/26/13
 7/26/13 fix up package.json to work with build.sh changes (chipper#12)
 # 0.0.0-8 7/25/13
