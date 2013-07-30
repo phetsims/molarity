@@ -17,6 +17,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var Range = require( 'DOT/Range' );
+  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
   var Util = require( 'DOT/Util' );
 
@@ -28,66 +29,38 @@ define( function( require ) {
     var thisNode = this;
     Node.call( thisNode, { pickable: false } );
 
-    var middleNode = new Path();
-    var topNode = new Path( { lineWidth: 0.5, stroke: new Color( 0, 0, 0, 85 ) } );
-    var bottomNode = new Path();
+    var middleNode = new Rectangle( 0, 0, 1, 1 ); // middle shape will change with volume
+    var endShape = Shape.ellipse( cylinderSize.width / 2, 0, cylinderSize.width / 2, cylinderEndHeight / 2 );
+    var topNode = new Path( { shape: endShape, lineWidth: 0.5, stroke: new Color( 0, 0, 0, 85 ) } );
+    var bottomNode = new Path( { shape: endShape } );
 
     thisNode.addChild( bottomNode );
     thisNode.addChild( middleNode );
     thisNode.addChild( topNode );
-
-    // Creates the shape of the cylinder's top, so that the top can be stroked separately.
-    var createTopShape = function( height ) {
-      if ( height === 0 ) {
-        return null;
-      }
-      else {
-        return Shape.ellipse( cylinderSize.width / 2, cylinderSize.height - height, cylinderSize.width / 2, cylinderEndHeight / 2 );
-      }
-    };
-
-    // Creates the rectangle middle part of the cylinder.
-    var createMiddleShape = function( height ) {
-      if ( height === 0 ) {
-        return null;
-      }
-      else {
-        return Shape.rect( 0, cylinderSize.height - height, cylinderSize.width, height );
-      }
-    };
-
-    // Creates the bottom of the cylinder.
-    var createBottomShape = function( height ) {
-      if ( height === 0 ) {
-        return null;
-      }
-      else {
-        return Shape.ellipse( cylinderSize.width / 2, cylinderSize.height, cylinderSize.width / 2, cylinderEndHeight / 2 );
-      }
-    };
+    if ( DEBUG_ORIGIN ) {
+      thisNode.addChild( new Circle( { radius: 3, fill: 'red' } ) );
+    }
 
     // sync with model
-    var update = function() {
-
-      // color
+    var updateColor = function() {
       var color = solution.getColor();
       topNode.fill = color;
       middleNode.fill = color;
       bottomNode.fill = color;
-
-      // shape
-      var height = Util.linear( 0, maxVolume, 0, cylinderSize.height, solution.volume );
-      topNode.setShape( createTopShape( height ) );
-      middleNode.setShape( createMiddleShape( height ) );
-      bottomNode.setShape( createBottomShape( height ) );
     };
-    solution.concentrationProperty.link( update );
-    solution.soluteProperty.link( update );
-    solution.volumeProperty.link( update );
+    solution.concentrationProperty.link( updateColor );
+    solution.soluteProperty.link( updateColor );
 
-    if ( DEBUG_ORIGIN ) {
-      thisNode.addChild( new Circle( { radius: 3, fill: 'red' } ) );
-    }
+    var updateShape = function() {
+      var height = Util.linear( 0, maxVolume, 0, cylinderSize.height, solution.volume );
+      topNode.visible = bottomNode.visible = middleNode.visible = ( height > 0 );
+      if ( height > 0 ) {
+        middleNode.setRect( 0, cylinderSize.height - height, cylinderSize.width, height );
+        topNode.y = cylinderSize.height - height;
+        bottomNode.y = cylinderSize.height;
+      }
+    };
+    solution.volumeProperty.link( updateShape );
   }
 
   inherit( Node, SolutionNode );
