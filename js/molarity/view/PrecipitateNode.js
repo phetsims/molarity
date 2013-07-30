@@ -11,15 +11,16 @@ define( function( require ) {
   'use strict';
 
   // imports
+  var assert = require( 'ASSERT/assert' )( 'molarity' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var PrecipitateParticleNode = require( 'molarity/view/PrecipitateParticleNode' );
+  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Vector2 = require( 'DOT/Vector2' );
 
   // constants
-  var SHOW_PARTICLE_COUNT = false; // for debugging
+  var DEBUG_OUTPUT = false;
   var PARTICLE_LENGTH = 5; // particles are square, this is the length of one side
   var PARTICLES_PER_MOLE = 200; // number of particles to show per mol of saturation
 
@@ -27,8 +28,9 @@ define( function( require ) {
    * @param {Solution} solution
    * @param {Dimension2} cylinderSize
    * @param {Number} cylinderEndHeight
+   * @param {Number} maxPrecipitateAmount moles
    */
-  function PrecipitateNode( solution, cylinderSize, cylinderEndHeight ) {
+  function PrecipitateNode( solution, cylinderSize, cylinderEndHeight, maxPrecipitateAmount ) {
 
     var thisNode = this;
     Node.call( thisNode, { pickable: false } );
@@ -40,80 +42,53 @@ define( function( require ) {
     var particlesParent = new Node();
     thisNode.addChild( particlesParent );
 
-    var particleCountNode = new Text( '?', { font: new PhetFont( 12 ), fill: 'red' } );
-
-    if ( SHOW_PARTICLE_COUNT ) {
-      thisNode.addChild( particleCountNode );
+    // Create the max number of particles that we'll need.
+    var maxParticles = getNumberOfParticles( maxPrecipitateAmount );
+    var particleNodes = [];
+    for ( var i = 0; i < maxParticles; i++ ) {
+      particleNodes[i] = new Rectangle( 0, 0, PARTICLE_LENGTH, PARTICLE_LENGTH, { rotation: Math.random() * 2 * Math.PI } );
+      particlesParent.addChild( particleNodes[i] );
+      particleNodes[i].translation = getRandomOffset( particleNodes[i], thisNode.cylinderSize, thisNode.cylinderEndHeight );
+    }
+    if ( DEBUG_OUTPUT ) {
+      console.log( "PrecipitateNode: " + maxPrecipitateAmount.toFixed( 4 ) + ' mol => ' + maxParticles + ' particles (max)' );
     }
 
-    var removeAllParticles = function() {
-      particlesParent.removeAllChildren();
-    };
-
-    // Updates the number of particles to match the saturation of the solution.
-    var updateParticles = function() {
-      var particleNode;
-      var numberOfParticles = getNumberOfParticles( solution );
-      if ( numberOfParticles === 0 ) {
-        removeAllParticles();
+    // Change color of all particles to match the solute.
+    solution.soluteProperty.link( function( solute ) {
+      var fill = solute.particleColor;
+      var stroke = solute.particleColor.darkerColor();
+      for ( var j = 0; j < particleNodes.length; j++ ) {
+        particleNodes[j].fill = fill;
+        particleNodes[j].stroke = stroke;
       }
-      else if ( numberOfParticles > particlesParent.getChildrenCount() ) {
-        // add particles
-        var numberToAdd = numberOfParticles - particlesParent.getChildrenCount();
-        for ( var i = 0; i < numberToAdd; i++ ) {
-          particleNode = new PrecipitateParticleNode( PARTICLE_LENGTH, solution.solute.particleColor );
-          particlesParent.addChild( particleNode );
-          particleNode.translation = getRandomOffset( particleNode, thisNode.cylinderSize, thisNode.cylinderEndHeight );
-        }
-      }
-      else {
-        // remove particles
-        var numberToRemove = particlesParent.getChildrenCount() - numberOfParticles;
-        while ( numberToRemove > 0 ) {
-          particlesParent.removeChild( particlesParent.getChildAt( particlesParent.getChildrenCount() - 1 ) );
-          numberToRemove--;
-        }
-      }
-    };
-
-    // Updates the debug output to show how we're mapping saturation to number of particles.
-    var updateValue = function() {
-      var precipitateAmount = solution.precipitateAmount;
-      var numberOfParticles = getNumberOfParticles( solution );
-      // developer only, no i18n required
-      particleCountNode.text = 'dev: precipitate = ' + precipitateAmount.toFixed( 4 ) + ' mol, ' + numberOfParticles + ' particles';
-    };
-
-    // when the saturation changes, update the number of precipitate particles
-    solution.precipitateAmountProperty.link( function() {
-      updateParticles();
-      updateValue();
     } );
 
-    // when the solute changes, remove all particles and create new particles for the solute
-    solution.soluteProperty.link( function() {
-      removeAllParticles();
-      updateParticles();
-      updateValue();
+    // Make particles visible to match the amount of precipitate.
+    solution.precipitateAmountProperty.link( function( precipitateAmount ) {
+      var numberOfParticles = getNumberOfParticles( precipitateAmount );
+      assert && assert( numberOfParticles <= particleNodes.length );
+      for ( var i = 0; i < particleNodes.length; i++ ) {
+        particleNodes[i].visible = ( i < numberOfParticles );
+      }
+      if ( DEBUG_OUTPUT ) {
+        console.log( 'PrecipitateNode: ' + precipitateAmount.toFixed( 4 ) + ' mol => ' + numberOfParticles + ' particles' );
+      }
     } );
-
-    // layout after value has been set
-    particleCountNode.centerX = cylinderSize.width / 2;
-    particleCountNode.top = cylinderSize.height + cylinderEndHeight + 5;
   }
 
   inherit( Node, PrecipitateNode );
 
-  // Gets the number of particles used to represent the solution's saturation.
-  var getNumberOfParticles = function( solution ) {
-    var numberOfParticles = Math.floor( PARTICLES_PER_MOLE * solution.precipitateAmount );
-    if ( numberOfParticles === 0 && solution.precipitateAmount > 0 ) {
+  // Gets the number of particles that corresponds to some precipitate amount.
+  var getNumberOfParticles = function( precipitateAmount ) {
+    var numberOfParticles = Math.floor( PARTICLES_PER_MOLE * precipitateAmount );
+    if ( numberOfParticles === 0 && precipitateAmount > 0 ) {
       numberOfParticles = 1;
     }
     return numberOfParticles;
   };
 
-  // Gets a random offset for a particle on the bottom of the beaker.
+  // Gets a random offset for a particle on the bottom of the beaker (which is an ellipse).
   var getRandomOffset = function( particleNode, cylinderSize, cylinderEndHeight ) {
     var xMargin = particleNode.width;
     var yMargin = particleNode.height;

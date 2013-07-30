@@ -48,7 +48,7 @@ define( function( require ) {
     var beakerNode = new BeakerNode( model.solution, MolarityModel.SOLUTION_VOLUME_RANGE.max, valuesVisibleProperty );
     var cylinderSize = beakerNode.getCylinderSize();
     var solutionNode = new SolutionNode( cylinderSize, beakerNode.getCylinderEndHeight(), model.solution, MolarityModel.SOLUTION_VOLUME_RANGE.max );
-    var precipitateNode = new PrecipitateNode( model.solution, cylinderSize, beakerNode.getCylinderEndHeight() );
+    var precipitateNode = new PrecipitateNode( model.solution, cylinderSize, beakerNode.getCylinderEndHeight(), model.maxPrecipitateAmount );
     var saturatedIndicator = new SaturatedIndicator( model.solution );
 
     // solute control

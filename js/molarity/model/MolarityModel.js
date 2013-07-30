@@ -36,6 +36,12 @@ define( function( require ) {
     ];
 
     thisModel.solution = new Solution( Water, thisModel.solutes[0], MolarityModel.SOLUTE_AMOUNT_RANGE.defaultValue, MolarityModel.SOLUTION_VOLUME_RANGE.defaultValue );
+
+    // compute the max amount of precipitate, used by the view to create the precipitate particles
+    var minSaturateConcentration = _.min( thisModel.solutes, function( solute ) {
+      return solute.saturatedConcentration;
+    } ).saturatedConcentration;
+    thisModel.maxPrecipitateAmount = Solution.computePrecipitateAmount( MolarityModel.SOLUTION_VOLUME_RANGE.min, MolarityModel.SOLUTE_AMOUNT_RANGE.max, minSaturateConcentration );
   }
 
   // public constants
