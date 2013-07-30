@@ -20,6 +20,8 @@ define( function( require ) {
 
   // constants
   var SHOW_PARTICLE_COUNT = false; // for debugging
+  var PARTICLE_LENGTH = 5; // particles are square, this is the length of one side
+  var PARTICLES_PER_MOLE = 200; // number of particles to show per mol of saturation
 
   /**
    * @param {Solution} solution
@@ -59,7 +61,7 @@ define( function( require ) {
         // add particles
         var numberToAdd = numberOfParticles - particlesParent.getChildrenCount();
         for ( var i = 0; i < numberToAdd; i++ ) {
-          particleNode = new PrecipitateParticleNode( solution.solute.particleLength, solution.solute.particleColor );
+          particleNode = new PrecipitateParticleNode( PARTICLE_LENGTH, solution.solute.particleColor );
           particlesParent.addChild( particleNode );
           particleNode.translation = getRandomOffset( particleNode, thisNode.cylinderSize, thisNode.cylinderEndHeight );
         }
@@ -104,7 +106,7 @@ define( function( require ) {
 
   // Gets the number of particles used to represent the solution's saturation.
   var getNumberOfParticles = function( solution ) {
-    var numberOfParticles = Math.floor( solution.solute.particlesPerMole * solution.precipitateAmount );
+    var numberOfParticles = Math.floor( PARTICLES_PER_MOLE * solution.precipitateAmount );
     if ( numberOfParticles === 0 && solution.precipitateAmount > 0 ) {
       numberOfParticles = 1;
     }
