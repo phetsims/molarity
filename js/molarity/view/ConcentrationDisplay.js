@@ -55,7 +55,20 @@ define( function( require ) {
 
     // nodes
     var valueNode = new Text( '?', { font: VALUE_FONT } );
-    thisNode.arrowNode = new Path( { stroke: 'black' } );
+    var x = barSize.width;
+    var y = 0;
+    var arrowShape = new Shape()
+      .moveTo( x, y )
+      .lineTo( x + ARROW_HEAD_HEIGHT, y - (ARROW_HEAD_WIDTH / 2) )
+      .lineTo( x + ARROW_HEAD_HEIGHT, y - (ARROW_TAIL_WIDTH / 2) )
+      .lineTo( x + ARROW_LENGTH, y - (ARROW_TAIL_WIDTH / 2) )
+      .lineTo( x + ARROW_LENGTH, y + (ARROW_TAIL_WIDTH / 2) )
+      .lineTo( x + ARROW_HEAD_HEIGHT, y + (ARROW_TAIL_WIDTH / 2) )
+      .lineTo( x + ARROW_HEAD_HEIGHT, y + (ARROW_HEAD_WIDTH / 2) )
+      .close();
+    thisNode.arrowNode = new Path( { shape: arrowShape, stroke: 'black' } );
+
+    // rendering order
     this.addChild( valueNode );
     this.addChild( thisNode.arrowNode );
 
@@ -76,18 +89,7 @@ define( function( require ) {
     var update = function( concentration ) {
 
       // update the arrow
-      var x = barSize.width;
-      var y = barSize.height - Util.linear( concentrationRange.min, concentrationRange.max, 0, barSize.height, concentration );
-      var arrowShape = new Shape()
-        .moveTo( x, y )
-        .lineTo( x + ARROW_HEAD_HEIGHT, y - (ARROW_HEAD_WIDTH / 2) )
-        .lineTo( x + ARROW_HEAD_HEIGHT, y - (ARROW_TAIL_WIDTH / 2) )
-        .lineTo( x + ARROW_LENGTH, y - (ARROW_TAIL_WIDTH / 2) )
-        .lineTo( x + ARROW_LENGTH, y + (ARROW_TAIL_WIDTH / 2) )
-        .lineTo( x + ARROW_HEAD_HEIGHT, y + (ARROW_TAIL_WIDTH / 2) )
-        .lineTo( x + ARROW_HEAD_HEIGHT, y + (ARROW_HEAD_WIDTH / 2) )
-        .close();
-      thisNode.arrowNode.setShape( arrowShape );
+      thisNode.arrowNode.y = barSize.height - Util.linear( concentrationRange.min, concentrationRange.max, 0, barSize.height, concentration );
       thisNode.arrowNode.fill = solution.getColor();
 
       // update the value
