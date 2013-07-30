@@ -1,3 +1,6 @@
+7/30/13 clean up PrecipitateParticleNode, in preparation for performance optimization, #4
+7/30/13 remove dependency of PrecipiateNode on Solute, in preparation for performance optimization, #4
+7/30/13 change Solute.particleSize to Solute.particleLength, since particles are square
 7/30/13 make particleColor an option for Solute, not a constructor param
 7/30/13 improve performance of concentration display by drawing arrow once and changing its y position, #4
 7/30/13 improve performance of drawing solution by making more efficient use of shapes, #4

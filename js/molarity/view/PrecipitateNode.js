@@ -51,7 +51,7 @@ define( function( require ) {
     // Updates the number of particles to match the saturation of the solution.
     var updateParticles = function() {
       var particleNode;
-      var numberOfParticles = thisNode.getNumberOfParticles();
+      var numberOfParticles = getNumberOfParticles( solution );
       if ( numberOfParticles === 0 ) {
         removeAllParticles();
       }
@@ -59,9 +59,9 @@ define( function( require ) {
         // add particles
         var numberToAdd = numberOfParticles - particlesParent.getChildrenCount();
         for ( var i = 0; i < numberToAdd; i++ ) {
-          particleNode = new PrecipitateParticleNode( solution.solute );
+          particleNode = new PrecipitateParticleNode( solution.solute.particleLength, solution.solute.particleColor );
           particlesParent.addChild( particleNode );
-          particleNode.translation = thisNode.getRandomOffset( particleNode );
+          particleNode.translation = getRandomOffset( particleNode, thisNode.cylinderSize, thisNode.cylinderEndHeight );
         }
       }
       else {
@@ -77,7 +77,7 @@ define( function( require ) {
     // Updates the debug output to show how we're mapping saturation to number of particles.
     var updateValue = function() {
       var precipitateAmount = solution.precipitateAmount;
-      var numberOfParticles = thisNode.getNumberOfParticles();
+      var numberOfParticles = getNumberOfParticles( solution );
       // developer only, no i18n required
       particleCountNode.text = 'dev: precipitate = ' + precipitateAmount.toFixed( 4 ) + ' mol, ' + numberOfParticles + ' particles';
     };
@@ -100,31 +100,30 @@ define( function( require ) {
     particleCountNode.top = cylinderSize.height + cylinderEndHeight + 5;
   }
 
-  inherit( Node, PrecipitateNode, {
+  inherit( Node, PrecipitateNode );
 
-    // Gets the number of particles used to represent the solution's saturation.
-    getNumberOfParticles: function() {
-      var numberOfParticles = Math.floor( this.solution.solute.particlesPerMole * this.solution.precipitateAmount );
-      if ( numberOfParticles === 0 && this.solution.precipitateAmount > 0 ) {
-        numberOfParticles = 1;
-      }
-      return numberOfParticles;
-    },
-
-    // Gets a random offset for a particle on the bottom of the beaker.
-    getRandomOffset: function( particleNode ) {
-      var xMargin = particleNode.width;
-      var yMargin = particleNode.height;
-      var angle = Math.random() * 2 * Math.PI;
-      var p = PrecipitateNode.getRandomPointInsideEllipse( angle, this.cylinderSize.width - ( 2 * xMargin ), this.cylinderEndHeight - ( 2 * yMargin ) );
-      var x = ( this.cylinderSize.width / 2 ) + p.x;
-      var y = this.cylinderSize.height - p.y - ( yMargin / 2 );
-      return new Vector2( x, y );
+  // Gets the number of particles used to represent the solution's saturation.
+  var getNumberOfParticles = function( solution ) {
+    var numberOfParticles = Math.floor( solution.solute.particlesPerMole * solution.precipitateAmount );
+    if ( numberOfParticles === 0 && solution.precipitateAmount > 0 ) {
+      numberOfParticles = 1;
     }
-  } );
+    return numberOfParticles;
+  };
+
+  // Gets a random offset for a particle on the bottom of the beaker.
+  var getRandomOffset = function( particleNode, cylinderSize, cylinderEndHeight ) {
+    var xMargin = particleNode.width;
+    var yMargin = particleNode.height;
+    var angle = Math.random() * 2 * Math.PI;
+    var p = getRandomPointInsideEllipse( angle, cylinderSize.width - ( 2 * xMargin ), cylinderEndHeight - ( 2 * yMargin ) );
+    var x = ( cylinderSize.width / 2 ) + p.x;
+    var y = cylinderSize.height - p.y - ( yMargin / 2 );
+    return new Vector2( x, y );
+  };
 
   // Gets a random point inside an ellipse, with origin at its center.
-  PrecipitateNode.getRandomPointInsideEllipse = function( theta, width, height ) {
+  var getRandomPointInsideEllipse = function( theta, width, height ) {
 
     // Generate a random point inside a circle of radius 1.
     // Since circle area is a function of radius^2, taking sqrt provides a uniform distribution.

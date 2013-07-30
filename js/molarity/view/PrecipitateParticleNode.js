@@ -14,12 +14,12 @@ define( function( require ) {
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
 
   /**
-   * @param {Solute} solute
+   * @param {Number} length particles are square, this is the length of one side
+   * @param {Color} color
    * @constructor
    */
-  function PrecipitateParticleNode( solute ) {
-    Rectangle.call( this, 0, 0, solute.particleSize, solute.particleSize,
-      { fill: solute.particleColor, stroke: solute.particleColor.darkerColor() } );
+  function PrecipitateParticleNode( length, color ) {
+    Rectangle.call( this, 0, 0, length, length, { fill: color, stroke: color.darkerColor() } );
     this.rotate( Math.random() * 2 * Math.PI );
   }
 

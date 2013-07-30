@@ -23,7 +23,7 @@ define( function( require ) {
 
     options = _.extend( {
       particleColor: maxColor, // the solute's color as a particle
-      particleSize: 5,    // particles are square, this is the length of one side
+      particleLength: 5,    // particles are square, this is the length of one side
       particlesPerMole: 200 // number of particles to show per mol of saturation
     }, options );
 
@@ -33,7 +33,7 @@ define( function( require ) {
     this.minColor = minColor;
     this.maxColor = maxColor;
     this.particleColor = options.particleColor;
-    this.particleSize = options.particleSize;
+    this.particleLength = options.particleLength;
     this.particlesPerMole = options.particlesPerMole;
   }
 
