@@ -48,20 +48,20 @@ define( function( require ) {
     for ( var i = 0; i < maxParticles; i++ ) {
       particleNodes[i] = new Rectangle( 0, 0, PARTICLE_LENGTH, PARTICLE_LENGTH, { rotation: Math.random() * 2 * Math.PI } );
       particlesParent.addChild( particleNodes[i] );
-      particleNodes[i].translation = getRandomOffset( particleNodes[i], thisNode.cylinderSize, thisNode.cylinderEndHeight );
     }
     if ( DEBUG_OUTPUT ) {
       console.log( "PrecipitateNode: " + maxPrecipitateAmount.toFixed( 4 ) + ' mol => ' + maxParticles + ' particles (max)' );
     }
 
-    // Change color of all particles to match the solute.
+    // Change color of all particles to match the solute, change position so it doesn't look predictable
     solution.soluteProperty.link( function( solute ) {
       var fill = solute.particleColor;
       var stroke = solute.particleColor.darkerColor();
-      for ( var j = 0; j < particleNodes.length; j++ ) {
-        particleNodes[j].fill = fill;
-        particleNodes[j].stroke = stroke;
-      }
+      particleNodes.forEach( function( node ) {
+        node.fill = fill;
+        node.stroke = stroke;
+        node.translation = getRandomOffset( node.width, node.height, thisNode.cylinderSize, thisNode.cylinderEndHeight );
+      } );
     } );
 
     // Make particles visible to match the amount of precipitate.
@@ -89,9 +89,9 @@ define( function( require ) {
   };
 
   // Gets a random offset for a particle on the bottom of the beaker (which is an ellipse).
-  var getRandomOffset = function( particleNode, cylinderSize, cylinderEndHeight ) {
-    var xMargin = particleNode.width;
-    var yMargin = particleNode.height;
+  var getRandomOffset = function( particleWidth, particleHeight, cylinderSize, cylinderEndHeight ) {
+    var xMargin = particleWidth;
+    var yMargin = particleHeight;
     var angle = Math.random() * 2 * Math.PI;
     var p = getRandomPointInsideEllipse( angle, cylinderSize.width - ( 2 * xMargin ), cylinderEndHeight - ( 2 * yMargin ) );
     var x = ( cylinderSize.width / 2 ) + p.x;

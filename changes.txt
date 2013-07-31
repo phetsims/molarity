@@ -1,3 +1,4 @@
+7/30/13 randomize the location of particles whenever the solute is changed, #4
 7/30/13 optimize performance of PrecipitateNode by creating one set of particles whose color and visibility is changed to match solute and precipitate amount, #4
 7/30/13 convert particle size and number of particles-per-mole from properties of Solute to constants in PrecipitateNode, in preparation for performance optimization, #4
 7/30/13 clean up PrecipitateNode, in preparation for performance optimization, #4
