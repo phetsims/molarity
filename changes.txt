@@ -1,3 +1,4 @@
+# 1.0.0-0 8/1/13
 # 0.0.0-10 7/30/13
 7/30/13 randomize the location of particles whenever the solute is changed, #4
 7/30/13 optimize performance of PrecipitateNode by creating one set of particles whose color and visibility is changed to match solute and precipitate amount, #4
