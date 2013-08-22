@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * Model container for the 'Molarity' tab.
+ * Model container for the 'Molarity' screen.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */

@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * The 'Molarity' tab. Conforms to the contract specified in joist/Tab
+ * The 'Molarity' screen. Conforms to the contract specified in joist/Screen.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -15,7 +15,7 @@ define( function( require ) {
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Vector2 = require( 'DOT/Vector2' );
 
-  function MolarityTab() {
+  function MolarityScreen() {
 
     this.name = MStrings.molarity;
     this.backgroundColor = 'white';
@@ -29,5 +29,5 @@ define( function( require ) {
     };
   }
 
-  return MolarityTab;
+  return MolarityScreen;
 } );

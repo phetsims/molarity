@@ -1,7 +1,7 @@
 // Copyright 2002-2013, University of Colorado Boulder
 
 /**
- * View for the 'Molarity' tab.
+ * View for the 'Molarity' screen.
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
@@ -22,10 +22,10 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
   var ResetAllButton = require( 'molarity/view/ResetAllButton' );
   var SaturatedIndicator = require( 'molarity/view/SaturatedIndicator' );
+  var ScreenView = require( 'JOIST/ScreenView' );
   var SoluteComboBox = require( 'molarity/view/SoluteComboBox' );
   var SolutionNode = require( 'molarity/view/SolutionNode' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  var TabView = require( 'JOIST/TabView' );
   var Text = require( 'SCENERY/nodes/Text' );
   var VerticalSlider = require( 'molarity/view/VerticalSlider' );
 
@@ -40,7 +40,7 @@ define( function( require ) {
   function MolarityView( model ) {
 
     var thisView = this;
-    TabView.call( thisView, { renderer: 'svg' } );
+    ScreenView.call( thisView, { renderer: 'svg' } );
 
     var valuesVisibleProperty = new Property( false );
 
@@ -139,7 +139,7 @@ define( function( require ) {
     }
   }
 
-  inherit( TabView, MolarityView, { layoutBounds: new Bounds2( 0, 0, 1100, 700 ) } );
+  inherit( ScreenView, MolarityView, { layoutBounds: new Bounds2( 0, 0, 1100, 700 ) } );
 
   return MolarityView;
 } );
