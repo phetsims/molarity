@@ -21,7 +21,7 @@ define( function( require ) {
 
   // constants
   var LABEL_SIZE = new Dimension2( 180, 80 );
-  var LABEL_FONT = new PhetFont( 28, 'bold' );
+  var LABEL_FONT = new PhetFont( { size: 28, weight: 'bold' } );
 
   /**
    * @param {Solution} solution

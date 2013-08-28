@@ -29,7 +29,7 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
 
   // constants
-  var TITLE_FONT = new PhetFont( 24, 'bold' );
+  var TITLE_FONT = new PhetFont( { size: 24, weight: 'bold' } );
   var SUBTITLE_FONT = new PhetFont( 22 );
   var RANGE_FONT = new PhetFont( 20 );
   var VALUE_FONT = new PhetFont( 20 );
