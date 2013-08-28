@@ -23,6 +23,7 @@ define( function( require ) {
   var ResetAllButton = require( 'molarity/view/ResetAllButton' );
   var SaturatedIndicator = require( 'molarity/view/SaturatedIndicator' );
   var ScreenView = require( 'JOIST/ScreenView' );
+  var Shape = require( 'KITE/Shape' );
   var SoluteComboBox = require( 'molarity/view/SoluteComboBox' );
   var SolutionNode = require( 'molarity/view/SolutionNode' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
@@ -83,6 +84,7 @@ define( function( require ) {
 
     // Show Values check box
     var showValuesCheckBox = new CheckBox( new Text( MStrings.showValues, { font: new PhetFont( 22 ) } ), valuesVisibleProperty );
+    showValuesCheckBox.touchArea = Shape.rectangle( showValuesCheckBox.left, showValuesCheckBox.top - 15, showValuesCheckBox.width, showValuesCheckBox.height + 30 );
 
     // Reset All button
     var resetAllButton = new ResetAllButton( function() {
