@@ -83,7 +83,7 @@ define( function( require ) {
     var concentrationDisplay = new ConcentrationDisplay( model.solution, MolarityModel.CONCENTRATION_DISPLAY_RANGE, valuesVisibleProperty, concentrationBarSize );
 
     // Show Values check box
-    var showValuesCheckBox = new CheckBox( new Text( MStrings.showValues, { font: new PhetFont( 22 ) } ), valuesVisibleProperty );
+    var showValuesCheckBox = CheckBox.createTextCheckBox( MStrings.showValues, { font: new PhetFont( 22 ) }, valuesVisibleProperty );
     showValuesCheckBox.touchArea = Shape.rectangle( showValuesCheckBox.left, showValuesCheckBox.top - 15, showValuesCheckBox.width, showValuesCheckBox.height + 30 );
 
     // Reset All button
