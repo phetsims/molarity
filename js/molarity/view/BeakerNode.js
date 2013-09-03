@@ -60,7 +60,7 @@ define( function( require ) {
     var bottomShape = new Shape().ellipticalArc( cylinderSize.width / 2, cylinderSize.height,
       cylinderSize.width / 2, cylinderEndHeight / 2,
       0, Util.toRadians( 0 ), Util.toRadians( 180 ), true );
-    var bottomNode = new Path( { shape: bottomShape, stroke: new Color( 150, 150, 150, 100 ), lineWidth: 2 } );
+    var bottomNode = new Path( bottomShape, { stroke: new Color( 150, 150, 150, 100 ), lineWidth: 2 } );
 
     // label on the beaker
     var labelNode = new BeakerLabelNode( solution );
@@ -89,7 +89,7 @@ define( function( require ) {
 
         // major tick mark
         tickMarkShape = new Shape().ellipticalArc( cylinderSize.width / 2, y, cylinderSize.width / 2, cylinderEndHeight / 2, 0, Util.toRadians( 165 ), Util.toRadians( 135 ), true );
-        tickMarkNode = new Path( { shape: tickMarkShape, stroke: TICK_COLOR, lineWidth: 2 } );
+        tickMarkNode = new Path( tickMarkShape, { stroke: TICK_COLOR, lineWidth: 2 } );
         tickMarkNodes.addChild( tickMarkNode );
 
         // major tick label
@@ -105,7 +105,7 @@ define( function( require ) {
       else {
         // minor tick mark, no label
         tickMarkShape = new Shape().ellipticalArc( cylinderSize.width / 2, y, cylinderSize.width / 2, cylinderEndHeight / 2, 0, Util.toRadians( 165 ), Util.toRadians( 150 ), true );
-        tickMarkNode = new Path( { shape: tickMarkShape, stroke: TICK_COLOR, lineWidth: 2 } );
+        tickMarkNode = new Path( tickMarkShape, { stroke: TICK_COLOR, lineWidth: 2 } );
         tickMarkNodes.addChild( tickMarkNode );
       }
     }

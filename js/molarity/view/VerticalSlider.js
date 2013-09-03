@@ -94,8 +94,8 @@ define( function( require ) {
     // nodes
     var bodyNode = new Rectangle( -size.width / 2, -size.height / 2, size.width, size.height, 10, 10,
       { fill: THUMB_NORMAL_COLOR, stroke: THUMB_STROKE_COLOR, lineWidth: 1 } );
-    var centerLineNode = new Path( { shape: Shape.lineSegment( -( size.width / 2 ) + 3, 0, ( size.width / 2 ) - 3, 0 ),
-      stroke: THUMB_CENTER_LINE_COLOR } );
+    var centerLineNode = new Path( Shape.lineSegment( -( size.width / 2 ) + 3, 0, ( size.width / 2 ) - 3, 0 ),
+      { stroke: THUMB_CENTER_LINE_COLOR } );
 
     // rendering order
     thisNode.addChild( bodyNode );
