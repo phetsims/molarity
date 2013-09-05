@@ -7,7 +7,7 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( function() {
   'use strict';
 
   /**
@@ -22,7 +22,7 @@ define( function( require ) {
   function Solute( name, formula, saturatedConcentration, minColor, maxColor, options ) {
 
     options = _.extend( {
-      particleColor: maxColor, // the solute's color as a particle
+      particleColor: maxColor // the solute's color as a particle
     }, options );
 
     this.name = name;
