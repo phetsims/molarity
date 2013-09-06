@@ -8,7 +8,7 @@ define( function( require ) {
   'use strict';
 
   // imports
-  var imageLoader = require( 'molarity/MImages' );
+  var imageLoader = require( 'MOLARITY/molarity/MImages' );
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
   var PushButton = require( 'SUN/PushButton' );
