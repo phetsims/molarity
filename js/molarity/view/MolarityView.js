@@ -9,26 +9,26 @@ define( function( require ) {
   'use strict';
 
   // imports
-  var BeakerNode = require( 'molarity/view/BeakerNode' );
+  var BeakerNode = require( 'MOLARITY/molarity/view/BeakerNode' );
   var Bounds2 = require( 'DOT/Bounds2' );
   var CheckBox = require( 'SUN/CheckBox' );
-  var ConcentrationDisplay = require( 'molarity/view/ConcentrationDisplay' );
+  var ConcentrationDisplay = require( 'MOLARITY/molarity/view/ConcentrationDisplay' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var MolarityModel = require( 'molarity/model/MolarityModel' );
-  var MStrings = require( 'molarity/MStrings' );
+  var MolarityModel = require( 'MOLARITY/molarity/model/MolarityModel' );
+  var MStrings = require( 'MOLARITY/molarity/MStrings' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var PrecipitateNode = require( 'molarity/view/PrecipitateNode' );
+  var PrecipitateNode = require( 'MOLARITY/molarity/view/PrecipitateNode' );
   var Property = require( 'AXON/Property' );
-  var ResetAllButton = require( 'molarity/view/ResetAllButton' );
-  var SaturatedIndicator = require( 'molarity/view/SaturatedIndicator' );
+  var ResetAllButton = require( 'MOLARITY/molarity/view/ResetAllButton' );
+  var SaturatedIndicator = require( 'MOLARITY/molarity/view/SaturatedIndicator' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var Shape = require( 'KITE/Shape' );
-  var SoluteComboBox = require( 'molarity/view/SoluteComboBox' );
-  var SolutionNode = require( 'molarity/view/SolutionNode' );
+  var SoluteComboBox = require( 'MOLARITY/molarity/view/SoluteComboBox' );
+  var SolutionNode = require( 'MOLARITY/molarity/view/SolutionNode' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Text = require( 'SCENERY/nodes/Text' );
-  var VerticalSlider = require( 'molarity/view/VerticalSlider' );
+  var VerticalSlider = require( 'MOLARITY/molarity/view/VerticalSlider' );
 
   // constants
   var SOLUTE_AMOUNT_DECIMAL_PLACES = 2;

@@ -9,9 +9,9 @@ define( function( require ) {
   'use strict';
 
   // imports
-  var MolarityModel = require( 'molarity/model/MolarityModel' );
-  var MolarityView = require( 'molarity/view/MolarityView' );
-  var MStrings = require( 'molarity/MStrings' );
+  var MolarityModel = require( 'MOLARITY/molarity/model/MolarityModel' );
+  var MolarityView = require( 'MOLARITY/molarity/view/MolarityView' );
+  var MStrings = require( 'MOLARITY/molarity/MStrings' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Vector2 = require( 'DOT/Vector2' );
 

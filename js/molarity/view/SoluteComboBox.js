@@ -12,7 +12,7 @@ define( function( require ) {
   var assert = require( 'ASSERT/assert' )( 'beers-law-lab' );
   var ComboBox = require( 'SUN/ComboBox' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var MStrings = require( 'molarity/MStrings' );
+  var MStrings = require( 'MOLARITY/molarity/MStrings' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );

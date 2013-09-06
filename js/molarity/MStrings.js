@@ -8,5 +8,5 @@
  */
 define( function( require ) {
   'use strict';
-  return require( 'i18n!../../nls/molarity-strings' );
+  return require( 'i18n!MOLARITY/../nls/molarity-strings' );
 } );

@@ -10,7 +10,7 @@ define( function( require ) {
 
   // imports
   var toSubscript = require( 'NITROGLYCERIN/ChemUtils' ).toSubscript;
-  var MStrings = require( 'molarity/MStrings' );
+  var MStrings = require( 'MOLARITY/molarity/MStrings' );
 
   return {
     COBALT_II_NITRATE: toSubscript( 'Co(NO3)2' ),

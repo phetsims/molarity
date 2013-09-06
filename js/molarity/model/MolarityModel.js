@@ -11,12 +11,12 @@ define( function( require ) {
   // imports
   var assert = require( 'ASSERT/assert' )( 'molarity' );
   var Color = require( 'SCENERY/util/Color' );
-  var MStrings = require( 'molarity/MStrings' );
-  var MSymbols = require( 'molarity/MSymbols' );
+  var MStrings = require( 'MOLARITY/molarity/MStrings' );
+  var MSymbols = require( 'MOLARITY/molarity/MSymbols' );
   var Range = require( 'DOT/Range' );
-  var Solute = require( 'molarity/model/Solute' );
-  var Solution = require( 'molarity/model/Solution' );
-  var Water = require( 'molarity/model/Water' );
+  var Solute = require( 'MOLARITY/molarity/model/Solute' );
+  var Solution = require( 'MOLARITY/molarity/model/Solution' );
+  var Water = require( 'MOLARITY/molarity/model/Water' );
 
   function MolarityModel() {
     assert && assert( MolarityModel.SOLUTION_VOLUME_RANGE.min > 0 ); // model doesn't work for zero volume

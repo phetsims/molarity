@@ -11,13 +11,13 @@ define( function( require ) {
   'use strict';
 
   // imports
-  var BeakerImageNode = require( 'molarity/view/BeakerImageNode' );
-  var BeakerLabelNode = require( 'molarity/view/BeakerLabelNode' );
+  var BeakerImageNode = require( 'MOLARITY/molarity/view/BeakerImageNode' );
+  var BeakerLabelNode = require( 'MOLARITY/molarity/view/BeakerLabelNode' );
   var Circle = require( 'SCENERY/nodes/Circle' );
   var Color = require( 'SCENERY/util/Color' );
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var MStrings = require( 'molarity/MStrings' );
+  var MStrings = require( 'MOLARITY/molarity/MStrings' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );

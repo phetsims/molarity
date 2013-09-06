@@ -12,10 +12,10 @@ define( function( require ) {
   // imports
   var Color = require( 'SCENERY/util/Color' );
   var Dimension2 = require( 'DOT/Dimension2' );
-  var DualLabelNode = require( 'molarity/view/DualLabelNode' );
+  var DualLabelNode = require( 'MOLARITY/molarity/view/DualLabelNode' );
   var FillHighlightListener = require( 'SCENERY_PHET/input/FillHighlightListener' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var MStrings = require( 'molarity/MStrings' );
+  var MStrings = require( 'MOLARITY/molarity/MStrings' );
   var MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );

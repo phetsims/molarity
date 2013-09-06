@@ -10,7 +10,7 @@ define( function( require ) {
   'use strict';
 
   // imports
-  var MStrings = require( 'molarity/MStrings' );
+  var MStrings = require( 'MOLARITY/molarity/MStrings' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );

@@ -6,7 +6,6 @@
  *
  * @author Chris Malley
  */
-
 require.config( {
 
   deps: ['molarity-main'],
@@ -33,7 +32,10 @@ require.config( {
     PHETCOMMON: '../../phetcommon/js',
     SCENERY: '../../scenery/js',
     SCENERY_PHET: '../../scenery-phet/js',
-    SUN: '../../sun/js'
+    SUN: '../../sun/js',
+
+    // sim code
+    MOLARITY: '.'
   },
 
   //TODO remove this before deploy
