@@ -1,3 +1,4 @@
+9/6/13 #9, fix layout that was broken by change of sun.CheckBox bounds in sun#18
 9/5/12 smorgasbord#1, use namespace MOLARITY in requirejs imports
 8/28/13 #6, expand touch area for "Show values" check box
 # 1.0.0 8/16/13

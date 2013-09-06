@@ -133,11 +133,12 @@ define( function( require ) {
       concentrationDisplay.left = beakerNode.right + 50;
       concentrationDisplay.bottom = beakerNode.bottom;
       // left of combo box
-      showValuesCheckBox.right = soluteComboBox.left - 50;
-      showValuesCheckBox.centerY = soluteComboBox.centerY;
+      var soluteComboBoxBounds = soluteComboBox.getVisibleBounds(); // combo box has a popup, so use visible bounds!
+      showValuesCheckBox.right = soluteComboBoxBounds.minX - 50;
+      showValuesCheckBox.centerY = soluteComboBoxBounds.getCenterY();
       // right of combo box
-      resetAllButton.left = Math.max( soluteComboBox.right + 10, concentrationDisplay.centerX - ( resetAllButton.width / 2 ) );
-      resetAllButton.centerY = showValuesCheckBox.centerY;
+      resetAllButton.left = Math.max( soluteComboBoxBounds.maxX + 10, concentrationDisplay.centerX - ( resetAllButton.width / 2 ) );
+      resetAllButton.centerY = soluteComboBoxBounds.getCenterY();
     }
   }
 
