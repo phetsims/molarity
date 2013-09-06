@@ -17,6 +17,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var MolarityModel = require( 'MOLARITY/molarity/model/MolarityModel' );
   var MStrings = require( 'MOLARITY/molarity/MStrings' );
+  var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PrecipitateNode = require( 'MOLARITY/molarity/view/PrecipitateNode' );
   var Property = require( 'AXON/Property' );
@@ -53,7 +54,8 @@ define( function( require ) {
     var saturatedIndicator = new SaturatedIndicator( model.solution );
 
     // solute control
-    var soluteComboBox = new SoluteComboBox( model.solutes, model.solution.soluteProperty );
+    var foregroundNode = new Node();
+    var soluteComboBox = new SoluteComboBox( model.solutes, model.solution.soluteProperty, foregroundNode );
 
     // slider for controlling amount of solute
     var soluteAmountSlider = new VerticalSlider( MStrings.soluteAmount,
@@ -103,6 +105,7 @@ define( function( require ) {
     this.addChild( showValuesCheckBox );
     this.addChild( resetAllButton );
     this.addChild( soluteComboBox );
+    this.addChild( foregroundNode );
 
     // layout for things that don't have a location in the model
     {
@@ -133,12 +136,11 @@ define( function( require ) {
       concentrationDisplay.left = beakerNode.right + 50;
       concentrationDisplay.bottom = beakerNode.bottom;
       // left of combo box
-      var soluteComboBoxBounds = soluteComboBox.getVisibleBounds(); // combo box has a popup, so use visible bounds!
-      showValuesCheckBox.right = soluteComboBoxBounds.minX - 50;
-      showValuesCheckBox.centerY = soluteComboBoxBounds.getCenterY();
+      showValuesCheckBox.right = soluteComboBox.left - 50;
+      showValuesCheckBox.centerY = soluteComboBox.centerY;
       // right of combo box
-      resetAllButton.left = Math.max( soluteComboBoxBounds.maxX + 10, concentrationDisplay.centerX - ( resetAllButton.width / 2 ) );
-      resetAllButton.centerY = soluteComboBoxBounds.getCenterY();
+      resetAllButton.left = Math.max( soluteComboBox.right + 10, concentrationDisplay.centerX - ( resetAllButton.width / 2 ) );
+      resetAllButton.centerY = soluteComboBox.centerY;
     }
   }
 

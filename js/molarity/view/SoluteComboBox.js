@@ -22,9 +22,10 @@ define( function( require ) {
   /**
    * @param {Array<Solute>} solutes
    * @param {Property<Solute>} selectedSoluteProperty
+   * @param {Node} listParent parent node for the popup list
    * @constructor
    */
-  function SoluteComboBox( solutes, selectedSoluteProperty ) {
+  function SoluteComboBox( solutes, selectedSoluteProperty, listParent ) {
 
     // 'Solute' label
     var labelNode = new Text( StringUtils.format( MStrings.pattern_0label, MStrings.solute ), { font: new PhetFont( 22 ) } );
@@ -36,11 +37,12 @@ define( function( require ) {
       items[i] = createItem( solute );
     }
 
-    ComboBox.call( this, items, selectedSoluteProperty, {
+    ComboBox.call( this, items, selectedSoluteProperty, listParent, {
       labelNode: labelNode,
       listPosition: 'above',
       itemYMargin: 12,
-      itemHighlightFill: 'rgb(218,255,255)' } );
+      itemHighlightFill: 'rgb(218,255,255)'
+    } );
   }
 
   inherit( ComboBox, SoluteComboBox );
