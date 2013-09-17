@@ -15,7 +15,7 @@ Concentration of a solution is:
 
 When a solution is saturated, the amount of precipitate is:
 
-   precipitate (moles) = ( (amountOfSolute (moles)) / (volumeOfSolution(L)) ) - (saturatedConcentration (M))
+   precipitate (moles) = ( (amountOfSolute (moles)) / (volumeOfSolution (L)) ) - (saturatedConcentration (M))
 
 The number of precipitate particles shown in the beaker is:
 
