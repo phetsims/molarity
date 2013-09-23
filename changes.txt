@@ -1,3 +1,4 @@
+9/23/13 convert to use chipper 'image' plug-in, and scenery-phet.ResetAllButton
 9/19/13 move dependencies to sherpa, update to lodash-2.0.0, jquery-2.0.3, i18n-2.0.4, require-2.1.8
 9/6/13 revert layout change #9
 9/6/13 sun#20, ComboBox: make listParent a required constructor parameter, fix moveList

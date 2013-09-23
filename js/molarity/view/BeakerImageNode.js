@@ -12,10 +12,10 @@ define( function( require ) {
   'use strict';
 
   // import
+  var beakerImage = require( 'image!MOLARITY/../images/beaker.png' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var MImages = require( 'MOLARITY/molarity/MImages' );
   var Vector2 = require( 'DOT/Vector2' );
 
   // points of interest in the image file
@@ -25,7 +25,7 @@ define( function( require ) {
   var CYLINDER_END_FOREGROUND = new Vector2( 210, 218 );
 
   function BeakerImageNode( options ) {
-    Image.call( this, MImages.getImage( 'beaker.png' ), options );
+    Image.call( this, beakerImage, options );
   }
 
   inherit( Image, BeakerImageNode, {

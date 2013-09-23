@@ -5,8 +5,8 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-require( [ 'JOIST/SimLauncher', 'JOIST/Sim', 'MOLARITY/molarity/MolarityScreen', 'MOLARITY/molarity/MStrings', 'MOLARITY/molarity/MImages' ],
-  function( SimLauncher, Sim, MolarityScreen, MStrings, MImages ) {
+require( [ 'JOIST/SimLauncher', 'JOIST/Sim', 'MOLARITY/molarity/MolarityScreen', 'MOLARITY/molarity/MStrings' ],
+  function( SimLauncher, Sim, MolarityScreen, MStrings ) {
     'use strict';
 
     //TODO i18n?
@@ -24,7 +24,7 @@ require( [ 'JOIST/SimLauncher', 'JOIST/Sim', 'MOLARITY/molarity/MolarityScreen',
       }, simOptions );
     }
 
-    SimLauncher.launch( MImages, function() {
+    SimLauncher.launch( {imageNames: []}, function() {
       var sim = new Sim( MStrings.molarity, [ new MolarityScreen() ], simOptions );
       sim.start();
     } );
