@@ -11,12 +11,14 @@
 define( function( require ) {
   'use strict';
 
-  // import
-  var beakerImage = require( 'image!MOLARITY/../images/beaker.png' );
+  // imports
   var Dimension2 = require( 'DOT/Dimension2' );
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Vector2 = require( 'DOT/Vector2' );
+
+  // images
+  var beakerImage = require( 'image!MOLARITY/../images/beaker.png' );
 
   // points of interest in the image file
   var CYLINDER_UPPER_LEFT = new Vector2( 98, 192 );
