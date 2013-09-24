@@ -24,7 +24,7 @@ require( [ 'JOIST/SimLauncher', 'JOIST/Sim', 'MOLARITY/molarity/MolarityScreen',
       }, simOptions );
     }
 
-    SimLauncher.launch( {imageNames: []}, function() {
+    SimLauncher.launch( function() {
       var sim = new Sim( MStrings.molarity, [ new MolarityScreen() ], simOptions );
       sim.start();
     } );
