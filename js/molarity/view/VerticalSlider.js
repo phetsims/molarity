@@ -15,7 +15,6 @@ define( function( require ) {
   var DualLabelNode = require( 'MOLARITY/molarity/view/DualLabelNode' );
   var FillHighlightListener = require( 'SCENERY_PHET/input/FillHighlightListener' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var MStrings = require( 'MOLARITY/molarity/MStrings' );
   var MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
@@ -24,6 +23,7 @@ define( function( require ) {
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
+  var strings = require( 'MOLARITY/molarity-strings' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
@@ -211,7 +211,7 @@ define( function( require ) {
       var y = Util.linear( range.min, range.max, trackSize.height, 0, value );
       thumbNode.y = Util.clamp( y, 0, trackSize.height );
       // update the value
-      valueNode.text = StringUtils.format( MStrings.pattern_0value_1units, value.toFixed( VALUE_DECIMAL_PLACES ), units );
+      valueNode.text = StringUtils.format( strings.pattern_0value_1units, value.toFixed( VALUE_DECIMAL_PLACES ), units );
       updateValuePosition();
     } );
 

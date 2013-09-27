@@ -12,10 +12,10 @@ define( function( require ) {
   var assert = require( 'ASSERT/assert' )( 'beers-law-lab' );
   var ComboBox = require( 'SUN/ComboBox' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var MStrings = require( 'MOLARITY/molarity/MStrings' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var strings = require( 'MOLARITY/molarity-strings' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Text = require( 'SCENERY/nodes/Text' );
 
@@ -28,7 +28,7 @@ define( function( require ) {
   function SoluteComboBox( solutes, selectedSoluteProperty, listParent ) {
 
     // 'Solute' label
-    var labelNode = new Text( StringUtils.format( MStrings.pattern_0label, MStrings.solute ), { font: new PhetFont( 22 ) } );
+    var labelNode = new Text( StringUtils.format( strings.pattern_0label, strings.solute ), { font: new PhetFont( 22 ) } );
 
     // items
     var items = [];

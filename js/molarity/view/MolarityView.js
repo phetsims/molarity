@@ -16,7 +16,6 @@ define( function( require ) {
   var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
   var MolarityModel = require( 'MOLARITY/molarity/model/MolarityModel' );
-  var MStrings = require( 'MOLARITY/molarity/MStrings' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PrecipitateNode = require( 'MOLARITY/molarity/view/PrecipitateNode' );
@@ -27,6 +26,7 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
   var SoluteComboBox = require( 'MOLARITY/molarity/view/SoluteComboBox' );
   var SolutionNode = require( 'MOLARITY/molarity/view/SolutionNode' );
+  var strings = require( 'MOLARITY/molarity-strings' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Text = require( 'SCENERY/nodes/Text' );
   var VerticalSlider = require( 'MOLARITY/molarity/view/VerticalSlider' );
@@ -58,26 +58,26 @@ define( function( require ) {
     var soluteComboBox = new SoluteComboBox( model.solutes, model.solution.soluteProperty, foregroundNode );
 
     // slider for controlling amount of solute
-    var soluteAmountSlider = new VerticalSlider( MStrings.soluteAmount,
-      StringUtils.format( MStrings.pattern_parentheses_0text, MStrings.moles ),
-      MStrings.none, MStrings.lots,
+    var soluteAmountSlider = new VerticalSlider( strings.soluteAmount,
+      StringUtils.format( strings.pattern_parentheses_0text, strings.moles ),
+      strings.none, strings.lots,
       new Dimension2( 5, cylinderSize.height ),
       model.solution.soluteAmountProperty,
       MolarityModel.SOLUTE_AMOUNT_RANGE,
       SOLUTE_AMOUNT_DECIMAL_PLACES,
-      MStrings.units_moles,
+      strings.units_moles,
       valuesVisibleProperty );
 
     // slider for controlling volume of solution, sized to match tick marks on the beaker
     var volumeSliderHeight = ( MolarityModel.SOLUTION_VOLUME_RANGE.getLength() / MolarityModel.SOLUTION_VOLUME_RANGE.max ) * cylinderSize.height;
-    var solutionVolumeSlider = new VerticalSlider( MStrings.solutionVolume,
-      StringUtils.format( MStrings.pattern_parentheses_0text, MStrings.liters ),
-      MStrings.low, MStrings.full,
+    var solutionVolumeSlider = new VerticalSlider( strings.solutionVolume,
+      StringUtils.format( strings.pattern_parentheses_0text, strings.liters ),
+      strings.low, strings.full,
       new Dimension2( 5, volumeSliderHeight ),
       model.solution.volumeProperty,
       MolarityModel.SOLUTION_VOLUME_RANGE,
       VOLUME_DECIMAL_PLACES,
-      MStrings.units_liters,
+      strings.units_liters,
       valuesVisibleProperty );
 
     // concentration display
@@ -85,7 +85,7 @@ define( function( require ) {
     var concentrationDisplay = new ConcentrationDisplay( model.solution, MolarityModel.CONCENTRATION_DISPLAY_RANGE, valuesVisibleProperty, concentrationBarSize );
 
     // Show Values check box
-    var showValuesCheckBox = CheckBox.createTextCheckBox( MStrings.showValues, { font: new PhetFont( 22 ) }, valuesVisibleProperty );
+    var showValuesCheckBox = CheckBox.createTextCheckBox( strings.showValues, { font: new PhetFont( 22 ) }, valuesVisibleProperty );
     showValuesCheckBox.touchArea = Shape.rectangle( showValuesCheckBox.left, showValuesCheckBox.top - 15, showValuesCheckBox.width, showValuesCheckBox.height + 30 );
 
     // Reset All button

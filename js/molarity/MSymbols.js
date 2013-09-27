@@ -10,13 +10,13 @@ define( function( require ) {
 
   // imports
   var toSubscript = require( 'NITROGLYCERIN/ChemUtils' ).toSubscript;
-  var MStrings = require( 'MOLARITY/molarity/MStrings' );
+  var strings = require( 'MOLARITY/molarity-strings' );
 
   return {
     COBALT_II_NITRATE: toSubscript( 'Co(NO3)2' ),
     COBALT_CHLORIDE: toSubscript( 'CoCl2' ),
     COPPER_SULFATE: toSubscript( 'CuSO4' ),
-    DRINK_MIX: MStrings.drinkMix,
+    DRINK_MIX: strings.drinkMix,
     GOLD_III_CHLORIDE: toSubscript( 'AuCl3' ),
     NICKEL_II_CHLORIDE: toSubscript( 'NiCl2' ),
     POTASSIUM_CHROMATE: toSubscript( 'K2CrO4' ),

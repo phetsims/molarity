@@ -17,12 +17,12 @@ define( function( require ) {
   var Color = require( 'SCENERY/util/Color' );
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var MStrings = require( 'MOLARITY/molarity/MStrings' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
+  var strings = require( 'MOLARITY/molarity-strings' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
@@ -95,7 +95,7 @@ define( function( require ) {
         // major tick label
         tickLabelIndex = ( i / MINOR_TICKS_PER_MAJOR_TICK ) - 1;
         if ( tickLabelIndex < MAJOR_TICK_LABELS.length ) {
-          tickLabel = StringUtils.format( MStrings.pattern_0value_1units, MAJOR_TICK_LABELS[tickLabelIndex], MStrings.units_liters );
+          tickLabel = StringUtils.format( strings.pattern_0value_1units, MAJOR_TICK_LABELS[tickLabelIndex], strings.units_liters );
           tickLabelNode = new Text( tickLabel, { font: TICK_LABEL_FONT, stroke: TICK_LABEL_COLOR } );
           tickLabelNodes.addChild( tickLabelNode );
           tickLabelNode.left = tickMarkNode.right + TICK_LABEL_X_SPACING;

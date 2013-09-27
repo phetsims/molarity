@@ -18,7 +18,6 @@ define( function( require ) {
   var DualLabelNode = require( 'MOLARITY/molarity/view/DualLabelNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var LinearGradient = require( 'SCENERY/util/LinearGradient' );
-  var MStrings = require( 'MOLARITY/molarity/MStrings' );
   var MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
@@ -26,6 +25,7 @@ define( function( require ) {
   var Range = require( 'DOT/Range' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
+  var strings = require( 'MOLARITY/molarity-strings' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
@@ -93,7 +93,7 @@ define( function( require ) {
       thisNode.arrowNode.fill = solution.getColor();
 
       // update the value
-      valueNode.text = StringUtils.format( MStrings.pattern_0value_1units, concentration.toFixed( VALUE_DECIMAL_PLACES ), MStrings.units_molarity );
+      valueNode.text = StringUtils.format( strings.pattern_0value_1units, concentration.toFixed( VALUE_DECIMAL_PLACES ), strings.units_molarity );
       updateValuePosition();
     };
     solution.concentrationProperty.link( function( concentration ) {
@@ -112,10 +112,10 @@ define( function( require ) {
     Node.call( thisNode, { pickable: false } );
 
     // nodes
-    var title = new MultiLineText( MStrings.solutionConcentration, { align: 'center', font: TITLE_FONT } );
-    var subtitle = new Text( StringUtils.format( MStrings.pattern_parentheses_0text, MStrings.molarity ), { font: SUBTITLE_FONT } );
-    var maxNode = new DualLabelNode( concentrationRange.max.toFixed( RANGE_DECIMAL_PLACES ), MStrings.high, valuesVisibleProperty, RANGE_FONT );
-    var minNode = new DualLabelNode( concentrationRange.min.toFixed( concentrationRange.min === 0 ? 0 : RANGE_DECIMAL_PLACES ), MStrings.zero, valuesVisibleProperty, RANGE_FONT );
+    var title = new MultiLineText( strings.solutionConcentration, { align: 'center', font: TITLE_FONT } );
+    var subtitle = new Text( StringUtils.format( strings.pattern_parentheses_0text, strings.molarity ), { font: SUBTITLE_FONT } );
+    var maxNode = new DualLabelNode( concentrationRange.max.toFixed( RANGE_DECIMAL_PLACES ), strings.high, valuesVisibleProperty, RANGE_FONT );
+    var minNode = new DualLabelNode( concentrationRange.min.toFixed( concentrationRange.min === 0 ? 0 : RANGE_DECIMAL_PLACES ), strings.zero, valuesVisibleProperty, RANGE_FONT );
     var barNode = new Rectangle( 0, 0, barSize.width, barSize.height, { stroke: 'black' } );
     var saturatedBarNode = new Rectangle( 0, 0, barSize.width, barSize.height, { stroke: 'black', fill: Color.LIGHT_GRAY } );
     var pointerNode = new Pointer( solution, concentrationRange, barSize, valuesVisibleProperty );
