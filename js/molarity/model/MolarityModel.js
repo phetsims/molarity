@@ -9,7 +9,6 @@ define( function( require ) {
   'use strict';
 
   // imports
-  var assert = require( 'ASSERT/assert' )( 'molarity' );
   var Color = require( 'SCENERY/util/Color' );
   var MSymbols = require( 'MOLARITY/molarity/MSymbols' );
   var Range = require( 'DOT/Range' );
