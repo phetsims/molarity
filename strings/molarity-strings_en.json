@@ -1,6 +1,4 @@
-// Copyright 2002-2013, University of Colorado
-
-define( {
+{
   "molarity": "Molarity",
   "full": "full",
   "high": "high",
@@ -31,4 +29,4 @@ define( {
   "pattern_0label": "{0}:",
   "pattern_0value_1units": "{0} {1}",
   "pattern_parentheses_0text": "({0})"
-} );
+}

@@ -12,12 +12,14 @@ define( function( require ) {
   var MolarityModel = require( 'MOLARITY/molarity/model/MolarityModel' );
   var MolarityView = require( 'MOLARITY/molarity/view/MolarityView' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var strings = require( 'MOLARITY/molarity-strings' );
   var Vector2 = require( 'DOT/Vector2' );
+
+  // strings
+  var molarityString = require( 'string!MOLARITY/molarity' );
 
   function MolarityScreen() {
 
-    this.name = strings.molarity;
+    this.name = molarityString;
     this.backgroundColor = 'white';
 
     this.createModel = function() {

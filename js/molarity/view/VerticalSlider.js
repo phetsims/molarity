@@ -23,10 +23,12 @@ define( function( require ) {
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
-  var strings = require( 'MOLARITY/molarity-strings' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
+
+  // strings
+  var pattern_0value_1unitsString = require( 'string!MOLARITY/pattern_0value_1units' );
 
   // constants
   var TITLE_FONT = new PhetFont( { size: 24, weight: 'bold' } );
@@ -211,7 +213,7 @@ define( function( require ) {
       var y = Util.linear( range.min, range.max, trackSize.height, 0, value );
       thumbNode.y = Util.clamp( y, 0, trackSize.height );
       // update the value
-      valueNode.text = StringUtils.format( strings.pattern_0value_1units, value.toFixed( VALUE_DECIMAL_PLACES ), units );
+      valueNode.text = StringUtils.format( pattern_0value_1unitsString, value.toFixed( VALUE_DECIMAL_PLACES ), units );
       updateValuePosition();
     } );
 
