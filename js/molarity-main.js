@@ -5,7 +5,7 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-require( [ 'JOIST/SimLauncher', 'JOIST/Sim', 'MOLARITY/molarity/MolarityScreen', 'string!MOLARITY/molarity' ],
+require( [ 'JOIST/SimLauncher', 'JOIST/Sim', 'MOLARITY/molarity/MolarityScreen', 'string!MOLARITY/molarity.name' ],
   function( SimLauncher, Sim, MolarityScreen, simTitle ) {
     'use strict';
 

@@ -1,5 +1,6 @@
 {
   "molarity": "Molarity",
+  "molarity.name": "Molarity",
   "full": "full",
   "high": "high",
   "liters": "Liters",
@@ -13,9 +14,9 @@
   "soluteAmount": "Solute\nAmount",
   "solutionConcentration": "Solution\nConcentration",
   "solutionVolume": "Solution\nVolume",
-  "units_liters": "L",
-  "units_molarity": "M",
-  "units_moles": "mol",
+  "units.liters": "L",
+  "units.molarity": "M",
+  "units.moles": "mol",
   "zero": "zero",
   "cobaltIINitrate": "Cobalt (II) nitrate",
   "cobaltChloride": "Cobalt chloride",
@@ -26,7 +27,7 @@
   "potassiumChromate": "Potassium chromate",
   "potassiumDichromate": "Potassium dichromate",
   "potassiumPermanganate": "Potassium permanganate",
-  "pattern_0label": "{0}:",
-  "pattern_0value_1units": "{0} {1}",
-  "pattern_parentheses_0text": "({0})"
+  "pattern.0label": "{0}:",
+  "pattern.0value.1units": "{0} {1}",
+  "pattern.parentheses.0text": "({0})"
 }

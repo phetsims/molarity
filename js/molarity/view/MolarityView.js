@@ -37,12 +37,12 @@ define( function( require ) {
   var lowString = require( 'string!MOLARITY/low' );
   var molesString = require( 'string!MOLARITY/moles' );
   var noneString = require( 'string!MOLARITY/none' );
-  var pattern_parentheses_0textString = require( 'string!MOLARITY/pattern_parentheses_0text' );
+  var pattern_parentheses_0textString = require( 'string!MOLARITY/pattern.parentheses.0text' );
   var showValuesString = require( 'string!MOLARITY/showValues' );
   var soluteAmountString = require( 'string!MOLARITY/soluteAmount' );
   var solutionVolumeString = require( 'string!MOLARITY/solutionVolume' );
-  var units_litersString = require( 'string!MOLARITY/units_liters' );
-  var units_molesString = require( 'string!MOLARITY/units_moles' );
+  var units_litersString = require( 'string!MOLARITY/units.liters' );
+  var units_molesString = require( 'string!MOLARITY/units.moles' );
 
   // constants
   var SOLUTE_AMOUNT_DECIMAL_PLACES = 2;

@@ -28,7 +28,7 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
 
   // strings
-  var pattern_0value_1unitsString = require( 'string!MOLARITY/pattern_0value_1units' );
+  var pattern_0value_1unitsString = require( 'string!MOLARITY/pattern.0value.1units' );
 
   // constants
   var TITLE_FONT = new PhetFont( { size: 24, weight: 'bold' } );

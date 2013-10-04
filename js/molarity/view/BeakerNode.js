@@ -28,8 +28,8 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
 
   // strings
-  var pattern_0value_1unitsString = require( 'string!MOLARITY/pattern_0value_1units' );
-  var units_litersString = require( 'string!MOLARITY/units_liters' );
+  var pattern_0value_1unitsString = require( 'string!MOLARITY/pattern.0value.1units' );
+  var units_litersString = require( 'string!MOLARITY/units.liters' );
 
   // constants
   var DEBUG_SHAPES = false;

@@ -1,3 +1,4 @@
+10/4/13 revert to string keys that were used in Java
 10/4/13 convert to use PhET string.js plugin
 10/3/13 remove assert imports, assert is now a global
 9/27/13 move MStrings.js to molarity-strings.js

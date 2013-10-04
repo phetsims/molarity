@@ -32,10 +32,10 @@ define( function( require ) {
   // strings
   var highString = require( 'string!MOLARITY/high' );
   var molarityString = require( 'string!MOLARITY/molarity' );
-  var pattern_0value_1unitsString = require( 'string!MOLARITY/pattern_0value_1units' );
-  var pattern_parentheses_0textString = require( 'string!MOLARITY/pattern_parentheses_0text' );
+  var pattern_0value_1unitsString = require( 'string!MOLARITY/pattern.0value.1units' );
+  var pattern_parentheses_0textString = require( 'string!MOLARITY/pattern.parentheses.0text' );
   var solutionConcentrationString = require( 'string!MOLARITY/solutionConcentration' );
-  var units_molarityString = require( 'string!MOLARITY/units_molarity' );
+  var units_molarityString = require( 'string!MOLARITY/units.molarity' );
   var zeroString = require( 'string!MOLARITY/zero' );
 
   // constants
