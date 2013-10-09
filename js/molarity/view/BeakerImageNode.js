@@ -18,7 +18,7 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
 
   // images
-  var beakerImage = require( 'image!MOLARITY/../images/beaker.png' );
+  var beakerImage = require( 'image!MOLARITY/beaker.png' );
 
   // points of interest in the image file
   var CYLINDER_UPPER_LEFT = new Vector2( 98, 192 );
