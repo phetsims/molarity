@@ -37,7 +37,7 @@ define( function( require ) {
   var lowString = require( 'string!MOLARITY/low' );
   var molesString = require( 'string!MOLARITY/moles' );
   var noneString = require( 'string!MOLARITY/none' );
-  var pattern_parentheses_0textString = require( 'string!MOLARITY/pattern.parentheses.0text' );
+  var pattern_parentheses_0text = require( 'string!MOLARITY/pattern.parentheses.0text' );
   var showValuesString = require( 'string!MOLARITY/showValues' );
   var soluteAmountString = require( 'string!MOLARITY/soluteAmount' );
   var solutionVolumeString = require( 'string!MOLARITY/solutionVolume' );
@@ -72,7 +72,7 @@ define( function( require ) {
 
     // slider for controlling amount of solute
     var soluteAmountSlider = new VerticalSlider( soluteAmountString,
-      StringUtils.format( pattern_parentheses_0textString, molesString ),
+      StringUtils.format( pattern_parentheses_0text, molesString ),
       noneString, lotsString,
       new Dimension2( 5, cylinderSize.height ),
       model.solution.soluteAmountProperty,
@@ -84,7 +84,7 @@ define( function( require ) {
     // slider for controlling volume of solution, sized to match tick marks on the beaker
     var volumeSliderHeight = ( MolarityModel.SOLUTION_VOLUME_RANGE.getLength() / MolarityModel.SOLUTION_VOLUME_RANGE.max ) * cylinderSize.height;
     var solutionVolumeSlider = new VerticalSlider( solutionVolumeString,
-      StringUtils.format( pattern_parentheses_0textString, litersString ),
+      StringUtils.format( pattern_parentheses_0text, litersString ),
       lowString, fullString,
       new Dimension2( 5, volumeSliderHeight ),
       model.solution.volumeProperty,

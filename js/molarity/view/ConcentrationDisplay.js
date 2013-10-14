@@ -32,8 +32,8 @@ define( function( require ) {
   // strings
   var highString = require( 'string!MOLARITY/high' );
   var molarityString = require( 'string!MOLARITY/molarity' );
-  var pattern_0value_1unitsString = require( 'string!MOLARITY/pattern.0value.1units' );
-  var pattern_parentheses_0textString = require( 'string!MOLARITY/pattern.parentheses.0text' );
+  var pattern_0value_1units = require( 'string!MOLARITY/pattern.0value.1units' );
+  var pattern_parentheses_0text = require( 'string!MOLARITY/pattern.parentheses.0text' );
   var solutionConcentrationString = require( 'string!MOLARITY/solutionConcentration' );
   var units_molarityString = require( 'string!MOLARITY/units.molarity' );
   var zeroString = require( 'string!MOLARITY/zero' );
@@ -101,7 +101,7 @@ define( function( require ) {
       thisNode.arrowNode.fill = solution.getColor();
 
       // update the value
-      valueNode.text = StringUtils.format( pattern_0value_1unitsString, concentration.toFixed( VALUE_DECIMAL_PLACES ), units_molarityString );
+      valueNode.text = StringUtils.format( pattern_0value_1units, concentration.toFixed( VALUE_DECIMAL_PLACES ), units_molarityString );
       updateValuePosition();
     };
     solution.concentrationProperty.link( function( concentration ) {
@@ -121,7 +121,7 @@ define( function( require ) {
 
     // nodes
     var title = new MultiLineText( solutionConcentrationString, { align: 'center', font: TITLE_FONT } );
-    var subtitle = new Text( StringUtils.format( pattern_parentheses_0textString, molarityString ), { font: SUBTITLE_FONT } );
+    var subtitle = new Text( StringUtils.format( pattern_parentheses_0text, molarityString ), { font: SUBTITLE_FONT } );
     var maxNode = new DualLabelNode( concentrationRange.max.toFixed( RANGE_DECIMAL_PLACES ), highString, valuesVisibleProperty, RANGE_FONT );
     var minNode = new DualLabelNode( concentrationRange.min.toFixed( concentrationRange.min === 0 ? 0 : RANGE_DECIMAL_PLACES ), zeroString, valuesVisibleProperty, RANGE_FONT );
     var barNode = new Rectangle( 0, 0, barSize.width, barSize.height, { stroke: 'black' } );
