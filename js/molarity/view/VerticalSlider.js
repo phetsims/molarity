@@ -70,9 +70,6 @@ define( function( require ) {
         },
         drag: function( event ) {
           handleEvent( event );
-        },
-        translate: function() {
-          // do nothing, override default behavior
         }
       } ) );
   }
@@ -138,10 +135,6 @@ define( function( require ) {
         var y = dragNode.globalToParentPoint( event.pointer.point ).y - clickYOffset;
         var value = Util.linear( positionRange.min, positionRange.max, valueRange.max, valueRange.min, y );
         property.value = Util.toFixed( Util.clamp( value, valueRange.min, valueRange.max ), decimalPlaces );
-      },
-
-      translate: function() {
-        // do nothing, override default behavior
       }
     } );
   }
