@@ -9,7 +9,7 @@ require( [ 'JOIST/SimLauncher', 'JOIST/Sim', 'MOLARITY/molarity/MolarityScreen',
   function( SimLauncher, Sim, MolarityScreen, simTitle ) {
     'use strict';
 
-    //TODO i18n?
+    //TODO i18n, see joist#66
     var simOptions = {
       credits: 'PhET Development Team -\n' +
                'Lead Design: Julia Chamberlain\n' +
