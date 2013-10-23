@@ -9,9 +9,11 @@ define( function( require ) {
   'use strict';
 
   // imports
+  var inherit = require( 'PHET_CORE/inherit' );
   var MolarityModel = require( 'MOLARITY/molarity/model/MolarityModel' );
   var MolarityView = require( 'MOLARITY/molarity/view/MolarityView' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var Screen = require( 'JOIST/Screen' );
   var Vector2 = require( 'DOT/Vector2' );
 
   // strings
@@ -19,17 +21,13 @@ define( function( require ) {
 
   function MolarityScreen() {
 
-    this.name = molarityString;
-    this.backgroundColor = 'white';
-
-    this.createModel = function() {
-      return new MolarityModel();
-    };
-
-    this.createView = function( model ) {
-      return new MolarityView( model );
-    };
+    Screen.call( this,
+      molarityString,
+      null, // no icon, single-screen sim
+      function() { return new MolarityModel(); },
+      function( model ) { return new MolarityView( model ); }
+    );
   }
 
-  return MolarityScreen;
+  return inherit( Screen, MolarityScreen );
 } );
