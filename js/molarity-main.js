@@ -16,12 +16,12 @@ define( function( require ) {
   // strings
   var simTitle = require( 'string!MOLARITY/molarity.name' );
 
-  //TODO i18n, see joist#66
   var simOptions = {
-    credits: 'PhET Development Team -\n' +
-             'Lead Design: Julia Chamberlain\n' +
-             'Software Development: Chris Malley\n' +
-             'Design Team: Kelly Lancaster, Robert Parson, Kathy Perkins'
+    credits: {
+      leadDesign: 'Julia Chamberlain',
+      softwareDevelopment: 'Chris Malley',
+      designTeam: 'Kelly Lancaster, Robert Parson, Kathy Perkins'
+    }
   };
 
   // Appending '?dev' to the URL will enable developer-only features.
