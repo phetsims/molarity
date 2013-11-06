@@ -12,9 +12,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var MolarityModel = require( 'MOLARITY/molarity/model/MolarityModel' );
   var MolarityView = require( 'MOLARITY/molarity/view/MolarityView' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Screen = require( 'JOIST/Screen' );
-  var Vector2 = require( 'DOT/Vector2' );
 
   // strings
   var molarityString = require( 'string!MOLARITY/molarity' );
