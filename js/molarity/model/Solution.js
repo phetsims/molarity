@@ -32,7 +32,7 @@ define( function( require ) {
 
     // derive the concentration: M = moles/liter
     this.addDerivedProperty( 'concentration', ['solute', 'soluteAmount', 'volume'], function( solute, soluteAmount, volume ) {
-      return parseFloat( Util.toFixed( volume > 0 ? Math.min( solute.saturatedConcentration, soluteAmount / volume ) : 0, CONCENTRATION_DECIMALS ) );
+      return Util.toFixedNumber( volume > 0 ? Math.min( solute.saturatedConcentration, soluteAmount / volume ) : 0, CONCENTRATION_DECIMALS );
     } );
 
     // derive the amount of precipitate
