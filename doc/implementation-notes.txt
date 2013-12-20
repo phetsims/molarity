@@ -16,5 +16,5 @@ To make this easier, node constructors typically have this structure:
 
         // do layout
 
-        // register listeners
+        // register observers
     }
