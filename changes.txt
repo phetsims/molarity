@@ -1,3 +1,4 @@
+12/20/13 create statics in inherit call for Solution
 12/20/13 use 'return inherit(...)' style throughout
 11/13/13 converted '<br>' to '\n' in string files, #10
 11/13/13 use dot.Util.toFixedNumber, see dot#10

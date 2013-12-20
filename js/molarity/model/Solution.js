@@ -41,10 +41,6 @@ define( function( require ) {
     } );
   }
 
-  Solution.computePrecipitateAmount = function( volume, soluteAmount, saturatedConcentration ) {
-    return volume > 0 ? Math.max( 0, volume * ( ( soluteAmount / volume ) - saturatedConcentration ) ) : soluteAmount;
-  };
-
   return inherit( PropertySet, Solution, {
 
     isSaturated: function() {
@@ -59,6 +55,11 @@ define( function( require ) {
       else {
         return this.solvent.color;
       }
+    }
+  }, {
+    // static
+    computePrecipitateAmount: function( volume, soluteAmount, saturatedConcentration ) {
+      return volume > 0 ? Math.max( 0, volume * ( ( soluteAmount / volume ) - saturatedConcentration ) ) : soluteAmount;
     }
   } );
 } );
