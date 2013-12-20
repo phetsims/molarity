@@ -76,8 +76,6 @@ define( function( require ) {
     } );
   }
 
-  inherit( Node, PrecipitateNode );
-
   // Gets the number of particles that corresponds to some precipitate amount.
   var getNumberOfParticles = function( precipitateAmount ) {
     var numberOfParticles = Math.floor( PARTICLES_PER_MOLE * precipitateAmount );
@@ -110,5 +108,5 @@ define( function( require ) {
     return new Vector2( x * width / 2, y * height / 2 );
   };
 
-  return PrecipitateNode;
+  return inherit( Node, PrecipitateNode );
 } );

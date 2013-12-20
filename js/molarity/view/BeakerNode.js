@@ -125,7 +125,7 @@ define( function( require ) {
     } );
   }
 
-  inherit( Node, BeakerNode, {
+  return inherit( Node, BeakerNode, {
 
     getCylinderSize: function() {
       return this._beakerImageNode.getCylinderSize();
@@ -135,6 +135,4 @@ define( function( require ) {
       return this._beakerImageNode.getCylinderEndHeight();
     }
   } );
-
-  return BeakerNode;
 } );

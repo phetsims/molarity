@@ -55,7 +55,5 @@ define( function( require ) {
     } );
   }
 
-  inherit( Node, BeakerLabelNode );
-
-  return BeakerLabelNode;
+  return inherit( Node, BeakerLabelNode );
 } );

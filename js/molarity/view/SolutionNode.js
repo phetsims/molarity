@@ -63,7 +63,5 @@ define( function( require ) {
     solution.volumeProperty.link( updateShape );
   }
 
-  inherit( Node, SolutionNode );
-
-  return SolutionNode;
+  return inherit( Node, SolutionNode );
 } );

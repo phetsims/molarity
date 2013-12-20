@@ -30,7 +30,7 @@ define( function( require ) {
     Image.call( this, beakerImage, options );
   }
 
-  inherit( Image, BeakerImageNode, {
+  return inherit( Image, BeakerImageNode, {
 
     // Gets the cylinder dimensions.
     getCylinderSize: function() {
@@ -49,7 +49,5 @@ define( function( require ) {
       return this.localToParentPoint( CYLINDER_END_FOREGROUND ).y - this.localToParentPoint( CYLINDER_END_BACKGROUND ).y;
     }
   } );
-
-  return BeakerImageNode;
 } );
 

@@ -48,7 +48,5 @@ define( function( require ) {
     } );
   }
 
-  inherit( Node, SaturatedIndicator );
-
-  return SaturatedIndicator;
+  return inherit( Node, SaturatedIndicator );
 } );

@@ -157,7 +157,5 @@ define( function( require ) {
     }
   }
 
-  inherit( ScreenView, MolarityView, { layoutBounds: new Bounds2( 0, 0, 1100, 700 ) } );
-
-  return MolarityView;
+  return inherit( ScreenView, MolarityView, { layoutBounds: new Bounds2( 0, 0, 1100, 700 ) } );
 } );

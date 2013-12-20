@@ -170,7 +170,5 @@ define( function( require ) {
     } );
   }
 
-  inherit( Node, ConcentrationDisplay );
-
-  return ConcentrationDisplay;
+  return inherit( Node, ConcentrationDisplay );
 } );

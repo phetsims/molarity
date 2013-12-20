@@ -217,7 +217,5 @@ define( function( require ) {
     } );
   }
 
-  inherit( Node, VerticalSlider );
-
-  return VerticalSlider;
+  return inherit( Node, VerticalSlider );
 } );
