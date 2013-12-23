@@ -27,7 +27,6 @@ define( function( require ) {
   var SoluteComboBox = require( 'MOLARITY/molarity/view/SoluteComboBox' );
   var SolutionNode = require( 'MOLARITY/molarity/view/SolutionNode' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  var Text = require( 'SCENERY/nodes/Text' );
   var VerticalSlider = require( 'MOLARITY/molarity/view/VerticalSlider' );
 
   // strings
