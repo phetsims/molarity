@@ -1,3 +1,4 @@
+1/28/14 remove MolarityModel.step 'do nothing' function, since screen.model.step is now optional in joist.Sim.animationLoop
 12/23/13 remove unused imports, identified by adding 'unused: true' to jshint-options.js
 12/20/13 create statics in inherit call for Solution
 12/20/13 use 'return inherit(...)' style throughout

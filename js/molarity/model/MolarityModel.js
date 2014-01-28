@@ -64,10 +64,6 @@ define( function( require ) {
     // Resets all model elements
     reset: function() {
       this.solution.reset();
-    },
-
-    step: function( deltaSeconds ) {
-      // no animation in this model
     }
   };
 
