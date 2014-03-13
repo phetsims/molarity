@@ -12,12 +12,12 @@ define( function( require ) {
   // imports
   var Color = require( 'SCENERY/util/Color' );
   var Dimension2 = require( 'DOT/Dimension2' );
-  var HTMLText = require( 'SCENERY/nodes/HTMLText' );
   var inherit = require( 'PHET_CORE/inherit' );
   var MSymbols = require( 'MOLARITY/molarity/MSymbols' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var SubSupText = require( 'SCENERY_PHET/SubSupText' );
 
   // constants
   var LABEL_SIZE = new Dimension2( 180, 80 );
@@ -31,7 +31,7 @@ define( function( require ) {
 
     Node.call( this );
 
-    var formulaNode = new HTMLText( '?', { font: LABEL_FONT } );
+    var formulaNode = new SubSupText( '?', { font: LABEL_FONT } );
     var backgroundNode = new Rectangle( -LABEL_SIZE.width / 2, 0, LABEL_SIZE.width, LABEL_SIZE.height, 10, 10,
       { fill: new Color( 255, 255, 255, 0.6 ), stroke: Color.LIGHT_GRAY } );
 
