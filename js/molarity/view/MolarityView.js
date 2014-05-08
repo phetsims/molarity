@@ -20,7 +20,7 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PrecipitateNode = require( 'MOLARITY/molarity/view/PrecipitateNode' );
   var Property = require( 'AXON/Property' );
-  var ResetAllButtonDeprecated = require( 'SCENERY_PHET/ResetAllButtonDeprecated' );
+  var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
   var SaturatedIndicator = require( 'MOLARITY/molarity/view/SaturatedIndicator' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var Shape = require( 'KITE/Shape' );
@@ -101,9 +101,12 @@ define( function( require ) {
     showValuesCheckBox.touchArea = Shape.rectangle( showValuesCheckBox.left, showValuesCheckBox.top - 15, showValuesCheckBox.width, showValuesCheckBox.height + 30 );
 
     // Reset All button
-    var resetAllButton = new ResetAllButtonDeprecated( function() {
-      valuesVisibleProperty.reset();
-      model.reset();
+    var resetAllButton = new ResetAllButton( {
+      listener: function() {
+        valuesVisibleProperty.reset();
+        model.reset();
+      },
+      scale: 1.32
     } );
 
     // rendering order
