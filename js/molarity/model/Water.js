@@ -8,7 +8,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var Color = require( 'SCENERY/util/Color' );
   var MSymbols = require( 'MOLARITY/molarity/MSymbols' );
 

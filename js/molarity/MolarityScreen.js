@@ -8,7 +8,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var MolarityModel = require( 'MOLARITY/molarity/model/MolarityModel' );
   var MolarityView = require( 'MOLARITY/molarity/view/MolarityView' );

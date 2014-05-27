@@ -10,7 +10,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var Circle = require( 'SCENERY/nodes/Circle' );
   var Color = require( 'SCENERY/util/Color' );
   var inherit = require( 'PHET_CORE/inherit' );

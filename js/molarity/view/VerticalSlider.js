@@ -9,7 +9,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var Color = require( 'SCENERY/util/Color' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var DualLabelNode = require( 'MOLARITY/molarity/view/DualLabelNode' );

@@ -8,7 +8,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var MolarityScreen = require( 'MOLARITY/molarity/MolarityScreen' );
   var Sim = require( 'JOIST/Sim' );
   var SimLauncher = require( 'JOIST/SimLauncher' );

@@ -8,7 +8,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var toSubscript = require( 'NITROGLYCERIN/ChemUtils' ).toSubscript;
 
   // strings

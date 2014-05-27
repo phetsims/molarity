@@ -10,7 +10,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var BeakerImageNode = require( 'MOLARITY/molarity/view/BeakerImageNode' );
   var BeakerLabelNode = require( 'MOLARITY/molarity/view/BeakerLabelNode' );
   var Circle = require( 'SCENERY/nodes/Circle' );

@@ -13,7 +13,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var Color = require( 'SCENERY/util/Color' );
   var DualLabelNode = require( 'MOLARITY/molarity/view/DualLabelNode' );
   var inherit = require( 'PHET_CORE/inherit' );

@@ -1,3 +1,4 @@
+5/27/14 change 'imports' to 'modules' in comments
 3/13/14 replace HTMLText with SubSupText, so that we use less memory
 1/28/14 remove MolarityModel.step 'do nothing' function, since screen.model.step is now optional in joist.Sim.animationLoop
 12/23/13 remove unused imports, identified by adding 'unused: true' to jshint-options.js

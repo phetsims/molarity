@@ -11,7 +11,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var Dimension2 = require( 'DOT/Dimension2' );
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );

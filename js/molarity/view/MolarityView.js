@@ -8,7 +8,7 @@
 define( function( require ) {
   'use strict';
 
-  // imports
+  // modules
   var BeakerNode = require( 'MOLARITY/molarity/view/BeakerNode' );
   var Bounds2 = require( 'DOT/Bounds2' );
   var CheckBox = require( 'SUN/CheckBox' );
