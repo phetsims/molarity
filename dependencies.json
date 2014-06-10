@@ -1,63 +1,63 @@
 {
   "chipper": {
     "sha": "fdefa29c3d55e027faeed4dfdeddeb98b5fbf990",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "sherpa": {
     "sha": "0c3ed4dee9ce96dbe841cefdda11947785e0da67",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "sun": {
     "sha": "a21c4504e6bda0df70ae6674616d6bc638428814",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "scenery-phet": {
     "sha": "79aac5752962539b5890774190f71e11b9d7cf8e",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "scenery": {
     "sha": "677ba584796160faf0d830c129afb8e673b36ff3",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "phetcommon": {
     "sha": "0d514d3a6c6296a4f2898994043bcebe5a4d6da9",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "phet-core": {
     "sha": "db1fd8e3df72b8385084c397f712494a17a4c103",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "nitroglycerin": {
     "sha": "c5928ca146f74dd782d843e2d14edbbb7fc086a9",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "kite": {
     "sha": "c6a85af1513f2a9126a50dca4c03fb76e09a92fe",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "joist": {
     "sha": "2f6700670a228e3cde85de20a40acd160178e392",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "dot": {
     "sha": "6cf1d65852564c2381f5b54c01e74f94a4a77ced",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "brand": {
     "sha": "8be52066aa533f58f118abd34d73f2609c844d48",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "axon": {
     "sha": "099f5e7b5aed1b1a6988dece042053b88b7ca47a",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "assert": {
     "sha": "aed00968d94640815e81e2f8f4a6fa67582010db",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "molarity": {
-    "sha": "dff2bb99c32b299d90b596a5380ab3d894a03e6e",
+    "sha": "37d5be604ea0710d9246af9cfbca9cdc1f0c0d1a",
     "branch": "1.1"
   },
-  "comment": "# molarity 1.1.0-rc.1 Mon Jun 02 2014 21:06:51 GMT-0600 (MDT)"
+  "comment": "# molarity 1.1.0 Mon Jun 09 2014 20:59:53 GMT-0600 (MDT)"
 }
