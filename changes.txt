@@ -1,3 +1,4 @@
+6/26/14 #15 replace explicit prototype assignment with inherit(Object,...)
 6/2/14 branch 1.1 created
 5/27/14 change 'imports' to 'modules' in comments
 3/13/14 replace HTMLText with SubSupText, so that we use less memory

@@ -10,6 +10,7 @@ define( function( require ) {
 
   // modules
   var Color = require( 'SCENERY/util/Color' );
+  var inherit = require( 'PHET_CORE/inherit' );
   var MSymbols = require( 'MOLARITY/molarity/MSymbols' );
   var Range = require( 'DOT/Range' );
   var Solute = require( 'MOLARITY/molarity/model/Solute' );
@@ -53,19 +54,19 @@ define( function( require ) {
     thisModel.maxPrecipitateAmount = Solution.computePrecipitateAmount( MolarityModel.SOLUTION_VOLUME_RANGE.min, MolarityModel.SOLUTE_AMOUNT_RANGE.max, minSaturateConcentration );
   }
 
-  // public constants
-  MolarityModel.SOLUTE_AMOUNT_RANGE = new Range( 0, 1, 0.5 ); // moles
-  MolarityModel.SOLUTION_VOLUME_RANGE = new Range( 0.2, 1, 0.5 ); // liters
-  MolarityModel.CONCENTRATION_RANGE = new Range( MolarityModel.SOLUTE_AMOUNT_RANGE.min / MolarityModel.SOLUTION_VOLUME_RANGE.max, MolarityModel.SOLUTE_AMOUNT_RANGE.max / MolarityModel.SOLUTION_VOLUME_RANGE.min ); // M
-  MolarityModel.CONCENTRATION_DISPLAY_RANGE = MolarityModel.CONCENTRATION_RANGE; // M
-
-  MolarityModel.prototype = {
+  inherit( Object, MolarityModel, {
 
     // Resets all model elements
     reset: function() {
       this.solution.reset();
     }
-  };
+  } );
+
+  // public constants
+  MolarityModel.SOLUTE_AMOUNT_RANGE = new Range( 0, 1, 0.5 ); // moles
+  MolarityModel.SOLUTION_VOLUME_RANGE = new Range( 0.2, 1, 0.5 ); // liters
+  MolarityModel.CONCENTRATION_RANGE = new Range( MolarityModel.SOLUTE_AMOUNT_RANGE.min / MolarityModel.SOLUTION_VOLUME_RANGE.max, MolarityModel.SOLUTE_AMOUNT_RANGE.max / MolarityModel.SOLUTION_VOLUME_RANGE.min ); // M
+  MolarityModel.CONCENTRATION_DISPLAY_RANGE = MolarityModel.CONCENTRATION_RANGE; // M
 
   return MolarityModel;
 } );
