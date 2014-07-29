@@ -1,3 +1,4 @@
+7/29/14 check in molarity-128.png (website thumbnail)
 6/26/14 #15 replace explicit prototype assignment with inherit(Object,...)
 6/2/14 branch 1.1 created
 5/27/14 change 'imports' to 'modules' in comments
