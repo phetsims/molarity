@@ -16,7 +16,7 @@ define( function() {
    * @param {Number} saturatedConcentration M (moles/L)
    * @param {Color} minColor solution color for smallest non-zero concentration
    * @param {Color} maxColor solution color for saturated concentration
-   * @param {*} options
+   * @param {Object} options
    * @constructor
    */
   function Solute( name, formula, saturatedConcentration, minColor, maxColor, options ) {
