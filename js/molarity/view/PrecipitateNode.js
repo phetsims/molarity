@@ -24,8 +24,8 @@ define( function( require ) {
   /**
    * @param {Solution} solution
    * @param {Dimension2} cylinderSize
-   * @param {Number} cylinderEndHeight
-   * @param {Number} maxPrecipitateAmount moles
+   * @param {number} cylinderEndHeight
+   * @param {number} maxPrecipitateAmount moles
    */
   function PrecipitateNode( solution, cylinderSize, cylinderEndHeight, maxPrecipitateAmount ) {
 

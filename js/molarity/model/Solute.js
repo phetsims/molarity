@@ -11,9 +11,9 @@ define( function() {
   'use strict';
 
   /**
-   * @param {String} name
-   * @param {String} formula
-   * @param {Number} saturatedConcentration M (moles/L)
+   * @param {string} name
+   * @param {string} formula
+   * @param {number} saturatedConcentration M (moles/L)
    * @param {Color} minColor solution color for smallest non-zero concentration
    * @param {Color} maxColor solution color for saturated concentration
    * @param {Object} [options]

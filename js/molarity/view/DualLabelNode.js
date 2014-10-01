@@ -20,9 +20,9 @@ define( function( require ) {
   var DEBUG_BOUNDS = false;
 
   /**
-   * @param {String} quantitativeValue
-   * @param {String} qualitativeValue
-   * @param {Property<Boolean>} isQuantitativeProperty
+   * @param {string} quantitativeValue
+   * @param {string} qualitativeValue
+   * @param {Property.<boolean>} isQuantitativeProperty
    * @param {Font} font
    * @constructor
    */

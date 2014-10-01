@@ -53,7 +53,7 @@ define( function( require ) {
    * @param {Solution} solution
    * @param {Range} concentrationRange
    * @param {Dimension2} barSize
-   * @param {Property<Boolean>} valuesVisibleProperty
+   * @param {Property.<boolean>} valuesVisibleProperty
    */
   function Pointer( solution, concentrationRange, barSize, valuesVisibleProperty ) {
 

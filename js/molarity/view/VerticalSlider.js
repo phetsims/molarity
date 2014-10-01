@@ -46,9 +46,9 @@ define( function( require ) {
   /**
    * Track that the thumb moves in, origin at upper left. Clicking in the track changes the value.
    * @param {Dimension2} size
-   * @param {Property<Number>} property
+   * @param {Property.<number>} property
    * @param {Range} range
-   * @param {Number} decimalPlaces
+   * @param {number} decimalPlaces
    * @constructor
    */
   function Track( size, property, range, decimalPlaces ) {
@@ -79,9 +79,9 @@ define( function( require ) {
   /**
    * The slider thumb, a rounded rectangle with a horizontal line through its center. Origin is at the thumb's geometric center.
    * @param {Dimension2} size
-   * @param {Property<Number>} property
+   * @param {Property.<number>} property
    * @param {Range} valueRange
-   * @param {Number} decimalPlaces
+   * @param {number} decimalPlaces
    * @param {Range} positionRange
    * @constructor
    */
@@ -117,9 +117,9 @@ define( function( require ) {
   /**
    * Drag handler for the slider thumb.
    * @param {Node} dragNode
-   * @param {Property<Number>} property
+   * @param {Property.<number>} property
    * @param {Range} valueRange
-   * @param {Number} decimalPlaces
+   * @param {number} decimalPlaces
    * @param {Range} positionRange
    * @constructor
    */
@@ -142,16 +142,16 @@ define( function( require ) {
   inherit( SimpleDragHandler, ThumbDragHandler );
 
   /**
-   * @param {String} title
-   * @param {String} subtitle
-   * @param {String} minLabel
-   * @param {String} maxLabel
+   * @param {string} title
+   * @param {string} subtitle
+   * @param {string} minLabel
+   * @param {string} maxLabel
    * @param {Dimension2} trackSize
-   * @param {Property<Number>} property
+   * @param {Property.<number>} property
    * @param {Range} range
-   * @param {Number} decimalPlaces
-   * @param {String} units
-   * @param {Property<Boolean>} valuesVisibleProperty
+   * @param {number} decimalPlaces
+   * @param {string} units
+   * @param {Property.<boolean>} valuesVisibleProperty
    * @constructor
    */
   function VerticalSlider( title, subtitle, minLabel, maxLabel, trackSize, property, range, decimalPlaces, units, valuesVisibleProperty ) {

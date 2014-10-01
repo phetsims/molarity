@@ -22,8 +22,8 @@ define( function( require ) {
   var soluteString = require( 'string!MOLARITY/solute' );
 
   /**
-   * @param {Array<Solute>} solutes
-   * @param {Property<Solute>} selectedSoluteProperty
+   * @param {Solute[]} solutes
+   * @param {Property.<Solute>} selectedSoluteProperty
    * @param {Node} listParent parent node for the popup list
    * @constructor
    */

@@ -20,8 +20,8 @@ define( function( require ) {
   /**
    * @param {Solvent} solvent
    * @param {Solute} solute
-   * @param {Number} soluteAmount moles
-   * @param {Number} volume Liters
+   * @param {number} soluteAmount moles
+   * @param {number} volume Liters
    * @constructor
    */
   function Solution( solvent, solute, soluteAmount, volume ) {
