@@ -9,8 +9,8 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var Color = require( 'SCENERY/util/Color' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var interpolateRBGA = require( 'SCENERY/util/Color' ).interpolateRBGA;
   var PropertySet = require( 'AXON/PropertySet' );
   var Util = require( 'DOT/Util' );
 
@@ -50,7 +50,7 @@ define( function( require ) {
     getColor: function() {
       if ( this.concentration > 0 ) {
         var colorScale = Util.linear( 0, this.solute.saturatedConcentration, 0, 1, this.concentration );
-        return interpolateRBGA( this.solute.minColor, this.solute.maxColor, colorScale );
+        return Color.interpolateRGBA( this.solute.minColor, this.solute.maxColor, colorScale );
       }
       else {
         return this.solvent.color;
