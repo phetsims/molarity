@@ -31,12 +31,12 @@ define( function( require ) {
     this.solvent = solvent;
 
     // derive the concentration: M = moles/liter
-    this.addDerivedProperty( 'concentration', ['solute', 'soluteAmount', 'volume'], function( solute, soluteAmount, volume ) {
+    this.addDerivedProperty( 'concentration', [ 'solute', 'soluteAmount', 'volume' ], function( solute, soluteAmount, volume ) {
       return Util.toFixedNumber( volume > 0 ? Math.min( solute.saturatedConcentration, soluteAmount / volume ) : 0, CONCENTRATION_DECIMALS );
     } );
 
     // derive the amount of precipitate
-    this.addDerivedProperty( 'precipitateAmount', ['solute', 'soluteAmount', 'volume'], function( solute, soluteAmount, volume ) {
+    this.addDerivedProperty( 'precipitateAmount', [ 'solute', 'soluteAmount', 'volume' ], function( solute, soluteAmount, volume ) {
       return Solution.computePrecipitateAmount( volume, soluteAmount, solute.saturatedConcentration );
     } );
   }

@@ -43,8 +43,8 @@ define( function( require ) {
     var maxParticles = getNumberOfParticles( maxPrecipitateAmount );
     var particleNodes = [];
     for ( var i = 0; i < maxParticles; i++ ) {
-      particleNodes[i] = new Rectangle( 0, 0, PARTICLE_LENGTH, PARTICLE_LENGTH, { rotation: Math.random() * 2 * Math.PI } );
-      particlesParent.addChild( particleNodes[i] );
+      particleNodes[ i ] = new Rectangle( 0, 0, PARTICLE_LENGTH, PARTICLE_LENGTH, { rotation: Math.random() * 2 * Math.PI } );
+      particlesParent.addChild( particleNodes[ i ] );
     }
     if ( DEBUG_OUTPUT ) {
       console.log( "PrecipitateNode: " + maxPrecipitateAmount.toFixed( 4 ) + ' mol => ' + maxParticles + ' particles (max)' );
@@ -66,7 +66,7 @@ define( function( require ) {
       var numberOfParticles = getNumberOfParticles( precipitateAmount );
       assert && assert( numberOfParticles <= particleNodes.length );
       for ( var i = 0; i < particleNodes.length; i++ ) {
-        particleNodes[i].visible = ( i < numberOfParticles );
+        particleNodes[ i ].visible = ( i < numberOfParticles );
       }
       if ( DEBUG_OUTPUT ) {
         console.log( 'PrecipitateNode: ' + precipitateAmount.toFixed( 4 ) + ' mol => ' + numberOfParticles + ' particles' );

@@ -8,7 +8,7 @@
  */
 require.config( {
 
-  deps: ['molarity-main'],
+  deps: [ 'molarity-main' ],
 
   paths: {
 

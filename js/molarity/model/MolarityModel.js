@@ -45,7 +45,7 @@ define( function( require ) {
       new Solute( potassiumPermanganateString, MSymbols.POTASSIUM_PERMANGANATE, 0.50, new Color( 255, 0, 255 ), new Color( 139, 0, 139 ), { particleColor: Color.BLACK } )
     ];
 
-    thisModel.solution = new Solution( Water, thisModel.solutes[0], MolarityModel.SOLUTE_AMOUNT_RANGE.defaultValue, MolarityModel.SOLUTION_VOLUME_RANGE.defaultValue );
+    thisModel.solution = new Solution( Water, thisModel.solutes[ 0 ], MolarityModel.SOLUTE_AMOUNT_RANGE.defaultValue, MolarityModel.SOLUTION_VOLUME_RANGE.defaultValue );
 
     // compute the max amount of precipitate, used by the view to create the precipitate particles
     var minSaturateConcentration = _.min( thisModel.solutes, function( solute ) {

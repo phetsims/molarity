@@ -38,7 +38,7 @@ define( function( require ) {
     this.addChild( backgroundNode );
     this.addChild( formulaNode );
 
-    solution.multilink( ['solute', 'volume', 'concentration'], function( solute, volume, concentration ) {
+    solution.multilink( [ 'solute', 'volume', 'concentration' ], function( solute, volume, concentration ) {
       // use solute formula
       if ( volume === 0 ) {
         formulaNode.text = '';
