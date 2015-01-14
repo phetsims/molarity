@@ -39,30 +39,6 @@ define( function( require ) {
           contextType: 'DG.DataContext',
           collections: [
             {
-              name: "Landing Attempts",
-              attrs: [
-                { name: "attempt_num", type: "numeric", precision: 0, defaultMin: 0, defaultMax: 3, description: "attempt number for this lander" },
-                { name: "craft", type: "nominal", description: "name of lander" },
-                { name: "pilot", type: "nominal", description: "name of pilot" },
-                { name: "side", type: "nominal", description: "left or right" },
-                {
-                  name: "total_time",
-                  type: "numeric",
-                  precision: 2,
-                  defaultMin: 10,
-                  defaultMax: 30,
-                  description: "how long the landing lasted in seconds"
-                },
-                { name: "impact", type: "numeric", precision: 2, defaultMin: 0, defaultMax: 70, description: "final velocity of lander" },
-                { name: "fuel_remaining", type: "numeric", precision: 2, defaultMin: 0, defaultMax: 100, description: "fuel remaining after landing" }
-              ],
-              childAttrName: "flight_record",
-              defaults: {
-                xAttr: "attempt_num",
-                yAttr: "impact"
-              }
-            },
-            {
               name: "Flight Record",
               attrs: [
                 {
