@@ -12,6 +12,7 @@ define( function( require ) {
   var MolarityScreen = require( 'MOLARITY/molarity/MolarityScreen' );
   var Sim = require( 'JOIST/Sim' );
   var SimLauncher = require( 'JOIST/SimLauncher' );
+  var MolarityCodap = require( 'MOLARITY/molarity/MolarityCodap' );
 
   // strings
   var simTitle = require( 'string!MOLARITY/molarity.name' );
@@ -34,5 +35,7 @@ define( function( require ) {
   SimLauncher.launch( function() {
     var sim = new Sim( simTitle, [ new MolarityScreen() ], simOptions );
     sim.start();
+
+    MolarityCodap.start( sim );
   } );
 } );
