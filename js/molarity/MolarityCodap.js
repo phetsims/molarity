@@ -44,7 +44,7 @@ define( function( require ) {
               name: "Values",
               attrs: [
                 {
-                  name: "solute amount",
+                  name: "Solute Amount (moles)",
                   type: "numeric",
                   precision: 2,
                   defaultMin: 0,
@@ -52,7 +52,7 @@ define( function( require ) {
                   description: "amount of solute in the solution"
                 },
                 {
-                  name: "solution volume",
+                  name: "Solution Volume (Liters)",
                   type: "numeric",
                   precision: 2,
                   defaultMin: 0,
@@ -60,7 +60,7 @@ define( function( require ) {
                   description: "total volume of the solution"
                 },
                 {
-                  name: "solution concentration",
+                  name: "Solution Concentration (Molarity)",
                   type: "numeric",
                   precision: 2,
                   defaultMin: 0,
