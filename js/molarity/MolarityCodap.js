@@ -11,71 +11,73 @@
  *  url: 'http://localhost:8080/molarity/molarity_en.html?iframeAPI'
  * }),
  *
+ * or
+ *
+ * Launch with a query parameter like so:
+ *
+ * http://codap.concord.org/releases/latest/static/dg/en/cert/index.html?documentServer=http://document-store.herokuapp.com/&documentServer=http://document-store.herokuapp.com/?moreGames=[{%22name%22:%20%22Molarity%22,%22dimensions%22:{%22width%22:550,%22height%22:%20350%20},%22url%22:%20%22http://localhost:8080/molarity/molarity_en.html%22}]
+ *
  * @author Sam Reid (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';
 
-  // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-
+  // Record the parent caseID so it can be sent when delivering data to codap
   var caseID;
 
-  /**
-   *
-   * @constructor
-   */
-  function MolarityCodap() {
-  }
+  return {
 
-  return inherit( Object, MolarityCodap, {}, {
+    // After the sim has started, connect to codap and link to the sim to deliver data.
     start: function( sim ) {
+
+      // Use iframe-phone for connection across the frame.
       var codapPhone = new iframePhone.IframePhoneRpcEndpoint( function() {}, "codap-game", window.parent );
+
+      // Tell codap that the game has initialized
       codapPhone.call( {
         action: 'initGame',
         args: {
-          name: 'Name of the Game!',
-          //dimensions: { width: 400, height: 300 },
+          name: 'Molarity',
           contextType: 'DG.DataContext',
           collections: [
             {
-              name: "Flight Record",
+              name: "Values",
               attrs: [
                 {
                   name: "solute amount",
                   type: "numeric",
                   precision: 2,
                   defaultMin: 0,
-                  defaultMax: 30,
-                  description: "seconds since beginning of attempt"
+                  defaultMax: 1,
+                  description: "amount of solute in the solution"
                 },
                 {
                   name: "solution volume",
                   type: "numeric",
-                  precision: 1,
+                  precision: 2,
                   defaultMin: 0,
-                  defaultMax: 360,
-                  description: "distance above the lunar surface"
+                  defaultMax: 1,
+                  description: "total volume of the solution"
                 },
                 {
                   name: "solution concentration",
                   type: "numeric",
                   precision: 2,
                   defaultMin: 0,
-                  defaultMax: 30,
-                  description: "velocity of lander staoeunthatoeu"
+                  defaultMax: 1,
+                  description: "the concentration of the solution"
                 }
               ],
               labels: {
                 singleCase: "measurement",
                 pluralCase: "measurements",
                 singleCaseWithArticle: "a measurement",
-                setOfCases: "flight record",
-                setOfCasesWithArticle: "a flight record"
+                setOfCases: "Values",
+                setOfCasesWithArticle: "a Values"
               },
               defaults: {
-                xAttr: "time",
-                yAttr: "altitude"
+                xAttr: "solution volume",
+                yAttr: "solution concentration"
               }
             }
           ]
@@ -83,8 +85,9 @@ define( function( require ) {
 
         }
       }, function() {
-        console.log( "Initializing interactive" );
 
+        // After we have registered with codap, open a case
+        // TODO: Is this really necessary?  Perhaps there is a better way to get a caseID?
         codapPhone.call( {
             action: 'openCase',
             args: {
@@ -102,13 +105,12 @@ define( function( require ) {
 
       }.bind( this ) );
 
-
       //Link to the sim variables:
       sim.screens[ 0 ].model.solution.concentrationProperty.link( function( concentration ) {
         codapPhone.call( {
           action: "createCase",
           args: {
-            collection: "Flight Record",
+            collection: "Values",
             parent: caseID,
             values: [
               sim.screens[ 0 ].model.solution.soluteAmount,
@@ -117,8 +119,7 @@ define( function( require ) {
             ]
           }
         } );
-
       } );
     }
-  } );
+  };
 } );
