@@ -54,7 +54,7 @@ define( function( require ) {
   function MolarityView( model ) {
 
     var thisView = this;
-    ScreenView.call( thisView, { renderer: 'svg', layoutBounds: new Bounds2( 0, 0, 1100, 700 ) } );
+    ScreenView.call( thisView, { layoutBounds: new Bounds2( 0, 0, 1100, 700 ) } );
 
     var valuesVisibleProperty = new Property( false );
 
