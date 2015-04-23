@@ -1,0 +1,95 @@
+{
+  "molarity": {
+    "value": "Molarity"
+  },
+  "molarity.name": {
+    "value": "Molarity"
+  },
+  "full": {
+    "value": "full"
+  },
+  "high": {
+    "value": "high"
+  },
+  "liters": {
+    "value": "Liters"
+  },
+  "low": {
+    "value": "low"
+  },
+  "lots": {
+    "value": "lots"
+  },
+  "moles": {
+    "value": "moles"
+  },
+  "none": {
+    "value": "none"
+  },
+  "saturated": {
+    "value": "Saturated!"
+  },
+  "showValues": {
+    "value": "Show values"
+  },
+  "solute": {
+    "value": "Solute"
+  },
+  "soluteAmount": {
+    "value": "Solute\nAmount"
+  },
+  "solutionConcentration": {
+    "value": "Solution\nConcentration"
+  },
+  "solutionVolume": {
+    "value": "Solution\nVolume"
+  },
+  "units.liters": {
+    "value": "L"
+  },
+  "units.molarity": {
+    "value": "M"
+  },
+  "units.moles": {
+    "value": "mol"
+  },
+  "zero": {
+    "value": "zero"
+  },
+  "cobaltIINitrate": {
+    "value": "Cobalt (II) nitrate"
+  },
+  "cobaltChloride": {
+    "value": "Cobalt chloride"
+  },
+  "copperSulfate": {
+    "value": "Copper sulfate"
+  },
+  "drinkMix": {
+    "value": "Drink mix"
+  },
+  "goldIIIChloride": {
+    "value": "Gold (III) chloride"
+  },
+  "nickelIIChloride": {
+    "value": "Nickel (II) chloride"
+  },
+  "potassiumChromate": {
+    "value": "Potassium chromate"
+  },
+  "potassiumDichromate": {
+    "value": "Potassium dichromate"
+  },
+  "potassiumPermanganate": {
+    "value": "Potassium permanganate"
+  },
+  "pattern.0label": {
+    "value": "{0}:"
+  },
+  "pattern.0value.1units": {
+    "value": "{0} {1}"
+  },
+  "pattern.parentheses.0text": {
+    "value": "({0})"
+  }
+}
