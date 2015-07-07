@@ -66,8 +66,8 @@ define( function( require ) {
     var saturatedIndicator = new SaturatedIndicator( model.solution );
 
     // solute control
-    var foregroundNode = new Node();
-    var soluteComboBox = new SoluteComboBox( model.solutes, model.solution.soluteProperty, foregroundNode, { maxWidth: 500 } );
+    var soluteComboBoxListParent = new Node( { maxWidth: 300 } );
+    var soluteComboBox = new SoluteComboBox( model.solutes, model.solution.soluteProperty, soluteComboBoxListParent, { maxWidth: 500 } );
 
     // slider for controlling amount of solute
     var soluteAmountSlider = new VerticalSlider( soluteAmountString,
@@ -120,7 +120,7 @@ define( function( require ) {
     this.addChild( showValuesCheckBox );
     this.addChild( resetAllButton );
     this.addChild( soluteComboBox );
-    this.addChild( foregroundNode );
+    this.addChild( soluteComboBoxListParent );
 
     // layout for things that don't have a location in the model
     {
