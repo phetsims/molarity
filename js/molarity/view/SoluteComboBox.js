@@ -25,12 +25,17 @@ define( function( require ) {
    * @param {Solute[]} solutes
    * @param {Property.<Solute>} selectedSoluteProperty
    * @param {Node} listParent parent node for the popup list
+   * @param {Object} [options]
    * @constructor
    */
-  function SoluteComboBox( solutes, selectedSoluteProperty, listParent ) {
+  function SoluteComboBox( solutes, selectedSoluteProperty, listParent, options ) {
 
-    // 'Solute' label
-    var labelNode = new Text( StringUtils.format( pattern_0label, soluteString ), { font: new PhetFont( 22 ) } );
+    options = _.extend( {
+      labelNode: new Text( StringUtils.format( pattern_0label, soluteString ), { font: new PhetFont( 22 ) } ), // 'Solute' label
+      listPosition: 'above',
+      itemYMargin: 12,
+      itemHighlightFill: 'rgb(218,255,255)'
+    }, options );
 
     // items
     var items = [];
@@ -39,12 +44,7 @@ define( function( require ) {
       items[ i ] = createItem( solute );
     }
 
-    ComboBox.call( this, items, selectedSoluteProperty, listParent, {
-      labelNode: labelNode,
-      listPosition: 'above',
-      itemYMargin: 12,
-      itemHighlightFill: 'rgb(218,255,255)'
-    } );
+    ComboBox.call( this, items, selectedSoluteProperty, listParent, options );
   }
 
   /**

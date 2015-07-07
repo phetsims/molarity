@@ -98,7 +98,7 @@ define( function( require ) {
         tickLabelIndex = ( i / MINOR_TICKS_PER_MAJOR_TICK ) - 1;
         if ( tickLabelIndex < MAJOR_TICK_LABELS.length ) {
           tickLabel = StringUtils.format( pattern_0value_1units, MAJOR_TICK_LABELS[ tickLabelIndex ], units_litersString );
-          tickLabelNode = new Text( tickLabel, { font: TICK_LABEL_FONT, stroke: TICK_LABEL_COLOR } );
+          tickLabelNode = new Text( tickLabel, { font: TICK_LABEL_FONT, stroke: TICK_LABEL_COLOR, maxWidth: 100 } );
           tickLabelNodes.addChild( tickLabelNode );
           tickLabelNode.left = tickMarkNode.right + TICK_LABEL_X_SPACING;
           tickLabelNode.centerY = tickMarkNode.bottom;

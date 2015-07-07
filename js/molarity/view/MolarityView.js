@@ -67,7 +67,7 @@ define( function( require ) {
 
     // solute control
     var foregroundNode = new Node();
-    var soluteComboBox = new SoluteComboBox( model.solutes, model.solution.soluteProperty, foregroundNode );
+    var soluteComboBox = new SoluteComboBox( model.solutes, model.solution.soluteProperty, foregroundNode, { maxWidth: 500 } );
 
     // slider for controlling amount of solute
     var soluteAmountSlider = new VerticalSlider( soluteAmountString,
@@ -97,7 +97,7 @@ define( function( require ) {
     var concentrationDisplay = new ConcentrationDisplay( model.solution, MolarityModel.CONCENTRATION_DISPLAY_RANGE, valuesVisibleProperty, concentrationBarSize );
 
     // Show Values check box
-    var showValuesCheckBox = CheckBox.createTextCheckBox( showValuesString, { font: new PhetFont( 22 ) }, valuesVisibleProperty );
+    var showValuesCheckBox = CheckBox.createTextCheckBox( showValuesString, { font: new PhetFont( 22 ) }, valuesVisibleProperty, { maxWidth: 175 } );
     showValuesCheckBox.touchArea = Shape.rectangle( showValuesCheckBox.left, showValuesCheckBox.top - 15, showValuesCheckBox.width, showValuesCheckBox.height + 30 );
 
     // Reset All button

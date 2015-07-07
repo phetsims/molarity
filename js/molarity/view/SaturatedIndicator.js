@@ -28,7 +28,7 @@ define( function( require ) {
     var thisNode = this;
     Node.call( thisNode );
 
-    var label = new Text( saturatedString, { font: new PhetFont( 22 ) } );
+    var label = new Text( saturatedString, { font: new PhetFont( 22 ), maxWidth: 200 } );
 
     // translucent light-gray background, so this shows up on all solution colors
     var background = new Rectangle( 0, 0, 1.2 * label.width, 1.2 * label.height, 8, 8,

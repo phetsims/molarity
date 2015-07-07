@@ -31,7 +31,10 @@ define( function( require ) {
 
     Node.call( this );
 
-    var formulaNode = new SubSupText( '?', { font: LABEL_FONT } );
+    var formulaNode = new SubSupText( '?', {
+      font: LABEL_FONT,
+      maxWidth: 0.9 * LABEL_SIZE.width
+    } );
     var backgroundNode = new Rectangle( -LABEL_SIZE.width / 2, 0, LABEL_SIZE.width, LABEL_SIZE.height, 10, 10,
       { fill: new Color( 255, 255, 255, 0.6 ), stroke: Color.LIGHT_GRAY } );
 

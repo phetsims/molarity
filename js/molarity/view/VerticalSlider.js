@@ -159,16 +159,22 @@ define( function( require ) {
     Node.call( this );
 
     // nodes
-    var titleNode = new MultiLineText( title, { font: TITLE_FONT } );
-    var subtitleNode = new Text( subtitle, { font: SUBTITLE_FONT } );
-    var minNode = new DualLabelNode( range.min.toFixed( range.min === 0 ? 0 : RANGE_DECIMAL_PLACES ), minLabel, valuesVisibleProperty, RANGE_FONT );
-    var maxNode = new DualLabelNode( range.max.toFixed( RANGE_DECIMAL_PLACES ), maxLabel, valuesVisibleProperty, RANGE_FONT );
+    var maxTextWidth = 120; // contrain text for i18n, determined empirically
+    var titleNode = new MultiLineText( title, { font: TITLE_FONT, maxWidth: maxTextWidth } );
+    var subtitleNode = new Text( subtitle, { font: SUBTITLE_FONT, maxWidth: maxTextWidth } );
+    var minNode = new DualLabelNode( range.min.toFixed( range.min === 0 ? 0 : RANGE_DECIMAL_PLACES ), minLabel, valuesVisibleProperty, RANGE_FONT,
+      { maxWidth: maxTextWidth } );
+    var maxNode = new DualLabelNode( range.max.toFixed( RANGE_DECIMAL_PLACES ), maxLabel, valuesVisibleProperty, RANGE_FONT,
+      { maxWidth: maxTextWidth } );
     var trackNode = new Track( trackSize, property, range, decimalPlaces );
     var xMargin = 7, yMargin = 7, cornerRadius = 10;
     var backgroundNode = new Rectangle( -xMargin, -yMargin, trackSize.width + ( 2 * xMargin ), trackSize.height + ( 2 * yMargin ), cornerRadius, cornerRadius,
       { fill: new Color( 200, 200, 200, 140 ) } );
     var thumbNode = new Thumb( THUMB_SIZE, property, range, decimalPlaces, new Range( 0, trackSize.height ) );
-    var valueNode = new Text( '?', { font: VALUE_FONT } );
+    var valueNode = new Text( '?', {
+      font: VALUE_FONT,
+      maxWidth: 65 // constrain for i18n, determined empirically
+    } );
 
     // rendering order
     this.addChild( titleNode );

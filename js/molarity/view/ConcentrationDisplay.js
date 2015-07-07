@@ -61,7 +61,7 @@ define( function( require ) {
     Node.call( thisNode );
 
     // nodes
-    var valueNode = new Text( '?', { font: VALUE_FONT } );
+    var valueNode = new Text( '?', { font: VALUE_FONT, maxWidth: 65 } );
     var x = barSize.width;
     var y = 0;
     var arrowShape = new Shape()
@@ -119,10 +119,13 @@ define( function( require ) {
     Node.call( thisNode, { pickable: false } );
 
     // nodes
-    var title = new MultiLineText( solutionConcentrationString, { align: 'center', font: TITLE_FONT } );
-    var subtitle = new Text( StringUtils.format( pattern_parentheses_0text, molarityString ), { font: SUBTITLE_FONT } );
-    var maxNode = new DualLabelNode( concentrationRange.max.toFixed( RANGE_DECIMAL_PLACES ), highString, valuesVisibleProperty, RANGE_FONT );
-    var minNode = new DualLabelNode( concentrationRange.min.toFixed( concentrationRange.min === 0 ? 0 : RANGE_DECIMAL_PLACES ), zeroString, valuesVisibleProperty, RANGE_FONT );
+    var maxTextWidth = 120; // constrain width for i18n, determined empirically
+    var title = new MultiLineText( solutionConcentrationString, { align: 'center', font: TITLE_FONT, maxWidth: maxTextWidth } );
+    var subtitle = new Text( StringUtils.format( pattern_parentheses_0text, molarityString ), { font: SUBTITLE_FONT, maxWidth: maxTextWidth } );
+    var maxNode = new DualLabelNode( concentrationRange.max.toFixed( RANGE_DECIMAL_PLACES ), highString, valuesVisibleProperty, RANGE_FONT,
+      { maxWidth: maxTextWidth } );
+    var minNode = new DualLabelNode( concentrationRange.min.toFixed( concentrationRange.min === 0 ? 0 : RANGE_DECIMAL_PLACES ), zeroString, valuesVisibleProperty, RANGE_FONT,
+      { maxWidth: maxTextWidth } );
     var barNode = new Rectangle( 0, 0, barSize.width, barSize.height, { stroke: 'black' } );
     var saturatedBarNode = new Rectangle( 0, 0, barSize.width, barSize.height, { stroke: 'black', fill: Color.LIGHT_GRAY } );
     var pointerNode = new Pointer( solution, concentrationRange, barSize, valuesVisibleProperty );
