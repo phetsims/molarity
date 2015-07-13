@@ -19,7 +19,7 @@ define( function( require ) {
   var simOptions = {
     credits: {
       leadDesign: 'Julia Chamberlain',
-      softwareDevelopment: 'Chris Malley',
+      softwareDevelopment: 'Chris Malley (PixelZoom, Inc.)',
       team: 'Kelly Lancaster, Robert Parson, Kathy Perkins'
     }
   };
