@@ -17,7 +17,6 @@
     "requirejsNamespace": "MOLARITY",
     "simTitleStringKey": "MOLARITY/molarity.name",
     "phetLibs": [
-      "molarity",
       "nitroglycerin"
     ]
   }
