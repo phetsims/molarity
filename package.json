@@ -15,7 +15,6 @@
   },
   "phet": {
     "requirejsNamespace": "MOLARITY",
-    "simTitleStringKey": "MOLARITY/molarity.name",
     "phetLibs": [
       "nitroglycerin"
     ]
