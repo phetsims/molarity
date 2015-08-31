@@ -73,7 +73,7 @@ define( function( require ) {
       .lineTo( x + ARROW_HEAD_HEIGHT, y + (ARROW_TAIL_WIDTH / 2) )
       .lineTo( x + ARROW_HEAD_HEIGHT, y + (ARROW_HEAD_WIDTH / 2) )
       .close();
-    thisNode.arrowNode = new Path( arrowShape, { stroke: 'black' } );
+    thisNode.arrowNode = new Path( arrowShape, { stroke: 'black' } ); // @private
 
     // rendering order
     this.addChild( valueNode );

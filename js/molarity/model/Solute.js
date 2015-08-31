@@ -25,6 +25,7 @@ define( function() {
       particleColor: maxColor // the solute's color as a particle
     }, options );
 
+    // @public
     this.name = name;
     this.formula = formula;
     this.saturatedConcentration = saturatedConcentration;

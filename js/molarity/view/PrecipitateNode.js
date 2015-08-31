@@ -32,10 +32,6 @@ define( function( require ) {
     var thisNode = this;
     Node.call( thisNode, { pickable: false } );
 
-    thisNode.solution = solution;
-    thisNode.cylinderSize = cylinderSize;
-    thisNode.cylinderEndHeight = cylinderEndHeight;
-
     var particlesParent = new Node();
     thisNode.addChild( particlesParent );
 
@@ -57,7 +53,7 @@ define( function( require ) {
       particleNodes.forEach( function( node ) {
         node.fill = fill;
         node.stroke = stroke;
-        node.translation = getRandomOffset( node.width, node.height, thisNode.cylinderSize, thisNode.cylinderEndHeight );
+        node.translation = getRandomOffset( node.width, node.height, cylinderSize, cylinderEndHeight );
       } );
     } );
 

@@ -26,16 +26,22 @@ define( function( require ) {
    */
   function Solution( solvent, solute, soluteAmount, volume ) {
 
-    PropertySet.call( this, { solute: solute, soluteAmount: soluteAmount, volume: volume } );
+    PropertySet.call( this, {
 
-    this.solvent = solvent;
+      // @public
+      solute: solute,
+      soluteAmount: soluteAmount,
+      volume: volume
+    } );
 
-    // derive the concentration: M = moles/liter
+    this.solvent = solvent; // @public
+
+    // @public derive the concentration: M = moles/liter
     this.addDerivedProperty( 'concentration', [ 'solute', 'soluteAmount', 'volume' ], function( solute, soluteAmount, volume ) {
       return Util.toFixedNumber( volume > 0 ? Math.min( solute.saturatedConcentration, soluteAmount / volume ) : 0, CONCENTRATION_DECIMALS );
     } );
 
-    // derive the amount of precipitate
+    // @public derive the amount of precipitate
     this.addDerivedProperty( 'precipitateAmount', [ 'solute', 'soluteAmount', 'volume' ], function( solute, soluteAmount, volume ) {
       return Solution.computePrecipitateAmount( volume, soluteAmount, solute.saturatedConcentration );
     } );
@@ -43,10 +49,12 @@ define( function( require ) {
 
   return inherit( PropertySet, Solution, {
 
+    // @public
     isSaturated: function() {
       return this.precipitateAmount !== 0;
     },
 
+    // @public
     getColor: function() {
       if ( this.concentration > 0 ) {
         var colorScale = Util.linear( 0, this.solute.saturatedConcentration, 0, 1, this.concentration );
@@ -57,7 +65,8 @@ define( function( require ) {
       }
     }
   }, {
-    // static
+
+    // @pubic @static
     computePrecipitateAmount: function( volume, soluteAmount, saturatedConcentration ) {
       return volume > 0 ? Math.max( 0, volume * ( ( soluteAmount / volume ) - saturatedConcentration ) ) : soluteAmount;
     }

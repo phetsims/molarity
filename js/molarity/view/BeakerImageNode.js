@@ -32,19 +32,19 @@ define( function( require ) {
 
   return inherit( Image, BeakerImageNode, {
 
-    // Gets the cylinder dimensions.
+    // @public Gets the cylinder dimensions.
     getCylinderSize: function() {
       var pUpperLeft = this.localToParentPoint( CYLINDER_UPPER_LEFT );
       var pLowerRight = this.localToParentPoint( CYLINDER_LOWER_RIGHT );
       return new Dimension2( pLowerRight.x - pUpperLeft.x, pLowerRight.y - pUpperLeft.y );
     },
 
-    // Gets the offset of the cylinder from the upper-left corner of the image.
+    // @public Gets the offset of the cylinder from the upper-left corner of the image.
     getCylinderOffset: function() {
       return this.localToParentPoint( CYLINDER_UPPER_LEFT );
     },
 
-    // Gets the 2D height of the cylinder's end cap.
+    // @public Gets the 2D height of the cylinder's end cap.
     getCylinderEndHeight: function() {
       return this.localToParentPoint( CYLINDER_END_FOREGROUND ).y - this.localToParentPoint( CYLINDER_END_BACKGROUND ).y;
     }

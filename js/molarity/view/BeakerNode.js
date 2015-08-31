@@ -51,12 +51,12 @@ define( function( require ) {
     var thisNode = this;
     Node.call( thisNode, { pickable: false } );
 
-    // the glass beaker
-    thisNode._beakerImageNode = new BeakerImageNode( { scale: 0.75 } );
-    var cylinderSize = thisNode._beakerImageNode.getCylinderSize();
-    var cylinderOffset = thisNode._beakerImageNode.getCylinderOffset();
-    var cylinderEndHeight = thisNode._beakerImageNode.getCylinderEndHeight();
-    thisNode._beakerImageNode.translation = new Vector2( -cylinderOffset.x, -cylinderOffset.y );
+    // @private the glass beaker
+    thisNode.beakerImageNode = new BeakerImageNode( { scale: 0.75 } );
+    var cylinderSize = thisNode.beakerImageNode.getCylinderSize();
+    var cylinderOffset = thisNode.beakerImageNode.getCylinderOffset();
+    var cylinderEndHeight = thisNode.beakerImageNode.getCylinderEndHeight();
+    thisNode.beakerImageNode.translation = new Vector2( -cylinderOffset.x, -cylinderOffset.y );
 
     // inside bottom line
     var bottomShape = new Shape().ellipticalArc( cylinderSize.width / 2, cylinderSize.height,
@@ -75,7 +75,7 @@ define( function( require ) {
 
     // rendering order
     thisNode.addChild( bottomNode );
-    thisNode.addChild( thisNode._beakerImageNode );
+    thisNode.addChild( thisNode.beakerImageNode );
     thisNode.addChild( tickMarkNodes );
     thisNode.addChild( tickLabelNodes );
     thisNode.addChild( labelNode );
@@ -126,12 +126,14 @@ define( function( require ) {
 
   return inherit( Node, BeakerNode, {
 
+    // @public
     getCylinderSize: function() {
-      return this._beakerImageNode.getCylinderSize();
+      return this.beakerImageNode.getCylinderSize();
     },
 
+    // @public
     getCylinderEndHeight: function() {
-      return this._beakerImageNode.getCylinderEndHeight();
+      return this.beakerImageNode.getCylinderEndHeight();
     }
   } );
 } );

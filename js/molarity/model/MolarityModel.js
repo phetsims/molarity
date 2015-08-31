@@ -33,6 +33,7 @@ define( function( require ) {
 
     var thisModel = this;
 
+    // @public
     thisModel.solutes = [
       new Solute( drinkMixString, MSymbols.DRINK_MIX, 5.95, new Color( 255, 225, 225 ), Color.RED ),
       new Solute( cobaltIINitrateString, MSymbols.COBALT_II_NITRATE, 5.65, new Color( 255, 225, 225 ), Color.RED ),
@@ -45,24 +46,26 @@ define( function( require ) {
       new Solute( potassiumPermanganateString, MSymbols.POTASSIUM_PERMANGANATE, 0.50, new Color( 255, 0, 255 ), new Color( 139, 0, 139 ), { particleColor: Color.BLACK } )
     ];
 
+    // @public
     thisModel.solution = new Solution( Water, thisModel.solutes[ 0 ], MolarityModel.SOLUTE_AMOUNT_RANGE.defaultValue, MolarityModel.SOLUTION_VOLUME_RANGE.defaultValue );
 
     // compute the max amount of precipitate, used by the view to create the precipitate particles
     var minSaturateConcentration = _.min( thisModel.solutes, function( solute ) {
       return solute.saturatedConcentration;
     } ).saturatedConcentration;
+    // @public
     thisModel.maxPrecipitateAmount = Solution.computePrecipitateAmount( MolarityModel.SOLUTION_VOLUME_RANGE.min, MolarityModel.SOLUTE_AMOUNT_RANGE.max, minSaturateConcentration );
   }
 
   inherit( Object, MolarityModel, {
 
-    // Resets all model elements
+    // @public Resets all model elements
     reset: function() {
       this.solution.reset();
     }
   } );
 
-  // public constants
+  // @public constants
   MolarityModel.SOLUTE_AMOUNT_RANGE = new Range( 0, 1, 0.5 ); // moles
   MolarityModel.SOLUTION_VOLUME_RANGE = new Range( 0.2, 1, 0.5 ); // liters
   MolarityModel.CONCENTRATION_RANGE = new Range( MolarityModel.SOLUTE_AMOUNT_RANGE.min / MolarityModel.SOLUTION_VOLUME_RANGE.max, MolarityModel.SOLUTE_AMOUNT_RANGE.max / MolarityModel.SOLUTION_VOLUME_RANGE.min ); // M
