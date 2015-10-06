@@ -43,7 +43,7 @@ define( function( require ) {
       particlesParent.addChild( particleNodes[ i ] );
     }
     if ( DEBUG_OUTPUT ) {
-      console.log( "PrecipitateNode: " + maxPrecipitateAmount.toFixed( 4 ) + ' mol => ' + maxParticles + ' particles (max)' );
+      console.log( 'PrecipitateNode: ' + maxPrecipitateAmount.toFixed( 4 ) + ' mol => ' + maxParticles + ' particles (max)' );
     }
 
     // Change color of all particles to match the solute, change position so it doesn't look predictable
