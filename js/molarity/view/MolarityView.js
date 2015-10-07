@@ -109,23 +109,10 @@ define( function( require ) {
       scale: 1.32
     } );
 
-    // rendering order
-    this.addChild( solutionNode );
-    this.addChild( beakerNode );
-    this.addChild( precipitateNode );
-    this.addChild( saturatedIndicator );
-    this.addChild( soluteAmountSlider );
-    this.addChild( solutionVolumeSlider );
-    this.addChild( concentrationDisplay );
-    this.addChild( showValuesCheckBox );
-    this.addChild( resetAllButton );
-    this.addChild( soluteComboBox );
-    this.addChild( soluteComboBoxListParent );
-
     // layout for things that don't have a location in the model
     {
-      soluteAmountSlider.left = 35;
-      soluteAmountSlider.top = 65;
+      soluteAmountSlider.left = 0;
+      soluteAmountSlider.top = 0;
       // to the right of the Solute Amount slider
       solutionVolumeSlider.left = soluteAmountSlider.right + 20;
       solutionVolumeSlider.y = soluteAmountSlider.y;
@@ -157,6 +144,24 @@ define( function( require ) {
       resetAllButton.left = Math.max( soluteComboBox.right + 10, concentrationDisplay.centerX - ( resetAllButton.width / 2 ) );
       resetAllButton.centerY = soluteComboBox.centerY;
     }
+
+    // center everything on the screen
+    this.addChild( new Node( {
+      children: [
+        solutionNode,
+        beakerNode,
+        precipitateNode,
+        saturatedIndicator,
+        soluteAmountSlider,
+        solutionVolumeSlider,
+        concentrationDisplay,
+        showValuesCheckBox,
+        resetAllButton,
+        soluteComboBox,
+        soluteComboBoxListParent
+      ],
+      center: this.layoutBounds.center
+    } ) );
   }
 
   return inherit( ScreenView, MolarityView );
