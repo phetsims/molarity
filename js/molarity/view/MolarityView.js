@@ -125,7 +125,7 @@ define( function( require ) {
 
     // layout for things that don't have a location in the model
     {
-      soluteAmountSlider.left = 35;
+      soluteAmountSlider.left = 0;
       soluteAmountSlider.top = 0;
       // to the right of the Solute Amount slider
       solutionVolumeSlider.left = soluteAmountSlider.right + 20;
