@@ -119,7 +119,7 @@ define( function( require ) {
     Node.call( thisNode, { pickable: false } );
 
     // nodes
-    var maxTextWidth = 120; // constrain width for i18n, determined empirically
+    var maxTextWidth = 175; // constrain width for i18n, determined empirically
     var title = new MultiLineText( solutionConcentrationString, { align: 'center', font: TITLE_FONT, maxWidth: maxTextWidth } );
     var subtitle = new Text( StringUtils.format( pattern_parentheses_0text, molarityString ), { font: SUBTITLE_FONT, maxWidth: maxTextWidth } );
     var maxNode = new DualLabelNode( concentrationRange.max.toFixed( RANGE_DECIMAL_PLACES ), highString, valuesVisibleProperty, RANGE_FONT,
