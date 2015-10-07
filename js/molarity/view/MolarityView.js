@@ -109,20 +109,6 @@ define( function( require ) {
       scale: 1.32
     } );
 
-    // rendering order
-    var rootNode = new Node();
-    rootNode.addChild( solutionNode );
-    rootNode.addChild( beakerNode );
-    rootNode.addChild( precipitateNode );
-    rootNode.addChild( saturatedIndicator );
-    rootNode.addChild( soluteAmountSlider );
-    rootNode.addChild( solutionVolumeSlider );
-    rootNode.addChild( concentrationDisplay );
-    rootNode.addChild( showValuesCheckBox );
-    rootNode.addChild( resetAllButton );
-    rootNode.addChild( soluteComboBox );
-    rootNode.addChild( soluteComboBoxListParent );
-
     // layout for things that don't have a location in the model
     {
       soluteAmountSlider.left = 0;
