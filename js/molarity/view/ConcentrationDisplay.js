@@ -79,17 +79,9 @@ define( function( require ) {
     this.addChild( valueNode );
     this.addChild( thisNode.arrowNode );
 
-    var updateValuePosition = function() {
-      if ( valueNode.visible ) {
-        valueNode.left = thisNode.arrowNode.right + 5;
-        valueNode.centerY = thisNode.arrowNode.centerY;
-      }
-    };
-
     // show/hide value
     valuesVisibleProperty.link( function( visible ) {
       valueNode.setVisible( visible );
-      updateValuePosition();
     } );
 
     // when the concentration or solute changes...
@@ -101,7 +93,8 @@ define( function( require ) {
 
       // update the value
       valueNode.text = StringUtils.format( pattern_0value_1units, concentration.toFixed( VALUE_DECIMAL_PLACES ), units_molarityString );
-      updateValuePosition();
+      valueNode.left = thisNode.arrowNode.right + 5;
+      valueNode.centerY = thisNode.arrowNode.centerY;
     };
     solution.concentrationProperty.link( function( concentration ) {
       update( concentration );
