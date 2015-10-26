@@ -167,7 +167,9 @@ define( function( require ) {
     var maxNode = new DualLabelNode( range.max.toFixed( RANGE_DECIMAL_PLACES ), maxLabel, valuesVisibleProperty, RANGE_FONT,
       { maxWidth: maxTextWidth } );
     var trackNode = new Track( trackSize, property, range, decimalPlaces );
-    var xMargin = 7, yMargin = 7, cornerRadius = 10;
+    var xMargin = 7;
+    var yMargin = 7;
+    var cornerRadius = 10;
     var backgroundNode = new Rectangle( -xMargin, -yMargin, trackSize.width + ( 2 * xMargin ), trackSize.height + ( 2 * yMargin ), cornerRadius, cornerRadius,
       { fill: new Color( 200, 200, 200, 140 ) } );
     var thumbNode = new Thumb( THUMB_SIZE, property, range, decimalPlaces, new Range( 0, trackSize.height ) );

@@ -84,7 +84,15 @@ define( function( require ) {
     var numberOfTicks = Math.round( maxVolume / MINOR_TICK_SPACING );
     var bottomY = cylinderSize.height; // don't use bounds or position will be off because of stroke width
     var deltaY = cylinderSize.height / numberOfTicks;
-    var y, tickMarkShape, tickMarkNode, tickLabelIndex, tickLabel, tickLabelNode; // vars used inside the for-loop
+
+    // vars used inside the for-loop
+    var y;
+    var tickMarkShape;
+    var tickMarkNode;
+    var tickLabelIndex;
+    var tickLabel;
+    var tickLabelNode;
+
     for ( var i = 1; i <= numberOfTicks; i++ ) {
       y = bottomY - ( i * deltaY );
       if ( i % MINOR_TICKS_PER_MAJOR_TICK === 0 ) {
