@@ -31,10 +31,10 @@ define( function( require ) {
   // strings
   var highString = require( 'string!MOLARITY/high' );
   var molarityString = require( 'string!MOLARITY/molarity' );
-  var pattern_0value_1units = require( 'string!MOLARITY/pattern.0value.1units' );
-  var pattern_parentheses_0text = require( 'string!MOLARITY/pattern.parentheses.0text' );
+  var pattern0Value1UnitsString = require( 'string!MOLARITY/pattern.0value.1units' );
+  var patternParentheses0TextString = require( 'string!MOLARITY/pattern.parentheses.0text' );
   var solutionConcentrationString = require( 'string!MOLARITY/solutionConcentration' );
-  var units_molarityString = require( 'string!MOLARITY/units.molarity' );
+  var unitsMolarityString = require( 'string!MOLARITY/units.molarity' );
   var zeroString = require( 'string!MOLARITY/zero' );
 
   // constants
@@ -92,7 +92,7 @@ define( function( require ) {
       thisNode.arrowNode.fill = solution.getColor();
 
       // update the value
-      valueNode.text = StringUtils.format( pattern_0value_1units, concentration.toFixed( VALUE_DECIMAL_PLACES ), units_molarityString );
+      valueNode.text = StringUtils.format( pattern0Value1UnitsString, concentration.toFixed( VALUE_DECIMAL_PLACES ), unitsMolarityString );
       valueNode.left = thisNode.arrowNode.right + 5;
       valueNode.centerY = thisNode.arrowNode.centerY;
     };
@@ -114,7 +114,7 @@ define( function( require ) {
     // nodes
     var maxTextWidth = 175; // constrain width for i18n, determined empirically
     var title = new MultiLineText( solutionConcentrationString, { align: 'center', font: TITLE_FONT, maxWidth: maxTextWidth } );
-    var subtitle = new Text( StringUtils.format( pattern_parentheses_0text, molarityString ), { font: SUBTITLE_FONT, maxWidth: maxTextWidth } );
+    var subtitle = new Text( StringUtils.format( patternParentheses0TextString, molarityString ), { font: SUBTITLE_FONT, maxWidth: maxTextWidth } );
     var maxNode = new DualLabelNode( concentrationRange.max.toFixed( RANGE_DECIMAL_PLACES ), highString, valuesVisibleProperty, RANGE_FONT,
       { maxWidth: maxTextWidth } );
     var minNode = new DualLabelNode( concentrationRange.min.toFixed( concentrationRange.min === 0 ? 0 : RANGE_DECIMAL_PLACES ), zeroString, valuesVisibleProperty, RANGE_FONT,

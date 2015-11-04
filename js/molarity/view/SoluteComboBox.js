@@ -18,7 +18,7 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
 
   // strings
-  var pattern_0label = require( 'string!MOLARITY/pattern.0label' );
+  var pattern0LabelString = require( 'string!MOLARITY/pattern.0label' );
   var soluteString = require( 'string!MOLARITY/solute' );
 
   /**
@@ -31,7 +31,7 @@ define( function( require ) {
   function SoluteComboBox( solutes, selectedSoluteProperty, listParent, options ) {
 
     options = _.extend( {
-      labelNode: new Text( StringUtils.format( pattern_0label, soluteString ), { font: new PhetFont( 22 ) } ), // 'Solute' label
+      labelNode: new Text( StringUtils.format( pattern0LabelString, soluteString ), { font: new PhetFont( 22 ) } ), // 'Solute' label
       listPosition: 'above',
       itemYMargin: 12,
       itemHighlightFill: 'rgb(218,255,255)'

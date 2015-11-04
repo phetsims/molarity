@@ -28,7 +28,7 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
 
   // strings
-  var pattern_0value_1units = require( 'string!MOLARITY/pattern.0value.1units' );
+  var pattern0Value1UnitsString = require( 'string!MOLARITY/pattern.0value.1units' );
 
   // constants
   var TITLE_FONT = new PhetFont( { size: 24, weight: 'bold' } );
@@ -214,7 +214,7 @@ define( function( require ) {
       var y = Util.linear( range.min, range.max, trackSize.height, 0, value );
       thumbNode.y = Util.clamp( y, 0, trackSize.height );
       // update the value
-      valueNode.text = StringUtils.format( pattern_0value_1units, value.toFixed( VALUE_DECIMAL_PLACES ), units );
+      valueNode.text = StringUtils.format( pattern0Value1UnitsString, value.toFixed( VALUE_DECIMAL_PLACES ), units );
       updateValuePosition();
     } );
 

@@ -36,12 +36,12 @@ define( function( require ) {
   var lowString = require( 'string!MOLARITY/low' );
   var molesString = require( 'string!MOLARITY/moles' );
   var noneString = require( 'string!MOLARITY/none' );
-  var pattern_parentheses_0text = require( 'string!MOLARITY/pattern.parentheses.0text' );
+  var patternParentheses0TextString = require( 'string!MOLARITY/pattern.parentheses.0text' );
   var showValuesString = require( 'string!MOLARITY/showValues' );
   var soluteAmountString = require( 'string!MOLARITY/soluteAmount' );
   var solutionVolumeString = require( 'string!MOLARITY/solutionVolume' );
-  var units_litersString = require( 'string!MOLARITY/units.liters' );
-  var units_molesString = require( 'string!MOLARITY/units.moles' );
+  var unitsLitersString = require( 'string!MOLARITY/units.liters' );
+  var unitsMolesString = require( 'string!MOLARITY/units.moles' );
 
   // constants
   var SOLUTE_AMOUNT_DECIMAL_PLACES = 2;
@@ -71,25 +71,25 @@ define( function( require ) {
 
     // slider for controlling amount of solute
     var soluteAmountSlider = new VerticalSlider( soluteAmountString,
-      StringUtils.format( pattern_parentheses_0text, molesString ),
+      StringUtils.format( patternParentheses0TextString, molesString ),
       noneString, lotsString,
       new Dimension2( 5, cylinderSize.height ),
       model.solution.soluteAmountProperty,
       MolarityModel.SOLUTE_AMOUNT_RANGE,
       SOLUTE_AMOUNT_DECIMAL_PLACES,
-      units_molesString,
+      unitsMolesString,
       valuesVisibleProperty );
 
     // slider for controlling volume of solution, sized to match tick marks on the beaker
     var volumeSliderHeight = ( MolarityModel.SOLUTION_VOLUME_RANGE.getLength() / MolarityModel.SOLUTION_VOLUME_RANGE.max ) * cylinderSize.height;
     var solutionVolumeSlider = new VerticalSlider( solutionVolumeString,
-      StringUtils.format( pattern_parentheses_0text, litersString ),
+      StringUtils.format( patternParentheses0TextString, litersString ),
       lowString, fullString,
       new Dimension2( 5, volumeSliderHeight ),
       model.solution.volumeProperty,
       MolarityModel.SOLUTION_VOLUME_RANGE,
       VOLUME_DECIMAL_PLACES,
-      units_litersString,
+      unitsLitersString,
       valuesVisibleProperty );
 
     // concentration display

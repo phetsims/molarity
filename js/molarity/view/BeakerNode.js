@@ -27,8 +27,8 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
 
   // strings
-  var pattern_0value_1units = require( 'string!MOLARITY/pattern.0value.1units' );
-  var units_litersString = require( 'string!MOLARITY/units.liters' );
+  var pattern0Value1UnitsString = require( 'string!MOLARITY/pattern.0value.1units' );
+  var unitsLitersString = require( 'string!MOLARITY/units.liters' );
 
   // constants
   var DEBUG_SHAPES = false;
@@ -105,7 +105,7 @@ define( function( require ) {
         // major tick label
         tickLabelIndex = ( i / MINOR_TICKS_PER_MAJOR_TICK ) - 1;
         if ( tickLabelIndex < MAJOR_TICK_LABELS.length ) {
-          tickLabel = StringUtils.format( pattern_0value_1units, MAJOR_TICK_LABELS[ tickLabelIndex ], units_litersString );
+          tickLabel = StringUtils.format( pattern0Value1UnitsString, MAJOR_TICK_LABELS[ tickLabelIndex ], unitsLitersString );
           tickLabelNode = new Text( tickLabel, { font: TICK_LABEL_FONT, stroke: TICK_LABEL_COLOR, maxWidth: 100 } );
           tickLabelNodes.addChild( tickLabelNode );
           tickLabelNode.left = tickMarkNode.right + TICK_LABEL_X_SPACING;

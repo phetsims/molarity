@@ -14,7 +14,7 @@ define( function( require ) {
   var SimLauncher = require( 'JOIST/SimLauncher' );
 
   // strings
-  var simTitle = require( 'string!MOLARITY/molarity.title' );
+  var molarityTitleString = require( 'string!MOLARITY/molarity.title' );
 
   var simOptions = {
     credits: {
@@ -33,7 +33,7 @@ define( function( require ) {
   }
 
   SimLauncher.launch( function() {
-    var sim = new Sim( simTitle, [ new MolarityScreen() ], simOptions );
+    var sim = new Sim( molarityTitleString, [ new MolarityScreen() ], simOptions );
     sim.start();
   } );
 } );
