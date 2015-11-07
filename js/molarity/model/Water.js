@@ -1,4 +1,4 @@
-// Copyright 2013-2014, University of Colorado Boulder
+// Copyright 2013-2015, University of Colorado Boulder
 
 /**
  * Water, as a solvent. Solvents have a formula and a color.
