@@ -11,6 +11,7 @@ define( function( require ) {
   // modules
   var Color = require( 'SCENERY/util/Color' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var molarity = require( 'MOLARITY/molarity' );
   var PropertySet = require( 'AXON/PropertySet' );
   var Util = require( 'DOT/Util' );
 
@@ -46,6 +47,8 @@ define( function( require ) {
       return Solution.computePrecipitateAmount( volume, soluteAmount, solute.saturatedConcentration );
     } );
   }
+
+  molarity.register( 'Solution', Solution );
 
   return inherit( PropertySet, Solution, {
 

@@ -7,8 +7,11 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function() {
+define( function( require ) {
   'use strict';
+
+  // modules
+  var molarity = require( 'MOLARITY/molarity' );
 
   /**
    * @param {string} name
@@ -33,6 +36,8 @@ define( function() {
     this.maxColor = maxColor;
     this.particleColor = options.particleColor;
   }
+
+  molarity.register( 'Solute', Solute );
 
   return Solute;
 } );

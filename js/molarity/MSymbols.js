@@ -10,11 +10,12 @@ define( function( require ) {
 
   // modules
   var toSubscript = require( 'NITROGLYCERIN/ChemUtils' ).toSubscript;
+  var molarity = require( 'MOLARITY/molarity' );
 
   // strings
   var drinkMixString = require( 'string!MOLARITY/drinkMix' );
 
-  return {
+  var MSymbols = {
     COBALT_II_NITRATE: toSubscript( 'Co(NO3)2' ),
     COBALT_CHLORIDE: toSubscript( 'CoCl2' ),
     COPPER_SULFATE: toSubscript( 'CuSO4' ),
@@ -26,4 +27,8 @@ define( function( require ) {
     POTASSIUM_PERMANGANATE: toSubscript( 'KMnO4' ),
     WATER: toSubscript( 'H2O' )
   };
+
+  molarity.register( 'MSymbols', MSymbols );
+
+  return MSymbols;
 } );

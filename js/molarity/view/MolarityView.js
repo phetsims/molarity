@@ -15,6 +15,7 @@ define( function( require ) {
   var ConcentrationDisplay = require( 'MOLARITY/molarity/view/ConcentrationDisplay' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var molarity = require( 'MOLARITY/molarity' );
   var MolarityModel = require( 'MOLARITY/molarity/model/MolarityModel' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
@@ -163,6 +164,8 @@ define( function( require ) {
       center: this.layoutBounds.center
     } ) );
   }
+
+  molarity.register( 'MolarityView', MolarityView );
 
   return inherit( ScreenView, MolarityView );
 } );

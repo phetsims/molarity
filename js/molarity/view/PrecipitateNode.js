@@ -12,6 +12,7 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
+  var molarity = require( 'MOLARITY/molarity' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Vector2 = require( 'DOT/Vector2' );
@@ -69,6 +70,8 @@ define( function( require ) {
       }
     } );
   }
+
+  molarity.register( 'PrecipitateNode', PrecipitateNode );
 
   // Gets the number of particles that corresponds to some precipitate amount.
   var getNumberOfParticles = function( precipitateAmount ) {

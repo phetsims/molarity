@@ -18,6 +18,7 @@ define( function( require ) {
   var DualLabelNode = require( 'MOLARITY/molarity/view/DualLabelNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var LinearGradient = require( 'SCENERY/util/LinearGradient' );
+  var molarity = require( 'MOLARITY/molarity' );
   var MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
@@ -48,6 +49,84 @@ define( function( require ) {
   var ARROW_TAIL_WIDTH = 0.4 * ARROW_LENGTH;
   var RANGE_DECIMAL_PLACES = 1;
   var VALUE_DECIMAL_PLACES = 2;
+
+  /**
+   * @param {Solution} solution
+   * @param {Range} concentrationRange
+   * @param {Property.<boolean>} valuesVisibleProperty
+   * @param {Dimension2} barSize
+   * @constructor
+   */
+  function ConcentrationDisplay( solution, concentrationRange, valuesVisibleProperty, barSize ) {
+
+    var thisNode = this;
+    Node.call( thisNode, { pickable: false } );
+
+    // nodes
+    var maxTextWidth = 175; // constrain width for i18n, determined empirically
+    var title = new MultiLineText( solutionConcentrationString, {
+      align: 'center',
+      font: TITLE_FONT,
+      maxWidth: maxTextWidth
+    } );
+    var subtitle = new Text( StringUtils.format( patternParentheses0TextString, molarityString ), {
+      font: SUBTITLE_FONT,
+      maxWidth: maxTextWidth
+    } );
+    var maxNode = new DualLabelNode( concentrationRange.max.toFixed( RANGE_DECIMAL_PLACES ), highString, valuesVisibleProperty, RANGE_FONT,
+      { maxWidth: maxTextWidth } );
+    var minNode = new DualLabelNode( concentrationRange.min.toFixed( concentrationRange.min === 0 ? 0 : RANGE_DECIMAL_PLACES ), zeroString, valuesVisibleProperty, RANGE_FONT,
+      { maxWidth: maxTextWidth } );
+    var barNode = new Rectangle( 0, 0, barSize.width, barSize.height, { stroke: 'black' } );
+    var saturatedBarNode = new Rectangle( 0, 0, barSize.width, barSize.height, {
+      stroke: 'black',
+      fill: Color.LIGHT_GRAY
+    } );
+    var pointerNode = new Pointer( solution, concentrationRange, barSize, valuesVisibleProperty );
+
+    // rendering order
+    thisNode.addChild( title );
+    thisNode.addChild( subtitle );
+    thisNode.addChild( maxNode );
+    thisNode.addChild( minNode );
+    thisNode.addChild( barNode );
+    thisNode.addChild( saturatedBarNode );
+    thisNode.addChild( pointerNode );
+
+    // layout
+    barNode.x = 0;
+    barNode.y = 0;
+    saturatedBarNode.x = barNode.x;
+    saturatedBarNode.y = barNode.y;
+    maxNode.centerX = barNode.centerX;
+    maxNode.bottom = barNode.top - 5;
+    minNode.centerX = barNode.centerX;
+    minNode.top = barNode.bottom + 5;
+    subtitle.centerX = barNode.centerX;
+    subtitle.bottom = maxNode.top - 8;
+    title.centerX = barNode.centerX;
+    title.bottom = subtitle.top - 5;
+
+    // when the solute changes...
+    solution.soluteProperty.link( function( solute ) {
+
+      // Color the bar using a gradient that corresponds to the solute's color range.
+      var concentrationScale = Math.min( 1, solute.saturatedConcentration / concentrationRange.max );
+      var y = barSize.height - ( barSize.height * concentrationScale );
+      if ( y < 0 ) {
+        console.log( 'solute.saturatedConcentration=' + solute.saturatedConcentration + ' concentrationRange.max=' + concentrationRange.max );
+      }
+      barNode.fill = new LinearGradient( 0, y, 0, barSize.height )
+        .addColorStop( 0, solute.maxColor )
+        .addColorStop( 1, solute.minColor );
+
+      // Cover the saturated portion of the range with a gray rectangle.
+      saturatedBarNode.visible = ( solute.saturatedConcentration < concentrationRange.max );
+      saturatedBarNode.setRect( 0, 0, barSize.width, y );
+    } );
+  }
+
+  molarity.register( 'ConcentrationDisplay', ConcentrationDisplay );
 
   /**
    * @param {Solution} solution
@@ -104,66 +183,9 @@ define( function( require ) {
     } );
   }
 
+  molarity.register( 'ConcentrationDisplay.Pointer', Pointer );
+
   inherit( Node, Pointer );
-
-  function ConcentrationDisplay( solution, concentrationRange, valuesVisibleProperty, barSize ) {
-
-    var thisNode = this;
-    Node.call( thisNode, { pickable: false } );
-
-    // nodes
-    var maxTextWidth = 175; // constrain width for i18n, determined empirically
-    var title = new MultiLineText( solutionConcentrationString, { align: 'center', font: TITLE_FONT, maxWidth: maxTextWidth } );
-    var subtitle = new Text( StringUtils.format( patternParentheses0TextString, molarityString ), { font: SUBTITLE_FONT, maxWidth: maxTextWidth } );
-    var maxNode = new DualLabelNode( concentrationRange.max.toFixed( RANGE_DECIMAL_PLACES ), highString, valuesVisibleProperty, RANGE_FONT,
-      { maxWidth: maxTextWidth } );
-    var minNode = new DualLabelNode( concentrationRange.min.toFixed( concentrationRange.min === 0 ? 0 : RANGE_DECIMAL_PLACES ), zeroString, valuesVisibleProperty, RANGE_FONT,
-      { maxWidth: maxTextWidth } );
-    var barNode = new Rectangle( 0, 0, barSize.width, barSize.height, { stroke: 'black' } );
-    var saturatedBarNode = new Rectangle( 0, 0, barSize.width, barSize.height, { stroke: 'black', fill: Color.LIGHT_GRAY } );
-    var pointerNode = new Pointer( solution, concentrationRange, barSize, valuesVisibleProperty );
-
-    // rendering order
-    thisNode.addChild( title );
-    thisNode.addChild( subtitle );
-    thisNode.addChild( maxNode );
-    thisNode.addChild( minNode );
-    thisNode.addChild( barNode );
-    thisNode.addChild( saturatedBarNode );
-    thisNode.addChild( pointerNode );
-
-    // layout
-    barNode.x = 0;
-    barNode.y = 0;
-    saturatedBarNode.x = barNode.x;
-    saturatedBarNode.y = barNode.y;
-    maxNode.centerX = barNode.centerX;
-    maxNode.bottom = barNode.top - 5;
-    minNode.centerX = barNode.centerX;
-    minNode.top = barNode.bottom + 5;
-    subtitle.centerX = barNode.centerX;
-    subtitle.bottom = maxNode.top - 8;
-    title.centerX = barNode.centerX;
-    title.bottom = subtitle.top - 5;
-
-    // when the solute changes...
-    solution.soluteProperty.link( function( solute ) {
-
-      // Color the bar using a gradient that corresponds to the solute's color range.
-      var concentrationScale = Math.min( 1, solute.saturatedConcentration / concentrationRange.max );
-      var y = barSize.height - ( barSize.height * concentrationScale );
-      if ( y < 0 ) {
-        console.log( 'solute.saturatedConcentration=' + solute.saturatedConcentration + ' concentrationRange.max=' + concentrationRange.max );
-      }
-      barNode.fill = new LinearGradient( 0, y, 0, barSize.height )
-        .addColorStop( 0, solute.maxColor )
-        .addColorStop( 1, solute.minColor );
-
-      // Cover the saturated portion of the range with a gray rectangle.
-      saturatedBarNode.visible = ( solute.saturatedConcentration < concentrationRange.max );
-      saturatedBarNode.setRect( 0, 0, barSize.width, y );
-    } );
-  }
 
   return inherit( Node, ConcentrationDisplay );
 } );

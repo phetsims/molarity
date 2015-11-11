@@ -10,7 +10,15 @@ define( function( require ) {
 
   // modules
   var Color = require( 'SCENERY/util/Color' );
+  var molarity = require( 'MOLARITY/molarity' );
   var MSymbols = require( 'MOLARITY/molarity/MSymbols' );
 
-  return { formula: MSymbols.WATER, color: new Color( 224, 255, 255 ) };
+  var Water = {
+    formula: MSymbols.WATER,
+    color: new Color( 224, 255, 255 )
+  };
+
+  molarity.register( 'Water', Water );
+
+  return Water;
 } );

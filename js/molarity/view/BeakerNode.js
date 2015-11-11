@@ -16,6 +16,7 @@ define( function( require ) {
   var Circle = require( 'SCENERY/nodes/Circle' );
   var Color = require( 'SCENERY/util/Color' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var molarity = require( 'MOLARITY/molarity' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
@@ -131,6 +132,8 @@ define( function( require ) {
       tickLabelNodes.visible = visible;
     } );
   }
+
+  molarity.register( 'BeakerNode', BeakerNode );
 
   return inherit( Node, BeakerNode, {
 

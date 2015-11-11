@@ -11,6 +11,7 @@ define( function( require ) {
   // modules
   var Color = require( 'SCENERY/util/Color' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var molarity = require( 'MOLARITY/molarity' );
   var MSymbols = require( 'MOLARITY/molarity/MSymbols' );
   var Range = require( 'DOT/Range' );
   var Solute = require( 'MOLARITY/molarity/model/Solute' );
@@ -56,6 +57,8 @@ define( function( require ) {
     // @public
     thisModel.maxPrecipitateAmount = Solution.computePrecipitateAmount( MolarityModel.SOLUTION_VOLUME_RANGE.min, MolarityModel.SOLUTE_AMOUNT_RANGE.max, minSaturateConcentration );
   }
+
+  molarity.register( 'MolarityModel', MolarityModel );
 
   inherit( Object, MolarityModel, {
 

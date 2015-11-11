@@ -15,6 +15,7 @@ define( function( require ) {
   var Dimension2 = require( 'DOT/Dimension2' );
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var molarity = require( 'MOLARITY/molarity' );
   var Vector2 = require( 'DOT/Vector2' );
 
   // images
@@ -29,6 +30,8 @@ define( function( require ) {
   function BeakerImageNode( options ) {
     Image.call( this, beakerImage, options );
   }
+
+  molarity.register( 'BeakerImageNode', BeakerImageNode );
 
   return inherit( Image, BeakerImageNode, {
 

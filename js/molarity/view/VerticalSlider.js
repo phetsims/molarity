@@ -15,6 +15,7 @@ define( function( require ) {
   var DualLabelNode = require( 'MOLARITY/molarity/view/DualLabelNode' );
   var FillHighlightListener = require( 'SCENERY_PHET/input/FillHighlightListener' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var molarity = require( 'MOLARITY/molarity' );
   var MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
@@ -42,104 +43,6 @@ define( function( require ) {
   var THUMB_HIGHLIGHT_COLOR = THUMB_NORMAL_COLOR.brighterColor();
   var THUMB_STROKE_COLOR = Color.BLACK;
   var THUMB_CENTER_LINE_COLOR = Color.WHITE;
-
-  /**
-   * Track that the thumb moves in, origin at upper left. Clicking in the track changes the value.
-   * @param {Dimension2} size
-   * @param {Property.<number>} property
-   * @param {Range} range
-   * @param {number} decimalPlaces
-   * @constructor
-   */
-  function Track( size, property, range, decimalPlaces ) {
-
-    var thisNode = this;
-    Rectangle.call( thisNode, 0, 0, size.width, size.height, { fill: 'black', cursor: 'pointer' } );
-
-    // click in the track to change the value, continue dragging if desired
-    var handleEvent = function( event ) {
-      var y = thisNode.globalToLocalPoint( event.pointer.point ).y;
-      var value = Util.linear( 0, size.height, range.max, range.min, y );
-      property.value = Util.toFixedNumber( Util.clamp( value, range.min, range.max ), decimalPlaces );
-    };
-    thisNode.addInputListener( new SimpleDragHandler(
-      {
-        allowTouchSnag: true,
-        start: function( event ) {
-          handleEvent( event );
-        },
-        drag: function( event ) {
-          handleEvent( event );
-        }
-      } ) );
-  }
-
-  inherit( Rectangle, Track );
-
-  /**
-   * The slider thumb, a rounded rectangle with a horizontal line through its center. Origin is at the thumb's geometric center.
-   * @param {Dimension2} size
-   * @param {Property.<number>} property
-   * @param {Range} valueRange
-   * @param {number} decimalPlaces
-   * @param {Range} positionRange
-   * @constructor
-   */
-  function Thumb( size, property, valueRange, decimalPlaces, positionRange ) {
-
-    var thisNode = this;
-    Node.call( this );
-
-    // nodes
-    var bodyNode = new Rectangle( -size.width / 2, -size.height / 2, size.width, size.height, 10, 10,
-      { fill: THUMB_NORMAL_COLOR, stroke: THUMB_STROKE_COLOR, lineWidth: 1 } );
-    var centerLineNode = new Path( Shape.lineSegment( -( size.width / 2 ) + 3, 0, ( size.width / 2 ) - 3, 0 ),
-      { stroke: THUMB_CENTER_LINE_COLOR } );
-
-    // rendering order
-    thisNode.addChild( bodyNode );
-    thisNode.addChild( centerLineNode );
-
-    // touch area
-    var touchXMargin = 0 * bodyNode.width; // thumb seems wide enough, so zero for now
-    var touchYMargin = 1 * bodyNode.height; // expand height since thumb is not very tall and drag direction is vertical
-    bodyNode.touchArea = Shape.rectangle( bodyNode.left - touchXMargin, bodyNode.top - touchYMargin,
-      bodyNode.width + ( 2 * touchXMargin ), bodyNode.height + ( 2 * touchYMargin ) );
-
-    // interactivity
-    thisNode.cursor = 'pointer';
-    thisNode.addInputListener( new ThumbDragHandler( thisNode, property, valueRange, decimalPlaces, positionRange ) );
-    bodyNode.addInputListener( new FillHighlightListener( THUMB_NORMAL_COLOR, THUMB_HIGHLIGHT_COLOR ) );
-  }
-
-  inherit( Node, Thumb );
-
-  /**
-   * Drag handler for the slider thumb.
-   * @param {Node} dragNode
-   * @param {Property.<number>} property
-   * @param {Range} valueRange
-   * @param {number} decimalPlaces
-   * @param {Range} positionRange
-   * @constructor
-   */
-  function ThumbDragHandler( dragNode, property, valueRange, decimalPlaces, positionRange ) {
-    var clickYOffset; // y-offset between initial click and thumb's origin
-    SimpleDragHandler.call( this, {
-
-      start: function( event ) {
-        clickYOffset = dragNode.globalToParentPoint( event.pointer.point ).y - event.currentTarget.y;
-      },
-
-      drag: function( event ) {
-        var y = dragNode.globalToParentPoint( event.pointer.point ).y - clickYOffset;
-        var value = Util.linear( positionRange.min, positionRange.max, valueRange.max, valueRange.min, y );
-        property.value = Util.toFixedNumber( Util.clamp( value, valueRange.min, valueRange.max ), decimalPlaces );
-      }
-    } );
-  }
-
-  inherit( SimpleDragHandler, ThumbDragHandler );
 
   /**
    * @param {string} title
@@ -224,6 +127,112 @@ define( function( require ) {
       updateValuePosition();
     } );
   }
+
+  molarity.register( 'VerticalSlider', VerticalSlider );
+
+  /**
+   * Track that the thumb moves in, origin at upper left. Clicking in the track changes the value.
+   * @param {Dimension2} size
+   * @param {Property.<number>} property
+   * @param {Range} range
+   * @param {number} decimalPlaces
+   * @constructor
+   */
+  function Track( size, property, range, decimalPlaces ) {
+
+    var thisNode = this;
+    Rectangle.call( thisNode, 0, 0, size.width, size.height, { fill: 'black', cursor: 'pointer' } );
+
+    // click in the track to change the value, continue dragging if desired
+    var handleEvent = function( event ) {
+      var y = thisNode.globalToLocalPoint( event.pointer.point ).y;
+      var value = Util.linear( 0, size.height, range.max, range.min, y );
+      property.value = Util.toFixedNumber( Util.clamp( value, range.min, range.max ), decimalPlaces );
+    };
+    thisNode.addInputListener( new SimpleDragHandler(
+      {
+        allowTouchSnag: true,
+        start: function( event ) {
+          handleEvent( event );
+        },
+        drag: function( event ) {
+          handleEvent( event );
+        }
+      } ) );
+  }
+
+  molarity.register( 'VerticalSlider.Track', Track );
+
+  inherit( Rectangle, Track );
+
+  /**
+   * The slider thumb, a rounded rectangle with a horizontal line through its center. Origin is at the thumb's geometric center.
+   * @param {Dimension2} size
+   * @param {Property.<number>} property
+   * @param {Range} valueRange
+   * @param {number} decimalPlaces
+   * @param {Range} positionRange
+   * @constructor
+   */
+  function Thumb( size, property, valueRange, decimalPlaces, positionRange ) {
+
+    var thisNode = this;
+    Node.call( this );
+
+    // nodes
+    var bodyNode = new Rectangle( -size.width / 2, -size.height / 2, size.width, size.height, 10, 10,
+      { fill: THUMB_NORMAL_COLOR, stroke: THUMB_STROKE_COLOR, lineWidth: 1 } );
+    var centerLineNode = new Path( Shape.lineSegment( -( size.width / 2 ) + 3, 0, ( size.width / 2 ) - 3, 0 ),
+      { stroke: THUMB_CENTER_LINE_COLOR } );
+
+    // rendering order
+    thisNode.addChild( bodyNode );
+    thisNode.addChild( centerLineNode );
+
+    // touch area
+    var touchXMargin = 0 * bodyNode.width; // thumb seems wide enough, so zero for now
+    var touchYMargin = 1 * bodyNode.height; // expand height since thumb is not very tall and drag direction is vertical
+    bodyNode.touchArea = Shape.rectangle( bodyNode.left - touchXMargin, bodyNode.top - touchYMargin,
+      bodyNode.width + ( 2 * touchXMargin ), bodyNode.height + ( 2 * touchYMargin ) );
+
+    // interactivity
+    thisNode.cursor = 'pointer';
+    thisNode.addInputListener( new ThumbDragHandler( thisNode, property, valueRange, decimalPlaces, positionRange ) );
+    bodyNode.addInputListener( new FillHighlightListener( THUMB_NORMAL_COLOR, THUMB_HIGHLIGHT_COLOR ) );
+  }
+
+  molarity.register( 'VerticalSlider.Thumb', Thumb );
+
+  inherit( Node, Thumb );
+
+  /**
+   * Drag handler for the slider thumb.
+   * @param {Node} dragNode
+   * @param {Property.<number>} property
+   * @param {Range} valueRange
+   * @param {number} decimalPlaces
+   * @param {Range} positionRange
+   * @constructor
+   */
+  function ThumbDragHandler( dragNode, property, valueRange, decimalPlaces, positionRange ) {
+    var clickYOffset; // y-offset between initial click and thumb's origin
+    SimpleDragHandler.call( this, {
+
+      start: function( event ) {
+        clickYOffset = dragNode.globalToParentPoint( event.pointer.point ).y - event.currentTarget.y;
+      },
+
+      drag: function( event ) {
+        var y = dragNode.globalToParentPoint( event.pointer.point ).y - clickYOffset;
+        var value = Util.linear( positionRange.min, positionRange.max, valueRange.max, valueRange.min, y );
+        property.value = Util.toFixedNumber( Util.clamp( value, valueRange.min, valueRange.max ), decimalPlaces );
+      }
+    } );
+  }
+
+  molarity.register( 'VerticalSlider.ThumbDragHandler', ThumbDragHandler );
+
+  inherit( SimpleDragHandler, ThumbDragHandler );
 
   return inherit( Node, VerticalSlider );
 } );

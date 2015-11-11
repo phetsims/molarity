@@ -14,6 +14,7 @@ define( function( require ) {
   var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
   var MSymbols = require( 'MOLARITY/molarity/MSymbols' );
+  var molarity = require( 'MOLARITY/molarity' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
@@ -57,6 +58,8 @@ define( function( require ) {
       formulaNode.centerY = backgroundNode.centerY;
     } );
   }
+
+  molarity.register( 'BeakerLabelNode', BeakerLabelNode );
 
   return inherit( Node, BeakerLabelNode );
 } );

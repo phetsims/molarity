@@ -12,6 +12,7 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
+  var molarity = require( 'MOLARITY/molarity' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Text = require( 'SCENERY/nodes/Text' );
@@ -55,6 +56,8 @@ define( function( require ) {
 
     this.mutate( options );
   }
+
+  molarity.register( 'DualLabelNode', DualLabelNode );
 
   return inherit( Node, DualLabelNode );
 } );

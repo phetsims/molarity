@@ -11,6 +11,7 @@ define( function( require ) {
   // modules
   var ComboBox = require( 'SUN/ComboBox' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var molarity = require( 'MOLARITY/molarity' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
@@ -46,6 +47,8 @@ define( function( require ) {
 
     ComboBox.call( this, items, selectedSoluteProperty, listParent, options );
   }
+
+  molarity.register( 'SoluteComboBox', SoluteComboBox );
 
   /**
    * Creates an item for the combo box.

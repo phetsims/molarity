@@ -14,6 +14,7 @@ define( function( require ) {
   var Circle = require( 'SCENERY/nodes/Circle' );
   var Color = require( 'SCENERY/util/Color' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var molarity = require( 'MOLARITY/molarity' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
@@ -61,6 +62,8 @@ define( function( require ) {
     };
     solution.volumeProperty.link( updateShape );
   }
+
+  molarity.register( 'SolutionNode', SolutionNode );
 
   return inherit( Node, SolutionNode );
 } );

@@ -11,6 +11,7 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
+  var molarity = require( 'MOLARITY/molarity' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
@@ -47,6 +48,8 @@ define( function( require ) {
       thisNode.visible = solution.isSaturated();
     } );
   }
+
+  molarity.register( 'SaturatedIndicator', SaturatedIndicator );
 
   return inherit( Node, SaturatedIndicator );
 } );
