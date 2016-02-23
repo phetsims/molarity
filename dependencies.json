@@ -1,5 +1,5 @@
 {
-  "comment": "# molarity 1.2.1 Mon Feb 22 2016 15:25:56 GMT-0700 (Mountain Standard Time)",
+  "comment": "# molarity 1.2.2 Tue Feb 23 2016 16:22:19 GMT-0700 (Mountain Standard Time)",
   "assert": {
     "sha": "11bc6a6d0344ba1a8b95982bad3552bffbdfdfd6",
     "branch": "HEAD"
@@ -22,14 +22,14 @@
   },
   "joist": {
     "sha": "7436ae4114d6ec75f30c609def62e5cf32360e6c",
-    "branch": "molarity-1.2"
+    "branch": "HEAD"
   },
   "kite": {
     "sha": "40dc703a07c774464f060dda6a67485704ca9e22",
     "branch": "HEAD"
   },
   "molarity": {
-    "sha": "f2eb6725bcb4135828875ae2f22e7ae676219baf",
+    "sha": "694c2f86f76ef51be8a885c918fff766b4350530",
     "branch": "1.2"
   },
   "nitroglycerin": {
@@ -45,8 +45,8 @@
     "branch": "HEAD"
   },
   "scenery": {
-    "sha": "c1d6232d478df7fb437de1c913e27087a8dd5981",
-    "branch": "HEAD"
+    "sha": "b77a94aff25273a001a08abea0e13265805a34a8",
+    "branch": "molarity-1.2"
   },
   "scenery-phet": {
     "sha": "88ade50794057afc23b6b98e3d1757b61612d938",
