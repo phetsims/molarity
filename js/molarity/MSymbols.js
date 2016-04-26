@@ -9,11 +9,14 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var toSubscript = require( 'NITROGLYCERIN/ChemUtils' ).toSubscript;
+  var ChemUtils = require( 'NITROGLYCERIN/ChemUtils' );
   var molarity = require( 'MOLARITY/molarity' );
 
   // strings
   var drinkMixString = require( 'string!MOLARITY/drinkMix' );
+
+  // constants
+  var toSubscript = ChemUtils.toSubscript;
 
   var MSymbols = {
     COBALT_II_NITRATE: toSubscript( 'Co(NO3)2' ),
