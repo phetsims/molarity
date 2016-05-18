@@ -15,6 +15,7 @@ define( function( require ) {
   var DualLabelNode = require( 'MOLARITY/molarity/view/DualLabelNode' );
   var FillHighlightListener = require( 'SCENERY_PHET/input/FillHighlightListener' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var MConstants = require( 'MOLARITY/molarity/MConstants' );
   var molarity = require( 'MOLARITY/molarity' );
   var MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
   var Node = require( 'SCENERY/nodes/Node' );
@@ -36,8 +37,6 @@ define( function( require ) {
   var SUBTITLE_FONT = new PhetFont( 22 );
   var RANGE_FONT = new PhetFont( 20 );
   var VALUE_FONT = new PhetFont( 20 );
-  var RANGE_DECIMAL_PLACES = 1;
-  var VALUE_DECIMAL_PLACES = 2;
   var THUMB_SIZE = new Dimension2( 68, 30 );
   var THUMB_NORMAL_COLOR = new Color( 89, 156, 212 );
   var THUMB_HIGHLIGHT_COLOR = THUMB_NORMAL_COLOR.brighterColor();
@@ -62,12 +61,12 @@ define( function( require ) {
     Node.call( this );
 
     // nodes
-    var maxTextWidth = 120; // contrain text for i18n, determined empirically
+    var maxTextWidth = 120; // constrain text for i18n, determined empirically
     var titleNode = new MultiLineText( title, { font: TITLE_FONT, maxWidth: maxTextWidth } );
     var subtitleNode = new Text( subtitle, { font: SUBTITLE_FONT, maxWidth: maxTextWidth } );
-    var minNode = new DualLabelNode( Util.toFixed( range.min, range.min === 0 ? 0 : RANGE_DECIMAL_PLACES ), minLabel, valuesVisibleProperty, RANGE_FONT,
+    var minNode = new DualLabelNode( Util.toFixed( range.min, range.min === 0 ? 0 : MConstants.RANGE_DECIMAL_PLACES ), minLabel, valuesVisibleProperty, RANGE_FONT,
       { maxWidth: maxTextWidth } );
-    var maxNode = new DualLabelNode( Util.toFixed( range.max, RANGE_DECIMAL_PLACES ), maxLabel, valuesVisibleProperty, RANGE_FONT,
+    var maxNode = new DualLabelNode( Util.toFixed( range.max, MConstants.RANGE_DECIMAL_PLACES ), maxLabel, valuesVisibleProperty, RANGE_FONT,
       { maxWidth: maxTextWidth } );
     var trackNode = new Track( trackSize, property, range, decimalPlaces );
     var xMargin = 7;
@@ -78,7 +77,7 @@ define( function( require ) {
     var thumbNode = new Thumb( THUMB_SIZE, property, range, decimalPlaces, new Range( 0, trackSize.height ) );
     var valueNode = new Text( '?', {
       font: VALUE_FONT,
-      maxWidth: 65 // constrain for i18n, determined empirically
+      maxWidth: 90 // constrain for i18n, determined empirically
     } );
 
     // rendering order
@@ -117,7 +116,7 @@ define( function( require ) {
       var y = Util.linear( range.min, range.max, trackSize.height, 0, value );
       thumbNode.y = Util.clamp( y, 0, trackSize.height );
       // update the value
-      valueNode.text = StringUtils.format( pattern0Value1UnitsString, Util.toFixed( value, VALUE_DECIMAL_PLACES ), units );
+      valueNode.text = StringUtils.format( pattern0Value1UnitsString, Util.toFixed( value, decimalPlaces ), units );
       updateValuePosition();
     } );
 
