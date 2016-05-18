@@ -18,6 +18,7 @@ define( function( require ) {
   var DualLabelNode = require( 'MOLARITY/molarity/view/DualLabelNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var LinearGradient = require( 'SCENERY/util/LinearGradient' );
+  var MConstants = require( 'MOLARITY/molarity/MConstants' );
   var MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
@@ -46,8 +47,6 @@ define( function( require ) {
   var ARROW_HEAD_HEIGHT = 0.6 * ARROW_LENGTH;
   var ARROW_HEAD_WIDTH = 0.7 * ARROW_LENGTH;
   var ARROW_TAIL_WIDTH = 0.4 * ARROW_LENGTH;
-  var RANGE_DECIMAL_PLACES = 1;
-  var VALUE_DECIMAL_PLACES = 2;
 
   /**
    * @param {Solution} solution
@@ -61,7 +60,7 @@ define( function( require ) {
     Node.call( thisNode );
 
     // nodes
-    var valueNode = new Text( '?', { font: VALUE_FONT, maxWidth: 65 } );
+    var valueNode = new Text( '?', { font: VALUE_FONT, maxWidth: 75 } );
     var x = barSize.width;
     var y = 0;
     var arrowShape = new Shape()
@@ -92,7 +91,7 @@ define( function( require ) {
       thisNode.arrowNode.fill = solution.getColor();
 
       // update the value
-      valueNode.text = StringUtils.format( pattern_0value_1units, concentration.toFixed( VALUE_DECIMAL_PLACES ), units_molarityString );
+      valueNode.text = StringUtils.format( pattern_0value_1units, Util.toFixed( concentration, MConstants.CONCENTRATION_DECIMAL_PLACES ), units_molarityString );
       valueNode.left = thisNode.arrowNode.right + 5;
       valueNode.centerY = thisNode.arrowNode.centerY;
     };
@@ -115,9 +114,9 @@ define( function( require ) {
     var maxTextWidth = 175; // constrain width for i18n, determined empirically
     var title = new MultiLineText( solutionConcentrationString, { align: 'center', font: TITLE_FONT, maxWidth: maxTextWidth } );
     var subtitle = new Text( StringUtils.format( pattern_parentheses_0text, molarityString ), { font: SUBTITLE_FONT, maxWidth: maxTextWidth } );
-    var maxNode = new DualLabelNode( concentrationRange.max.toFixed( RANGE_DECIMAL_PLACES ), highString, valuesVisibleProperty, RANGE_FONT,
+    var maxNode = new DualLabelNode( Util.toFixed( concentrationRange.max, MConstants.RANGE_DECIMAL_PLACES ), highString, valuesVisibleProperty, RANGE_FONT,
       { maxWidth: maxTextWidth } );
-    var minNode = new DualLabelNode( concentrationRange.min.toFixed( concentrationRange.min === 0 ? 0 : RANGE_DECIMAL_PLACES ), zeroString, valuesVisibleProperty, RANGE_FONT,
+    var minNode = new DualLabelNode( Util.toFixed( concentrationRange.min, concentrationRange.min === 0 ? 0 : MConstants.RANGE_DECIMAL_PLACES ), zeroString, valuesVisibleProperty, RANGE_FONT,
       { maxWidth: maxTextWidth } );
     var barNode = new Rectangle( 0, 0, barSize.width, barSize.height, { stroke: 'black' } );
     var saturatedBarNode = new Rectangle( 0, 0, barSize.width, barSize.height, { stroke: 'black', fill: Color.LIGHT_GRAY } );

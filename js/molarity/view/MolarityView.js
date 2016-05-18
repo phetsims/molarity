@@ -15,6 +15,7 @@ define( function( require ) {
   var ConcentrationDisplay = require( 'MOLARITY/molarity/view/ConcentrationDisplay' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var MConstants = require( 'MOLARITY/molarity/MConstants' );
   var MolarityModel = require( 'MOLARITY/molarity/model/MolarityModel' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
@@ -42,10 +43,6 @@ define( function( require ) {
   var solutionVolumeString = require( 'string!MOLARITY/solutionVolume' );
   var units_litersString = require( 'string!MOLARITY/units.liters' );
   var units_molesString = require( 'string!MOLARITY/units.moles' );
-
-  // constants
-  var SOLUTE_AMOUNT_DECIMAL_PLACES = 2;
-  var VOLUME_DECIMAL_PLACES = 2;
 
   /**
    * @param {MolarityModel} model
@@ -76,7 +73,7 @@ define( function( require ) {
       new Dimension2( 5, cylinderSize.height ),
       model.solution.soluteAmountProperty,
       MolarityModel.SOLUTE_AMOUNT_RANGE,
-      SOLUTE_AMOUNT_DECIMAL_PLACES,
+      MConstants.SOLUTE_AMOUNT_DECIMAL_PLACES,
       units_molesString,
       valuesVisibleProperty );
 
@@ -88,7 +85,7 @@ define( function( require ) {
       new Dimension2( 5, volumeSliderHeight ),
       model.solution.volumeProperty,
       MolarityModel.SOLUTION_VOLUME_RANGE,
-      VOLUME_DECIMAL_PLACES,
+      MConstants.SOLUTION_VOLUME_DECIMAL_PLACES,
       units_litersString,
       valuesVisibleProperty );
 
@@ -114,10 +111,10 @@ define( function( require ) {
       soluteAmountSlider.left = 0;
       soluteAmountSlider.top = 0;
       // to the right of the Solute Amount slider
-      solutionVolumeSlider.left = soluteAmountSlider.right + 20;
+      solutionVolumeSlider.left = soluteAmountSlider.right + 5;
       solutionVolumeSlider.y = soluteAmountSlider.y;
       // to the right of the Solution Volume slider
-      beakerNode.left = solutionVolumeSlider.right + 20;
+      beakerNode.left = solutionVolumeSlider.right - 15;
       beakerNode.y = soluteAmountSlider.y;
       // same coordinate frame as beaker
       solutionNode.x = beakerNode.x;
@@ -135,7 +132,7 @@ define( function( require ) {
       saturatedIndicator.bottom = beakerNode.bottom - ( 0.2 * cylinderSize.height );
       saturatedIndicator.visible = saturatedIndicatorVisible;
       // right of beaker
-      concentrationDisplay.left = beakerNode.right + 50;
+      concentrationDisplay.left = beakerNode.right + 40;
       concentrationDisplay.bottom = beakerNode.bottom;
       // left of combo box
       showValuesCheckBox.right = soluteComboBox.left - 50;

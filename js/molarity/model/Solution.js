@@ -11,11 +11,9 @@ define( function( require ) {
   // modules
   var Color = require( 'SCENERY/util/Color' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var MConstants = require( 'MOLARITY/molarity/MConstants' );
   var PropertySet = require( 'AXON/PropertySet' );
   var Util = require( 'DOT/Util' );
-
-  // constants
-  var CONCENTRATION_DECIMALS = 2;
 
   /**
    * @param {Solvent} solvent
@@ -38,7 +36,7 @@ define( function( require ) {
 
     // @public derive the concentration: M = moles/liter
     this.addDerivedProperty( 'concentration', [ 'solute', 'soluteAmount', 'volume' ], function( solute, soluteAmount, volume ) {
-      return Util.toFixedNumber( volume > 0 ? Math.min( solute.saturatedConcentration, soluteAmount / volume ) : 0, CONCENTRATION_DECIMALS );
+      return Util.toFixedNumber( volume > 0 ? Math.min( solute.saturatedConcentration, soluteAmount / volume ) : 0, MConstants.CONCENTRATION_DECIMAL_PLACES );
     } );
 
     // @public derive the amount of precipitate

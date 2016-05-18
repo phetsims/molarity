@@ -14,6 +14,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var Util = require( 'DOT/Util' );
   var Vector2 = require( 'DOT/Vector2' );
 
   // constants
@@ -43,7 +44,7 @@ define( function( require ) {
       particlesParent.addChild( particleNodes[ i ] );
     }
     if ( DEBUG_OUTPUT ) {
-      console.log( 'PrecipitateNode: ' + maxPrecipitateAmount.toFixed( 4 ) + ' mol => ' + maxParticles + ' particles (max)' );
+      console.log( 'PrecipitateNode: ' + Util.toFixed( maxPrecipitateAmount, 4 ) + ' mol => ' + maxParticles + ' particles (max)' );
     }
 
     // Change color of all particles to match the solute, change position so it doesn't look predictable
@@ -65,7 +66,7 @@ define( function( require ) {
         particleNodes[ i ].visible = ( i < numberOfParticles );
       }
       if ( DEBUG_OUTPUT ) {
-        console.log( 'PrecipitateNode: ' + precipitateAmount.toFixed( 4 ) + ' mol => ' + numberOfParticles + ' particles' );
+        console.log( 'PrecipitateNode: ' + Util.toFixed( precipitateAmount, 4 ) + ' mol => ' + numberOfParticles + ' particles' );
       }
     } );
   }
