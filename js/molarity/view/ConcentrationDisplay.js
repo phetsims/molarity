@@ -73,9 +73,9 @@ define( function( require ) {
       font: SUBTITLE_FONT,
       maxWidth: maxTextWidth
     } );
-    var maxNode = new DualLabelNode( concentrationRange.max.toFixed( RANGE_DECIMAL_PLACES ), highString, valuesVisibleProperty, RANGE_FONT,
+    var maxNode = new DualLabelNode( Util.toFixed( concentrationRange.max, RANGE_DECIMAL_PLACES ), highString, valuesVisibleProperty, RANGE_FONT,
       { maxWidth: maxTextWidth } );
-    var minNode = new DualLabelNode( concentrationRange.min.toFixed( concentrationRange.min === 0 ? 0 : RANGE_DECIMAL_PLACES ), zeroString, valuesVisibleProperty, RANGE_FONT,
+    var minNode = new DualLabelNode( Util.toFixed( concentrationRange.min, concentrationRange.min === 0 ? 0 : RANGE_DECIMAL_PLACES ), zeroString, valuesVisibleProperty, RANGE_FONT,
       { maxWidth: maxTextWidth } );
     var barNode = new Rectangle( 0, 0, barSize.width, barSize.height, { stroke: 'black' } );
     var saturatedBarNode = new Rectangle( 0, 0, barSize.width, barSize.height, {
@@ -171,7 +171,7 @@ define( function( require ) {
       thisNode.arrowNode.fill = solution.getColor();
 
       // update the value
-      valueNode.text = StringUtils.format( pattern0Value1UnitsString, concentration.toFixed( VALUE_DECIMAL_PLACES ), unitsMolarityString );
+      valueNode.text = StringUtils.format( pattern0Value1UnitsString, Util.toFixed( concentration, VALUE_DECIMAL_PLACES ), unitsMolarityString );
       valueNode.left = thisNode.arrowNode.right + 5;
       valueNode.centerY = thisNode.arrowNode.centerY;
     };

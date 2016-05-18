@@ -65,9 +65,9 @@ define( function( require ) {
     var maxTextWidth = 120; // contrain text for i18n, determined empirically
     var titleNode = new MultiLineText( title, { font: TITLE_FONT, maxWidth: maxTextWidth } );
     var subtitleNode = new Text( subtitle, { font: SUBTITLE_FONT, maxWidth: maxTextWidth } );
-    var minNode = new DualLabelNode( range.min.toFixed( range.min === 0 ? 0 : RANGE_DECIMAL_PLACES ), minLabel, valuesVisibleProperty, RANGE_FONT,
+    var minNode = new DualLabelNode( Util.toFixed( range.min, range.min === 0 ? 0 : RANGE_DECIMAL_PLACES ), minLabel, valuesVisibleProperty, RANGE_FONT,
       { maxWidth: maxTextWidth } );
-    var maxNode = new DualLabelNode( range.max.toFixed( RANGE_DECIMAL_PLACES ), maxLabel, valuesVisibleProperty, RANGE_FONT,
+    var maxNode = new DualLabelNode( Util.toFixed( range.max, RANGE_DECIMAL_PLACES ), maxLabel, valuesVisibleProperty, RANGE_FONT,
       { maxWidth: maxTextWidth } );
     var trackNode = new Track( trackSize, property, range, decimalPlaces );
     var xMargin = 7;
@@ -117,7 +117,7 @@ define( function( require ) {
       var y = Util.linear( range.min, range.max, trackSize.height, 0, value );
       thumbNode.y = Util.clamp( y, 0, trackSize.height );
       // update the value
-      valueNode.text = StringUtils.format( pattern0Value1UnitsString, value.toFixed( VALUE_DECIMAL_PLACES ), units );
+      valueNode.text = StringUtils.format( pattern0Value1UnitsString, Util.toFixed( value, VALUE_DECIMAL_PLACES ), units );
       updateValuePosition();
     } );
 
