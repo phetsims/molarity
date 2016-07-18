@@ -13,7 +13,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var molarity = require( 'MOLARITY/molarity' );
   var MSymbols = require( 'MOLARITY/molarity/MSymbols' );
-  var Range = require( 'DOT/Range' );
+  var RangeWithValue = require( 'DOT/RangeWithValue' );
   var Solute = require( 'MOLARITY/molarity/model/Solute' );
   var Solution = require( 'MOLARITY/molarity/model/Solution' );
   var Water = require( 'MOLARITY/molarity/model/Water' );
@@ -69,9 +69,9 @@ define( function( require ) {
   } );
 
   // @public constants
-  MolarityModel.SOLUTE_AMOUNT_RANGE = new Range( 0, 1, 0.5 ); // moles
-  MolarityModel.SOLUTION_VOLUME_RANGE = new Range( 0.2, 1, 0.5 ); // liters
-  MolarityModel.CONCENTRATION_RANGE = new Range( MolarityModel.SOLUTE_AMOUNT_RANGE.min / MolarityModel.SOLUTION_VOLUME_RANGE.max, MolarityModel.SOLUTE_AMOUNT_RANGE.max / MolarityModel.SOLUTION_VOLUME_RANGE.min ); // M
+  MolarityModel.SOLUTE_AMOUNT_RANGE = new RangeWithValue( 0, 1, 0.5 ); // moles
+  MolarityModel.SOLUTION_VOLUME_RANGE = new RangeWithValue( 0.2, 1, 0.5 ); // liters
+  MolarityModel.CONCENTRATION_RANGE = new RangeWithValue( MolarityModel.SOLUTE_AMOUNT_RANGE.min / MolarityModel.SOLUTION_VOLUME_RANGE.max, MolarityModel.SOLUTE_AMOUNT_RANGE.max / MolarityModel.SOLUTION_VOLUME_RANGE.min ); // M
   MolarityModel.CONCENTRATION_DISPLAY_RANGE = MolarityModel.CONCENTRATION_RANGE; // M
 
   return MolarityModel;

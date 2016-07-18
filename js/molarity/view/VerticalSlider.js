@@ -21,7 +21,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var Range = require( 'DOT/Range' );
+  var RangeWithValue = require( 'DOT/RangeWithValue' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
@@ -74,7 +74,7 @@ define( function( require ) {
     var cornerRadius = 10;
     var backgroundNode = new Rectangle( -xMargin, -yMargin, trackSize.width + ( 2 * xMargin ), trackSize.height + ( 2 * yMargin ), cornerRadius, cornerRadius,
       { fill: new Color( 200, 200, 200, 140 ) } );
-    var thumbNode = new Thumb( THUMB_SIZE, property, range, decimalPlaces, new Range( 0, trackSize.height ) );
+    var thumbNode = new Thumb( THUMB_SIZE, property, range, decimalPlaces, new RangeWithValue( 0, trackSize.height ) );
     var valueNode = new Text( '?', {
       font: VALUE_FONT,
       maxWidth: 90 // constrain for i18n, determined empirically
