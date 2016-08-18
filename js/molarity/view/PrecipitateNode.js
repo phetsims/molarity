@@ -41,7 +41,9 @@ define( function( require ) {
     var maxParticles = getNumberOfParticles( maxPrecipitateAmount );
     var particleNodes = [];
     for ( var i = 0; i < maxParticles; i++ ) {
-      particleNodes[ i ] = new Rectangle( 0, 0, PARTICLE_LENGTH, PARTICLE_LENGTH, { rotation: Math.random() * 2 * Math.PI } );
+      particleNodes[ i ] = new Rectangle( 0, 0, PARTICLE_LENGTH, PARTICLE_LENGTH, {
+        rotation: phet.joist.random.nextDouble() * 2 * Math.PI
+      } );
       particlesParent.addChild( particleNodes[ i ] );
     }
     if ( DEBUG_OUTPUT ) {
@@ -87,7 +89,7 @@ define( function( require ) {
   var getRandomOffset = function( particleWidth, particleHeight, cylinderSize, cylinderEndHeight ) {
     var xMargin = particleWidth;
     var yMargin = particleHeight;
-    var angle = Math.random() * 2 * Math.PI;
+    var angle = phet.joist.random.nextDouble() * 2 * Math.PI;
     var p = getRandomPointInsideEllipse( angle, cylinderSize.width - ( 2 * xMargin ), cylinderEndHeight - ( 2 * yMargin ) );
     var x = ( cylinderSize.width / 2 ) + p.x;
     var y = cylinderSize.height - p.y - ( yMargin / 2 );
@@ -99,8 +101,8 @@ define( function( require ) {
 
     // Generate a random point inside a circle of radius 1.
     // Since circle area is a function of radius^2, taking sqrt provides a uniform distribution.
-    var x = Math.sqrt( Math.random() ) * Math.cos( theta );
-    var y = Math.sqrt( Math.random() ) * Math.sin( theta );
+    var x = Math.sqrt( phet.joist.random.nextDouble() ) * Math.cos( theta );
+    var y = Math.sqrt( phet.joist.random.nextDouble() ) * Math.sin( theta );
 
     // Scale x and y to the dimensions of the ellipse
     return new Vector2( x * width / 2, y * height / 2 );
