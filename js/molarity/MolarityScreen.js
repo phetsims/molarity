@@ -15,14 +15,8 @@ define( function( require ) {
   var MolarityView = require( 'MOLARITY/molarity/view/MolarityView' );
   var Screen = require( 'JOIST/Screen' );
 
-  // strings
-  var molarityString = require( 'string!MOLARITY/molarity' );
-
   function MolarityScreen() {
-
     Screen.call( this,
-      molarityString,
-      null, // no icon, single-screen sim
       function() { return new MolarityModel(); },
       function( model ) { return new MolarityView( model ); }
     );
