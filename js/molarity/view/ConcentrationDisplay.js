@@ -58,8 +58,7 @@ define( function( require ) {
    */
   function ConcentrationDisplay( solution, concentrationRange, valuesVisibleProperty, barSize ) {
 
-    var thisNode = this;
-    Node.call( thisNode, { pickable: false } );
+    Node.call( this, { pickable: false } );
 
     // nodes
     var maxTextWidth = 175; // constrain width for i18n, determined empirically
@@ -84,13 +83,13 @@ define( function( require ) {
     var pointerNode = new Pointer( solution, concentrationRange, barSize, valuesVisibleProperty );
 
     // rendering order
-    thisNode.addChild( title );
-    thisNode.addChild( subtitle );
-    thisNode.addChild( maxNode );
-    thisNode.addChild( minNode );
-    thisNode.addChild( barNode );
-    thisNode.addChild( saturatedBarNode );
-    thisNode.addChild( pointerNode );
+    this.addChild( title );
+    this.addChild( subtitle );
+    this.addChild( maxNode );
+    this.addChild( minNode );
+    this.addChild( barNode );
+    this.addChild( saturatedBarNode );
+    this.addChild( pointerNode );
 
     // layout
     barNode.x = 0;
@@ -135,8 +134,7 @@ define( function( require ) {
    */
   function Pointer( solution, concentrationRange, barSize, valuesVisibleProperty ) {
 
-    var thisNode = this;
-    Node.call( thisNode );
+    Node.call( this );
 
     // nodes
     var valueNode = new Text( '?', { font: VALUE_FONT, maxWidth: 75 } );
@@ -151,11 +149,11 @@ define( function( require ) {
       .lineTo( x + ARROW_HEAD_HEIGHT, y + (ARROW_TAIL_WIDTH / 2) )
       .lineTo( x + ARROW_HEAD_HEIGHT, y + (ARROW_HEAD_WIDTH / 2) )
       .close();
-    thisNode.arrowNode = new Path( arrowShape, { stroke: 'black' } ); // @private
+    this.arrowNode = new Path( arrowShape, { stroke: 'black' } ); // @private
 
     // rendering order
     this.addChild( valueNode );
-    this.addChild( thisNode.arrowNode );
+    this.addChild( this.arrowNode );
 
     // show/hide value
     valuesVisibleProperty.link( function( visible ) {
@@ -163,16 +161,17 @@ define( function( require ) {
     } );
 
     // when the concentration or solute changes...
+    var self = this;
     var update = function( concentration ) {
 
       // update the arrow
-      thisNode.arrowNode.y = barSize.height - Util.linear( concentrationRange.min, concentrationRange.max, 0, barSize.height, concentration );
-      thisNode.arrowNode.fill = solution.getColor();
+      self.arrowNode.y = barSize.height - Util.linear( concentrationRange.min, concentrationRange.max, 0, barSize.height, concentration );
+      self.arrowNode.fill = solution.getColor();
 
       // update the value
       valueNode.text = StringUtils.format( pattern0Value1UnitsString, Util.toFixed( concentration, MConstants.CONCENTRATION_DECIMAL_PLACES ), unitsMolarityString );
-      valueNode.left = thisNode.arrowNode.right + 5;
-      valueNode.centerY = thisNode.arrowNode.centerY;
+      valueNode.left = self.arrowNode.right + 5;
+      valueNode.centerY = self.arrowNode.centerY;
     };
     solution.concentrationProperty.link( function( concentration ) {
       update( concentration );

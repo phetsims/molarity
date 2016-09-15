@@ -30,23 +30,22 @@ define( function( require ) {
    */
   function DualLabelNode( quantitativeValue, qualitativeValue, isQuantitativeProperty, font, options ) {
 
-    var thisNode = this;
-    Node.call( thisNode );
+    Node.call( this );
 
     var quantitativeNode = new Text( quantitativeValue, { font: font } );
-    thisNode.addChild( quantitativeNode );
+    this.addChild( quantitativeNode );
 
     var qualitativeNode = new Text( qualitativeValue, { font: font } );
-    thisNode.addChild( qualitativeNode );
+    this.addChild( qualitativeNode );
     qualitativeNode.centerX = quantitativeNode.centerX;
     qualitativeNode.centerY = quantitativeNode.centerY;
 
     // add an invisible rectangle so that bounds don't change
-    var boundsNode = new Rectangle( thisNode.left, thisNode.top, thisNode.width, thisNode.height );
+    var boundsNode = new Rectangle( this.left, this.top, this.width, this.height );
     if ( DEBUG_BOUNDS ) {
       boundsNode.stroke = 'red';
     }
-    thisNode.addChild( boundsNode );
+    this.addChild( boundsNode );
 
     // switch between qualitative and quantitative
     isQuantitativeProperty.link( function( isQuantitative ) {

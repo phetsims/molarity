@@ -139,16 +139,17 @@ define( function( require ) {
    */
   function Track( size, property, range, decimalPlaces ) {
 
-    var thisNode = this;
-    Rectangle.call( thisNode, 0, 0, size.width, size.height, { fill: 'black', cursor: 'pointer' } );
+    var self = this;
+    
+    Rectangle.call( this, 0, 0, size.width, size.height, { fill: 'black', cursor: 'pointer' } );
 
     // click in the track to change the value, continue dragging if desired
     var handleEvent = function( event ) {
-      var y = thisNode.globalToLocalPoint( event.pointer.point ).y;
+      var y = self.globalToLocalPoint( event.pointer.point ).y;
       var value = Util.linear( 0, size.height, range.max, range.min, y );
       property.value = Util.toFixedNumber( Util.clamp( value, range.min, range.max ), decimalPlaces );
     };
-    thisNode.addInputListener( new SimpleDragHandler(
+    this.addInputListener( new SimpleDragHandler(
       {
         allowTouchSnag: true,
         start: function( event ) {
@@ -175,7 +176,7 @@ define( function( require ) {
    */
   function Thumb( size, property, valueRange, decimalPlaces, positionRange ) {
 
-    var thisNode = this;
+    var self = this;
     Node.call( this );
 
     // nodes
@@ -185,8 +186,8 @@ define( function( require ) {
       { stroke: THUMB_CENTER_LINE_COLOR } );
 
     // rendering order
-    thisNode.addChild( bodyNode );
-    thisNode.addChild( centerLineNode );
+    self.addChild( bodyNode );
+    self.addChild( centerLineNode );
 
     // touch area
     var touchXMargin = 0 * bodyNode.width; // thumb seems wide enough, so zero for now
@@ -195,8 +196,8 @@ define( function( require ) {
       bodyNode.width + ( 2 * touchXMargin ), bodyNode.height + ( 2 * touchYMargin ) );
 
     // interactivity
-    thisNode.cursor = 'pointer';
-    thisNode.addInputListener( new ThumbDragHandler( thisNode, property, valueRange, decimalPlaces, positionRange ) );
+    self.cursor = 'pointer';
+    self.addInputListener( new ThumbDragHandler( self, property, valueRange, decimalPlaces, positionRange ) );
     bodyNode.addInputListener( new FillHighlightListener( THUMB_NORMAL_COLOR, THUMB_HIGHLIGHT_COLOR ) );
   }
 

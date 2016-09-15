@@ -32,10 +32,8 @@ define( function( require ) {
   function MolarityModel() {
     assert && assert( MolarityModel.SOLUTION_VOLUME_RANGE.min > 0 ); // model doesn't work for zero volume
 
-    var thisModel = this;
-
     // @public
-    thisModel.solutes = [
+    this.solutes = [
       new Solute( drinkMixString, MSymbols.DRINK_MIX, 5.95, new Color( 255, 225, 225 ), Color.RED ),
       new Solute( cobaltIINitrateString, MSymbols.COBALT_II_NITRATE, 5.65, new Color( 255, 225, 225 ), Color.RED ),
       new Solute( cobaltChlorideString, MSymbols.COBALT_CHLORIDE, 4.35, new Color( 255, 242, 242 ), new Color( 255, 106, 106 ) ),
@@ -48,14 +46,14 @@ define( function( require ) {
     ];
 
     // @public
-    thisModel.solution = new Solution( Water, thisModel.solutes[ 0 ], MolarityModel.SOLUTE_AMOUNT_RANGE.defaultValue, MolarityModel.SOLUTION_VOLUME_RANGE.defaultValue );
+    this.solution = new Solution( Water, this.solutes[ 0 ], MolarityModel.SOLUTE_AMOUNT_RANGE.defaultValue, MolarityModel.SOLUTION_VOLUME_RANGE.defaultValue );
 
     // compute the max amount of precipitate, used by the view to create the precipitate particles
-    var minSaturateConcentration = _.min( thisModel.solutes, function( solute ) {
+    var minSaturateConcentration = _.min( this.solutes, function( solute ) {
       return solute.saturatedConcentration;
     } ).saturatedConcentration;
     // @public
-    thisModel.maxPrecipitateAmount = Solution.computePrecipitateAmount( MolarityModel.SOLUTION_VOLUME_RANGE.min, MolarityModel.SOLUTE_AMOUNT_RANGE.max, minSaturateConcentration );
+    this.maxPrecipitateAmount = Solution.computePrecipitateAmount( MolarityModel.SOLUTION_VOLUME_RANGE.min, MolarityModel.SOLUTE_AMOUNT_RANGE.max, minSaturateConcentration );
   }
 
   molarity.register( 'MolarityModel', MolarityModel );

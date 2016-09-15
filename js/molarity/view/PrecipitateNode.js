@@ -31,11 +31,10 @@ define( function( require ) {
    */
   function PrecipitateNode( solution, cylinderSize, cylinderEndHeight, maxPrecipitateAmount ) {
 
-    var thisNode = this;
-    Node.call( thisNode, { pickable: false } );
+    Node.call( this, { pickable: false } );
 
     var particlesParent = new Node();
-    thisNode.addChild( particlesParent );
+    this.addChild( particlesParent );
 
     // Create the max number of particles that we'll need.
     var maxParticles = getNumberOfParticles( maxPrecipitateAmount );

@@ -49,15 +49,14 @@ define( function( require ) {
    */
   function BeakerNode( solution, maxVolume, valuesVisibleProperty ) {
 
-    var thisNode = this;
-    Node.call( thisNode, { pickable: false } );
+    Node.call( this, { pickable: false } );
 
     // @private the glass beaker
-    thisNode.beakerImageNode = new BeakerImageNode( { scale: 0.75 } );
-    var cylinderSize = thisNode.beakerImageNode.getCylinderSize();
-    var cylinderOffset = thisNode.beakerImageNode.getCylinderOffset();
-    var cylinderEndHeight = thisNode.beakerImageNode.getCylinderEndHeight();
-    thisNode.beakerImageNode.translation = new Vector2( -cylinderOffset.x, -cylinderOffset.y );
+    this.beakerImageNode = new BeakerImageNode( { scale: 0.75 } );
+    var cylinderSize = this.beakerImageNode.getCylinderSize();
+    var cylinderOffset = this.beakerImageNode.getCylinderOffset();
+    var cylinderEndHeight = this.beakerImageNode.getCylinderEndHeight();
+    this.beakerImageNode.translation = new Vector2( -cylinderOffset.x, -cylinderOffset.y );
 
     // inside bottom line
     var bottomShape = new Shape().ellipticalArc( cylinderSize.width / 2, cylinderSize.height,
@@ -75,11 +74,11 @@ define( function( require ) {
     var tickLabelNodes = new Node();
 
     // rendering order
-    thisNode.addChild( bottomNode );
-    thisNode.addChild( thisNode.beakerImageNode );
-    thisNode.addChild( tickMarkNodes );
-    thisNode.addChild( tickLabelNodes );
-    thisNode.addChild( labelNode );
+    this.addChild( bottomNode );
+    this.addChild( this.beakerImageNode );
+    this.addChild( tickMarkNodes );
+    this.addChild( tickLabelNodes );
+    this.addChild( labelNode );
 
     // tick marks, arcs that wrap around the edge of the beaker's cylinder
     var numberOfTicks = Math.round( maxVolume / MINOR_TICK_SPACING );
@@ -123,9 +122,9 @@ define( function( require ) {
 
     if ( DEBUG_SHAPES ) {
       // draw the cylinder that represents the beaker's interior
-      thisNode.addChild( new Rectangle( 0, 0, cylinderSize.width, cylinderSize.height, { stroke: 'red' } ) );
+      this.addChild( new Rectangle( 0, 0, cylinderSize.width, cylinderSize.height, { stroke: 'red' } ) );
       // draw a circle at the origin
-      thisNode.addChild( new Circle( { radius: 3, fill: 'red' } ) );
+      this.addChild( new Circle( { radius: 3, fill: 'red' } ) );
     }
 
     valuesVisibleProperty.link( function( visible ) {
