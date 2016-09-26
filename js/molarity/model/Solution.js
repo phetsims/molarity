@@ -10,10 +10,11 @@ define( function( require ) {
 
   // modules
   var Color = require( 'SCENERY/util/Color' );
+  var DerivedProperty = require( 'AXON/DerivedProperty' );
   var inherit = require( 'PHET_CORE/inherit' );
   var MConstants = require( 'MOLARITY/molarity/MConstants' );
   var molarity = require( 'MOLARITY/molarity' );
-  var PropertySet = require( 'AXON/PropertySet' );
+  var Property = require( 'AXON/Property' );
   var Util = require( 'DOT/Util' );
 
   /**
@@ -25,30 +26,35 @@ define( function( require ) {
    */
   function Solution( solvent, solute, soluteAmount, volume ) {
 
-    PropertySet.call( this, {
-
-      // @public
-      solute: solute,
-      soluteAmount: soluteAmount,
-      volume: volume
-    } );
-
-    this.solvent = solvent; // @public
+    // @public
+    this.solvent = solvent;
+    this.soluteProperty = new Property( solute );
+    this.soluteAmountProperty = new Property( soluteAmount );
+    this.volumeProperty = new Property( volume );
 
     // @public derive the concentration: M = moles/liter
-    this.addDerivedProperty( 'concentration', [ 'solute', 'soluteAmount', 'volume' ], function( solute, soluteAmount, volume ) {
-      return Util.toFixedNumber( volume > 0 ? Math.min( solute.saturatedConcentration, soluteAmount / volume ) : 0, MConstants.CONCENTRATION_DECIMAL_PLACES );
-    } );
+    this.concentrationProperty = new DerivedProperty( [ this.soluteProperty, this.soluteAmountProperty, this.volumeProperty ],
+      function( solute, soluteAmount, volume ) {
+        return Util.toFixedNumber( volume > 0 ? Math.min( solute.saturatedConcentration, soluteAmount / volume ) : 0, MConstants.CONCENTRATION_DECIMAL_PLACES );
+      } );
 
     // @public derive the amount of precipitate
-    this.addDerivedProperty( 'precipitateAmount', [ 'solute', 'soluteAmount', 'volume' ], function( solute, soluteAmount, volume ) {
-      return Solution.computePrecipitateAmount( volume, soluteAmount, solute.saturatedConcentration );
-    } );
+    this.precipitateAmountProperty = new DerivedProperty( [ this.soluteProperty, this.soluteAmountProperty, this.volumeProperty ],
+      function( solute, soluteAmount, volume ) {
+        return Solution.computePrecipitateAmount( volume, soluteAmount, solute.saturatedConcentration );
+      } );
   }
 
   molarity.register( 'Solution', Solution );
 
-  return inherit( PropertySet, Solution, {
+  return inherit( Object, Solution, {
+
+    // @public
+    reset: function() {
+      this.soluteProperty.reset();
+      this.soluteAmountProperty.reset();
+      this.volumeProperty.reset();
+    },
 
     // @public
     isSaturated: function() {
@@ -58,8 +64,9 @@ define( function( require ) {
     // @public
     getColor: function() {
       if ( this.concentration > 0 ) {
-        var colorScale = Util.linear( 0, this.solute.saturatedConcentration, 0, 1, this.concentration );
-        return Color.interpolateRGBA( this.solute.minColor, this.solute.maxColor, colorScale );
+        var solute = this.soluteProperty.get();
+        var colorScale = Util.linear( 0, solute.saturatedConcentration, 0, 1, this.concentration );
+        return Color.interpolateRGBA( solute.minColor, solute.maxColor, colorScale );
       }
       else {
         return this.solvent.color;

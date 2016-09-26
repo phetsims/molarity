@@ -24,6 +24,13 @@ define( function( require ) {
   // constants
   var DEBUG_ORIGIN = false;
 
+  /**
+   * @param {Dimension2} cylinderSize
+   * @param {number} cylinderEndHeight
+   * @param {Solution} solution
+   * @param {number} maxVolume - liters
+   * @constructor
+   */
   function SolutionNode( cylinderSize, cylinderEndHeight, solution, maxVolume ) {
 
     Node.call( this, { pickable: false } );
@@ -51,7 +58,7 @@ define( function( require ) {
     solution.soluteProperty.link( updateColor );
 
     var updateShape = function() {
-      var height = Util.linear( 0, maxVolume, 0, cylinderSize.height, solution.volume );
+      var height = Util.linear( 0, maxVolume, 0, cylinderSize.height, solution.volumeProperty.get() );
       topNode.visible = bottomNode.visible = middleNode.visible = ( height > 0 );
       if ( height > 0 ) {
         middleNode.setRect( 0, cylinderSize.height - height, cylinderSize.width, height );

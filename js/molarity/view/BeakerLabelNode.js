@@ -11,6 +11,7 @@ define( function( require ) {
 
   // modules
   var Color = require( 'SCENERY/util/Color' );
+  var DerivedProperty = require( 'AXON/DerivedProperty' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
   var MSymbols = require( 'MOLARITY/molarity/MSymbols' );
@@ -32,7 +33,7 @@ define( function( require ) {
 
     Node.call( this );
 
-    var formulaNode = new SubSupText( '?', {
+    var labelNode = new SubSupText( '?', {
       font: LABEL_FONT,
       maxWidth: 0.9 * LABEL_SIZE.width
     } );
@@ -40,22 +41,30 @@ define( function( require ) {
       { fill: new Color( 255, 255, 255, 0.6 ), stroke: Color.LIGHT_GRAY } );
 
     this.addChild( backgroundNode );
-    this.addChild( formulaNode );
+    this.addChild( labelNode );
 
-    solution.multilink( [ 'solute', 'volume', 'concentration' ], function( solute, volume, concentration ) {
-      // use solute formula
-      if ( volume === 0 ) {
-        formulaNode.text = '';
-      }
-      else if ( concentration === 0 ) {
-        formulaNode.text = MSymbols.WATER;
-      }
-      else {
-        formulaNode.text = solute.formula;
-      }
+    // label on the beaker
+    var beakerLabelProperty = new DerivedProperty( [ solution.soluteProperty, solution.volumeProperty, solution.concentrationProperty ],
+      function( solute, volume, concentration ) {
+        var label;
+        if ( volume === 0 ) {
+          label = '';
+        }
+        else if ( concentration === 0 ) {
+          label = MSymbols.WATER;
+        }
+        else {
+          label = solute.formula;
+        }
+        return label;
+      } );
+
+    // update the label
+    beakerLabelProperty.link( function( label ) {
+      labelNode.text = label;
       // center formula in background
-      formulaNode.centerX = backgroundNode.centerX;
-      formulaNode.centerY = backgroundNode.centerY;
+      labelNode.centerX = backgroundNode.centerX;
+      labelNode.centerY = backgroundNode.centerY;
     } );
   }
 
