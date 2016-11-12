@@ -177,7 +177,7 @@ define( function( require ) {
       update( concentration );
     } );
     solution.soluteProperty.link( function() {
-      update( solution.concentration );
+      update( solution.concentrationProperty.value );
     } );
   }
 
