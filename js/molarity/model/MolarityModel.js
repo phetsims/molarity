@@ -49,7 +49,7 @@ define( function( require ) {
     this.solution = new Solution( Water, this.solutes[ 0 ], MolarityModel.SOLUTE_AMOUNT_RANGE.defaultValue, MolarityModel.SOLUTION_VOLUME_RANGE.defaultValue );
 
     // compute the max amount of precipitate, used by the view to create the precipitate particles
-    var minSaturateConcentration = _.min( this.solutes, function( solute ) {
+    var minSaturateConcentration = _.minBy( this.solutes, function( solute ) {
       return solute.saturatedConcentration;
     } ).saturatedConcentration;
     // @public
