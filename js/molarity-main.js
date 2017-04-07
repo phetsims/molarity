@@ -1,4 +1,4 @@
-// Copyright 2013-2015, University of Colorado Boulder
+// Copyright 2013-2017, University of Colorado Boulder
 
 /**
  * Main entry point for the 'Molarity' sim.
@@ -12,11 +12,15 @@ define( function( require ) {
   var MolarityScreen = require( 'MOLARITY/molarity/MolarityScreen' );
   var Sim = require( 'JOIST/Sim' );
   var SimLauncher = require( 'JOIST/SimLauncher' );
+  var Tandem = require( 'TANDEM/Tandem' );
 
   // strings
   var molarityTitleString = require( 'string!MOLARITY/molarity.title' );
 
-  var simOptions = {
+  // constants
+  var tandem = Tandem.createRootTandem();
+
+  var options = {
     credits: {
       leadDesign: 'Julia Chamberlain',
       softwareDevelopment: 'Chris Malley (PixelZoom, Inc.)',
@@ -26,7 +30,8 @@ define( function( require ) {
   };
 
   SimLauncher.launch( function() {
-    var sim = new Sim( molarityTitleString, [ new MolarityScreen() ], simOptions );
+    var screens = [ new MolarityScreen( tandem.createTandem( 'molarityScreen' ) ) ];
+    var sim = new Sim( molarityTitleString, screens, options );
     sim.start();
   } );
 } );

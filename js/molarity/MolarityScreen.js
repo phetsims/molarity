@@ -1,4 +1,4 @@
-// Copyright 2013-2015, University of Colorado Boulder
+// Copyright 2013-2017, University of Colorado Boulder
 
 /**
  * The 'Molarity' screen. Conforms to the contract specified in joist/Screen.
@@ -15,10 +15,20 @@ define( function( require ) {
   var MolarityView = require( 'MOLARITY/molarity/view/MolarityView' );
   var Screen = require( 'JOIST/Screen' );
 
-  function MolarityScreen() {
+  /**
+   * @param {Tandem} tandem
+   * @constructor
+   */
+  function MolarityScreen( tandem ) {
+
+    var options = {
+      tandem: tandem
+    };
+
     Screen.call( this,
       function() { return new MolarityModel(); },
-      function( model ) { return new MolarityView( model ); }
+      function( model ) { return new MolarityView( model ); },
+      options
     );
   }
 
