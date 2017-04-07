@@ -50,7 +50,7 @@ define( function( require ) {
    * @param {Tandem} tandem
    * @constructor
    */
-  function MolarityView( model, tandem ) {
+  function MolarityScreenView( model, tandem ) {
 
     ScreenView.call( this, { layoutBounds: new Bounds2( 0, 0, 1100, 700 ) } );
 
@@ -162,7 +162,7 @@ define( function( require ) {
     } ) );
   }
 
-  molarity.register( 'MolarityView', MolarityView );
+  molarity.register( 'MolarityScreenView', MolarityScreenView );
 
-  return inherit( ScreenView, MolarityView );
+  return inherit( ScreenView, MolarityScreenView );
 } );

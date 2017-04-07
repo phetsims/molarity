@@ -12,7 +12,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var molarity = require( 'MOLARITY/molarity' );
   var MolarityModel = require( 'MOLARITY/molarity/model/MolarityModel' );
-  var MolarityView = require( 'MOLARITY/molarity/view/MolarityView' );
+  var MolarityScreenView = require( 'MOLARITY/molarity/view/MolarityScreenView' );
   var Screen = require( 'JOIST/Screen' );
 
   /**
@@ -27,7 +27,7 @@ define( function( require ) {
 
     Screen.call( this,
       function() { return new MolarityModel( tandem.createTandem( 'model' ) ); },
-      function( model ) { return new MolarityView( model, tandem.createTandem( 'view' ) ); },
+      function( model ) { return new MolarityScreenView( model, tandem.createTandem( 'view' ) ); },
       options
     );
   }
