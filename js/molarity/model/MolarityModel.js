@@ -1,4 +1,4 @@
-// Copyright 2013-2015, University of Colorado Boulder
+// Copyright 2013-2017, University of Colorado Boulder
 
 /**
  * Model container for the 'Molarity' screen.
@@ -29,7 +29,11 @@ define( function( require ) {
   var copperSulfateString = require( 'string!MOLARITY/copperSulfate' );
   var potassiumPermanganateString = require( 'string!MOLARITY/potassiumPermanganate' );
 
-  function MolarityModel() {
+  /**
+   * @param {Tandem} tandem
+   * @constructor
+   */
+  function MolarityModel( tandem ) {
     assert && assert( MolarityModel.SOLUTION_VOLUME_RANGE.min > 0 ); // model doesn't work for zero volume
 
     // @public

@@ -1,4 +1,4 @@
-// Copyright 2013-2015, University of Colorado Boulder
+// Copyright 2013-2017, University of Colorado Boulder
 
 /**
  * View for the 'Molarity' screen.
@@ -47,9 +47,10 @@ define( function( require ) {
 
   /**
    * @param {MolarityModel} model
+   * @param {Tandem} tandem
    * @constructor
    */
-  function MolarityView( model ) {
+  function MolarityView( model, tandem ) {
 
     ScreenView.call( this, { layoutBounds: new Bounds2( 0, 0, 1100, 700 ) } );
 

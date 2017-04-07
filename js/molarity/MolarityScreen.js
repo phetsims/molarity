@@ -26,8 +26,8 @@ define( function( require ) {
     };
 
     Screen.call( this,
-      function() { return new MolarityModel(); },
-      function( model ) { return new MolarityView( model ); },
+      function() { return new MolarityModel( tandem.createTandem( 'model' ) ); },
+      function( model ) { return new MolarityView( model, tandem.createTandem( 'view' ) ); },
       options
     );
   }
