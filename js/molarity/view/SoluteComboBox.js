@@ -65,7 +65,9 @@ define( function( require ) {
     textNode.left = colorNode.right + 5;
     textNode.centerY = colorNode.centerY;
 
-    return ComboBox.createItem( node, solute );
+    return ComboBox.createItem( node, solute, {
+      tandem: solute.tandemName
+    } );
   };
 
   return inherit( ComboBox, SoluteComboBox );

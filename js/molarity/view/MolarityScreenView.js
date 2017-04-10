@@ -68,7 +68,10 @@ define( function( require ) {
 
     // solute control
     var soluteComboBoxListParent = new Node( { maxWidth: 300 } );
-    var soluteComboBox = new SoluteComboBox( model.solutes, model.solution.soluteProperty, soluteComboBoxListParent, { maxWidth: 500 } );
+    var soluteComboBox = new SoluteComboBox( model.solutes, model.solution.soluteProperty, soluteComboBoxListParent, {
+      maxWidth: 500,
+      tandem: tandem.createTandem( 'soluteComboBox' )
+    } );
 
     // slider for controlling amount of solute
     var soluteAmountSlider = new VerticalSlider( soluteAmountString,

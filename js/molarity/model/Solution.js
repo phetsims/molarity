@@ -17,18 +17,25 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
   var Util = require( 'DOT/Util' );
 
+  // phet-io modules
+  var TSolute = require( 'ifphetio!MOLARITY/molarity/model/TSolute' );
+
   /**
    * @param {Solvent} solvent
    * @param {Solute} solute
    * @param {number} soluteAmount moles
    * @param {number} volume Liters
+   * @param {Tandem} tandem
    * @constructor
    */
-  function Solution( solvent, solute, soluteAmount, volume ) {
+  function Solution( solvent, solute, soluteAmount, volume, tandem ) {
 
     // @public
     this.solvent = solvent;
-    this.soluteProperty = new Property( solute );
+    this.soluteProperty = new Property( solute, {
+      tandem: tandem.createTandem( 'soluteProperty' ),
+      phetioValueType: TSolute
+    } );
     this.soluteAmountProperty = new Property( soluteAmount );
     this.volumeProperty = new Property( volume );
 
@@ -43,6 +50,9 @@ define( function( require ) {
       function( solute, soluteAmount, volume ) {
         return Solution.computePrecipitateAmount( volume, soluteAmount, solute.saturatedConcentration );
       } );
+
+    //TODO do we need to do this?
+    // tandem.addInstance( this, TSolution );
   }
 
   molarity.register( 'Solution', Solution );

@@ -13,16 +13,20 @@ define( function( require ) {
   // modules
   var molarity = require( 'MOLARITY/molarity' );
 
+  // phet-io modules
+  var TSolute = require( 'ifphetio!MOLARITY/molarity/model/TSolute' );
+
   /**
    * @param {string} name
    * @param {string} formula
    * @param {number} saturatedConcentration M (moles/L)
    * @param {Color} minColor solution color for smallest non-zero concentration
    * @param {Color} maxColor solution color for saturated concentration
+   * @param {Tandem} tandem
    * @param {Object} [options]
    * @constructor
    */
-  function Solute( name, formula, saturatedConcentration, minColor, maxColor, options ) {
+  function Solute( name, formula, saturatedConcentration, minColor, maxColor, tandem, options ) {
 
     options = _.extend( {
       particleColor: maxColor // the solute's color as a particle
@@ -35,6 +39,11 @@ define( function( require ) {
     this.minColor = minColor;
     this.maxColor = maxColor;
     this.particleColor = options.particleColor;
+
+    tandem.addInstance( this, TSolute );
+
+    // this is used to create the tandem name for ComboBox items
+    this.tandemName = tandem.tail;
   }
 
   molarity.register( 'Solute', Solute );
