@@ -37,15 +37,20 @@ define( function( require ) {
       tandem: tandem
     } );
 
-    var particlesParent = new Node();
+    //TODO #31 what value is there in showing this tandem?
+    var particlesParent = new Node( { tandem: tandem.createTandem( 'particlesParent' ) } );
     this.addChild( particlesParent );
+
+    //TODO #31 should we be using particlesParent's tandem here?
+    var particlesGroupTandem = tandem.createGroupTandem( 'particlesGroupTandem');
 
     // Create the max number of particles that we'll need.
     var maxParticles = getNumberOfParticles( maxPrecipitateAmount );
     var particleNodes = [];
     for ( var i = 0; i < maxParticles; i++ ) {
       particleNodes[ i ] = new Rectangle( 0, 0, PARTICLE_LENGTH, PARTICLE_LENGTH, {
-        rotation: phet.joist.random.nextDouble() * 2 * Math.PI
+        rotation: phet.joist.random.nextDouble() * 2 * Math.PI,
+        tandem: particlesGroupTandem.createNextTandem()
       } );
       particlesParent.addChild( particleNodes[ i ] );
     }

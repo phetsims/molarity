@@ -101,6 +101,7 @@ define( function( require ) {
     var tickLabel;
     var tickLabelNode;
 
+    //TODO #31 should we be using tickMarkNodes' and tickLabelNodes' tandems here?
     var tickMarkNodeGroupTandem = tandem.createGroupTandem( 'tickMarkNode');
     var tickLabelNodeGroupTandem = tandem.createGroupTandem( 'tickLabelNode');
 
