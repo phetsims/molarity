@@ -78,14 +78,14 @@ define( function( require ) {
     labelNode.y = 0.15 * cylinderSize.height;
 
     // parents for tick marks and labels
-    var tickMarkNodes = new Node( { tandem: tandem.createTandem( 'tickMarkNodes' ) } );
-    var tickLabelNodes = new Node( { tandem: tandem.createTandem( 'tickLabelNodes' ) } );
+    var tickMarksParent = new Node( { tandem: tandem.createTandem( 'tickMarksParent' ) } );
+    var tickLabelsParent = new Node( { tandem: tandem.createTandem( 'tickLabelsParent' ) } );
 
     // rendering order
     this.addChild( bottomNode );
     this.addChild( this.beakerImageNode );
-    this.addChild( tickMarkNodes );
-    this.addChild( tickLabelNodes );
+    this.addChild( tickMarksParent );
+    this.addChild( tickLabelsParent );
     this.addChild( labelNode );
 
     // tick marks, arcs that wrap around the edge of the beaker's cylinder
@@ -101,7 +101,6 @@ define( function( require ) {
     var tickLabel;
     var tickLabelNode;
 
-    //TODO #31 should we be using tickMarkNodes' and tickLabelNodes' tandems here?
     var tickMarkNodeGroupTandem = tandem.createGroupTandem( 'tickMarkNode');
     var tickLabelNodeGroupTandem = tandem.createGroupTandem( 'tickLabelNode');
 
@@ -116,7 +115,7 @@ define( function( require ) {
           lineWidth: 2,
           tandem: tickMarkNodeGroupTandem.createNextTandem()
         } );
-        tickMarkNodes.addChild( tickMarkNode );
+        tickMarksParent.addChild( tickMarkNode );
 
         // major tick label
         tickLabelIndex = ( i / MINOR_TICKS_PER_MAJOR_TICK ) - 1;
@@ -128,7 +127,7 @@ define( function( require ) {
             maxWidth: 100,
             tandem: tickLabelNodeGroupTandem.createNextTandem()
           } );
-          tickLabelNodes.addChild( tickLabelNode );
+          tickLabelsParent.addChild( tickLabelNode );
           tickLabelNode.left = tickMarkNode.right + TICK_LABEL_X_SPACING;
           tickLabelNode.centerY = tickMarkNode.bottom;
         }
@@ -142,7 +141,7 @@ define( function( require ) {
           lineWidth: 2,
           tandem: tickMarkNodeGroupTandem.createNextTandem()
         } );
-        tickMarkNodes.addChild( tickMarkNode );
+        tickMarksParent.addChild( tickMarkNode );
       }
     }
 
@@ -154,7 +153,7 @@ define( function( require ) {
     }
 
     valuesVisibleProperty.link( function( visible ) {
-      tickLabelNodes.visible = visible;
+      tickLabelsParent.visible = visible;
     } );
   }
 
