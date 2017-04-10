@@ -22,11 +22,12 @@ define( function( require ) {
 
   /**
    * @param {Solution} solution
+   * @param {Tandem} tandem
    * @constructor
    */
-  function SaturatedIndicator( solution ) {
+  function SaturatedIndicator( solution, tandem ) {
 
-    Node.call( this );
+    Node.call( this, { tandem: tandem } );
 
     var label = new Text( saturatedString, { font: new PhetFont( 22 ), maxWidth: 200 } );
 

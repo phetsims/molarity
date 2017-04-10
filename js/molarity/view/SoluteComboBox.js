@@ -26,10 +26,11 @@ define( function( require ) {
    * @param {Solute[]} solutes
    * @param {Property.<Solute>} selectedSoluteProperty
    * @param {Node} listParent parent node for the popup list
+   * @param {Tandem} tandem
    * @param {Object} [options]
    * @constructor
    */
-  function SoluteComboBox( solutes, selectedSoluteProperty, listParent, options ) {
+  function SoluteComboBox( solutes, selectedSoluteProperty, listParent, tandem, options ) {
 
     options = _.extend( {
       labelNode: new Text( StringUtils.format( pattern0LabelString, soluteString ), { font: new PhetFont( 22 ) } ), // 'Solute' label

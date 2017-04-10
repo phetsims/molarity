@@ -29,11 +29,15 @@ define( function( require ) {
    * @param {number} cylinderEndHeight
    * @param {Solution} solution
    * @param {number} maxVolume - liters
+   * @param {Tandem} tandem
    * @constructor
    */
-  function SolutionNode( cylinderSize, cylinderEndHeight, solution, maxVolume ) {
+  function SolutionNode( cylinderSize, cylinderEndHeight, solution, maxVolume, tandem ) {
 
-    Node.call( this, { pickable: false } );
+    Node.call( this, {
+      pickable: false,
+      tandem: tandem
+    } );
 
     var middleNode = new Rectangle( 0, 0, 1, 1 ); // middle shape will change with volume
     var endShape = Shape.ellipse( cylinderSize.width / 2, 0, cylinderSize.width / 2, cylinderEndHeight / 2 );

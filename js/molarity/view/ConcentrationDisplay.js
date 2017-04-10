@@ -54,11 +54,15 @@ define( function( require ) {
    * @param {Range} concentrationRange
    * @param {Property.<boolean>} valuesVisibleProperty
    * @param {Dimension2} barSize
+   * @param {Tandem} tandem
    * @constructor
    */
-  function ConcentrationDisplay( solution, concentrationRange, valuesVisibleProperty, barSize ) {
+  function ConcentrationDisplay( solution, concentrationRange, valuesVisibleProperty, barSize, tandem ) {
 
-    Node.call( this, { pickable: false } );
+    Node.call( this, {
+      pickable: false,
+      tandem: tandem
+    } );
 
     // nodes
     var maxTextWidth = 175; // constrain width for i18n, determined empirically

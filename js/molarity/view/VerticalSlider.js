@@ -54,11 +54,13 @@ define( function( require ) {
    * @param {number} decimalPlaces
    * @param {string} units
    * @param {Property.<boolean>} valuesVisibleProperty
+   * @param {Tandem} tandem
    * @constructor
    */
-  function VerticalSlider( title, subtitle, minLabel, maxLabel, trackSize, property, range, decimalPlaces, units, valuesVisibleProperty ) {
+  function VerticalSlider( title, subtitle, minLabel, maxLabel, trackSize, property, range,
+                           decimalPlaces, units, valuesVisibleProperty, tandem ) {
 
-    Node.call( this );
+    Node.call( this, { tandem: tandem } );
 
     // nodes
     var maxTextWidth = 120; // constrain text for i18n, determined empirically

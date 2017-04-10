@@ -27,7 +27,12 @@ define( function( require ) {
   var CYLINDER_END_BACKGROUND = new Vector2( 210, 166 );
   var CYLINDER_END_FOREGROUND = new Vector2( 210, 218 );
 
-  function BeakerImageNode( options ) {
+  /**
+   * @param {Tandem} tandem
+   * @param {Object} [options]
+   * @constructor
+   */
+  function BeakerImageNode( tandem, options ) {
     Image.call( this, beakerImage, options );
   }
 

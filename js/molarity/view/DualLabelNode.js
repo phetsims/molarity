@@ -25,10 +25,11 @@ define( function( require ) {
    * @param {string} qualitativeValue
    * @param {Property.<boolean>} isQuantitativeProperty
    * @param {Font} font
+   * @param {Tandem} tandem
    * @param {Object} [options]
    * @constructor
    */
-  function DualLabelNode( quantitativeValue, qualitativeValue, isQuantitativeProperty, font, options ) {
+  function DualLabelNode( quantitativeValue, qualitativeValue, isQuantitativeProperty, font, tandem, options ) {
 
     Node.call( this );
 

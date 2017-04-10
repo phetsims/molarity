@@ -45,14 +45,18 @@ define( function( require ) {
    * @param {Solution} solution
    * @param {number} maxVolume
    * @param {Property.<boolean>} valuesVisibleProperty
+   * @param {Tandem} tandem
    * @constructor
    */
-  function BeakerNode( solution, maxVolume, valuesVisibleProperty ) {
+  function BeakerNode( solution, maxVolume, valuesVisibleProperty, tandem ) {
 
-    Node.call( this, { pickable: false } );
+    Node.call( this, {
+      pickable: false,
+      tandem: tandem
+    } );
 
     // @private the glass beaker
-    this.beakerImageNode = new BeakerImageNode( { scale: 0.75 } );
+    this.beakerImageNode = new BeakerImageNode( { scale: 0.75, } );
     var cylinderSize = this.beakerImageNode.getCylinderSize();
     var cylinderOffset = this.beakerImageNode.getCylinderOffset();
     var cylinderEndHeight = this.beakerImageNode.getCylinderEndHeight();
@@ -65,7 +69,7 @@ define( function( require ) {
     var bottomNode = new Path( bottomShape, { stroke: new Color( 150, 150, 150, 100 ), lineWidth: 2 } );
 
     // label on the beaker
-    var labelNode = new BeakerLabelNode( solution );
+    var labelNode = new BeakerLabelNode( solution, tandem.createTandem( 'labelNode' ) );
     labelNode.x = cylinderSize.width / 2;
     labelNode.y = 0.15 * cylinderSize.height;
 

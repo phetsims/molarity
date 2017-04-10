@@ -60,17 +60,20 @@ define( function( require ) {
     var valuesVisibleProperty = new Property( false );
 
     // beaker, with solution and precipitate inside of it
-    var beakerNode = new BeakerNode( model.solution, MolarityModel.SOLUTION_VOLUME_RANGE.max, valuesVisibleProperty );
+    var beakerNode = new BeakerNode( model.solution, MolarityModel.SOLUTION_VOLUME_RANGE.max, valuesVisibleProperty,
+      tandem.createTandem( 'beakerNode' ) );
     var cylinderSize = beakerNode.getCylinderSize();
-    var solutionNode = new SolutionNode( cylinderSize, beakerNode.getCylinderEndHeight(), model.solution, MolarityModel.SOLUTION_VOLUME_RANGE.max );
-    var precipitateNode = new PrecipitateNode( model.solution, cylinderSize, beakerNode.getCylinderEndHeight(), model.maxPrecipitateAmount );
-    var saturatedIndicator = new SaturatedIndicator( model.solution );
+    var solutionNode = new SolutionNode( cylinderSize, beakerNode.getCylinderEndHeight(), model.solution,
+      MolarityModel.SOLUTION_VOLUME_RANGE.max, tandem.createTandem( 'solutionNode' ) );
+    var precipitateNode = new PrecipitateNode( model.solution, cylinderSize, beakerNode.getCylinderEndHeight(),
+      model.maxPrecipitateAmount, tandem.createTandem( 'precipitateNode' ) );
+    var saturatedIndicator = new SaturatedIndicator( model.solution, tandem.createTandem( 'saturatedIndicator' ) );
 
     // solute control
     var soluteComboBoxListParent = new Node( { maxWidth: 300 } );
-    var soluteComboBox = new SoluteComboBox( model.solutes, model.solution.soluteProperty, soluteComboBoxListParent, {
-      maxWidth: 500,
-      tandem: tandem.createTandem( 'soluteComboBox' )
+    var soluteComboBox = new SoluteComboBox( model.solutes, model.solution.soluteProperty, soluteComboBoxListParent,
+      tandem.createTandem( 'soluteComboBox' ), {
+      maxWidth: 500
     } );
 
     // slider for controlling amount of solute
@@ -82,7 +85,8 @@ define( function( require ) {
       MolarityModel.SOLUTE_AMOUNT_RANGE,
       MConstants.SOLUTE_AMOUNT_DECIMAL_PLACES,
       unitsMolesString,
-      valuesVisibleProperty );
+      valuesVisibleProperty,
+      tandem.createTandem( 'soluteAmountSlider' ) );
 
     // slider for controlling volume of solution, sized to match tick marks on the beaker
     var volumeSliderHeight = ( MolarityModel.SOLUTION_VOLUME_RANGE.getLength() / MolarityModel.SOLUTION_VOLUME_RANGE.max ) * cylinderSize.height;
@@ -94,14 +98,19 @@ define( function( require ) {
       MolarityModel.SOLUTION_VOLUME_RANGE,
       MConstants.SOLUTION_VOLUME_DECIMAL_PLACES,
       unitsLitersString,
-      valuesVisibleProperty );
+      valuesVisibleProperty,
+      tandem.createTandem( 'solutionVolumeSlider' ) );
 
     // concentration display
     var concentrationBarSize = new Dimension2( 40, cylinderSize.height + 50 );
-    var concentrationDisplay = new ConcentrationDisplay( model.solution, MolarityModel.CONCENTRATION_DISPLAY_RANGE, valuesVisibleProperty, concentrationBarSize );
+    var concentrationDisplay = new ConcentrationDisplay( model.solution, MolarityModel.CONCENTRATION_DISPLAY_RANGE,
+      valuesVisibleProperty, concentrationBarSize, tandem.createTandem( 'concentrationDisplay' ) );
 
     // Show Values check box
-    var showValuesCheckBox = CheckBox.createTextCheckBox( showValuesString, { font: new PhetFont( 22 ) }, valuesVisibleProperty, { maxWidth: 175 } );
+    var showValuesCheckBox = CheckBox.createTextCheckBox( showValuesString, { font: new PhetFont( 22 ) }, valuesVisibleProperty, {
+      maxWidth: 175,
+      tandem: tandem.createTandem( 'showValuesCheckBox' )
+    } );
     showValuesCheckBox.touchArea = Shape.rectangle( showValuesCheckBox.left, showValuesCheckBox.top - 15, showValuesCheckBox.width, showValuesCheckBox.height + 30 );
 
     // Reset All button
@@ -110,7 +119,8 @@ define( function( require ) {
         valuesVisibleProperty.reset();
         model.reset();
       },
-      scale: 1.32
+      scale: 1.32,
+      tandem: tandem.createTandem( 'resetAllButton' )
     } );
 
     // layout for things that don't have a location in the model

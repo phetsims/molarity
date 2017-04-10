@@ -27,21 +27,26 @@ define( function( require ) {
 
   /**
    * @param {Solution} solution
+   * @param {Tandem} tandem
    * @constructor
    */
-  function BeakerLabelNode( solution ) {
+  function BeakerLabelNode( solution, tandem ) {
 
-    Node.call( this );
+    Node.call( this, { tandem: tandem } );
 
-    var labelNode = new SubSupText( '?', {
+    var textNode = new SubSupText( '?', {
       font: LABEL_FONT,
-      maxWidth: 0.9 * LABEL_SIZE.width
+      maxWidth: 0.9 * LABEL_SIZE.width,
+      tandem: tandem.createTandem( 'textNode' )
     } );
-    var backgroundNode = new Rectangle( -LABEL_SIZE.width / 2, 0, LABEL_SIZE.width, LABEL_SIZE.height, 10, 10,
-      { fill: new Color( 255, 255, 255, 0.6 ), stroke: Color.LIGHT_GRAY } );
+
+    var backgroundNode = new Rectangle( -LABEL_SIZE.width / 2, 0, LABEL_SIZE.width, LABEL_SIZE.height, 10, 10, {
+      fill: new Color( 255, 255, 255, 0.6 ), stroke: Color.LIGHT_GRAY,
+      tandem: tandem.createTandem( 'backgroundNode' )
+    } );
 
     this.addChild( backgroundNode );
-    this.addChild( labelNode );
+    this.addChild( textNode );
 
     // label on the beaker
     var beakerLabelProperty = new DerivedProperty( [ solution.soluteProperty, solution.volumeProperty, solution.concentrationProperty ],
@@ -61,10 +66,10 @@ define( function( require ) {
 
     // update the label
     beakerLabelProperty.link( function( label ) {
-      labelNode.text = label;
+      textNode.text = label;
       // center formula in background
-      labelNode.centerX = backgroundNode.centerX;
-      labelNode.centerY = backgroundNode.centerY;
+      textNode.centerX = backgroundNode.centerX;
+      textNode.centerY = backgroundNode.centerY;
     } );
   }
 

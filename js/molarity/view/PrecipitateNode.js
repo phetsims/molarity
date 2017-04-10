@@ -28,10 +28,14 @@ define( function( require ) {
    * @param {Dimension2} cylinderSize
    * @param {number} cylinderEndHeight
    * @param {number} maxPrecipitateAmount moles
+   * @param {Tandem} tandem
    */
-  function PrecipitateNode( solution, cylinderSize, cylinderEndHeight, maxPrecipitateAmount ) {
+  function PrecipitateNode( solution, cylinderSize, cylinderEndHeight, maxPrecipitateAmount, tandem ) {
 
-    Node.call( this, { pickable: false } );
+    Node.call( this, {
+      pickable: false,
+      tandem: tandem
+    } );
 
     var particlesParent = new Node();
     this.addChild( particlesParent );
