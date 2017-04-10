@@ -239,7 +239,7 @@ define( function( require ) {
     self.addInputListener( new ThumbDragHandler( self, property, valueRange, decimalPlaces, positionRange,
       tandem.createTandem( 'thumbDragHandler' ) ) );
 
-    //TODO #31 does FillHighlightListener need to be instrumented?
+    // Ignore this for phet-io instrumentation
     rectangleNode.addInputListener( new FillHighlightListener( THUMB_NORMAL_COLOR, THUMB_HIGHLIGHT_COLOR ) );
   }
 
