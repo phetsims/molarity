@@ -53,8 +53,8 @@ define( function( require ) {
     this.volumeProperty = new Property( volume, {
       tandem: tandem.createTandem( 'volumeProperty' ),
       phetioValueType: TNumber( {
-        units: 'liters'
-        //TODO range
+        units: 'liters',
+        range: MConstants.SOLUTION_VOLUME_RANGE
       } )
     } );
 
