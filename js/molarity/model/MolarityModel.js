@@ -58,6 +58,7 @@ define( function( require ) {
     var minSaturateConcentration = _.minBy( this.solutes, function( solute ) {
       return solute.saturatedConcentration;
     } ).saturatedConcentration;
+
     // @public
     this.maxPrecipitateAmount = Solution.computePrecipitateAmount( MolarityModel.SOLUTION_VOLUME_RANGE.min, MolarityModel.SOLUTE_AMOUNT_RANGE.max, minSaturateConcentration );
   }

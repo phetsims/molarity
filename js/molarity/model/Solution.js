@@ -18,6 +18,7 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
 
   // phet-io modules
+  var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
   var TSolute = require( 'ifphetio!MOLARITY/molarity/model/TSolute' );
 
   /**
@@ -32,12 +33,30 @@ define( function( require ) {
 
     // @public
     this.solvent = solvent;
+
+    // @public
     this.soluteProperty = new Property( solute, {
       tandem: tandem.createTandem( 'soluteProperty' ),
       phetioValueType: TSolute
     } );
-    this.soluteAmountProperty = new Property( soluteAmount );
-    this.volumeProperty = new Property( volume );
+
+    // @public
+    this.soluteAmountProperty = new Property( soluteAmount, {
+      tandem: tandem.createTandem( 'soluteAmountProperty' ),
+      phetioValueType: TNumber( {
+        units: 'moles'
+        //TODO range
+      } )
+    } );
+
+    // @public
+    this.volumeProperty = new Property( volume, {
+      tandem: tandem.createTandem( 'volumeProperty' ),
+      phetioValueType: TNumber( {
+        units: 'liters'
+        //TODO range
+      } )
+    } );
 
     // @public derive the concentration: M = moles/liter
     this.concentrationProperty = new DerivedProperty( [ this.soluteProperty, this.soluteAmountProperty, this.volumeProperty ],
