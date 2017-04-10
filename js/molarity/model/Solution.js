@@ -81,8 +81,6 @@ define( function( require ) {
           // no range, since this is derived
         } )
       } );
-
-    //TODO #31 do we need to call tandem.addInstance?
   }
 
   molarity.register( 'Solution', Solution );
