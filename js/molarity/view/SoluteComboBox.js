@@ -39,6 +39,9 @@ define( function( require ) {
       itemHighlightFill: 'rgb(218,255,255)'
     }, options );
 
+    assert && assert( !options.tandem, 'tandem is a required constructor parameter' );
+    options.tandem = tandem;
+
     // items
     var items = [];
     for ( var i = 0; i < solutes.length; i++ ) {
@@ -67,7 +70,7 @@ define( function( require ) {
     textNode.centerY = colorNode.centerY;
 
     return ComboBox.createItem( node, solute, {
-      tandem: solute.tandemName
+      tandemName: solute.tandemName
     } );
   };
 
