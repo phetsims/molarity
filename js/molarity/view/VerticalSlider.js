@@ -167,7 +167,11 @@ define( function( require ) {
 
     var self = this;
 
-    Rectangle.call( this, 0, 0, size.width, size.height, { fill: 'black', cursor: 'pointer' } );
+    Rectangle.call( this, 0, 0, size.width, size.height, {
+      fill: 'black',
+      cursor: 'pointer',
+      tandem: tandem
+    } );
 
     var handleEvent = function( event ) {
       var y = self.globalToLocalPoint( event.pointer.point ).y;
