@@ -52,7 +52,10 @@ define( function( require ) {
    */
   function MolarityScreenView( model, tandem ) {
 
-    ScreenView.call( this, { layoutBounds: new Bounds2( 0, 0, 1100, 700 ) } );
+    ScreenView.call( this, {
+      layoutBounds: new Bounds2( 0, 0, 1100, 700 ),
+      tandem: tandem
+    } );
 
     var valuesVisibleProperty = new Property( false );
 
