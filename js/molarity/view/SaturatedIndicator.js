@@ -29,19 +29,24 @@ define( function( require ) {
 
     Node.call( this, { tandem: tandem } );
 
-    var label = new Text( saturatedString, { font: new PhetFont( 22 ), maxWidth: 200 } );
+    var textNode = new Text( saturatedString, {
+      font: new PhetFont( 22 ),
+      maxWidth: 200,
+      tandem: tandem.createTandem( 'textNode ')
+    } );
 
     // translucent light-gray background, so this shows up on all solution colors
-    var background = new Rectangle( 0, 0, 1.2 * label.width, 1.2 * label.height, 8, 8,
-      { fill: 'rgba( 240, 240, 240, 0.6 )' } );
+    var backgroundNode = new Rectangle( 0, 0, 1.2 * textNode.width, 1.2 * textNode.height, 8, 8, {
+      fill: 'rgba( 240, 240, 240, 0.6 )',
+      tandem: tandem.createTandem( 'backgroundNode ')
+    } );
 
     // rendering order
-    this.addChild( background );
-    this.addChild( label );
+    this.addChild( backgroundNode );
+    this.addChild( textNode );
 
     // layout
-    label.centerX = background.centerX;
-    label.centerY = background.centerY;
+    textNode.center = backgroundNode.center;
 
     // make this node visible when the solution is saturated
     var self = this;

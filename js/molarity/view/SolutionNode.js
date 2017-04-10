@@ -39,10 +39,22 @@ define( function( require ) {
       tandem: tandem
     } );
 
-    var middleNode = new Rectangle( 0, 0, 1, 1 ); // middle shape will change with volume
+    // middle shape will change with volume
+    var middleNode = new Rectangle( 0, 0, 1, 1, {
+      tandem: tandem.createTandem( 'middleNode' )
+    } );
+
     var endShape = Shape.ellipse( cylinderSize.width / 2, 0, cylinderSize.width / 2, cylinderEndHeight / 2 );
-    var topNode = new Path( endShape, { lineWidth: 0.5, stroke: new Color( 0, 0, 0, 85 ) } );
-    var bottomNode = new Path( endShape );
+
+    var topNode = new Path( endShape, {
+      lineWidth: 0.5,
+      stroke: new Color( 0, 0, 0, 85 ),
+      tandem: tandem.createTandem( 'topNode' )
+    } );
+    
+    var bottomNode = new Path( endShape, {
+      tandem: tandem.createTandem( 'bottomNode' )
+    } );
 
     this.addChild( bottomNode );
     this.addChild( middleNode );

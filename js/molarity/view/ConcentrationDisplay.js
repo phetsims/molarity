@@ -66,32 +66,46 @@ define( function( require ) {
 
     // nodes
     var maxTextWidth = 175; // constrain width for i18n, determined empirically
-    var title = new MultiLineText( solutionConcentrationString, {
+
+    var titleNode = new MultiLineText( solutionConcentrationString, {
       align: 'center',
       font: TITLE_FONT,
-      maxWidth: maxTextWidth
+      maxWidth: maxTextWidth,
+      tandem: tandem.createTandem( 'titleNode' )
     } );
-    var subtitle = new Text( StringUtils.format( patternParentheses0TextString, molarityString ), {
+
+    var subtitleNode = new Text( StringUtils.format( patternParentheses0TextString, molarityString ), {
       font: SUBTITLE_FONT,
-      maxWidth: maxTextWidth
+      maxWidth: maxTextWidth,
+      tandem: tandem.createTandem( 'subtitleNode' )
     } );
+
     var maxNode = new DualLabelNode( Util.toFixed( concentrationRange.max, MConstants.RANGE_DECIMAL_PLACES ),
       highString, valuesVisibleProperty, RANGE_FONT, tandem.createTandem( 'maxNode' ),
       { maxWidth: maxTextWidth } );
+
     var minNode = new DualLabelNode( Util.toFixed( concentrationRange.min,
       concentrationRange.min === 0 ? 0 : MConstants.RANGE_DECIMAL_PLACES ), zeroString,
       valuesVisibleProperty, RANGE_FONT, tandem.createTandem( 'minNode' ),
       { maxWidth: maxTextWidth } );
-    var barNode = new Rectangle( 0, 0, barSize.width, barSize.height, { stroke: 'black' } );
+
+    var barNode = new Rectangle( 0, 0, barSize.width, barSize.height, {
+      stroke: 'black',
+      tandem: tandem.createTandem( 'barNode' )
+    } );
+
     var saturatedBarNode = new Rectangle( 0, 0, barSize.width, barSize.height, {
       stroke: 'black',
-      fill: Color.LIGHT_GRAY
+      fill: Color.LIGHT_GRAY,
+      tandem: tandem.createTandem( 'saturatedBarNode' )
     } );
-    var pointerNode = new Pointer( solution, concentrationRange, barSize, valuesVisibleProperty );
+
+    var pointerNode = new PointerNode( solution, concentrationRange, barSize, valuesVisibleProperty,
+      tandem.createTandem( 'pointerNode ') );
 
     // rendering order
-    this.addChild( title );
-    this.addChild( subtitle );
+    this.addChild( titleNode );
+    this.addChild( subtitleNode );
     this.addChild( maxNode );
     this.addChild( minNode );
     this.addChild( barNode );
@@ -107,10 +121,10 @@ define( function( require ) {
     maxNode.bottom = barNode.top - 5;
     minNode.centerX = barNode.centerX;
     minNode.top = barNode.bottom + 5;
-    subtitle.centerX = barNode.centerX;
-    subtitle.bottom = maxNode.top - 8;
-    title.centerX = barNode.centerX;
-    title.bottom = subtitle.top - 5;
+    subtitleNode.centerX = barNode.centerX;
+    subtitleNode.bottom = maxNode.top - 8;
+    titleNode.centerX = barNode.centerX;
+    titleNode.bottom = subtitleNode.top - 5;
 
     // when the solute changes...
     solution.soluteProperty.link( function( solute ) {
@@ -138,13 +152,18 @@ define( function( require ) {
    * @param {Range} concentrationRange
    * @param {Dimension2} barSize
    * @param {Property.<boolean>} valuesVisibleProperty
+   * @param {Tandem} tandem
    */
-  function Pointer( solution, concentrationRange, barSize, valuesVisibleProperty ) {
+  function PointerNode( solution, concentrationRange, barSize, valuesVisibleProperty, tandem ) {
 
-    Node.call( this );
+    Node.call( this, { tandem: tandem } );
 
-    // nodes
-    var valueNode = new Text( '?', { font: VALUE_FONT, maxWidth: 75 } );
+    var valueNode = new Text( '?', {
+      font: VALUE_FONT,
+      maxWidth: 75,
+      tandem: tandem.createTandem( 'valueNode' )
+    } );
+
     var x = barSize.width;
     var y = 0;
     var arrowShape = new Shape()
@@ -156,7 +175,12 @@ define( function( require ) {
       .lineTo( x + ARROW_HEAD_HEIGHT, y + (ARROW_TAIL_WIDTH / 2) )
       .lineTo( x + ARROW_HEAD_HEIGHT, y + (ARROW_HEAD_WIDTH / 2) )
       .close();
-    this.arrowNode = new Path( arrowShape, { stroke: 'black' } ); // @private
+
+    // @private
+    this.arrowNode = new Path( arrowShape, {
+      stroke: 'black',
+      tandem: tandem.createTandem( 'arrowNode' )
+    } );
 
     // rendering order
     this.addChild( valueNode );
@@ -188,9 +212,9 @@ define( function( require ) {
     } );
   }
 
-  molarity.register( 'ConcentrationDisplay.Pointer', Pointer );
+  molarity.register( 'ConcentrationDisplay.PointerNode', PointerNode );
 
-  inherit( Node, Pointer );
+  inherit( Node, PointerNode );
 
   return inherit( Node, ConcentrationDisplay );
 } );

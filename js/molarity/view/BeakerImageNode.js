@@ -35,7 +35,7 @@ define( function( require ) {
   function BeakerImageNode( tandem, options ) {
 
     options = options || {};
-    assert && assert( !options.tandem );
+    assert && assert( !options.tandem, 'tandem is passed via constructor parameter' );
     options.tandem = tandem;
 
     Image.call( this, beakerImage, options );

@@ -66,7 +66,11 @@ define( function( require ) {
     var bottomShape = new Shape().ellipticalArc( cylinderSize.width / 2, cylinderSize.height,
       cylinderSize.width / 2, cylinderEndHeight / 2,
       0, Util.toRadians( 0 ), Util.toRadians( 180 ), true );
-    var bottomNode = new Path( bottomShape, { stroke: new Color( 150, 150, 150, 100 ), lineWidth: 2 } );
+    var bottomNode = new Path( bottomShape, {
+      stroke: new Color( 150, 150, 150, 100 ),
+      lineWidth: 2,
+      tandem: tandem.createTandem( 'bottomNode' )
+    } );
 
     // label on the beaker
     var labelNode = new BeakerLabelNode( solution, tandem.createTandem( 'labelNode' ) );
@@ -74,8 +78,8 @@ define( function( require ) {
     labelNode.y = 0.15 * cylinderSize.height;
 
     // parents for tick marks and labels
-    var tickMarkNodes = new Node();
-    var tickLabelNodes = new Node();
+    var tickMarkNodes = new Node( { tandem: tandem.createTandem( 'tickMarkNodes' ) } );
+    var tickLabelNodes = new Node( { tandem: tandem.createTandem( 'tickLabelNodes' ) } );
 
     // rendering order
     this.addChild( bottomNode );
@@ -97,29 +101,46 @@ define( function( require ) {
     var tickLabel;
     var tickLabelNode;
 
+    var tickMarkNodeGroupTandem = tandem.createGroupTandem( 'tickMarkNode');
+    var tickLabelNodeGroupTandem = tandem.createGroupTandem( 'tickLabelNode');
+
     for ( var i = 1; i <= numberOfTicks; i++ ) {
       y = bottomY - ( i * deltaY );
       if ( i % MINOR_TICKS_PER_MAJOR_TICK === 0 ) {
 
         // major tick mark
         tickMarkShape = new Shape().ellipticalArc( cylinderSize.width / 2, y, cylinderSize.width / 2, cylinderEndHeight / 2, 0, Util.toRadians( 165 ), Util.toRadians( 135 ), true );
-        tickMarkNode = new Path( tickMarkShape, { stroke: TICK_COLOR, lineWidth: 2 } );
+        tickMarkNode = new Path( tickMarkShape, {
+          stroke: TICK_COLOR,
+          lineWidth: 2,
+          tandem: tickMarkNodeGroupTandem.createNextTandem()
+        } );
         tickMarkNodes.addChild( tickMarkNode );
 
         // major tick label
         tickLabelIndex = ( i / MINOR_TICKS_PER_MAJOR_TICK ) - 1;
         if ( tickLabelIndex < MAJOR_TICK_LABELS.length ) {
           tickLabel = StringUtils.format( pattern0Value1UnitsString, MAJOR_TICK_LABELS[ tickLabelIndex ], unitsLitersString );
-          tickLabelNode = new Text( tickLabel, { font: TICK_LABEL_FONT, stroke: TICK_LABEL_COLOR, maxWidth: 100 } );
+          tickLabelNode = new Text( tickLabel, {
+            font: TICK_LABEL_FONT,
+            stroke: TICK_LABEL_COLOR,
+            maxWidth: 100,
+            tandem: tickLabelNodeGroupTandem.createNextTandem()
+          } );
           tickLabelNodes.addChild( tickLabelNode );
           tickLabelNode.left = tickMarkNode.right + TICK_LABEL_X_SPACING;
           tickLabelNode.centerY = tickMarkNode.bottom;
         }
       }
       else {
+
         // minor tick mark, no label
         tickMarkShape = new Shape().ellipticalArc( cylinderSize.width / 2, y, cylinderSize.width / 2, cylinderEndHeight / 2, 0, Util.toRadians( 165 ), Util.toRadians( 150 ), true );
-        tickMarkNode = new Path( tickMarkShape, { stroke: TICK_COLOR, lineWidth: 2 } );
+        tickMarkNode = new Path( tickMarkShape, {
+          stroke: TICK_COLOR,
+          lineWidth: 2,
+          tandem: tickMarkNodeGroupTandem.createNextTandem()
+        } );
         tickMarkNodes.addChild( tickMarkNode );
       }
     }

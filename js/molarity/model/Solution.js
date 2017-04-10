@@ -62,16 +62,27 @@ define( function( require ) {
     this.concentrationProperty = new DerivedProperty( [ this.soluteProperty, this.soluteAmountProperty, this.volumeProperty ],
       function( solute, soluteAmount, volume ) {
         return Util.toFixedNumber( volume > 0 ? Math.min( solute.saturatedConcentration, soluteAmount / volume ) : 0, MConstants.CONCENTRATION_DECIMAL_PLACES );
+      }, {
+        tandem: tandem.createTandem( 'concentrationProperty' ),
+        phetioValueType: TNumber( {
+          units: 'moles/liter'
+          // no range, since this is derived
+        } )
       } );
 
     // @public derive the amount of precipitate
     this.precipitateAmountProperty = new DerivedProperty( [ this.soluteProperty, this.soluteAmountProperty, this.volumeProperty ],
       function( solute, soluteAmount, volume ) {
         return Solution.computePrecipitateAmount( volume, soluteAmount, solute.saturatedConcentration );
+      }, {
+        tandem: tandem.createTandem( 'precipitateAmountProperty' ),
+        phetioValueType: TNumber( {
+          units: 'moles'
+          // no range, since this is derived
+        } )
       } );
 
-    //TODO do we need to do this?
-    // tandem.addInstance( this, TSolution );
+    //TODO #31 do we need to call tandem.addInstance?
   }
 
   molarity.register( 'Solution', Solution );
@@ -87,7 +98,7 @@ define( function( require ) {
 
     // @public
     isSaturated: function() {
-      return this.precipitateAmount !== 0;
+      return this.precipitateAmountProperty.value !== 0;
     },
 
     // @public

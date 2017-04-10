@@ -33,13 +33,18 @@ define( function( require ) {
 
     Node.call( this );
 
-    var quantitativeNode = new Text( quantitativeValue, { font: font } );
+    var quantitativeNode = new Text( quantitativeValue, {
+      font: font,
+      tandem: tandem.createTandem( 'quantitativeNode' )
+    } );
     this.addChild( quantitativeNode );
 
-    var qualitativeNode = new Text( qualitativeValue, { font: font } );
+    var qualitativeNode = new Text( qualitativeValue, {
+      font: font,
+      center: quantitativeNode.center,
+      tandem: tandem.createTandem( 'qualitativeNode' )
+    } );
     this.addChild( qualitativeNode );
-    qualitativeNode.centerX = quantitativeNode.centerX;
-    qualitativeNode.centerY = quantitativeNode.centerY;
 
     // add an invisible rectangle so that bounds don't change
     var boundsNode = new Rectangle( this.left, this.top, this.width, this.height );

@@ -42,6 +42,7 @@ define( function( require ) {
   var THUMB_HIGHLIGHT_COLOR = THUMB_NORMAL_COLOR.brighterColor();
   var THUMB_STROKE_COLOR = Color.BLACK;
   var THUMB_CENTER_LINE_COLOR = Color.WHITE;
+  var MAX_TEXT_WIDTH = 120; // constrain text for i18n, determined empirically
 
   /**
    * @param {string} title
@@ -62,26 +63,45 @@ define( function( require ) {
 
     Node.call( this, { tandem: tandem } );
 
-    // nodes
-    var maxTextWidth = 120; // constrain text for i18n, determined empirically
-    var titleNode = new MultiLineText( title, { font: TITLE_FONT, maxWidth: maxTextWidth } );
-    var subtitleNode = new Text( subtitle, { font: SUBTITLE_FONT, maxWidth: maxTextWidth } );
+    var titleNode = new MultiLineText( title, {
+      font: TITLE_FONT,
+      maxWidth: MAX_TEXT_WIDTH,
+      tandem: tandem.createTandem( 'titleNode' )
+    } );
+
+    var subtitleNode = new Text( subtitle, {
+      font: SUBTITLE_FONT,
+      maxWidth: MAX_TEXT_WIDTH,
+      tandem: tandem.createTandem( 'subtitleNode' )
+    } );
+
     var minNode = new DualLabelNode( Util.toFixed( range.min, range.min === 0 ? 0 : MConstants.RANGE_DECIMAL_PLACES ),
       minLabel, valuesVisibleProperty, RANGE_FONT, tandem.createTandem( 'minNode' ),
-      { maxWidth: maxTextWidth } );
+      { maxWidth: MAX_TEXT_WIDTH } );
+
     var maxNode = new DualLabelNode( Util.toFixed( range.max, MConstants.RANGE_DECIMAL_PLACES ),
       maxLabel, valuesVisibleProperty, RANGE_FONT, tandem.createTandem( 'maxNode' ),
-      { maxWidth: maxTextWidth } );
-    var trackNode = new Track( trackSize, property, range, decimalPlaces );
+      { maxWidth: MAX_TEXT_WIDTH } );
+
+    var trackNode = new TrackNode( trackSize, property, range, decimalPlaces, tandem.createTandem( 'trackNode' ) );
+
     var xMargin = 7;
     var yMargin = 7;
     var cornerRadius = 10;
-    var backgroundNode = new Rectangle( -xMargin, -yMargin, trackSize.width + ( 2 * xMargin ), trackSize.height + ( 2 * yMargin ), cornerRadius, cornerRadius,
-      { fill: new Color( 200, 200, 200, 140 ) } );
-    var thumbNode = new Thumb( THUMB_SIZE, property, range, decimalPlaces, new RangeWithValue( 0, trackSize.height ) );
+
+    var trackBackgroundNode = new Rectangle( -xMargin, -yMargin, trackSize.width + ( 2 * xMargin ), trackSize.height + ( 2 * yMargin ), {
+      fill: new Color( 200, 200, 200, 140 ),
+      cornerRadius: cornerRadius,
+      tandem: tandem.createTandem( 'trackBackgroundNode' )
+    } );
+
+    var thumbNode = new ThumbNode( THUMB_SIZE, property, range, decimalPlaces,
+      new RangeWithValue( 0, trackSize.height ), tandem.createTandem( 'thumbNode' ) );
+
     var valueNode = new Text( '?', {
       font: VALUE_FONT,
-      maxWidth: 90 // constrain for i18n, determined empirically
+      maxWidth: 90, // constrain for i18n, determined empirically
+      tandem: tandem.createTandem( 'valueNode' )
     } );
 
     // rendering order
@@ -89,17 +109,17 @@ define( function( require ) {
     this.addChild( subtitleNode );
     this.addChild( minNode );
     this.addChild( maxNode );
-    this.addChild( backgroundNode );
+    this.addChild( trackBackgroundNode );
     this.addChild( trackNode );
     this.addChild( thumbNode );
     this.addChild( valueNode );
 
     // layout
-    var centerX = backgroundNode.centerX;
+    var centerX = trackBackgroundNode.centerX;
     maxNode.centerX = centerX;
-    maxNode.bottom = backgroundNode.top - ( thumbNode.height / 2 );
+    maxNode.bottom = trackBackgroundNode.top - ( thumbNode.height / 2 );
     minNode.centerX = centerX;
-    minNode.top = backgroundNode.bottom + ( thumbNode.height / 2 );
+    minNode.top = trackBackgroundNode.bottom + ( thumbNode.height / 2 );
     subtitleNode.centerX = centerX;
     subtitleNode.bottom = maxNode.top - 5;
     titleNode.centerX = centerX;
@@ -134,80 +154,98 @@ define( function( require ) {
   molarity.register( 'VerticalSlider', VerticalSlider );
 
   /**
-   * Track that the thumb moves in, origin at upper left. Clicking in the track changes the value.
+   * Track that the thumb moves in, origin at upper left.
+   * Clicking in the track changes the value, continue dragging if desired.
    * @param {Dimension2} size
    * @param {Property.<number>} property
    * @param {Range} range
    * @param {number} decimalPlaces
+   * @param {Tandem} tandem
    * @constructor
    */
-  function Track( size, property, range, decimalPlaces ) {
+  function TrackNode( size, property, range, decimalPlaces, tandem ) {
 
     var self = this;
-    
+
     Rectangle.call( this, 0, 0, size.width, size.height, { fill: 'black', cursor: 'pointer' } );
 
-    // click in the track to change the value, continue dragging if desired
     var handleEvent = function( event ) {
       var y = self.globalToLocalPoint( event.pointer.point ).y;
       var value = Util.linear( 0, size.height, range.max, range.min, y );
       property.value = Util.toFixedNumber( Util.clamp( value, range.min, range.max ), decimalPlaces );
     };
-    this.addInputListener( new SimpleDragHandler(
-      {
-        allowTouchSnag: true,
-        start: function( event ) {
-          handleEvent( event );
-        },
-        drag: function( event ) {
-          handleEvent( event );
-        }
-      } ) );
+
+    //TODO #31 use TandemSimpleDragHandler, tandem.createTandem( 'trackDragHandler' )
+    var trackDragHandler = new SimpleDragHandler( {
+      allowTouchSnag: true,
+      start: function( event ) {
+        handleEvent( event );
+      },
+      drag: function( event ) {
+        handleEvent( event );
+      }
+    } );
+
+    this.addInputListener( trackDragHandler );
   }
 
-  molarity.register( 'VerticalSlider.Track', Track );
+  molarity.register( 'VerticalSlider.TrackNode', TrackNode );
 
-  inherit( Rectangle, Track );
+  inherit( Rectangle, TrackNode );
 
   /**
-   * The slider thumb, a rounded rectangle with a horizontal line through its center. Origin is at the thumb's geometric center.
+   * The slider thumb, a rounded rectangle with a horizontal line through its center.
+   * Origin is at the thumb's geometric center.
    * @param {Dimension2} size
    * @param {Property.<number>} property
    * @param {Range} valueRange
    * @param {number} decimalPlaces
    * @param {Range} positionRange
+   * @param {Tandem} tandem
    * @constructor
    */
-  function Thumb( size, property, valueRange, decimalPlaces, positionRange ) {
+  function ThumbNode( size, property, valueRange, decimalPlaces, positionRange, tandem ) {
 
     var self = this;
     Node.call( this );
 
-    // nodes
-    var bodyNode = new Rectangle( -size.width / 2, -size.height / 2, size.width, size.height, 10, 10,
-      { fill: THUMB_NORMAL_COLOR, stroke: THUMB_STROKE_COLOR, lineWidth: 1 } );
-    var centerLineNode = new Path( Shape.lineSegment( -( size.width / 2 ) + 3, 0, ( size.width / 2 ) - 3, 0 ),
-      { stroke: THUMB_CENTER_LINE_COLOR } );
+    var rectangleNode = new Rectangle( -size.width / 2, -size.height / 2, size.width, size.height, {
+      cornerRadius: 10,
+      fill: THUMB_NORMAL_COLOR,
+      stroke: THUMB_STROKE_COLOR,
+      lineWidth: 1,
+      tandem: tandem.createTandem( 'rectangleNode' )
+    } );
+
+    // horizontal center line
+    var lineNode = new Path( Shape.lineSegment( -( size.width / 2 ) + 3, 0, ( size.width / 2 ) - 3, 0 ), {
+      stroke: THUMB_CENTER_LINE_COLOR,
+      pickable: false,
+      tandem: tandem.createTandem( 'lineNode' ),
+    } );
 
     // rendering order
-    self.addChild( bodyNode );
-    self.addChild( centerLineNode );
+    self.addChild( rectangleNode );
+    self.addChild( lineNode );
 
     // touch area
-    var touchXMargin = 0 * bodyNode.width; // thumb seems wide enough, so zero for now
-    var touchYMargin = 1 * bodyNode.height; // expand height since thumb is not very tall and drag direction is vertical
-    bodyNode.touchArea = Shape.rectangle( bodyNode.left - touchXMargin, bodyNode.top - touchYMargin,
-      bodyNode.width + ( 2 * touchXMargin ), bodyNode.height + ( 2 * touchYMargin ) );
+    var touchXMargin = 0; // thumb seems wide enough, so zero for now
+    var touchYMargin = 1 * rectangleNode.height; // expand height since thumb is not very tall and drag direction is vertical
+    rectangleNode.touchArea = Shape.rectangle( rectangleNode.left - touchXMargin, rectangleNode.top - touchYMargin,
+      rectangleNode.width + ( 2 * touchXMargin ), rectangleNode.height + ( 2 * touchYMargin ) );
 
     // interactivity
     self.cursor = 'pointer';
-    self.addInputListener( new ThumbDragHandler( self, property, valueRange, decimalPlaces, positionRange ) );
-    bodyNode.addInputListener( new FillHighlightListener( THUMB_NORMAL_COLOR, THUMB_HIGHLIGHT_COLOR ) );
+    self.addInputListener( new ThumbDragHandler( self, property, valueRange, decimalPlaces, positionRange,
+      tandem.createTandem( 'thumbDragHandler' ) ) );
+
+    //TODO #31 does FillHighlightListener need to be instrumented?
+    rectangleNode.addInputListener( new FillHighlightListener( THUMB_NORMAL_COLOR, THUMB_HIGHLIGHT_COLOR ) );
   }
 
-  molarity.register( 'VerticalSlider.Thumb', Thumb );
+  molarity.register( 'VerticalSlider.ThumbNode', ThumbNode );
 
-  inherit( Node, Thumb );
+  inherit( Node, ThumbNode );
 
   /**
    * Drag handler for the slider thumb.
@@ -216,10 +254,14 @@ define( function( require ) {
    * @param {Range} valueRange
    * @param {number} decimalPlaces
    * @param {Range} positionRange
+   * @param {Tandem} tandem
    * @constructor
    */
-  function ThumbDragHandler( dragNode, property, valueRange, decimalPlaces, positionRange ) {
+  function ThumbDragHandler( dragNode, property, valueRange, decimalPlaces, positionRange, tandem ) {
+
     var clickYOffset; // y-offset between initial click and thumb's origin
+
+    //TODO #31 replace with TandemSimpleDragHandler
     SimpleDragHandler.call( this, {
 
       start: function( event ) {

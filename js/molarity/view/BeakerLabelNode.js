@@ -21,6 +21,9 @@ define( function( require ) {
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var SubSupText = require( 'SCENERY_PHET/SubSupText' );
 
+  // phet-io modules
+  var TString = require( 'ifphetio!PHET_IO/types/TString' );
+
   // constants
   var LABEL_SIZE = new Dimension2( 180, 80 );
   var LABEL_FONT = new PhetFont( { size: 28, weight: 'bold' } );
@@ -62,6 +65,9 @@ define( function( require ) {
           label = solute.formula;
         }
         return label;
+      }, {
+        tandem: tandem.createTandem( 'beakerLabelProperty' ),
+        phetioValueType: TString
       } );
 
     // update the label
