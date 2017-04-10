@@ -66,9 +66,11 @@ define( function( require ) {
     var maxTextWidth = 120; // constrain text for i18n, determined empirically
     var titleNode = new MultiLineText( title, { font: TITLE_FONT, maxWidth: maxTextWidth } );
     var subtitleNode = new Text( subtitle, { font: SUBTITLE_FONT, maxWidth: maxTextWidth } );
-    var minNode = new DualLabelNode( Util.toFixed( range.min, range.min === 0 ? 0 : MConstants.RANGE_DECIMAL_PLACES ), minLabel, valuesVisibleProperty, RANGE_FONT,
+    var minNode = new DualLabelNode( Util.toFixed( range.min, range.min === 0 ? 0 : MConstants.RANGE_DECIMAL_PLACES ),
+      minLabel, valuesVisibleProperty, RANGE_FONT, tandem.createTandem( 'minNode' ),
       { maxWidth: maxTextWidth } );
-    var maxNode = new DualLabelNode( Util.toFixed( range.max, MConstants.RANGE_DECIMAL_PLACES ), maxLabel, valuesVisibleProperty, RANGE_FONT,
+    var maxNode = new DualLabelNode( Util.toFixed( range.max, MConstants.RANGE_DECIMAL_PLACES ),
+      maxLabel, valuesVisibleProperty, RANGE_FONT, tandem.createTandem( 'maxNode' ),
       { maxWidth: maxTextWidth } );
     var trackNode = new Track( trackSize, property, range, decimalPlaces );
     var xMargin = 7;

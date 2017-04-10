@@ -75,9 +75,12 @@ define( function( require ) {
       font: SUBTITLE_FONT,
       maxWidth: maxTextWidth
     } );
-    var maxNode = new DualLabelNode( Util.toFixed( concentrationRange.max, MConstants.RANGE_DECIMAL_PLACES ), highString, valuesVisibleProperty, RANGE_FONT,
+    var maxNode = new DualLabelNode( Util.toFixed( concentrationRange.max, MConstants.RANGE_DECIMAL_PLACES ),
+      highString, valuesVisibleProperty, RANGE_FONT, tandem.createTandem( 'maxNode' ),
       { maxWidth: maxTextWidth } );
-    var minNode = new DualLabelNode( Util.toFixed( concentrationRange.min, concentrationRange.min === 0 ? 0 : MConstants.RANGE_DECIMAL_PLACES ), zeroString, valuesVisibleProperty, RANGE_FONT,
+    var minNode = new DualLabelNode( Util.toFixed( concentrationRange.min,
+      concentrationRange.min === 0 ? 0 : MConstants.RANGE_DECIMAL_PLACES ), zeroString,
+      valuesVisibleProperty, RANGE_FONT, tandem.createTandem( 'minNode' ),
       { maxWidth: maxTextWidth } );
     var barNode = new Rectangle( 0, 0, barSize.width, barSize.height, { stroke: 'black' } );
     var saturatedBarNode = new Rectangle( 0, 0, barSize.width, barSize.height, {

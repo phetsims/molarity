@@ -56,7 +56,7 @@ define( function( require ) {
     } );
 
     // @private the glass beaker
-    this.beakerImageNode = new BeakerImageNode( { scale: 0.75, } );
+    this.beakerImageNode = new BeakerImageNode( tandem.createTandem( 'beakerImageNode' ), { scale: 0.75 } );
     var cylinderSize = this.beakerImageNode.getCylinderSize();
     var cylinderOffset = this.beakerImageNode.getCylinderOffset();
     var cylinderEndHeight = this.beakerImageNode.getCylinderEndHeight();

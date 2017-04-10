@@ -44,8 +44,8 @@ define( function( require ) {
     this.soluteAmountProperty = new Property( soluteAmount, {
       tandem: tandem.createTandem( 'soluteAmountProperty' ),
       phetioValueType: TNumber( {
-        units: 'moles'
-        //TODO range
+        units: 'moles',
+        range: MConstants.SOLUTE_AMOUNT_RANGE
       } )
     } );
 

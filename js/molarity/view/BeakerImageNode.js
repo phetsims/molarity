@@ -33,6 +33,11 @@ define( function( require ) {
    * @constructor
    */
   function BeakerImageNode( tandem, options ) {
+
+    options = options || {};
+    assert && assert( !options.tandem );
+    options.tandem = tandem;
+
     Image.call( this, beakerImage, options );
   }
 

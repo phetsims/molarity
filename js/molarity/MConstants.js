@@ -1,4 +1,4 @@
-// Copyright 2016, University of Colorado Boulder
+// Copyright 2017, University of Colorado Boulder
 
 /**
  * Constants used throughout this sim.
@@ -10,8 +10,22 @@ define( function( require ) {
 
   // modules
   var molarity = require( 'MOLARITY/molarity' );
+  var RangeWithValue = require( 'DOT/RangeWithValue' );
+
+  // constants
+  var SOLUTE_AMOUNT_RANGE = new RangeWithValue( 0, 1, 0.5 ); // moles
+  var SOLUTION_VOLUME_RANGE = new RangeWithValue( 0.2, 1, 0.5 ); // liters
 
   var MConstants = {
+
+    // moles
+    SOLUTE_AMOUNT_RANGE: SOLUTE_AMOUNT_RANGE,
+
+    // liters
+    SOLUTION_VOLUME_RANGE: SOLUTION_VOLUME_RANGE,
+
+    // M
+    CONCENTRATION_RANGE: new RangeWithValue( SOLUTE_AMOUNT_RANGE.min / SOLUTION_VOLUME_RANGE.max, SOLUTE_AMOUNT_RANGE.max / SOLUTION_VOLUME_RANGE.min ),
 
     // decimal places for solute amount, used in view
     SOLUTE_AMOUNT_DECIMAL_PLACES: 3,
