@@ -10,6 +10,7 @@ define( function( require ) {
 
   // modules
   var BeakerNode = require( 'MOLARITY/molarity/view/BeakerNode' );
+  var BooleanProperty = require( 'AXON/BooleanProperty' );
   var Bounds2 = require( 'DOT/Bounds2' );
   var CheckBox = require( 'SUN/CheckBox' );
   var ConcentrationDisplay = require( 'MOLARITY/molarity/view/ConcentrationDisplay' );
@@ -20,7 +21,6 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PrecipitateNode = require( 'MOLARITY/molarity/view/PrecipitateNode' );
-  var Property = require( 'AXON/Property' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var SaturatedIndicator = require( 'MOLARITY/molarity/view/SaturatedIndicator' );
   var ScreenView = require( 'JOIST/ScreenView' );
@@ -56,7 +56,9 @@ define( function( require ) {
       tandem: tandem
     } );
 
-    var valuesVisibleProperty = new Property( false );
+    var valuesVisibleProperty = new BooleanProperty( false, {
+      tandem: tandem.createTandem( 'valuesVisibleProperty' )
+    } );
 
     // beaker, with solution and precipitate inside of it
     var beakerNode = new BeakerNode( model.solution, MConstants.SOLUTION_VOLUME_RANGE.max, valuesVisibleProperty,
