@@ -37,11 +37,6 @@ define( function( require ) {
       tandem: tandem
     } );
 
-    //TODO #31 what value is there in showing this tandem?
-    var particlesParent = new Node( { tandem: tandem.createTandem( 'particlesParent' ) } );
-    this.addChild( particlesParent );
-
-    //TODO #31 should we be using particlesParent's tandem here?
     var particlesGroupTandem = tandem.createGroupTandem( 'particlesGroupTandem');
 
     // Create the max number of particles that we'll need.
@@ -52,7 +47,7 @@ define( function( require ) {
         rotation: phet.joist.random.nextDouble() * 2 * Math.PI,
         tandem: particlesGroupTandem.createNextTandem()
       } );
-      particlesParent.addChild( particleNodes[ i ] );
+      this.addChild( particleNodes[ i ] );
     }
     if ( DEBUG_OUTPUT ) {
       console.log( 'PrecipitateNode: ' + Util.toFixed( maxPrecipitateAmount, 4 ) + ' mol => ' + maxParticles + ' particles (max)' );
