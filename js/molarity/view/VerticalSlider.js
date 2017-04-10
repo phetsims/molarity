@@ -24,8 +24,8 @@ define( function( require ) {
   var RangeWithValue = require( 'DOT/RangeWithValue' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
-  var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  var TandemSimpleDragHandler = require( 'TANDEM/scenery/input/TandemSimpleDragHandler' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
 
@@ -175,15 +175,15 @@ define( function( require ) {
       property.value = Util.toFixedNumber( Util.clamp( value, range.min, range.max ), decimalPlaces );
     };
 
-    //TODO #31 use TandemSimpleDragHandler, tandem.createTandem( 'trackDragHandler' )
-    var trackDragHandler = new SimpleDragHandler( {
+    var trackDragHandler = new TandemSimpleDragHandler( {
+
+      tandem: tandem.createTandem( 'trackDragHandler' ),
+
       allowTouchSnag: true,
-      start: function( event ) {
-        handleEvent( event );
-      },
-      drag: function( event ) {
-        handleEvent( event );
-      }
+
+      start: function( event ) { handleEvent( event ); },
+
+      drag: function( event ) { handleEvent( event ); }
     } );
 
     this.addInputListener( trackDragHandler );
@@ -221,7 +221,7 @@ define( function( require ) {
     var lineNode = new Path( Shape.lineSegment( -( size.width / 2 ) + 3, 0, ( size.width / 2 ) - 3, 0 ), {
       stroke: THUMB_CENTER_LINE_COLOR,
       pickable: false,
-      tandem: tandem.createTandem( 'lineNode' ),
+      tandem: tandem.createTandem( 'lineNode' )
     } );
 
     // rendering order
@@ -261,8 +261,9 @@ define( function( require ) {
 
     var clickYOffset; // y-offset between initial click and thumb's origin
 
-    //TODO #31 replace with TandemSimpleDragHandler
-    SimpleDragHandler.call( this, {
+    TandemSimpleDragHandler.call( this, {
+
+      tandem: tandem,
 
       start: function( event ) {
         clickYOffset = dragNode.globalToParentPoint( event.pointer.point ).y - event.currentTarget.y;
@@ -278,7 +279,7 @@ define( function( require ) {
 
   molarity.register( 'VerticalSlider.ThumbDragHandler', ThumbDragHandler );
 
-  inherit( SimpleDragHandler, ThumbDragHandler );
+  inherit( TandemSimpleDragHandler, ThumbDragHandler );
 
   return inherit( Node, VerticalSlider );
 } );
