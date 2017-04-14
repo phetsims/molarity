@@ -1,5 +1,5 @@
 {
-  "comment": "# molarity 1.2.9 Thu Apr 13 2017 13:46:04 GMT-0600 (MDT)",
+  "comment": "# molarity 1.2.9 Thu Apr 13 2017 19:45:55 GMT-0600 (MDT)",
   "assert": {
     "sha": "11bc6a6d0344ba1a8b95982bad3552bffbdfdfd6",
     "branch": "HEAD"
@@ -10,26 +10,26 @@
   },
   "brand": {
     "sha": "9ba7fff1ddf6128b2096380c456109a0cea4264b",
-    "branch": "molarity-1.2"
+    "branch": "HEAD"
   },
   "chipper": {
     "sha": "157b9cf31c1ba02fe4171acf25ff27b94e058e4e",
-    "branch": "molarity-1.2"
+    "branch": "HEAD"
   },
   "dot": {
     "sha": "d99cbe46e8496bbfe2554ddfcc15022ffdfcae83",
     "branch": "HEAD"
   },
   "joist": {
-    "sha": "e3dbcf2f9e63c01c7777f54f04b250896c9320a3",
-    "branch": "HEAD"
+    "sha": "d96fafaa3b7e195c6dfd538f38ae9bd5da7d74d6",
+    "branch": "molarity-1.2"
   },
   "kite": {
     "sha": "40dc703a07c774464f060dda6a67485704ca9e22",
     "branch": "HEAD"
   },
   "molarity": {
-    "sha": "19aa5e2c1272ee0b007f88b0636ee57f3ba506d7",
+    "sha": "d6a7160da496f874bb6d26754d95f34eac1169c5",
     "branch": "1.2"
   },
   "nitroglycerin": {
@@ -42,7 +42,7 @@
   },
   "phetcommon": {
     "sha": "7c12a4f35e067b88b92f0b38f597a1739ffc62a6",
-    "branch": "molarity-1.2"
+    "branch": "HEAD"
   },
   "scenery": {
     "sha": "42dbb7a935b8e6a6e04759d56bacd3b1a77c0b58",
