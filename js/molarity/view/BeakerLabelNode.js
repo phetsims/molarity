@@ -19,7 +19,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var SubSupText = require( 'SCENERY_PHET/SubSupText' );
+  var RichText = require( 'SCENERY_PHET/RichText' );
 
   // phet-io modules
   var TString = require( 'ifphetio!PHET_IO/types/TString' );
@@ -37,7 +37,7 @@ define( function( require ) {
 
     Node.call( this, { tandem: tandem } );
 
-    var textNode = new SubSupText( '?', {
+    var textNode = new RichText( '?', {
       font: LABEL_FONT,
       maxWidth: 0.9 * LABEL_SIZE.width,
       tandem: tandem.createTandem( 'textNode' )
