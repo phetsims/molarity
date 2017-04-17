@@ -101,9 +101,9 @@ define( function( require ) {
 
     // @public
     getColor: function() {
-      if ( this.concentration > 0 ) {
+      if ( this.concentrationProperty.value > 0 ) {
         var solute = this.soluteProperty.get();
-        var colorScale = Util.linear( 0, solute.saturatedConcentration, 0, 1, this.concentration );
+        var colorScale = Util.linear( 0, solute.saturatedConcentration, 0, 1, this.concentrationProperty.value );
         return Color.interpolateRGBA( solute.minColor, solute.maxColor, colorScale );
       }
       else {
