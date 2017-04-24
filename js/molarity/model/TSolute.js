@@ -27,6 +27,7 @@ define( function( require ) {
   };
 
   phetioInherit( TObject, 'TSolute', TSolute, {}, {
+    documentation: 'The solute for the sim',
 
     /**
      * @param {Object} stateObject
