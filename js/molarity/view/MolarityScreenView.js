@@ -108,7 +108,11 @@ define( function( require ) {
       valuesVisibleProperty, concentrationBarSize, tandem.createTandem( 'concentrationDisplay' ) );
 
     // Show Values check box
-    var showValuesCheckBox = CheckBox.createTextCheckBox( showValuesString, { font: new PhetFont( 22 ) }, valuesVisibleProperty, {
+    var showValuesTextOptions = {
+      font: new PhetFont( 22 ),
+      tandem: tandem.createTandem( 'showValuesText' )
+    };
+    var showValuesCheckBox = CheckBox.createTextCheckBox( showValuesString, showValuesTextOptions, valuesVisibleProperty, {
       maxWidth: 175,
       tandem: tandem.createTandem( 'showValuesCheckBox' )
     } );
