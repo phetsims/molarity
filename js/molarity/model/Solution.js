@@ -112,7 +112,7 @@ define( function( require ) {
     }
   }, {
 
-    // @pubic @static
+    // @public @static
     computePrecipitateAmount: function( volume, soluteAmount, saturatedConcentration ) {
       return volume > 0 ? Math.max( 0, volume * ( ( soluteAmount / volume ) - saturatedConcentration ) ) : soluteAmount;
     }
