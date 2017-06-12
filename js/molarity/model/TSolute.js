@@ -21,10 +21,10 @@ define( function( require ) {
    * @param {string} phetioID
    * @constructor
    */
-  var TSolute = function( instance, phetioID ) {
+  function TSolute( instance, phetioID ) {
     TObject.call( this, instance, phetioID );
     assertInstanceOf( instance, phet.molarity.Solute );
-  };
+  }
 
   phetioInherit( TObject, 'TSolute', TSolute, {}, {
     documentation: 'The solute for the sim',
