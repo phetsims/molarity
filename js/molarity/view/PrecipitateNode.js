@@ -38,7 +38,7 @@ define( function( require ) {
       tandem: tandem
     } );
 
-    var particlesGroupTandem = tandem.createGroupTandem( 'particlesGroupTandem');
+    var particlesGroupTandem = tandem.createGroupTandem( 'particlesGroup' );
 
     // Create the max number of particles that we'll need.
     var maxParticles = getNumberOfParticles( maxPrecipitateAmount );
