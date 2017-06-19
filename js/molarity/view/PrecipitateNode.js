@@ -29,6 +29,7 @@ define( function( require ) {
    * @param {number} cylinderEndHeight
    * @param {number} maxPrecipitateAmount moles
    * @param {Tandem} tandem
+   * @constructor
    */
   function PrecipitateNode( solution, cylinderSize, cylinderEndHeight, maxPrecipitateAmount, tandem ) {
 
