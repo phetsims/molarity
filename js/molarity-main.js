@@ -25,7 +25,7 @@ define( function( require ) {
       leadDesign: 'Julia Chamberlain',
       softwareDevelopment: 'Chris Malley (PixelZoom, Inc.)',
       team: 'Kelly Lancaster, Robert Parson, Kathy Perkins',
-      qualityAssurance: 'Steele Dalton, Elise Morgan, Oliver Orejola, Bryan Yoelin'
+      qualityAssurance: 'Steele Dalton, Alex Dornan, Ethan Johnson,\nElise Morgan, Oliver Orejola, Bryan Yoelin'
     }
   };
 
