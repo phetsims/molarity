@@ -1,5 +1,5 @@
 {
-  "comment": "# molarity 1.3.0-phetiorc.2 Tue Jun 27 2017 15:30:43 GMT-0600 (MDT)",
+  "comment": "# molarity 1.3.0-phetio Fri Jul 07 2017 14:26:22 GMT-0600 (MDT)",
   "assert": {
     "sha": "5c3f92048a9c2ffd6df8ede54fd64f1f7a7e4ef2",
     "branch": "HEAD"
@@ -29,7 +29,7 @@
     "branch": "HEAD"
   },
   "molarity": {
-    "sha": "a6f556a070459c42e22a978ab69a5ca80458bd97",
+    "sha": "164cb4920c88101f483ff7de004952ae0d3bea5f",
     "branch": "1.3-phetio"
   },
   "nitroglycerin": {
