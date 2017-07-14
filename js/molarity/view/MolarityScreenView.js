@@ -81,7 +81,7 @@ define( function( require ) {
     var soluteAmountSlider = new VerticalSlider( soluteAmountString,
       StringUtils.format( patternParentheses0TextString, molesString ),
       noneString, lotsString,
-      new Dimension2( 5, cylinderSize.height ),
+      new Dimension2( 6, cylinderSize.height ),
       model.solution.soluteAmountProperty,
       MConstants.SOLUTE_AMOUNT_RANGE,
       MConstants.SOLUTE_AMOUNT_DECIMAL_PLACES,
@@ -94,7 +94,7 @@ define( function( require ) {
     var solutionVolumeSlider = new VerticalSlider( solutionVolumeString,
       StringUtils.format( patternParentheses0TextString, litersString ),
       lowString, fullString,
-      new Dimension2( 5, volumeSliderHeight ),
+      new Dimension2( 6, volumeSliderHeight ),
       model.solution.volumeProperty,
       MConstants.SOLUTION_VOLUME_RANGE,
       MConstants.SOLUTION_VOLUME_DECIMAL_PLACES,
@@ -134,10 +134,10 @@ define( function( require ) {
       soluteAmountSlider.top = 0;
       // to the right of the Solute Amount slider
       solutionVolumeSlider.left = soluteAmountSlider.right + 5;
-      solutionVolumeSlider.y = soluteAmountSlider.y;
+      solutionVolumeSlider.top = soluteAmountSlider.top;
       // to the right of the Solution Volume slider
       beakerNode.left = solutionVolumeSlider.right - 15;
-      beakerNode.y = soluteAmountSlider.y;
+      beakerNode.top = soluteAmountSlider.top - 11;
       // same coordinate frame as beaker
       solutionNode.x = beakerNode.x;
       solutionNode.y = beakerNode.y;
