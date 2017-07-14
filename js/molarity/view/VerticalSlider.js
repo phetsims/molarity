@@ -81,7 +81,6 @@ define( function( require ) {
       thumbFillEnabled: THUMB_NORMAL_COLOR,
       thumbFillHighlighted: THUMB_HIGHLIGHT_COLOR,
       rotation: -Math.PI / 2, // vertical orientation, max at top, min at bottom
-      centerX: 0,
       tandem: tandem.createTandem( 'sliderNode' )
     } );
 
