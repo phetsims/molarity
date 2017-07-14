@@ -29,6 +29,7 @@ define( function( require ) {
 
   // constants
   var RANGE_FONT = new PhetFont( 20 );
+  var THUMB_SIZE = new Dimension2( 30, 68 );
   var THUMB_NORMAL_COLOR = new Color( 89, 156, 212 );
   var THUMB_HIGHLIGHT_COLOR = THUMB_NORMAL_COLOR.brighterColor();
   var MAX_TEXT_WIDTH = 120; // constrain text for i18n, determined empirically
@@ -77,7 +78,7 @@ define( function( require ) {
       trackStroke: 'rgb( 200, 200, 200 )',
       trackLineWidth: 13,
       trackCornerRadius: 10,
-      thumbSize: new Dimension2( 30, 68 ),
+      thumbSize: THUMB_SIZE,
       thumbFillEnabled: THUMB_NORMAL_COLOR,
       thumbFillHighlighted: THUMB_HIGHLIGHT_COLOR,
       rotation: -Math.PI / 2, // vertical orientation, max at top, min at bottom
@@ -100,17 +101,18 @@ define( function( require ) {
     subtitleNode.bottom = maxNode.top - 5;
     titleNode.centerX = centerX;
     titleNode.bottom = subtitleNode.top - 5;
+    valueNode.left = sliderNode.right + 5;
 
     Node.call( this, {
       children: [ titleNode, subtitleNode, minNode, maxNode, sliderNode, valueNode ],
       tandem: tandem
     } );
 
-    // move the slider thumb to reflect the model value
+    // Update the value display, and position it relative to the track, so it's to the right of the slider thumb.
+    var trackMinY = sliderNode.centerY - ( trackSize.height / 2 );
     property.link( function( value ) {
       valueNode.text = StringUtils.format( pattern0Value1UnitsString, Util.toFixed( value, decimalPlaces ), units );
-      valueNode.left = sliderNode.right + 5;
-      valueNode.centerY = sliderNode.centerY; //TODO center on thumb #40
+      valueNode.centerY = trackMinY + Util.linear( range.min, range.max, trackSize.height, 0, value );
     } );
 
     // switch between quantitative and qualitative display
