@@ -70,7 +70,7 @@ define( function( require ) {
       maxLabel, valuesVisibleProperty, RANGE_FONT, tandem.createTandem( 'maxNode' ),
       { maxWidth: MAX_TEXT_WIDTH } );
 
-    // Use an HSlider rotated -90 degrees
+    // Use an HSlider rotated -90 degrees, see https://github.com/phetsims/molarity/issues/40
     var sliderNode = new HSlider( property, range, {
       trackSize: new Dimension2( trackSize.height, trackSize.width ), // swap dimensions
       trackFillEnabled: 'black',
