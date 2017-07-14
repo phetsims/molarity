@@ -29,7 +29,6 @@ define( function( require ) {
 
   // constants
   var RANGE_FONT = new PhetFont( 20 );
-  var THUMB_SIZE = new Dimension2( 30, 68 );
   var THUMB_NORMAL_COLOR = new Color( 89, 156, 212 );
   var THUMB_HIGHLIGHT_COLOR = THUMB_NORMAL_COLOR.brighterColor();
   var MAX_TEXT_WIDTH = 120; // constrain text for i18n, determined empirically
@@ -78,7 +77,7 @@ define( function( require ) {
       trackStroke: 'rgb( 200, 200, 200 )',
       trackLineWidth: 13,
       trackCornerRadius: 10,
-      thumbSize: THUMB_SIZE,
+      thumbSize: new Dimension2( 30, 68 ), // in horizontal orientation!
       thumbFillEnabled: THUMB_NORMAL_COLOR,
       thumbFillHighlighted: THUMB_HIGHLIGHT_COLOR,
       rotation: -Math.PI / 2, // vertical orientation, max at top, min at bottom
