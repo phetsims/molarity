@@ -50,8 +50,6 @@ define( function( require ) {
   function VerticalSlider( title, subtitle, minLabel, maxLabel, trackSize, property, range,
                            decimalPlaces, units, valuesVisibleProperty, tandem ) {
 
-    Node.call( this, { tandem: tandem } );
-
     var titleNode = new MultiLineText( title, {
       font: new PhetFont( { size: 24, weight: 'bold' } ),
       maxWidth: MAX_TEXT_WIDTH,
@@ -92,14 +90,6 @@ define( function( require ) {
       tandem: tandem.createTandem( 'valueNode' )
     } );
 
-    // rendering order
-    this.addChild( titleNode );
-    this.addChild( subtitleNode );
-    this.addChild( minNode );
-    this.addChild( maxNode );
-    this.addChild( sliderNode );
-    this.addChild( valueNode );
-
     // layout
     var centerX = sliderNode.centerX;
     maxNode.centerX = sliderNode.centerX;
@@ -110,6 +100,11 @@ define( function( require ) {
     subtitleNode.bottom = maxNode.top - 5;
     titleNode.centerX = centerX;
     titleNode.bottom = subtitleNode.top - 5;
+
+    Node.call( this, {
+      children: [ titleNode, subtitleNode, minNode, maxNode, sliderNode, valueNode ],
+      tandem: tandem
+    } );
 
     // move the slider thumb to reflect the model value
     property.link( function( value ) {
