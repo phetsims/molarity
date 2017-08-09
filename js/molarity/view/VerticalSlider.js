@@ -75,7 +75,7 @@ define( function( require ) {
       trackSize: new Dimension2( trackSize.height, trackSize.width ), // swap dimensions
       trackFillEnabled: 'black',
       trackStroke: 'rgb( 200, 200, 200 )',
-      trackLineWidth: 13,
+      trackLineWidth: 7,
       trackCornerRadius: 10,
       thumbSize: new Dimension2( 30, 68 ), // in horizontal orientation!
       thumbFillEnabled: THUMB_NORMAL_COLOR,

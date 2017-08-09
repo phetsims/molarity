@@ -44,6 +44,9 @@ define( function( require ) {
   var unitsLitersString = require( 'string!MOLARITY/units.liters' );
   var unitsMolesString = require( 'string!MOLARITY/units.moles' );
 
+  // constants
+  var SLIDER_TRACK_WIDTH = 12;
+
   /**
    * @param {MolarityModel} model
    * @param {Tandem} tandem
@@ -81,7 +84,7 @@ define( function( require ) {
     var soluteAmountSlider = new VerticalSlider( soluteAmountString,
       StringUtils.format( patternParentheses0TextString, molesString ),
       noneString, lotsString,
-      new Dimension2( 6, cylinderSize.height ),
+      new Dimension2( SLIDER_TRACK_WIDTH, cylinderSize.height ),
       model.solution.soluteAmountProperty,
       MConstants.SOLUTE_AMOUNT_RANGE,
       MConstants.SOLUTE_AMOUNT_DECIMAL_PLACES,
@@ -94,7 +97,7 @@ define( function( require ) {
     var solutionVolumeSlider = new VerticalSlider( solutionVolumeString,
       StringUtils.format( patternParentheses0TextString, litersString ),
       lowString, fullString,
-      new Dimension2( 6, volumeSliderHeight ),
+      new Dimension2( SLIDER_TRACK_WIDTH, volumeSliderHeight ),
       model.solution.volumeProperty,
       MConstants.SOLUTION_VOLUME_RANGE,
       MConstants.SOLUTION_VOLUME_DECIMAL_PLACES,
