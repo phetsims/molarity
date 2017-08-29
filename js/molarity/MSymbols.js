@@ -28,6 +28,7 @@ define( function( require ) {
     POTASSIUM_CHROMATE: toSubscript( 'K2CrO4' ),
     POTASSIUM_DICHROMATE: toSubscript( 'K2Cr2O7' ),
     POTASSIUM_PERMANGANATE: toSubscript( 'KMnO4' ),
+    SODIUM_CHLORIDE: ChemUtils.toSubscript( 'NaCl' ),
     WATER: toSubscript( 'H2O' )
   };
 

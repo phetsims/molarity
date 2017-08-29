@@ -83,6 +83,9 @@
   "potassiumPermanganate": {
     "value": "Potassium permanganate"
   },
+  "sodiumChloride": {
+    "value": "Sodium chloride"
+  },
   "pattern.0label": {
     "value": "{0}:"
   },
