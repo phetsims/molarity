@@ -81,7 +81,10 @@ define( function( require ) {
       thumbFillEnabled: THUMB_NORMAL_COLOR,
       thumbFillHighlighted: THUMB_HIGHLIGHT_COLOR,
       rotation: -Math.PI / 2, // vertical orientation, max at top, min at bottom
-      tandem: tandem.createTandem( 'sliderNode' )
+      tandem: tandem.createTandem( 'sliderNode' ),
+
+      // a11y
+      shiftKeyboardStep: Math.pow( 10, decimalPlaces * -1 )
     } );
 
     var valueNode = new Text( '?', {
