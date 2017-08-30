@@ -117,7 +117,12 @@ define( function( require ) {
     };
     var showValuesCheckBox = CheckBox.createTextCheckBox( showValuesString, showValuesTextOptions, valuesVisibleProperty, {
       maxWidth: 175,
-      tandem: tandem.createTandem( 'showValuesCheckBox' )
+      tandem: tandem.createTandem( 'showValuesCheckBox' ),
+
+      // a11y
+      labelTagName: 'span',
+      accessibleLabel: showValuesString,
+      prependLabels: true
     } );
     showValuesCheckBox.touchArea = Shape.rectangle( showValuesCheckBox.left, showValuesCheckBox.top - 15, showValuesCheckBox.width, showValuesCheckBox.height + 30 );
 
