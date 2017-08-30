@@ -28,7 +28,6 @@ define( function( require ) {
   var nickelIIChlorideString = require( 'string!MOLARITY/nickelIIChloride' );
   var copperSulfateString = require( 'string!MOLARITY/copperSulfate' );
   var potassiumPermanganateString = require( 'string!MOLARITY/potassiumPermanganate' );
-  var sodiumChlorideString = require( 'string!MOLARITY/sodiumChloride' );
 
   /**
    * @param {Tandem} tandem
@@ -56,9 +55,7 @@ define( function( require ) {
       new Solute( copperSulfateString, MSymbols.COPPER_SULFATE, 1.40, new Color( 222, 238, 255 ), new Color( 30, 144, 255 ),
         tandem.createTandem( 'copperSulfate' ) ),
       new Solute( potassiumPermanganateString, MSymbols.POTASSIUM_PERMANGANATE, 0.50, new Color( 255, 0, 255 ), new Color( 139, 0, 139 ),
-        tandem.createTandem( 'potassiumPermanganate' ), { particleColor: Color.BLACK } ),
-      new Solute( sodiumChlorideString, MSymbols.SODIUM_CHLORIDE, 6.15, new Color( 225, 250, 250 ), new Color( 225, 240, 240 ),
-        tandem.createTandem( 'sodiumChloride' ) )
+        tandem.createTandem( 'potassiumPermanganate' ), { particleColor: Color.BLACK } )
     ];
 
     // @public
