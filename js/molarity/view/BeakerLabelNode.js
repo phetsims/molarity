@@ -14,8 +14,8 @@ define( function( require ) {
   var DerivedProperty = require( 'AXON/DerivedProperty' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var MSymbols = require( 'MOLARITY/molarity/MSymbols' );
   var molarity = require( 'MOLARITY/molarity' );
+  var MSymbols = require( 'MOLARITY/molarity/MSymbols' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );

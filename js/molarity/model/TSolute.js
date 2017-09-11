@@ -12,9 +12,9 @@ define( function( require ) {
   // modules
   var assertInstanceOf = require( 'ifphetio!PHET_IO/assertions/assertInstanceOf' );
   var molarity = require( 'MOLARITY/molarity' );
+  var phetio = require( 'ifphetio!PHET_IO/phetio' );
   var phetioInherit = require( 'ifphetio!PHET_IO/phetioInherit' );
   var TObject = require( 'ifphetio!PHET_IO/types/TObject' );
-  var phetio = require( 'ifphetio!PHET_IO/phetio' );
 
   /**
    * @param {Solute} instance

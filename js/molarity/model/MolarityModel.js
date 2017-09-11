@@ -19,14 +19,14 @@ define( function( require ) {
   var Water = require( 'MOLARITY/molarity/model/Water' );
 
   // strings
-  var drinkMixString = require( 'string!MOLARITY/drinkMix' );
-  var cobaltIINitrateString = require( 'string!MOLARITY/cobaltIINitrate' );
   var cobaltChlorideString = require( 'string!MOLARITY/cobaltChloride' );
-  var potassiumDichromateString = require( 'string!MOLARITY/potassiumDichromate' );
-  var goldIIIChlorideString = require( 'string!MOLARITY/goldIIIChloride' );
-  var potassiumChromateString = require( 'string!MOLARITY/potassiumChromate' );
-  var nickelIIChlorideString = require( 'string!MOLARITY/nickelIIChloride' );
+  var cobaltIINitrateString = require( 'string!MOLARITY/cobaltIINitrate' );
   var copperSulfateString = require( 'string!MOLARITY/copperSulfate' );
+  var drinkMixString = require( 'string!MOLARITY/drinkMix' );
+  var goldIIIChlorideString = require( 'string!MOLARITY/goldIIIChloride' );
+  var nickelIIChlorideString = require( 'string!MOLARITY/nickelIIChloride' );
+  var potassiumChromateString = require( 'string!MOLARITY/potassiumChromate' );
+  var potassiumDichromateString = require( 'string!MOLARITY/potassiumDichromate' );
   var potassiumPermanganateString = require( 'string!MOLARITY/potassiumPermanganate' );
 
   /**

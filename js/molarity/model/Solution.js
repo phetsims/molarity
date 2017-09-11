@@ -9,18 +9,18 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var Color = require( 'SCENERY/util/Color' );
   var DerivedProperty = require( 'AXON/DerivedProperty' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var MConstants = require( 'MOLARITY/molarity/MConstants' );
+  var molarity = require( 'MOLARITY/molarity' );
   var NumberProperty = require( 'AXON/NumberProperty' );
   var Property = require( 'AXON/Property' );
   var Util = require( 'DOT/Util' );
-  var molarity = require( 'MOLARITY/molarity' );
-  var MConstants = require( 'MOLARITY/molarity/MConstants' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Color = require( 'SCENERY/util/Color' );
 
   // phet-io modules
-  var TSolute = require( 'ifphetio!MOLARITY/molarity/model/TSolute' );
   var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
+  var TSolute = require( 'ifphetio!MOLARITY/molarity/model/TSolute' );
 
   /**
    * @param {Solvent} solvent
