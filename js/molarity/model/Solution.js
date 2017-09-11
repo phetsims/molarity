@@ -9,17 +9,18 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var Color = require( 'SCENERY/util/Color' );
   var DerivedProperty = require( 'AXON/DerivedProperty' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var MConstants = require( 'MOLARITY/molarity/MConstants' );
-  var molarity = require( 'MOLARITY/molarity' );
+  var NumberProperty = require( 'AXON/NumberProperty' );
   var Property = require( 'AXON/Property' );
   var Util = require( 'DOT/Util' );
+  var molarity = require( 'MOLARITY/molarity' );
+  var MConstants = require( 'MOLARITY/molarity/MConstants' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Color = require( 'SCENERY/util/Color' );
 
   // phet-io modules
-  var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
   var TSolute = require( 'ifphetio!MOLARITY/molarity/model/TSolute' );
+  var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
 
   /**
    * @param {Solvent} solvent
@@ -41,21 +42,17 @@ define( function( require ) {
     } );
 
     // @public
-    this.soluteAmountProperty = new Property( soluteAmount, {
+    this.soluteAmountProperty = new NumberProperty( soluteAmount, {
       tandem: tandem.createTandem( 'soluteAmountProperty' ),
-      phetioValueType: TNumber( {
-        units: 'moles',
-        range: MConstants.SOLUTE_AMOUNT_RANGE
-      } )
+      units: 'moles',
+      range: MConstants.SOLUTE_AMOUNT_RANGE
     } );
 
     // @public
-    this.volumeProperty = new Property( volume, {
+    this.volumeProperty = new NumberProperty( volume, {
       tandem: tandem.createTandem( 'volumeProperty' ),
-      phetioValueType: TNumber( {
-        units: 'liters',
-        range: MConstants.SOLUTION_VOLUME_RANGE
-      } )
+      units: 'liters',
+      range: MConstants.SOLUTION_VOLUME_RANGE
     } );
 
     // @public derive the concentration: M = moles/liter
@@ -64,10 +61,9 @@ define( function( require ) {
         return Util.toFixedNumber( volume > 0 ? Math.min( solute.saturatedConcentration, soluteAmount / volume ) : 0, MConstants.CONCENTRATION_DECIMAL_PLACES );
       }, {
         tandem: tandem.createTandem( 'concentrationProperty' ),
-        phetioValueType: TNumber( {
-          units: 'moles/liter'
-          // no range, since this is derived
-        } )
+        units: 'moles/liter',
+        // no range, since this is derived
+        phetioValueType: TNumber
       } );
 
     // @public derive the amount of precipitate
@@ -76,10 +72,8 @@ define( function( require ) {
         return Solution.computePrecipitateAmount( volume, soluteAmount, solute.saturatedConcentration );
       }, {
         tandem: tandem.createTandem( 'precipitateAmountProperty' ),
-        phetioValueType: TNumber( {
-          units: 'moles'
-          // no range, since this is derived
-        } )
+        units: 'moles',
+        phetioValueType: TNumber
       } );
   }
 
