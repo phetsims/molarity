@@ -40,7 +40,7 @@ define( function( require ) {
     this.maxColor = maxColor;
     this.particleColor = options.particleColor;
 
-    tandem.addInstance( this, TSolute );
+    tandem.addInstance( this, TSolute, options );
 
     // this is used to create the tandem name for ComboBox items
     this.tandemName = tandem.tail;
