@@ -22,8 +22,8 @@ define( function( require ) {
    * @constructor
    */
   function TSolute( instance, phetioID ) {
-    TObject.call( this, instance, phetioID );
     assertInstanceOf( instance, phet.molarity.Solute );
+    TObject.call( this, instance, phetioID );
   }
 
   phetioInherit( TObject, 'TSolute', TSolute, {}, {
