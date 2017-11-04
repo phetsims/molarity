@@ -22,7 +22,7 @@ define( function( require ) {
    * @constructor
    */
   function TSolute( instance, phetioID ) {
-    assertInstanceOf( instance, phet.molarity.Solute );
+    assert && assertInstanceOf( instance, phet.molarity.Solute );
     TObject.call( this, instance, phetioID );
   }
 
