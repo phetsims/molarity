@@ -16,7 +16,7 @@ define( function( require ) {
   var molarity = require( 'MOLARITY/molarity' );
   var NumberProperty = require( 'AXON/NumberProperty' );
   var Property = require( 'AXON/Property' );
-  var TDerivedProperty = require( 'AXON/TDerivedProperty' );
+  var DerivedPropertyIO = require( 'AXON/DerivedPropertyIO' );
   var PropertyIO = require( 'AXON/PropertyIO' );
   var Util = require( 'DOT/Util' );
 
@@ -65,7 +65,7 @@ define( function( require ) {
         tandem: tandem.createTandem( 'concentrationProperty' ),
         units: 'moles/liter',
         // no range, since this is derived
-        phetioType: TDerivedProperty( TNumber )
+        phetioType: DerivedPropertyIO( TNumber )
       } );
 
     // @public derive the amount of precipitate
@@ -75,7 +75,7 @@ define( function( require ) {
       }, {
         tandem: tandem.createTandem( 'precipitateAmountProperty' ),
         units: 'moles',
-        phetioType: TDerivedProperty( TNumber )
+        phetioType: DerivedPropertyIO( TNumber )
       } );
   }
 
