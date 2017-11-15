@@ -23,7 +23,7 @@ define( function( require ) {
   var DerivedPropertyIO = require( 'AXON/DerivedPropertyIO' );
 
   // phet-io modules
-  var TString = require( 'ifphetio!PHET_IO/types/TString' );
+  var StringIO = require( 'ifphetio!PHET_IO/types/StringIO' );
 
   // constants
   var LABEL_SIZE = new Dimension2( 180, 80 );
@@ -68,7 +68,7 @@ define( function( require ) {
         return label;
       }, {
         tandem: tandem.createTandem( 'beakerLabelProperty' ),
-        phetioType: DerivedPropertyIO( TString )
+        phetioType: DerivedPropertyIO( StringIO )
       } );
 
     // update the label

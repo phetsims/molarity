@@ -14,7 +14,7 @@ define( function( require ) {
   var molarity = require( 'MOLARITY/molarity' );
   var phetio = require( 'ifphetio!PHET_IO/phetio' );
   var phetioInherit = require( 'ifphetio!PHET_IO/phetioInherit' );
-  var TObject = require( 'ifphetio!PHET_IO/types/TObject' );
+  var ObjectIO = require( 'ifphetio!PHET_IO/types/ObjectIO' );
 
   /**
    * @param {Solute} instance
@@ -23,10 +23,10 @@ define( function( require ) {
    */
   function TSolute( instance, phetioID ) {
     assert && assertInstanceOf( instance, phet.molarity.Solute );
-    TObject.call( this, instance, phetioID );
+    ObjectIO.call( this, instance, phetioID );
   }
 
-  phetioInherit( TObject, 'TSolute', TSolute, {}, {
+  phetioInherit( ObjectIO, 'TSolute', TSolute, {}, {
     documentation: 'The solute for the sim',
 
     /**
