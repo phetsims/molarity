@@ -17,7 +17,7 @@ define( function( require ) {
   var NumberProperty = require( 'AXON/NumberProperty' );
   var Property = require( 'AXON/Property' );
   var TDerivedProperty = require( 'AXON/TDerivedProperty' );
-  var TProperty = require( 'AXON/TProperty' );
+  var PropertyIO = require( 'AXON/PropertyIO' );
   var Util = require( 'DOT/Util' );
 
   // phet-io modules
@@ -40,7 +40,7 @@ define( function( require ) {
     // @public
     this.soluteProperty = new Property( solute, {
       tandem: tandem.createTandem( 'soluteProperty' ),
-      phetioType: TProperty( TSolute )
+      phetioType: PropertyIO( TSolute )
     } );
 
     // @public
