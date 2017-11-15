@@ -20,6 +20,7 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var RichText = require( 'SCENERY/nodes/RichText' );
+  var TDerivedProperty = require( 'AXON/TDerivedProperty' );
 
   // phet-io modules
   var TString = require( 'ifphetio!PHET_IO/types/TString' );
@@ -67,7 +68,7 @@ define( function( require ) {
         return label;
       }, {
         tandem: tandem.createTandem( 'beakerLabelProperty' ),
-        phetioValueType: TString
+        phetioType: TDerivedProperty( TString )
       } );
 
     // update the label

@@ -16,6 +16,8 @@ define( function( require ) {
   var molarity = require( 'MOLARITY/molarity' );
   var NumberProperty = require( 'AXON/NumberProperty' );
   var Property = require( 'AXON/Property' );
+  var TDerivedProperty = require( 'AXON/TDerivedProperty' );
+  var TProperty = require( 'AXON/TProperty' );
   var Util = require( 'DOT/Util' );
 
   // phet-io modules
@@ -38,7 +40,7 @@ define( function( require ) {
     // @public
     this.soluteProperty = new Property( solute, {
       tandem: tandem.createTandem( 'soluteProperty' ),
-      phetioValueType: TSolute
+      phetioType: TProperty( TSolute )
     } );
 
     // @public
@@ -63,7 +65,7 @@ define( function( require ) {
         tandem: tandem.createTandem( 'concentrationProperty' ),
         units: 'moles/liter',
         // no range, since this is derived
-        phetioValueType: TNumber
+        phetioType: TDerivedProperty( TNumber )
       } );
 
     // @public derive the amount of precipitate
@@ -73,7 +75,7 @@ define( function( require ) {
       }, {
         tandem: tandem.createTandem( 'precipitateAmountProperty' ),
         units: 'moles',
-        phetioValueType: TNumber
+        phetioType: TDerivedProperty( TNumber )
       } );
   }
 

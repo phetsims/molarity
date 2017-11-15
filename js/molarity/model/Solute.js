@@ -29,7 +29,8 @@ define( function( require ) {
   function Solute( name, formula, saturatedConcentration, minColor, maxColor, tandem, options ) {
 
     options = _.extend( {
-      particleColor: maxColor // the solute's color as a particle
+      particleColor: maxColor, // the solute's color as a particle
+      phetioType: TSolute
     }, options );
 
     // @public
@@ -40,7 +41,7 @@ define( function( require ) {
     this.maxColor = maxColor;
     this.particleColor = options.particleColor;
 
-    tandem.addInstance( this, TSolute, options );
+    tandem.addInstance( this, options );
 
     // this is used to create the tandem name for ComboBox items
     this.tandemName = tandem.tail;
