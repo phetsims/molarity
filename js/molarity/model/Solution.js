@@ -21,7 +21,7 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
 
   // phet-io modules
-  var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
+  var NumberIO = require( 'ifphetio!PHET_IO/types/NumberIO' );
   var TSolute = require( 'ifphetio!MOLARITY/molarity/model/TSolute' );
 
   /**
@@ -65,7 +65,7 @@ define( function( require ) {
         tandem: tandem.createTandem( 'concentrationProperty' ),
         units: 'moles/liter',
         // no range, since this is derived
-        phetioType: DerivedPropertyIO( TNumber )
+        phetioType: DerivedPropertyIO( NumberIO )
       } );
 
     // @public derive the amount of precipitate
@@ -75,7 +75,7 @@ define( function( require ) {
       }, {
         tandem: tandem.createTandem( 'precipitateAmountProperty' ),
         units: 'moles',
-        phetioType: DerivedPropertyIO( TNumber )
+        phetioType: DerivedPropertyIO( NumberIO )
       } );
   }
 
