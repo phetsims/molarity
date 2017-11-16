@@ -11,12 +11,12 @@ define( function( require ) {
   // modules
   var Color = require( 'SCENERY/util/Color' );
   var DerivedProperty = require( 'AXON/DerivedProperty' );
+  var DerivedPropertyIO = require( 'AXON/DerivedPropertyIO' );
   var inherit = require( 'PHET_CORE/inherit' );
   var MConstants = require( 'MOLARITY/molarity/MConstants' );
   var molarity = require( 'MOLARITY/molarity' );
   var NumberProperty = require( 'AXON/NumberProperty' );
   var Property = require( 'AXON/Property' );
-  var DerivedPropertyIO = require( 'AXON/DerivedPropertyIO' );
   var PropertyIO = require( 'AXON/PropertyIO' );
   var Util = require( 'DOT/Util' );
 
