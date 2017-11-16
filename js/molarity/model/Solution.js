@@ -22,7 +22,7 @@ define( function( require ) {
 
   // phet-io modules
   var NumberIO = require( 'ifphetio!PHET_IO/types/NumberIO' );
-  var TSolute = require( 'ifphetio!MOLARITY/molarity/model/TSolute' );
+  var SoluteIO = require( 'ifphetio!MOLARITY/molarity/model/SoluteIO' );
 
   /**
    * @param {Solvent} solvent
@@ -40,7 +40,7 @@ define( function( require ) {
     // @public
     this.soluteProperty = new Property( solute, {
       tandem: tandem.createTandem( 'soluteProperty' ),
-      phetioType: PropertyIO( TSolute )
+      phetioType: PropertyIO( SoluteIO )
     } );
 
     // @public

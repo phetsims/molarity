@@ -14,7 +14,7 @@ define( function( require ) {
   var molarity = require( 'MOLARITY/molarity' );
 
   // phet-io modules
-  var TSolute = require( 'ifphetio!MOLARITY/molarity/model/TSolute' );
+  var SoluteIO = require( 'ifphetio!MOLARITY/molarity/model/SoluteIO' );
 
   /**
    * @param {string} name
@@ -30,7 +30,7 @@ define( function( require ) {
 
     options = _.extend( {
       particleColor: maxColor, // the solute's color as a particle
-      phetioType: TSolute
+      phetioType: SoluteIO
     }, options );
 
     // @public

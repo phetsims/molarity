@@ -21,12 +21,12 @@ define( function( require ) {
    * @param {string} phetioID
    * @constructor
    */
-  function TSolute( instance, phetioID ) {
+  function SoluteIO( instance, phetioID ) {
     assert && assertInstanceOf( instance, phet.molarity.Solute );
     ObjectIO.call( this, instance, phetioID );
   }
 
-  phetioInherit( ObjectIO, 'TSolute', TSolute, {}, {
+  phetioInherit( ObjectIO, 'SoluteIO', SoluteIO, {}, {
     documentation: 'The solute for the sim',
 
     /**
@@ -44,8 +44,8 @@ define( function( require ) {
     }
   } );
 
-  molarity.register( 'TSolute', TSolute );
+  molarity.register( 'SoluteIO', SoluteIO );
 
-  return TSolute;
+  return SoluteIO;
 } );
 
