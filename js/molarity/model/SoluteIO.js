@@ -17,13 +17,13 @@ define( function( require ) {
   var phetioInherit = require( 'ifphetio!PHET_IO/phetioInherit' );
 
   /**
-   * @param {Solute} instance
+   * @param {Solute} solute
    * @param {string} phetioID
    * @constructor
    */
-  function SoluteIO( instance, phetioID ) {
-    assert && assertInstanceOf( instance, phet.molarity.Solute );
-    ObjectIO.call( this, instance, phetioID );
+  function SoluteIO( solute, phetioID ) {
+    assert && assertInstanceOf( solute, phet.molarity.Solute );
+    ObjectIO.call( this, solute, phetioID );
   }
 
   phetioInherit( ObjectIO, 'SoluteIO', SoluteIO, {}, {
@@ -37,10 +37,11 @@ define( function( require ) {
     },
 
     /**
-     * @param {Solute} instance
+     * @param {Solute} solute
      */
-    toStateObject: function( instance ) {
-      return instance.phetioID;
+    toStateObject: function( solute ) {
+      assert && assertInstanceOf( solute, phet.molarity.Solute );
+      return solute.phetioID;
     }
   } );
 
