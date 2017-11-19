@@ -18,7 +18,7 @@ define( function( require ) {
   var molarityTitleString = require( 'string!MOLARITY/molarity.title' );
 
   // constants
-  var tandem = Tandem.createRootTandem();
+  var tandem = Tandem.rootTandem;
 
   var options = {
     credits: {
