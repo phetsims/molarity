@@ -13,6 +13,13 @@
     "requirejsNamespace": "MOLARITY",
     "phetLibs": [
       "nitroglycerin"
-    ]
+    ],
+    "runnable": true,
+    "supportedBrands": [
+      "phet",
+      "phet-io"
+    ],
+    "accessible": true,
+    "simulation": true
   }
 }
