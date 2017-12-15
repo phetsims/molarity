@@ -43,11 +43,7 @@ define( function( require ) {
     options.tandem = tandem;
 
     // items
-    var items = [];
-    for ( var i = 0; i < solutes.length; i++ ) {
-      var solute = solutes[ i ];
-      items[ i ] = createItem( solute );
-    }
+    var items = solutes.map( createItem );
 
     ComboBox.call( this, items, selectedSoluteProperty, listParent, options );
   }
@@ -70,7 +66,7 @@ define( function( require ) {
     textNode.centerY = colorNode.centerY;
 
     return ComboBox.createItem( node, solute, {
-      tandemName: solute.tandemName
+      tandemName: solute.phetioObjectTandem.tail
     } );
   };
 
