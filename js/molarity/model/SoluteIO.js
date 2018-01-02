@@ -2,7 +2,7 @@
 
 //TODO replace this with StateObjectIO, see phetsims/phet-io#1100
 /**
- * IO type for Solution
+ * IO type for Solute
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
