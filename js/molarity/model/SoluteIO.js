@@ -30,18 +30,18 @@ define( function( require ) {
     documentation: 'The solute for the sim',
 
     /**
-     * @param {Object} stateObject
-     */
-    fromStateObject: function( stateObject ) {
-      return phetio.getWrapper( stateObject ).instance;
-    },
-
-    /**
      * @param {Solute} solute
      */
     toStateObject: function( solute ) {
       assert && assertInstanceOf( solute, phet.molarity.Solute );
       return solute.phetioID;
+    },
+
+    /**
+     * @param {Object} stateObject
+     */
+    fromStateObject: function( stateObject ) {
+      return phetio.getWrapper( stateObject ).instance;
     }
   } );
 
