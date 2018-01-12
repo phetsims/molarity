@@ -110,7 +110,7 @@ define( function( require ) {
     var concentrationDisplay = new ConcentrationDisplay( model.solution, MConstants.CONCENTRATION_RANGE,
       valuesVisibleProperty, concentrationBarSize, tandem.createTandem( 'concentrationDisplay' ) );
 
-    // Show Values check box
+    // Show Values checkbox
     var showValuesTextOptions = {
       font: new PhetFont( 22 ),
       tandem: tandem.createTandem( 'showValuesText' )
