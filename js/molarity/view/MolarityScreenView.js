@@ -12,7 +12,7 @@ define( function( require ) {
   var BeakerNode = require( 'MOLARITY/molarity/view/BeakerNode' );
   var BooleanProperty = require( 'AXON/BooleanProperty' );
   var Bounds2 = require( 'DOT/Bounds2' );
-  var CheckBox = require( 'SUN/CheckBox' );
+  var Checkbox = require( 'SUN/Checkbox' );
   var ConcentrationDisplay = require( 'MOLARITY/molarity/view/ConcentrationDisplay' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
@@ -115,16 +115,16 @@ define( function( require ) {
       font: new PhetFont( 22 ),
       tandem: tandem.createTandem( 'showValuesText' )
     };
-    var showValuesCheckBox = CheckBox.createTextCheckBox( showValuesString, showValuesTextOptions, valuesVisibleProperty, {
+    var showValuesCheckbox = Checkbox.createTextCheckbox( showValuesString, showValuesTextOptions, valuesVisibleProperty, {
       maxWidth: 175,
-      tandem: tandem.createTandem( 'showValuesCheckBox' ),
+      tandem: tandem.createTandem( 'showValuesCheckbox' ),
 
       // a11y
       labelTagName: 'span',
       accessibleLabel: showValuesString,
       prependLabels: true
     } );
-    showValuesCheckBox.touchArea = Shape.rectangle( showValuesCheckBox.left, showValuesCheckBox.top - 15, showValuesCheckBox.width, showValuesCheckBox.height + 30 );
+    showValuesCheckbox.touchArea = Shape.rectangle( showValuesCheckbox.left, showValuesCheckbox.top - 15, showValuesCheckbox.width, showValuesCheckbox.height + 30 );
 
     // Reset All button
     var resetAllButton = new ResetAllButton( {
@@ -165,8 +165,8 @@ define( function( require ) {
       concentrationDisplay.left = beakerNode.right + 40;
       concentrationDisplay.bottom = beakerNode.bottom;
       // left of combo box
-      showValuesCheckBox.right = soluteComboBox.left - 50;
-      showValuesCheckBox.centerY = soluteComboBox.centerY;
+      showValuesCheckbox.right = soluteComboBox.left - 50;
+      showValuesCheckbox.centerY = soluteComboBox.centerY;
       // right of combo box
       resetAllButton.left = Math.max( soluteComboBox.right + 10, concentrationDisplay.centerX - ( resetAllButton.width / 2 ) );
       resetAllButton.centerY = soluteComboBox.centerY;
@@ -182,7 +182,7 @@ define( function( require ) {
         soluteAmountSlider,
         solutionVolumeSlider,
         concentrationDisplay,
-        showValuesCheckBox,
+        showValuesCheckbox,
         resetAllButton,
         soluteComboBox,
         soluteComboBoxListParent
