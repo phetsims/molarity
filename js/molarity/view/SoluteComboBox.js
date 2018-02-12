@@ -66,7 +66,7 @@ define( function( require ) {
     textNode.centerY = colorNode.centerY;
 
     return ComboBox.createItem( node, solute, {
-      tandemName: solute.phetioObjectTandem.tail
+      tandemName: solute.tandem.tail
     } );
   };
 

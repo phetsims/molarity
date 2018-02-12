@@ -34,7 +34,7 @@ define( function( require ) {
      */
     toStateObject: function( solute ) {
       assert && assertInstanceOf( solute, phet.molarity.Solute );
-      return solute.phetioObjectTandem.phetioID;
+      return solute.tandem.phetioID;
     },
 
     /**
