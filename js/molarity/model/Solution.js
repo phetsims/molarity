@@ -18,11 +18,11 @@ define( function( require ) {
   var NumberProperty = require( 'AXON/NumberProperty' );
   var Property = require( 'AXON/Property' );
   var PropertyIO = require( 'AXON/PropertyIO' );
+  var SoluteIO = require( 'ifphetio!MOLARITY/molarity/model/SoluteIO' );
   var Util = require( 'DOT/Util' );
 
   // phet-io modules
   var NumberIO = require( 'ifphetio!PHET_IO/types/NumberIO' );
-  var SoluteIO = require( 'ifphetio!MOLARITY/molarity/model/SoluteIO' );
 
   /**
    * @param {Solvent} solvent
