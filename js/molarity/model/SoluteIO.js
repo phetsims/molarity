@@ -43,7 +43,7 @@ define( function( require ) {
      * @param {Object} stateObject
      */
     fromStateObject: function( stateObject ) {
-      return phetio.getWrapper( stateObject ).instance;
+      return phetio.getInstance( stateObject );
     }
   } );
 
