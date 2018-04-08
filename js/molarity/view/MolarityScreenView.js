@@ -121,8 +121,7 @@ define( function( require ) {
 
       // a11y
       labelTagName: 'span',
-      labelContent: showValuesString,
-      prependLabels: true
+      labelContent: showValuesString
     } );
     showValuesCheckbox.touchArea = Shape.rectangle( showValuesCheckbox.left, showValuesCheckbox.top - 15, showValuesCheckbox.width, showValuesCheckbox.height + 30 );
 
