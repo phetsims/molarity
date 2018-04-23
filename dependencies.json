@@ -1,5 +1,5 @@
 {
-  "comment": "# molarity 1.3.1 Mon Apr 23 2018 16:27:10 GMT-0600 (MDT)",
+  "comment": "# molarity 1.3.2-rc.1 Mon Apr 23 2018 17:23:32 GMT-0600 (MDT)",
   "assert": {
     "sha": "5c3f92048a9c2ffd6df8ede54fd64f1f7a7e4ef2",
     "branch": "HEAD"
@@ -29,7 +29,7 @@
     "branch": "HEAD"
   },
   "molarity": {
-    "sha": "d933bad22c0cf7b838da3a7cccff356f29b39414",
+    "sha": "c1d5b221fbd5b658a29b57920ecfe314d148d2a3",
     "branch": "1.3"
   },
   "nitroglycerin": {
@@ -50,7 +50,7 @@
   },
   "scenery": {
     "sha": "627dd7e9ca5331255c267a1ccd91844daa228232",
-    "branch": "molarity-1.3"
+    "branch": "HEAD"
   },
   "scenery-phet": {
     "sha": "0260035239a1e2a166bf9ea29dc9fb917c6da235",
