@@ -12,7 +12,7 @@ define( function( require ) {
   // modules
   var molarity = require( 'MOLARITY/molarity' );
 
-  // phet-io modules
+  // ifphetio
   var assertInstanceOf = require( 'ifphetio!PHET_IO/assertInstanceOf' );
   var ObjectIO = require( 'ifphetio!PHET_IO/types/ObjectIO' );
   var phetio = require( 'ifphetio!PHET_IO/phetio' );

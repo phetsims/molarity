@@ -15,7 +15,7 @@ define( function( require ) {
   var molarity = require( 'MOLARITY/molarity' );
   var PhetioObject = require( 'TANDEM/PhetioObject' );
 
-  // phet-io modules
+  // ifphetio
   var SoluteIO = require( 'ifphetio!MOLARITY/molarity/model/SoluteIO' );
 
   /**

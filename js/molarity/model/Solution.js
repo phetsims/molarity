@@ -21,7 +21,7 @@ define( function( require ) {
   var SoluteIO = require( 'ifphetio!MOLARITY/molarity/model/SoluteIO' );
   var Util = require( 'DOT/Util' );
 
-  // phet-io modules
+  // ifphetio
   var NumberIO = require( 'ifphetio!PHET_IO/types/NumberIO' );
 
   /**

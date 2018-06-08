@@ -22,7 +22,7 @@ define( function( require ) {
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var RichText = require( 'SCENERY/nodes/RichText' );
 
-  // phet-io modules
+  // ifphetio
   var StringIO = require( 'ifphetio!PHET_IO/types/StringIO' );
 
   // constants
