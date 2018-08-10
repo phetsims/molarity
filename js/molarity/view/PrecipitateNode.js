@@ -38,15 +38,12 @@ define( function( require ) {
       tandem: tandem
     } );
 
-    var particlesGroupTandem = tandem.createGroupTandem( 'particlesGroup' );
-
     // Create the max number of particles that we'll need.
     var maxParticles = getNumberOfParticles( maxPrecipitateAmount );
     var particleNodes = [];
     for ( var i = 0; i < maxParticles; i++ ) {
       particleNodes[ i ] = new Rectangle( 0, 0, PARTICLE_LENGTH, PARTICLE_LENGTH, {
-        rotation: phet.joist.random.nextDouble() * 2 * Math.PI,
-        tandem: particlesGroupTandem.createNextTandem()
+        rotation: phet.joist.random.nextDouble() * 2 * Math.PI
       } );
       this.addChild( particleNodes[ i ] );
     }
