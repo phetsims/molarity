@@ -1,5 +1,5 @@
 {
-  "comment": "# molarity 1.4.1 Thu Aug 16 2018 10:04:17 GMT-0600 (MDT)",
+  "comment": "# molarity 1.4.1 Wed Aug 22 2018 17:27:24 GMT-0800 (Alaskan Daylight Time)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "HEAD"
@@ -29,7 +29,7 @@
     "branch": "HEAD"
   },
   "molarity": {
-    "sha": "754a791a5f1046b1ac3b289c7df9507ca5ad67f9",
+    "sha": "2d5aba2f75789e4fd86518094968ffeea3551671",
     "branch": "1.4"
   },
   "nitroglycerin": {
@@ -57,8 +57,8 @@
     "branch": "HEAD"
   },
   "phet-io-wrappers": {
-    "sha": "94899310c544d78b610087f7677493882fae5d1a",
-    "branch": "HEAD"
+    "sha": "c25649dfb78038677f4b1857cb8c33a4fc8295a6",
+    "branch": "molarity-1.4"
   },
   "phetcommon": {
     "sha": "04bc12ce20b0f73221c8e6fcc9fa84aa8f536e39",
@@ -81,8 +81,8 @@
     "branch": "HEAD"
   },
   "sun": {
-    "sha": "30ec8ae5186b8d0889245073743f0aef4b068e69",
-    "branch": "HEAD"
+    "sha": "8052cba307014b2114ddfd14c426d54d65ed83b6",
+    "branch": "molarity-1.4"
   },
   "tambo": {
     "sha": "2aac9c19e38538eeea8c3f58ac8f3abe23304cc2",
