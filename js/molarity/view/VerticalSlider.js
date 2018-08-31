@@ -1,4 +1,4 @@
-// Copyright 2013-2017, University of Colorado Boulder
+// Copyright 2018, University of Colorado Boulder
 
 /**
  * Vertical sliders in the Molarity simulation.
@@ -13,7 +13,6 @@ define( function( require ) {
   var Color = require( 'SCENERY/util/Color' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var DualLabelNode = require( 'MOLARITY/molarity/view/DualLabelNode' );
-  var HSlider = require( 'SUN/HSlider' );
   var inherit = require( 'PHET_CORE/inherit' );
   var MConstants = require( 'MOLARITY/molarity/MConstants' );
   var molarity = require( 'MOLARITY/molarity' );
@@ -23,6 +22,7 @@ define( function( require ) {
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
+  var VSlider = require( 'SUN/VSlider' );
 
   // strings
   var pattern0Value1UnitsString = require( 'string!MOLARITY/pattern.0value.1units' );
@@ -70,8 +70,7 @@ define( function( require ) {
       maxLabel, valuesVisibleProperty, RANGE_FONT, tandem.createTandem( 'maxNode' ),
       { maxWidth: MAX_TEXT_WIDTH } );
 
-    // Use an HSlider rotated -90 degrees, see https://github.com/phetsims/molarity/issues/40
-    var sliderNode = new HSlider( property, range, {
+    var sliderNode = new VSlider( property, range, {
       trackSize: new Dimension2( trackSize.height, trackSize.width ), // swap dimensions
       trackFillEnabled: 'black',
       trackStroke: 'rgb( 200, 200, 200 )',
@@ -80,7 +79,6 @@ define( function( require ) {
       thumbSize: new Dimension2( 30, 68 ), // in horizontal orientation!
       thumbFillEnabled: THUMB_NORMAL_COLOR,
       thumbFillHighlighted: THUMB_HIGHLIGHT_COLOR,
-      rotation: -Math.PI / 2, // vertical orientation, max at top, min at bottom
       tandem: tandem.createTandem( 'sliderNode' ),
 
       // a11y
