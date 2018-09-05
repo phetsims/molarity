@@ -28,6 +28,7 @@ define( function( require ) {
   var SoluteComboBox = require( 'MOLARITY/molarity/view/SoluteComboBox' );
   var SolutionNode = require( 'MOLARITY/molarity/view/SolutionNode' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  var Text = require( 'SCENERY/nodes/Text' );
   var VerticalSlider = require( 'MOLARITY/molarity/view/VerticalSlider' );
 
   // strings
@@ -111,11 +112,11 @@ define( function( require ) {
       valuesVisibleProperty, concentrationBarSize, tandem.createTandem( 'concentrationDisplay' ) );
 
     // Show Values checkbox
-    var showValuesTextOptions = {
+    var showValuesLabel = new Text( showValuesString, {
       font: new PhetFont( 22 ),
       tandem: tandem.createTandem( 'showValuesText' )
-    };
-    var showValuesCheckbox = Checkbox.createTextCheckbox( showValuesString, showValuesTextOptions, valuesVisibleProperty, {
+    } );
+    var showValuesCheckbox = new Checkbox( showValuesLabel, valuesVisibleProperty, {
       maxWidth: 175,
       tandem: tandem.createTandem( 'showValuesCheckbox' ),
 
