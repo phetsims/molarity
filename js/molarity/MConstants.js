@@ -10,6 +10,7 @@ define( function( require ) {
 
   // modules
   var molarity = require( 'MOLARITY/molarity' );
+  var Range = require( 'DOT/Range' );
   var RangeWithValue = require( 'DOT/RangeWithValue' );
 
   // constants
@@ -25,7 +26,9 @@ define( function( require ) {
     SOLUTION_VOLUME_RANGE: SOLUTION_VOLUME_RANGE,
 
     // M
-    CONCENTRATION_RANGE: new RangeWithValue( SOLUTE_AMOUNT_RANGE.min / SOLUTION_VOLUME_RANGE.max, SOLUTE_AMOUNT_RANGE.max / SOLUTION_VOLUME_RANGE.min ),
+    CONCENTRATION_RANGE: new Range(
+      SOLUTE_AMOUNT_RANGE.min / SOLUTION_VOLUME_RANGE.max,
+      SOLUTE_AMOUNT_RANGE.max / SOLUTION_VOLUME_RANGE.min ),
 
     // decimal places for solute amount, used in view
     SOLUTE_AMOUNT_DECIMAL_PLACES: 3,
