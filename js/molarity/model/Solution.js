@@ -22,7 +22,7 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
 
   // ifphetio
-  var NumberIO = require( 'ifphetio!PHET_IO/types/NumberIO' );
+  var NumberIO = require( 'TANDEM/types/NumberIO' );
 
   /**
    * @param {Solvent} solvent

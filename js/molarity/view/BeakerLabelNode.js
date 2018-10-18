@@ -23,7 +23,7 @@ define( function( require ) {
   var RichText = require( 'SCENERY/nodes/RichText' );
 
   // ifphetio
-  var StringIO = require( 'ifphetio!PHET_IO/types/StringIO' );
+  var StringIO = require( 'TANDEM/types/StringIO' );
 
   // constants
   var LABEL_SIZE = new Dimension2( 180, 80 );
