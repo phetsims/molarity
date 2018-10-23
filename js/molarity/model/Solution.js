@@ -15,14 +15,12 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var MConstants = require( 'MOLARITY/molarity/MConstants' );
   var molarity = require( 'MOLARITY/molarity' );
+  var NumberIO = require( 'TANDEM/types/NumberIO' );
   var NumberProperty = require( 'AXON/NumberProperty' );
   var Property = require( 'AXON/Property' );
   var PropertyIO = require( 'AXON/PropertyIO' );
-  var SoluteIO = require( 'ifphetio!MOLARITY/molarity/model/SoluteIO' );
+  var SoluteIO = require( 'MOLARITY/molarity/model/SoluteIO' );
   var Util = require( 'DOT/Util' );
-
-  // ifphetio
-  var NumberIO = require( 'TANDEM/types/NumberIO' );
 
   /**
    * @param {Solvent} solvent

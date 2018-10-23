@@ -14,9 +14,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var molarity = require( 'MOLARITY/molarity' );
   var PhetioObject = require( 'TANDEM/PhetioObject' );
-
-  // ifphetio
-  var SoluteIO = require( 'ifphetio!MOLARITY/molarity/model/SoluteIO' );
+  var SoluteIO = require( 'MOLARITY/molarity/model/SoluteIO' );
 
   /**
    * @param {string} name
