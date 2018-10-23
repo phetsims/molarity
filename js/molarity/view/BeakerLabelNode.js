@@ -21,8 +21,6 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var RichText = require( 'SCENERY/nodes/RichText' );
-
-  // ifphetio
   var StringIO = require( 'TANDEM/types/StringIO' );
 
   // constants
