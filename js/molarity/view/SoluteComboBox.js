@@ -36,7 +36,8 @@ define( function( require ) {
       labelNode: new Text( StringUtils.format( pattern0LabelString, soluteString ), { font: new PhetFont( 22 ) } ), // 'Solute' label
       listPosition: 'above',
       itemYMargin: 12,
-      itemHighlightFill: 'rgb(218,255,255)'
+      itemHighlightFill: 'rgb(218,255,255)',
+      a11yButtonLabel: 'Solute'
     }, options );
 
     assert && assert( !options.tandem, 'tandem is a required constructor parameter' );
@@ -66,7 +67,8 @@ define( function( require ) {
     textNode.centerY = colorNode.centerY;
 
     return ComboBox.createItem( node, solute, {
-      tandemName: solute.tandem.tail
+      tandemName: solute.tandem.tail,
+      a11yLabel: solute.name
     } );
   };
 
