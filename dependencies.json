@@ -1,5 +1,5 @@
 {
-  "comment": "# molarity 1.4.2 Tue Oct 30 2018 14:37:31 GMT-0600 (MDT)",
+  "comment": "# molarity 1.4.3-rc.1 Tue Oct 30 2018 16:30:30 GMT-0600 (MDT)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "HEAD"
@@ -22,14 +22,14 @@
   },
   "joist": {
     "sha": "9903379703aed17a8d6c1fe643324d9acc1d5938",
-    "branch": "molarity-1.4"
+    "branch": "HEAD"
   },
   "kite": {
     "sha": "a43e7dd976f982ec74f2d0084ec65b80ff0507e4",
     "branch": "HEAD"
   },
   "molarity": {
-    "sha": "3dc1ab40a0c002df6f6a06198d087514365b385b",
+    "sha": "8b2eb54521719b450b7b76806cb9d470142f49d1",
     "branch": "1.4"
   },
   "nitroglycerin": {
