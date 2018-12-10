@@ -1,6 +1,6 @@
 // Copyright 2017-2018, University of Colorado Boulder
 
-//TODO replace this with StateObjectIO, see phetsims/phet-io#1100
+//TODO replace this with StateObjectIO, https://github.com/phetsims/molarity/issues/54
 /**
  * IO type for Solute
  *
