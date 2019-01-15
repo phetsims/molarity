@@ -35,8 +35,9 @@ define( function( require ) {
     options = _.extend( {
       labelNode: new Text( StringUtils.format( pattern0LabelString, soluteString ), { font: new PhetFont( 22 ) } ), // 'Solute' label
       listPosition: 'above',
-      itemYMargin: 12,
-      itemHighlightFill: 'rgb(218,255,255)',
+      xMargin: 16,
+      yMargin: 16,
+      highlightFill: 'rgb( 218, 255, 255 )',
       a11yButtonLabel: 'Solute'
     }, options );
 
