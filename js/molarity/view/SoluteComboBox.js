@@ -38,6 +38,8 @@ define( function( require ) {
       xMargin: 16,
       yMargin: 16,
       highlightFill: 'rgb( 218, 255, 255 )',
+
+      // a11y
       a11yButtonLabel: 'Solute'
     }, options );
 
