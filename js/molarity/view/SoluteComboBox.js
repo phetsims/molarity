@@ -10,6 +10,7 @@ define( function( require ) {
 
   // modules
   var ComboBox = require( 'SUN/ComboBox' );
+  var ComboBoxItem = require( 'SUN/ComboBoxItem' );
   var inherit = require( 'PHET_CORE/inherit' );
   var molarity = require( 'MOLARITY/molarity' );
   var Node = require( 'SCENERY/nodes/Node' );
@@ -58,7 +59,7 @@ define( function( require ) {
   /**
    * Creates an item for the combo box.
    * @param solute
-   * @returns {*|{node: *, value: *}}
+   * @returns {ComboBoxItem}
    */
   var createItem = function( solute ) {
 
@@ -70,7 +71,7 @@ define( function( require ) {
     textNode.left = colorNode.right + 5;
     textNode.centerY = colorNode.centerY;
 
-    return ComboBox.createItem( node, solute, {
+    return new ComboBoxItem( node, solute, {
       tandemName: solute.tandem.tail,
       a11yLabel: solute.name
     } );
