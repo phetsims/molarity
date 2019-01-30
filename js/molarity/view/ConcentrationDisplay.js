@@ -101,7 +101,7 @@ define( function( require ) {
     } );
 
     var pointerNode = new PointerNode( solution, concentrationRange, barSize, valuesVisibleProperty,
-      tandem.createTandem( 'pointerNode ') );
+      tandem.createTandem( 'pointerNode') );
 
     // rendering order
     this.addChild( titleNode );

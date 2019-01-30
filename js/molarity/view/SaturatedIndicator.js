@@ -32,13 +32,13 @@ define( function( require ) {
     var textNode = new Text( saturatedString, {
       font: new PhetFont( 22 ),
       maxWidth: 200,
-      tandem: tandem.createTandem( 'textNode ')
+      tandem: tandem.createTandem( 'textNode')
     } );
 
     // translucent light-gray background, so this shows up on all solution colors
     var backgroundNode = new Rectangle( 0, 0, 1.2 * textNode.width, 1.2 * textNode.height, 8, 8, {
       fill: 'rgba( 240, 240, 240, 0.6 )',
-      tandem: tandem.createTandem( 'backgroundNode ')
+      tandem: tandem.createTandem( 'backgroundNode')
     } );
 
     // rendering order

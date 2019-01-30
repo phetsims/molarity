@@ -89,7 +89,7 @@ define( function( require ) {
     this.addChild( labelNode );
 
     // tick marks, arcs that wrap around the edge of the beaker's cylinder
-    var numberOfTicks = Math.round( maxVolume / MINOR_TICK_SPACING );
+    var numberOfTicks = Util.roundSymmetric( maxVolume / MINOR_TICK_SPACING );
     var bottomY = cylinderSize.height; // don't use bounds or position will be off because of stroke width
     var deltaY = cylinderSize.height / numberOfTicks;
 
