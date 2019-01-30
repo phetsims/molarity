@@ -45,10 +45,11 @@ define( function( require ) {
    * @param {string} units
    * @param {Property.<boolean>} valuesVisibleProperty
    * @param {Tandem} tandem
+   * @param {string} accessibleName
    * @constructor
    */
   function VerticalSlider( title, subtitle, minLabel, maxLabel, trackSize, property, range,
-                           decimalPlaces, units, valuesVisibleProperty, tandem ) {
+                           decimalPlaces, units, valuesVisibleProperty, tandem, accessibleName ) {
 
     var titleNode = new MultiLineText( title, {
       font: new PhetFont( { size: 24, weight: 'bold' } ),
@@ -82,7 +83,8 @@ define( function( require ) {
       tandem: tandem.createTandem( 'sliderNode' ),
 
       // a11y
-      shiftKeyboardStep: Math.pow( 10, decimalPlaces * -1 )
+      shiftKeyboardStep: Math.pow( 10, decimalPlaces * -1 ),
+      accessibleName: accessibleName
     } );
 
     var valueNode = new Text( '?', {
