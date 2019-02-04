@@ -20,6 +20,7 @@ define( function( require ) {
   var MConstants = require( 'MOLARITY/molarity/MConstants' );
   var molarity = require( 'MOLARITY/molarity' );
   var MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings');
+  var MolarityScreenSummaryNode = require( 'MOLARITY/molarity/view/MolarityScreenSummaryNode');
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PlayAreaNode = require( 'SCENERY_PHET/accessibility/nodes/PlayAreaNode');
@@ -65,8 +66,12 @@ define( function( require ) {
 
     ScreenView.call( this, {
       layoutBounds: new Bounds2( 0, 0, 1100, 700 ),
-      tandem: tandem
+      tandem: tandem,
+      addScreenSummaryNode: true
     } );
+
+    const molarityScreenSummaryNode = new MolarityScreenSummaryNode( model );
+    this.screenSummaryNode.addChild( molarityScreenSummaryNode );
 
     var valuesVisibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'valuesVisibleProperty' )
