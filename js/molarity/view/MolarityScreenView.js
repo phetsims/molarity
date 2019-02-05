@@ -70,12 +70,12 @@ define( function( require ) {
       addScreenSummaryNode: true
     } );
 
-    const molarityScreenSummaryNode = new MolarityScreenSummaryNode( model );
-    this.screenSummaryNode.addChild( molarityScreenSummaryNode );
-
     var valuesVisibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'valuesVisibleProperty' )
     } );
+
+    const molarityScreenSummaryNode = new MolarityScreenSummaryNode( model, valuesVisibleProperty );
+    this.screenSummaryNode.addChild( molarityScreenSummaryNode );
 
     // beaker, with solution and precipitate inside of it
     var beakerNode = new BeakerNode( model.solution, MConstants.SOLUTION_VOLUME_RANGE.max, valuesVisibleProperty,
