@@ -12,16 +12,15 @@ define( require => {
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const Node = require( 'SCENERY/nodes/Node' );
+  const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
 
   // a11y strings
-  const screenSummaryFirstParagraphString = MolarityA11yStrings.screenSummaryFirstParagraph.value;
+  const screenSummaryFirstParagraphPatternString = MolarityA11yStrings.screenSummaryFirstParagraphPattern.value;
 
   class MolarityScreenSummaryNode extends Node {
+
     /**
-     *
-     * @param {Object} [options]
-     * @param {MolarityModel} model 
-     * @constructor
+     * @param {MolarityModel} model
      */
     constructor( model ) {
 
@@ -29,7 +28,7 @@ define( require => {
 
       this.addChild(new Node({
         tagName: 'p',
-        accessibleName: screenSummaryFirstParagraphString
+        accessibleName: StringUtils.fillIn( screenSummaryFirstParagraphPatternString, { numberOfSolutes: model.solutes.length } )
       }));
 
       // @private

@@ -15,8 +15,8 @@ define( function( require ) {
   const molarity = require( 'MOLARITY/molarity' );
 
   const MolarityA11yStrings = {
-    screenSummaryFirstParagraph: {
-      value: 'In the Play Area, you find a beaker containing a solution and a concentration scale. You can choose 1 of 9 solutes for the beaker, and observe changes to concentration scale as you adjust solute amount or solution volume. In the Control Area, there is a checkbox to show measured values for mols, Liters and Molarity, and a button to reset the sim.'
+    screenSummaryFirstParagraphPattern: {
+      value: 'In the Play Area, you find a beaker containing a solution and a concentration scale. You can choose 1 of {{numberOfSolutes}} solutes for the beaker, and observe changes to concentration scale as you adjust solute amount or solution volume. In the Control Area, there is a checkbox to show measured values for mols, Liters and Molarity, and a button to reset the sim.'
     },
     soluteAmountAccessibleName: {
       value: 'Solute Amount'
