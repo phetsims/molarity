@@ -24,6 +24,12 @@ define( function( require ) {
     currentSolutePattern: {
       value: 'Currently, beaker is {{Half full}} of a {{solute}} solution.'
     },
+    soluteAmountValuesVisiblePattern:{
+      value: 'Solute amount is {{soluteAmount}} mol.'
+    },
+    soluteAmountPattern:{
+      value: 'Solute amount is {{Below Half}}.'
+    },
     soluteAmountAccessibleName: {
       value: 'Solute Amount'
     },

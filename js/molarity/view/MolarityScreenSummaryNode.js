@@ -19,6 +19,8 @@ define( require => {
   const screenSummaryFirstParagraphPatternString = MolarityA11yStrings.screenSummaryFirstParagraphPattern.value;
   const currentSolutePatternString = MolarityA11yStrings.currentSolutePattern.value;
   const currentSoluteValuesVisiblePatternString = MolarityA11yStrings.currentSoluteValuesVisiblePattern.value;
+  const soluteAmountPatternString = MolarityA11yStrings.soluteAmountPattern.value;
+  const soluteAmountValuesVisiblePatternString = MolarityA11yStrings.soluteAmountValuesVisiblePattern.value;
 
   class MolarityScreenSummaryNode extends Node {
 
@@ -32,28 +34,41 @@ define( require => {
 
       this.addChild( new Node( {
         tagName: 'p',
-        accessibleName: StringUtils.fillIn( screenSummaryFirstParagraphPatternString, { numberOfSolutes: model.solutes.length } )
+        accessibleName: StringUtils.fillIn( screenSummaryFirstParagraphPatternString, {
+          numberOfSolutes: model.solutes.length
+        } )
       } ) );
 
       const stateOfSim = new Node( {
-          tagName: 'ul'
+        tagName: 'ul'
       } );
 
       const currentSolute = new Node( {
-          tagName: 'li'
+        tagName: 'li'
+      } );
+
+      const soluteAmountNode = new Node( {
+        tagName: 'li'
       } );
 
       stateOfSim.addChild( currentSolute );
+      stateOfSim.addChild( soluteAmountNode );
       this.addChild( stateOfSim );
 
-      Property.multilink( [ model.solution.soluteProperty, valuesVisibleProperty ], ( currrentSolute, valuesVisible ) => {
-        if ( valuesVisible ){
+      Property.multilink( [ model.solution.soluteProperty, model.solution.soluteAmountProperty, valuesVisibleProperty ], ( currrentSolute, soluteAmount, valuesVisible ) => {
+        if ( valuesVisible ) {
           currentSolute.accessibleName = StringUtils.fillIn( currentSoluteValuesVisiblePatternString, {
             solute: currrentSolute.name
+          } );
+          soluteAmountNode.accessibleName = StringUtils.fillIn( soluteAmountValuesVisiblePatternString, {
+            soluteAmount: soluteAmount.toFixed(3)
           } );
         } else {
           currentSolute.accessibleName = StringUtils.fillIn( currentSolutePatternString, {
             solute: currrentSolute.name
+          } );
+          soluteAmountNode.accessibleName = StringUtils.fillIn( soluteAmountPatternString, {
+
           } );
         }
       } );
