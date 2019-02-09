@@ -23,7 +23,7 @@ define( require => {
   const soluteAmountPatternString = MolarityA11yStrings.soluteAmountPattern.value;
   const solutionVolumePatternString = MolarityA11yStrings.solutionVolumePattern.value;
   const solutionConcentrationValuesVisiblePatternString = MolarityA11yStrings.solutionConcentrationValuesVisiblePattern.value;
-  const solutionConcentrationPattern = MolarityA11yStrings.solutionConcentrationPattern.value;
+  const solutionConcentrationPatternString = MolarityA11yStrings.solutionConcentrationPattern.value;
 
   class MolarityScreenSummaryNode extends Node {
 
@@ -92,7 +92,7 @@ define( require => {
           solutionVolumeNode.accessibleName = StringUtils.fillIn( solutionVolumePatternString, {
             solutionVolume: 'Half Full'
           } );
-          solutionConcentrationNode.accessibleName = StringUtils.fillIn( solutionConcentrationValuesVisiblePatternString, {
+          solutionConcentrationNode.accessibleName = StringUtils.fillIn( solutionConcentrationPatternString, {
 
           } );
         }
