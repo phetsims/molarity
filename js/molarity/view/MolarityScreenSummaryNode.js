@@ -19,8 +19,11 @@ define( require => {
   const screenSummaryFirstParagraphPatternString = MolarityA11yStrings.screenSummaryFirstParagraphPattern.value;
   const currentSolutePatternString = MolarityA11yStrings.currentSolutePattern.value;
   const currentSoluteValuesVisiblePatternString = MolarityA11yStrings.currentSoluteValuesVisiblePattern.value;
-  const soluteAmountPatternString = MolarityA11yStrings.soluteAmountPattern.value;
   const soluteAmountValuesVisiblePatternString = MolarityA11yStrings.soluteAmountValuesVisiblePattern.value;
+  const soluteAmountPatternString = MolarityA11yStrings.soluteAmountPattern.value;
+  const solutionVolumePatternString = MolarityA11yStrings.solutionVolumePattern.value;
+  const solutionConcentrationValuesVisiblePatternString = MolarityA11yStrings.solutionConcentrationValuesVisiblePattern.value;
+  const solutionConcentrationPattern = MolarityA11yStrings.solutionConcentrationPattern.value;
 
   class MolarityScreenSummaryNode extends Node {
 
@@ -51,11 +54,21 @@ define( require => {
         tagName: 'li'
       } );
 
+      const solutionVolumeNode = new Node( {
+        tagName: 'li'
+      } );
+
+      const solutionConcentrationNode = new Node ( {
+        tagName: 'li'
+      } );
+
       stateOfSim.addChild( currentSolute );
       stateOfSim.addChild( soluteAmountNode );
+      stateOfSim.addChild( solutionVolumeNode );
+      stateOfSim.addChild( solutionConcentrationNode );
       this.addChild( stateOfSim );
 
-      Property.multilink( [ model.solution.soluteProperty, model.solution.soluteAmountProperty, valuesVisibleProperty ], ( currrentSolute, soluteAmount, valuesVisible ) => {
+      Property.multilink( [ model.solution.soluteProperty, model.solution.soluteAmountProperty, model.solution.volumeProperty, model.solution.concentrationProperty, valuesVisibleProperty ], ( currrentSolute, soluteAmount, solutionVolume, solutionConcentration, valuesVisible ) => {
         if ( valuesVisible ) {
           currentSolute.accessibleName = StringUtils.fillIn( currentSoluteValuesVisiblePatternString, {
             solute: currrentSolute.name
@@ -63,11 +76,23 @@ define( require => {
           soluteAmountNode.accessibleName = StringUtils.fillIn( soluteAmountValuesVisiblePatternString, {
             soluteAmount: soluteAmount.toFixed(3)
           } );
+          solutionVolumeNode.accessibleName = StringUtils.fillIn( solutionVolumePatternString, {
+            solutionVolume: `${solutionVolume} Liters`
+          } );
+          solutionConcentrationNode.accessibleName = StringUtils.fillIn( solutionConcentrationValuesVisiblePatternString, {
+            solutionConcentration: `${solutionConcentration} M`
+          } );
         } else {
           currentSolute.accessibleName = StringUtils.fillIn( currentSolutePatternString, {
             solute: currrentSolute.name
           } );
           soluteAmountNode.accessibleName = StringUtils.fillIn( soluteAmountPatternString, {
+
+          } );
+          solutionVolumeNode.accessibleName = StringUtils.fillIn( solutionVolumePatternString, {
+            solutionVolume: 'Half Full'
+          } );
+          solutionConcentrationNode.accessibleName = StringUtils.fillIn( solutionConcentrationValuesVisiblePatternString, {
 
           } );
         }

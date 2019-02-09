@@ -30,6 +30,15 @@ define( function( require ) {
     soluteAmountPattern:{
       value: 'Solute amount is {{Below Half}}.'
     },
+    solutionVolumePattern:{
+      value: 'Solution is {{solutionVolume}}.'
+    },
+    solutionConcentrationValuesVisiblePattern:{
+      value: 'Molarity, Solution Concentration, is {{solutionConcentration}}'
+    },
+    solutionConcentrationPattern:{
+      value: 'Solution concentration is {{Slightly Saturated}}'
+    },
     soluteAmountAccessibleName: {
       value: 'Solute Amount'
     },
