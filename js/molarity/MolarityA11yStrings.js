@@ -28,7 +28,7 @@ define( function( require ) {
       value: 'Solute amount is {{soluteAmount}} mol.'
     },
     soluteAmountPattern:{
-      value: 'Solute amount is {{Below Half}}.'
+      value: 'Solute amount is {{soluteAmount}}.'
     },
     solutionVolumePattern:{
       value: 'Solution is {{solutionVolume}}.'
@@ -44,6 +44,9 @@ define( function( require ) {
     },
     solutionVolumeAccessibleName: {
       value: 'Solution Volume'
+    },
+    soluteAmountSliderValues: {
+      value: [ 'None', 'Minimum', 'Below Half', 'Half Solute', 'Above Half', 'Nearly Maximum', 'Maximum' ]
     }
   };
 
