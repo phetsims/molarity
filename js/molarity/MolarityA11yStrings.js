@@ -15,40 +15,98 @@ define( function( require ) {
   const molarity = require( 'MOLARITY/molarity' );
 
   const MolarityA11yStrings = {
-    screenSummaryFirstParagraphPattern: {
-      value: 'In the Play Area, you find a beaker containing a solution and a concentration scale. You can choose 1 of {{numberOfSolutes}} solutes for the beaker, and observe changes to concentration scale as you adjust solute amount or solution volume. In the Control Area, there is a checkbox to show measured values for mols, Liters and Molarity, and a button to reset the sim.'
-    },
-    currentSoluteValuesVisiblePattern: {
-      value: 'Current solute chosen is {{solute}}'
-    },
-    currentSolutePattern: {
-      value: 'Currently, beaker is {{Half full}} of a {{solute}} solution.'
-    },
-    soluteAmountValuesVisiblePattern:{
-      value: 'Solute amount is {{soluteAmount}} mol.'
-    },
-    soluteAmountPattern:{
-      value: 'Solute amount is {{soluteAmount}}.'
-    },
-    solutionVolumePattern:{
-      value: 'Solution is {{solutionVolume}}.'
-    },
-    solutionConcentrationValuesVisiblePattern:{
-      value: 'Molarity, Solution Concentration, is {{solutionConcentration}}'
-    },
-    solutionConcentrationPattern:{
-      value: 'Solution concentration is {{Slightly Saturated}}'
-    },
-    soluteAmountAccessibleName: {
-      value: 'Solute Amount'
-    },
-    solutionVolumeAccessibleName: {
-      value: 'Solution Volume'
-    },
-    soluteAmountSliderValues: {
-      value: [ 'None', 'Minimum', 'Below Half', 'Half Solute', 'Above Half', 'Nearly Maximum', 'Maximum' ]
+      screenSummaryFirstParagraphPattern: {
+        value: 'In the Play Area, you find a beaker containing a solution and a concentration scale. You can choose 1 of {{numberOfSolutes}} solutes for the beaker, and observe changes to concentration scale as you adjust solute amount or solution volume. In the Control Area, there is a checkbox to show measured values for mols, Liters and Molarity, and a button to reset the sim.'
+      },
+      currentSoluteValuesVisiblePattern: {
+        value: 'Current solute chosen is {{solute}}'
+      },
+      currentSolutePattern: {
+        value: 'Currently, beaker is {{solutionVolume}} of a {{solute}} solution.'
+      },
+      soluteAmountAndUnitPattern: {
+        value: '{{soluteAmount}} mol'
+      },
+      soluteAmountPattern: {
+        value: 'Solute amount is {{soluteAmount}}.'
+      },
+      solutionVolumePattern: {
+        value: 'Solution is {{solutionVolume}}.'
+      },
+      solutionConcentrationValuesVisiblePattern: {
+        value: 'Molarity, Solution Concentration, is {{solutionConcentration}}'
+      },
+      solutionConcentrationPattern: {
+        value: 'Solution concentration is {{solutionConcentration}}'
+      },
+      soluteAmountAccessibleName: {
+        value: 'Solute Amount'
+      },
+      solutionVolumeAccessibleName: {
+        value: 'Solution Volume'
+      },
+      solutionHeader: {
+        value: 'Solution'
+      },
+      fullString: {
+        value: 'Full'
+      },
+      nearlyFullString: {
+        value: 'Nearly Full'
+      },
+      overHalfString: {
+        value: 'Over Half'
+      },
+      halfFullString: {
+        value: 'Half Full'
+      },
+      underHalfString: {
+        value: 'Under Half'
+      },
+      lowString: {
+        value: 'Low'
+      },
+      leastAmountString: {
+        value: 'Least Amount'
+      },
+      notConcentratedString: {
+        value: 'Not Concentrated'
+      },
+      barelyConcentratedString: {
+        value: 'Barely Concentrated'
+      },
+      slightlyConcentratedString: {
+        value: 'Slightly Concentrated'
+      },
+      concentratedString: {
+        value: 'Concentrated'
+      },
+      veryConcentratedString: {
+        value: 'Very Concentrated'
+      },
+      noneString: {
+        value: 'None'
+      },
+      minimumString: {
+        value: 'Minimum'
+      },
+      belowHalfString: {
+        value: 'Below Half'
+      },
+      halfSoluteString: {
+        value: 'Half Solute'
+      },
+      aboveHalfString: {
+        value: 'Above Half'
+      },
+      nearlyMaximumString: {
+        value: 'Nearly Maximum'
+      },
+      maximumString: {
+        value: 'Maximum'
+      }
     }
-  };
+  ;
 
   // TODO: This seems it should be factored out, see https://github.com/phetsims/tasks/issues/917
   if ( phet.chipper.queryParameters.stringTest === 'xss' ) {

@@ -30,6 +30,7 @@ define( function( require ) {
   var ScreenView = require( 'JOIST/ScreenView' );
   var Shape = require( 'KITE/Shape' );
   var SoluteComboBox = require( 'MOLARITY/molarity/view/SoluteComboBox' );
+  var SolutionDescriber = require ( 'MOLARITY/molarity/view/describers/SolutionDescriber' );
   var SolutionNode = require( 'MOLARITY/molarity/view/SolutionNode' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Text = require( 'SCENERY/nodes/Text' );
@@ -54,6 +55,7 @@ define( function( require ) {
   var soluteAmountAccessibleNameString = MolarityA11yStrings.soluteAmountAccessibleName.value;
   var solutionVolumeAccessibleNameString = MolarityA11yStrings.solutionVolumeAccessibleName.value;
 
+
   // constants
   var SLIDER_TRACK_WIDTH = 12;
 
@@ -73,6 +75,8 @@ define( function( require ) {
     var valuesVisibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'valuesVisibleProperty' )
     } );
+
+    SolutionDescriber.initialize( model, valuesVisibleProperty );
 
     const molarityScreenSummaryNode = new MolarityScreenSummaryNode( model, valuesVisibleProperty );
     this.screenSummaryNode.addChild( molarityScreenSummaryNode );

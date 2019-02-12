@@ -14,17 +14,11 @@ define( require => {
   const Node = require( 'SCENERY/nodes/Node' );
   const Property = require( 'AXON/Property' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  const SolutionDescriber = require( 'MOLARITY/molarity/view/describers/SolutionDescriber' );
+
 
   // a11y strings
   const screenSummaryFirstParagraphPatternString = MolarityA11yStrings.screenSummaryFirstParagraphPattern.value;
-  const currentSolutePatternString = MolarityA11yStrings.currentSolutePattern.value;
-  const currentSoluteValuesVisiblePatternString = MolarityA11yStrings.currentSoluteValuesVisiblePattern.value;
-  const soluteAmountValuesVisiblePatternString = MolarityA11yStrings.soluteAmountValuesVisiblePattern.value;
-  const soluteAmountPatternString = MolarityA11yStrings.soluteAmountPattern.value;
-  const solutionVolumePatternString = MolarityA11yStrings.solutionVolumePattern.value;
-  const solutionConcentrationValuesVisiblePatternString = MolarityA11yStrings.solutionConcentrationValuesVisiblePattern.value;
-  const solutionConcentrationPatternString = MolarityA11yStrings.solutionConcentrationPattern.value;
-  const soluteAmountSliderValuesArray = MolarityA11yStrings.soluteAmountSliderValues.value;
 
   class MolarityScreenSummaryNode extends Node {
 
@@ -35,6 +29,8 @@ define( require => {
     constructor( model, valuesVisibleProperty ) {
 
       super();
+
+      const solutionDescriber = SolutionDescriber.getDescriber();
 
       this.addChild( new Node( {
         tagName: 'p',
@@ -47,7 +43,7 @@ define( require => {
         tagName: 'ul'
       } );
 
-      const currentSolute = new Node( {
+      const currentSoluteNode = new Node( {
         tagName: 'li'
       } );
 
@@ -59,49 +55,27 @@ define( require => {
         tagName: 'li'
       } );
 
-      const solutionConcentrationNode = new Node ( {
+      const solutionConcentrationNode = new Node( {
         tagName: 'li'
       } );
 
-      stateOfSim.addChild( currentSolute );
+      stateOfSim.addChild( currentSoluteNode );
       stateOfSim.addChild( soluteAmountNode );
       stateOfSim.addChild( solutionVolumeNode );
       stateOfSim.addChild( solutionConcentrationNode );
       this.addChild( stateOfSim );
 
-      Property.multilink( [ model.solution.soluteProperty, model.solution.soluteAmountProperty, model.solution.volumeProperty, model.solution.concentrationProperty, valuesVisibleProperty ], ( currrentSolute, soluteAmount, solutionVolume, solutionConcentration, valuesVisible ) => {
-        if ( valuesVisible ) {
-          currentSolute.accessibleName = StringUtils.fillIn( currentSoluteValuesVisiblePatternString, {
-            solute: currrentSolute.name
-          } );
-          soluteAmountNode.accessibleName = StringUtils.fillIn( soluteAmountValuesVisiblePatternString, {
-            soluteAmount: soluteAmount.toFixed(3)
-          } );
-          solutionVolumeNode.accessibleName = StringUtils.fillIn( solutionVolumePatternString, {
-            solutionVolume: `${solutionVolume} Liters`
-          } );
-          solutionConcentrationNode.accessibleName = StringUtils.fillIn( solutionConcentrationValuesVisiblePatternString, {
-            solutionConcentration: `${solutionConcentration} M`
-          } );
-        } else {
-          currentSolute.accessibleName = StringUtils.fillIn( currentSolutePatternString, {
-            solute: currrentSolute.name
-          } );
-
-          //soluteAmountIndex calculates the index to pull from the soluteAmountSliderValues.
-          const soluteAmountIndex = Math.floor(soluteAmount*(soluteAmountSliderValuesArray.length-1));
-          soluteAmountNode.accessibleName = StringUtils.fillIn( soluteAmountPatternString, {
-            soluteAmount: soluteAmountSliderValuesArray[soluteAmountIndex]
-          } );
-          solutionVolumeNode.accessibleName = StringUtils.fillIn( solutionVolumePatternString, {
-            solutionVolume: 'Half Full'
-          } );
-          solutionConcentrationNode.accessibleName = StringUtils.fillIn( solutionConcentrationPatternString, {
-
-          } );
-
-
-        }
+      Property.multilink( [ model.solution.soluteProperty, model.solution.volumeProperty, valuesVisibleProperty ], () => {
+        currentSoluteNode.accessibleName = solutionDescriber.getCurrentSoluteDescription();
+      } );
+      Property.multilink( [ model.solution.soluteAmountProperty, valuesVisibleProperty ], () => {
+        soluteAmountNode.accessibleName = solutionDescriber.getSoluteAmountDescription();
+      } );
+      Property.multilink( [ model.solution.volumeProperty, valuesVisibleProperty ], () => {
+        solutionVolumeNode.accessibleName = solutionDescriber.getSolutionVolumeDescription();
+      } );
+      Property.multilink( [ model.solution.concentrationProperty, valuesVisibleProperty ], () => {
+        solutionConcentrationNode.accessibleName = solutionDescriber.getSolutionConcentrationDescription();
       } );
 
       // @private
@@ -109,5 +83,6 @@ define( require => {
 
     }
   }
+
   return molarity.register( 'MolarityScreenSummaryNode', MolarityScreenSummaryNode );
 } );
