@@ -15,6 +15,7 @@ define( require => {
   const Util = require( 'DOT/Util' );
 
   // a11y strings
+  const beakerDescriptionString = MolarityA11yStrings.beakerDescription.value;
   const currentSolutePatternString = MolarityA11yStrings.currentSolutePattern.value;
   const currentSoluteValuesVisiblePatternString = MolarityA11yStrings.currentSoluteValuesVisiblePattern.value;
   const soluteAmountAndUnitPatternString = MolarityA11yStrings.soluteAmountAndUnitPattern.value;
@@ -89,6 +90,7 @@ define( require => {
   class SolutionDescriber {
 
     constructor( model, valuesVisibleProperty ) {
+      this.model = model;
       this.solution = model.solution;
       this.valuesVisibleProperty = valuesVisibleProperty;
     }
@@ -105,7 +107,7 @@ define( require => {
       else {
         return StringUtils.fillIn( currentSolutePatternString, {
           solute: this.solution.soluteProperty.value.name,
-          solutionVolume: VOLUME_STRINGS[ Util.roundSymmetric( volumeToIndex( this.solution.volumeProperty.value ) ) ]
+          solutionVolume: VOLUME_STRINGS[ Util.roundSymmetric( volumeToIndex( this.solution.volumeProperty.value ) ) - 1 ]
         } );
       }
     }
@@ -134,7 +136,7 @@ define( require => {
       let valueToFill = null;
       const volume = this.solution.volumeProperty.value;
       if ( this.valuesVisibleProperty.value ) {
-        valueToFill = `${volume} Liters`;
+        valueToFill = `${volume.toFixed( 3 )} Liters`;
       }
       else {
         valueToFill = VOLUME_STRINGS[ Util.roundSymmetric( volumeToIndex( volume ) ) - 1 ];
@@ -160,6 +162,14 @@ define( require => {
         } );
 
       }
+    }
+
+    getBeakerDescription() {
+      return StringUtils.fillIn( beakerDescriptionString, {
+        solute: this.solution.soluteProperty.value.name,
+        concentrationLevel: CONCENTRATION_STRINGS[ Util.roundSymmetric( concentrationToIndex( this.solution.concentrationProperty.value ) ) ],
+        maxConcentration: this.model.maxPrecipitateAmount
+      } );
     }
 
 

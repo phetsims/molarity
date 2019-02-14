@@ -45,8 +45,11 @@ define( function( require ) {
       solutionVolumeAccessibleName: {
         value: 'Solution Volume'
       },
-      solutionHeader: {
-        value: 'Solution'
+      beakerHeader: {
+        value: 'Beaker'
+      },
+      beakerDescription: {
+        value: 'Solution Concentration of {{solute}} has reached {{concentrationLevel}} the peak of this solute is {{maxConcentration}}'
       },
       fullString: {
         value: 'Full'

@@ -17,6 +17,7 @@ define( function( require ) {
   var Color = require( 'SCENERY/util/Color' );
   var inherit = require( 'PHET_CORE/inherit' );
   var molarity = require( 'MOLARITY/molarity' );
+  var MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
@@ -30,6 +31,9 @@ define( function( require ) {
   // strings
   var pattern0Value1UnitsString = require( 'string!MOLARITY/pattern.0value.1units' );
   var unitsLitersString = require( 'string!MOLARITY/units.liters' );
+
+  //a11y strings
+  var beakerHeaderString = MolarityA11yStrings.beakerHeader.value
 
   // constants
   var DEBUG_SHAPES = false;
@@ -52,7 +56,10 @@ define( function( require ) {
 
     Node.call( this, {
       pickable: false,
-      tandem: tandem
+      tandem: tandem,
+      tagName: 'div',
+      labelTagName: 'h3',
+      labelContent: beakerHeaderString
     } );
 
     // @private the glass beaker
@@ -101,8 +108,8 @@ define( function( require ) {
     var tickLabel;
     var tickLabelNode;
 
-    var tickMarkNodeGroupTandem = tandem.createGroupTandem( 'tickMarkNode');
-    var tickLabelNodeGroupTandem = tandem.createGroupTandem( 'tickLabelNode');
+    var tickMarkNodeGroupTandem = tandem.createGroupTandem( 'tickMarkNode' );
+    var tickLabelNodeGroupTandem = tandem.createGroupTandem( 'tickLabelNode' );
 
     for ( var i = 1; i <= numberOfTicks; i++ ) {
       y = bottomY - ( i * deltaY );

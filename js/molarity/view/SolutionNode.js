@@ -21,6 +21,7 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
   var Util = require( 'DOT/Util' );
 
+
   // constants
   var DEBUG_ORIGIN = false;
 
@@ -51,14 +52,16 @@ define( function( require ) {
       stroke: new Color( 0, 0, 0, 85 ),
       tandem: tandem.createTandem( 'topNode' )
     } );
-    
+
     var bottomNode = new Path( endShape, {
       tandem: tandem.createTandem( 'bottomNode' )
     } );
 
+
     this.addChild( bottomNode );
     this.addChild( middleNode );
     this.addChild( topNode );
+
     if ( DEBUG_ORIGIN ) {
       this.addChild( new Circle( { radius: 3, fill: 'red' } ) );
     }

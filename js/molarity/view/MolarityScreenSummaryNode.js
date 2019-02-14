@@ -16,7 +16,6 @@ define( require => {
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const SolutionDescriber = require( 'MOLARITY/molarity/view/describers/SolutionDescriber' );
 
-
   // a11y strings
   const screenSummaryFirstParagraphPatternString = MolarityA11yStrings.screenSummaryFirstParagraphPattern.value;
 
@@ -30,14 +29,14 @@ define( require => {
 
       super();
 
-      const solutionDescriber = SolutionDescriber.getDescriber();
-
       this.addChild( new Node( {
         tagName: 'p',
         accessibleName: StringUtils.fillIn( screenSummaryFirstParagraphPatternString, {
           numberOfSolutes: model.solutes.length
         } )
       } ) );
+
+      const solutionDescriber = SolutionDescriber.getDescriber();
 
       const stateOfSim = new Node( {
         tagName: 'ul'
