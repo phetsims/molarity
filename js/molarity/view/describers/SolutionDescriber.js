@@ -23,6 +23,7 @@ define( require => {
   const solutionVolumePatternString = MolarityA11yStrings.solutionVolumePattern.value;
   const solutionConcentrationValuesVisiblePatternString = MolarityA11yStrings.solutionConcentrationValuesVisiblePattern.value;
   const solutionConcentrationPatternString = MolarityA11yStrings.solutionConcentrationPattern.value;
+  const stateOfSimPatternString = MolarityA11yStrings.stateOfSimPattern.value;
 
   const fullString = MolarityA11yStrings.fullString.value;
   const nearlyFullString = MolarityA11yStrings.nearlyFullString.value;
@@ -93,6 +94,15 @@ define( require => {
       this.model = model;
       this.solution = model.solution;
       this.valuesVisibleProperty = valuesVisibleProperty;
+    }
+
+    getStateOfSimDescription() {
+      return StringUtils.fillIn( stateOfSimPatternString, {
+        SolutionVolume: VOLUME_STRINGS[ Util.roundSymmetric( volumeToIndex( this.solution.volumeProperty.value ) ) - 1 ],
+        Solute: this.solution.soluteProperty.value.name,
+        SoluteAmount: SOLUTE_AMOUNT_STRINGS[ Util.roundSymmetric( soluteAmountToIndex( this.solution.soluteAmountProperty.value ) ) ],
+        SolutionConcentration: CONCENTRATION_STRINGS[ Util.roundSymmetric( concentrationToIndex( this.solution.concentrationProperty.value ) ) ]
+      } );
     }
 
     /**

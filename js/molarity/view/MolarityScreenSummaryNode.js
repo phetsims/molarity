@@ -58,11 +58,20 @@ define( require => {
         tagName: 'li'
       } );
 
+      const stateOfSimNode = new Node( {
+        tagName: 'p'
+      } );
+
       stateOfSim.addChild( currentSoluteNode );
       stateOfSim.addChild( soluteAmountNode );
       stateOfSim.addChild( solutionVolumeNode );
       stateOfSim.addChild( solutionConcentrationNode );
       this.addChild( stateOfSim );
+      this.addChild( stateOfSimNode );
+
+      Property.multilink( [ model.solution.soluteProperty, model.solution.volumeProperty, model.solution.soluteAmountProperty, model.solution.concentrationProperty, valuesVisibleProperty ], () => {
+        stateOfSimNode.accessibleName = solutionDescriber.getStateOfSimDescription();
+      } );
 
       Property.multilink( [ model.solution.soluteProperty, model.solution.volumeProperty, valuesVisibleProperty ], () => {
         currentSoluteNode.accessibleName = solutionDescriber.getCurrentSoluteDescription();
