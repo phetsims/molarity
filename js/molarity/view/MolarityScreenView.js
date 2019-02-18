@@ -32,7 +32,7 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
   var SoluteComboBox = require( 'MOLARITY/molarity/view/SoluteComboBox' );
   var SolutionDescriber = require( 'MOLARITY/molarity/view/describers/SolutionDescriber' );
-  var SolutionNode = require( 'MOLARITY/molarity/view/SolutionNode' );;
+  var SolutionNode = require( 'MOLARITY/molarity/view/SolutionNode' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Text = require( 'SCENERY/nodes/Text' );
   var VerticalSlider = require( 'MOLARITY/molarity/view/VerticalSlider' );
@@ -92,11 +92,11 @@ define( function( require ) {
     var beakerDescriptionNode = new Node( {
       tagName: 'p',
       accessibleName: solutionDescriber.getBeakerDescription()
-    } )
+    } );
     beakerNode.addChild( beakerDescriptionNode );
 
-    Property.multilink( [ this.model.solution.soluteProperty, this.model.solution.concentrationProperty, this.model.maxPrecipitateAmount ], (solute, concentration, precipitate) => {
-      beakerDescriptionNode.accessibleName = solutionDescriber.getCurrentSoluteDescription();
+    Property.multilink( [ model.solution.soluteProperty, model.solution.concentrationProperty ], () => {
+      beakerDescriptionNode.accessibleName = solutionDescriber.getBeakerDescription();
     } );
 
     var cylinderSize = beakerNode.getCylinderSize();
@@ -138,13 +138,24 @@ define( function( require ) {
       valuesVisibleProperty,
       tandem.createTandem( 'solutionVolumeSlider' ), solutionVolumeAccessibleNameString );
 
+
+    // a11y header for slider controls
+    var sliderControlsNode = new Node( {
+      tagName: 'div',
+      labelTagName: 'h3',
+      labelContent: 'Slider Controls'
+    } );
+
+    sliderControlsNode.accessibleOrder = [ soluteAmountSlider, solutionVolumeSlider ];
+
+    // a11y play area node
+    var playAreaNode = new PlayAreaNode();
+    playAreaNode.accessibleOrder = [ beakerNode, sliderControlsNode, soluteComboBoxListParent, soluteComboBox ];
+
     // concentration display
     var concentrationBarSize = new Dimension2( 40, cylinderSize.height + 50 );
     var concentrationDisplay = new ConcentrationDisplay( model.solution, MConstants.CONCENTRATION_RANGE,
       valuesVisibleProperty, concentrationBarSize, tandem.createTandem( 'concentrationDisplay' ) );
-
-    var playAreaNode = new PlayAreaNode();
-    playAreaNode.accessibleOrder = [ beakerNode, soluteAmountSlider, solutionVolumeSlider, soluteComboBox ];
 
     // Show Values checkbox
     var showValuesLabel = new Text( showValuesString, {
@@ -224,6 +235,7 @@ define( function( require ) {
         resetAllButton,
         soluteComboBox,
         soluteComboBoxListParent,
+        sliderControlsNode,
         playAreaNode,
         controlAreaNode
       ],
