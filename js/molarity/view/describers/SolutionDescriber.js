@@ -20,7 +20,9 @@ define( require => {
   const currentSoluteValuesVisiblePatternString = MolarityA11yStrings.currentSoluteValuesVisiblePattern.value;
   const soluteAmountAndUnitPatternString = MolarityA11yStrings.soluteAmountAndUnitPattern.value;
   const soluteAmountPatternString = MolarityA11yStrings.soluteAmountPattern.value;
+  const solutionVolumeAndUnitPatternString = MolarityA11yStrings.solutionVolumeAndUnitPattern.value;
   const solutionVolumePatternString = MolarityA11yStrings.solutionVolumePattern.value;
+  const solutionConcentrationAndUnitPatternString = MolarityA11yStrings.solutionConcentrationAndUnitPattern.value;
   const solutionConcentrationValuesVisiblePatternString = MolarityA11yStrings.solutionConcentrationValuesVisiblePattern.value;
   const solutionConcentrationPatternString = MolarityA11yStrings.solutionConcentrationPattern.value;
   const stateOfSimPatternString = MolarityA11yStrings.stateOfSimPattern.value;
@@ -47,6 +49,7 @@ define( require => {
   const nearlyMaximumString = MolarityA11yStrings.nearlyMaximumString.value;
   const maximumString = MolarityA11yStrings.maximumString.value;
 
+  const saturatedString = MolarityA11yStrings.saturatedString.value;
 
   const VOLUME_STRINGS = [
     leastAmountString,
@@ -97,11 +100,25 @@ define( require => {
     }
 
     getStateOfSimDescription() {
+      let saturatedConcentration = '';
+      let volumeProperty = VOLUME_STRINGS[ Util.roundSymmetric( volumeToIndex( this.solution.volumeProperty.value ) ) - 1 ];
+      const soluteProperty = this.solution.soluteProperty.value.name;
+      let soluteAmountProperty = SOLUTE_AMOUNT_STRINGS[ Util.roundSymmetric( soluteAmountToIndex( this.solution.soluteAmountProperty.value ) ) ];
+      let concentrationProperty = CONCENTRATION_STRINGS[ Util.roundSymmetric( concentrationToIndex( this.solution.concentrationProperty.value ) ) ];
+      if ( this.solution.concentrationProperty.value >= this.solution.soluteProperty.value.saturatedConcentration ) {
+        saturatedConcentration = saturatedString;
+      }
+      if ( this.valuesVisibleProperty.value ) {
+        volumeProperty = StringUtils.fillIn( solutionVolumeAndUnitPatternString, { volumeProperty: this.solution.volumeProperty.value.toFixed( 3 ) } );
+        soluteAmountProperty = this.solution.soluteAmountProperty.value.toFixed( 3 );
+        concentrationProperty = StringUtils.fillIn( solutionConcentrationAndUnitPatternString, { concentrationProperty: this.solution.concentrationProperty.value.toFixed( 3 ) } );
+      }
       return StringUtils.fillIn( stateOfSimPatternString, {
-        solutionVolume: VOLUME_STRINGS[ Util.roundSymmetric( volumeToIndex( this.solution.volumeProperty.value ) ) - 1 ],
-        solute: this.solution.soluteProperty.value.name,
-        soluteAmount: SOLUTE_AMOUNT_STRINGS[ Util.roundSymmetric( soluteAmountToIndex( this.solution.soluteAmountProperty.value ) ) ],
-        solutionConcentration: CONCENTRATION_STRINGS[ Util.roundSymmetric( concentrationToIndex( this.solution.concentrationProperty.value ) ) ]
+        volumeProperty: volumeProperty,
+        soluteProperty: soluteProperty,
+        soluteAmountProperty: soluteAmountProperty,
+        concentrationProperty: concentrationProperty,
+        saturatedConcentration: saturatedConcentration
       } );
     }
 
@@ -112,55 +129,52 @@ define( require => {
       let pattern = currentSoluteValuesVisiblePatternString;
       if ( !this.valuesVisibleProperty.value ) {
         pattern = StringUtils.fillIn( currentSolutePatternString, {
-          solutionVolume: VOLUME_STRINGS[ Util.roundSymmetric( volumeToIndex( this.solution.volumeProperty.value ) ) - 1 ]
+          volumeProperty: VOLUME_STRINGS[ Util.roundSymmetric( volumeToIndex( this.solution.volumeProperty.value ) ) - 1 ]
         } );
       }
-      return StringUtils.fillIn( pattern, { solute: this.solution.soluteProperty.value.name } );
+      return StringUtils.fillIn( pattern, { soluteProperty: this.solution.soluteProperty.value.name } );
     }
 
     /**
      * Solute amount
      */
     getSoluteAmountDescription() {
-      const soluteAmountProperty = this.solution.soluteAmountProperty.value;
-      let valueToFill = StringUtils.fillIn( soluteAmountAndUnitPatternString, { soluteAmount: this.solution.soluteAmountProperty.value.toFixed( 3 ) } );
+      let valueToFill = StringUtils.fillIn( soluteAmountAndUnitPatternString, { soluteAmountProperty: this.solution.soluteAmountProperty.value.toFixed( 3 ) } );
       if ( !this.valuesVisibleProperty.value ) {
-        valueToFill = SOLUTE_AMOUNT_STRINGS[ Util.roundSymmetric( soluteAmountToIndex( soluteAmountProperty ) ) ];
+        valueToFill = SOLUTE_AMOUNT_STRINGS[ Util.roundSymmetric( soluteAmountToIndex( this.solution.soluteAmountProperty.value ) ) ];
       }
-      return StringUtils.fillIn( soluteAmountPatternString, { soluteAmount: valueToFill } );
+      return StringUtils.fillIn( soluteAmountPatternString, { soluteAmountProperty: valueToFill } );
     }
 
     /**
      * Solution Volume
      */
     getSolutionVolumeDescription() {
-      const volume = this.solution.volumeProperty.value;
-      let valueToFill = `${volume.toFixed( 3 )} Liters`;
+      let valueToFill = `${this.solution.volumeProperty.value.toFixed( 3 )} Liters`;
       if ( !this.valuesVisibleProperty.value ) {
-        valueToFill = VOLUME_STRINGS[ Util.roundSymmetric( volumeToIndex( volume ) ) - 1 ];
+        valueToFill = VOLUME_STRINGS[ Util.roundSymmetric( volumeToIndex( this.solution.volumeProperty.value ) ) - 1 ];
       }
-      return StringUtils.fillIn( solutionVolumePatternString, { solutionVolume: valueToFill } );
+      return StringUtils.fillIn( solutionVolumePatternString, { volumeProperty: valueToFill } );
     }
 
     /**
      * Solution Concentration
      */
     getSolutionConcentrationDescription() {
-      const concentration = this.solution.concentrationProperty.value;
       let pattern = solutionConcentrationValuesVisiblePatternString;
-      let valueToFill = `${concentration} M`;
+      let valueToFill = `${this.solution.concentrationProperty.value} M`;
       if ( !this.valuesVisibleProperty.value ) {
         pattern = solutionConcentrationPatternString;
-        valueToFill = CONCENTRATION_STRINGS[ Util.roundSymmetric( concentrationToIndex( concentration ) ) ];
+        valueToFill = CONCENTRATION_STRINGS[ Util.roundSymmetric( concentrationToIndex( this.solution.concentrationProperty.value ) ) ];
       }
-      return StringUtils.fillIn( pattern, { solutionConcentration: valueToFill } );
+      return StringUtils.fillIn( pattern, { concentrationProperty: valueToFill } );
     }
 
     getBeakerDescription() {
       return StringUtils.fillIn( beakerDescriptionString, {
-        solute: this.solution.soluteProperty.value.name,
-        concentrationLevel: CONCENTRATION_STRINGS[ Util.roundSymmetric( concentrationToIndex( this.solution.concentrationProperty.value ) ) ],
-        maxConcentration: this.model.solution.soluteProperty.value.saturatedConcentration
+        soluteProperty: this.solution.soluteProperty.value.name,
+        concentrationProperty: CONCENTRATION_STRINGS[ Util.roundSymmetric( concentrationToIndex( this.solution.concentrationProperty.value ) ) ],
+        maxConcentration: this.solution.soluteProperty.value.saturatedConcentration
       } );
     }
 
