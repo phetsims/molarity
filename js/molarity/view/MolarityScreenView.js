@@ -55,7 +55,8 @@ define( function( require ) {
   // a11y strings
   var soluteAmountAccessibleNameString = MolarityA11yStrings.soluteAmountAccessibleName.value;
   var solutionVolumeAccessibleNameString = MolarityA11yStrings.solutionVolumeAccessibleName.value;
-
+  var sliderControlsLabelString = MolarityA11yStrings.sliderControlsLabelString.value;
+  var sliderControlsDescriptionString = MolarityA11yStrings.sliderControlsDescriptionString.value;
 
   // constants
   var SLIDER_TRACK_WIDTH = 12;
@@ -143,7 +144,8 @@ define( function( require ) {
     var sliderControlsNode = new Node( {
       tagName: 'div',
       labelTagName: 'h3',
-      labelContent: 'Slider Controls'
+      labelContent: sliderControlsLabelString,
+      descriptionContent: sliderControlsDescriptionString
     } );
 
     sliderControlsNode.accessibleOrder = [ soluteAmountSlider, solutionVolumeSlider ];
