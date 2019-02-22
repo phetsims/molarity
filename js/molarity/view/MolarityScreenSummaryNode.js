@@ -15,6 +15,8 @@ define( require => {
   const Property = require( 'AXON/Property' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const SolutionDescriber = require( 'MOLARITY/molarity/view/describers/SolutionDescriber' );
+  const Utterance = require( 'SCENERY_PHET/accessibility/Utterance' );
+  const utteranceQueue = require( 'SCENERY_PHET/accessibility/utteranceQueue' );
 
   // a11y strings
   const screenSummaryFirstParagraphPatternString = MolarityA11yStrings.screenSummaryFirstParagraphPattern.value;
@@ -38,53 +40,18 @@ define( require => {
 
       const solutionDescriber = SolutionDescriber.getDescriber();
 
-      const stateOfSim = new Node( {
-        tagName: 'ul'
-      } );
-
-      const currentSoluteNode = new Node( {
-        tagName: 'li'
-      } );
-
-      const soluteAmountNode = new Node( {
-        tagName: 'li'
-      } );
-
-      const solutionVolumeNode = new Node( {
-        tagName: 'li'
-      } );
-
-      const solutionConcentrationNode = new Node( {
-        tagName: 'li'
-      } );
-
       const stateOfSimNode = new Node( {
         tagName: 'p'
       } );
 
-      stateOfSim.addChild( currentSoluteNode );
-      stateOfSim.addChild( soluteAmountNode );
-      stateOfSim.addChild( solutionVolumeNode );
-      stateOfSim.addChild( solutionConcentrationNode );
-      this.addChild( stateOfSim );
       this.addChild( stateOfSimNode );
 
       Property.multilink( [ model.solution.soluteProperty, model.solution.volumeProperty, model.solution.soluteAmountProperty, model.solution.concentrationProperty, valuesVisibleProperty ], () => {
-        stateOfSimNode.accessibleName = solutionDescriber.getStateOfSimDescription();
+        var utterance = solutionDescriber.getStateOfSimDescription();
+        stateOfSimNode.accessibleName = utterance;
+        utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'stateOfSim' } ) );
       } );
 
-      Property.multilink( [ model.solution.soluteProperty, model.solution.volumeProperty, valuesVisibleProperty ], () => {
-        currentSoluteNode.accessibleName = solutionDescriber.getCurrentSoluteDescription();
-      } );
-      Property.multilink( [ model.solution.soluteAmountProperty, valuesVisibleProperty ], () => {
-        soluteAmountNode.accessibleName = solutionDescriber.getSoluteAmountDescription();
-      } );
-      Property.multilink( [ model.solution.volumeProperty, valuesVisibleProperty ], () => {
-        solutionVolumeNode.accessibleName = solutionDescriber.getSolutionVolumeDescription();
-      } );
-      Property.multilink( [ model.solution.concentrationProperty, valuesVisibleProperty ], () => {
-        solutionConcentrationNode.accessibleName = solutionDescriber.getSolutionConcentrationDescription();
-      } );
 
       // @private
       this.model = model;

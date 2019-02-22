@@ -11,7 +11,6 @@ define( require => {
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  const LinearFunction = require( 'DOT/LinearFunction' );
   const Util = require( 'DOT/Util' );
 
   // a11y strings
@@ -60,7 +59,37 @@ define( require => {
     nearlyFullString,
     fullString
   ];
-  const volumeToIndex = new LinearFunction( 0.2, 1, 0.5, 6.5, true );
+
+  /**
+   * @private
+   * @returns {number} index to pull from VOLUME_STRINGS array
+   */
+  const volumeToIndex = ( volume ) => {
+    assert && assert( volume > 0, 'volume should always be positive.' );
+    if ( volume <= .240 ) {
+      return 0;
+    }
+    if ( volume <= .320 ) {
+      return 1;
+    }
+    if ( volume <= .400 ) {
+      return 2;
+    }
+    if ( volume <= .520 ) {
+      return 3;
+    }
+    if ( volume <= .760 ) {
+      return 4;
+    }
+    if ( volume <= .960 ) {
+      return 5;
+    }
+    if ( volume <= 1.000 ) {
+      return 6;
+    }
+
+    throw new Error( 'Invalid volume value' );
+  };
 
   const CONCENTRATION_STRINGS = [
     notConcentratedString,
@@ -69,8 +98,11 @@ define( require => {
     concentratedString,
     veryConcentratedString
   ];
-  const concentrationToIndex = new LinearFunction( 0, 5, 0, 4, true );
 
+  /**
+   * @private
+   * @returns {number} index to pull from CONCENTRATION_STRINGS array
+   */
   const SOLUTE_AMOUNT_STRINGS = [
     noneString,
     minimumString,
@@ -80,31 +112,64 @@ define( require => {
     nearlyMaximumString,
     maximumString
   ];
-  const soluteAmountToIndex = new LinearFunction( 0, 1, 0, 6, true );
 
+  /**
+   * @private
+   * @returns {number} index to pull from SOLUTE_AMOUNT_STRINGS array
+   */
+  const soluteAmountToIndex = ( soluteAmount ) => {
+    assert && assert( soluteAmount > 0, 'concentration between spheres should always be positive.' );
+    if ( soluteAmount <= 0.050 ) {
+      return 0;
+    }
+    if ( soluteAmount <= .200 ) {
+      return 1;
+    }
+    if ( soluteAmount <= .450 ) {
+      return 2;
+    }
+    if ( soluteAmount <= .650 ) {
+      return 3;
+    }
+    if ( soluteAmount <= .850 ) {
+      return 4;
+    }
+    if ( soluteAmount <= .950 ) {
+      return 5;
+    }
+    if ( soluteAmount <= 1.000 ) {
+      return 6;
+    }
+
+    throw new Error( 'Invalid solute amount value' );
+  };
 
   // the singleton instance of this describer, used for the entire instance of the sim.
   let describer = null;
 
-  /**
-   * Responsible for alerting when the temperature increases
-   * @param {Object} [options]
-   * @constructor
-   */
   class SolutionDescriber {
 
+    /**
+     * @param {MolarityModel} model
+     * @param {BooleanProperty} valuesVisibleProperty - tracks whether the "Show values" checkbox is checked
+     */
     constructor( model, valuesVisibleProperty ) {
       this.model = model;
       this.solution = model.solution;
       this.valuesVisibleProperty = valuesVisibleProperty;
     }
 
+    /**
+     * Describes all relevant properties in the screen summary.
+     * @public
+     * @returns {string}
+     */
     getStateOfSimDescription() {
       let saturatedConcentration = '';
-      let volumeProperty = VOLUME_STRINGS[ Util.roundSymmetric( volumeToIndex( this.solution.volumeProperty.value ) ) - 1 ];
+      let volumeProperty = VOLUME_STRINGS[ volumeToIndex( this.solution.volumeProperty.value ) ];
       const soluteProperty = this.solution.soluteProperty.value.name;
       let soluteAmountProperty = SOLUTE_AMOUNT_STRINGS[ Util.roundSymmetric( soluteAmountToIndex( this.solution.soluteAmountProperty.value ) ) ];
-      let concentrationProperty = CONCENTRATION_STRINGS[ Util.roundSymmetric( concentrationToIndex( this.solution.concentrationProperty.value ) ) ];
+      let concentrationProperty = CONCENTRATION_STRINGS[ Util.roundSymmetric( this.solution.concentrationProperty.value ) ];
       if ( this.solution.concentrationProperty.value >= this.solution.soluteProperty.value.saturatedConcentration ) {
         saturatedConcentration = saturatedString;
       }
@@ -123,7 +188,9 @@ define( require => {
     }
 
     /**
-     * Current Solute
+     * Describes current chosen solute.
+     * @public
+     * @returns {string}
      */
     getCurrentSoluteDescription() {
       let pattern = currentSoluteValuesVisiblePatternString;
@@ -136,7 +203,9 @@ define( require => {
     }
 
     /**
-     * Solute amount
+     * Describes the amount of solute chosen by the solute amount slider.
+     * @public
+     * @returns {string}
      */
     getSoluteAmountDescription() {
       let valueToFill = StringUtils.fillIn( soluteAmountAndUnitPatternString, { soluteAmountProperty: this.solution.soluteAmountProperty.value.toFixed( 3 ) } );
@@ -147,7 +216,9 @@ define( require => {
     }
 
     /**
-     * Solution Volume
+     * Describes the volume of the solution -- set by the Solution Volume slider.
+     * @public
+     * @returns {string}
      */
     getSolutionVolumeDescription() {
       let valueToFill = `${this.solution.volumeProperty.value.toFixed( 3 )} Liters`;
@@ -158,22 +229,29 @@ define( require => {
     }
 
     /**
-     * Solution Concentration
+     * Describes the concentration of the solution -- matches the solution concentration scale.
+     * @public
+     * @returns {string}
      */
     getSolutionConcentrationDescription() {
       let pattern = solutionConcentrationValuesVisiblePatternString;
       let valueToFill = `${this.solution.concentrationProperty.value} M`;
       if ( !this.valuesVisibleProperty.value ) {
         pattern = solutionConcentrationPatternString;
-        valueToFill = CONCENTRATION_STRINGS[ Util.roundSymmetric( concentrationToIndex( this.solution.concentrationProperty.value ) ) ];
+        valueToFill = CONCENTRATION_STRINGS[ Util.roundSymmetric( this.solution.concentrationProperty.value ) ];
       }
       return StringUtils.fillIn( pattern, { concentrationProperty: valueToFill } );
     }
 
+    /**
+     * Describes the concentration level in the beaker in the play area.
+     * @public
+     * @returns {string}
+     */
     getBeakerDescription() {
       return StringUtils.fillIn( beakerDescriptionString, {
         soluteProperty: this.solution.soluteProperty.value.name,
-        concentrationProperty: CONCENTRATION_STRINGS[ Util.roundSymmetric( concentrationToIndex( this.solution.concentrationProperty.value ) ) ],
+        concentrationProperty: CONCENTRATION_STRINGS[ Util.roundSymmetric( this.solution.concentrationProperty.value ) ],
         maxConcentration: this.solution.soluteProperty.value.saturatedConcentration
       } );
     }

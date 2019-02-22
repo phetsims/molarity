@@ -54,6 +54,7 @@ define( function( require ) {
 
   // a11y strings
   var soluteAmountAccessibleNameString = MolarityA11yStrings.soluteAmountAccessibleName.value;
+  var soluteComboBoxLabelString = MolarityA11yStrings.soluteComboBoxLabel.value;
   var solutionVolumeAccessibleNameString = MolarityA11yStrings.solutionVolumeAccessibleName.value;
   var sliderControlsLabelString = MolarityA11yStrings.sliderControlsLabelString.value;
   var sliderControlsDescriptionString = MolarityA11yStrings.sliderControlsDescriptionString.value;
@@ -150,9 +151,16 @@ define( function( require ) {
 
     sliderControlsNode.accessibleOrder = [ soluteAmountSlider, solutionVolumeSlider ];
 
+    var soluteComboBoxNode = new Node( {
+      tagName: 'div',
+      labelTagName: 'h3',
+      labelContent: soluteComboBoxLabelString
+    } );
+    soluteComboBoxNode.accessibleOrder = [ soluteComboBox, soluteComboBoxListParent ];
+
     // a11y play area node
     var playAreaNode = new PlayAreaNode();
-    playAreaNode.accessibleOrder = [ beakerNode, sliderControlsNode, soluteComboBoxListParent, soluteComboBox ];
+    playAreaNode.accessibleOrder = [ beakerNode, sliderControlsNode, soluteComboBoxNode ];
 
     // concentration display
     var concentrationBarSize = new Dimension2( 40, cylinderSize.height + 50 );
@@ -237,6 +245,7 @@ define( function( require ) {
         resetAllButton,
         soluteComboBox,
         soluteComboBoxListParent,
+        soluteComboBoxNode,
         sliderControlsNode,
         playAreaNode,
         controlAreaNode
