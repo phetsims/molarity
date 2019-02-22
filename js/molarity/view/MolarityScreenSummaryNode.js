@@ -33,7 +33,7 @@ define( require => {
 
       this.addChild( new Node( {
         tagName: 'p',
-        accessibleName: StringUtils.fillIn( screenSummaryFirstParagraphPatternString, {
+        innerContent: StringUtils.fillIn( screenSummaryFirstParagraphPatternString, {
           numberOfSolutes: model.solutes.length
         } )
       } ) );
@@ -48,7 +48,7 @@ define( require => {
 
       Property.multilink( [ model.solution.soluteProperty, model.solution.volumeProperty, model.solution.soluteAmountProperty, model.solution.concentrationProperty, valuesVisibleProperty ], () => {
         var utterance = solutionDescriber.getStateOfSimDescription();
-        stateOfSimNode.accessibleName = utterance;
+        stateOfSimNode.innerContent = utterance;
         utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'stateOfSim' } ) );
       } );
 

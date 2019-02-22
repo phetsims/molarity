@@ -93,12 +93,12 @@ define( function( require ) {
     // a11y beaker descriptions
     var beakerDescriptionNode = new Node( {
       tagName: 'p',
-      accessibleName: solutionDescriber.getBeakerDescription()
+      innerContent: solutionDescriber.getBeakerDescription()
     } );
     beakerNode.addChild( beakerDescriptionNode );
 
     Property.multilink( [ model.solution.soluteProperty, model.solution.concentrationProperty ], () => {
-      beakerDescriptionNode.accessibleName = solutionDescriber.getBeakerDescription();
+      beakerDescriptionNode.innerContent = solutionDescriber.getBeakerDescription();
     } );
 
     var cylinderSize = beakerNode.getCylinderSize();
