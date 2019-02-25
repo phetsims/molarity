@@ -51,10 +51,9 @@ define( require => {
       } );
 
       Property.multilink( [ model.solution.soluteProperty, valuesVisibleProperty ], () => {
-        var utterance = solutionDescriber.getSoluteDescription();
+        var utterance = solutionDescriber.getSoluteAlertDescription();
         utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'stateOfSim' } ) );
       } );
-
 
       // @private
       this.model = model;

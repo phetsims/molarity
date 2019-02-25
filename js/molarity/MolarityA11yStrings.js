@@ -123,6 +123,21 @@ define( function( require ) {
       notSaturatedString: {
         value: 'not yet saturated'
       },
+      increasesString: {
+        value: 'increases'
+      },
+      decreasesString: {
+        value: 'decreases'
+      },
+      raisesString: {
+        value: 'raises'
+      },
+      lowersString: {
+        value: 'lowers'
+      },
+      sliderMovedAlertPattern: {
+        value: 'As {{sliderName}} {{increases}}, Molarity {{raises}}. Solution concentration now {{concentrationProperty}}.'
+      },
       soluteChangedAlertPattern: {
         value: '{{soluteProperty}} Starts at 0.0 and Peaks at {{maxConcentration}}'
       }
