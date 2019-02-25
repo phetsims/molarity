@@ -1,4 +1,5 @@
-/* Copyright 2013-2018, University of Colorado Boulder*/
+// Copyright 2013-2019, University of Colorado Boulder
+
 /**
  * Model of a solute, an immutable data structure.
  * This model is immutable in the sense that you should not change any of its fields after construction,
