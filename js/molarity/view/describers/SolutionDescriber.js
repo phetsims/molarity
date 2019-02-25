@@ -223,7 +223,6 @@ define( require => {
     }
 
 
-
     /**
      * Uses the singleton pattern to keep one instance of this describer for the entire lifetime of the sim.
      * @returns {SolutionDescriber}

@@ -12,7 +12,7 @@ define( function( require ) {
   var GeneralNavigationHelpContent = require( 'SCENERY_PHET/keyboard/help/GeneralNavigationHelpContent' );
   var HBox = require( 'SCENERY/nodes/HBox' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var Molarity = require( 'MOLARITY/Molarity' );
+  var molarity = require( 'MOLARITY/molarity' );
 
   /**
    * Constructor.
@@ -31,7 +31,7 @@ define( function( require ) {
     } );
   }
 
-  Molarity.register( 'MolarityKeyboardHelpContent', MolarityKeyboardHelpContent );
+  molarity.register( 'MolarityKeyboardHelpContent', MolarityKeyboardHelpContent );
 
   return inherit( HBox, MolarityKeyboardHelpContent );
 } );

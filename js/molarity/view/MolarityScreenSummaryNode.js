@@ -56,7 +56,6 @@ define( require => {
       } );
 
 
-
       // @private
       this.model = model;
 

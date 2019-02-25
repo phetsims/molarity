@@ -9,7 +9,7 @@ define( function( require ) {
   'use strict';
 
   // modules
-  // var MolarityKeyboardHelpContent = require( 'MOLARITY/molarity/view/MolarityKeyboardHelpContent' );
+  var MolarityKeyboardHelpContent = require( 'MOLARITY/molarity/view/MolarityKeyboardHelpContent' );
   var MolarityScreen = require( 'MOLARITY/molarity/MolarityScreen' );
   var Sim = require( 'JOIST/Sim' );
   var SimLauncher = require( 'JOIST/SimLauncher' );
@@ -22,7 +22,7 @@ define( function( require ) {
   var tandem = Tandem.rootTandem;
 
   // help content to describe keyboard interactions
-  // var keyboardHelpContent = new MolarityKeyboardHelpContent();
+  var keyboardHelpContent = new MolarityKeyboardHelpContent();
 
   var options = {
     credits: {
@@ -30,8 +30,8 @@ define( function( require ) {
       softwareDevelopment: 'Chris Malley (PixelZoom, Inc.)',
       team: 'Kelly Lancaster, Robert Parson, Kathy Perkins',
       qualityAssurance: 'Steele Dalton, Alex Dornan, Ethan Johnson, Elise Morgan, Oliver Orejola, Bryan Yoelin'
-    }
-    //keyboardHelpNode: keyboardHelpContent
+    },
+    keyboardHelpNode: keyboardHelpContent
   };
 
   SimLauncher.launch( function() {
