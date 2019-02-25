@@ -47,10 +47,14 @@ define( require => {
       this.addChild( stateOfSimNode );
 
       Property.multilink( [ model.solution.soluteProperty, model.solution.volumeProperty, model.solution.soluteAmountProperty, model.solution.concentrationProperty, valuesVisibleProperty ], () => {
-        var utterance = solutionDescriber.getStateOfSimDescription();
-        stateOfSimNode.innerContent = utterance;
+        stateOfSimNode.innerContent = solutionDescriber.getStateOfSimDescription();
+      } );
+
+      Property.multilink( [ model.solution.soluteProperty, valuesVisibleProperty ], () => {
+        var utterance = solutionDescriber.getSoluteDescription();
         utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'stateOfSim' } ) );
       } );
+
 
 
       // @private

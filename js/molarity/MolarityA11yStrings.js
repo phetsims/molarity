@@ -19,13 +19,7 @@ define( function( require ) {
         value: 'In the Play Area, you find a beaker containing a solution and a concentration scale. You can choose 1 of {{numberOfSolutes}} solutes for the beaker, and observe changes to concentration scale as you adjust solute amount or solution volume. In the Control Area, there is a checkbox to show measured values for mols, Liters and Molarity, and a button to reset the sim.'
       },
       stateOfSimPattern: {
-        value: 'Beaker is {{volumeProperty}} of a {{saturatedConcentration}} {{soluteProperty}} solution, containing {{soluteAmountProperty}} moles of {{soluteProperty}} solute. Concentration is {{concentrationProperty}}.'
-      },
-      currentSoluteValuesVisiblePattern: {
-        value: 'Current solute chosen is {{soluteProperty}}'
-      },
-      currentSolutePattern: {
-        value: 'Currently, beaker is {{volumeProperty}} of a {{soluteProperty}} solution.'
+        value: 'Beaker is {{volumeProperty}} of a {{saturatedConcentration}} {{soluteProperty}} solution, containing {{soluteAmountProperty}} of {{soluteProperty}} solute. {{concentrationPattern}}.'
       },
       soluteAmountAndUnitPattern: {
         value: '{{soluteAmountProperty}} mol'
@@ -40,13 +34,10 @@ define( function( require ) {
         value: '{{volumeProperty}} liters'
       },
       solutionConcentrationValuesVisiblePattern: {
-        value: 'Molarity, Solution Concentration, is {{concentrationProperty}}'
+        value: 'Concentration is {{concentrationProperty}} molar'
       },
       solutionConcentrationPattern: {
-        value: 'Solution concentration is {{concentrationProperty}}'
-      },
-      solutionConcentrationAndUnitPattern: {
-        value: '{{concentrationProperty}} molar'
+        value: 'Solution is {{concentrationProperty}} and is {{saturatedConcentration}}'
       },
       soluteAmountAccessibleName: {
         value: 'Solute Amount'
@@ -128,6 +119,12 @@ define( function( require ) {
       },
       saturatedString: {
         value: 'Saturated'
+      },
+      notSaturatedString: {
+        value: 'not yet saturated'
+      },
+      soluteChangedAlertPattern: {
+        value: '{{soluteProperty}} Starts at 0.0 and Peaks at {{maxConcentration}}'
       }
     }
   ;

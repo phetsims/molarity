@@ -125,7 +125,9 @@ define( function( require ) {
       MConstants.SOLUTE_AMOUNT_DECIMAL_PLACES,
       unitsMolesString,
       valuesVisibleProperty,
-      tandem.createTandem( 'soluteAmountSlider' ), soluteAmountAccessibleNameString );
+      tandem.createTandem( 'soluteAmountSlider' ),
+      soluteAmountAccessibleNameString
+    );
 
     // slider for controlling volume of solution, sized to match tick marks on the beaker
     var volumeSliderHeight = ( MConstants.SOLUTION_VOLUME_RANGE.getLength() / MConstants.SOLUTION_VOLUME_RANGE.max ) * cylinderSize.height;
@@ -138,8 +140,9 @@ define( function( require ) {
       MConstants.SOLUTION_VOLUME_DECIMAL_PLACES,
       unitsLitersString,
       valuesVisibleProperty,
-      tandem.createTandem( 'solutionVolumeSlider' ), solutionVolumeAccessibleNameString );
-
+      tandem.createTandem( 'solutionVolumeSlider' ),
+      solutionVolumeAccessibleNameString
+    );
 
     // a11y header for slider controls
     var sliderControlsNode = new Node( {

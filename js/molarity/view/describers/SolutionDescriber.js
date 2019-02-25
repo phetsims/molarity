@@ -15,17 +15,12 @@ define( require => {
 
   // a11y strings
   const beakerDescriptionString = MolarityA11yStrings.beakerDescription.value;
-  const currentSolutePatternString = MolarityA11yStrings.currentSolutePattern.value;
-  const currentSoluteValuesVisiblePatternString = MolarityA11yStrings.currentSoluteValuesVisiblePattern.value;
   const soluteAmountAndUnitPatternString = MolarityA11yStrings.soluteAmountAndUnitPattern.value;
-  const soluteAmountPatternString = MolarityA11yStrings.soluteAmountPattern.value;
   const solutionVolumeAndUnitPatternString = MolarityA11yStrings.solutionVolumeAndUnitPattern.value;
-  const solutionVolumePatternString = MolarityA11yStrings.solutionVolumePattern.value;
-  const solutionConcentrationAndUnitPatternString = MolarityA11yStrings.solutionConcentrationAndUnitPattern.value;
+  const soluteChangedAlertPatternString = MolarityA11yStrings.soluteChangedAlertPattern.value;
   const solutionConcentrationValuesVisiblePatternString = MolarityA11yStrings.solutionConcentrationValuesVisiblePattern.value;
   const solutionConcentrationPatternString = MolarityA11yStrings.solutionConcentrationPattern.value;
   const stateOfSimPatternString = MolarityA11yStrings.stateOfSimPattern.value;
-
   const fullString = MolarityA11yStrings.fullString.value;
   const nearlyFullString = MolarityA11yStrings.nearlyFullString.value;
   const overHalfString = MolarityA11yStrings.overHalfString.value;
@@ -49,6 +44,7 @@ define( require => {
   const maximumString = MolarityA11yStrings.maximumString.value;
 
   const saturatedString = MolarityA11yStrings.saturatedString.value;
+  const notSaturatedString = MolarityA11yStrings.notSaturatedString.value;
 
   const VOLUME_STRINGS = [
     leastAmountString,
@@ -165,82 +161,40 @@ define( require => {
      * @returns {string}
      */
     getStateOfSimDescription() {
-      let saturatedConcentration = '';
-      let volumeProperty = VOLUME_STRINGS[ volumeToIndex( this.solution.volumeProperty.value ) ];
       const soluteProperty = this.solution.soluteProperty.value.name;
-      let soluteAmountProperty = SOLUTE_AMOUNT_STRINGS[ Util.roundSymmetric( soluteAmountToIndex( this.solution.soluteAmountProperty.value ) ) ];
-      let concentrationProperty = CONCENTRATION_STRINGS[ Util.roundSymmetric( this.solution.concentrationProperty.value ) ];
+      //sets values to fill in initially -- "Show Values" checkbox is not checked
+      let saturatedConcentration = '';
+      let volumeProperty = StringUtils.fillIn( solutionVolumeAndUnitPatternString, {
+        volumeProperty: this.solution.volumeProperty.value.toFixed( 3 )
+      } );
+      let soluteAmountProperty = StringUtils.fillIn( soluteAmountAndUnitPatternString, {
+        soluteAmountProperty: this.solution.soluteAmountProperty.value.toFixed( 3 )
+      } );
+      let concentrationPattern = StringUtils.fillIn( solutionConcentrationValuesVisiblePatternString, {
+        concentrationProperty: this.solution.concentrationProperty.value.toFixed( 3 )
+      } );
+
+      // checks if the solution is saturated yet, and sets saturatedConcentration to saturatedString if so.
       if ( this.solution.concentrationProperty.value >= this.solution.soluteProperty.value.saturatedConcentration ) {
         saturatedConcentration = saturatedString;
       }
-      if ( this.valuesVisibleProperty.value ) {
-        volumeProperty = StringUtils.fillIn( solutionVolumeAndUnitPatternString, { volumeProperty: this.solution.volumeProperty.value.toFixed( 3 ) } );
-        soluteAmountProperty = this.solution.soluteAmountProperty.value.toFixed( 3 );
-        concentrationProperty = StringUtils.fillIn( solutionConcentrationAndUnitPatternString, { concentrationProperty: this.solution.concentrationProperty.value.toFixed( 3 ) } );
+
+      // changes values to fill in if the "Show Values" checkbox is not checked
+      if ( !this.valuesVisibleProperty.value ) {
+        volumeProperty = VOLUME_STRINGS[ volumeToIndex( this.solution.volumeProperty.value ) ];
+        soluteAmountProperty = SOLUTE_AMOUNT_STRINGS[ Util.roundSymmetric( soluteAmountToIndex( this.solution.soluteAmountProperty.value ) ) ];
+        concentrationPattern = StringUtils.fillIn( solutionConcentrationPatternString, {
+          concentrationProperty: CONCENTRATION_STRINGS[ Util.roundSymmetric( this.solution.concentrationProperty.value ) ],
+          saturatedConcentration: saturatedConcentration === '' ? notSaturatedString : saturatedConcentration
+        } );
       }
       return StringUtils.fillIn( stateOfSimPatternString, {
         volumeProperty: volumeProperty,
         soluteProperty: soluteProperty,
         soluteAmountProperty: soluteAmountProperty,
-        concentrationProperty: concentrationProperty,
+        concentrationPattern: concentrationPattern,
         saturatedConcentration: saturatedConcentration
       } );
-    }
-
-    /**
-     * Describes current chosen solute.
-     * @public
-     * @returns {string}
-     */
-    getCurrentSoluteDescription() {
-      let pattern = currentSoluteValuesVisiblePatternString;
-      if ( !this.valuesVisibleProperty.value ) {
-        pattern = StringUtils.fillIn( currentSolutePatternString, {
-          volumeProperty: VOLUME_STRINGS[ Util.roundSymmetric( volumeToIndex( this.solution.volumeProperty.value ) ) - 1 ]
-        } );
-      }
-      return StringUtils.fillIn( pattern, { soluteProperty: this.solution.soluteProperty.value.name } );
-    }
-
-    /**
-     * Describes the amount of solute chosen by the solute amount slider.
-     * @public
-     * @returns {string}
-     */
-    getSoluteAmountDescription() {
-      let valueToFill = StringUtils.fillIn( soluteAmountAndUnitPatternString, { soluteAmountProperty: this.solution.soluteAmountProperty.value.toFixed( 3 ) } );
-      if ( !this.valuesVisibleProperty.value ) {
-        valueToFill = SOLUTE_AMOUNT_STRINGS[ Util.roundSymmetric( soluteAmountToIndex( this.solution.soluteAmountProperty.value ) ) ];
-      }
-      return StringUtils.fillIn( soluteAmountPatternString, { soluteAmountProperty: valueToFill } );
-    }
-
-    /**
-     * Describes the volume of the solution -- set by the Solution Volume slider.
-     * @public
-     * @returns {string}
-     */
-    getSolutionVolumeDescription() {
-      let valueToFill = `${this.solution.volumeProperty.value.toFixed( 3 )} Liters`;
-      if ( !this.valuesVisibleProperty.value ) {
-        valueToFill = VOLUME_STRINGS[ Util.roundSymmetric( volumeToIndex( this.solution.volumeProperty.value ) ) - 1 ];
-      }
-      return StringUtils.fillIn( solutionVolumePatternString, { volumeProperty: valueToFill } );
-    }
-
-    /**
-     * Describes the concentration of the solution -- matches the solution concentration scale.
-     * @public
-     * @returns {string}
-     */
-    getSolutionConcentrationDescription() {
-      let pattern = solutionConcentrationValuesVisiblePatternString;
-      let valueToFill = `${this.solution.concentrationProperty.value} M`;
-      if ( !this.valuesVisibleProperty.value ) {
-        pattern = solutionConcentrationPatternString;
-        valueToFill = CONCENTRATION_STRINGS[ Util.roundSymmetric( this.solution.concentrationProperty.value ) ];
-      }
-      return StringUtils.fillIn( pattern, { concentrationProperty: valueToFill } );
     }
 
     /**
@@ -256,6 +210,19 @@ define( require => {
       } );
     }
 
+    /**
+     * Describes the concentration level in the beaker in the play area.
+     * @public
+     * @returns {string}
+     */
+    getSoluteDescription() {
+      return StringUtils.fillIn( soluteChangedAlertPatternString, {
+        soluteProperty: this.solution.soluteProperty.value.name,
+        maxConcentration: this.solution.soluteProperty.value.saturatedConcentration
+      } );
+    }
+
+
 
     /**
      * Uses the singleton pattern to keep one instance of this describer for the entire lifetime of the sim.
@@ -265,7 +232,6 @@ define( require => {
       assert && assert( describer, 'describer has not yet been initialized' );
       return describer;
     }
-
 
     /**
      * Initialize the describer singleton
