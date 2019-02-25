@@ -57,10 +57,6 @@ define( require => {
           } );
         }
       } );
-
-      // @private
-      this.model = model;
-
     }
   }
   return molarity.register( 'MolarityScreenSummaryNode', MolarityScreenSummaryNode );
