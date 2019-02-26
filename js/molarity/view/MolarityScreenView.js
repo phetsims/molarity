@@ -35,7 +35,6 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
   var VerticalSlider = require( 'MOLARITY/molarity/view/VerticalSlider' );
 
-
   // strings
   var fullString = require( 'string!MOLARITY/full' );
   var litersString = require( 'string!MOLARITY/liters' );
