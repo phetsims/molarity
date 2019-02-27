@@ -19,25 +19,25 @@ define( function( require ) {
         value: 'In the Play Area, you find a beaker containing a solution and a concentration scale. You can choose 1 of {{numberOfSolutes}} solutes for the beaker, and observe changes to concentration scale as you adjust solute amount or solution volume. In the Control Area, there is a checkbox to show measured values for mols, Liters and Molarity, and a button to reset the sim.'
       },
       stateOfSimPattern: {
-        value: 'Beaker is {{volumeProperty}} of a {{saturatedConcentration}} {{soluteProperty}} solution, containing {{soluteAmountProperty}} of {{soluteProperty}} solute. {{concentrationPattern}}.'
+        value: 'Beaker is {{volume}} of a {{saturatedConcentration}} {{solute}} solution, containing {{soluteAmount}} of {{solute}} solute. {{concentrationClause}}.'
       },
       soluteAmountAndUnitPattern: {
-        value: '{{soluteAmountProperty}} mol'
+        value: '{{soluteAmount}} mol'
       },
       soluteAmountPattern: {
-        value: 'Solute amount is {{soluteAmountProperty}}.'
+        value: 'Solute amount is {{soluteAmount}}.'
       },
       solutionVolumePattern: {
-        value: 'Solution is {{volumeProperty}}.'
+        value: 'Solution is {{volume}}.'
       },
       solutionVolumeAndUnitPattern: {
-        value: '{{volumeProperty}} liters'
+        value: '{{volume}} liters'
       },
       solutionConcentrationValuesVisiblePattern: {
-        value: 'Concentration is {{concentrationProperty}} molar'
+        value: 'Concentration is {{concentration}} molar'
       },
       solutionConcentrationPattern: {
-        value: 'Solution is {{concentrationProperty}} and is {{saturatedConcentration}}'
+        value: 'Solution is {{concentration}} and is {{saturatedConcentration}}'
       },
       soluteAmountAccessibleName: {
         value: 'Solute Amount'
@@ -49,7 +49,7 @@ define( function( require ) {
         value: 'Beaker'
       },
       beakerDescription: {
-        value: 'Solution Concentration of {{soluteProperty}} has reached {{concentrationProperty}} the peak of this solute is {{maxConcentration}}'
+        value: 'Solution Concentration of {{solute}} has reached {{concentration}} the peak of this solute is {{maxConcentration}}'
       },
       soluteComboBoxLabel: {
         value: 'Select Solute'
@@ -136,10 +136,10 @@ define( function( require ) {
         value: 'lowers'
       },
       sliderMovedAlertPattern: {
-        value: 'As {{sliderName}} {{increases}}, Molarity {{raises}}. Solution concentration now {{concentrationProperty}}.'
+        value: 'As {{sliderName}} {{increases}}, Molarity {{raises}}. Solution concentration now {{concentrationClause}}.'
       },
       soluteChangedAlertPattern: {
-        value: '{{soluteProperty}} Starts at 0.0 and Peaks at {{maxConcentration}}'
+        value: '{{solute}} Starts at 0.0 and Peaks at {{maxConcentration}}'
       }
     }
   ;

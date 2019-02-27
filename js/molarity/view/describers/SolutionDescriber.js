@@ -174,13 +174,13 @@ define( require => {
       //sets values to fill in initially -- "Show Values" checkbox is not checked
       let saturatedConcentration = '';
       let volumeProperty = StringUtils.fillIn( solutionVolumeAndUnitPatternString, {
-        volumeProperty: this.solution.volumeProperty.value.toFixed( 3 )
+        volume: this.solution.volumeProperty.value.toFixed( 3 )
       } );
       let soluteAmountProperty = StringUtils.fillIn( soluteAmountAndUnitPatternString, {
-        soluteAmountProperty: this.solution.soluteAmountProperty.value.toFixed( 3 )
+        soluteAmount: this.solution.soluteAmountProperty.value.toFixed( 3 )
       } );
       let concentrationPattern = StringUtils.fillIn( solutionConcentrationValuesVisiblePatternString, {
-        concentrationProperty: this.solution.concentrationProperty.value.toFixed( 3 )
+        concentration: this.solution.concentrationProperty.value.toFixed( 3 )
       } );
 
       // checks if the solution is saturated yet, and sets saturatedConcentration to saturatedString if so.
@@ -193,15 +193,15 @@ define( require => {
         volumeProperty = VOLUME_STRINGS[ volumeToIndex( this.solution.volumeProperty.value ) ];
         soluteAmountProperty = SOLUTE_AMOUNT_STRINGS[ Util.roundSymmetric( soluteAmountToIndex( this.solution.soluteAmountProperty.value ) ) ];
         concentrationPattern = StringUtils.fillIn( solutionConcentrationPatternString, {
-          concentrationProperty: CONCENTRATION_STRINGS[ Util.roundSymmetric( this.solution.concentrationProperty.value ) ],
+          concentration: CONCENTRATION_STRINGS[ Util.roundSymmetric( this.solution.concentrationProperty.value ) ],
           saturatedConcentration: saturatedConcentration === '' ? notSaturatedString : saturatedConcentration
         } );
       }
       return StringUtils.fillIn( stateOfSimPatternString, {
-        volumeProperty: volumeProperty,
-        soluteProperty: soluteProperty,
-        soluteAmountProperty: soluteAmountProperty,
-        concentrationPattern: concentrationPattern,
+        volume: volumeProperty,
+        solute: soluteProperty,
+        soluteAmount: soluteAmountProperty,
+        concentrationClause: concentrationPattern,
         saturatedConcentration: saturatedConcentration
       } );
     }
@@ -213,8 +213,8 @@ define( require => {
      */
     getBeakerDescription() {
       return StringUtils.fillIn( beakerDescriptionString, {
-        soluteProperty: this.solution.soluteProperty.value.name,
-        concentrationProperty: CONCENTRATION_STRINGS[ Util.roundSymmetric( this.solution.concentrationProperty.value ) ],
+        solute: this.solution.soluteProperty.value.name,
+        concentration: CONCENTRATION_STRINGS[ Util.roundSymmetric( this.solution.concentrationProperty.value ) ],
         maxConcentration: this.solution.soluteProperty.value.saturatedConcentration
       } );
     }
@@ -226,7 +226,7 @@ define( require => {
      */
     getSoluteAlertDescription() {
       return StringUtils.fillIn( soluteChangedAlertPatternString, {
-        soluteProperty: this.solution.soluteProperty.value.name,
+        solute: this.solution.soluteProperty.value.name,
         maxConcentration: this.solution.soluteProperty.value.saturatedConcentration
       } );
     }
@@ -238,9 +238,11 @@ define( require => {
      * @public
      * @returns {string}
      */
-
     getSliderAlertDescription( target, isUp ) {
       var raiseLower = raisesString;
+      var concentrationClause = StringUtils.fillIn( solutionConcentrationValuesVisiblePatternString, {
+        concentration: this.solution.concentrationProperty.value.toFixed( 3 )
+      } );
       if ( ( isUp && target.accessibleName === solutionVolumeAccessibleNameString ) || ( !isUp && target.accessibleName === soluteAmountAccessibleNameString ) ) {
         raiseLower = lowersString;
       }
@@ -248,9 +250,7 @@ define( require => {
         sliderName: target.accessibleName,
         increases: isUp ? increasesString : decreasesString,
         raises: raiseLower,
-        concentrationProperty: StringUtils.fillIn( solutionConcentrationValuesVisiblePatternString, {
-          concentrationProperty: this.solution.concentrationProperty.value.toFixed( 3 )
-        } )
+        concentrationClause: concentrationClause
       } );
     }
 

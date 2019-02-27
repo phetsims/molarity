@@ -160,6 +160,11 @@ define( function( require ) {
         solutionVolumeAccessibleNameString
       );
 
+      model.solution.volumeProperty.link( ( newVolume, oldVolume, ) => {
+        // if newVolume > oldVolume{]
+        // else {}
+      } )
+
       solutionVolumeSlider.addInputListener( {
         keydown: ( e ) => {
           var utterance = null;
@@ -184,16 +189,14 @@ define( function( require ) {
 
       sliderControlsNode.accessibleOrder = [ soluteAmountSlider, solutionVolumeSlider ];
 
-      var soluteComboBoxNode = new Node( {
-        tagName: 'div',
-        labelTagName: 'h3',
-        labelContent: soluteComboBoxLabelString
+      var soluteComboBoxHeadingNode = new Node( {
+        tagName: 'h3',
+        innerContent: soluteComboBoxLabelString
       } );
-      soluteComboBoxNode.accessibleOrder = [ soluteComboBox, soluteComboBoxListParent ];
 
       // a11y play area node
       var playAreaNode = new PlayAreaNode();
-      playAreaNode.accessibleOrder = [ beakerNode, sliderControlsNode, soluteComboBoxNode ];
+      playAreaNode.accessibleOrder = [ beakerNode, sliderControlsNode, soluteComboBoxHeadingNode, soluteComboBox, soluteComboBoxListParent ];
 
       // concentration display
       var concentrationBarSize = new Dimension2( 40, cylinderSize.height + 50 );
@@ -276,9 +279,9 @@ define( function( require ) {
           concentrationDisplay,
           showValuesCheckbox,
           resetAllButton,
+          soluteComboBoxHeadingNode,
           soluteComboBox,
           soluteComboBoxListParent,
-          soluteComboBoxNode,
           sliderControlsNode,
           playAreaNode,
           controlAreaNode

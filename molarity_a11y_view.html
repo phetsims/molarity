@@ -11,108 +11,131 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>A11y View: Molarity</title>
-
   <style>
     html {
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.4;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.4;
     }
 
     body {
-      display: block;
-      margin: 1em 1em 2em;
-      width: 100%;
-      background: #ccc;
+    display: block;
+    margin: 1em 1em 2em;
+    width: 100%;
+    background: #ccc;
+    }
+
+    div#content{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    }
+
+    div#content div.left{
+    display: grid;
+    grid-template-rows: 1fr 5fr 5fr;
+    margin-right:2%;
+    }
+    h1{
+    font-size: 1.8em;
+    margin-top:0;
+    }
+
+    h1#main-title{
+    margin-left:2%;
+    }
+
+    @media(max-width: 974px){
+    div#content div.left{
+    grid-template-rows: 1fr 2fr 5fr;
+    }
+
+    div#content{
+    display:grid;
+    grid-template-columns: 3fr 2fr;
+    }
+
+    h1{
+    font-size: 1.4em;
+    }
+
+    div#content iframe {
+    width: 52%;
+    height: 36.3vw;
+    max-height: 36.3vw;
+    position: fixed;
+    bottom: 10px;
+    }
+
     }
 
     h3 {
-      margin-top: 0
+    margin-top: 0
     }
 
     .alert_copy_container ul {
-      -webkit-padding-start: 20px
-    }
-
-    .left {
-      position: fixed;
-      width: 47%;
-    }
-
-    /* This class was found online as a way to preserve an iframe aspect ratio,
-    see https://fettblog.eu/blog/2013/06/16/preserving-aspect-ratio-for-embedded-iframes/*/
-    .aspect-ratio {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      padding-bottom: 67%;
+    -webkit-padding-start: 20px
     }
 
     iframe {
-      width: 43%;
-      height: 30vw;
-      max-height: 30vw;
-      position: fixed;
+    width: 43%;
+    height: 30vw;
+    max-height: 30vw;
+    position: fixed;
+    bottom: 10px;
     }
 
-    div.right {
-      background: #ccc;
-      float: right;
-      width: 47%;
-      overflow: auto;
-    }
-
-    div.clearfix {
-      clear: both;
-    }
 
     p.alert {
-      opacity: 0.6;
+    opacity: 0.6;
     }
 
     div.alert_copy_container {
-      background: #e5c45b;
-      border-radius: 1em;
-      padding: .25em .75em 1em;
-      min-height: 7em;
+    background: #e5c45b;
+    border-radius: 1em;
+    padding: .25em .75em 1em;
+    min-height: 7em;
+    }
+    div#alerts{
+    margin-top:20px;
     }
 
     p.alert_copy {
-      min-height: 5em;
+    min-height: 5em;
     }
 
     div.dom_copy_container {
-      background: #a0e1e7;
-      border-radius: 1em;
-      padding: 1em;
+    background: #a0e1e7;
+    border-radius: 1em;
+    padding: 1em;
     }
 
     div.dom_copy_container li {
-      margin-bottom: .5em;
+    margin-bottom: .5em;
     }
 
     div.wrapper {
-      height: auto;
-      width: 95%;
-      margin-bottom: 2em;
+    height: auto;
+    width: 95%;
+    margin-bottom: 2em;
     }
 
     .dynamic {
-      background-color: #9adaa6;
-      border-bottom: double 3px #000; /*or a border in dark green*/
+    background-color: #9adaa6;
+    border-bottom: double 3px #000; /*or a border in dark green*/
     }
 
     em { /* this is the same as the dynamic class, but should be changed as part of https://github.com/phetsims/a11y-research/issues/67*/
-      background-color: #9adaa6;
-      border-bottom: double 3px #000; /*or a border in dark green*/
+    background-color: #9adaa6;
+    border-bottom: double 3px #000; /*or a border in dark green*/
     }
 
     .highlight {
-      border: thick double red;
+    border: thick double red;
     }
 
     .bold {
-      font-weight: bold;
+    font-weight: bold;
     }
+
   </style>
 
 </head>
@@ -126,6 +149,7 @@
       <div class="aspect-ratio">
         <iframe id="iframe" allowfullscreen scrolling="no" title="Interact with Molarity"></iframe>
       </div>
+<<<<<<< Updated upstream
       <div id="alerts">
         <h3>Activity log of Interactive Alerts</h3>
         <p>
@@ -138,6 +162,8 @@
           </div>
         </div>
       </div>
+=======
+>>>>>>> Stashed changes
     </div>
 
     <!--The PDOM copy will be placed in this container, along with a section just for alerts -->
@@ -163,7 +189,20 @@
       <p>Content in the blue box updates in real-time to provide an always-available description of the current state of
         the sim.</p>
       <div id="dom-copy-container" class="dom_copy_container" role="presentation"></div>
+      <div id="alerts">
+        <h3>Activity log of Interactive Alerts</h3>
+        <p>
+          Interactive alerts are read out as the user interacts providing a description of what is happening in
+          real-time. Alerts appear in reverse chronological order with the latest on top.
+        </p>
+        <div id=alert-copy-container class=alert_copy_container>
+          <div id='polite-element-container'>
+            <ul class='alert_copy' id='alert-list'></ul>
+          </div>
+        </div>
+      </div>
     </div>
+
 
     <!--clear the blocks after the float effect-->
     <div class="clearfix"></div>

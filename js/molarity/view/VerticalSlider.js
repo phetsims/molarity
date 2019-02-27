@@ -83,8 +83,9 @@ define( function( require ) {
       tandem: tandem.createTandem( 'sliderNode' ),
 
       // a11y
-      shiftKeyboardStep: Math.pow( 5, decimalPlaces * -1 ),
-      accessibleName: accessibleName
+      shiftKeyboardStep: Math.pow( 10, decimalPlaces * -1 ),
+      accessibleName: accessibleName,
+      keyboardStep: 0.050
     } );
 
     var valueNode = new Text( '?', {
