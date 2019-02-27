@@ -54,10 +54,6 @@ define( require => {
         var utterance = solutionDescriber.getSoluteAlertDescription();
         utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'stateOfSim' } ) );
       } );
-
-      // @private
-      this.model = model;
-
     }
   }
 
