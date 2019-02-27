@@ -163,7 +163,7 @@ define( function( require ) {
       model.solution.volumeProperty.link( ( newVolume, oldVolume, ) => {
         // if newVolume > oldVolume{]
         // else {}
-      } )
+      } );
 
       solutionVolumeSlider.addInputListener( {
         keydown: ( e ) => {
