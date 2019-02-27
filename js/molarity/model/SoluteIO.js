@@ -13,9 +13,9 @@ define( function( require ) {
   var molarity = require( 'MOLARITY/molarity' );
   var ObjectIO = require( 'TANDEM/types/ObjectIO' );
   var phetioInherit = require( 'TANDEM/phetioInherit' );
+  var validate = require( 'AXON/validate' );
 
   // ifphetio
-  var assertInstanceOf = require( 'ifphetio!PHET_IO/assertInstanceOf' );
   var phetioEngine = require( 'ifphetio!PHET_IO/phetioEngine' );
 
   /**
@@ -24,18 +24,18 @@ define( function( require ) {
    * @constructor
    */
   function SoluteIO( solute, phetioID ) {
-    assert && assertInstanceOf( solute, phet.molarity.Solute );
     ObjectIO.call( this, solute, phetioID );
   }
 
   phetioInherit( ObjectIO, 'SoluteIO', SoluteIO, {}, {
     documentation: 'The solute for the sim',
+    validator: { isValidValue: v => v instanceof phet.molarity.Solute },
 
     /**
      * @param {Solute} solute
      */
     toStateObject: function( solute ) {
-      assert && assertInstanceOf( solute, phet.molarity.Solute );
+      validate( solute, this.validator );
       return solute.tandem.phetioID;
     },
 

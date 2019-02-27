@@ -6,7 +6,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 define( function( require ) {
-    'use strict';
+  'use strict';
 
     // modules
     var BeakerNode = require( 'MOLARITY/molarity/view/BeakerNode' );
