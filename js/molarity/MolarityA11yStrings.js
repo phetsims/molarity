@@ -136,7 +136,7 @@ define( function( require ) {
         value: 'lowers'
       },
       sliderMovedAlertPattern: {
-        value: 'As {{sliderName}} {{increases}}, Molarity {{raises}}. Solution concentration now {{concentrationClause}}.'
+        value: 'As {{sliderName}} {{increases}}, Molarity {{raises}}. {{concentrationClause}}.'
       },
       soluteChangedAlertPattern: {
         value: '{{solute}} Starts at 0.0 and Peaks at {{maxConcentration}}'

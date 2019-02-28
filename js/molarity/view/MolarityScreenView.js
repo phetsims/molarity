@@ -6,63 +6,64 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 define( function( require ) {
-  'use strict';
+    'use strict';
 
     // modules
-    var BeakerNode = require( 'MOLARITY/molarity/view/BeakerNode' );
-    var BooleanProperty = require( 'AXON/BooleanProperty' );
-    var Bounds2 = require( 'DOT/Bounds2' );
-    var Checkbox = require( 'SUN/Checkbox' );
-    var ConcentrationDisplay = require( 'MOLARITY/molarity/view/ConcentrationDisplay' );
-    var ControlAreaNode = require( 'SCENERY_PHET/accessibility/nodes/ControlAreaNode' );
-    var Dimension2 = require( 'DOT/Dimension2' );
-    var inherit = require( 'PHET_CORE/inherit' );
-    var MConstants = require( 'MOLARITY/molarity/MConstants' );
-    var molarity = require( 'MOLARITY/molarity' );
-    var MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
-    var MolarityScreenSummaryNode = require( 'MOLARITY/molarity/view/MolarityScreenSummaryNode' );
-    var Node = require( 'SCENERY/nodes/Node' );
-    var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-    var PlayAreaNode = require( 'SCENERY_PHET/accessibility/nodes/PlayAreaNode' );
-    var PrecipitateNode = require( 'MOLARITY/molarity/view/PrecipitateNode' );
-    var Property = require( 'AXON/Property' );
-    var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
-    var SaturatedIndicator = require( 'MOLARITY/molarity/view/SaturatedIndicator' );
-    var ScreenView = require( 'JOIST/ScreenView' );
-    var Shape = require( 'KITE/Shape' );
-    var SoluteComboBox = require( 'MOLARITY/molarity/view/SoluteComboBox' );
-    var SolutionDescriber = require( 'MOLARITY/molarity/view/describers/SolutionDescriber' );
-    var SolutionNode = require( 'MOLARITY/molarity/view/SolutionNode' );
-    var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-    var Text = require( 'SCENERY/nodes/Text' );
-    var Utterance = require( 'SCENERY_PHET/accessibility/Utterance' );
-    var utteranceQueue = require( 'SCENERY_PHET/accessibility/utteranceQueue' );
-    var VerticalSlider = require( 'MOLARITY/molarity/view/VerticalSlider' );
+    const BeakerNode = require( 'MOLARITY/molarity/view/BeakerNode' );
+    const BooleanProperty = require( 'AXON/BooleanProperty' );
+    const Bounds2 = require( 'DOT/Bounds2' );
+    const Checkbox = require( 'SUN/Checkbox' );
+    const ConcentrationDisplay = require( 'MOLARITY/molarity/view/ConcentrationDisplay' );
+    const ControlAreaNode = require( 'SCENERY_PHET/accessibility/nodes/ControlAreaNode' );
+    const Dimension2 = require( 'DOT/Dimension2' );
+    const inherit = require( 'PHET_CORE/inherit' );
+    const MConstants = require( 'MOLARITY/molarity/MConstants' );
+    const molarity = require( 'MOLARITY/molarity' );
+    const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
+    const MolarityAlertManager = require( 'MOLARITY/molarity/view/MolarityAlertManager' );
+    const MolarityScreenSummaryNode = require( 'MOLARITY/molarity/view/MolarityScreenSummaryNode' );
+    const Node = require( 'SCENERY/nodes/Node' );
+    const PhetFont = require( 'SCENERY_PHET/PhetFont' );
+    const PlayAreaNode = require( 'SCENERY_PHET/accessibility/nodes/PlayAreaNode' );
+    const PrecipitateNode = require( 'MOLARITY/molarity/view/PrecipitateNode' );
+    const Property = require( 'AXON/Property' );
+    const ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
+    const SaturatedIndicator = require( 'MOLARITY/molarity/view/SaturatedIndicator' );
+    const ScreenView = require( 'JOIST/ScreenView' );
+    const Shape = require( 'KITE/Shape' );
+    const SoluteComboBox = require( 'MOLARITY/molarity/view/SoluteComboBox' );
+    const SolutionDescriber = require( 'MOLARITY/molarity/view/describers/SolutionDescriber' );
+    const SolutionNode = require( 'MOLARITY/molarity/view/SolutionNode' );
+    const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+    const Text = require( 'SCENERY/nodes/Text' );
+    const Utterance = require( 'SCENERY_PHET/accessibility/Utterance' );
+    const utteranceQueue = require( 'SCENERY_PHET/accessibility/utteranceQueue' );
+    const VerticalSlider = require( 'MOLARITY/molarity/view/VerticalSlider' );
 
 
     // strings
-    var fullString = require( 'string!MOLARITY/full' );
-    var litersString = require( 'string!MOLARITY/liters' );
-    var lotsString = require( 'string!MOLARITY/lots' );
-    var lowString = require( 'string!MOLARITY/low' );
-    var molesString = require( 'string!MOLARITY/moles' );
-    var noneString = require( 'string!MOLARITY/none' );
-    var patternParentheses0TextString = require( 'string!MOLARITY/pattern.parentheses.0text' );
-    var showValuesString = require( 'string!MOLARITY/showValues' );
-    var soluteAmountString = require( 'string!MOLARITY/soluteAmount' );
-    var solutionVolumeString = require( 'string!MOLARITY/solutionVolume' );
-    var unitsLitersString = require( 'string!MOLARITY/units.liters' );
-    var unitsMolesString = require( 'string!MOLARITY/units.moles' );
+    const fullString = require( 'string!MOLARITY/full' );
+    const litersString = require( 'string!MOLARITY/liters' );
+    const lotsString = require( 'string!MOLARITY/lots' );
+    const lowString = require( 'string!MOLARITY/low' );
+    const molesString = require( 'string!MOLARITY/moles' );
+    const noneString = require( 'string!MOLARITY/none' );
+    const patternParentheses0TextString = require( 'string!MOLARITY/pattern.parentheses.0text' );
+    const showValuesString = require( 'string!MOLARITY/showValues' );
+    const soluteAmountString = require( 'string!MOLARITY/soluteAmount' );
+    const solutionVolumeString = require( 'string!MOLARITY/solutionVolume' );
+    const unitsLitersString = require( 'string!MOLARITY/units.liters' );
+    const unitsMolesString = require( 'string!MOLARITY/units.moles' );
 
     // a11y strings
-    var soluteAmountAccessibleNameString = MolarityA11yStrings.soluteAmountAccessibleName.value;
-    var soluteComboBoxLabelString = MolarityA11yStrings.soluteComboBoxLabel.value;
-    var solutionVolumeAccessibleNameString = MolarityA11yStrings.solutionVolumeAccessibleName.value;
-    var sliderControlsLabelString = MolarityA11yStrings.sliderControlsLabelString.value;
-    var sliderControlsDescriptionString = MolarityA11yStrings.sliderControlsDescriptionString.value;
+    const soluteAmountAccessibleNameString = MolarityA11yStrings.soluteAmountAccessibleName.value;
+    const soluteComboBoxLabelString = MolarityA11yStrings.soluteComboBoxLabel.value;
+    const solutionVolumeAccessibleNameString = MolarityA11yStrings.solutionVolumeAccessibleName.value;
+    const sliderControlsLabelString = MolarityA11yStrings.sliderControlsLabelString.value;
+    const sliderControlsDescriptionString = MolarityA11yStrings.sliderControlsDescriptionString.value;
 
     // constants
-    var SLIDER_TRACK_WIDTH = 12;
+    const SLIDER_TRACK_WIDTH = 12;
 
     /**
      * @param {MolarityModel} model
@@ -79,21 +80,24 @@ define( function( require ) {
         addScreenSummaryNode: true
       } );
 
-      var valuesVisibleProperty = new BooleanProperty( false, {
+      const valuesVisibleProperty = new BooleanProperty( false, {
         tandem: tandem.createTandem( 'valuesVisibleProperty' )
       } );
 
       SolutionDescriber.initialize( model, valuesVisibleProperty );
-      var solutionDescriber = SolutionDescriber.getDescriber();
-      var molarityScreenSummaryNode = new MolarityScreenSummaryNode( model, valuesVisibleProperty );
+      MolarityAlertManager.initialize(model)
+
+      const solutionDescriber = SolutionDescriber.getDescriber();
+      const molarityAlertManager = MolarityAlertManager.getDescriber();
+      const molarityScreenSummaryNode = new MolarityScreenSummaryNode( model, valuesVisibleProperty );
       this.addChild( molarityScreenSummaryNode );
 
       // beaker, with solution and precipitate inside of it
-      var beakerNode = new BeakerNode( model.solution, MConstants.SOLUTION_VOLUME_RANGE.max, valuesVisibleProperty,
+      const beakerNode = new BeakerNode( model.solution, MConstants.SOLUTION_VOLUME_RANGE.max, valuesVisibleProperty,
         tandem.createTandem( 'beakerNode' ) );
 
       // a11y beaker descriptions
-      var beakerDescriptionNode = new Node( {
+      const beakerDescriptionNode = new Node( {
         tagName: 'p',
         innerContent: solutionDescriber.getBeakerDescription()
       } );
@@ -103,22 +107,22 @@ define( function( require ) {
         beakerDescriptionNode.innerContent = solutionDescriber.getBeakerDescription();
       } );
 
-      var cylinderSize = beakerNode.getCylinderSize();
-      var solutionNode = new SolutionNode( cylinderSize, beakerNode.getCylinderEndHeight(), model.solution,
+      const cylinderSize = beakerNode.getCylinderSize();
+      const solutionNode = new SolutionNode( cylinderSize, beakerNode.getCylinderEndHeight(), model.solution,
         MConstants.SOLUTION_VOLUME_RANGE.max, tandem.createTandem( 'solutionNode' ) );
-      var precipitateNode = new PrecipitateNode( model.solution, cylinderSize, beakerNode.getCylinderEndHeight(),
+      const precipitateNode = new PrecipitateNode( model.solution, cylinderSize, beakerNode.getCylinderEndHeight(),
         model.maxPrecipitateAmount, tandem.createTandem( 'precipitateNode' ) );
-      var saturatedIndicator = new SaturatedIndicator( model.solution, tandem.createTandem( 'saturatedIndicator' ) );
+      const saturatedIndicator = new SaturatedIndicator( model.solution, tandem.createTandem( 'saturatedIndicator' ) );
 
       // solute control
-      var soluteComboBoxListParent = new Node( { maxWidth: 300 } );
-      var soluteComboBox = new SoluteComboBox( model.solutes, model.solution.soluteProperty, soluteComboBoxListParent,
+      const soluteComboBoxListParent = new Node( { maxWidth: 300 } );
+      const soluteComboBox = new SoluteComboBox( model.solutes, model.solution.soluteProperty, soluteComboBoxListParent,
         tandem.createTandem( 'soluteComboBox' ), {
           maxWidth: 500
         } );
 
       // slider for controlling amount of solute
-      var soluteAmountSlider = new VerticalSlider( soluteAmountString,
+      const soluteAmountSlider = new VerticalSlider( soluteAmountString,
         StringUtils.format( patternParentheses0TextString, molesString ),
         noneString, lotsString,
         new Dimension2( SLIDER_TRACK_WIDTH, cylinderSize.height ),
@@ -131,23 +135,21 @@ define( function( require ) {
         soluteAmountAccessibleNameString
       );
 
-      soluteAmountSlider.addInputListener( {
-        keydown: ( e ) => {
-          var utterance = null;
-          if ( e.domEvent.code === 'ArrowUp' ) {
-            utterance = solutionDescriber.getSliderAlertDescription( e.target, true );
-          }
-          else if ( e.domEvent.code === 'ArrowDown' ) {
-            utterance = solutionDescriber.getSliderAlertDescription( e.target, false );
-          }
-          utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'sliderMoved' } ) );
+      this.model.solution.soluteAmountProperty.link( ( newAmount, oldAmount, ) => {
+        let utterance = null;
+        if ( newAmount > oldAmount ) {
+          utterance = molarityAlertManager.getSoluteAmountAlert(true);
         }
+        else if ( newAmount < oldAmount ) {
+          utterance = molarityAlertManager.getSoluteAmountAlert(false);
+        }
+        utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'sliderMoved' } ) );
       } );
 
 
       // slider for controlling volume of solution, sized to match tick marks on the beaker
-      var volumeSliderHeight = ( MConstants.SOLUTION_VOLUME_RANGE.getLength() / MConstants.SOLUTION_VOLUME_RANGE.max ) * cylinderSize.height;
-      var solutionVolumeSlider = new VerticalSlider( solutionVolumeString,
+      const volumeSliderHeight = ( MConstants.SOLUTION_VOLUME_RANGE.getLength() / MConstants.SOLUTION_VOLUME_RANGE.max ) * cylinderSize.height;
+      const solutionVolumeSlider = new VerticalSlider( solutionVolumeString,
         StringUtils.format( patternParentheses0TextString, litersString ),
         lowString, fullString,
         new Dimension2( SLIDER_TRACK_WIDTH, volumeSliderHeight ),
@@ -160,27 +162,19 @@ define( function( require ) {
         solutionVolumeAccessibleNameString
       );
 
-      model.solution.volumeProperty.link( ( newVolume, oldVolume, ) => {
-        // if newVolume > oldVolume{]
-        // else {}
-      } );
-
-      solutionVolumeSlider.addInputListener( {
-        keydown: ( e ) => {
-          var utterance = null;
-          if ( e.domEvent.code === 'ArrowUp' ) {
-            utterance = solutionDescriber.getSliderAlertDescription( e.target, true );
-          }
-          else if ( e.domEvent.code === 'ArrowDown' ) {
-            utterance = solutionDescriber.getSliderAlertDescription( e.target, false );
-          }
-          utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'sliderMoved' } ) );
+      this.model.solution.volumeProperty.link( ( newVolume, oldVolume, ) => {
+        let utterance = null;
+        if ( newVolume > oldVolume ) {
+          utterance = molarityAlertManager.getVolumeAlert(true);
         }
+        else if ( newVolume < oldVolume ) {
+          utterance = molarityAlertManager.getVolumeAlert(false);
+        }
+        utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'sliderMoved' } ) );
       } );
-
 
       // a11y header for slider controls
-      var sliderControlsNode = new Node( {
+      const sliderControlsNode = new Node( {
         tagName: 'div',
         labelTagName: 'h3',
         labelContent: sliderControlsLabelString,
@@ -189,26 +183,26 @@ define( function( require ) {
 
       sliderControlsNode.accessibleOrder = [ soluteAmountSlider, solutionVolumeSlider ];
 
-      var soluteComboBoxHeadingNode = new Node( {
+      const soluteComboBoxHeadingNode = new Node( {
         tagName: 'h3',
         innerContent: soluteComboBoxLabelString
       } );
 
       // a11y play area node
-      var playAreaNode = new PlayAreaNode();
+      const playAreaNode = new PlayAreaNode();
       playAreaNode.accessibleOrder = [ beakerNode, sliderControlsNode, soluteComboBoxHeadingNode, soluteComboBox, soluteComboBoxListParent ];
 
       // concentration display
-      var concentrationBarSize = new Dimension2( 40, cylinderSize.height + 50 );
-      var concentrationDisplay = new ConcentrationDisplay( model.solution, MConstants.CONCENTRATION_RANGE,
+      const concentrationBarSize = new Dimension2( 40, cylinderSize.height + 50 );
+      const concentrationDisplay = new ConcentrationDisplay( model.solution, MConstants.CONCENTRATION_RANGE,
         valuesVisibleProperty, concentrationBarSize, tandem.createTandem( 'concentrationDisplay' ) );
 
       // Show Values checkbox
-      var showValuesLabel = new Text( showValuesString, {
+      const showValuesLabel = new Text( showValuesString, {
         font: new PhetFont( 22 ),
         tandem: tandem.createTandem( 'showValuesText' )
       } );
-      var showValuesCheckbox = new Checkbox( showValuesLabel, valuesVisibleProperty, {
+      const showValuesCheckbox = new Checkbox( showValuesLabel, valuesVisibleProperty, {
         maxWidth: 175,
         tandem: tandem.createTandem( 'showValuesCheckbox' ),
 
@@ -219,7 +213,7 @@ define( function( require ) {
       showValuesCheckbox.touchArea = Shape.rectangle( showValuesCheckbox.left, showValuesCheckbox.top - 15, showValuesCheckbox.width, showValuesCheckbox.height + 30 );
 
       // Reset All button
-      var resetAllButton = new ResetAllButton( {
+      const resetAllButton = new ResetAllButton( {
         listener: function() {
           valuesVisibleProperty.reset();
           model.reset();
@@ -228,7 +222,7 @@ define( function( require ) {
         tandem: tandem.createTandem( 'resetAllButton' )
       } );
 
-      var controlAreaNode = new ControlAreaNode();
+      const controlAreaNode = new ControlAreaNode();
       controlAreaNode.accessibleOrder = [ showValuesCheckbox, resetAllButton ];
 
       // layout for things that don't have a location in the model
@@ -251,7 +245,7 @@ define( function( require ) {
         soluteComboBox.centerX = beakerNode.centerX;
         soluteComboBox.top = beakerNode.bottom + 50;
         // toward bottom of the beaker
-        var saturatedIndicatorVisible = saturatedIndicator.visible; // so we can layout an invisible node
+        const saturatedIndicatorVisible = saturatedIndicator.visible; // so we can layout an invisible node
         saturatedIndicator.visible = true;
         saturatedIndicator.centerX = beakerNode.x + ( cylinderSize.width / 2 );
         saturatedIndicator.bottom = beakerNode.bottom - ( 0.2 * cylinderSize.height );

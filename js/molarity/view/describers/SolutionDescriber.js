@@ -15,12 +15,8 @@ define( require => {
 
   // a11y strings
   const beakerDescriptionString = MolarityA11yStrings.beakerDescription.value;
-  const sliderMovedAlertPatternString = MolarityA11yStrings.sliderMovedAlertPattern.value;
-  const soluteAmountAccessibleNameString = MolarityA11yStrings.soluteAmountAccessibleName.value;
-  const solutionVolumeAccessibleNameString = MolarityA11yStrings.solutionVolumeAccessibleName.value;
   const soluteAmountAndUnitPatternString = MolarityA11yStrings.soluteAmountAndUnitPattern.value;
   const solutionVolumeAndUnitPatternString = MolarityA11yStrings.solutionVolumeAndUnitPattern.value;
-  const soluteChangedAlertPatternString = MolarityA11yStrings.soluteChangedAlertPattern.value;
   const solutionConcentrationValuesVisiblePatternString = MolarityA11yStrings.solutionConcentrationValuesVisiblePattern.value;
   const solutionConcentrationPatternString = MolarityA11yStrings.solutionConcentrationPattern.value;
   const stateOfSimPatternString = MolarityA11yStrings.stateOfSimPattern.value;
@@ -49,11 +45,6 @@ define( require => {
   const saturatedString = MolarityA11yStrings.saturatedString.value;
   const notSaturatedString = MolarityA11yStrings.notSaturatedString.value;
 
-  const raisesString = MolarityA11yStrings.raisesString.value;
-  const lowersString = MolarityA11yStrings.lowersString.value;
-
-  const increasesString = MolarityA11yStrings.increasesString.value;
-  const decreasesString = MolarityA11yStrings.decreasesString.value;
 
   const VOLUME_STRINGS = [
     leastAmountString,
@@ -218,42 +209,6 @@ define( require => {
         maxConcentration: this.solution.soluteProperty.value.saturatedConcentration
       } );
     }
-
-    /**
-     * Describes the concentration level in the beaker in the play area.
-     * @public
-     * @returns {string}
-     */
-    getSoluteAlertDescription() {
-      return StringUtils.fillIn( soluteChangedAlertPatternString, {
-        solute: this.solution.soluteProperty.value.name,
-        maxConcentration: this.solution.soluteProperty.value.saturatedConcentration
-      } );
-    }
-
-    /**
-     * Describes the concentration level in the beaker in the play area.
-     * param {Object} target - the event target, in this case either the Solute Amount or Solution Volume slider
-     * param {Boolean} isUp - indicates whether the up or down arrow was pushed. true if up, false if down
-     * @public
-     * @returns {string}
-     */
-    getSliderAlertDescription( target, isUp ) {
-      var raiseLower = raisesString;
-      var concentrationClause = StringUtils.fillIn( solutionConcentrationValuesVisiblePatternString, {
-        concentration: this.solution.concentrationProperty.value.toFixed( 3 )
-      } );
-      if ( ( isUp && target.accessibleName === solutionVolumeAccessibleNameString ) || ( !isUp && target.accessibleName === soluteAmountAccessibleNameString ) ) {
-        raiseLower = lowersString;
-      }
-      return StringUtils.fillIn( sliderMovedAlertPatternString, {
-        sliderName: target.accessibleName,
-        increases: isUp ? increasesString : decreasesString,
-        raises: raiseLower,
-        concentrationClause: concentrationClause
-      } );
-    }
-
 
     /**
      * Uses the singleton pattern to keep one instance of this describer for the entire lifetime of the sim.
