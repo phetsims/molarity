@@ -62,19 +62,19 @@ define( require => {
    */
   const volumeToIndex = ( volume ) => {
     assert && assert( volume > 0, 'volume should always be positive.' );
-    if ( volume <= .240 ) {
+    if ( volume <= .220 ) {
       return 0;
     }
-    if ( volume <= .320 ) {
+    if ( volume <= .330 ) {
       return 1;
     }
-    if ( volume <= .400 ) {
+    if ( volume <= .410 ) {
       return 2;
     }
-    if ( volume <= .520 ) {
+    if ( volume <= .530 ) {
       return 3;
     }
-    if ( volume <= .760 ) {
+    if ( volume <= .780 ) {
       return 4;
     }
     if ( volume <= .960 ) {

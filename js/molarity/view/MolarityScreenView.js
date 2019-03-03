@@ -135,18 +135,6 @@ define( function( require ) {
         soluteAmountAccessibleNameString
       );
 
-      this.model.solution.soluteAmountProperty.link( ( newAmount, oldAmount, ) => {
-        let utterance = null;
-        if ( newAmount > oldAmount ) {
-          utterance = molarityAlertManager.getSoluteAmountAlert(true);
-        }
-        else if ( newAmount < oldAmount ) {
-          utterance = molarityAlertManager.getSoluteAmountAlert(false);
-        }
-        utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'sliderMoved' } ) );
-      } );
-
-
       // slider for controlling volume of solution, sized to match tick marks on the beaker
       const volumeSliderHeight = ( MConstants.SOLUTION_VOLUME_RANGE.getLength() / MConstants.SOLUTION_VOLUME_RANGE.max ) * cylinderSize.height;
       const solutionVolumeSlider = new VerticalSlider( solutionVolumeString,
@@ -161,17 +149,6 @@ define( function( require ) {
         tandem.createTandem( 'solutionVolumeSlider' ),
         solutionVolumeAccessibleNameString
       );
-
-      this.model.solution.volumeProperty.link( ( newVolume, oldVolume, ) => {
-        let utterance = null;
-        if ( newVolume > oldVolume ) {
-          utterance = molarityAlertManager.getVolumeAlert(true);
-        }
-        else if ( newVolume < oldVolume ) {
-          utterance = molarityAlertManager.getVolumeAlert(false);
-        }
-        utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'sliderMoved' } ) );
-      } );
 
       // a11y header for slider controls
       const sliderControlsNode = new Node( {

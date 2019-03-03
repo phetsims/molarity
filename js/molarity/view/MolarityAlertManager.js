@@ -34,6 +34,8 @@ define( function( require ) {
 
     constructor( model ) {
       this.model = model;
+
+      //adds an alert when the solute is changed
       this.model.solution.soluteProperty.lazyLink( () => {
         const utterance = StringUtils.fillIn( soluteChangedAlertPatternString, {
           solute: this.model.solution.soluteProperty.value.name,
@@ -41,7 +43,32 @@ define( function( require ) {
         } );
         utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'stateOfSim' } ) );
       } );
+
+      //alert read out when volume property changes
+      this.model.solution.volumeProperty.lazyLink( ( newVolume, oldVolume, ) => {
+        let utterance = null;
+        if ( newVolume > oldVolume ) {
+          utterance = this.getVolumeAlert( true );
+        }
+        else if ( newVolume < oldVolume ) {
+          utterance = this.getVolumeAlert( false );
+        }
+        utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'sliderMoved' } ) );
+      } );
+
+      // alert read out when solute amount property changes
+      this.model.solution.soluteAmountProperty.lazyLink( ( newAmount, oldAmount, ) => {
+        let utterance = null;
+        if ( newAmount > oldAmount ) {
+          utterance = this.getSoluteAmountAlert( true );
+        }
+        else if ( newAmount < oldAmount ) {
+          utterance = this.getSoluteAmountAlert( false );
+        }
+        utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'sliderMoved' } ) );
+      } );
     }
+
 
     /**
      * Describes the concentration level in the beaker in the play area.
