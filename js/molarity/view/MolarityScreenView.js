@@ -84,11 +84,13 @@ define( function( require ) {
         tandem: tandem.createTandem( 'valuesVisibleProperty' )
       } );
 
+      // a11y -- initializes describer and alert manager
       SolutionDescriber.initialize( model, valuesVisibleProperty );
-      MolarityAlertManager.initialize(model)
-
+      MolarityAlertManager.initialize( model )
       const solutionDescriber = SolutionDescriber.getDescriber();
       const molarityAlertManager = MolarityAlertManager.getDescriber();
+
+      // a11y -- creates screen summary node and add it to the screen view
       const molarityScreenSummaryNode = new MolarityScreenSummaryNode( model, valuesVisibleProperty );
       this.addChild( molarityScreenSummaryNode );
 
@@ -96,13 +98,14 @@ define( function( require ) {
       const beakerNode = new BeakerNode( model.solution, MConstants.SOLUTION_VOLUME_RANGE.max, valuesVisibleProperty,
         tandem.createTandem( 'beakerNode' ) );
 
-      // a11y beaker descriptions
+      // a11y -- beaker description
       const beakerDescriptionNode = new Node( {
         tagName: 'p',
         innerContent: solutionDescriber.getBeakerDescription()
       } );
       beakerNode.addChild( beakerDescriptionNode );
 
+      // a11y link to update beaker description node when soluteProperty or concentrationProperty change.
       Property.multilink( [ model.solution.soluteProperty, model.solution.concentrationProperty ], () => {
         beakerDescriptionNode.innerContent = solutionDescriber.getBeakerDescription();
       } );
@@ -150,22 +153,22 @@ define( function( require ) {
         solutionVolumeAccessibleNameString
       );
 
-      // a11y header for slider controls
+      // a11y header for slider controls -- contains heading for slider controls and orders included PDOM elements.
       const sliderControlsNode = new Node( {
         tagName: 'div',
         labelTagName: 'h3',
         labelContent: sliderControlsLabelString,
         descriptionContent: sliderControlsDescriptionString
       } );
-
       sliderControlsNode.accessibleOrder = [ soluteAmountSlider, solutionVolumeSlider ];
 
+      // a11y heading node for the solute combo box
       const soluteComboBoxHeadingNode = new Node( {
         tagName: 'h3',
         innerContent: soluteComboBoxLabelString
       } );
 
-      // a11y play area node
+      // a11y play area node -- contains heading for Play Area and orders the PDOM for included elements
       const playAreaNode = new PlayAreaNode();
       playAreaNode.accessibleOrder = [ beakerNode, sliderControlsNode, soluteComboBoxHeadingNode, soluteComboBox, soluteComboBoxListParent ];
 
@@ -199,6 +202,7 @@ define( function( require ) {
         tandem: tandem.createTandem( 'resetAllButton' )
       } );
 
+      // a11y control area node -- contains PDOM heading for control area, and orders the PDOM for included elements.
       const controlAreaNode = new ControlAreaNode();
       controlAreaNode.accessibleOrder = [ showValuesCheckbox, resetAllButton ];
 
