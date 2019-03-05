@@ -78,7 +78,7 @@ define( function( require ) {
       trackLineWidth: 7,
       trackCornerRadius: 10,
       thumbSize: new Dimension2( 30, 68 ), // in horizontal orientation!
-      thumbFillEnabled: THUMB_NORMAL_COLOR,
+      thumbFill: THUMB_NORMAL_COLOR,
       thumbFillHighlighted: THUMB_HIGHLIGHT_COLOR,
       tandem: tandem.createTandem( 'sliderNode' ),
 
