@@ -36,10 +36,7 @@ define( function( require ) {
     const SolutionNode = require( 'MOLARITY/molarity/view/SolutionNode' );
     const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
     const Text = require( 'SCENERY/nodes/Text' );
-    const Utterance = require( 'SCENERY_PHET/accessibility/Utterance' );
-    const utteranceQueue = require( 'SCENERY_PHET/accessibility/utteranceQueue' );
     const VerticalSlider = require( 'MOLARITY/molarity/view/VerticalSlider' );
-
 
     // strings
     const fullString = require( 'string!MOLARITY/full' );
@@ -84,30 +81,21 @@ define( function( require ) {
         tandem: tandem.createTandem( 'valuesVisibleProperty' )
       } );
 
-      // a11y -- initializes describer and alert manager
-      SolutionDescriber.initialize( model, valuesVisibleProperty );
-      MolarityAlertManager.initialize( model )
-      const solutionDescriber = SolutionDescriber.getDescriber();
-      const molarityAlertManager = MolarityAlertManager.getDescriber();
+      // a11y - initializes describer and alert manager
+      const solutionDescriber = SolutionDescriber.initialize( model, valuesVisibleProperty );
+      MolarityAlertManager.initialize( model );
 
-      // a11y -- creates screen summary node and add it to the screen view
+      // a11y - creates screen summary in the PDOM and add it to the screenView
       const molarityScreenSummaryNode = new MolarityScreenSummaryNode( model, valuesVisibleProperty );
-      this.addChild( molarityScreenSummaryNode );
+      this.screenSummaryNode.addChild( molarityScreenSummaryNode );
 
       // beaker, with solution and precipitate inside of it
       const beakerNode = new BeakerNode( model.solution, MConstants.SOLUTION_VOLUME_RANGE.max, valuesVisibleProperty,
         tandem.createTandem( 'beakerNode' ) );
 
-      // a11y -- beaker description
-      const beakerDescriptionNode = new Node( {
-        tagName: 'p',
-        innerContent: solutionDescriber.getBeakerDescription()
-      } );
-      beakerNode.addChild( beakerDescriptionNode );
-
-      // a11y link to update beaker description node when soluteProperty or concentrationProperty change.
+      // a11y - update beaker description in the PDOM when model changes
       Property.multilink( [ model.solution.soluteProperty, model.solution.concentrationProperty ], () => {
-        beakerDescriptionNode.innerContent = solutionDescriber.getBeakerDescription();
+        beakerNode.descriptionContent = solutionDescriber.getBeakerDescription();
       } );
 
       const cylinderSize = beakerNode.getCylinderSize();
@@ -153,25 +141,6 @@ define( function( require ) {
         solutionVolumeAccessibleNameString
       );
 
-      // a11y header for slider controls -- contains heading for slider controls and orders included PDOM elements.
-      const sliderControlsNode = new Node( {
-        tagName: 'div',
-        labelTagName: 'h3',
-        labelContent: sliderControlsLabelString,
-        descriptionContent: sliderControlsDescriptionString
-      } );
-      sliderControlsNode.accessibleOrder = [ soluteAmountSlider, solutionVolumeSlider ];
-
-      // a11y heading node for the solute combo box
-      const soluteComboBoxHeadingNode = new Node( {
-        tagName: 'h3',
-        innerContent: soluteComboBoxLabelString
-      } );
-
-      // a11y play area node -- contains heading for Play Area and orders the PDOM for included elements
-      const playAreaNode = new PlayAreaNode();
-      playAreaNode.accessibleOrder = [ beakerNode, sliderControlsNode, soluteComboBoxHeadingNode, soluteComboBox, soluteComboBoxListParent ];
-
       // concentration display
       const concentrationBarSize = new Dimension2( 40, cylinderSize.height + 50 );
       const concentrationDisplay = new ConcentrationDisplay( model.solution, MConstants.CONCENTRATION_RANGE,
@@ -202,9 +171,37 @@ define( function( require ) {
         tandem: tandem.createTandem( 'resetAllButton' )
       } );
 
-      // a11y control area node -- contains PDOM heading for control area, and orders the PDOM for included elements.
+      // a11y - heading for slider controls: contains heading for slider controls and orders included PDOM elements
+      const sliderControlsNode = new Node( {
+        tagName: 'div',
+        labelTagName: 'h3',
+        labelContent: sliderControlsLabelString,
+        descriptionContent: sliderControlsDescriptionString
+      } );
+      sliderControlsNode.accessibleOrder = [ soluteAmountSlider, solutionVolumeSlider ];
+
+      // a11y - heading in the PDOM for the solute combo box
+      const soluteComboBoxHeadingNode = new Node( {
+        tagName: 'h3',
+        innerContent: soluteComboBoxLabelString
+      } );
+
+      // a11y - contains heading for Play Area and orders the PDOM for included elements
+      const playAreaNode = new PlayAreaNode();
+      playAreaNode.accessibleOrder = [
+        beakerNode,
+        sliderControlsNode,
+        soluteComboBoxHeadingNode,
+        soluteComboBox,
+        soluteComboBoxListParent
+      ];
+
+      // a11y - contains PDOM heading for control area, and orders the PDOM for included elements
       const controlAreaNode = new ControlAreaNode();
-      controlAreaNode.accessibleOrder = [ showValuesCheckbox, resetAllButton ];
+      controlAreaNode.accessibleOrder = [
+        showValuesCheckbox,
+        resetAllButton
+      ];
 
       // layout for things that don't have a location in the model
       {
