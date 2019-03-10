@@ -49,7 +49,6 @@ define( function( require ) {
       } );
 
       this.getSoluteAmountSliderFocusAlert = () => {
-        console.log('listener fired')
         const utterance = this.solutionDescriber.getSoluteAmountSliderFocusAlertString();
         utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'soluteAmountSliderMoved' } ) );
       };

@@ -17,7 +17,6 @@ define( require => {
   const beakerDescriptionString = MolarityA11yStrings.beakerDescription.value;
   const soluteAmountAndUnitPatternString = MolarityA11yStrings.soluteAmountAndUnitPattern.value;
   const soluteAmountSliderFocusAlertPatternString = MolarityA11yStrings.soluteAmountSliderFocusAlertPattern.value;
-  const solutionVolumeAccessibleNameString = MolarityA11yStrings.solutionVolumeAccessibleName.value;
   const solutionVolumeAndUnitPatternString = MolarityA11yStrings.solutionVolumeAndUnitPattern.value;
   const solutionConcentrationValuesVisiblePatternString = MolarityA11yStrings.solutionConcentrationValuesVisiblePattern.value;
   const solutionConcentrationPatternString = MolarityA11yStrings.solutionConcentrationPattern.value;
@@ -246,7 +245,6 @@ define( require => {
       const moreLess = increasing ? moreString : lessString;
       const soluteAmount = SOLUTE_AMOUNT_STRINGS[ Util.roundSymmetric( this.soluteAmountToIndex( this.solution.soluteAmountProperty.value ) ) ];
       const concentration = CONCENTRATION_STRINGS[ Util.roundSymmetric( this.solution.concentrationProperty.value ) ];
-      console.log( concentration )
       return StringUtils.fillIn( sliderMovedAlertPatternString, {
         moreLess: moreLess,
         concentration: concentration,
