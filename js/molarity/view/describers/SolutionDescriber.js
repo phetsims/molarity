@@ -16,6 +16,7 @@ define( require => {
   // a11y strings
   const beakerDescriptionString = MolarityA11yStrings.beakerDescription.value;
   const soluteAmountAndUnitPatternString = MolarityA11yStrings.soluteAmountAndUnitPattern.value;
+  const soluteAmountSliderFocusAlertPatternString = MolarityA11yStrings.soluteAmountSliderFocusAlertPattern.value;
   const solutionVolumeAccessibleNameString = MolarityA11yStrings.solutionVolumeAccessibleName.value;
   const solutionVolumeAndUnitPatternString = MolarityA11yStrings.solutionVolumeAndUnitPattern.value;
   const solutionConcentrationValuesVisiblePatternString = MolarityA11yStrings.solutionConcentrationValuesVisiblePattern.value;
@@ -32,7 +33,6 @@ define( require => {
 
   const soluteChangedAlertPatternString = MolarityA11yStrings.soluteChangedAlertPattern.value;
   const sliderMovedAlertPatternString = MolarityA11yStrings.sliderMovedAlertPattern.value;
-  const soluteAmountAccessibleNameString = MolarityA11yStrings.soluteAmountAccessibleName.value;
 
   const notConcentratedString = MolarityA11yStrings.notConcentratedString.value;
   const barelyConcentratedString = MolarityA11yStrings.barelyConcentratedString.value;
@@ -40,22 +40,19 @@ define( require => {
   const concentratedString = MolarityA11yStrings.concentratedString.value;
   const veryConcentratedString = MolarityA11yStrings.veryConcentratedString.value;
 
-  const noneString = MolarityA11yStrings.noneString.value;
-  const minimumString = MolarityA11yStrings.minimumString.value;
-  const belowHalfString = MolarityA11yStrings.belowHalfString.value;
-  const halfSoluteString = MolarityA11yStrings.halfSoluteString.value;
-  const aboveHalfString = MolarityA11yStrings.aboveHalfString.value;
-  const nearlyMaximumString = MolarityA11yStrings.nearlyMaximumString.value;
-  const maximumString = MolarityA11yStrings.maximumString.value;
+  const zeroString = MolarityA11yStrings.zeroString.value;
+  const aLittleString = MolarityA11yStrings.aLittleString.value;
+  const aLowString = MolarityA11yStrings.aLowString.value;
+  const someString = MolarityA11yStrings.someString.value;
+  const aBunchString = MolarityA11yStrings.aBunchString.value;
+  const aLotString = MolarityA11yStrings.aLotString.value;
+  const fullAmountString = MolarityA11yStrings.fullAmountString.value;
 
   const saturatedString = MolarityA11yStrings.saturatedString.value;
   const notSaturatedString = MolarityA11yStrings.notSaturatedString.value;
 
-  const raisesString = MolarityA11yStrings.raisesString.value;
-  const lowersString = MolarityA11yStrings.lowersString.value;
-
-  const increasesString = MolarityA11yStrings.increasesString.value;
-  const decreasesString = MolarityA11yStrings.decreasesString.value;
+  const moreString = MolarityA11yStrings.moreString.value;
+  const lessString = MolarityA11yStrings.lessString.value;
 
   // constants
   const VOLUME_STRINGS = [
@@ -77,14 +74,15 @@ define( require => {
   ];
 
   const SOLUTE_AMOUNT_STRINGS = [
-    noneString,
-    minimumString,
-    belowHalfString,
-    halfSoluteString,
-    aboveHalfString,
-    nearlyMaximumString,
-    maximumString
+    zeroString,
+    aLittleString,
+    aLowString,
+    someString,
+    aBunchString,
+    aLotString,
+    fullAmountString
   ];
+
 
   // the singleton instance of this describer, used for the entire lifetime of the sim
   let describer = null;
@@ -228,16 +226,13 @@ define( require => {
      * @returns {string}
      */
     getVolumeAlertString( increasing ) {
-      const raiseLower = increasing ? lowersString : raisesString;
-      const increaseDecrease = increasing ? increasesString : decreasesString;
-      const concentrationClause = StringUtils.fillIn( solutionConcentrationValuesVisiblePatternString, {
-        concentration: Util.toFixed( this.solution.concentrationProperty.value, 3 )
-      } );
+      const moreLess = increasing ? lessString : moreString;
+      const soluteAmount = SOLUTE_AMOUNT_STRINGS[ Util.roundSymmetric( this.soluteAmountToIndex( this.solution.soluteAmountProperty.value ) ) ];
+      const concentration = CONCENTRATION_STRINGS[ Util.roundSymmetric( this.solution.concentrationProperty.value ) ];
       return StringUtils.fillIn( sliderMovedAlertPatternString, {
-        sliderName: solutionVolumeAccessibleNameString,
-        increases: increaseDecrease,
-        raises: raiseLower,
-        concentrationClause: concentrationClause
+        moreLess: moreLess,
+        concentration: concentration,
+        soluteAmount: soluteAmount
       } );
     }
 
@@ -248,16 +243,14 @@ define( require => {
      * @returns {string}
      */
     getSoluteAmountAlertString( increasing ) {
-      const raiseLower = increasing ? raisesString : lowersString;
-      const increaseDecrease = increasing ? increasesString : decreasesString;
-      const concentrationClause = StringUtils.fillIn( solutionConcentrationValuesVisiblePatternString, {
-        concentration: Util.toFixed( this.solution.concentrationProperty.value, 3 )
-      } );
+      const moreLess = increasing ? moreString : lessString;
+      const soluteAmount = SOLUTE_AMOUNT_STRINGS[ Util.roundSymmetric( this.soluteAmountToIndex( this.solution.soluteAmountProperty.value ) ) ];
+      const concentration = CONCENTRATION_STRINGS[ Util.roundSymmetric( this.solution.concentrationProperty.value ) ];
+      console.log( concentration )
       return StringUtils.fillIn( sliderMovedAlertPatternString, {
-        sliderName: soluteAmountAccessibleNameString,
-        increases: increaseDecrease,
-        raises: raiseLower,
-        concentrationClause: concentrationClause
+        moreLess: moreLess,
+        concentration: concentration,
+        soluteAmount: soluteAmount
       } );
     }
 
@@ -270,6 +263,18 @@ define( require => {
       return StringUtils.fillIn( soluteChangedAlertPatternString, {
         solute: this.solution.soluteProperty.value.name,
         maxConcentration: this.solution.soluteProperty.value.saturatedConcentration
+      } );
+    }
+
+    /**
+     * Describes the new solute when a user changes the solute in the combo box
+     * @public
+     * @returns {string}
+     */
+    getSoluteAmountSliderFocusAlertString() {
+      return StringUtils.fillIn( soluteAmountSliderFocusAlertPatternString, {
+        solute: this.solution.soluteProperty.value.name,
+        soluteAmount: this.solution.soluteAmountProperty.value
       } );
     }
 

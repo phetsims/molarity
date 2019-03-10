@@ -47,6 +47,12 @@ define( function( require ) {
         const utterance = this.solutionDescriber.getSoluteAmountAlertString( newAmount > oldAmount );
         utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'soluteAmountSliderMoved' } ) );
       } );
+
+      this.getSoluteAmountSliderFocusAlert = () => {
+        console.log('listener fired')
+        const utterance = this.solutionDescriber.getSoluteAmountSliderFocusAlertString();
+        utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'soluteAmountSliderMoved' } ) );
+      };
     }
 
     /**

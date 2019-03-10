@@ -61,85 +61,82 @@ define( function( require ) {
         value: 'Solute Amount and Solution Volume sliders change solution in Beaker.'
       },
       fullString: {
-        value: 'Full'
+        value: 'full'
       },
       nearlyFullString: {
-        value: 'Nearly Full'
+        value: 'nearly full'
       },
       overHalfString: {
-        value: 'Over Half'
+        value: 'over half'
       },
       halfFullString: {
-        value: 'Half Full'
+        value: 'half full'
       },
       underHalfString: {
-        value: 'Under Half'
+        value: 'under half'
       },
       lowString: {
-        value: 'Low'
+        value: 'low'
       },
       leastAmountString: {
-        value: 'Least Amount'
+        value: 'least amount'
+      },
+      fullAmountString: {
+        value: 'the full amount of'
+      },
+      aLotString: {
+        value: 'a lot of'
+      },
+      aBunchString: {
+        value: 'a bunch of'
+      },
+      someString: {
+        value: 'some'
+      },
+      aLowString: {
+        value: 'a low amount of'
+      },
+      aLittleString: {
+        value: 'a little'
+      },
+      zeroString:{
+        value: 'zero'
       },
       notConcentratedString: {
-        value: 'Not Concentrated'
+        value: 'not concentrated'
       },
       barelyConcentratedString: {
-        value: 'Barely Concentrated'
+        value: 'barely concentrated'
       },
       slightlyConcentratedString: {
-        value: 'Slightly Concentrated'
+        value: 'slightly concentrated'
       },
       concentratedString: {
-        value: 'Concentrated'
+        value: 'concentrated'
       },
       veryConcentratedString: {
-        value: 'Very Concentrated'
-      },
-      noneString: {
-        value: 'None'
-      },
-      minimumString: {
-        value: 'Minimum'
-      },
-      belowHalfString: {
-        value: 'Below Half'
-      },
-      halfSoluteString: {
-        value: 'Half Solute'
-      },
-      aboveHalfString: {
-        value: 'Above Half'
-      },
-      nearlyMaximumString: {
-        value: 'Nearly Maximum'
-      },
-      maximumString: {
-        value: 'Maximum'
+        value: 'very concentrated'
       },
       saturatedString: {
-        value: 'Saturated'
+        value: 'saturated'
       },
       notSaturatedString: {
         value: 'not yet saturated'
       },
-      increasesString: {
-        value: 'increases'
+      moreString: {
+        value: 'More'
       },
-      decreasesString: {
-        value: 'decreases'
-      },
-      raisesString: {
-        value: 'raises'
-      },
-      lowersString: {
-        value: 'lowers'
+      lessString: {
+        value: 'Less'
       },
       sliderMovedAlertPattern: {
-        value: 'As {{sliderName}} {{increases}}, Molarity {{raises}}. {{concentrationClause}}.'
+        value: '{{moreLess}} concentrated. {{soluteAmount}} solute in solution. Solution {{concentration}}.'
       },
       soluteChangedAlertPattern: {
         value: '{{solute}} Starts at 0.0 and Peaks at {{maxConcentration}}'
+      },
+      soluteAmountSliderFocusAlertPattern: {
+        value: '{{solute}} {{soluteAmount}} moles, Solute Amount slider'
       }
     }
   ;
