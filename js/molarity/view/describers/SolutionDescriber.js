@@ -214,7 +214,8 @@ define( require => {
       return StringUtils.fillIn( beakerDescriptionString, {
         solute: this.solution.soluteProperty.value.name,
         concentration: CONCENTRATION_STRINGS[ Util.roundSymmetric( this.solution.concentrationProperty.value ) ],
-        maxConcentration: this.solution.soluteProperty.value.saturatedConcentration
+        maxConcentration: this.solution.soluteProperty.value.saturatedConcentration,
+        chemicalFormula: this.solution.soluteProperty.value.formula
       } );
     }
 

@@ -49,7 +49,7 @@ define( function( require ) {
         value: 'Beaker'
       },
       beakerDescription: {
-        value: 'Solution Concentration of {{solute}} has reached {{concentration}} the peak of this solute is {{maxConcentration}}'
+        value: 'Solution Concentration of {{solute}} Is {{concentration}} the peak of this solute is {{maxConcentration}}. The chemical formula for {{solute}} is {{chemicalFormula}}.'
       },
       soluteComboBoxLabel: {
         value: 'Select Solute'
@@ -82,22 +82,22 @@ define( function( require ) {
         value: 'least amount'
       },
       fullAmountString: {
-        value: 'the full amount of'
+        value: 'The full amount'
       },
       aLotString: {
-        value: 'a lot of'
+        value: 'A lot'
       },
       aBunchString: {
-        value: 'a bunch of'
+        value: 'A bunch'
       },
       someString: {
-        value: 'some'
+        value: 'Some'
       },
       aLowString: {
-        value: 'a low amount of'
+        value: 'A low amount'
       },
       aLittleString: {
-        value: 'a little'
+        value: 'A little'
       },
       zeroString:{
         value: 'zero'
@@ -130,7 +130,7 @@ define( function( require ) {
         value: 'Less'
       },
       sliderMovedAlertPattern: {
-        value: '{{moreLess}} concentrated. {{soluteAmount}} solute in solution. Solution {{concentration}}.'
+        value: '{{moreLess}} concentrated. {{soluteAmount}} of solute in solution. Solution {{concentration}}.'
       },
       soluteChangedAlertPattern: {
         value: '{{solute}} Starts at 0.0 and Peaks at {{maxConcentration}}'
