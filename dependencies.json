@@ -1,5 +1,5 @@
 {
-  "comment": "# molarity 1.4.3 Fri Mar 08 2019 13:47:37 GMT-0500 (EST)",
+  "comment": "# molarity 1.4.3 Tue Mar 19 2019 17:00:02 GMT-0400 (EDT)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "HEAD"
@@ -10,11 +10,11 @@
   },
   "brand": {
     "sha": "abe2594a58da895086f2400a997c4e06cb67e170",
-    "branch": "molarity-1.4"
+    "branch": "HEAD"
   },
   "chipper": {
-    "sha": "cba50451434930ae2461a72348fa9dbc20692b06",
-    "branch": "HEAD"
+    "sha": "b0444638174d4375080663ad599483014b6b3275",
+    "branch": "molarity-1.4"
   },
   "dot": {
     "sha": "49561319ef6e86bf82c4f33d5296288896750ebc",
@@ -22,14 +22,14 @@
   },
   "joist": {
     "sha": "45167bf9741f298e608b4dcebfb761e02b1a8dc2",
-    "branch": "molarity-1.4"
+    "branch": "HEAD"
   },
   "kite": {
     "sha": "a43e7dd976f982ec74f2d0084ec65b80ff0507e4",
     "branch": "HEAD"
   },
   "molarity": {
-    "sha": "c4be73d49bd7c540bbc42a4b4550544f4213403c",
+    "sha": "916537e7ce597c371831c3928796e31fb0728dd9",
     "branch": "1.4"
   },
   "nitroglycerin": {
@@ -64,6 +64,10 @@
     "sha": "04bc12ce20b0f73221c8e6fcc9fa84aa8f536e39",
     "branch": "HEAD"
   },
+  "phetmarks": {
+    "sha": "65d8f170461528d3ae77989fcb3d6c7d25584435",
+    "branch": "HEAD"
+  },
   "query-string-machine": {
     "sha": "4178d27a4a676a93c5b0ba62e2559b232a8dad35",
     "branch": "HEAD"
@@ -91,9 +95,5 @@
   "tandem": {
     "sha": "66d0f5198d9f3ebba6b17e3d986170ccdf518eee",
     "branch": "HEAD"
-  },
-  "phetmarks": {
-    "branch": "master",
-    "sha": "65d8f170461528d3ae77989fcb3d6c7d25584435"
   }
 }
