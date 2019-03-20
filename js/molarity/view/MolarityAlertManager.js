@@ -38,13 +38,13 @@ define( function( require ) {
 
       // alert read out when volume property changes
       this.solution.volumeProperty.lazyLink( ( newVolume, oldVolume, ) => {
-        const utterance = this.solutionDescriber.getVolumeAlertString( newVolume > oldVolume );
+        const utterance = this.solutionDescriber.getSliderAlertString( newVolume > oldVolume, 'volume' );
         utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'volumeSliderMoved' } ) );
       } );
 
       // alert read out when solute amount property changes
       this.solution.soluteAmountProperty.lazyLink( ( newAmount, oldAmount, ) => {
-        const utterance = this.solutionDescriber.getSoluteAmountAlertString( newAmount > oldAmount );
+        const utterance = this.solutionDescriber.getSliderAlertString( newAmount > oldAmount, 'soluteAmount' );
         utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'soluteAmountSliderMoved' } ) );
       } );
     }

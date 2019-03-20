@@ -130,7 +130,10 @@ define( function( require ) {
         value: 'Less'
       },
       sliderMovedAlertPattern: {
-        value: '{{moreLess}} concentrated. {{soluteAmount}} of solute in solution. Solution {{concentration}}.'
+        value: '{{moreLess}} solute, {{lessMore}} concentrated. {{stateInfo}}'
+      },
+      stateInfoPattern: {
+        value: '{{soluteAmount}} of {{solute}}. Solution {{concentration}}.\n'
       },
       soluteChangedAlertPattern: {
         value: '{{solute}} Starts at 0.0 and Peaks at {{maxConcentration}}'

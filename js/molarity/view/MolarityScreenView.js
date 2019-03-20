@@ -94,7 +94,7 @@ define( function( require ) {
         tandem.createTandem( 'beakerNode' ) );
 
       // a11y - update beaker description in the PDOM when model changes
-      Property.multilink( [ model.solution.soluteProperty, model.solution.concentrationProperty ], () => {
+      Property.multilink( [ model.solution.soluteProperty, model.solution.concentrationProperty, valuesVisibleProperty ], () => {
         beakerNode.descriptionContent = solutionDescriber.getBeakerDescription();
       } );
 
