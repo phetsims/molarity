@@ -99,7 +99,7 @@ define( function( require ) {
       aLittleString: {
         value: 'A little'
       },
-      zeroString:{
+      zeroString: {
         value: 'zero'
       },
       notConcentratedString: {
@@ -129,17 +129,48 @@ define( function( require ) {
       lessString: {
         value: 'Less'
       },
-      sliderMovedAlertPattern: {
-        value: '{{moreLess}} solute, {{lessMore}} concentrated. {{stateInfo}}'
+      solidsString: {
+        value: 'solids'
       },
+      solutionString: {
+        value: 'solution'
+      },
+      soluteString: {
+        value: 'solute'
+      },
+      sliderMovedAlertPattern: {
+        value: '{{moreLess}} {{sliderType}}, {{lessMore}} {{concentratedOrSolids}}. {{stateInfo}}'
+      },
+
       stateInfoPattern: {
-        value: '{{soluteAmount}} of {{solute}}. Solution {{concentration}}.\n'
+        value: '{{soluteAmountClause}}{{volumeClause}} Solution {{concentration}}.'
+      },
+      soluteAmountStateInfoPattern: {
+        value: '{{soluteAmount}} of {{solute}}.'
+      },
+      volumeStateInfoPattern: {
+        value: 'Beaker {{volume}}. '
       },
       soluteChangedAlertPattern: {
         value: '{{solute}} Starts at 0.0 and Peaks at {{maxConcentration}}'
       },
       soluteAmountSliderFocusAlertPattern: {
         value: '{{solute}} {{soluteAmount}} moles, Solute Amount slider'
+      },
+      saturatedAlertString: {
+        value: 'Solution saturated. Beyond max concentration, solids appear.'
+      },
+      stillSaturatedAlertPattern: {
+        value: 'Still saturated {{withSolids}}'
+      },
+      withSolidsAlertPattern: {
+        value: 'with {{solidAmount}} solids'
+      },
+      saturationReachedAlertString: {
+        value: 'Solution saturated. Beyond max concentration, solids appear.'
+      },
+      saturationLostAlertPattern: {
+        value: 'Solution no longer saturated. Solution {{concentration}}, solids dissipate.'
       }
     }
   ;

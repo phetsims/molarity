@@ -8,7 +8,6 @@ define( require => {
   'use strict';
 
   // modules
-  const LinearFunction = require( 'DOT/LinearFunction' );
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
@@ -30,11 +29,18 @@ define( require => {
   const soluteChangedAlertPatternString = MolarityA11yStrings.soluteChangedAlertPattern.value;
   const sliderMovedAlertPatternString = MolarityA11yStrings.sliderMovedAlertPattern.value;
   const stateInfoPatternString = MolarityA11yStrings.stateInfoPattern.value;
+  const stillSaturatedAlertPatternString = MolarityA11yStrings.stillSaturatedAlertPattern.value;
+  const withSolidsAlertPatternString = MolarityA11yStrings.withSolidsAlertPattern.value;
+  const saturationReachedAlertString = MolarityA11yStrings.saturationReachedAlertString.value;
+  const saturationLostAlertPatternString = MolarityA11yStrings.saturationLostAlertPattern.value;
+  const volumeStateInfoPatternString = MolarityA11yStrings.volumeStateInfoPattern.value;
+  const soluteAmountStateInfoPatternString = MolarityA11yStrings.soluteAmountStateInfoPattern.value;
 
   const notConcentratedString = MolarityA11yStrings.notConcentratedString.value;
   const barelyConcentratedString = MolarityA11yStrings.barelyConcentratedString.value;
   const slightlyConcentratedString = MolarityA11yStrings.slightlyConcentratedString.value;
   const concentratedString = MolarityA11yStrings.concentratedString.value;
+  const veryConcentratedString = MolarityA11yStrings.veryConcentratedString.value;
 
   const zeroString = MolarityA11yStrings.zeroString.value;
   const aLittleString = MolarityA11yStrings.aLittleString.value;
@@ -49,6 +55,10 @@ define( require => {
 
   const moreString = MolarityA11yStrings.moreString.value;
   const lessString = MolarityA11yStrings.lessString.value;
+
+  const solidsString = MolarityA11yStrings.solidsString.value;
+  const solutionString = MolarityA11yStrings.solutionString.value;
+  const soluteString = MolarityA11yStrings.soluteString.value;
 
   // constants
   const VOLUME_STRINGS = [
@@ -65,7 +75,8 @@ define( require => {
     notConcentratedString,
     barelyConcentratedString,
     slightlyConcentratedString,
-    concentratedString
+    concentratedString,
+    veryConcentratedString
   ];
 
   const SOLUTE_AMOUNT_STRINGS = [
@@ -97,6 +108,7 @@ define( require => {
       this.concentrationIndex = 0;
       this.volumeIndex = 0;
       this.soluteAmountIndex = 0;
+      this.saturated = false;
     }
 
     /**
@@ -160,38 +172,57 @@ define( require => {
     /**
      * @private
      * @param {number} concentration
-     * @returns {number} index to pull from VOLUME_STRINGS array
+     * @returns {number} index to pull from CONCENTRATION_STRINGS array
      */
     concentrationToIndex( concentration ) {
       const maxConcentration = this.solution.soluteProperty.value.saturatedConcentration;
-      const concentrationFunction = new LinearFunction( 0, maxConcentration, 0, CONCENTRATION_STRINGS.length-1);
-      return Util.roundSymmetric( concentrationFunction( concentration ) );
+      const fraction = maxConcentration / ( CONCENTRATION_STRINGS.length );
+      if ( concentration <= fraction ) {
+        return 0;
+      }
+      if ( concentration <= 2 * fraction ) {
+        return 1;
+      }
+      if ( concentration <= 3 * fraction ) {
+        return 2;
+      }
+      if ( concentration <= 4 * fraction ) {
+        return 3;
+      }
+      if ( concentration <= 5 * fraction ) {
+        return 4;
+      }
+      if ( concentration <= 6 * fraction ) {
+        return 5;
+      }
     }
-
 
     /**
      * @private
      * @returns {object} object with values from model
      */
     getQuantities() {
+      // values if the 'show values' checkbox is checked (quantitative)
       if ( this.valuesVisibleProperty.value ) {
         return {
           concentration: Util.toFixed( this.solution.concentrationProperty.value, 3 ),
           soluteAmount: Util.toFixed( this.solution.soluteAmountProperty.value, 3 ),
           volume: Util.toFixed( this.solution.volumeProperty.value, 3 ),
-          solute: this.solution.soluteProperty.value.name
+          solute: this.solution.soluteProperty.value.name,
+          maxConcentration: this.solution.soluteProperty.value.saturatedConcentration
         };
       }
+      // values if the 'show values checkbox isn't checked (qualitative)
       else {
         return {
           concentration: CONCENTRATION_STRINGS[ this.concentrationToIndex( this.solution.concentrationProperty.value ) ],
           soluteAmount: SOLUTE_AMOUNT_STRINGS[ Util.roundSymmetric( this.soluteAmountToIndex( this.solution.soluteAmountProperty.value ) ) ],
           volume: VOLUME_STRINGS[ this.volumeToIndex( this.solution.volumeProperty.value ) ],
-          solute: this.solution.soluteProperty.value.name
+          solute: this.solution.soluteProperty.value.name,
+          maxConcentration: this.solution.soluteProperty.value.saturatedConcentration
         };
       }
     }
-
 
     /**
      * Describes all relevant properties in the screen summary.
@@ -199,12 +230,13 @@ define( require => {
      * @returns {string}
      */
     getStateOfSimDescription() {
+
       // sets values to fill in initially -- "Show Values" checkbox is checked
       let saturatedConcentration = '';
       let concentrationPattern = '';
 
       // checks if the solution is saturated yet, and sets saturatedConcentration to saturatedString if so.
-      if ( this.solution.concentrationProperty.value >= this.solution.soluteProperty.value.saturatedConcentration ) {
+      if ( this.solution.concentrationProperty.value >= this.getQuantities().maxConcentration ) {
         saturatedConcentration = saturatedString;
       }
 
@@ -233,7 +265,7 @@ define( require => {
       return StringUtils.fillIn( beakerDescriptionString, {
         solute: this.getQuantities().solute,
         concentration: this.getQuantities().concentration,
-        maxConcentration: this.solution.soluteProperty.value.saturatedConcentration,
+        maxConcentration: this.getQuantities().maxConcentration,
         chemicalFormula: this.solution.soluteProperty.value.formula
       } );
     }
@@ -249,20 +281,52 @@ define( require => {
       const moreLess = increasing ? moreString : lessString;
       const lessMore = ( increasing && slider === 'volume' ) || ( !increasing && slider !== 'volume' ) ? lessString : moreString;
       let stateInfo = '';
-      if ( this.concentrationIndex !== this.concentrationToIndex( this.solution.concentrationProperty.value ) || this.soluteAmountIndex !== this.soluteAmountToIndex( this.solution.soluteAmountProperty.value ) ) {
+      const sliderType = ( slider === 'volume' ) ? solutionString : soluteString;
+      const volumeStateInfo = ( slider === 'volume' ) ? StringUtils.fillIn( volumeStateInfoPatternString, { volume: this.getQuantities().volume } ) : '';
+      const soluteAmountStateInfo = ( slider === 'volume' ) ? '' : StringUtils.fillIn( soluteAmountStateInfoPatternString, { solute: this.getQuantities().solute, soluteAmount: this.getQuantities().soluteAmount } );
+
+      // checks if the solution is saturated and description region has changed for solute amount or volume
+      if ( this.solution.concentrationProperty.value >= this.getQuantities().maxConcentration && !this.saturated ) {
+        this.saturated = true;
+        return saturationReachedAlertString;
+      }
+      else if ( this.solution.concentrationProperty.value < this.getQuantities().maxConcentration && this.saturated ) {
+        this.saturated = false;
+        return StringUtils.fillIn( saturationLostAlertPatternString, { concentration: this.getQuantities().concentration } );
+      }
+      // checks if solution is saturated and alert has already been read out
+      else if ( this.solution.concentrationProperty.value >= this.getQuantities().maxConcentration ) {
+        const withSolids = StringUtils.fillIn( withSolidsAlertPatternString, {
+          solidAmount: this.concentrationToIndex( this.solution.precipitateAmountProperty.value )
+        } );
+        if ( this.concentrationIndex !== this.concentrationToIndex( this.solution.concentrationProperty.value ) ) {
+          stateInfo = StringUtils.fillIn( stillSaturatedAlertPatternString, {
+            withSolids: withSolids
+          } );
+          this.concentrationIndex = this.concentrationToIndex( this.solution.concentrationProperty.value );
+        }
+      }
+      // checks if description region has changes for solute amount or volume
+      else if ( this.concentrationIndex !== this.concentrationToIndex( this.solution.concentrationProperty.value ) || this.soluteAmountIndex !== this.soluteAmountToIndex( this.solution.soluteAmountProperty.value || this.volumeIndex !== this.volumeToIndex( this.solution.volumeProperty.value ) ) ) {
         stateInfo = StringUtils.fillIn( stateInfoPatternString, {
           concentration: this.getQuantities().concentration,
-          solute: this.getQuantities().solute,
-          soluteAmount: this.getQuantities().soluteAmount
+          volumeClause: volumeStateInfo,
+          soluteAmountClause: soluteAmountStateInfo
         } );
         this.concentrationIndex = this.concentrationToIndex( this.solution.concentrationProperty.value );
         this.soluteAmountIndex = this.soluteAmountToIndex( this.solution.soluteAmountProperty.value );
+        this.volumeIndex = this.volumeToIndex( this.solution.volumeProperty.value );
       }
+
       return StringUtils.fillIn( sliderMovedAlertPatternString, {
         moreLess: moreLess,
         lessMore: lessMore,
-        stateInfo: stateInfo
+        stateInfo: stateInfo,
+        concentratedOrSolids: concentratedString,
+        sliderType: sliderType,
       } );
+
+
     }
 
 
@@ -274,7 +338,7 @@ define( require => {
     getSoluteChangedAlertString() {
       return StringUtils.fillIn( soluteChangedAlertPatternString, {
         solute: this.solution.soluteProperty.value.name,
-        maxConcentration: this.solution.soluteProperty.value.saturatedConcentration
+        maxConcentration: this.getQuantities().maxConcentration
       } );
     }
 
