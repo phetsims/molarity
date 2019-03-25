@@ -88,7 +88,6 @@ define( require => {
     fullAmountString
   ];
 
-
   // the singleton instance of this describer, used for the entire lifetime of the sim
   let describer = null;
 
@@ -201,8 +200,10 @@ define( require => {
      * @returns {object} object with values from model
      */
     getQuantities() {
-      // values if the 'show values' checkbox is checked (quantitative)
+
       if ( this.valuesVisibleProperty.value ) {
+
+        // values if the 'show values' checkbox is checked (quantitative)
         return {
           concentration: Util.toFixed( this.solution.concentrationProperty.value, 3 ),
           soluteAmount: Util.toFixed( this.solution.soluteAmountProperty.value, 3 ),
@@ -211,8 +212,9 @@ define( require => {
           maxConcentration: this.solution.soluteProperty.value.saturatedConcentration
         };
       }
-      // values if the 'show values checkbox isn't checked (qualitative)
       else {
+
+        // values if the 'show values checkbox isn't checked (qualitative)
         return {
           concentration: CONCENTRATION_STRINGS[ this.concentrationToIndex( this.solution.concentrationProperty.value ) ],
           soluteAmount: SOLUTE_AMOUNT_STRINGS[ Util.roundSymmetric( this.soluteAmountToIndex( this.solution.soluteAmountProperty.value ) ) ],
@@ -246,6 +248,7 @@ define( require => {
           saturatedConcentration: saturatedConcentration === '' ? notSaturatedString : saturatedConcentration
         } );
       }
+      
       return StringUtils.fillIn( stateOfSimPatternString, {
         volume: this.getQuantities().volume,
         solute: this.getQuantities().solute,
@@ -284,8 +287,9 @@ define( require => {
       const volumeStateInfo = ( slider === 'volume' ) ? StringUtils.fillIn( volumeStateInfoPatternString, { volume: this.getQuantities().volume } ) : '';
       const soluteAmountStateInfo = ( slider === 'volume' ) ? '' : StringUtils.fillIn( soluteAmountStateInfoPatternString, { solute: this.getQuantities().solute, soluteAmount: this.getQuantities().soluteAmount } );
 
-      // checks if the solution is saturated and description region has changed for solute amount or volume
       if ( this.solution.concentrationProperty.value >= this.getQuantities().maxConcentration && !this.saturated ) {
+
+        // checks if the solution is saturated and description region has changed for solute amount or volume
         this.saturated = true;
         return saturationReachedAlertString;
       }
@@ -293,8 +297,9 @@ define( require => {
         this.saturated = false;
         return StringUtils.fillIn( saturationLostAlertPatternString, { concentration: this.getQuantities().concentration } );
       }
-      // checks if solution is saturated and alert has already been read out
       else if ( this.solution.concentrationProperty.value >= this.getQuantities().maxConcentration ) {
+
+        // checks if solution is saturated and alert has already been read out
         const withSolids = StringUtils.fillIn( withSolidsAlertPatternString, {
           solidAmount: this.concentrationToIndex( this.solution.precipitateAmountProperty.value )
         } );
@@ -305,8 +310,9 @@ define( require => {
           this.concentrationIndex = this.concentrationToIndex( this.solution.concentrationProperty.value );
         }
       }
-      // checks if description region has changes for solute amount or volume
       else if ( this.concentrationIndex !== this.concentrationToIndex( this.solution.concentrationProperty.value ) || this.soluteAmountIndex !== this.soluteAmountToIndex( this.solution.soluteAmountProperty.value || this.volumeIndex !== this.volumeToIndex( this.solution.volumeProperty.value ) ) ) {
+
+        // checks if description region has changes for solute amount or volume
         stateInfo = StringUtils.fillIn( stateInfoPatternString, {
           concentration: this.getQuantities().concentration,
           volumeClause: volumeStateInfo,
@@ -326,7 +332,6 @@ define( require => {
       } );
     }
 
-
     /**
      * Describes the new solute when a user changes the solute in the combo box
      * @public
@@ -338,7 +343,6 @@ define( require => {
         maxConcentration: this.getQuantities().maxConcentration
       } );
     }
-
 
     /**
      * Uses the singleton pattern to keep one instance of this describer for the entire lifetime of the sim.
