@@ -56,7 +56,6 @@ define( require => {
   const moreString = MolarityA11yStrings.moreString.value;
   const lessString = MolarityA11yStrings.lessString.value;
 
-  const solidsString = MolarityA11yStrings.solidsString.value;
   const solutionString = MolarityA11yStrings.solutionString.value;
   const soluteString = MolarityA11yStrings.soluteString.value;
 
@@ -323,10 +322,8 @@ define( require => {
         lessMore: lessMore,
         stateInfo: stateInfo,
         concentratedOrSolids: concentratedString,
-        sliderType: sliderType,
+        sliderType: sliderType
       } );
-
-
     }
 
 

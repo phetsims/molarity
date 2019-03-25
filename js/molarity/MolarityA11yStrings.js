@@ -129,9 +129,6 @@ define( function( require ) {
       lessString: {
         value: 'Less'
       },
-      solidsString: {
-        value: 'solids'
-      },
       solutionString: {
         value: 'solution'
       },
