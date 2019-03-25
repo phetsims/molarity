@@ -44,7 +44,8 @@ define( require => {
 
       this.addChild( stateOfSimNode );
 
-      Property.multilink( [ model.solution.soluteProperty, model.solution.volumeProperty, model.solution.soluteAmountProperty, model.solution.concentrationProperty, valuesVisibleProperty ], () => {
+      Property.multilink( [ model.solution.soluteProperty, model.solution.volumeProperty,
+        model.solution.soluteAmountProperty, model.solution.concentrationProperty, valuesVisibleProperty ], () => {
         stateOfSimNode.innerContent = solutionDescriber.getStateOfSimDescription();
       } );
     }
