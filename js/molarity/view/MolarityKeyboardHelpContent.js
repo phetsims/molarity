@@ -5,7 +5,6 @@
  *
  * @author Taylor Want (PhET Interactive Simulations)
  */
-
 define( function( require ) {
   'use strict';
 
