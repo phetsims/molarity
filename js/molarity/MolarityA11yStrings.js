@@ -15,162 +15,160 @@ define( function( require ) {
   const molarity = require( 'MOLARITY/molarity' );
 
   const MolarityA11yStrings = {
-      screenSummaryFirstParagraphPattern: {
-        value: 'In the Play Area, you find a beaker containing a solution and a concentration scale. You can choose 1 of {{numberOfSolutes}} solutes for the beaker, and observe changes to concentration scale as you adjust solute amount or solution volume. In the Control Area, there is a checkbox to show measured values for mols, Liters and Molarity, and a button to reset the sim.'
-      },
-      stateOfSimPattern: {
-        value: 'Beaker is {{volume}} of a {{saturatedConcentration}} {{solute}} solution, containing {{soluteAmount}} of {{solute}} solute. {{concentrationClause}}.'
-      },
-      soluteAmountAndUnitPattern: {
-        value: '{{soluteAmount}} mol'
-      },
-      soluteAmountPattern: {
-        value: 'Solute amount is {{soluteAmount}}.'
-      },
-      solutionVolumePattern: {
-        value: 'Solution is {{volume}}.'
-      },
-      solutionVolumeAndUnitPattern: {
-        value: '{{volume}} liters'
-      },
-      solutionConcentrationValuesVisiblePattern: {
-        value: 'Concentration is {{concentration}} molar'
-      },
-      solutionConcentrationPattern: {
-        value: 'Solution is {{concentration}} and is {{saturatedConcentration}}'
-      },
-      soluteAmountAccessibleName: {
-        value: 'Solute Amount'
-      },
-      solutionVolumeAccessibleName: {
-        value: 'Solution Volume'
-      },
-      beakerHeader: {
-        value: 'Beaker'
-      },
-      beakerDescription: {
-        value: 'Solution Concentration of {{solute}} Is {{concentration}} the peak of this solute is {{maxConcentration}}. The chemical formula for {{solute}} is {{chemicalFormula}}.'
-      },
-      soluteComboBoxLabel: {
-        value: 'Select Solute'
-      },
-      sliderControlsLabelString: {
-        value: 'Slider Controls'
-      },
-      sliderControlsDescriptionString: {
-        value: 'Solute Amount and Solution Volume sliders change solution in Beaker.'
-      },
-      fullString: {
-        value: 'full'
-      },
-      nearlyFullString: {
-        value: 'nearly full'
-      },
-      overHalfString: {
-        value: 'over half'
-      },
-      halfFullString: {
-        value: 'half full'
-      },
-      underHalfString: {
-        value: 'under half'
-      },
-      lowString: {
-        value: 'low'
-      },
-      leastAmountString: {
-        value: 'least amount'
-      },
-      fullAmountString: {
-        value: 'The full amount'
-      },
-      aLotString: {
-        value: 'A lot'
-      },
-      aBunchString: {
-        value: 'A bunch'
-      },
-      someString: {
-        value: 'Some'
-      },
-      aLowString: {
-        value: 'A low amount'
-      },
-      aLittleString: {
-        value: 'A little'
-      },
-      zeroString: {
-        value: 'zero'
-      },
-      notConcentratedString: {
-        value: 'not concentrated'
-      },
-      barelyConcentratedString: {
-        value: 'barely concentrated'
-      },
-      slightlyConcentratedString: {
-        value: 'slightly concentrated'
-      },
-      concentratedString: {
-        value: 'concentrated'
-      },
-      veryConcentratedString: {
-        value: 'very concentrated'
-      },
-      saturatedString: {
-        value: 'saturated'
-      },
-      notSaturatedString: {
-        value: 'not yet saturated'
-      },
-      moreString: {
-        value: 'More'
-      },
-      lessString: {
-        value: 'Less'
-      },
-      solutionString: {
-        value: 'solution'
-      },
-      soluteString: {
-        value: 'solute'
-      },
-      sliderMovedAlertPattern: {
-        value: '{{moreLess}} {{sliderType}}, {{lessMore}} {{concentratedOrSolids}}. {{stateInfo}}'
-      },
-
-      stateInfoPattern: {
-        value: '{{soluteAmountClause}}{{volumeClause}} Solution {{concentration}}.'
-      },
-      soluteAmountStateInfoPattern: {
-        value: '{{soluteAmount}} of {{solute}}.'
-      },
-      volumeStateInfoPattern: {
-        value: 'Beaker {{volume}}. '
-      },
-      soluteChangedAlertPattern: {
-        value: '{{solute}} Starts at 0.0 and Peaks at {{maxConcentration}}'
-      },
-      soluteAmountSliderFocusAlertPattern: {
-        value: '{{solute}} {{soluteAmount}} moles, Solute Amount slider'
-      },
-      saturatedAlertString: {
-        value: 'Solution saturated. Beyond max concentration, solids appear.'
-      },
-      stillSaturatedAlertPattern: {
-        value: 'Still saturated {{withSolids}}'
-      },
-      withSolidsAlertPattern: {
-        value: 'with {{solidAmount}} solids'
-      },
-      saturationReachedAlertString: {
-        value: 'Solution saturated. Beyond max concentration, solids appear.'
-      },
-      saturationLostAlertPattern: {
-        value: 'Solution no longer saturated. Solution {{concentration}}, solids dissipate.'
-      }
+    screenSummaryFirstParagraphPattern: {
+      value: 'In the Play Area, you find a beaker containing a solution and a concentration scale. You can choose 1 of {{numberOfSolutes}} solutes for the beaker, and observe changes to concentration scale as you adjust solute amount or solution volume. In the Control Area, there is a checkbox to show measured values for mols, Liters and Molarity, and a button to reset the sim.'
+    },
+    stateOfSimPattern: {
+      value: 'Beaker is {{volume}} of a {{saturatedConcentration}} {{solute}} solution, containing {{soluteAmount}} of {{solute}} solute. {{concentrationClause}}.'
+    },
+    soluteAmountAndUnitPattern: {
+      value: '{{soluteAmount}} mol'
+    },
+    soluteAmountPattern: {
+      value: 'Solute amount is {{soluteAmount}}.'
+    },
+    solutionVolumePattern: {
+      value: 'Solution is {{volume}}.'
+    },
+    solutionVolumeAndUnitPattern: {
+      value: '{{volume}} liters'
+    },
+    solutionConcentrationValuesVisiblePattern: {
+      value: 'Concentration is {{concentration}} molar'
+    },
+    solutionConcentrationPattern: {
+      value: 'Solution is {{concentration}} and is {{saturatedConcentration}}'
+    },
+    soluteAmountAccessibleName: {
+      value: 'Solute Amount'
+    },
+    solutionVolumeAccessibleName: {
+      value: 'Solution Volume'
+    },
+    beakerHeader: {
+      value: 'Beaker'
+    },
+    beakerDescription: {
+      value: 'Solution Concentration of {{solute}} Is {{concentration}} the peak of this solute is {{maxConcentration}}. The chemical formula for {{solute}} is {{chemicalFormula}}.'
+    },
+    soluteComboBoxLabel: {
+      value: 'Select Solute'
+    },
+    sliderControlsLabelString: {
+      value: 'Slider Controls'
+    },
+    sliderControlsDescriptionString: {
+      value: 'Solute Amount and Solution Volume sliders change solution in Beaker.'
+    },
+    fullString: {
+      value: 'full'
+    },
+    nearlyFullString: {
+      value: 'nearly full'
+    },
+    overHalfString: {
+      value: 'over half'
+    },
+    halfFullString: {
+      value: 'half full'
+    },
+    underHalfString: {
+      value: 'under half'
+    },
+    lowString: {
+      value: 'low'
+    },
+    leastAmountString: {
+      value: 'least amount'
+    },
+    fullAmountString: {
+      value: 'The full amount'
+    },
+    aLotString: {
+      value: 'A lot'
+    },
+    aBunchString: {
+      value: 'A bunch'
+    },
+    someString: {
+      value: 'Some'
+    },
+    aLowString: {
+      value: 'A low amount'
+    },
+    aLittleString: {
+      value: 'A little'
+    },
+    zeroString: {
+      value: 'zero'
+    },
+    notConcentratedString: {
+      value: 'not concentrated'
+    },
+    barelyConcentratedString: {
+      value: 'barely concentrated'
+    },
+    slightlyConcentratedString: {
+      value: 'slightly concentrated'
+    },
+    concentratedString: {
+      value: 'concentrated'
+    },
+    veryConcentratedString: {
+      value: 'very concentrated'
+    },
+    saturatedString: {
+      value: 'saturated'
+    },
+    notSaturatedString: {
+      value: 'not yet saturated'
+    },
+    moreString: {
+      value: 'More'
+    },
+    lessString: {
+      value: 'Less'
+    },
+    solutionString: {
+      value: 'solution'
+    },
+    soluteString: {
+      value: 'solute'
+    },
+    sliderMovedAlertPattern: {
+      value: '{{moreLess}} {{sliderType}}, {{lessMore}} {{concentratedOrSolids}}. {{stateInfo}}'
+    },
+    stateInfoPattern: {
+      value: '{{soluteAmountClause}}{{volumeClause}} Solution {{concentration}}.'
+    },
+    soluteAmountStateInfoPattern: {
+      value: '{{soluteAmount}} of {{solute}}.'
+    },
+    volumeStateInfoPattern: {
+      value: 'Beaker {{volume}}. '
+    },
+    soluteChangedAlertPattern: {
+      value: '{{solute}} Starts at 0.0 and Peaks at {{maxConcentration}}'
+    },
+    soluteAmountSliderFocusAlertPattern: {
+      value: '{{solute}} {{soluteAmount}} moles, Solute Amount slider'
+    },
+    saturatedAlertString: {
+      value: 'Solution saturated. Beyond max concentration, solids appear.'
+    },
+    stillSaturatedAlertPattern: {
+      value: 'Still saturated {{withSolids}}'
+    },
+    withSolidsAlertPattern: {
+      value: 'with {{solidAmount}} solids'
+    },
+    saturationReachedAlertString: {
+      value: 'Solution saturated. Beyond max concentration, solids appear.'
+    },
+    saturationLostAlertPattern: {
+      value: 'Solution no longer saturated. Solution {{concentration}}, solids dissipate.'
     }
-  ;
+  };
 
   // TODO: This seems it should be factored out, see https://github.com/phetsims/tasks/issues/917
   if ( phet.chipper.queryParameters.stringTest === 'xss' ) {
