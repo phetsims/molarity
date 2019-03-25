@@ -1,4 +1,4 @@
-// Copyright 2017-2018, University of Colorado Boulder
+// Copyright 2017-2019, University of Colorado Boulder
 
 //TODO replace this with StateObjectIO, https://github.com/phetsims/molarity/issues/54
 /**
