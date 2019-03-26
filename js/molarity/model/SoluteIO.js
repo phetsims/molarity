@@ -29,7 +29,7 @@ define( function( require ) {
 
   phetioInherit( ObjectIO, 'SoluteIO', SoluteIO, {}, {
     documentation: 'The solute for the sim',
-    validator: { isValidValue: v => v instanceof phet.molarity.Solute },
+    validator: { isValidValue: v => v instanceof phet.molarity.Solute }, //TODO #51 replace global with require?
 
     /**
      * @param {Solute} solute
