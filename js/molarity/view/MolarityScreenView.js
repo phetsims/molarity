@@ -186,7 +186,7 @@ define( function( require ) {
       innerContent: soluteComboBoxLabelString
     } );
 
-    // a11y - contains heading for Play Area and orders the PDOM for included elements
+    // a11y - contains PDOM heading for Play Area, and orders the PDOM for included elements
     const playAreaNode = new PlayAreaNode();
     playAreaNode.accessibleOrder = [
       beakerNode,
