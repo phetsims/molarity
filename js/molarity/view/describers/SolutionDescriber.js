@@ -1,6 +1,7 @@
 // Copyright 2019, University of Colorado Boulder
 
 /**
+ * SolutionDescriber is responsible for generating all of the strings used for PDOM content and alerts in Molarity.
  * @author Michael Kauzmann (PhET Interactive Simulations)
  * @author Taylor Want (PhET Interactive Simulations)
  */
@@ -105,7 +106,6 @@ define( require => {
   class SolutionDescriber {
 
     /**
-     * SolutionDescriber is responsible for generating all of the strings used for PDOM content and alerts.
      * @param {Object} solution - from MolarityModel
      * @param {BooleanProperty} valuesVisibleProperty - tracks whether the "Show values" checkbox is checked
      */
