@@ -126,6 +126,18 @@
       <div class="aspect-ratio">
         <iframe id="iframe" allowfullscreen scrolling="no" title="Interact with Molarity"></iframe>
       </div>
+      <div id="alerts">
+        <h3>Activity log of Interactive Alerts</h3>
+        <p>
+          Interactive alerts are read out as the user interacts providing a description of what is happening in
+          real-time. Alerts appear in reverse chronological order with the latest on top.
+        </p>
+        <div id='alert-copy-container' class='alert_copy_container' role='presentation'>
+          <div id='polite-element-container'>
+            <ul class='alert_copy' id='alert-list'></ul>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!--The PDOM copy will be placed in this container, along with a section just for alerts -->
@@ -147,19 +159,6 @@
           rendered here inside the iframe.
         </p>
       </div>
-      <div id="alerts">
-        <h3>Activity log of Interactive Alerts</h3>
-        <p>
-          Interactive alerts are read out as the user interacts providing a description of what is happening in
-          real-time. Alerts appear in reverse chronological order with the latest on top.
-        </p>
-        <div id='alert-copy-container' class='alert_copy_container' role='presentation'>
-          <div id='polite-element-container'>
-            <ul class='alert_copy' id='alert-list'></ul>
-          </div>
-        </div>
-      </div>
-      <br>
       <h3>PDOM & Descriptions for Molarity</h3>
       <p>Content in the blue box updates in real-time to provide an always-available description of the current state of
         the sim.</p>
