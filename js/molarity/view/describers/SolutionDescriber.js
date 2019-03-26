@@ -386,7 +386,7 @@ define( require => {
       const isNewSolidsRegion = this.solidsRegion !== this.solidsToIndex( this.getCurrentPrecipitates() );
 
       // checks to see if any region has changed
-      const isNewRegion = isNewConcentrationRegion || isNewSoluteAmountRegion || isNewVolumeRegion || isNewSolidsRegion
+      const isNewRegion = isNewConcentrationRegion || isNewSoluteAmountRegion || isNewVolumeRegion || isNewSolidsRegion;
 
       // update the region to the new one if a region has changed
       if ( isNewRegion ) {
@@ -470,7 +470,7 @@ define( require => {
       // is saturated and region has not changed
       else if ( isCurrentlySaturated ) {
         concentratedOrSolids = solidsString;
-        stateInfo = StringUtils.fillIn( stillSaturatedAlertPatternString, { withSolids: '' } )
+        stateInfo = StringUtils.fillIn( stillSaturatedAlertPatternString, { withSolids: '' } );
       }
       // is not saturated and region has changed
       else if ( !isCurrentlySaturated && this.checkForRegionChange() ) {
