@@ -49,6 +49,8 @@ define( require => {
   const aBunchString = MolarityA11yStrings.aBunchString.value;
   const aLotString = MolarityA11yStrings.aLotString.value;
   const fullAmountString = MolarityA11yStrings.fullAmountString.value;
+  const aCoupleString = MolarityA11yStrings.aCoupleString.value;
+  const aFewString = MolarityA11yStrings.aFewString.value;
 
   const saturatedString = MolarityA11yStrings.saturatedString.value;
   const notSaturatedString = MolarityA11yStrings.notSaturatedString.value;
@@ -58,6 +60,7 @@ define( require => {
 
   const solutionString = MolarityA11yStrings.solutionString.value;
   const soluteString = MolarityA11yStrings.soluteString.value;
+  const solidsString = MolarityA11yStrings.solidsString.value;
 
   // constants
   const VOLUME_STRINGS = [
@@ -88,25 +91,34 @@ define( require => {
     fullAmountString
   ];
 
+  const SOLIDS_STRINGS = [
+    aCoupleString,
+    aFewString,
+    someString,
+    aBunchString,
+    aLotString
+  ];
+
   // the singleton instance of this describer, used for the entire lifetime of the sim
   let describer = null;
 
   class SolutionDescriber {
 
     /**
-     * @param {MolarityModel} model
+     * SolutionDescriber is responsible for generating all of the strings used for PDOM content and alerts.
+     * @param {Object} solution - from MolarityModel
      * @param {BooleanProperty} valuesVisibleProperty - tracks whether the "Show values" checkbox is checked
      */
-    constructor( model, valuesVisibleProperty ) {
+    constructor( solution, valuesVisibleProperty ) {
 
       // @private
-      this.model = model;
-      this.solution = model.solution;
+      this.solution = solution;
       this.valuesVisibleProperty = valuesVisibleProperty;
-      this.concentrationIndex = 0;
-      this.volumeIndex = 0;
-      this.soluteAmountIndex = 0;
-      this.saturated = false;
+      this.concentrationRegion = 0;
+      this.volumeRegion = 0;
+      this.soluteAmountRegion = 0;
+      this.saturatedYet = false;
+      this.solidsRegion = 0;
     }
 
     /**
@@ -197,32 +209,98 @@ define( require => {
 
     /**
      * @private
-     * @returns {object} object with values from model
+     * @param {number} precipitateAmount
+     * @returns {number} index to pull from SOLIDS_STRINGS array
      */
-    getQuantities() {
+    solidsToIndex( precipitateAmount ) {
+      const fraction = ( 5 - this.getCurrentSaturatedConcentration() ) / SOLIDS_STRINGS.length;
+      if ( precipitateAmount <= fraction ) {
+        return 0;
+      }
+      if ( precipitateAmount <= 2 * fraction ) {
+        return 1;
+      }
+      if ( precipitateAmount <= 3 * fraction ) {
+        return 2;
+      }
+      if ( precipitateAmount <= 4 * fraction ) {
+        return 3;
+      }
+      if ( precipitateAmount <= 5 * fraction ) {
+        return 4;
+      }
+      if ( precipitateAmount <= 6 * fraction ) {
+        return 5;
+      }
+    }
 
+    /**
+     * gets the current value of volume either quantitatively or quantitatively to plug into descriptions
+     * @private
+     * @returns {number | string } quantitative or qualitative description of current volume
+     */
+    getCurrentVolume() {
       if ( this.valuesVisibleProperty.value ) {
-
-        // values if the 'show values' checkbox is checked (quantitative)
-        return {
-          concentration: Util.toFixed( this.solution.concentrationProperty.value, 3 ),
-          soluteAmount: Util.toFixed( this.solution.soluteAmountProperty.value, 3 ),
-          volume: Util.toFixed( this.solution.volumeProperty.value, 3 ),
-          solute: this.solution.soluteProperty.value.name,
-          maxConcentration: this.solution.soluteProperty.value.saturatedConcentration
-        };
+        return Util.toFixed( this.solution.volumeProperty.value, 3 );
       }
       else {
-
-        // values if the 'show values checkbox isn't checked (qualitative)
-        return {
-          concentration: CONCENTRATION_STRINGS[ this.concentrationToIndex( this.solution.concentrationProperty.value ) ],
-          soluteAmount: SOLUTE_AMOUNT_STRINGS[ Util.roundSymmetric( this.soluteAmountToIndex( this.solution.soluteAmountProperty.value ) ) ],
-          volume: VOLUME_STRINGS[ this.volumeToIndex( this.solution.volumeProperty.value ) ],
-          solute: this.solution.soluteProperty.value.name,
-          maxConcentration: this.solution.soluteProperty.value.saturatedConcentration
-        };
+        return VOLUME_STRINGS[ this.volumeToIndex( this.solution.volumeProperty.value ) ];
       }
+    }
+
+    /**
+     * gets the current value of concentration either quantitatively or quantitatively to plug into descriptions
+     * @private
+     * @returns {number | string } quantitative or qualitative description of current concentration
+     */
+    getCurrentConcentration() {
+      if ( this.valuesVisibleProperty.value ) {
+        return Util.toFixed( this.solution.concentrationProperty.value, 3 );
+      }
+      else {
+        return CONCENTRATION_STRINGS[ this.concentrationToIndex( this.solution.concentrationProperty.value ) ];
+      }
+    }
+
+    /**
+     * gets the current value of solute amount either quantitatively or quantitatively to plug into descriptions
+     * @private
+     * @returns {number | string } quantitative or qualitative description of current solute amount
+     */
+    getCurrentSoluteAmount() {
+      if ( this.valuesVisibleProperty.value ) {
+        return Util.toFixed( this.solution.soluteAmountProperty.value, 3 );
+      }
+      else {
+        return SOLUTE_AMOUNT_STRINGS[ Util.roundSymmetric( this.soluteAmountToIndex( this.solution.soluteAmountProperty.value ) ) ];
+      }
+    }
+
+    /**
+     * gets the name of the current solute selected
+     * @private
+     * @returns { string } name of current solute
+     */
+    getCurrentSolute() {
+      return this.solution.soluteProperty.value.name;
+    }
+
+    /**
+     * gets the saturated concentration amount of the currently selected solute.
+     * @private
+     * @returns { Number }
+     */
+    getCurrentSaturatedConcentration() {
+      return this.solution.soluteProperty.value.saturatedConcentration;
+    }
+
+    /**
+     * gets the saturated concentration amount of the currently selected solute.
+     * @private
+     * @returns { Number }
+     */
+    getCurrentPrecipitates() {
+      return this.solution.precipitateAmountProperty.value;
     }
 
     /**
@@ -236,23 +314,24 @@ define( require => {
       let saturatedConcentration = '';
       let concentrationPattern = '';
 
-      // checks if the solution is saturated yet, and sets saturatedConcentration to saturatedString if so.
-      if ( this.solution.concentrationProperty.value >= this.getQuantities().maxConcentration ) {
+      // boolean -- determines if solution is currently saturated
+      const isCurrentlySaturated = this.solution.concentrationProperty.value >= this.getCurrentSaturatedConcentration();
+      if ( isCurrentlySaturated ) {
         saturatedConcentration = saturatedString;
       }
 
       // changes values to fill in if the "Show Values" checkbox is not checked
       if ( !this.valuesVisibleProperty.value ) {
         concentrationPattern = StringUtils.fillIn( solutionConcentrationPatternString, {
-          concentration: this.getQuantities().concentration,
+          concentration: this.getCurrentConcentration(),
           saturatedConcentration: saturatedConcentration === '' ? notSaturatedString : saturatedConcentration
         } );
       }
-      
+
       return StringUtils.fillIn( stateOfSimPatternString, {
-        volume: this.getQuantities().volume,
-        solute: this.getQuantities().solute,
-        soluteAmount: this.getQuantities().soluteAmount,
+        volume: this.getCurrentVolume(),
+        solute: this.getCurrentSolute(),
+        soluteAmount: this.getCurrentSoluteAmount(),
         concentrationClause: concentrationPattern,
         saturatedConcentration: saturatedConcentration
       } );
@@ -265,71 +344,139 @@ define( require => {
      */
     getBeakerDescription() {
       return StringUtils.fillIn( beakerDescriptionString, {
-        solute: this.getQuantities().solute,
-        concentration: this.getQuantities().concentration,
-        maxConcentration: this.getQuantities().maxConcentration,
+        solute: this.getCurrentSolute(),
+        concentration: this.getCurrentConcentration(),
+        maxConcentration: this.getCurrentSaturatedConcentration(),
         chemicalFormula: this.solution.soluteProperty.value.formula
       } );
     }
 
     /**
-     * Describes the volume or the solute amount in the beaker in the play area.
-     * @param {boolean} increasing - indicates whether the slider has moved up or down. true if up, false if down
-     * @param {string} slider - indicates which slider has moved
-     * @public
+     * Fills in the final slider alert once stateInfo and concentratedOrSolids has been determined
+     * @param {boolean} increasing
+     * @param {boolean} isVolume
+     * @param {string} stateInfo
+     * @param {string} concentratedOrSolids
+     * @private
      * @returns {string}
      */
-    getSliderAlertString( increasing, slider ) {
+    fillInSliderAlertString( increasing, isVolume, stateInfo, concentratedOrSolids ) {
       const moreLess = increasing ? moreString : lessString;
-      const lessMore = ( increasing && slider === 'volume' ) || ( !increasing && slider !== 'volume' ) ? lessString : moreString;
-      let stateInfo = '';
-      const sliderType = ( slider === 'volume' ) ? solutionString : soluteString;
-      const volumeStateInfo = ( slider === 'volume' ) ? StringUtils.fillIn( volumeStateInfoPatternString, { volume: this.getQuantities().volume } ) : '';
-      const soluteAmountStateInfo = ( slider === 'volume' ) ? '' : StringUtils.fillIn( soluteAmountStateInfoPatternString, { solute: this.getQuantities().solute, soluteAmount: this.getQuantities().soluteAmount } );
-
-      if ( this.solution.concentrationProperty.value >= this.getQuantities().maxConcentration && !this.saturated ) {
-
-        // checks if the solution is saturated and description region has changed for solute amount or volume
-        this.saturated = true;
-        return saturationReachedAlertString;
-      }
-      else if ( this.solution.concentrationProperty.value < this.getQuantities().maxConcentration && this.saturated ) {
-        this.saturated = false;
-        return StringUtils.fillIn( saturationLostAlertPatternString, { concentration: this.getQuantities().concentration } );
-      }
-      else if ( this.solution.concentrationProperty.value >= this.getQuantities().maxConcentration ) {
-
-        // checks if solution is saturated and alert has already been read out
-        const withSolids = StringUtils.fillIn( withSolidsAlertPatternString, {
-          solidAmount: this.concentrationToIndex( this.solution.precipitateAmountProperty.value )
-        } );
-        if ( this.concentrationIndex !== this.concentrationToIndex( this.solution.concentrationProperty.value ) ) {
-          stateInfo = StringUtils.fillIn( stillSaturatedAlertPatternString, {
-            withSolids: withSolids
-          } );
-          this.concentrationIndex = this.concentrationToIndex( this.solution.concentrationProperty.value );
-        }
-      }
-      else if ( this.concentrationIndex !== this.concentrationToIndex( this.solution.concentrationProperty.value ) || this.soluteAmountIndex !== this.soluteAmountToIndex( this.solution.soluteAmountProperty.value || this.volumeIndex !== this.volumeToIndex( this.solution.volumeProperty.value ) ) ) {
-
-        // checks if description region has changes for solute amount or volume
-        stateInfo = StringUtils.fillIn( stateInfoPatternString, {
-          concentration: this.getQuantities().concentration,
-          volumeClause: volumeStateInfo,
-          soluteAmountClause: soluteAmountStateInfo
-        } );
-        this.concentrationIndex = this.concentrationToIndex( this.solution.concentrationProperty.value );
-        this.soluteAmountIndex = this.soluteAmountToIndex( this.solution.soluteAmountProperty.value );
-        this.volumeIndex = this.volumeToIndex( this.solution.volumeProperty.value );
-      }
-
+      const lessMore = ( increasing && isVolume ) || ( !increasing && !isVolume ) ? lessString : moreString;
+      const sliderType = ( isVolume ) ? solutionString : soluteString;
       return StringUtils.fillIn( sliderMovedAlertPatternString, {
         moreLess: moreLess,
         lessMore: lessMore,
         stateInfo: stateInfo,
-        concentratedOrSolids: concentratedString,
+        concentratedOrSolids: concentratedOrSolids,
         sliderType: sliderType
       } );
+    }
+
+
+    /**
+     * Checks to see if any descriptive regions have changed for any quantity, and updates to reflect new regions
+     * @private
+     * @returns {boolean}
+     */
+    checkForRegionChange() {
+      const isNewConcentrationRegion = this.concentrationRegion !== this.concentrationToIndex( this.solution.concentrationProperty.value );
+      const isNewSoluteAmountRegion = this.soluteAmountRegion !== this.soluteAmountToIndex( this.solution.soluteAmountProperty.value );
+      const isNewVolumeRegion = this.volumeRegion !== this.volumeToIndex( this.solution.volumeProperty.value );
+      const isNewSolidsRegion = this.solidsRegion !== this.solidsToIndex( this.getCurrentPrecipitates() );
+
+      // checks to see if any region has changed
+      const isNewRegion = isNewConcentrationRegion || isNewSoluteAmountRegion || isNewVolumeRegion || isNewSolidsRegion
+
+      // update the region to the new one if a region has changed
+      if ( isNewRegion ) {
+        this.concentrationRegion = this.concentrationToIndex( this.solution.concentrationProperty.value );
+        this.soluteAmountRegion = this.soluteAmountToIndex( this.solution.soluteAmountProperty.value );
+        this.volumeRegion = this.volumeToIndex( this.solution.volumeProperty.value );
+        this.solidsRegion = this.solidsToIndex( this.getCurrentPrecipitates() );
+      }
+
+      return isNewRegion;
+    }
+
+    /**
+     * fills in the state info if region has changed and the solution is saturated
+     * @private
+     * @returns {string}
+     */
+    getStateInfoSaturatedRegionChange() {
+
+      // updates the current region for the solids array
+      this.solidsRegion = this.solidsToIndex( this.getCurrentPrecipitates() );
+
+      // fills in the state info with a description of the amount of solids
+      const stateInfo = StringUtils.fillIn( stillSaturatedAlertPatternString, {
+        withSolids: StringUtils.fillIn( withSolidsAlertPatternString, {
+          solidAmount: SOLIDS_STRINGS[ this.solidsToIndex( this.getCurrentPrecipitates() ) ]
+        } )
+      } );
+      return stateInfo;
+    }
+
+
+    /**
+     * fills in the state info if region has changed and the solution is not saturated
+     * @param {boolean} isVolume
+     * @private
+     * @returns {string}
+     */
+    getStateInfoNotSaturated( isVolume ) {
+      const volumeStateInfo = ( isVolume ) ? StringUtils.fillIn( volumeStateInfoPatternString, {
+        volume: this.getCurrentVolume()
+      } ) : '';
+      const soluteAmountStateInfo = ( isVolume ) ? '' : StringUtils.fillIn( soluteAmountStateInfoPatternString, {
+        solute: this.getCurrentSolute(),
+        soluteAmount: this.getCurrentSoluteAmount()
+      } );
+      const stateInfo = StringUtils.fillIn( stateInfoPatternString, {
+        concentration: this.getCurrentConcentration(),
+        volumeClause: volumeStateInfo,
+        soluteAmountClause: soluteAmountStateInfo
+      } );
+      return stateInfo;
+    }
+
+    /**
+     * Describes the volume or the solute amount in the beaker in the play area.
+     * @param {boolean} increasing - indicates whether the slider has moved up or down. true if up, false if down
+     * @param {boolean} isVolume - indicates whether the slider moved is the volume slider
+     * @public
+     * @returns {string}
+     */
+    getSliderAlertString( increasing, isVolume ) {
+      let stateInfo = '';
+      let concentratedOrSolids = concentratedString;
+      const isCurrentlySaturated = this.solution.concentrationProperty.value >= this.getCurrentSaturatedConcentration();
+
+      // saturation status has changed (solution has either become saturated or lost saturation)
+      if ( isCurrentlySaturated && !this.saturatedYet ) {
+        this.saturatedYet = true;
+        return saturationReachedAlertString;
+      }
+      else if ( !isCurrentlySaturated && this.saturatedYet ) {
+        this.saturatedYet = false;
+        return StringUtils.fillIn( saturationLostAlertPatternString, { concentration: this.getCurrentConcentration() } );
+      }
+      // is saturated and region for solids description has changed
+      else if ( isCurrentlySaturated && this.checkForRegionChange() ) {
+        concentratedOrSolids = solidsString;
+        stateInfo = this.getStateInfoSaturatedRegionChange();
+      }
+      // is saturated and region has not changed
+      else if ( isCurrentlySaturated ) {
+        concentratedOrSolids = solidsString;
+        stateInfo = StringUtils.fillIn( stillSaturatedAlertPatternString, { withSolids: '' } )
+      }
+      // is not saturated and region has changed
+      else if ( !isCurrentlySaturated && this.checkForRegionChange() ) {
+        stateInfo = this.getStateInfoNotSaturated( isVolume );
+      }
+      return this.fillInSliderAlertString( increasing, isVolume, stateInfo, concentratedOrSolids );
     }
 
     /**
@@ -340,7 +487,7 @@ define( require => {
     getSoluteChangedAlertString() {
       return StringUtils.fillIn( soluteChangedAlertPatternString, {
         solute: this.solution.soluteProperty.value.name,
-        maxConcentration: this.getQuantities().maxConcentration
+        maxConcentration: this.getCurrentSaturatedConcentration()
       } );
     }
 

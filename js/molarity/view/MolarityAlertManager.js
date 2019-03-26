@@ -20,41 +20,30 @@ define( function( require ) {
   class MolarityAlertManager {
 
     /**
-     * @param {MolarityModel} model
+     * @param {Solution} solution from the Molarity Model
      */
-    constructor( model ) {
+    constructor( solution ) {
 
       // @private
-      this.model = model;
-      this.solution = model.solution;
-      this.solutionDescriber = SolutionDescriber.getDescriber();
+      const solutionDescriber = SolutionDescriber.getDescriber();
 
       // adds an alert when the solute is changed
-      this.solution.soluteProperty.lazyLink( () => {
-        const utterance = this.solutionDescriber.getSoluteChangedAlertString();
+      solution.soluteProperty.lazyLink( () => {
+        const utterance = solutionDescriber.getSoluteChangedAlertString();
         utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'stateOfSim' } ) );
       } );
 
       // alert read out when volume property changes
-      this.solution.volumeProperty.lazyLink( ( newVolume, oldVolume, ) => {
-        const utterance = this.solutionDescriber.getSliderAlertString( newVolume > oldVolume, 'volume' );
+      solution.volumeProperty.lazyLink( ( newVolume, oldVolume, ) => {
+        const utterance = solutionDescriber.getSliderAlertString( newVolume > oldVolume, true );
         utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'volumeSliderMoved' } ) );
       } );
 
       // alert read out when solute amount property changes
-      this.solution.soluteAmountProperty.lazyLink( ( newAmount, oldAmount, ) => {
-        const utterance = this.solutionDescriber.getSliderAlertString( newAmount > oldAmount, 'soluteAmount' );
+      solution.soluteAmountProperty.lazyLink( ( newAmount, oldAmount, ) => {
+        const utterance = solutionDescriber.getSliderAlertString( newAmount > oldAmount, false );
         utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'soluteAmountSliderMoved' } ) );
       } );
-    }
-
-    /**
-     * Uses the singleton pattern to keep one instance of this alertManager for the entire lifetime of the sim.
-     * @returns {MolarityAlertManager}
-     */
-    static getAlertManager() {
-      assert && assert( alertManager, 'alertManager has not yet been initialized' );
-      return alertManager;
     }
 
     /**

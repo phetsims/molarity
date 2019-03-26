@@ -82,8 +82,8 @@ define( function( require ) {
     } );
 
     // a11y - initializes describer and alert manager
-    const solutionDescriber = SolutionDescriber.initialize( model, valuesVisibleProperty );
-    MolarityAlertManager.initialize( model );
+    const solutionDescriber = SolutionDescriber.initialize( model.solution, valuesVisibleProperty, model.maxPrecipitateAmount );
+    MolarityAlertManager.initialize( model.solution );
 
     // a11y - creates screen summary in the PDOM and add it to the screenView
     const molarityScreenSummaryNode = new MolarityScreenSummaryNode( model, valuesVisibleProperty );

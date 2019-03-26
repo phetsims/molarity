@@ -102,6 +102,12 @@ define( function( require ) {
     zeroString: {
       value: 'zero'
     },
+    aCoupleString: {
+      value: 'a couple of'
+    },
+    aFewString: {
+      value: 'a few'
+    },
     notConcentratedString: {
       value: 'not concentrated'
     },
@@ -167,6 +173,9 @@ define( function( require ) {
     },
     saturationLostAlertPattern: {
       value: 'Solution no longer saturated. Solution {{concentration}}, solids dissipate.'
+    },
+    solidsString: {
+      value: 'solids'
     }
   };
 
