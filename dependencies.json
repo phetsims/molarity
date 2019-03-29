@@ -1,5 +1,5 @@
 {
-  "comment": "# molarity 1.4.4-rc.1 Thu Mar 28 2019 14:16:52 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# molarity 1.4.4-rc.1 Thu Mar 28 2019 23:13:20 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "HEAD"
@@ -9,12 +9,12 @@
     "branch": "HEAD"
   },
   "brand": {
-    "sha": "abe2594a58da895086f2400a997c4e06cb67e170",
-    "branch": "HEAD"
+    "sha": "0f9971b5a1f8c617dcab8c6e4af0581b9ea21b4b",
+    "branch": "molarity-1.4"
   },
   "chipper": {
     "sha": "9d90ee432f23592d4f12deb5c435c2d7ab5786d1",
-    "branch": "molarity-1.4"
+    "branch": "HEAD"
   },
   "dot": {
     "sha": "49561319ef6e86bf82c4f33d5296288896750ebc",
@@ -29,7 +29,7 @@
     "branch": "HEAD"
   },
   "molarity": {
-    "sha": "7b136144a4f516643d3fd06fb2947cf6b8cf0b11",
+    "sha": "406aaee74c0b80a6f0f2550f90bbab63a5f30fea",
     "branch": "1.4"
   },
   "nitroglycerin": {
