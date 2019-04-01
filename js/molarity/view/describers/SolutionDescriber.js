@@ -188,8 +188,8 @@ define( require => {
    * @param {number} precipitateAmount
    * @returns {number} index to pull from SOLIDS_STRINGS array
    */
-  const solidsToIndex = ( precipitateAmount ) => {
-    const fraction = ( 5 - this.getCurrentSaturatedConcentration() ) / SOLIDS_STRINGS.length;
+  const solidsToIndex = ( precipitateAmount, saturatedConcentration ) => {
+    const fraction = ( 5 - saturatedConcentration ) / SOLIDS_STRINGS.length;
     if ( precipitateAmount <= fraction ) {
       return 0;
     }
@@ -383,7 +383,7 @@ define( require => {
       const concentrationIndex = concentrationToIndex( concentration, saturatedConcentration );
       const soluteAmountIndex = soluteAmountToIndex( this.solution.soluteAmountProperty.value );
       const volumeIndex = volumeToIndex( this.solution.volumeProperty.value );
-      const solidsIndex = solidsToIndex( this.getCurrentPrecipitates() );
+      const solidsIndex = solidsToIndex( this.getCurrentPrecipitates(), this.getCurrentSaturatedConcentration() );
 
       const isNewConcentrationRegion = this.concentrationRegion !== concentrationIndex;
       const isNewSoluteAmountRegion = this.soluteAmountRegion !== soluteAmountIndex;
@@ -412,12 +412,12 @@ define( require => {
     getStateInfoSaturatedRegionChange() {
 
       // updates the current region for the solids array
-      this.solidsRegion = solidsToIndex( this.getCurrentPrecipitates() );
+      this.solidsRegion = solidsToIndex( this.getCurrentPrecipitates(), this.getCurrentSaturatedConcentration() );
 
       // fills in the state info with a description of the amount of solids
       return StringUtils.fillIn( stillSaturatedAlertPatternString, {
         withSolids: StringUtils.fillIn( withSolidsAlertPatternString, {
-          solidAmount: SOLIDS_STRINGS[ solidsToIndex( this.getCurrentPrecipitates() ) ]
+          solidAmount: SOLIDS_STRINGS[ solidsToIndex( this.getCurrentPrecipitates(), this.getCurrentSaturatedConcentration() )]
         } )
       } );
     }
