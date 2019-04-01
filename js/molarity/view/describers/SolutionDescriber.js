@@ -224,17 +224,17 @@ define( require => {
       // @private
       this.solution = solution;
       this.valuesVisibleProperty = valuesVisibleProperty;
-      this.concentrationRegion = 0;
-      this.volumeRegion = 0;
-      this.soluteAmountRegion = 0;
-      this.saturatedYet = false;
-      this.solidsRegion = 0;
+      this.concentrationRegion = 0; // tracks the last descriptive region for concentration
+      this.volumeRegion = 0; // tracks the last descriptive region for volume
+      this.soluteAmountRegion = 0; // tracks the last descriptive region for solute amount
+      this.solidsRegion = 0; // tracks the last descriptive region for amount of solids
+      this.saturatedYet = false; // tracks whether the solution was saturated on the previous slider move
     }
 
     /**
      * gets the current value of volume either quantitatively or quantitatively to plug into descriptions
      * @private
-     * @returns {number | string } quantitative or qualitative description of current volume
+     * @returns {string} - quantitative or qualitative description of current volume
      */
     getCurrentVolume() {
       if ( this.valuesVisibleProperty.value ) {
@@ -375,9 +375,9 @@ define( require => {
     /**
      * Checks to see if any descriptive regions have changed for any quantity, and updates to reflect new regions
      * @private
-     * @returns {boolean}
+     * @returns {boolean} - whether or not there was a region to update
      */
-    checkForRegionChange() {
+    updateRegions() {
       const saturatedConcentration = this.solution.soluteProperty.value.saturatedConcentration;
       const concentration = this.solution.concentrationProperty.value;
       const concentrationIndex = concentrationToIndex( concentration, saturatedConcentration );
@@ -468,7 +468,7 @@ define( require => {
         } );
       }
       // is saturated and region for solids description has changed
-      else if ( isCurrentlySaturated && this.checkForRegionChange() ) {
+      else if ( isCurrentlySaturated && this.updateRegions() ) {
         concentratedOrSolids = solidsString;
         stateInfo = this.getStateInfoSaturatedRegionChange();
       }
@@ -478,7 +478,7 @@ define( require => {
         stateInfo = StringUtils.fillIn( stillSaturatedAlertPatternString, { withSolids: '' } );
       }
       // is not saturated and region has changed
-      else if ( !isCurrentlySaturated && this.checkForRegionChange() ) {
+      else if ( !isCurrentlySaturated && this.updateRegions() ) {
         stateInfo = this.getStateInfoNotSaturated( isVolume );
       }
       return this.fillInSliderAlertString( increasing, isVolume, stateInfo, concentratedOrSolids );
