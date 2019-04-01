@@ -37,6 +37,7 @@ define( require => {
   const volumeStateInfoPatternString = MolarityA11yStrings.volumeStateInfoPattern.value;
   const soluteAmountStateInfoPatternString = MolarityA11yStrings.soluteAmountStateInfoPattern.value;
 
+
   const notConcentratedString = MolarityA11yStrings.notConcentratedString.value;
   const barelyConcentratedString = MolarityA11yStrings.barelyConcentratedString.value;
   const slightlyConcentratedString = MolarityA11yStrings.slightlyConcentratedString.value;
@@ -100,6 +101,115 @@ define( require => {
     aLotString
   ];
 
+  /** calculates the which item to use from the SOLUTE_AMOUNT_STRINGS array
+   * @param {number} soluteAmount
+   * @returns {number} index (integer) to pull from SOLUTE_AMOUNT_STRINGS array
+   */
+  const soluteAmountToIndex = ( soluteAmount ) => {
+    if ( soluteAmount <= 0.050 ) {
+      return 0;
+    }
+    if ( soluteAmount <= .200 ) {
+      return 1;
+    }
+    if ( soluteAmount <= .450 ) {
+      return 2;
+    }
+    if ( soluteAmount <= .650 ) {
+      return 3;
+    }
+    if ( soluteAmount <= .850 ) {
+      return 4;
+    }
+    if ( soluteAmount <= .950 ) {
+      return 5;
+    }
+    if ( soluteAmount <= 1.000 ) {
+      return 6;
+    }
+  };
+
+  /** calculates the which item to use from the VOLUME_STRINGS array
+   * @param {number} volume
+   * @returns {number} index to pull from VOLUME_STRINGS array
+   */
+  const volumeToIndex = ( volume ) => {
+    if ( volume <= .220 ) {
+      return 0;
+    }
+    if ( volume <= .330 ) {
+      return 1;
+    }
+    if ( volume <= .410 ) {
+      return 2;
+    }
+    if ( volume <= .530 ) {
+      return 3;
+    }
+    if ( volume <= .780 ) {
+      return 4;
+    }
+    if ( volume <= .960 ) {
+      return 5;
+    }
+    if ( volume <= 1.000 ) {
+      return 6;
+    }
+  };
+
+  /** calculates the which item to use from the CONCENTRATION_STRINGS array
+   * @param {number} concentration
+   * @returns {number} index to pull from CONCENTRATION_STRINGS array
+   */
+  const concentrationToIndex = ( concentration, saturatedConcentration ) => {
+    const maxConcentration = saturatedConcentration;
+    const fraction = maxConcentration / ( CONCENTRATION_STRINGS.length );
+    if ( concentration <= fraction ) {
+      return 0;
+    }
+    if ( concentration <= 2 * fraction ) {
+      return 1;
+    }
+    if ( concentration <= 3 * fraction ) {
+      return 2;
+    }
+    if ( concentration <= 4 * fraction ) {
+      return 3;
+    }
+    if ( concentration <= 5 * fraction ) {
+      return 4;
+    }
+    if ( concentration <= 6 * fraction ) {
+      return 5;
+    }
+  };
+
+  /** calculates the which item to use from the SOLIDS_STRINGS array
+   * @param {number} precipitateAmount
+   * @returns {number} index to pull from SOLIDS_STRINGS array
+   */
+  const solidsToIndex = ( precipitateAmount ) => {
+    const fraction = ( 5 - this.getCurrentSaturatedConcentration() ) / SOLIDS_STRINGS.length;
+    if ( precipitateAmount <= fraction ) {
+      return 0;
+    }
+    if ( precipitateAmount <= 2 * fraction ) {
+      return 1;
+    }
+    if ( precipitateAmount <= 3 * fraction ) {
+      return 2;
+    }
+    if ( precipitateAmount <= 4 * fraction ) {
+      return 3;
+    }
+    if ( precipitateAmount <= 5 * fraction ) {
+      return 4;
+    }
+    if ( precipitateAmount <= 6 * fraction ) {
+      return 5;
+    }
+  };
+
   // the singleton instance of this describer, used for the entire lifetime of the sim
   let describer = null;
 
@@ -122,119 +232,6 @@ define( require => {
     }
 
     /**
-     * @private
-     * @param {number} soluteAmount
-     * @returns {number} index (integer) to pull from SOLUTE_AMOUNT_STRINGS array
-     */
-    soluteAmountToIndex( soluteAmount ) {
-      if ( soluteAmount <= 0.050 ) {
-        return 0;
-      }
-      if ( soluteAmount <= .200 ) {
-        return 1;
-      }
-      if ( soluteAmount <= .450 ) {
-        return 2;
-      }
-      if ( soluteAmount <= .650 ) {
-        return 3;
-      }
-      if ( soluteAmount <= .850 ) {
-        return 4;
-      }
-      if ( soluteAmount <= .950 ) {
-        return 5;
-      }
-      if ( soluteAmount <= 1.000 ) {
-        return 6;
-      }
-    }
-
-    /**
-     * @private
-     * @param {number} volume
-     * @returns {number} index to pull from VOLUME_STRINGS array
-     */
-    volumeToIndex( volume ) {
-      if ( volume <= .220 ) {
-        return 0;
-      }
-      if ( volume <= .330 ) {
-        return 1;
-      }
-      if ( volume <= .410 ) {
-        return 2;
-      }
-      if ( volume <= .530 ) {
-        return 3;
-      }
-      if ( volume <= .780 ) {
-        return 4;
-      }
-      if ( volume <= .960 ) {
-        return 5;
-      }
-      if ( volume <= 1.000 ) {
-        return 6;
-      }
-    }
-
-    /**
-     * @private
-     * @param {number} concentration
-     * @returns {number} index to pull from CONCENTRATION_STRINGS array
-     */
-    concentrationToIndex( concentration ) {
-      const maxConcentration = this.solution.soluteProperty.value.saturatedConcentration;
-      const fraction = maxConcentration / ( CONCENTRATION_STRINGS.length );
-      if ( concentration <= fraction ) {
-        return 0;
-      }
-      if ( concentration <= 2 * fraction ) {
-        return 1;
-      }
-      if ( concentration <= 3 * fraction ) {
-        return 2;
-      }
-      if ( concentration <= 4 * fraction ) {
-        return 3;
-      }
-      if ( concentration <= 5 * fraction ) {
-        return 4;
-      }
-      if ( concentration <= 6 * fraction ) {
-        return 5;
-      }
-    }
-
-    /**
-     * @private
-     * @param {number} precipitateAmount
-     * @returns {number} index to pull from SOLIDS_STRINGS array
-     */
-    solidsToIndex( precipitateAmount ) {
-      const fraction = ( 5 - this.getCurrentSaturatedConcentration() ) / SOLIDS_STRINGS.length;
-      if ( precipitateAmount <= fraction ) {
-        return 0;
-      }
-      if ( precipitateAmount <= 2 * fraction ) {
-        return 1;
-      }
-      if ( precipitateAmount <= 3 * fraction ) {
-        return 2;
-      }
-      if ( precipitateAmount <= 4 * fraction ) {
-        return 3;
-      }
-      if ( precipitateAmount <= 5 * fraction ) {
-        return 4;
-      }
-      if ( precipitateAmount <= 6 * fraction ) {
-        return 5;
-      }
-    }
-
-    /**
      * gets the current value of volume either quantitatively or quantitatively to plug into descriptions
      * @private
      * @returns {number | string } quantitative or qualitative description of current volume
@@ -244,7 +241,7 @@ define( require => {
         return Util.toFixed( this.solution.volumeProperty.value, 3 );
       }
       else {
-        return VOLUME_STRINGS[ this.volumeToIndex( this.solution.volumeProperty.value ) ];
+        return VOLUME_STRINGS[ volumeToIndex( this.solution.volumeProperty.value ) ];
       }
     }
 
@@ -258,7 +255,9 @@ define( require => {
         return Util.toFixed( this.solution.concentrationProperty.value, 3 );
       }
       else {
-        return CONCENTRATION_STRINGS[ this.concentrationToIndex( this.solution.concentrationProperty.value ) ];
+        const saturatedConcentration = this.solution.soluteProperty.value.saturatedConcentration;
+        const concentration = this.solution.concentrationProperty.value;
+        return CONCENTRATION_STRINGS[ concentrationToIndex( concentration, saturatedConcentration ) ];
       }
     }
 
@@ -272,7 +271,8 @@ define( require => {
         return Util.toFixed( this.solution.soluteAmountProperty.value, 3 );
       }
       else {
-        return SOLUTE_AMOUNT_STRINGS[ Util.roundSymmetric( this.soluteAmountToIndex( this.solution.soluteAmountProperty.value ) ) ];
+        const index = Util.roundSymmetric( soluteAmountToIndex( this.solution.soluteAmountProperty.value ) );
+        return SOLUTE_AMOUNT_STRINGS[ index ];
       }
     }
 
@@ -309,8 +309,6 @@ define( require => {
      * @returns {string}
      */
     getStateOfSimDescription() {
-
-      // sets values to fill in initially -- "Show Values" checkbox is checked
       let saturatedConcentration = '';
       let concentrationPattern = '';
 
@@ -380,20 +378,27 @@ define( require => {
      * @returns {boolean}
      */
     checkForRegionChange() {
-      const isNewConcentrationRegion = this.concentrationRegion !== this.concentrationToIndex( this.solution.concentrationProperty.value );
-      const isNewSoluteAmountRegion = this.soluteAmountRegion !== this.soluteAmountToIndex( this.solution.soluteAmountProperty.value );
-      const isNewVolumeRegion = this.volumeRegion !== this.volumeToIndex( this.solution.volumeProperty.value );
-      const isNewSolidsRegion = this.solidsRegion !== this.solidsToIndex( this.getCurrentPrecipitates() );
+      const saturatedConcentration = this.solution.soluteProperty.value.saturatedConcentration;
+      const concentration = this.solution.concentrationProperty.value;
+      const concentrationIndex = concentrationToIndex( concentration, saturatedConcentration );
+      const soluteAmountIndex = soluteAmountToIndex( this.solution.soluteAmountProperty.value );
+      const volumeIndex = volumeToIndex( this.solution.volumeProperty.value );
+      const solidsIndex = solidsToIndex( this.getCurrentPrecipitates() );
+
+      const isNewConcentrationRegion = this.concentrationRegion !== concentrationIndex;
+      const isNewSoluteAmountRegion = this.soluteAmountRegion !== soluteAmountIndex;
+      const isNewVolumeRegion = this.volumeRegion !== volumeIndex;
+      const isNewSolidsRegion = this.solidsRegion !== solidsIndex;
 
       // checks to see if any region has changed
       const isNewRegion = isNewConcentrationRegion || isNewSoluteAmountRegion || isNewVolumeRegion || isNewSolidsRegion;
 
       // update the region to the new one if a region has changed
       if ( isNewRegion ) {
-        this.concentrationRegion = this.concentrationToIndex( this.solution.concentrationProperty.value );
-        this.soluteAmountRegion = this.soluteAmountToIndex( this.solution.soluteAmountProperty.value );
-        this.volumeRegion = this.volumeToIndex( this.solution.volumeProperty.value );
-        this.solidsRegion = this.solidsToIndex( this.getCurrentPrecipitates() );
+        this.concentrationRegion = concentrationIndex;
+        this.soluteAmountRegion = soluteAmountIndex;
+        this.volumeRegion = volumeIndex;
+        this.solidsRegion = solidsIndex;
       }
 
       return isNewRegion;
@@ -407,15 +412,14 @@ define( require => {
     getStateInfoSaturatedRegionChange() {
 
       // updates the current region for the solids array
-      this.solidsRegion = this.solidsToIndex( this.getCurrentPrecipitates() );
+      this.solidsRegion = solidsToIndex( this.getCurrentPrecipitates() );
 
       // fills in the state info with a description of the amount of solids
-      const stateInfo = StringUtils.fillIn( stillSaturatedAlertPatternString, {
+      return StringUtils.fillIn( stillSaturatedAlertPatternString, {
         withSolids: StringUtils.fillIn( withSolidsAlertPatternString, {
-          solidAmount: SOLIDS_STRINGS[ this.solidsToIndex( this.getCurrentPrecipitates() ) ]
+          solidAmount: SOLIDS_STRINGS[ solidsToIndex( this.getCurrentPrecipitates() ) ]
         } )
       } );
-      return stateInfo;
     }
 
 
@@ -433,12 +437,11 @@ define( require => {
         solute: this.getCurrentSolute(),
         soluteAmount: this.getCurrentSoluteAmount()
       } );
-      const stateInfo = StringUtils.fillIn( stateInfoPatternString, {
+      return StringUtils.fillIn( stateInfoPatternString, {
         concentration: this.getCurrentConcentration(),
         volumeClause: volumeStateInfo,
         soluteAmountClause: soluteAmountStateInfo
       } );
-      return stateInfo;
     }
 
     /**
@@ -460,7 +463,9 @@ define( require => {
       }
       else if ( !isCurrentlySaturated && this.saturatedYet ) {
         this.saturatedYet = false;
-        return StringUtils.fillIn( saturationLostAlertPatternString, { concentration: this.getCurrentConcentration() } );
+        return StringUtils.fillIn( saturationLostAlertPatternString, {
+          concentration: this.getCurrentConcentration()
+        } );
       }
       // is saturated and region for solids description has changed
       else if ( isCurrentlySaturated && this.checkForRegionChange() ) {
@@ -502,12 +507,12 @@ define( require => {
 
     /**
      * Initialize the describer singleton
-     * @param {MolarityModel} model
+     * @param {Solution} solution - from MolarityModel
      * @param {BooleanProperty} valuesVisibleProperty
      * @returns {SolutionDescriber}
      */
-    static initialize( model, valuesVisibleProperty ) {
-      describer = new SolutionDescriber( model, valuesVisibleProperty );
+    static initialize( solution, valuesVisibleProperty ) {
+      describer = new SolutionDescriber( solution, valuesVisibleProperty );
       return describer;
     }
   }
