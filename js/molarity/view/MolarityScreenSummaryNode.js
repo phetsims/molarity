@@ -14,7 +14,6 @@ define( require => {
   const Node = require( 'SCENERY/nodes/Node' );
   const Property = require( 'AXON/Property' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  const SolutionDescriber = require( 'MOLARITY/molarity/view/describers/SolutionDescriber' );
 
   // a11y strings
   const screenSummaryFirstParagraphPatternString = MolarityA11yStrings.screenSummaryFirstParagraphPattern.value;
@@ -24,8 +23,9 @@ define( require => {
     /**
      * @param {MolarityModel} model
      * @param {Property.<boolean>} valuesVisibleProperty - tracks whether the values are visible
+     * @param {SolutionDescriber} solutionDescriber
      */
-    constructor( model, valuesVisibleProperty ) {
+    constructor( model, valuesVisibleProperty, solutionDescriber ) {
 
       super();
 
@@ -35,8 +35,6 @@ define( require => {
           numberOfSolutes: model.solutes.length
         } )
       } ) );
-
-      const solutionDescriber = SolutionDescriber.getDescriber();
 
       const stateOfSimNode = new Node( {
         tagName: 'p'

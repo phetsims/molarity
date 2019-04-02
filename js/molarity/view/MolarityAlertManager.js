@@ -10,22 +10,16 @@ define( function( require ) {
 
   // modules
   const molarity = require( 'MOLARITY/molarity' );
-  const SolutionDescriber = require( 'MOLARITY/molarity/view/describers/SolutionDescriber' );
   const Utterance = require( 'SCENERY_PHET/accessibility/Utterance' );
   const utteranceQueue = require( 'SCENERY_PHET/accessibility/utteranceQueue' );
-
-  // initialize the alertManager to support the singleton pattern -- see this.initialize
-  let alertManager = null;
 
   class MolarityAlertManager {
 
     /**
-     * @param {Solution} solution from the Molarity Model
+     * @param {Solution} solution - solution from the Molarity Model
+     * @param {SolutionDescriber} solutionDescriber
      */
-    constructor( solution ) {
-
-      // @private
-      const solutionDescriber = SolutionDescriber.getDescriber();
+    constructor( solution, solutionDescriber ) {
 
       // adds an alert when the solute is changed
       solution.soluteProperty.lazyLink( () => {
@@ -44,16 +38,6 @@ define( function( require ) {
         const utterance = solutionDescriber.getSliderAlertString( newAmount > oldAmount, false );
         utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'soluteAmountSliderMoved' } ) );
       } );
-    }
-
-    /**
-     * Initialize the describer singleton
-     * @param {MolarityModel} model
-     * @returns {MolarityAlertManager} - for chaining
-     */
-    static initialize( model ) {
-      alertManager = new MolarityAlertManager( model );
-      return alertManager;
     }
   }
 

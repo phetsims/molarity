@@ -82,11 +82,13 @@ define( function( require ) {
     } );
 
     // a11y - initializes describer and alert manager
-    const solutionDescriber = SolutionDescriber.initialize( model.solution, valuesVisibleProperty, model.maxPrecipitateAmount );
-    MolarityAlertManager.initialize( model.solution );
+    const solutionDescriber = new SolutionDescriber( model.solution, valuesVisibleProperty );
+
+    // TODO: Do we have to call new here? https://github.com/phetsims/tasks/issues/994
+    const molarityAlertMananager = new MolarityAlertManager( model.solution, solutionDescriber ); // eslint-disable-line
 
     // a11y - creates screen summary in the PDOM and add it to the screenView
-    const molarityScreenSummaryNode = new MolarityScreenSummaryNode( model, valuesVisibleProperty );
+    const molarityScreenSummaryNode = new MolarityScreenSummaryNode( model, valuesVisibleProperty, solutionDescriber );
     this.screenSummaryNode.addChild( molarityScreenSummaryNode );
 
     // beaker, with solution and precipitate inside of it

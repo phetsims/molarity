@@ -210,9 +210,6 @@ define( require => {
     }
   };
 
-  // the singleton instance of this describer, used for the entire lifetime of the sim
-  let describer = null;
-
   class SolutionDescriber {
 
     /**
@@ -494,26 +491,6 @@ define( require => {
         solute: this.solution.soluteProperty.value.name,
         maxConcentration: this.getCurrentSaturatedConcentration()
       } );
-    }
-
-    /**
-     * Uses the singleton pattern to keep one instance of this describer for the entire lifetime of the sim.
-     * @returns {SolutionDescriber}
-     */
-    static getDescriber() {
-      assert && assert( describer, 'describer has not yet been initialized' );
-      return describer;
-    }
-
-    /**
-     * Initialize the describer singleton
-     * @param {Solution} solution - from MolarityModel
-     * @param {BooleanProperty} valuesVisibleProperty
-     * @returns {SolutionDescriber}
-     */
-    static initialize( solution, valuesVisibleProperty ) {
-      describer = new SolutionDescriber( solution, valuesVisibleProperty );
-      return describer;
     }
   }
 
