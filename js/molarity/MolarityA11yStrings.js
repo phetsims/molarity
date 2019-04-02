@@ -176,6 +176,15 @@ define( function( require ) {
     },
     solidsString: {
       value: 'solids'
+    },
+    volumeSliderValuesVisibleAriaValueTextPattern: {
+      value: '{{volume}} in beaker'
+    },
+    volumeSliderAriaValueTextPattern: {
+      value: 'Beaker {{volume}}'
+    },
+    soluteAmountSliderAriaValueTextPattern: {
+      value: '{{soluteAmount}} {{solute}}'
     }
   };
 

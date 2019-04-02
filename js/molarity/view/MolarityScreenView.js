@@ -125,7 +125,9 @@ define( function( require ) {
       unitsMolesString,
       valuesVisibleProperty,
       tandem.createTandem( 'soluteAmountSlider' ),
-      soluteAmountAccessibleNameString
+      soluteAmountAccessibleNameString,
+      () => solutionDescriber.getSoluteAmountAriaValueText(),
+      model.solution.soluteProperty
     );
 
     // slider for controlling volume of solution, sized to match tick marks on the beaker
@@ -140,7 +142,9 @@ define( function( require ) {
       unitsLitersString,
       valuesVisibleProperty,
       tandem.createTandem( 'solutionVolumeSlider' ),
-      solutionVolumeAccessibleNameString
+      solutionVolumeAccessibleNameString,
+      () => solutionDescriber.getVolumeAriaValueText(),
+      model.solution.soluteProperty
     );
 
     // concentration display

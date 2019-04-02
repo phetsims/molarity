@@ -36,7 +36,12 @@ define( require => {
   const saturationLostAlertPatternString = MolarityA11yStrings.saturationLostAlertPattern.value;
   const volumeStateInfoPatternString = MolarityA11yStrings.volumeStateInfoPattern.value;
   const soluteAmountStateInfoPatternString = MolarityA11yStrings.soluteAmountStateInfoPattern.value;
+  const soluteAmountSliderAriaValueTextPatternString = MolarityA11yStrings.soluteAmountSliderAriaValueTextPattern.value;
+  const volumeSliderAriaValueTextPatternString = MolarityA11yStrings.volumeSliderAriaValueTextPattern.value;
+  const volumeSliderValuesVisibleAriaValueTextPatternString = MolarityA11yStrings.volumeSliderValuesVisibleAriaValueTextPattern.value;
 
+  const soluteAmountAndUnitPatternString = MolarityA11yStrings.soluteAmountAndUnitPattern.value;
+  const solutionVolumeAndUnitPatternString = MolarityA11yStrings.solutionVolumeAndUnitPattern.value;
 
   const notConcentratedString = MolarityA11yStrings.notConcentratedString.value;
   const barelyConcentratedString = MolarityA11yStrings.barelyConcentratedString.value;
@@ -235,7 +240,9 @@ define( require => {
      */
     getCurrentVolume() {
       if ( this.valuesVisibleProperty.value ) {
-        return Util.toFixed( this.solution.volumeProperty.value, 3 );
+        return StringUtils.fillIn( solutionVolumeAndUnitPatternString, {
+          volume: Util.toFixed( this.solution.volumeProperty.value, 3 )
+        } );
       }
       else {
         return VOLUME_STRINGS[ volumeToIndex( this.solution.volumeProperty.value ) ];
@@ -265,7 +272,9 @@ define( require => {
      */
     getCurrentSoluteAmount() {
       if ( this.valuesVisibleProperty.value ) {
-        return Util.toFixed( this.solution.soluteAmountProperty.value, 3 );
+        return StringUtils.fillIn( soluteAmountAndUnitPatternString, {
+          soluteAmount: Util.toFixed( this.solution.soluteAmountProperty.value, 3 )
+        } );
       }
       else {
         const index = Util.roundSymmetric( soluteAmountToIndex( this.solution.soluteAmountProperty.value ) );
@@ -414,7 +423,7 @@ define( require => {
       // fills in the state info with a description of the amount of solids
       return StringUtils.fillIn( stillSaturatedAlertPatternString, {
         withSolids: StringUtils.fillIn( withSolidsAlertPatternString, {
-          solidAmount: SOLIDS_STRINGS[ solidsToIndex( this.getCurrentPrecipitates(), this.getCurrentSaturatedConcentration() )]
+          solidAmount: SOLIDS_STRINGS[ solidsToIndex( this.getCurrentPrecipitates(), this.getCurrentSaturatedConcentration() ) ]
         } )
       } );
     }
@@ -491,6 +500,37 @@ define( require => {
         solute: this.solution.soluteProperty.value.name,
         maxConcentration: this.getCurrentSaturatedConcentration()
       } );
+    }
+
+    /**
+     * Creates the string to be used as the solute amount slider's aria-valueText on focus
+     * @public
+     * @returns {string}
+     */
+    getSoluteAmountAriaValueText() {
+      return StringUtils.fillIn( soluteAmountSliderAriaValueTextPatternString, {
+        soluteAmount: this.getCurrentSoluteAmount(),
+        solute: this.getCurrentSolute()
+      } );
+    }
+
+    /**
+     * Creates the string to be used as the volume slider's aria-valueText on focus
+     * @public
+     * @returns {string}
+     */
+    getVolumeAriaValueText() {
+      if ( this.valuesVisibleProperty.value ) {
+        return StringUtils.fillIn( volumeSliderValuesVisibleAriaValueTextPatternString, {
+          volume: this.getCurrentVolume()
+        } );
+      }
+      else {
+        return StringUtils.fillIn( volumeSliderAriaValueTextPatternString, {
+          volume: this.getCurrentVolume()
+        } );
+      }
+
     }
   }
 
