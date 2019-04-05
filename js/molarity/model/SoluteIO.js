@@ -1,6 +1,5 @@
 // Copyright 2017-2019, University of Colorado Boulder
 
-//TODO replace this with StateObjectIO, https://github.com/phetsims/molarity/issues/54
 /**
  * IO type for Solute
  *
@@ -11,12 +10,8 @@ define( function( require ) {
 
   // modules
   var molarity = require( 'MOLARITY/molarity' );
-  var ObjectIO = require( 'TANDEM/types/ObjectIO' );
+  var ReferenceIO = require( 'TANDEM/types/ReferenceIO' );
   var phetioInherit = require( 'TANDEM/phetioInherit' );
-  var validate = require( 'AXON/validate' );
-
-  // ifphetio
-  var phetioEngine = require( 'ifphetio!PHET_IO/phetioEngine' );
 
   /**
    * @param {Solute} solute
@@ -24,27 +19,14 @@ define( function( require ) {
    * @constructor
    */
   function SoluteIO( solute, phetioID ) {
-    ObjectIO.call( this, solute, phetioID );
+
+    // Objects are statically created, use reference equality to look up instances for toStateObject/fromStateObject
+    ReferenceIO.call( this, solute, phetioID );
   }
 
-  phetioInherit( ObjectIO, 'SoluteIO', SoluteIO, {}, {
+  phetioInherit( ReferenceIO, 'SoluteIO', SoluteIO, {}, {
     documentation: 'The solute for the sim',
-    validator: { isValidValue: v => v instanceof phet.molarity.Solute }, //TODO #51 replace global with require?
-
-    /**
-     * @param {Solute} solute
-     */
-    toStateObject: function( solute ) {
-      validate( solute, this.validator );
-      return solute.tandem.phetioID;
-    },
-
-    /**
-     * @param {Object} stateObject
-     */
-    fromStateObject: function( stateObject ) {
-      return phetioEngine.getInstance( stateObject );
-    }
+    validator: { isValidValue: v => v instanceof phet.molarity.Solute } //TODO #51 replace global with require?
   } );
 
   molarity.register( 'SoluteIO', SoluteIO );

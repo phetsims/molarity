@@ -9,7 +9,7 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var GeneralNavigationHelpContent = require( 'SCENERY_PHET/keyboard/help/GeneralNavigationHelpContent' );
+  var GeneralKeyboardHelpSection = require( 'SCENERY_PHET/keyboard/help/GeneralKeyboardHelpSection' );
   var HBox = require( 'SCENERY/nodes/HBox' );
   var inherit = require( 'PHET_CORE/inherit' );
   var molarity = require( 'MOLARITY/molarity' );
@@ -21,11 +21,11 @@ define( function( require ) {
    */
   function MolarityKeyboardHelpContent() {
 
-    // general help content
-    var generalNavigationHelpContent = new GeneralNavigationHelpContent();
+    // general help section
+    var generalNavigationHelpSection = new GeneralKeyboardHelpSection();
 
     HBox.call( this, {
-      children: [ generalNavigationHelpContent ],
+      children: [ generalNavigationHelpSection ],
       align: 'top',
       spacing: 35
     } );
