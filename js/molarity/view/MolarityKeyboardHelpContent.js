@@ -21,11 +21,11 @@ define( function( require ) {
    */
   function MolarityKeyboardHelpContent() {
 
-    // general help content
-    var generalNavigationHelpContent = new GeneralKeyboardHelpSection();
+    // general help section
+    var generalNavigationHelpSection = new GeneralKeyboardHelpSection();
 
     HBox.call( this, {
-      children: [ generalNavigationHelpContent ],
+      children: [ generalNavigationHelpSection ],
       align: 'top',
       spacing: 35
     } );
