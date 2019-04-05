@@ -56,8 +56,8 @@ define( function( require ) {
   const soluteAmountAccessibleNameString = MolarityA11yStrings.soluteAmountAccessibleName.value;
   const soluteComboBoxLabelString = MolarityA11yStrings.soluteComboBoxLabel.value;
   const solutionVolumeAccessibleNameString = MolarityA11yStrings.solutionVolumeAccessibleName.value;
-  const sliderControlsLabelString = MolarityA11yStrings.sliderControlsLabelString.value;
-  const sliderControlsDescriptionString = MolarityA11yStrings.sliderControlsDescriptionString.value;
+  const solutionControlsLabelString = MolarityA11yStrings.solutionControlsLabelString.value;
+  const solutionControlsDescriptionString = MolarityA11yStrings.solutionControlsDescriptionString.value;
 
   // constants
   const SLIDER_TRACK_WIDTH = 12;
@@ -178,13 +178,13 @@ define( function( require ) {
     } );
 
     // a11y - heading for slider controls: contains heading for slider controls and orders included PDOM elements
-    const sliderControlsNode = new Node( {
+    const solutionControlsNode = new Node( {
       tagName: 'div',
       labelTagName: 'h3',
-      labelContent: sliderControlsLabelString,
-      descriptionContent: sliderControlsDescriptionString
+      labelContent: solutionControlsLabelString,
+      descriptionContent: solutionControlsDescriptionString
     } );
-    sliderControlsNode.accessibleOrder = [ soluteAmountSlider, solutionVolumeSlider ];
+    solutionControlsNode.accessibleOrder = [ soluteAmountSlider, solutionVolumeSlider ];
 
     // a11y - heading in the PDOM for the solute combo box
     const soluteComboBoxHeadingNode = new Node( {
@@ -196,7 +196,7 @@ define( function( require ) {
     const playAreaNode = new PlayAreaNode();
     playAreaNode.accessibleOrder = [
       beakerNode,
-      sliderControlsNode,
+      solutionControlsNode,
       soluteComboBoxHeadingNode,
       soluteComboBox,
       soluteComboBoxListParent
@@ -260,7 +260,7 @@ define( function( require ) {
         soluteComboBoxHeadingNode,
         soluteComboBox,
         soluteComboBoxListParent,
-        sliderControlsNode,
+        solutionControlsNode,
         playAreaNode,
         controlAreaNode
       ],

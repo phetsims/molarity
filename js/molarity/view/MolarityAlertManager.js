@@ -23,19 +23,19 @@ define( function( require ) {
 
       // adds an alert when the solute is changed
       solution.soluteProperty.lazyLink( () => {
-        const utterance = solutionDescriber.getSoluteChangedAlertString();
+        const utterance = solutionDescriber.soluteDescriber.getSoluteChangedAlertString();
         utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'stateOfSim' } ) );
       } );
 
       // alert read out when volume property changes
       solution.volumeProperty.lazyLink( ( newVolume, oldVolume, ) => {
-        const utterance = solutionDescriber.getSliderAlertString( newVolume > oldVolume, true );
+        const utterance = solutionDescriber.getVolumeSliderAlertString( newVolume > oldVolume );
         utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'volumeSliderMoved' } ) );
       } );
 
       // alert read out when solute amount property changes
       solution.soluteAmountProperty.lazyLink( ( newAmount, oldAmount, ) => {
-        const utterance = solutionDescriber.getSliderAlertString( newAmount > oldAmount, false );
+        const utterance = solutionDescriber.getSoluteAmountSliderAlertString( newAmount > oldAmount );
         utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'soluteAmountSliderMoved' } ) );
       } );
     }
