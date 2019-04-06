@@ -58,17 +58,42 @@ define( require => {
     if ( precipitateAmount <= fraction / 5 ) {
       return 0;
     }
-    if ( precipitateAmount <= fraction / 4 ) {
+    if ( precipitateAmount <= 2 * fraction / 5 ) {
       return 1;
     }
-    if ( precipitateAmount <= fraction / 3 ) {
+    if ( precipitateAmount <= 3 * fraction / 5 ) {
       return 2;
     }
-    if ( precipitateAmount <= fraction / 2 ) {
+    if ( precipitateAmount <= 4 * fraction / 5 ) {
       return 3;
     }
-    if ( precipitateAmount <= fraction ) {
+    if ( precipitateAmount <= 5 * fraction / 5 ) {
       return 4;
+    }
+  };
+
+  /** calculates the which item to use from the CONCENTRATION_STRINGS array
+   * @returns {number} index to pull from CONCENTRATION_STRINGS array
+   */
+  const concentrationToIndex = ( maxConcentration, concentration ) => {
+    const fraction = maxConcentration / ( CONCENTRATION_STRINGS.length );
+    if ( concentration <= fraction ) {
+      return 0;
+    }
+    if ( concentration <= 2 * fraction ) {
+      return 1;
+    }
+    if ( concentration <= 3 * fraction ) {
+      return 2;
+    }
+    if ( concentration <= 4 * fraction ) {
+      return 3;
+    }
+    if ( concentration <= 5 * fraction ) {
+      return 4;
+    }
+    if ( concentration <= 6 * fraction ) {
+      return 5;
     }
   };
 
@@ -87,45 +112,19 @@ define( require => {
       this.solidsRegion = 0; // tracks the last descriptive region for solids
     }
 
-
-    /** calculates the which item to use from the CONCENTRATION_STRINGS array
-     * @returns {number} index to pull from CONCENTRATION_STRINGS array
-     */
-    concentrationToIndex() {
-      const maxConcentration = this.solution.soluteProperty.value.saturatedConcentration;
-      const concentration = this.solution.concentrationProperty.value;
-      const fraction = maxConcentration / ( CONCENTRATION_STRINGS.length );
-      if ( concentration <= fraction ) {
-        return 0;
-      }
-      if ( concentration <= 2 * fraction ) {
-        return 1;
-      }
-      if ( concentration <= 3 * fraction ) {
-        return 2;
-      }
-      if ( concentration <= 4 * fraction ) {
-        return 3;
-      }
-      if ( concentration <= 5 * fraction ) {
-        return 4;
-      }
-      if ( concentration <= 6 * fraction ) {
-        return 5;
-      }
-    }
-
     /**
      * gets the current value of concentration either quantitatively or quantitatively to plug into descriptions
      * @private
      * @returns {number | string } quantitative or qualitative description of current concentration
      */
     getCurrentConcentration() {
+      const concentration = this.solution.concentrationProperty.value;
       if ( this.valuesVisibleProperty.value ) {
-        return Util.toFixed( this.solution.concentrationProperty.value, 3 );
+        return Util.toFixed( concentration, 3 );
       }
       else {
-        return CONCENTRATION_STRINGS[ this.concentrationToIndex() ];
+        const index = concentrationToIndex( this.solution.soluteProperty.value.saturatedConcentration, concentration );
+        return CONCENTRATION_STRINGS[ index ];
       }
     }
 
@@ -197,7 +196,9 @@ define( require => {
      * @returns {boolean} - whether or not there was a region to update
      */
     updateConcentrationRegion() {
-      const concentrationIndex = this.concentrationToIndex();
+      const concentration = this.solution.concentrationProperty.value;
+      const saturatedConcentration = this.solution.soluteProperty.value.saturatedConcentration;
+      const concentrationIndex = concentrationToIndex( saturatedConcentration, concentration );
       const isNewConcentrationRegion = this.concentrationRegion !== concentrationIndex;
 
       // update the region to the new one if a region has changed

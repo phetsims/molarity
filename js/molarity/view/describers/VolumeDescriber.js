@@ -37,11 +37,39 @@ define( require => {
   ];
 
 
+  /** calculates the which item to use from the VOLUME_STRINGS array
+   * @returns {number} index to pull from VOLUME_STRINGS array
+   */
+  const volumeToIndex = ( volume ) => {
+    if ( volume <= .220 ) {
+      return 0;
+    }
+    if ( volume <= .330 ) {
+      return 1;
+    }
+    if ( volume <= .410 ) {
+      return 2;
+    }
+    if ( volume <= .530 ) {
+      return 3;
+    }
+    if ( volume <= .780 ) {
+      return 4;
+    }
+    if ( volume <= .960 ) {
+      return 5;
+    }
+    if ( volume <= 1.000 ) {
+      return 6;
+    }
+  };
+
+
   class VolumeDescriber {
 
     /**
-     * @param {VolumeProperty} volumeProperty- from MolarityModel
-     * @param {SoluteProperty} soluteProperty- from MolarityModel
+     * @param {Property} volumeProperty- from MolarityModel
+     * @param {Property} soluteProperty- from MolarityModel
      * @param {BooleanProperty} valuesVisibleProperty - tracks whether the "Show values" checkbox is checked
      */
     constructor( volumeProperty, soluteProperty, valuesVisibleProperty ) {
@@ -51,34 +79,6 @@ define( require => {
       this.soluteProperty = soluteProperty;
       this.valuesVisibleProperty = valuesVisibleProperty;
       this.volumeRegion = 0; // tracks the last descriptive region for volume
-    }
-
-    /** calculates the which item to use from the VOLUME_STRINGS array
-     * @returns {number} index to pull from VOLUME_STRINGS array
-     */
-    volumeToIndex() {
-      const volume = this.volumeProperty.value;
-      if ( volume <= .220 ) {
-        return 0;
-      }
-      if ( volume <= .330 ) {
-        return 1;
-      }
-      if ( volume <= .410 ) {
-        return 2;
-      }
-      if ( volume <= .530 ) {
-        return 3;
-      }
-      if ( volume <= .780 ) {
-        return 4;
-      }
-      if ( volume <= .960 ) {
-        return 5;
-      }
-      if ( volume <= 1.000 ) {
-        return 6;
-      }
     }
 
     /**
@@ -93,7 +93,7 @@ define( require => {
         } );
       }
       else {
-        return VOLUME_STRINGS[ this.volumeToIndex() ];
+        return VOLUME_STRINGS[ volumeToIndex( this.volumeProperty.value ) ];
       }
     }
 
@@ -103,7 +103,7 @@ define( require => {
      * @returns {boolean} - whether or not there was a region to update
      */
     updateVolumeRegion() {
-      const volumeIndex = this.volumeToIndex();
+      const volumeIndex = volumeToIndex( this.volumeProperty.value );
       const isNewVolumeRegion = this.volumeRegion !== volumeIndex;
 
       // update the region to the new one if a region has changed

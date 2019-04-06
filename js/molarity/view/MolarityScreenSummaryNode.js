@@ -23,9 +23,9 @@ define( require => {
     /**
      * @param {MolarityModel} model
      * @param {Property.<boolean>} valuesVisibleProperty - tracks whether the values are visible
-     * @param {SolutionDescriber} solutionDescriber
+     * @param {MolarityDescriber} molarityDescriber
      */
-    constructor( model, valuesVisibleProperty, solutionDescriber ) {
+    constructor( model, valuesVisibleProperty, molarityDescriber ) {
 
       super();
 
@@ -44,7 +44,7 @@ define( require => {
 
       Property.multilink( [ model.solution.soluteProperty, model.solution.volumeProperty,
         model.solution.soluteAmountProperty, model.solution.concentrationProperty, valuesVisibleProperty ], () => {
-        stateOfSimNode.innerContent = solutionDescriber.getStateOfSimDescription();
+        stateOfSimNode.innerContent = molarityDescriber.getStateOfSimDescription();
       } );
     }
   }

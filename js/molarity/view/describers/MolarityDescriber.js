@@ -1,7 +1,7 @@
 // Copyright 2019, University of Colorado Boulder
 
 /**
- * SolutionDescriber is responsible for generating all of the strings used for PDOM content and alerts in Molarity.
+ * MolarityDescriber is responsible for generating all of the strings used for PDOM content and alerts in Molarity.
  * @author Michael Kauzmann (PhET Interactive Simulations)
  * @author Taylor Want (PhET Interactive Simulations)
  */
@@ -45,7 +45,7 @@ define( require => {
   const moreString = MolarityA11yStrings.moreString.value;
   const lessString = MolarityA11yStrings.lessString.value;
 
-  class SolutionDescriber {
+  class MolarityDescriber {
 
     /**
      * @param {Solution} solution - from MolarityModel
@@ -129,7 +129,7 @@ define( require => {
     }
 
     /**
-     * Describes the volume or the solute amount in the beaker in the play area.
+     * Creates the alert that is read out when the volume slider is moved
      * @param {boolean} increasing - indicates whether the slider has moved up or down. true if up, false if down
      * @public
      * @returns {string}
@@ -144,26 +144,29 @@ define( require => {
       if ( isSaturated ) {
         string = volumeSliderMovedSolidsAlertPatternString;
         stateInfo = StringUtils.fillIn( stillSaturatedAlertPatternString, { withSolids: '' } );
+
+        // solution has just become saturated -- a special alert is read out
+        if ( !this.saturatedYet ) {
+          this.saturatedYet = true;
+          return saturationReachedAlertString;
+        }
       }
       else {
         string = volumeSliderMovedAlertPatternString;
+
+        // solution has just lost saturation -- a special alert is read out
+        if ( this.saturatedYet ) {
+          this.saturatedYet = false;
+          return StringUtils.fillIn( saturationLostAlertPatternString, {
+            concentration: this.concentrationDescriber.getCurrentConcentration()
+          } );
+        }
       }
-      // saturation status has changed (solution has either become saturated or lost saturation)
-      if ( isSaturated && !this.saturatedYet ) {
-        this.saturatedYet = true;
-        return saturationReachedAlertString;
-      }
-      else if ( !isSaturated && this.saturatedYet ) {
-        this.saturatedYet = false;
-        return StringUtils.fillIn( saturationLostAlertPatternString, {
-          concentration: this.concentrationDescriber.getCurrentConcentration()
-        } );
-      }
-      // is saturated and region for solids description has changed
-      else if ( isSaturated && this.concentrationDescriber.updateSolidsRegion() ) {
+
+      // state info is read out if the descriptive region changes
+      if ( isSaturated && this.concentrationDescriber.updateSolidsRegion() ) {
         stateInfo = this.concentrationDescriber.getStateInfoSaturatedRegionChange();
       }
-      // is not saturated and region has changed
       else if ( !isSaturated && this.updateRegions() ) {
         stateInfo = this.volumeDescriber.getVolumeStateInfoNotSaturated();
       }
@@ -186,7 +189,7 @@ define( require => {
     }
 
     /**
-     * Describes the volume or the solute amount in the beaker in the play area.
+     * Creates the alert read out when the solute amount slider is moved
      * @param {boolean} increasing - indicates whether the slider has moved up or down. true if up, false if down
      * @public
      * @returns {string}
@@ -201,26 +204,29 @@ define( require => {
       if ( isSaturated ) {
         string = soluteAmountSliderMovedSolidsAlertPatternString;
         stateInfo = StringUtils.fillIn( stillSaturatedAlertPatternString, { withSolids: '' } );
+
+        // solution has just become saturated -- a special alert is read out
+        if ( !this.saturatedYet ) {
+          this.saturatedYet = true;
+          return saturationReachedAlertString;
+        }
       }
       else {
         string = soluteAmountSliderMovedAlertPatternString;
+
+        // solution has just lost saturation -- a special alert is read out
+        if ( this.saturatedYet ) {
+          this.saturatedYet = false;
+          return StringUtils.fillIn( saturationLostAlertPatternString, {
+            concentration: this.concentrationDescriber.getCurrentConcentration()
+          } );
+        }
       }
-      // saturation status has changed (solution has either become saturated or lost saturation)
-      if ( isSaturated && !this.saturatedYet ) {
-        this.saturatedYet = true;
-        return saturationReachedAlertString;
-      }
-      else if ( !isSaturated && this.saturatedYet ) {
-        this.saturatedYet = false;
-        return StringUtils.fillIn( saturationLostAlertPatternString, {
-          concentration: this.concentrationDescriber.getCurrentConcentration()
-        } );
-      }
-      // is saturated and region for solids description has changed
-      else if ( isSaturated && this.concentrationDescriber.updateSolidsRegion() ) {
+
+      // state info is read out if the descriptive region changes
+      if ( isSaturated && this.concentrationDescriber.updateSolidsRegion() ) {
         stateInfo = this.concentrationDescriber.getStateInfoSaturatedRegionChange();
       }
-      // is not saturated and region has changed
       else if ( !isSaturated && this.updateRegions() ) {
         stateInfo = this.soluteAmountDescriber.getSoluteAmountStateInfoNotSaturated();
       }
@@ -286,5 +292,5 @@ define( require => {
     }
   }
 
-  return molarity.register( 'SolutionDescriber', SolutionDescriber );
+  return molarity.register( 'MolarityDescriber', MolarityDescriber );
 } );

@@ -38,11 +38,38 @@ define( require => {
     fullAmountString
   ];
 
+  /** calculates the which item to use from the SOLUTE_AMOUNT_STRINGS array
+   * @returns {number} index (integer) to pull from SOLUTE_AMOUNT_STRINGS array
+   */
+  const soluteAmountToIndex = ( soluteAmount ) => {
+    if ( soluteAmount <= 0.050 ) {
+      return 0;
+    }
+    if ( soluteAmount <= .200 ) {
+      return 1;
+    }
+    if ( soluteAmount <= .450 ) {
+      return 2;
+    }
+    if ( soluteAmount <= .650 ) {
+      return 3;
+    }
+    if ( soluteAmount <= .850 ) {
+      return 4;
+    }
+    if ( soluteAmount <= .950 ) {
+      return 5;
+    }
+    if ( soluteAmount <= 1.000 ) {
+      return 6;
+    }
+  };
+
   class SoluteAmountDescriber {
 
     /**
-     * @param {SoluteAmoutProperty} soluteAmountProperty- from MolarityModel
-     * @param {SoluteProperty} soluteProperty- from MolarityModel
+     * @param {Property} soluteAmountProperty- from MolarityModel
+     * @param {Property} soluteProperty- from MolarityModel
      * @param {BooleanProperty} valuesVisibleProperty - tracks whether the "Show values" checkbox is checked
      */
     constructor( soluteAmountProperty, soluteProperty, valuesVisibleProperty ) {
@@ -53,34 +80,6 @@ define( require => {
       this.valuesVisibleProperty = valuesVisibleProperty;
       this.soluteAmountRegion = 0; // tracks the last descriptive region for solute amount
 
-    }
-
-    /** calculates the which item to use from the SOLUTE_AMOUNT_STRINGS array
-     * @returns {number} index (integer) to pull from SOLUTE_AMOUNT_STRINGS array
-     */
-    soluteAmountToIndex() {
-      const soluteAmount = this.soluteAmountProperty.value;
-      if ( soluteAmount <= 0.050 ) {
-        return 0;
-      }
-      if ( soluteAmount <= .200 ) {
-        return 1;
-      }
-      if ( soluteAmount <= .450 ) {
-        return 2;
-      }
-      if ( soluteAmount <= .650 ) {
-        return 3;
-      }
-      if ( soluteAmount <= .850 ) {
-        return 4;
-      }
-      if ( soluteAmount <= .950 ) {
-        return 5;
-      }
-      if ( soluteAmount <= 1.000 ) {
-        return 6;
-      }
     }
 
     /**
@@ -95,7 +94,7 @@ define( require => {
         } );
       }
       else {
-        const index = Util.roundSymmetric( this.soluteAmountToIndex() );
+        const index = Util.roundSymmetric( soluteAmountToIndex( this.soluteAmountProperty.value ) );
         return SOLUTE_AMOUNT_STRINGS[ index ];
       }
     }
@@ -106,7 +105,7 @@ define( require => {
      * @returns {boolean} - whether or not there was a region to update
      */
     updateSoluteAmountRegion() {
-      const soluteAmountIndex = this.soluteAmountToIndex();
+      const soluteAmountIndex = soluteAmountToIndex( this.soluteAmountProperty.value );
       const isNewSoluteAmountRegion = this.soluteAmountRegion !== soluteAmountIndex;
 
       // update the region to the new one if a region has changed

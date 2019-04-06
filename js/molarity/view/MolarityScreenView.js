@@ -20,7 +20,6 @@ define( function( require ) {
   const MConstants = require( 'MOLARITY/molarity/MConstants' );
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
-  const MolarityAlertManager = require( 'MOLARITY/molarity/view/MolarityAlertManager' );
   const MolarityScreenSummaryNode = require( 'MOLARITY/molarity/view/MolarityScreenSummaryNode' );
   const Node = require( 'SCENERY/nodes/Node' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
@@ -32,10 +31,12 @@ define( function( require ) {
   const ScreenView = require( 'JOIST/ScreenView' );
   const Shape = require( 'KITE/Shape' );
   const SoluteComboBox = require( 'MOLARITY/molarity/view/SoluteComboBox' );
-  const SolutionDescriber = require( 'MOLARITY/molarity/view/describers/SolutionDescriber' );
+  const MolarityDescriber = require( 'MOLARITY/molarity/view/describers/MolarityDescriber' );
   const SolutionNode = require( 'MOLARITY/molarity/view/SolutionNode' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const Text = require( 'SCENERY/nodes/Text' );
+  const Utterance = require( 'SCENERY_PHET/accessibility/Utterance' );
+  const utteranceQueue = require( 'SCENERY_PHET/accessibility/utteranceQueue' );
   const VerticalSlider = require( 'MOLARITY/molarity/view/VerticalSlider' );
 
   // strings
@@ -81,14 +82,11 @@ define( function( require ) {
       tandem: tandem.createTandem( 'valuesVisibleProperty' )
     } );
 
-    // a11y - initializes describer and alert manager
-    const solutionDescriber = new SolutionDescriber( model.solution, valuesVisibleProperty );
-
-    // TODO: Do we have to call new here? https://github.com/phetsims/tasks/issues/994
-    const molarityAlertMananager = new MolarityAlertManager( model.solution, solutionDescriber ); // eslint-disable-line
+    // a11y - initializes describer
+    const molarityDescriber = new MolarityDescriber( model.solution, valuesVisibleProperty );
 
     // a11y - creates screen summary in the PDOM and add it to the screenView
-    const molarityScreenSummaryNode = new MolarityScreenSummaryNode( model, valuesVisibleProperty, solutionDescriber );
+    const molarityScreenSummaryNode = new MolarityScreenSummaryNode( model, valuesVisibleProperty, molarityDescriber );
     this.screenSummaryNode.addChild( molarityScreenSummaryNode );
 
     // beaker, with solution and precipitate inside of it
@@ -97,7 +95,7 @@ define( function( require ) {
 
     // a11y - update beaker description in the PDOM when model changes
     Property.multilink( [ model.solution.soluteProperty, model.solution.concentrationProperty, valuesVisibleProperty ], () => {
-      beakerNode.descriptionContent = solutionDescriber.getBeakerDescription();
+      beakerNode.descriptionContent = molarityDescriber.getBeakerDescription();
     } );
 
     const cylinderSize = beakerNode.getCylinderSize();
@@ -126,9 +124,15 @@ define( function( require ) {
       valuesVisibleProperty,
       tandem.createTandem( 'soluteAmountSlider' ),
       soluteAmountAccessibleNameString,
-      () => solutionDescriber.getSoluteAmountAriaValueText(),
+      () => molarityDescriber.getSoluteAmountAriaValueText(),
       model.solution.soluteProperty
     );
+
+    // a11y - alert read out when solute amount property changes
+    model.solution.soluteAmountProperty.lazyLink( ( newAmount, oldAmount, ) => {
+      const utterance = molarityDescriber.getSoluteAmountSliderAlertString( newAmount > oldAmount );
+      utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'soluteAmountSliderMoved' } ) );
+    } );
 
     // slider for controlling volume of solution, sized to match tick marks on the beaker
     const volumeSliderHeight = ( MConstants.SOLUTION_VOLUME_RANGE.getLength() / MConstants.SOLUTION_VOLUME_RANGE.max ) * cylinderSize.height;
@@ -143,9 +147,15 @@ define( function( require ) {
       valuesVisibleProperty,
       tandem.createTandem( 'solutionVolumeSlider' ),
       solutionVolumeAccessibleNameString,
-      () => solutionDescriber.getVolumeAriaValueText(),
+      () => molarityDescriber.getVolumeAriaValueText(),
       model.solution.soluteProperty
     );
+
+    // a11y - alert read out when volume property changes
+    model.solution.volumeProperty.lazyLink( ( newVolume, oldVolume, ) => {
+      const utterance = molarityDescriber.getVolumeSliderAlertString( newVolume > oldVolume );
+      utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'volumeSliderMoved' } ) );
+    } );
 
     // concentration display
     const concentrationBarSize = new Dimension2( 40, cylinderSize.height + 50 );
@@ -190,6 +200,12 @@ define( function( require ) {
     const soluteComboBoxHeadingNode = new Node( {
       tagName: 'h3',
       innerContent: soluteComboBoxLabelString
+    } );
+
+    // a11y - adds an alert when the solute is changed
+    model.solution.soluteProperty.lazyLink( () => {
+      const utterance = molarityDescriber.soluteDescriber.getSoluteChangedAlertString();
+      utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'stateOfSim' } ) );
     } );
 
     // a11y - contains PDOM heading for Play Area, and orders the PDOM for included elements

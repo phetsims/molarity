@@ -40,7 +40,7 @@ define( require => {
     /**
      * gets the saturated concentration amount of the currently selected solute.
      * @public
-     * @returns { Number }
+     * @returns { string }
      */
     getCurrentSaturatedConcentration() {
       return this.soluteProperty.value.saturatedConcentration;
@@ -49,7 +49,7 @@ define( require => {
     /**
      * gets the chemical formula of the currently selected solute.
      * @private
-     * @returns { Number }
+     * @returns { string }
      */
     getCurrentChemicalFormula() {
       return this.soluteProperty.value.formula;
