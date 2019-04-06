@@ -21,6 +21,7 @@ define( require => {
   const beakerDescriptionString = MolarityA11yStrings.beakerDescription.value;
   const solutionConcentrationPatternString = MolarityA11yStrings.solutionConcentrationPattern.value;
   const stateOfSimPatternString = MolarityA11yStrings.stateOfSimPattern.value;
+  const stateOfSimNoSolutePatternString = MolarityA11yStrings.stateOfSimNoSolutePattern.value;
 
   const soluteAmountSliderAriaValueTextPatternString = MolarityA11yStrings.soluteAmountSliderAriaValueTextPattern.value;
   const volumeSliderAriaValueTextPatternString = MolarityA11yStrings.volumeSliderAriaValueTextPattern.value;
@@ -32,6 +33,7 @@ define( require => {
   const stillSaturatedAlertPatternString = MolarityA11yStrings.stillSaturatedAlertPattern.value;
   const saturationReachedAlertString = MolarityA11yStrings.saturationReachedAlertString.value;
   const saturationLostAlertPatternString = MolarityA11yStrings.saturationLostAlertPattern.value;
+  const noSoluteAlertString = MolarityA11yStrings.noSoluteAlertString.value;
 
   const volumeSliderMovedAlertPatternString = MolarityA11yStrings.volumeSliderMovedAlertPattern.value;
   const volumeSliderMovedSolidsAlertPatternString = MolarityA11yStrings.volumeSliderMovedSolidsAlertPattern.value;
@@ -71,6 +73,14 @@ define( require => {
     getStateOfSimDescription() {
       let saturatedConcentration = '';
       let concentrationPattern = '';
+
+      // if there is no solute in the beaker, a special state description is returned
+      if (this.solution.soluteAmountProperty.value === 0){
+        return StringUtils.fillIn( stateOfSimNoSolutePatternString, {
+          volume: this.volumeDescriber.getCurrentVolume(),
+          solute: this.soluteDescriber.getCurrentSolute()
+        } );
+      }
 
       // determines if solution is currently saturated
       const isCurrentlySaturated = this.solution.concentrationProperty.value >= this.soluteDescriber.getCurrentSaturatedConcentration();
@@ -200,6 +210,11 @@ define( require => {
       const isSaturated = this.solution.concentrationProperty.value >= this.soluteDescriber.getCurrentSaturatedConcentration();
       const moreLess = increasing ? moreString : lessString;
       const lessMore = increasing ? lessString : moreString;
+
+      // a special alert is read out if there is zero solute
+      if ( this.solution.soluteAmountProperty.value === 0 ) {
+        return noSoluteAlertString;
+      }
 
       if ( isSaturated ) {
         string = soluteAmountSliderMovedSolidsAlertPatternString;

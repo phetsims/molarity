@@ -21,13 +21,13 @@ define( require => {
   const halfFullString = MolarityA11yStrings.halfFullString.value;
   const underHalfString = MolarityA11yStrings.underHalfString.value;
   const lowString = MolarityA11yStrings.lowString.value;
-  const leastAmountString = MolarityA11yStrings.leastAmountString.value;
+  const nearlyEmptyString = MolarityA11yStrings.nearlyEmptyString.value;
   const solutionVolumeAndUnitPatternString = MolarityA11yStrings.solutionVolumeAndUnitPattern.value;
   const volumeStateInfoPatternString = MolarityA11yStrings.volumeStateInfoPattern.value;
 
   // constants
   const VOLUME_STRINGS = [
-    leastAmountString,
+    nearlyEmptyString,
     lowString,
     underHalfString,
     halfFullString,

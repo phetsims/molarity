@@ -27,6 +27,9 @@ define( function( require ) {
     stateOfSimPattern: {
       value: 'Currently, beaker is {{volume}} of a {{saturatedConcentration}} ‬solution containing {{soluteAmount}} ‪{{solute}}‬ solute. {{concentrationClause}}.'
     },
+    stateOfSimNoSolutePattern: {
+      value: 'Beaker is {{volume}} water. {{solute}} is selected, but no {{solute}} is in the beaker.”'
+    },
     soluteAmountAndUnitPattern: {
       value: '{{soluteAmount}} moles'
     },
@@ -78,8 +81,8 @@ define( function( require ) {
     lowString: {
       value: 'low'
     },
-    leastAmountString: {
-      value: 'least amount'
+    nearlyEmptyString: {
+      value: 'nearly empty'
     },
     fullAmountString: {
       value: 'The full amount'
@@ -197,6 +200,9 @@ define( function( require ) {
     },
     soluteAmountSliderAriaValueTextPattern: {
       value: '{{soluteAmount}} {{solute}}'
+    },
+    noSoluteAlertString : {
+      value: 'No solute. Solution is pure water.'
     }
   };
 
