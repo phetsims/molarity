@@ -114,7 +114,7 @@ define( require => {
 
     /**
      * gets the current value of concentration either quantitatively or quantitatively to plug into descriptions
-     * @private
+     * @public
      * @returns {number | string } quantitative or qualitative description of current concentration
      */
     getCurrentConcentration() {

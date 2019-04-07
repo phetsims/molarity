@@ -49,10 +49,12 @@ define( function( require ) {
    * @param {string} accessibleName
    * @param {function} getAriaValueText
    * @param {Property} soluteProperty
+   * @param {MolarityDescriber} molarityDescriber
    * @constructor
    */
   function VerticalSlider( title, subtitle, minLabel, maxLabel, trackSize, property, range,
-                           decimalPlaces, units, valuesVisibleProperty, tandem, accessibleName, getAriaValueText, soluteProperty ) {
+                           decimalPlaces, units, valuesVisibleProperty, tandem, accessibleName, getAriaValueText,
+                           soluteProperty, molarityDescriber ) {
 
     var titleNode = new MultiLineText( title, {
       font: new PhetFont( { size: 24, weight: 'bold' } ),
@@ -91,6 +93,11 @@ define( function( require ) {
       keyboardStep: 0.050,
       a11yCreateOnFocusAriaValueText: getAriaValueText,
       a11yValuePattern: ''
+    } );
+
+    // a11y - sets the initial alert status of the describer to true (a special alert is read on initial slider change)
+    sliderNode.addInputListener( {
+      focus: () => molarityDescriber.setInitialAlert()
     } );
 
     // a11y - ensures that aria-valuetext updates when relevant model properties change

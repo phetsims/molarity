@@ -40,6 +40,8 @@ define( require => {
   const soluteAmountSliderMovedAlertPatternString = MolarityA11yStrings.soluteAmountSliderMovedAlertPattern.value;
   const soluteAmountSliderMovedSolidsAlertPatternString = MolarityA11yStrings.soluteAmountSliderMovedSolidsAlertPattern.value;
   const sliderAlertStateInfoValuesVisiblePatternString = MolarityA11yStrings.sliderAlertStateInfoValuesVisiblePattern.value;
+  const volumeSliderInitialAlertPatternString = MolarityA11yStrings.volumeSliderInitialAlertPattern.value;
+  const soluteAmountSliderInitialAlertPatternString = MolarityA11yStrings.soluteAmountSliderInitialAlertPattern.value;
 
   const saturatedString = MolarityA11yStrings.saturatedString.value;
   const notSaturatedString = MolarityA11yStrings.notSaturatedString.value;
@@ -58,15 +60,26 @@ define( require => {
       // @private
       this.solution = solution;
       this.valuesVisibleProperty = valuesVisibleProperty;
-      this.volumeDescriber = new VolumeDescriber( solution.volumeProperty, solution.soluteProperty, valuesVisibleProperty );
-      this.soluteDescriber = new SoluteDescriber( solution.soluteProperty, valuesVisibleProperty );
-      this.soluteAmountDescriber = new SoluteAmountDescriber( solution.soluteAmountProperty, solution.soluteProperty, valuesVisibleProperty );
       this.concentrationDescriber = new ConcentrationDescriber( solution, valuesVisibleProperty );
+      this.volumeDescriber = new VolumeDescriber( solution.volumeProperty, solution.soluteProperty, this.concentrationDescriber, valuesVisibleProperty );
+      this.soluteDescriber = new SoluteDescriber( solution.soluteProperty, valuesVisibleProperty );
+      this.soluteAmountDescriber = new SoluteAmountDescriber( solution.soluteAmountProperty, solution.soluteProperty, this.concentrationDescriber, valuesVisibleProperty );
       this.saturatedYet = false; // tracks whether the solution was saturated on the previous slider move
+      this.initialSoluteAmountAlert = false;
+      this.initialVolumeAlert = false;
     }
 
     /**
-     * Describes all relevant properties in the screen summary.
+     * Sets the initial alert values to true (since a special alert is read out right after a slider is focused)
+     * @public
+     */
+    setInitialAlert() {
+      this.initialSoluteAmountAlert = true;
+      this.initialVolumeAlert = true;
+    }
+
+    /**
+     * Creates the third paragraph of the screen summary description.
      * @public
      * @returns {string}
      */
@@ -75,7 +88,7 @@ define( require => {
       let concentrationPattern = '';
 
       // if there is no solute in the beaker, a special state description is returned
-      if (this.solution.soluteAmountProperty.value === 0){
+      if ( this.solution.soluteAmountProperty.value === 0 ) {
         return StringUtils.fillIn( stateOfSimNoSolutePatternString, {
           volume: this.volumeDescriber.getCurrentVolume(),
           solute: this.soluteDescriber.getCurrentSolute()
@@ -182,7 +195,16 @@ define( require => {
       }
 
       // returns different strings depending on whether the 'show values' checkbox is checked
-      if ( this.valuesVisibleProperty.value ) {
+      if ( this.valuesVisibleProperty.value && this.initialVolumeAlert ) {
+        this.initialVolumeAlert = false;
+        return StringUtils.fillIn( volumeSliderInitialAlertPatternString, {
+          moreLess: moreLess,
+          volume: this.volumeDescriber.getCurrentVolume(),
+          concentration: this.concentrationDescriber.getCurrentConcentration()
+        } );
+      }
+      else if ( this.valuesVisibleProperty.value ) {
+        this.initialSoluteAmountAlert = false;
         return StringUtils.fillIn( sliderAlertStateInfoValuesVisiblePatternString, {
           quantity: this.volumeDescriber.getCurrentVolume(),
           moreLess: moreLess,
@@ -190,6 +212,7 @@ define( require => {
         } );
       }
       else {
+        this.initialSoluteAmountAlert = false;
         return StringUtils.fillIn( string, {
           moreLess: moreLess,
           lessMore: lessMore,
@@ -247,7 +270,16 @@ define( require => {
       }
 
       // returns different strings depending on whether the 'show values' checkbox is checked
-      if ( this.valuesVisibleProperty.value ) {
+      if ( this.valuesVisibleProperty.value && this.initialSoluteAmountAlert ) {
+        this.initialSoluteAmountAlert = false;
+        return StringUtils.fillIn( soluteAmountSliderInitialAlertPatternString, {
+          moreLess: moreLess,
+          soluteAmount: this.soluteAmountDescriber.getCurrentSoluteAmount(),
+          concentration: this.concentrationDescriber.getCurrentConcentration()
+        } );
+      }
+      else if ( this.valuesVisibleProperty.value ) {
+        this.initialSoluteAmountAlert = false;
         return StringUtils.fillIn( sliderAlertStateInfoValuesVisiblePatternString, {
           quantity: this.soluteAmountDescriber.getCurrentSoluteAmount(),
           moreLess: moreLess,
@@ -255,6 +287,7 @@ define( require => {
         } );
       }
       else {
+        this.initialSoluteAmountAlert = false;
         return StringUtils.fillIn( string, {
           moreLess: moreLess,
           lessMore: lessMore,
@@ -308,4 +341,5 @@ define( require => {
   }
 
   return molarity.register( 'MolarityDescriber', MolarityDescriber );
-} );
+} )
+;

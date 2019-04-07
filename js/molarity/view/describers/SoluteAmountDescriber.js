@@ -68,15 +68,17 @@ define( require => {
   class SoluteAmountDescriber {
 
     /**
-     * @param {Property} soluteAmountProperty- from MolarityModel
+     * @param {Solution} soluteAmountProperty- from MolarityModel
      * @param {Property} soluteProperty- from MolarityModel
+     * @param {ConcentrationDescriber} concentrationDescriber
      * @param {BooleanProperty} valuesVisibleProperty - tracks whether the "Show values" checkbox is checked
      */
-    constructor( soluteAmountProperty, soluteProperty, valuesVisibleProperty ) {
+    constructor( soluteAmountProperty, soluteProperty, concentrationDescriber, valuesVisibleProperty ) {
 
       // @private
       this.soluteAmountProperty = soluteAmountProperty;
       this.soluteProperty = soluteProperty;
+      this.concentrationDescriber = concentrationDescriber;
       this.valuesVisibleProperty = valuesVisibleProperty;
       this.soluteAmountRegion = 0; // tracks the last descriptive region for solute amount
 
@@ -125,7 +127,8 @@ define( require => {
     getSoluteAmountStateInfoNotSaturated() {
       return StringUtils.fillIn( soluteAmountStateInfoPatternString, {
         solute: this.soluteProperty.value.name,
-        soluteAmount: this.getCurrentSoluteAmount()
+        soluteAmount: this.getCurrentSoluteAmount(),
+        concentration: this.concentrationDescriber.getCurrentConcentration()
       } );
     }
   }

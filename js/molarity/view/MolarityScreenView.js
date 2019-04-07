@@ -125,7 +125,8 @@ define( function( require ) {
       tandem.createTandem( 'soluteAmountSlider' ),
       soluteAmountAccessibleNameString,
       () => molarityDescriber.getSoluteAmountAriaValueText(),
-      model.solution.soluteProperty
+      model.solution.soluteProperty,
+      molarityDescriber
     );
 
     // a11y - alert read out when solute amount property changes
@@ -148,7 +149,8 @@ define( function( require ) {
       tandem.createTandem( 'solutionVolumeSlider' ),
       solutionVolumeAccessibleNameString,
       () => molarityDescriber.getVolumeAriaValueText(),
-      model.solution.soluteProperty
+      model.solution.soluteProperty,
+      molarityDescriber
     );
 
     // a11y - alert read out when volume property changes

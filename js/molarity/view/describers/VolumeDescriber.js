@@ -70,11 +70,13 @@ define( require => {
     /**
      * @param {Property} volumeProperty- from MolarityModel
      * @param {Property} soluteProperty- from MolarityModel
+     * @param {ConcentrationDescriber} concentrationDescriber
      * @param {BooleanProperty} valuesVisibleProperty - tracks whether the "Show values" checkbox is checked
      */
-    constructor( volumeProperty, soluteProperty, valuesVisibleProperty ) {
+    constructor( volumeProperty, soluteProperty, concentrationDescriber, valuesVisibleProperty ) {
 
       // @private
+      this.concentrationDescriber = concentrationDescriber;
       this.volumeProperty = volumeProperty;
       this.soluteProperty = soluteProperty;
       this.valuesVisibleProperty = valuesVisibleProperty;
@@ -122,7 +124,8 @@ define( require => {
      */
     getVolumeStateInfoNotSaturated() {
       return StringUtils.fillIn( volumeStateInfoPatternString, {
-        volume: this.getCurrentVolume()
+        volume: this.getCurrentVolume(),
+        concentration: this.concentrationDescriber.getCurrentConcentration()
       } );
     }
   }

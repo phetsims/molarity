@@ -156,14 +156,20 @@ define( function( require ) {
     soluteAmountSliderMovedSolidsAlertPattern: {
       value: '{{moreLess}} solute, {{lessMore}} solids. {{stateInfo}}'
     },
+    soluteAmountSliderInitialAlertPattern: {
+      value: '{{moreLess}} concentrated. {{soluteAmount}} moles in solution. Concentration {{concentration}} Molar'
+    },
+    volumeSliderInitialAlertPattern: {
+      value: '{{moreLess}} concentrated. {{volume}} liters of solution in Beaker. Concentration {{concentration}} Molar'
+    },
     stateInfoPattern: {
-      value: '{{soluteAmountClause}}{{volumeClause}} Solution {{concentration}}.'
+      value: '{{soluteAmountClause}}{{volumeClause}}. Solution {{concentration}}.'
     },
     soluteAmountStateInfoPattern: {
-      value: '{{soluteAmount}} of {{solute}}.'
+      value: '{{soluteAmount}} of {{solute}}. Solution {{concentration}}'
     },
     volumeStateInfoPattern: {
-      value: 'Beaker {{volume}}. '
+      value: 'Beaker {{volume}}. Solution {{concentration}}'
     },
     sliderAlertStateInfoValuesVisiblePattern: {
       value: '{{quantity}}, {{moreLess}} concentrated at {{concentration}} Molar.'
@@ -201,7 +207,7 @@ define( function( require ) {
     soluteAmountSliderAriaValueTextPattern: {
       value: '{{soluteAmount}} {{solute}}'
     },
-    noSoluteAlertString : {
+    noSoluteAlertString: {
       value: 'No solute. Solution is pure water.'
     }
   };
