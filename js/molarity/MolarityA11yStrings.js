@@ -15,6 +15,9 @@ define( function( require ) {
   const molarity = require( 'MOLARITY/molarity' );
 
   const MolarityA11yStrings = {
+    showValuesHelpText: {
+      value: 'Explore with values shown.'
+    },
     soluteAmountAccessibleName: {
       value: 'Solute Amount'
     },
@@ -28,7 +31,7 @@ define( function( require ) {
       value: 'Currently, beaker is {{volume}} of a {{saturatedConcentration}} ‬solution containing {{soluteAmount}} ‪{{solute}}‬ solute. {{concentrationClause}}.'
     },
     stateOfSimNoSolutePattern: {
-      value: 'Beaker is {{volume}} water. {{solute}} is selected, but no {{solute}} is in the beaker.”'
+      value: 'Beaker is {{volume}} of water. {{solute}} is selected, but no {{solute}} is in the beaker.”'
     },
     soluteAmountAndUnitPattern: {
       value: '{{soluteAmount}} moles'
@@ -70,13 +73,13 @@ define( function( require ) {
       value: 'nearly full'
     },
     overHalfString: {
-      value: 'over half'
+      value: 'over half full'
     },
     halfFullString: {
       value: 'half full'
     },
     underHalfString: {
-      value: 'under half'
+      value: 'under half full'
     },
     lowString: {
       value: 'low'

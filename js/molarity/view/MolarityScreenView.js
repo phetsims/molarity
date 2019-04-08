@@ -54,6 +54,7 @@ define( function( require ) {
   const unitsMolesString = require( 'string!MOLARITY/units.moles' );
 
   // a11y strings
+  const showValuesHelpTextString = MolarityA11yStrings.showValuesHelpText.value;
   const soluteAmountAccessibleNameString = MolarityA11yStrings.soluteAmountAccessibleName.value;
   const soluteComboBoxLabelString = MolarityA11yStrings.soluteComboBoxLabel.value;
   const solutionVolumeAccessibleNameString = MolarityA11yStrings.solutionVolumeAccessibleName.value;
@@ -174,8 +175,8 @@ define( function( require ) {
       tandem: tandem.createTandem( 'showValuesCheckbox' ),
 
       // a11y
-      labelTagName: 'span',
-      labelContent: showValuesString
+      accessibleName: showValuesString,
+      helpText: showValuesHelpTextString
     } );
     showValuesCheckbox.touchArea = Shape.rectangle( showValuesCheckbox.left, showValuesCheckbox.top - 15, showValuesCheckbox.width, showValuesCheckbox.height + 30 );
 
