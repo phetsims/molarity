@@ -17,20 +17,18 @@ define( require => {
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
 
   // a11y strings
-  const stillSaturatedAlertPatternString = MolarityA11yStrings.stillSaturatedAlertPattern.value;
-  const withSolidsAlertPatternString = MolarityA11yStrings.withSolidsAlertPattern.value;
-
-  const notConcentratedString = MolarityA11yStrings.notConcentratedString.value;
-  const barelyConcentratedString = MolarityA11yStrings.barelyConcentratedString.value;
-  const slightlyConcentratedString = MolarityA11yStrings.slightlyConcentratedString.value;
-  const concentratedString = MolarityA11yStrings.concentratedString.value;
-  const veryConcentratedString = MolarityA11yStrings.veryConcentratedString.value;
-
-  const someString = MolarityA11yStrings.someString.value;
   const aBunchString = MolarityA11yStrings.aBunchString.value;
-  const aLotString = MolarityA11yStrings.aLotString.value;
   const aCoupleString = MolarityA11yStrings.aCoupleString.value;
   const aFewString = MolarityA11yStrings.aFewString.value;
+  const aLotString = MolarityA11yStrings.aLotString.value;
+  const barelyConcentratedString = MolarityA11yStrings.barelyConcentratedString.value;
+  const concentratedString = MolarityA11yStrings.concentratedString.value;
+  const notConcentratedString = MolarityA11yStrings.notConcentratedString.value;
+  const slightlyConcentratedString = MolarityA11yStrings.slightlyConcentratedString.value;
+  const someString = MolarityA11yStrings.someString.value;
+  const stillSaturatedAlertPatternString = MolarityA11yStrings.stillSaturatedAlertPattern.value;
+  const veryConcentratedString = MolarityA11yStrings.veryConcentratedString.value;
+  const withSolidsAlertPatternString = MolarityA11yStrings.withSolidsAlertPattern.value;
 
   // constants
   const CONCENTRATION_STRINGS = [

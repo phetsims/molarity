@@ -17,13 +17,13 @@ define( require => {
 
   // a11y strings
   const fullString = MolarityA11yStrings.fullString.value;
-  const nearlyFullString = MolarityA11yStrings.nearlyFullString.value;
-  const overHalfString = MolarityA11yStrings.overHalfString.value;
   const halfFullString = MolarityA11yStrings.halfFullString.value;
-  const underHalfString = MolarityA11yStrings.underHalfString.value;
   const lowString = MolarityA11yStrings.lowString.value;
   const nearlyEmptyString = MolarityA11yStrings.nearlyEmptyString.value;
+  const nearlyFullString = MolarityA11yStrings.nearlyFullString.value;
+  const overHalfString = MolarityA11yStrings.overHalfString.value;
   const solutionVolumeAndUnitPatternString = MolarityA11yStrings.solutionVolumeAndUnitPattern.value;
+  const underHalfString = MolarityA11yStrings.underHalfString.value;
   const volumeStateInfoPatternString = MolarityA11yStrings.volumeStateInfoPattern.value;
 
   // constants

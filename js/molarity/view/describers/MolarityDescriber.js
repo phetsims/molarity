@@ -20,35 +20,29 @@ define( require => {
 
   // a11y strings
   const beakerDescriptionString = MolarityA11yStrings.beakerDescription.value;
-  const solutionConcentrationPatternString = MolarityA11yStrings.solutionConcentrationPattern.value;
-  const stateOfSimPatternString = MolarityA11yStrings.stateOfSimPattern.value;
-  const stateOfSimNoSolutePatternString = MolarityA11yStrings.stateOfSimNoSolutePattern.value;
-
-  const soluteAmountSliderAriaValueTextPatternString = MolarityA11yStrings.soluteAmountSliderAriaValueTextPattern.value;
-  const volumeSliderAriaValueTextPatternString = MolarityA11yStrings.volumeSliderAriaValueTextPattern.value;
-  const volumeSliderValuesVisibleAriaValueTextPatternString = MolarityA11yStrings.volumeSliderValuesVisibleAriaValueTextPattern.value;
-
-  const solutionConcentrationValuesVisiblePatternString = MolarityA11yStrings.solutionConcentrationValuesVisiblePattern.value;
-  const soluteChangedAlertPatternString = MolarityA11yStrings.soluteChangedAlertPattern.value;
-
-  const stillSaturatedAlertPatternString = MolarityA11yStrings.stillSaturatedAlertPattern.value;
-  const saturationReachedAlertString = MolarityA11yStrings.saturationReachedAlertString.value;
-  const saturationLostAlertPatternString = MolarityA11yStrings.saturationLostAlertPattern.value;
+  const lessString = MolarityA11yStrings.lessString.value;
+  const moreString = MolarityA11yStrings.moreString.value;
+  const notSaturatedString = MolarityA11yStrings.notSaturatedString.value;
   const noSoluteAlertString = MolarityA11yStrings.noSoluteAlertString.value;
-
-  const volumeSliderMovedAlertPatternString = MolarityA11yStrings.volumeSliderMovedAlertPattern.value;
-  const volumeSliderMovedSolidsAlertPatternString = MolarityA11yStrings.volumeSliderMovedSolidsAlertPattern.value;
+  const saturationLostAlertPatternString = MolarityA11yStrings.saturationLostAlertPattern.value;
+  const saturationReachedAlertString = MolarityA11yStrings.saturationReachedAlertString.value;
+  const saturatedString = MolarityA11yStrings.saturatedString.value;
+  const sliderAlertStateInfoValuesVisiblePatternString = MolarityA11yStrings.sliderAlertStateInfoValuesVisiblePattern.value;
+  const soluteAmountSliderAriaValueTextPatternString = MolarityA11yStrings.soluteAmountSliderAriaValueTextPattern.value;
+  const soluteAmountSliderInitialAlertPatternString = MolarityA11yStrings.soluteAmountSliderInitialAlertPattern.value;
   const soluteAmountSliderMovedAlertPatternString = MolarityA11yStrings.soluteAmountSliderMovedAlertPattern.value;
   const soluteAmountSliderMovedSolidsAlertPatternString = MolarityA11yStrings.soluteAmountSliderMovedSolidsAlertPattern.value;
-  const sliderAlertStateInfoValuesVisiblePatternString = MolarityA11yStrings.sliderAlertStateInfoValuesVisiblePattern.value;
+  const soluteChangedAlertPatternString = MolarityA11yStrings.soluteChangedAlertPattern.value;
+  const solutionConcentrationPatternString = MolarityA11yStrings.solutionConcentrationPattern.value;
+  const solutionConcentrationValuesVisiblePatternString = MolarityA11yStrings.solutionConcentrationValuesVisiblePattern.value;
+  const stateOfSimNoSolutePatternString = MolarityA11yStrings.stateOfSimNoSolutePattern.value;
+  const stateOfSimPatternString = MolarityA11yStrings.stateOfSimPattern.value;
+  const stillSaturatedAlertPatternString = MolarityA11yStrings.stillSaturatedAlertPattern.value;
+  const volumeSliderAriaValueTextPatternString = MolarityA11yStrings.volumeSliderAriaValueTextPattern.value;
+  const volumeSliderMovedAlertPatternString = MolarityA11yStrings.volumeSliderMovedAlertPattern.value;
+  const volumeSliderMovedSolidsAlertPatternString = MolarityA11yStrings.volumeSliderMovedSolidsAlertPattern.value;
   const volumeSliderInitialAlertPatternString = MolarityA11yStrings.volumeSliderInitialAlertPattern.value;
-  const soluteAmountSliderInitialAlertPatternString = MolarityA11yStrings.soluteAmountSliderInitialAlertPattern.value;
-
-  const saturatedString = MolarityA11yStrings.saturatedString.value;
-  const notSaturatedString = MolarityA11yStrings.notSaturatedString.value;
-
-  const moreString = MolarityA11yStrings.moreString.value;
-  const lessString = MolarityA11yStrings.lessString.value;
+  const volumeSliderValuesVisibleAriaValueTextPatternString = MolarityA11yStrings.volumeSliderValuesVisibleAriaValueTextPattern.value;
 
   class MolarityDescriber {
 

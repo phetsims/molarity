@@ -16,16 +16,15 @@ define( require => {
   const Util = require( 'DOT/Util' );
 
   // a11y strings
+  const aBunchString = MolarityA11yStrings.aBunchString.value;
+  const aLittleString = MolarityA11yStrings.aLittleString.value;
+  const aLotString = MolarityA11yStrings.aLotString.value;
+  const aLowString = MolarityA11yStrings.aLowString.value;
+  const fullAmountString = MolarityA11yStrings.fullAmountString.value;
   const soluteAmountStateInfoPatternString = MolarityA11yStrings.soluteAmountStateInfoPattern.value;
   const soluteAmountAndUnitPatternString = MolarityA11yStrings.soluteAmountAndUnitPattern.value;
-
-  const zeroString = MolarityA11yStrings.zeroString.value;
-  const aLittleString = MolarityA11yStrings.aLittleString.value;
-  const aLowString = MolarityA11yStrings.aLowString.value;
   const someString = MolarityA11yStrings.someString.value;
-  const aBunchString = MolarityA11yStrings.aBunchString.value;
-  const aLotString = MolarityA11yStrings.aLotString.value;
-  const fullAmountString = MolarityA11yStrings.fullAmountString.value;
+  const zeroString = MolarityA11yStrings.zeroString.value;
 
   // constants
   const SOLUTE_AMOUNT_STRINGS = [
