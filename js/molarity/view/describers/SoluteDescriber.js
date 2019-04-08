@@ -2,6 +2,7 @@
 
 /**
  * SoluteDescriber is responsible for creating strings about SoluteProperty that are used for PDOM content and alerts.
+ *
  * @author Michael Kauzmann (PhET Interactive Simulations)
  * @author Taylor Want (PhET Interactive Simulations)
  */
@@ -17,6 +18,7 @@ define( require => {
   const soluteChangedAlertPatternString = MolarityA11yStrings.soluteChangedAlertPattern.value;
 
   class SoluteDescriber {
+
     /**
      * @param {SoluteProperty} soluteProperty from MolarityModel
      * @param {BooleanProperty} valuesVisibleProperty - tracks whether the "Show values" checkbox is checked
@@ -29,7 +31,7 @@ define( require => {
     }
 
     /**
-     * gets the name of the current solute selected
+     * Gets the name of the current solute selected
      * @public
      * @returns { string } name of current solute
      */
@@ -38,7 +40,7 @@ define( require => {
     }
 
     /**
-     * gets the saturated concentration amount of the currently selected solute.
+     * Gets the saturated concentration amount of the currently selected solute.
      * @public
      * @returns { string }
      */
@@ -47,7 +49,7 @@ define( require => {
     }
 
     /**
-     * gets the chemical formula of the currently selected solute.
+     * Gets the chemical formula of the currently selected solute.
      * @private
      * @returns { string }
      */
@@ -66,7 +68,6 @@ define( require => {
         maxConcentration: this.getCurrentSaturatedConcentration()
       } );
     }
-
   }
 
   return molarity.register( 'SoluteDescriber', SoluteDescriber );

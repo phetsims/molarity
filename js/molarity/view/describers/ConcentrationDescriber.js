@@ -1,7 +1,9 @@
 // Copyright 2019, University of Colorado Boulder
 
 /**
- * ConcentrationDescriber is responsible for generating strings about ConcentrationProperty. Also includes alert text for alerts past saturation point
+ * ConcentrationDescriber is responsible for generating strings about ConcentrationProperty. Also includes alert text
+ * for alerts past saturation point.
+ *
  * @author Michael Kauzmann (PhET Interactive Simulations)
  * @author Taylor Want (PhET Interactive Simulations)
  */
@@ -30,7 +32,6 @@ define( require => {
   const aCoupleString = MolarityA11yStrings.aCoupleString.value;
   const aFewString = MolarityA11yStrings.aFewString.value;
 
-
   // constants
   const CONCENTRATION_STRINGS = [
     notConcentratedString,
@@ -48,7 +49,8 @@ define( require => {
     aLotString
   ];
 
-  /** calculates the which item to use from the SOLIDS_STRINGS array
+  /**
+   * Calculates which item to use from the SOLIDS_STRINGS array
    * @param {number} precipitateAmount
    * @param {number} saturatedConcentration
    * @returns {number} index to pull from SOLIDS_STRINGS array
@@ -72,7 +74,8 @@ define( require => {
     }
   };
 
-  /** calculates the which item to use from the CONCENTRATION_STRINGS array
+  /**
+   * Calculates the which item to use from the CONCENTRATION_STRINGS array
    * @returns {number} index to pull from CONCENTRATION_STRINGS array
    */
   const concentrationToIndex = ( maxConcentration, concentration ) => {
@@ -113,7 +116,7 @@ define( require => {
     }
 
     /**
-     * gets the current value of concentration either quantitatively or quantitatively to plug into descriptions
+     * Gets the current value of concentration either quantitatively or quantitatively to plug into descriptions
      * @public
      * @returns {number | string } quantitative or qualitative description of current concentration
      */
@@ -129,7 +132,7 @@ define( require => {
     }
 
     /**
-     * gets the saturated concentration amount of the currently selected solute.
+     * Gets the saturated concentration amount of the currently selected solute.
      * @private
      * @returns { Number }
      */
@@ -138,7 +141,7 @@ define( require => {
     }
 
     /**
-     * gets the saturated concentration amount of the currently selected solute.
+     * Gets the saturated concentration amount of the currently selected solute.
      * @private
      * @returns { Number }
      */
@@ -147,7 +150,7 @@ define( require => {
     }
 
     /**
-     * gets the saturated concentration amount of the currently selected solute.
+     * Gets the saturated concentration amount of the currently selected solute.
      * @public
      * @returns { Number }
      */
@@ -171,9 +174,8 @@ define( require => {
       return isNewSolidsRegion;
     }
 
-
     /**
-     * fills in the state info if region has changed and the solution is saturated
+     * Fills in the state info if region has changed and the solution is saturated
      * @private
      * @returns {string}
      */

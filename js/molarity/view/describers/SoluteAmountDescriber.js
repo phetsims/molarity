@@ -1,7 +1,8 @@
 // Copyright 2019, University of Colorado Boulder
 
 /**
- * SoluteAmountDescriber is responsible for generating strings about SoluteAmountProperty
+ * SoluteAmountDescriber is responsible for generating strings about SoluteAmountProperty.
+ *
  * @author Michael Kauzmann (PhET Interactive Simulations)
  * @author Taylor Want (PhET Interactive Simulations)
  */
@@ -26,7 +27,6 @@ define( require => {
   const aLotString = MolarityA11yStrings.aLotString.value;
   const fullAmountString = MolarityA11yStrings.fullAmountString.value;
 
-
   // constants
   const SOLUTE_AMOUNT_STRINGS = [
     zeroString,
@@ -38,7 +38,8 @@ define( require => {
     fullAmountString
   ];
 
-  /** calculates the which item to use from the SOLUTE_AMOUNT_STRINGS array
+  /**
+   * Calculates the which item to use from the SOLUTE_AMOUNT_STRINGS array
    * @returns {number} index (integer) to pull from SOLUTE_AMOUNT_STRINGS array
    */
   const soluteAmountToIndex = ( soluteAmount ) => {
@@ -85,7 +86,7 @@ define( require => {
     }
 
     /**
-     * gets the current value of solute amount either quantitatively or quantitatively to plug into descriptions
+     * Gets the current value of solute amount either quantitatively or quantitatively to plug into descriptions
      * @private
      * @returns {number | string } quantitative or qualitative description of current solute amount
      */
@@ -118,9 +119,8 @@ define( require => {
       return isNewSoluteAmountRegion;
     }
 
-
     /**
-     * fills in the state info if region has changed and the solution is not saturated
+     * Fills in the state info if region has changed and the solution is not saturated
      * @private
      * @returns {string}
      */

@@ -1,7 +1,8 @@
 // Copyright 2019, University of Colorado Boulder
 
 /**
- * SoluteAmountDescriber is responsible for generating strings about VolumeProperty
+ * SoluteAmountDescriber is responsible for generating strings about VolumeProperty.
+ *
  * @author Michael Kauzmann (PhET Interactive Simulations)
  * @author Taylor Want (PhET Interactive Simulations)
  */
@@ -36,8 +37,8 @@ define( require => {
     fullString
   ];
 
-
-  /** calculates the which item to use from the VOLUME_STRINGS array
+  /**
+   * Calculates the which item to use from the VOLUME_STRINGS array
    * @returns {number} index to pull from VOLUME_STRINGS array
    */
   const volumeToIndex = ( volume ) => {
@@ -64,7 +65,6 @@ define( require => {
     }
   };
 
-
   class VolumeDescriber {
 
     /**
@@ -84,7 +84,7 @@ define( require => {
     }
 
     /**
-     * gets the current value of volume either quantitatively or quantitatively to plug into descriptions
+     * Gets the current value of volume either quantitatively or quantitatively to plug into descriptions
      * @private
      * @returns {string} - quantitative or qualitative description of current volume
      */
@@ -116,9 +116,8 @@ define( require => {
       return isNewVolumeRegion;
     }
 
-
     /**
-     * fills in the state info if region has changed and the solution is not saturated
+     * Fills in the state info if region has changed and the solution is not saturated
      * @private
      * @returns {string}
      */
