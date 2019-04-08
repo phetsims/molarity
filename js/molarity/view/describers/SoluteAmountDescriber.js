@@ -40,10 +40,10 @@ define( require => {
   class SoluteAmountDescriber {
 
     /**
-     * @param {Solution} soluteAmountProperty- from MolarityModel
-     * @param {Property} soluteProperty- from MolarityModel
+     * @param {NumberProperty} soluteAmountProperty - from Solution model element
+     * @param {Property.<Solute>} soluteProperty - from Solution model element
      * @param {ConcentrationDescriber} concentrationDescriber
-     * @param {BooleanProperty} valuesVisibleProperty - tracks whether the "Show values" checkbox is checked
+     * @param {BooleanProperty} valuesVisibleProperty - whether values are visible in the view
      */
     constructor( soluteAmountProperty, soluteProperty, concentrationDescriber, valuesVisibleProperty ) {
 
@@ -59,7 +59,7 @@ define( require => {
     /**
      * Gets the current value of solute amount either quantitatively or quantitatively to plug into descriptions
      * @private
-     * @returns {number | string } quantitative or qualitative description of current solute amount
+     * @returns {number|string} quantitative or qualitative description of current solute amount
      */
     getCurrentSoluteAmount() {
       if ( this.valuesVisibleProperty.value ) {
@@ -106,6 +106,7 @@ define( require => {
 
   /**
    * Calculates the which item to use from the SOLUTE_AMOUNT_STRINGS array
+   * @param {number} soluteAmount
    * @returns {number} index (integer) to pull from SOLUTE_AMOUNT_STRINGS array
    */
   const soluteAmountToIndex = ( soluteAmount ) => {

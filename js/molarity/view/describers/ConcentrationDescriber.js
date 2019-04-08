@@ -51,7 +51,7 @@ define( require => {
 
     /**
      * @param {Solution} solution - from MolarityModel
-     * @param {BooleanProperty} valuesVisibleProperty - tracks whether the "Show values" checkbox is checked
+     * @param {BooleanProperty} valuesVisibleProperty - whether values are visible in the view
      */
     constructor( solution, valuesVisibleProperty ) {
 
@@ -65,7 +65,7 @@ define( require => {
     /**
      * Gets the current value of concentration either quantitatively or quantitatively to plug into descriptions
      * @public
-     * @returns {number | string } quantitative or qualitative description of current concentration
+     * @returns {number|string} quantitative or qualitative description of current concentration
      */
     getCurrentConcentration() {
       const concentration = this.solution.concentrationProperty.value;
@@ -81,7 +81,7 @@ define( require => {
     /**
      * Gets the saturated concentration amount of the currently selected solute.
      * @private
-     * @returns { Number }
+     * @returns {number}
      */
     getCurrentSaturatedConcentration() {
       return this.solution.soluteProperty.value.saturatedConcentration;
@@ -90,7 +90,7 @@ define( require => {
     /**
      * Gets the saturated concentration amount of the currently selected solute.
      * @private
-     * @returns { Number }
+     * @returns {number}
      */
     getCurrentPrecipitates() {
       return this.solution.precipitateAmountProperty.value;
@@ -99,7 +99,7 @@ define( require => {
     /**
      * Gets the saturated concentration amount of the currently selected solute.
      * @public
-     * @returns { Number }
+     * @returns {number}
      */
     getCurrentSolidsAmount() {
       return SOLIDS_STRINGS[ solidsToIndex( this.getCurrentPrecipitates(), this.getCurrentSaturatedConcentration() ) ];
@@ -186,6 +186,8 @@ define( require => {
 
   /**
    * Calculates the which item to use from the CONCENTRATION_STRINGS array
+   * @param {number} maxConcentration
+   * @param {number} concentration
    * @returns {number} index to pull from CONCENTRATION_STRINGS array
    */
   const concentrationToIndex = ( maxConcentration, concentration ) => {

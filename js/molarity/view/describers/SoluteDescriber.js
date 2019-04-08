@@ -20,8 +20,8 @@ define( require => {
   class SoluteDescriber {
 
     /**
-     * @param {Property.<Solute>} soluteProperty from MolarityModel
-     * @param {BooleanProperty} valuesVisibleProperty - tracks whether the "Show values" checkbox is checked
+     * @param {Property.<Solute>} soluteProperty - from Solution model element
+     * @param {BooleanProperty} valuesVisibleProperty - whether values are visible in the view
      */
     constructor( soluteProperty, valuesVisibleProperty ) {
 
@@ -33,7 +33,7 @@ define( require => {
     /**
      * Gets the name of the current solute selected
      * @public
-     * @returns { string } name of current solute
+     * @returns {string} name of current solute
      */
     getCurrentSolute() {
       return this.soluteProperty.value.name;
@@ -42,7 +42,7 @@ define( require => {
     /**
      * Gets the saturated concentration amount of the currently selected solute.
      * @public
-     * @returns { string }
+     * @returns {string}
      */
     getCurrentSaturatedConcentration() {
       return this.soluteProperty.value.saturatedConcentration;
@@ -51,7 +51,7 @@ define( require => {
     /**
      * Gets the chemical formula of the currently selected solute.
      * @private
-     * @returns { string }
+     * @returns {string}
      */
     getCurrentChemicalFormula() {
       return this.soluteProperty.value.formula;

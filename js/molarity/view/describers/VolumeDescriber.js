@@ -40,10 +40,10 @@ define( require => {
   class VolumeDescriber {
 
     /**
-     * @param {Property} volumeProperty- from MolarityModel
-     * @param {Property} soluteProperty- from MolarityModel
+     * @param {Property} volumeProperty - from Solution model element
+     * @param {Property} soluteProperty - from Solution model element
      * @param {ConcentrationDescriber} concentrationDescriber
-     * @param {BooleanProperty} valuesVisibleProperty - tracks whether the "Show values" checkbox is checked
+     * @param {BooleanProperty} valuesVisibleProperty - whether values are visible in the view
      */
     constructor( volumeProperty, soluteProperty, concentrationDescriber, valuesVisibleProperty ) {
 
@@ -103,6 +103,7 @@ define( require => {
 
   /**
    * Calculates the which item to use from the VOLUME_STRINGS array
+   * @param {number} volume
    * @returns {number} index to pull from VOLUME_STRINGS array
    */
   const volumeToIndex = ( volume ) => {

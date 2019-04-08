@@ -48,7 +48,7 @@ define( require => {
 
     /**
      * @param {Solution} solution - from MolarityModel
-     * @param {BooleanProperty} valuesVisibleProperty - tracks whether the "Show values" checkbox is checked
+     * @param {BooleanProperty} valuesVisibleProperty - whether values are visible in the view
      */
     constructor( solution, valuesVisibleProperty ) {
 
