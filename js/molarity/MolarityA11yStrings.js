@@ -157,10 +157,10 @@ define( function( require ) {
       value: '{{moreLess}} solute, {{lessMore}} solids. {{stateInfo}}'
     },
     soluteAmountSliderInitialAlertPattern: {
-      value: '{{moreLess}} concentrated. {{soluteAmount}} moles in solution. Concentration {{concentration}} Molar'
+      value: '{{moreLess}} concentrated. {{soluteAmount}} in solution. Concentration {{concentration}} Molar'
     },
     volumeSliderInitialAlertPattern: {
-      value: '{{moreLess}} concentrated. {{volume}} liters of solution in Beaker. Concentration {{concentration}} Molar'
+      value: '{{moreLess}} concentrated. {{volume}} of solution in Beaker. Concentration {{concentration}} Molar'
     },
     stateInfoPattern: {
       value: '{{soluteAmountClause}}{{volumeClause}}. Solution {{concentration}}.'
@@ -209,6 +209,36 @@ define( function( require ) {
     },
     noSoluteAlertString: {
       value: 'No solute. Solution is pure water.'
+    },
+    sliderHelpHeading: {
+      value: 'Solute Amount & Solution Volume'
+    },
+    changeSoluteHelpHeading: {
+      value: 'Change Solute in 3 Steps'
+    },
+    popUpListLabel: {
+      value: 'Pop up list of solutes with [Enter] or [Space] keys'
+    },
+    popUpListDescription: {
+      value: 'Pop up list of solutes with [Enter] or [Space] keys'
+    },
+    moveThroughLabel: {
+      value: 'Move through solutes with [Up] and [Down] arrow keys'
+    },
+    moveThroughDescription: {
+      value: 'Move through solutes with [Up] and [Down] arrow keys'
+    },
+    changeChooseLabel:{
+      value: 'Change/Choose solute with [Enter] key'
+    },
+    changeChooseDescription: {
+      value: 'Change/Choose solute with [Enter] key'
+    },
+    closeListLabel: {
+      value: 'Close list without changing with [Esc] key'
+    },
+    closeListDescription: {
+      value: 'Close list without changing with [Esc] key'
     }
   };
 
