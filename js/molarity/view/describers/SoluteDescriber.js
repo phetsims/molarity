@@ -20,7 +20,7 @@ define( require => {
   class SoluteDescriber {
 
     /**
-     * @param {SoluteProperty} soluteProperty from MolarityModel
+     * @param {Property.<Solute>} soluteProperty from MolarityModel
      * @param {BooleanProperty} valuesVisibleProperty - tracks whether the "Show values" checkbox is checked
      */
     constructor( soluteProperty, valuesVisibleProperty ) {
