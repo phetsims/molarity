@@ -38,34 +38,6 @@ define( require => {
     fullAmountString
   ];
 
-  /**
-   * Calculates the which item to use from the SOLUTE_AMOUNT_STRINGS array
-   * @returns {number} index (integer) to pull from SOLUTE_AMOUNT_STRINGS array
-   */
-  const soluteAmountToIndex = ( soluteAmount ) => {
-    if ( soluteAmount <= 0.050 ) {
-      return 0;
-    }
-    if ( soluteAmount <= .200 ) {
-      return 1;
-    }
-    if ( soluteAmount <= .450 ) {
-      return 2;
-    }
-    if ( soluteAmount <= .650 ) {
-      return 3;
-    }
-    if ( soluteAmount <= .850 ) {
-      return 4;
-    }
-    if ( soluteAmount <= .950 ) {
-      return 5;
-    }
-    if ( soluteAmount <= 1.000 ) {
-      return 6;
-    }
-  };
-
   class SoluteAmountDescriber {
 
     /**
@@ -132,6 +104,34 @@ define( require => {
       } );
     }
   }
+
+  /**
+   * Calculates the which item to use from the SOLUTE_AMOUNT_STRINGS array
+   * @returns {number} index (integer) to pull from SOLUTE_AMOUNT_STRINGS array
+   */
+  const soluteAmountToIndex = ( soluteAmount ) => {
+    if ( soluteAmount <= 0.050 ) {
+      return 0;
+    }
+    if ( soluteAmount <= .200 ) {
+      return 1;
+    }
+    if ( soluteAmount <= .450 ) {
+      return 2;
+    }
+    if ( soluteAmount <= .650 ) {
+      return 3;
+    }
+    if ( soluteAmount <= .850 ) {
+      return 4;
+    }
+    if ( soluteAmount <= .950 ) {
+      return 5;
+    }
+    if ( soluteAmount <= 1.000 ) {
+      return 6;
+    }
+  };
 
   return molarity.register( 'SoluteAmountDescriber', SoluteAmountDescriber );
 } );

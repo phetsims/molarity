@@ -49,57 +49,6 @@ define( require => {
     aLotString
   ];
 
-  /**
-   * Calculates which item to use from the SOLIDS_STRINGS array
-   * @param {number} precipitateAmount
-   * @param {number} saturatedConcentration
-   * @returns {number} index to pull from SOLIDS_STRINGS array
-   */
-  const solidsToIndex = ( precipitateAmount, saturatedConcentration ) => {
-    const fraction = ( 5 - saturatedConcentration ) / SOLIDS_STRINGS.length;
-    if ( precipitateAmount <= fraction / 5 ) {
-      return 0;
-    }
-    if ( precipitateAmount <= 2 * fraction / 5 ) {
-      return 1;
-    }
-    if ( precipitateAmount <= 3 * fraction / 5 ) {
-      return 2;
-    }
-    if ( precipitateAmount <= 4 * fraction / 5 ) {
-      return 3;
-    }
-    if ( precipitateAmount <= 5 * fraction / 5 ) {
-      return 4;
-    }
-  };
-
-  /**
-   * Calculates the which item to use from the CONCENTRATION_STRINGS array
-   * @returns {number} index to pull from CONCENTRATION_STRINGS array
-   */
-  const concentrationToIndex = ( maxConcentration, concentration ) => {
-    const fraction = maxConcentration / ( CONCENTRATION_STRINGS.length );
-    if ( concentration <= fraction ) {
-      return 0;
-    }
-    if ( concentration <= 2 * fraction ) {
-      return 1;
-    }
-    if ( concentration <= 3 * fraction ) {
-      return 2;
-    }
-    if ( concentration <= 4 * fraction ) {
-      return 3;
-    }
-    if ( concentration <= 5 * fraction ) {
-      return 4;
-    }
-    if ( concentration <= 6 * fraction ) {
-      return 5;
-    }
-  };
-
   class ConcentrationDescriber {
 
     /**
@@ -211,6 +160,57 @@ define( require => {
       return isNewConcentrationRegion;
     }
   }
+
+  /**
+   * Calculates which item to use from the SOLIDS_STRINGS array
+   * @param {number} precipitateAmount
+   * @param {number} saturatedConcentration
+   * @returns {number} index to pull from SOLIDS_STRINGS array
+   */
+  const solidsToIndex = ( precipitateAmount, saturatedConcentration ) => {
+    const fraction = ( 5 - saturatedConcentration ) / SOLIDS_STRINGS.length;
+    if ( precipitateAmount <= fraction / 5 ) {
+      return 0;
+    }
+    if ( precipitateAmount <= 2 * fraction / 5 ) {
+      return 1;
+    }
+    if ( precipitateAmount <= 3 * fraction / 5 ) {
+      return 2;
+    }
+    if ( precipitateAmount <= 4 * fraction / 5 ) {
+      return 3;
+    }
+    if ( precipitateAmount <= 5 * fraction / 5 ) {
+      return 4;
+    }
+  };
+
+  /**
+   * Calculates the which item to use from the CONCENTRATION_STRINGS array
+   * @returns {number} index to pull from CONCENTRATION_STRINGS array
+   */
+  const concentrationToIndex = ( maxConcentration, concentration ) => {
+    const fraction = maxConcentration / ( CONCENTRATION_STRINGS.length );
+    if ( concentration <= fraction ) {
+      return 0;
+    }
+    if ( concentration <= 2 * fraction ) {
+      return 1;
+    }
+    if ( concentration <= 3 * fraction ) {
+      return 2;
+    }
+    if ( concentration <= 4 * fraction ) {
+      return 3;
+    }
+    if ( concentration <= 5 * fraction ) {
+      return 4;
+    }
+    if ( concentration <= 6 * fraction ) {
+      return 5;
+    }
+  };
 
   return molarity.register( 'ConcentrationDescriber', ConcentrationDescriber );
 } );

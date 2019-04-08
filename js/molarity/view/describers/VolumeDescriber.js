@@ -37,34 +37,6 @@ define( require => {
     fullString
   ];
 
-  /**
-   * Calculates the which item to use from the VOLUME_STRINGS array
-   * @returns {number} index to pull from VOLUME_STRINGS array
-   */
-  const volumeToIndex = ( volume ) => {
-    if ( volume <= .220 ) {
-      return 0;
-    }
-    if ( volume <= .330 ) {
-      return 1;
-    }
-    if ( volume <= .410 ) {
-      return 2;
-    }
-    if ( volume <= .530 ) {
-      return 3;
-    }
-    if ( volume <= .780 ) {
-      return 4;
-    }
-    if ( volume <= .960 ) {
-      return 5;
-    }
-    if ( volume <= 1.000 ) {
-      return 6;
-    }
-  };
-
   class VolumeDescriber {
 
     /**
@@ -128,6 +100,34 @@ define( require => {
       } );
     }
   }
+
+  /**
+   * Calculates the which item to use from the VOLUME_STRINGS array
+   * @returns {number} index to pull from VOLUME_STRINGS array
+   */
+  const volumeToIndex = ( volume ) => {
+    if ( volume <= .220 ) {
+      return 0;
+    }
+    if ( volume <= .330 ) {
+      return 1;
+    }
+    if ( volume <= .410 ) {
+      return 2;
+    }
+    if ( volume <= .530 ) {
+      return 3;
+    }
+    if ( volume <= .780 ) {
+      return 4;
+    }
+    if ( volume <= .960 ) {
+      return 5;
+    }
+    if ( volume <= 1.000 ) {
+      return 6;
+    }
+  };
 
   return molarity.register( 'VolumeDescriber', VolumeDescriber );
 } )
