@@ -2,6 +2,7 @@
 
 /**
  * SoluteDescriber is responsible for creating strings about SoluteProperty that are used for PDOM content and alerts.
+ *
  * @author Michael Kauzmann (PhET Interactive Simulations)
  * @author Taylor Want (PhET Interactive Simulations)
  */
@@ -18,9 +19,10 @@ define( require => {
   const soluteChangedAlertPatternString = MolarityA11yStrings.soluteChangedAlertPattern.value;
 
   class SoluteDescriber {
+
     /**
-     * @param {SoluteProperty} soluteProperty from MolarityModel
-     * @param {BooleanProperty} valuesVisibleProperty - tracks whether the "Show values" checkbox is checked
+     * @param {Property.<Solute>} soluteProperty - from Solution model element
+     * @param {BooleanProperty} valuesVisibleProperty - whether values are visible in the view
      */
     constructor( soluteProperty, valuesVisibleProperty ) {
 
@@ -30,27 +32,27 @@ define( require => {
     }
 
     /**
-     * gets the name of the current solute selected
+     * Gets the name of the current solute selected
      * @public
-     * @returns { string } name of current solute
+     * @returns {string} name of current solute
      */
     getCurrentSolute() {
       return this.soluteProperty.value.name;
     }
 
     /**
-     * gets the saturated concentration amount of the currently selected solute.
+     * Gets the saturated concentration amount of the currently selected solute.
      * @public
-     * @returns { string }
+     * @returns {string}
      */
     getCurrentSaturatedConcentration() {
       return this.soluteProperty.value.saturatedConcentration;
     }
 
     /**
-     * gets the chemical formula of the currently selected solute.
+     * Gets the chemical formula of the currently selected solute.
      * @private
-     * @returns { string }
+     * @returns {string}
      */
     getCurrentChemicalFormula() {
       return this.soluteProperty.value.formula;
@@ -67,7 +69,6 @@ define( require => {
         maxConcentration: Util.toFixed( this.getCurrentSaturatedConcentration() > 5.0 ? 5.0 : this.getCurrentSaturatedConcentration(), 3 ) // TODO: Use constants file
       } );
     }
-
   }
 
   return molarity.register( 'SoluteDescriber', SoluteDescriber );

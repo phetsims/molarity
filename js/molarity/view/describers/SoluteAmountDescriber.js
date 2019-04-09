@@ -1,7 +1,8 @@
 // Copyright 2019, University of Colorado Boulder
 
 /**
- * SoluteAmountDescriber is responsible for generating strings about SoluteAmountProperty
+ * SoluteAmountDescriber is responsible for generating strings about SoluteAmountProperty.
+ *
  * @author Michael Kauzmann (PhET Interactive Simulations)
  * @author Taylor Want (PhET Interactive Simulations)
  */
@@ -15,17 +16,15 @@ define( require => {
   const Util = require( 'DOT/Util' );
 
   // a11y strings
+  const aBunchString = MolarityA11yStrings.aBunchString.value;
+  const aLittleString = MolarityA11yStrings.aLittleString.value;
+  const aLotString = MolarityA11yStrings.aLotString.value;
+  const aLowString = MolarityA11yStrings.aLowString.value;
+  const fullAmountString = MolarityA11yStrings.fullAmountString.value;
   const soluteAmountStateInfoPatternString = MolarityA11yStrings.soluteAmountStateInfoPattern.value;
   const soluteAmountAndUnitPatternString = MolarityA11yStrings.soluteAmountAndUnitPattern.value;
-
-  const zeroString = MolarityA11yStrings.zeroString.value;
-  const aLittleString = MolarityA11yStrings.aLittleString.value;
-  const aLowString = MolarityA11yStrings.aLowString.value;
   const someString = MolarityA11yStrings.someString.value;
-  const aBunchString = MolarityA11yStrings.aBunchString.value;
-  const aLotString = MolarityA11yStrings.aLotString.value;
-  const fullAmountString = MolarityA11yStrings.fullAmountString.value;
-
+  const zeroString = MolarityA11yStrings.zeroString.value;
 
   // constants
   const SOLUTE_AMOUNT_STRINGS = [
@@ -38,40 +37,13 @@ define( require => {
     fullAmountString
   ];
 
-  /** calculates the which item to use from the SOLUTE_AMOUNT_STRINGS array
-   * @returns {number} index (integer) to pull from SOLUTE_AMOUNT_STRINGS array
-   */
-  const soluteAmountToIndex = ( soluteAmount ) => {
-    if ( soluteAmount <= 0.050 ) {
-      return 0;
-    }
-    if ( soluteAmount <= .200 ) {
-      return 1;
-    }
-    if ( soluteAmount <= .450 ) {
-      return 2;
-    }
-    if ( soluteAmount <= .650 ) {
-      return 3;
-    }
-    if ( soluteAmount <= .850 ) {
-      return 4;
-    }
-    if ( soluteAmount <= .950 ) {
-      return 5;
-    }
-    if ( soluteAmount <= 1.000 ) {
-      return 6;
-    }
-  };
-
   class SoluteAmountDescriber {
 
     /**
-     * @param {Solution} soluteAmountProperty- from MolarityModel
-     * @param {Property} soluteProperty- from MolarityModel
+     * @param {NumberProperty} soluteAmountProperty - from Solution model element
+     * @param {Property.<Solute>} soluteProperty - from Solution model element
      * @param {ConcentrationDescriber} concentrationDescriber
-     * @param {BooleanProperty} valuesVisibleProperty - tracks whether the "Show values" checkbox is checked
+     * @param {BooleanProperty} valuesVisibleProperty - whether values are visible in the view
      */
     constructor( soluteAmountProperty, soluteProperty, concentrationDescriber, valuesVisibleProperty ) {
 
@@ -85,9 +57,9 @@ define( require => {
     }
 
     /**
-     * gets the current value of solute amount either quantitatively or quantitatively to plug into descriptions
+     * Gets the current value of solute amount either quantitatively or quantitatively to plug into descriptions
      * @private
-     * @returns {number | string } quantitative or qualitative description of current solute amount
+     * @returns {number|string} quantitative or qualitative description of current solute amount
      */
     getCurrentSoluteAmount() {
       if ( this.valuesVisibleProperty.value ) {
@@ -118,9 +90,8 @@ define( require => {
       return isNewSoluteAmountRegion;
     }
 
-
     /**
-     * fills in the state info if region has changed and the solution is not saturated
+     * Fills in the state info if region has changed and the solution is not saturated
      * @private
      * @returns {string}
      */
@@ -132,6 +103,35 @@ define( require => {
       } );
     }
   }
+
+  /**
+   * Calculates the which item to use from the SOLUTE_AMOUNT_STRINGS array
+   * @param {number} soluteAmount
+   * @returns {number} index (integer) to pull from SOLUTE_AMOUNT_STRINGS array
+   */
+  const soluteAmountToIndex = ( soluteAmount ) => {
+    if ( soluteAmount <= 0.050 ) {
+      return 0;
+    }
+    if ( soluteAmount <= .200 ) {
+      return 1;
+    }
+    if ( soluteAmount <= .450 ) {
+      return 2;
+    }
+    if ( soluteAmount <= .650 ) {
+      return 3;
+    }
+    if ( soluteAmount <= .850 ) {
+      return 4;
+    }
+    if ( soluteAmount <= .950 ) {
+      return 5;
+    }
+    if ( soluteAmount <= 1.000 ) {
+      return 6;
+    }
+  };
 
   return molarity.register( 'SoluteAmountDescriber', SoluteAmountDescriber );
 } );
