@@ -12,6 +12,7 @@ define( require => {
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  const Util = require( 'DOT/Util' );
 
   // a11y strings
   const soluteChangedAlertPatternString = MolarityA11yStrings.soluteChangedAlertPattern.value;
@@ -63,7 +64,7 @@ define( require => {
     getSoluteChangedAlertString() {
       return StringUtils.fillIn( soluteChangedAlertPatternString, {
         solute: this.getCurrentSolute(),
-        maxConcentration: this.getCurrentSaturatedConcentration()
+        maxConcentration: Util.toFixed( this.getCurrentSaturatedConcentration() > 5.0 ? 5.0 : this.getCurrentSaturatedConcentration(), 3 ) // TODO: Use constants file
       } );
     }
 

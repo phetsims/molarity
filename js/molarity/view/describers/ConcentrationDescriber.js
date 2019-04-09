@@ -58,16 +58,16 @@ define( require => {
     if ( precipitateAmount <= fraction / 5 ) {
       return 0;
     }
-    if ( precipitateAmount <= 2 * fraction / 5 ) {
+    else if ( precipitateAmount <= 2 * fraction / 5 ) {
       return 1;
     }
-    if ( precipitateAmount <= 3 * fraction / 5 ) {
+    else if ( precipitateAmount <= 3 * fraction / 5 ) {
       return 2;
     }
-    if ( precipitateAmount <= 4 * fraction / 5 ) {
+    else if ( precipitateAmount <= 4 * fraction / 5 ) {
       return 3;
     }
-    if ( precipitateAmount <= 5 * fraction / 5 ) {
+    else {
       return 4;
     }
   };

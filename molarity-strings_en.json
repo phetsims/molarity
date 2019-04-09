@@ -91,5 +91,23 @@
   },
   "pattern.parentheses.0text": {
     "value": "({0})"
+  },
+  "keyboard.popUpList": {
+    "value": "Pop up list of solutes"
+  },
+  "keyboard.moveThrough": {
+    "value": "Move through solutes"
+  },
+  "keyboard.changeChoose": {
+    "value": "Change/Choose solute"
+  },
+  "keyboard.closeList": {
+    "value": "Close list without changing"
+  },
+  "keyboard.sliderHelpHeading": {
+    "value": "Solute Amount & Solution Volume"
+  },
+  "keyboard.changeSoluteHelpHeading": {
+    "value": "Change Solute in 3 Steps"
   }
 }

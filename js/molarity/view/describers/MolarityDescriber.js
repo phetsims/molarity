@@ -43,6 +43,9 @@ define( require => {
   const volumeSliderInitialAlertPatternString = MolarityA11yStrings.volumeSliderInitialAlertPattern.value;
   const soluteAmountSliderInitialAlertPatternString = MolarityA11yStrings.soluteAmountSliderInitialAlertPattern.value;
 
+  const showValuesCheckedAlertString = MolarityA11yStrings.showValuesCheckedAlert.value;
+  const showValuesUncheckedAlertString = MolarityA11yStrings.showValuesUncheckedAlert.value;
+
   const saturatedString = MolarityA11yStrings.saturatedString.value;
   const notSaturatedString = MolarityA11yStrings.notSaturatedString.value;
 
@@ -76,6 +79,14 @@ define( require => {
     setInitialAlert() {
       this.initialSoluteAmountAlert = true;
       this.initialVolumeAlert = true;
+    }
+
+    /**
+     * @returns {string} - the alert string when the "show values" checkbox is either newly checked or newly unchecked.
+     * @public
+     */
+    getValuesVisibleChangedAlertString() {
+        return this.valuesVisibleProperty.value ? showValuesCheckedAlertString : showValuesUncheckedAlertString;
     }
 
     /**
@@ -124,7 +135,7 @@ define( require => {
     }
 
     /**
-     * Describes the concentration level in the beaker in the play area.
+     * Describes the properties of the solution in the beaker in the play area.
      * @public
      * @returns {string}
      */

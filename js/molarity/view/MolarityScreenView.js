@@ -56,7 +56,6 @@ define( function( require ) {
   // a11y strings
   const showValuesHelpTextString = MolarityA11yStrings.showValuesHelpText.value;
   const soluteAmountAccessibleNameString = MolarityA11yStrings.soluteAmountAccessibleName.value;
-  const soluteComboBoxLabelString = MolarityA11yStrings.soluteComboBoxLabel.value;
   const solutionVolumeAccessibleNameString = MolarityA11yStrings.solutionVolumeAccessibleName.value;
   const solutionControlsLabelString = MolarityA11yStrings.solutionControlsLabelString.value;
   const solutionControlsDescriptionString = MolarityA11yStrings.solutionControlsDescriptionString.value;
@@ -81,6 +80,12 @@ define( function( require ) {
 
     const valuesVisibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'valuesVisibleProperty' )
+    } );
+
+    // a11y - adds an alert when the solute is changed
+    valuesVisibleProperty.lazyLink( () => {
+      const utterance = molarityDescriber.getValuesVisibleChangedAlertString();
+      utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'stateOfSim' } ) );
     } );
 
     // a11y - initializes describer
@@ -189,12 +194,6 @@ define( function( require ) {
     } );
     solutionControlsNode.accessibleOrder = [ soluteAmountSlider, solutionVolumeSlider ];
 
-    // a11y - heading in the PDOM for the solute combo box
-    const soluteComboBoxHeadingNode = new Node( {
-      tagName: 'h3',
-      innerContent: soluteComboBoxLabelString
-    } );
-
     // a11y - adds an alert when the solute is changed
     model.solution.soluteProperty.lazyLink( () => {
       const utterance = molarityDescriber.soluteDescriber.getSoluteChangedAlertString();
@@ -206,7 +205,6 @@ define( function( require ) {
     playAreaNode.accessibleOrder = [
       beakerNode,
       solutionControlsNode,
-      soluteComboBoxHeadingNode,
       soluteComboBox,
       soluteComboBoxListParent
     ];
@@ -266,7 +264,6 @@ define( function( require ) {
         concentrationDisplay,
         showValuesCheckbox,
         resetAllButton,
-        soluteComboBoxHeadingNode,
         soluteComboBox,
         soluteComboBoxListParent,
         solutionControlsNode,

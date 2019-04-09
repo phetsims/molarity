@@ -28,7 +28,7 @@ define( function( require ) {
       value: 'In the Play Area, you find a beaker containing a solution, and a concentration readout. You can adjust the amount of solute in the solution and the solution volume. You can also choose from nine different solutes to include in your solution. In the Control Area there is a checkbox to show the exact values for amount of solute (in moles), volume of solution (in liters), and concentration (Molar), and a button to reset the sim.'
     },
     stateOfSimPattern: {
-      value: 'Currently, beaker is {{volume}} of a {{saturatedConcentration}} ‬solution containing {{soluteAmount}} ‪{{solute}}‬ solute. {{concentrationClause}}.'
+      value: 'Currently, beaker is {{volume}} of a {{saturatedConcentration}} {{solute}} ‬solution containing {{soluteAmount}} ‪{{solute}}‬ solute. {{concentrationClause}}.'
     },
     stateOfSimNoSolutePattern: {
       value: 'Beaker is {{volume}} of water. {{solute}} is selected, but no {{solute}} is in the beaker.”'
@@ -88,7 +88,7 @@ define( function( require ) {
       value: 'nearly empty'
     },
     fullAmountString: {
-      value: 'The full amount'
+      value: 'the max amount of' // TODO: rename fullAmountString, capitalization
     },
     aLotString: {
       value: 'A lot of'
@@ -178,7 +178,7 @@ define( function( require ) {
       value: '{{quantity}}, {{moreLess}} concentrated at {{concentration}} Molar.'
     },
     soluteChangedAlertPattern: {
-      value: '{{solute}} concentration readout range 0.00 Molar to {{maxConcentration}} Molar'
+      value: '{{solute}} concentration readout range 0.00 to {{maxConcentration}} Molar'
     },
     soluteAmountSliderFocusAlertPattern: {
       value: '{{solute}} {{soluteAmount}} moles, Solute Amount slider'
@@ -231,7 +231,7 @@ define( function( require ) {
     moveThroughDescription: {
       value: 'Move through solutes with [Up] and [Down] arrow keys'
     },
-    changeChooseLabel:{
+    changeChooseLabel: {
       value: 'Change/Choose solute with [Enter] key'
     },
     changeChooseDescription: {
@@ -242,6 +242,12 @@ define( function( require ) {
     },
     closeListDescription: {
       value: 'Close list without changing with [Esc] key'
+    },
+    showValuesCheckedAlert: {
+      value: 'Moles, litres and concentration values shown.'
+    },
+    showValuesUncheckedAlert: {
+      value: 'Values hidden.'
     }
   };
 

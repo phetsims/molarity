@@ -21,15 +21,17 @@ define( function( require ) {
   const TwoColumnKeyboardHelpContent = require( 'SCENERY_PHET/keyboard/help/TwoColumnKeyboardHelpContent' );
   const VBox = require( 'SCENERY/nodes/VBox' );
 
-  const sliderHelpHeadingString = MolarityA11yStrings.sliderHelpHeading.value;
-  const changeSoluteHelpHeadingString = MolarityA11yStrings.changeSoluteHelpHeading.value;
-  const popUpListLabelString = MolarityA11yStrings.popUpListLabel.value;
+  // strings
+  const keyboardSliderHelpHeadingString = require( 'string!MOLARITY/keyboard.sliderHelpHeading' );
+  const keyboardPopUpListString = require( 'string!MOLARITY/keyboard.popUpList' );
+  const keyboardChangeChooseString = require( 'string!MOLARITY/keyboard.changeChoose' );
+  const keyboardMoveThroughString = require( 'string!MOLARITY/keyboard.moveThrough' );
+  const keyboardCloseListString = require( 'string!MOLARITY/keyboard.closeList' );
+  const keyboardChangeSoluteHelpHeadingString = require( 'string!MOLARITY/keyboard.changeSoluteHelpHeading' );
+
   const popUpListDescriptionString = MolarityA11yStrings.popUpListDescription.value;
-  const moveThroughLabelString = MolarityA11yStrings.moveThroughLabel.value;
   const moveThroughDescriptionString = MolarityA11yStrings.moveThroughDescription.value;
-  const changeChooseLabelString = MolarityA11yStrings.changeChooseLabel.value;
   const changeChooseDescriptionString = MolarityA11yStrings.changeChooseDescription.value;
-  const closeListLabelString = MolarityA11yStrings.closeListLabel.value;
   const closeListDescriptionString = MolarityA11yStrings.closeListDescription.value;
 
   const ICON_CREATOR = {
@@ -47,47 +49,30 @@ define( function( require ) {
     }
   };
 
-  /**
-   * Construct a row for the help dialog, assembling a label with an icon using HelpSection. Usages will look like:
-   * constructRow( 'jump to the end', 'end' );
-   *
-   * @param {string} labelString - the text label for the row (visual)
-   * @param {string} descriptionString - must be one of the keys in ICON_CREATOR
-   * @param {string} iconID - must be one of ICON_CREATOR keys, see that above
-   */
-  const constructRow = ( labelString, descriptionString, iconID ) => {
-    const iconNode = ICON_CREATOR[ iconID ]();
-    return KeyboardHelpSection.labelWithIcon( labelString, iconNode, descriptionString );
-  };
-
-
   class MolarityKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
     constructor() {
       // general help section
       const generalNavigationHelpSection = new GeneralKeyboardHelpSection();
 
       // slider controls help section
-      const sliderKeyboardHelpSection = new SliderKeyboardHelpSection( { headingString: sliderHelpHeadingString } );
+      const sliderKeyboardHelpSection = new SliderKeyboardHelpSection( { headingString: keyboardSliderHelpHeadingString } );
 
       // change solute help section
-      const step1 = constructRow( popUpListLabelString,
-        popUpListDescriptionString,
-        'enterOrSpace' );
-      const step2 = constructRow( moveThroughLabelString,
-        moveThroughDescriptionString,
-        'upOrDown' );
-      const step3 = constructRow( changeChooseLabelString,
-        changeChooseDescriptionString,
-        'enter' );
-      const step4 = constructRow( closeListLabelString,
-        closeListDescriptionString,
-        'esc' );
+      const step1 = KeyboardHelpSection.labelWithIcon( keyboardPopUpListString, ICON_CREATOR.enterOrSpace(), popUpListDescriptionString );
+      const step2 = KeyboardHelpSection.labelWithIcon( keyboardMoveThroughString, ICON_CREATOR.upOrDown(), moveThroughDescriptionString );
+      const step3 = KeyboardHelpSection.labelWithIcon( keyboardChangeChooseString, ICON_CREATOR.enter(), changeChooseDescriptionString );
+      const step4 = KeyboardHelpSection.labelWithIcon( keyboardCloseListString, ICON_CREATOR.esc(), closeListDescriptionString );
       const changeSoluteContent = [ step1, step2, step3, step4 ];
 
-      const changeSoluteHelpSection = new KeyboardHelpSection( changeSoluteHelpHeadingString, changeSoluteContent );
+      const changeSoluteHelpSection = new KeyboardHelpSection( keyboardChangeSoluteHelpHeadingString, changeSoluteContent );
+      KeyboardHelpSection.alignHelpSectionIcons( [ generalNavigationHelpSection, changeSoluteHelpSection ] );
 
-      const leftContent = new VBox( { children: [ sliderKeyboardHelpSection, changeSoluteHelpSection ] } );
-      super( leftContent, generalNavigationHelpSection, { spacing: 35 } );
+      const rightContent = new VBox( {
+        children: [ generalNavigationHelpSection, changeSoluteHelpSection ],
+        spacing: 10,
+        align: 'left'
+      } );
+      super( sliderKeyboardHelpSection, rightContent, { spacing: 35 } );
     }
   }
 
