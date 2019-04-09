@@ -127,14 +127,9 @@ define( function( require ) {
       soluteAmountAccessibleNameString,
       () => molarityDescriber.getSoluteAmountAriaValueText(),
       model.solution.soluteProperty,
-      molarityDescriber
+      molarityDescriber,
+      ( formattedString, newValue, oldValue ) => molarityDescriber.getSoluteAmountSliderAlertString( newValue > oldValue )
     );
-
-    // a11y - alert read out when solute amount property changes
-    model.solution.soluteAmountProperty.lazyLink( ( newAmount, oldAmount, ) => {
-      const utterance = molarityDescriber.getSoluteAmountSliderAlertString( newAmount > oldAmount );
-      utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'soluteAmountSliderMoved' } ) );
-    } );
 
     // slider for controlling volume of solution, sized to match tick marks on the beaker
     const volumeSliderHeight = ( MConstants.SOLUTION_VOLUME_RANGE.getLength() / MConstants.SOLUTION_VOLUME_RANGE.max ) * cylinderSize.height;
@@ -151,14 +146,9 @@ define( function( require ) {
       solutionVolumeAccessibleNameString,
       () => molarityDescriber.getVolumeAriaValueText(),
       model.solution.soluteProperty,
-      molarityDescriber
+      molarityDescriber,
+      ( formattedString, newValue, oldValue ) => molarityDescriber.getVolumeSliderAlertString( newValue > oldValue )
     );
-
-    // a11y - alert read out when volume property changes
-    model.solution.volumeProperty.lazyLink( ( newVolume, oldVolume, ) => {
-      const utterance = molarityDescriber.getVolumeSliderAlertString( newVolume > oldVolume );
-      utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'volumeSliderMoved' } ) );
-    } );
 
     // concentration display
     const concentrationBarSize = new Dimension2( 40, cylinderSize.height + 50 );

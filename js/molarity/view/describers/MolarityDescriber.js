@@ -198,7 +198,7 @@ define( require => {
       if ( this.valuesVisibleProperty.value && this.initialVolumeAlert ) {
         this.initialVolumeAlert = false;
         return StringUtils.fillIn( volumeSliderInitialAlertPatternString, {
-          moreLess: moreLess,
+          moreLess: lessMore,
           volume: this.volumeDescriber.getCurrentVolume(),
           concentration: this.concentrationDescriber.getCurrentConcentration()
         } );
@@ -207,7 +207,7 @@ define( require => {
         this.initialSoluteAmountAlert = false;
         return StringUtils.fillIn( sliderAlertStateInfoValuesVisiblePatternString, {
           quantity: this.volumeDescriber.getCurrentVolume(),
-          moreLess: moreLess,
+          moreLess: lessMore,
           concentration: this.concentrationDescriber.getCurrentConcentration()
         } );
       }
@@ -232,7 +232,7 @@ define( require => {
       let string = '';
       const isSaturated = this.solution.concentrationProperty.value >= this.soluteDescriber.getCurrentSaturatedConcentration();
       const moreLess = increasing ? moreString : lessString;
-      const lessMore = increasing ? lessString : moreString;
+      const lessMore = increasing ? moreString : lessString;
 
       // a special alert is read out if there is zero solute
       if ( this.solution.soluteAmountProperty.value === 0 ) {

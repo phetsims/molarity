@@ -19,7 +19,6 @@ define( function( require ) {
   var MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var Property = require( 'AXON/Property' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
@@ -47,14 +46,15 @@ define( function( require ) {
    * @param {Property.<boolean>} valuesVisibleProperty
    * @param {Tandem} tandem
    * @param {string} accessibleName
-   * @param {function} getAriaValueText
+   * @param {function} getOnFocusAriaValueText
    * @param {Property} soluteProperty
    * @param {MolarityDescriber} molarityDescriber
+   * @param {function} getOnChangeAriaValueText
    * @constructor
    */
   function VerticalSlider( title, subtitle, minLabel, maxLabel, trackSize, property, range,
-                           decimalPlaces, units, valuesVisibleProperty, tandem, accessibleName, getAriaValueText,
-                           soluteProperty, molarityDescriber ) {
+                           decimalPlaces, units, valuesVisibleProperty, tandem, accessibleName, getOnFocusAriaValueText,
+                           soluteProperty, molarityDescriber, getOnChangeAriaValueText ) {
 
     var titleNode = new MultiLineText( title, {
       font: new PhetFont( { size: 24, weight: 'bold' } ),
@@ -91,18 +91,13 @@ define( function( require ) {
       shiftKeyboardStep: Math.pow( 10, decimalPlaces * -1 ),
       accessibleName: accessibleName,
       keyboardStep: 0.050,
-      a11yCreateOnFocusAriaValueText: getAriaValueText,
-      a11yValuePattern: ''
+      a11yCreateOnFocusAriaValueText: getOnFocusAriaValueText,
+      a11yCreateValueChangeAriaValueText: getOnChangeAriaValueText
     } );
 
     // a11y - sets the initial alert status of the describer to true (a special alert is read on initial slider change)
     sliderNode.addInputListener( {
       focus: () => molarityDescriber.setInitialAlert()
-    } );
-
-    // a11y - ensures that aria-valuetext updates when relevant model properties change
-    Property.multilink( [ property, soluteProperty, valuesVisibleProperty ], () => {
-      sliderNode.updateOnFocusAriaValueText();
     } );
 
     var valueNode = new Text( '?', {
