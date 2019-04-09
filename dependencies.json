@@ -1,5 +1,5 @@
 {
-  "comment": "# molarity 1.5.0-dev.6 Fri Apr 05 2019 22:53:27 GMT-0400 (EDT)",
+  "comment": "# molarity 1.5.0-dev.7 Mon Apr 08 2019 17:57:08 GMT-0800 (Alaskan Daylight Time)",
   "assert": {
     "sha": "d8a2e8992420327ff72a6fc4bb93ec76549ded0e",
     "branch": "master"
@@ -17,7 +17,7 @@
     "branch": "master"
   },
   "dot": {
-    "sha": "172bb23a49b6e72be5b6e6355324cfe40057d28b",
+    "sha": "0c7f66f353443ca23cc3e6b6e81ddba94d5fb120",
     "branch": "master"
   },
   "joist": {
@@ -29,7 +29,7 @@
     "branch": "master"
   },
   "molarity": {
-    "sha": "ad30765e2cb30ef04ac7f6e734668a0d5838184a",
+    "sha": "9e61bd21e04572120911beeafdbef930bdb1ef35",
     "branch": "master"
   },
   "nitroglycerin": {
@@ -77,7 +77,7 @@
     "branch": "master"
   },
   "scenery-phet": {
-    "sha": "092991b7b1af1b8661d51c3e5373d8b7704582b0",
+    "sha": "11ec3bd00f55b4aad5c4f560d82a318481ac2332",
     "branch": "master"
   },
   "sherpa": {
@@ -85,7 +85,7 @@
     "branch": "master"
   },
   "sun": {
-    "sha": "31cf3baa16979b3af3e66befa1a41468ab868710",
+    "sha": "155a93e07032bdf3289d1b4c2885b6845b2f36a1",
     "branch": "master"
   },
   "tambo": {
