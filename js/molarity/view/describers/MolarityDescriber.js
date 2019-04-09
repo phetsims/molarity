@@ -352,5 +352,4 @@ define( require => {
   }
 
   return molarity.register( 'MolarityDescriber', MolarityDescriber );
-} )
-;
+} );
