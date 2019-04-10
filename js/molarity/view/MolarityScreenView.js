@@ -82,10 +82,14 @@ define( function( require ) {
       tandem: tandem.createTandem( 'valuesVisibleProperty' )
     } );
 
+    // a11y - an utterance that can be used whenever the state of the sim changes, using this
+    // utterance will prevent the utteranceQueue from spamming alerts with this information
+    const simStateUtterance = new Utterance();
+
     // a11y - adds an alert when the solute is changed
     valuesVisibleProperty.lazyLink( () => {
-      const utterance = molarityDescriber.getValuesVisibleChangedAlertString();
-      utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'stateOfSim' } ) );
+      simStateUtterance.alert = molarityDescriber.getValuesVisibleChangedAlertString();
+      utteranceQueue.addToBack( simStateUtterance );
     } );
 
     // a11y - initializes describer
@@ -196,8 +200,8 @@ define( function( require ) {
 
     // a11y - adds an alert when the solute is changed
     model.solution.soluteProperty.lazyLink( () => {
-      const utterance = molarityDescriber.soluteDescriber.getSoluteChangedAlertString();
-      utteranceQueue.addToBack( new Utterance( { alert: utterance, uniqueGroupId: 'stateOfSim' } ) );
+      simStateUtterance.alert = molarityDescriber.soluteDescriber.getSoluteChangedAlertString();
+      utteranceQueue.addToBack( simStateUtterance );
     } );
 
     // a11y - contains PDOM heading for Play Area, and orders the PDOM for included elements
