@@ -87,8 +87,8 @@ define( function( require ) {
     nearlyEmptyString: {
       value: 'nearly empty'
     },
-    fullAmountString: {
-      value: 'the max amount of' // TODO: rename fullAmountString, capitalization
+    maxAmountString: {
+      value: 'the max amount of'
     },
     aLotString: {
       value: 'A lot of'

@@ -10,6 +10,7 @@ define( require => {
   'use strict';
 
   // modules
+  const MConstants = require( 'MOLARITY/molarity/MConstants' );
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
@@ -66,7 +67,8 @@ define( require => {
     getSoluteChangedAlertString() {
       return StringUtils.fillIn( soluteChangedAlertPatternString, {
         solute: this.getCurrentSolute(),
-        maxConcentration: Util.toFixed( this.getCurrentSaturatedConcentration() > 5.0 ? 5.0 : this.getCurrentSaturatedConcentration(), 3 ) // TODO: Use constants file
+        maxConcentration: Util.toFixed( this.getCurrentSaturatedConcentration() > 5.0 ? 5.0 : this.getCurrentSaturatedConcentration(),
+          MConstants.CONCENTRATION_DECIMAL_PLACES )
       } );
     }
   }

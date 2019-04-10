@@ -10,6 +10,7 @@ define( require => {
   'use strict';
 
   // modules
+  const MConstants = require( 'MOLARITY/molarity/MConstants' );
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
@@ -20,7 +21,7 @@ define( require => {
   const aLittleString = MolarityA11yStrings.aLittleString.value;
   const aLotString = MolarityA11yStrings.aLotString.value;
   const aLowString = MolarityA11yStrings.aLowString.value;
-  const fullAmountString = MolarityA11yStrings.fullAmountString.value;
+  const maxAmountString = MolarityA11yStrings.maxAmountString.value;
   const soluteAmountStateInfoPatternString = MolarityA11yStrings.soluteAmountStateInfoPattern.value;
   const soluteAmountAndUnitPatternString = MolarityA11yStrings.soluteAmountAndUnitPattern.value;
   const someString = MolarityA11yStrings.someString.value;
@@ -34,7 +35,7 @@ define( require => {
     someString,
     aBunchString,
     aLotString,
-    fullAmountString
+    maxAmountString
   ];
 
   class SoluteAmountDescriber {
@@ -64,7 +65,7 @@ define( require => {
     getCurrentSoluteAmount() {
       if ( this.valuesVisibleProperty.value ) {
         return StringUtils.fillIn( soluteAmountAndUnitPatternString, {
-          soluteAmount: Util.toFixed( this.soluteAmountProperty.value, 3 )
+          soluteAmount: Util.toFixed( this.soluteAmountProperty.value, MConstants.SOLUTE_AMOUNT_DECIMAL_PLACES )
         } );
       }
       else {

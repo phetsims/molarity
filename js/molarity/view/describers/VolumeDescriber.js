@@ -10,6 +10,7 @@ define( require => {
   'use strict';
 
   // modules
+  const MConstants = require( 'MOLARITY/molarity/MConstants' );
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
@@ -63,7 +64,7 @@ define( require => {
     getCurrentVolume() {
       if ( this.valuesVisibleProperty.value ) {
         return StringUtils.fillIn( solutionVolumeAndUnitPatternString, {
-          volume: Util.toFixed( this.volumeProperty.value, 3 )
+          volume: Util.toFixed( this.volumeProperty.value, MConstants.SOLUTION_VOLUME_DECIMAL_PLACES )
         } );
       }
       else {

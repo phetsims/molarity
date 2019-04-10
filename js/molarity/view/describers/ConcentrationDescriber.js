@@ -11,6 +11,7 @@ define( require => {
   'use strict';
 
   // modules
+  const MConstants = require( 'MOLARITY/molarity/MConstants' );
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const Util = require( 'DOT/Util' );
@@ -70,7 +71,7 @@ define( require => {
     getCurrentConcentration() {
       const concentration = this.solution.concentrationProperty.value;
       if ( this.valuesVisibleProperty.value ) {
-        return Util.toFixed( concentration, 3 );
+        return Util.toFixed( concentration, MConstants.CONCENTRATION_DECIMAL_PLACES );
       }
       else {
         const index = concentrationToIndex( this.solution.soluteProperty.value.saturatedConcentration, concentration );
