@@ -2,7 +2,7 @@
 
 /**
  * ConcentrationDescriber is responsible for generating strings about ConcentrationProperty. Also includes alert text
- * for alerts past saturation point.
+ * for alerts past saturation point, including descriptions about the amount of solids (precipitate) in the beaker.
  *
  * @author Michael Kauzmann (PhET Interactive Simulations)
  * @author Taylor Want (PhET Interactive Simulations)
@@ -51,8 +51,8 @@ define( require => {
   class ConcentrationDescriber {
 
     /**
-     * @param {Solution} solution - from MolarityModel
-     * @param {BooleanProperty} valuesVisibleProperty - whether values are visible in the view
+     * @param {Solution} solution - from MolarityModel.
+     * @param {BooleanProperty} valuesVisibleProperty - whether values are visible in the view.
      */
     constructor( solution, valuesVisibleProperty ) {
 
@@ -64,9 +64,9 @@ define( require => {
     }
 
     /**
-     * Gets the current value of concentration either quantitatively or quantitatively to plug into descriptions
+     * Gets the current value of concentration either quantitatively or quantitatively to plug into descriptions.
      * @public
-     * @returns {number|string} quantitative or qualitative description of current concentration
+     * @returns {number|string} - quantitative or qualitative description of current concentration.
      */
     getCurrentConcentration() {
       const concentration = this.solution.concentrationProperty.value;
@@ -89,7 +89,7 @@ define( require => {
     }
 
     /**
-     * Gets the saturated concentration amount of the currently selected solute.
+     * Gets the current amount of precipitates in the beaker.
      * @private
      * @returns {number}
      */
@@ -98,18 +98,18 @@ define( require => {
     }
 
     /**
-     * Gets the saturated concentration amount of the currently selected solute.
+     * Gets the qualitative description of the amount of solids in the beaker.
      * @public
-     * @returns {number}
+     * @returns {string}
      */
     getCurrentSolidsAmount() {
       return SOLIDS_STRINGS[ solidsToIndex( this.getCurrentPrecipitates(), this.getCurrentSaturatedConcentration() ) ];
     }
 
     /**
-     * Checks to see if any descriptive regions have changed for any quantity, and updates to reflect new regions
+     * Checks to see if the descriptive region for amount of solids has changed and updates the stored solidsRegion.
      * @private
-     * @returns {boolean} - whether or not there was a region to update
+     * @returns {boolean}
      */
     updateSolidsRegion() {
       const solidsIndex = solidsToIndex( this.getCurrentPrecipitates(), this.getCurrentSaturatedConcentration() );
@@ -123,16 +123,16 @@ define( require => {
     }
 
     /**
-     * Fills in the state info if region has changed and the solution is saturated
+     * Fills in the state info if region has changed and the solution is saturated.
      * @private
      * @returns {string}
      */
     getStateInfoSaturatedRegionChange() {
 
-      // updates the current region for the solids array
+      // Updates the current region for the solids array.
       this.updateSolidsRegion();
 
-      // fills in the state info with a description of the amount of solids
+      // Fills in the state info with a description of the amount of solids.
       return StringUtils.fillIn( stillSaturatedAlertPatternString, {
         withSolids: StringUtils.fillIn( withSolidsAlertPatternString, {
           solidAmount: this.getCurrentSolidsAmount()
@@ -141,7 +141,7 @@ define( require => {
     }
 
     /**
-     * Checks to see if any descriptive regions have changed for any quantity, and updates to reflect new regions
+     * Checks to see if the descriptive region for concentration has changed and updates the stored concentrationRegion.
      * @private
      * @returns {boolean} - whether or not there was a region to update
      */
@@ -151,7 +151,7 @@ define( require => {
       const concentrationIndex = concentrationToIndex( saturatedConcentration, concentration );
       const isNewConcentrationRegion = this.concentrationRegion !== concentrationIndex;
 
-      // update the region to the new one if a region has changed
+      // update the region to the new one if the region has changed
       if ( isNewConcentrationRegion ) {
         this.concentrationRegion = concentrationIndex;
       }
@@ -161,10 +161,10 @@ define( require => {
   }
 
   /**
-   * Calculates which item to use from the SOLIDS_STRINGS array
+   * Calculates which item to use from the SOLIDS_STRINGS array.
    * @param {number} precipitateAmount
    * @param {number} saturatedConcentration
-   * @returns {number} index to pull from SOLIDS_STRINGS array
+   * @returns {number} - index to pull from SOLIDS_STRINGS array
    */
   const solidsToIndex = ( precipitateAmount, saturatedConcentration ) => {
     const fraction = ( 5 - saturatedConcentration ) / SOLIDS_STRINGS.length;
@@ -186,7 +186,7 @@ define( require => {
   };
 
   /**
-   * Calculates the which item to use from the CONCENTRATION_STRINGS array
+   * Calculates the which item to use from the CONCENTRATION_STRINGS array.
    * @param {number} maxConcentration
    * @param {number} concentration
    * @returns {number} index to pull from CONCENTRATION_STRINGS array
@@ -196,19 +196,19 @@ define( require => {
     if ( concentration <= fraction ) {
       return 0;
     }
-    if ( concentration <= 2 * fraction ) {
+    else if ( concentration <= 2 * fraction ) {
       return 1;
     }
-    if ( concentration <= 3 * fraction ) {
+    else if ( concentration <= 3 * fraction ) {
       return 2;
     }
-    if ( concentration <= 4 * fraction ) {
+    else if ( concentration <= 4 * fraction ) {
       return 3;
     }
-    if ( concentration <= 5 * fraction ) {
+    else if ( concentration <= 5 * fraction ) {
       return 4;
     }
-    if ( concentration <= 6 * fraction ) {
+    else {
       return 5;
     }
   };

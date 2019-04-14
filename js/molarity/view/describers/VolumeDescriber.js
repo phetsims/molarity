@@ -57,9 +57,9 @@ define( require => {
     }
 
     /**
-     * Gets the current value of volume either quantitatively or quantitatively to plug into descriptions
+     * Gets the current value of volume either quantitatively or quantitatively to plug into descriptions.
      * @private
-     * @returns {string} - quantitative or qualitative description of current volume
+     * @returns {string} - quantitative or qualitative description of current volume.
      */
     getCurrentVolume() {
       if ( this.valuesVisibleProperty.value ) {
@@ -73,9 +73,9 @@ define( require => {
     }
 
     /**
-     * Checks to see if the volume descriptive region has changed, and updates to reflect new regions
+     * Checks to see if the volume descriptive region has changed, and update volumeRegion accordingly.
      * @public
-     * @returns {boolean} - whether or not there was a region to update
+     * @returns {boolean}
      */
     updateVolumeRegion() {
       const volumeIndex = volumeToIndex( this.volumeProperty.value );
@@ -90,7 +90,7 @@ define( require => {
     }
 
     /**
-     * Fills in the state info if region has changed and the solution is not saturated
+     * Fills in the state info if region has changed and the solution is not saturated.
      * @private
      * @returns {string}
      */
@@ -103,30 +103,30 @@ define( require => {
   }
 
   /**
-   * Calculates the which item to use from the VOLUME_STRINGS array
+   * Calculates which item to use from the VOLUME_STRINGS array.
    * @param {number} volume
-   * @returns {number} index to pull from VOLUME_STRINGS array
+   * @returns {number} - index to pull from VOLUME_STRINGS array.
    */
   const volumeToIndex = ( volume ) => {
     if ( volume <= .220 ) {
       return 0;
     }
-    if ( volume <= .330 ) {
+    else if ( volume <= .330 ) {
       return 1;
     }
-    if ( volume <= .410 ) {
+    else if ( volume <= .410 ) {
       return 2;
     }
-    if ( volume <= .530 ) {
+    else if ( volume <= .530 ) {
       return 3;
     }
-    if ( volume <= .780 ) {
+    else if ( volume <= .780 ) {
       return 4;
     }
-    if ( volume <= .960 ) {
+    else if ( volume <= .960 ) {
       return 5;
     }
-    if ( volume <= 1.000 ) {
+    else {
       return 6;
     }
   };

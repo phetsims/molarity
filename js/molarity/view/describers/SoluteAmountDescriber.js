@@ -41,10 +41,10 @@ define( require => {
   class SoluteAmountDescriber {
 
     /**
-     * @param {NumberProperty} soluteAmountProperty - from Solution model element
-     * @param {Property.<Solute>} soluteProperty - from Solution model element
+     * @param {NumberProperty} soluteAmountProperty - from Solution model element.
+     * @param {Property.<Solute>} soluteProperty - from Solution model element.
      * @param {ConcentrationDescriber} concentrationDescriber
-     * @param {BooleanProperty} valuesVisibleProperty - whether values are visible in the view
+     * @param {BooleanProperty} valuesVisibleProperty - whether values are visible in the view.
      */
     constructor( soluteAmountProperty, soluteProperty, concentrationDescriber, valuesVisibleProperty ) {
 
@@ -54,13 +54,12 @@ define( require => {
       this.concentrationDescriber = concentrationDescriber;
       this.valuesVisibleProperty = valuesVisibleProperty;
       this.soluteAmountRegion = 0; // tracks the last descriptive region for solute amount
-
     }
 
     /**
-     * Gets the current value of solute amount either quantitatively or quantitatively to plug into descriptions
+     * Gets the current value of solute amount either quantitatively or quantitatively to plug into descriptions.
      * @private
-     * @returns {number|string} quantitative or qualitative description of current solute amount
+     * @returns {number|string} - quantitative or qualitative description of current solute amount.
      */
     getCurrentSoluteAmount() {
       if ( this.valuesVisibleProperty.value ) {
@@ -75,15 +74,15 @@ define( require => {
     }
 
     /**
-     * Checks to see if the solute amount descriptive region has changed, and updates to reflect new regions
+     * Checks to see if the solute amount descriptive region has changed, and updates soluteAmountRegion accordingly.
      * @public
-     * @returns {boolean} - whether or not there was a region to update
+     * @returns {boolean} - whether or not there was a region to update.
      */
     updateSoluteAmountRegion() {
       const soluteAmountIndex = soluteAmountToIndex( this.soluteAmountProperty.value );
       const isNewSoluteAmountRegion = this.soluteAmountRegion !== soluteAmountIndex;
 
-      // update the region to the new one if a region has changed
+      // Updates the region to the new one if a region has changed.
       if ( isNewSoluteAmountRegion ) {
         this.soluteAmountRegion = soluteAmountIndex;
       }
@@ -92,7 +91,7 @@ define( require => {
     }
 
     /**
-     * Fills in the state info if region has changed and the solution is not saturated
+     * Fills in the state info if region has changed and the solution is not saturated.
      * @private
      * @returns {string}
      */
@@ -106,30 +105,30 @@ define( require => {
   }
 
   /**
-   * Calculates the which item to use from the SOLUTE_AMOUNT_STRINGS array
+   * Calculates which item to use from the SOLUTE_AMOUNT_STRINGS array.
    * @param {number} soluteAmount
-   * @returns {number} index (integer) to pull from SOLUTE_AMOUNT_STRINGS array
+   * @returns {number} - index (integer) to pull from SOLUTE_AMOUNT_STRINGS array.
    */
   const soluteAmountToIndex = ( soluteAmount ) => {
     if ( soluteAmount <= 0.050 ) {
       return 0;
     }
-    if ( soluteAmount <= .200 ) {
+    else if ( soluteAmount <= .200 ) {
       return 1;
     }
-    if ( soluteAmount <= .450 ) {
+    else if ( soluteAmount <= .450 ) {
       return 2;
     }
-    if ( soluteAmount <= .650 ) {
+    else if ( soluteAmount <= .650 ) {
       return 3;
     }
-    if ( soluteAmount <= .850 ) {
+    else if ( soluteAmount <= .850 ) {
       return 4;
     }
-    if ( soluteAmount <= .950 ) {
+    else if ( soluteAmount <= .950 ) {
       return 5;
     }
-    if ( soluteAmount <= 1.000 ) {
+    else {
       return 6;
     }
   };

@@ -2,6 +2,8 @@
 
 /**
  * MolarityDescriber is responsible for generating all of the strings used for PDOM content and alerts in Molarity.
+ * Because many alerts require information about all four Properties (concentration, solute amount, volume, and solute),
+ * a more general describer is required to put that information together.
  *
  * @author Michael Kauzmann (PhET Interactive Simulations)
  * @author Taylor Want (PhET Interactive Simulations)
@@ -32,7 +34,6 @@ define( require => {
   const soluteAmountSliderInitialAlertPatternString = MolarityA11yStrings.soluteAmountSliderInitialAlertPattern.value;
   const soluteAmountSliderMovedAlertPatternString = MolarityA11yStrings.soluteAmountSliderMovedAlertPattern.value;
   const soluteAmountSliderMovedSolidsAlertPatternString = MolarityA11yStrings.soluteAmountSliderMovedSolidsAlertPattern.value;
-  const soluteChangedAlertPatternString = MolarityA11yStrings.soluteChangedAlertPattern.value;
   const solutionConcentrationPatternString = MolarityA11yStrings.solutionConcentrationPattern.value;
   const solutionConcentrationValuesVisiblePatternString = MolarityA11yStrings.solutionConcentrationValuesVisiblePattern.value;
   const stateOfSimNoSolutePatternString = MolarityA11yStrings.stateOfSimNoSolutePattern.value;
@@ -49,25 +50,30 @@ define( require => {
   class MolarityDescriber {
 
     /**
-     * @param {Solution} solution - from MolarityModel
-     * @param {BooleanProperty} valuesVisibleProperty - whether values are visible in the view
+     * @param {Solution} solution - from MolarityModel.
+     * @param {BooleanProperty} valuesVisibleProperty - whether values are visible in the view.
      */
     constructor( solution, valuesVisibleProperty ) {
 
       // @private
       this.solution = solution;
       this.valuesVisibleProperty = valuesVisibleProperty;
-      this.concentrationDescriber = new ConcentrationDescriber( solution, valuesVisibleProperty );
-      this.volumeDescriber = new VolumeDescriber( solution.volumeProperty, solution.soluteProperty, this.concentrationDescriber, valuesVisibleProperty );
-      this.soluteDescriber = new SoluteDescriber( solution.soluteProperty, valuesVisibleProperty );
-      this.soluteAmountDescriber = new SoluteAmountDescriber( solution.soluteAmountProperty, solution.soluteProperty, this.concentrationDescriber, valuesVisibleProperty );
       this.saturatedYet = false; // tracks whether the solution was saturated on the previous slider move
-      this.initialSoluteAmountAlert = false;
-      this.initialVolumeAlert = false;
+      this.initialSoluteAmountAlert = false; // tracks if it is the first alert after solute amount slider is focused
+      this.initialVolumeAlert = false; // tracks if it is the first alert after volume slider is focused
+      this.concentrationDescriber = new ConcentrationDescriber( solution, valuesVisibleProperty );
+      this.volumeDescriber = new VolumeDescriber( solution.volumeProperty, solution.soluteProperty,
+        this.concentrationDescriber, valuesVisibleProperty );
+      this.soluteAmountDescriber = new SoluteAmountDescriber( solution.soluteAmountProperty, solution.soluteProperty,
+        this.concentrationDescriber, valuesVisibleProperty );
+
+      // @public
+      this.soluteDescriber = new SoluteDescriber( solution.soluteProperty, valuesVisibleProperty );
     }
 
     /**
-     * Sets the initial alert values to true (since a special alert is read out right after a slider is focused)
+     * Sets the initial alert values to true when a slider is focused (a special alert is read out right after a slider
+     * is focused).
      * @public
      */
     setInitialAlert() {
@@ -76,15 +82,15 @@ define( require => {
     }
 
     /**
+     *  @public
      * @returns {string} - the alert string when the "show values" checkbox is either newly checked or newly unchecked.
-     * @public
      */
     getValuesVisibleChangedAlertString() {
         return this.valuesVisibleProperty.value ? showValuesCheckedAlertString : showValuesUncheckedAlertString;
     }
 
     /**
-     * Creates the third paragraph of the screen summary description.
+     * Creates the third paragraph of the screen summary description in the PDOM.
      * @public
      * @returns {string}
      */
@@ -92,7 +98,7 @@ define( require => {
       let saturatedConcentration = '';
       let concentrationPattern = '';
 
-      // if there is no solute in the beaker, a special state description is returned
+      // If there is no solute in the beaker, a special state description is returned.
       if ( this.solution.soluteAmountProperty.value === 0 ) {
         return StringUtils.fillIn( stateOfSimNoSolutePatternString, {
           volume: this.volumeDescriber.getCurrentVolume(),
@@ -106,7 +112,7 @@ define( require => {
         saturatedConcentration = saturatedString;
       }
 
-      // changes values to fill in if the "Show Values" checkbox is not checked
+      // Changes values to fill in if the "Show Values" checkbox is not checked.
       if ( !this.valuesVisibleProperty.value ) {
         concentrationPattern = StringUtils.fillIn( solutionConcentrationPatternString, {
           concentration: this.concentrationDescriber.getCurrentConcentration(),
@@ -129,7 +135,7 @@ define( require => {
     }
 
     /**
-     * Describes the properties of the solution in the beaker in the play area.
+     * Describes the properties of the solution in the beaker in the PDOM.
      * @public
      * @returns {string}
      */
@@ -143,7 +149,7 @@ define( require => {
     }
 
     /**
-     * Checks to see if any descriptive regions have changed for any quantity, and updates to reflect new regions
+     * Checks to see if any descriptive regions have changed for any quantity, and updates to reflect new regions.
      * @private
      * @returns {boolean} - whether or not there was a region to update
      */
@@ -157,8 +163,8 @@ define( require => {
     }
 
     /**
-     * Creates the alert that is read out when the volume slider is moved
-     * @param {boolean} increasing - indicates whether the slider has moved up or down. true if up, false if down
+     * Creates the alert that is read out when the volume slider is moved.
+     * @param {boolean} increasing - indicates whether the slider has moved up or down. true if up, false if down.
      * @public
      * @returns {string}
      */
@@ -173,7 +179,7 @@ define( require => {
         string = volumeSliderMovedSolidsAlertPatternString;
         stateInfo = StringUtils.fillIn( stillSaturatedAlertPatternString, { withSolids: '' } );
 
-        // solution has just become saturated -- a special alert is read out
+        // If solution has just become saturated, a special alert is read out.
         if ( !this.saturatedYet ) {
           this.saturatedYet = true;
           return saturationReachedAlertString;
@@ -182,7 +188,7 @@ define( require => {
       else {
         string = volumeSliderMovedAlertPatternString;
 
-        // solution has just lost saturation -- a special alert is read out
+        // If the solution has just lost saturation -- a special alert is read out.
         if ( this.saturatedYet ) {
           this.saturatedYet = false;
           return StringUtils.fillIn( saturationLostAlertPatternString, {
@@ -191,7 +197,7 @@ define( require => {
         }
       }
 
-      // state info is read out if the descriptive region changes
+      // State info is read out if the descriptive region changes.
       if ( isSaturated && this.concentrationDescriber.updateSolidsRegion() ) {
         stateInfo = this.concentrationDescriber.getStateInfoSaturatedRegionChange();
       }
@@ -199,7 +205,7 @@ define( require => {
         stateInfo = this.volumeDescriber.getVolumeStateInfoNotSaturated();
       }
 
-      // returns different strings depending on whether the 'show values' checkbox is checked
+      // Returns different strings depending on whether the 'show values' checkbox is checked.
       if ( this.valuesVisibleProperty.value && this.initialVolumeAlert ) {
         this.initialVolumeAlert = false;
         return StringUtils.fillIn( volumeSliderInitialAlertPatternString, {
@@ -227,8 +233,8 @@ define( require => {
     }
 
     /**
-     * Creates the alert read out when the solute amount slider is moved
-     * @param {boolean} increasing - indicates whether the slider has moved up or down. true if up, false if down
+     * Creates the alert read out when the solute amount slider is moved.
+     * @param {boolean} increasing - indicates whether the slider has moved up or down. true if up, false if down.
      * @public
      * @returns {string}
      */
@@ -239,7 +245,7 @@ define( require => {
       const moreLess = increasing ? moreString : lessString;
       const lessMore = increasing ? moreString : lessString;
 
-      // a special alert is read out if there is zero solute
+      // A special alert is read out if there is zero solute.
       if ( this.solution.soluteAmountProperty.value === 0 ) {
         return noSoluteAlertString;
       }
@@ -248,7 +254,7 @@ define( require => {
         string = soluteAmountSliderMovedSolidsAlertPatternString;
         stateInfo = StringUtils.fillIn( stillSaturatedAlertPatternString, { withSolids: '' } );
 
-        // solution has just become saturated -- a special alert is read out
+        // If solution has just become saturated, a special alert is read out.
         if ( !this.saturatedYet ) {
           this.saturatedYet = true;
           return saturationReachedAlertString;
@@ -257,7 +263,7 @@ define( require => {
       else {
         string = soluteAmountSliderMovedAlertPatternString;
 
-        // solution has just lost saturation -- a special alert is read out
+        // If solution has just lost saturation, a special alert is read out.
         if ( this.saturatedYet ) {
           this.saturatedYet = false;
           return StringUtils.fillIn( saturationLostAlertPatternString, {
@@ -266,7 +272,7 @@ define( require => {
         }
       }
 
-      // state info is read out if the descriptive region changes
+      // State info is read out if the descriptive region changes.
       if ( isSaturated && this.concentrationDescriber.updateSolidsRegion() ) {
         stateInfo = this.concentrationDescriber.getStateInfoSaturatedRegionChange();
       }
@@ -274,7 +280,7 @@ define( require => {
         stateInfo = this.soluteAmountDescriber.getSoluteAmountStateInfoNotSaturated();
       }
 
-      // returns different strings depending on whether the 'show values' checkbox is checked
+      // Returns different strings depending on whether the 'show values' checkbox is checked.
       if ( this.valuesVisibleProperty.value && this.initialSoluteAmountAlert ) {
         this.initialSoluteAmountAlert = false;
         return StringUtils.fillIn( soluteAmountSliderInitialAlertPatternString, {
@@ -302,19 +308,7 @@ define( require => {
     }
 
     /**
-     * Describes the new solute when a user changes the solute in the combo box
-     * @public
-     * @returns {string}
-     */
-    getSoluteChangedAlertString() {
-      return StringUtils.fillIn( soluteChangedAlertPatternString, {
-        solute: this.solution.soluteProperty.value.name,
-        maxConcentration: this.soluteDescriber.getCurrentSaturatedConcentration()
-      } );
-    }
-
-    /**
-     * Creates the string to be used as the solute amount slider's aria-valueText on focus
+     * Creates the string to be used as the solute amount slider's aria-valueText on focus.
      * @public
      * @returns {string}
      */
@@ -326,7 +320,7 @@ define( require => {
     }
 
     /**
-     * Creates the string to be used as the volume slider's aria-valueText on focus
+     * Creates the string to be used as the volume slider's aria-valueText on focus.
      * @public
      * @returns {string}
      */

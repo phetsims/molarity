@@ -1,7 +1,7 @@
 // Copyright 2019, University of Colorado Boulder
 
 /**
- * SoluteDescriber is responsible for creating strings about SoluteProperty that are used for PDOM content and alerts.
+ * SoluteDescriber is responsible for generating descriptions about the solute Property.
  *
  * @author Michael Kauzmann (PhET Interactive Simulations)
  * @author Taylor Want (PhET Interactive Simulations)
@@ -22,8 +22,8 @@ define( require => {
   class SoluteDescriber {
 
     /**
-     * @param {Property.<Solute>} soluteProperty - from Solution model element
-     * @param {BooleanProperty} valuesVisibleProperty - whether values are visible in the view
+     * @param {Property.<Solute>} soluteProperty - from Solution model element.
+     * @param {BooleanProperty} valuesVisibleProperty - whether values are visible in the view.
      */
     constructor( soluteProperty, valuesVisibleProperty ) {
 
@@ -33,18 +33,18 @@ define( require => {
     }
 
     /**
-     * Gets the name of the current solute selected
+     * Gets the name of the current solute selected.
      * @public
-     * @returns {string} name of current solute
+     * @returns {string}
      */
     getCurrentSolute() {
       return this.soluteProperty.value.name;
     }
 
     /**
-     * Gets the saturated concentration amount of the currently selected solute.
+     * Gets the saturated concentration level for the currently selected solute.
      * @public
-     * @returns {string}
+     * @returns {number}
      */
     getCurrentSaturatedConcentration() {
       return this.soluteProperty.value.saturatedConcentration;
@@ -60,7 +60,7 @@ define( require => {
     }
 
     /**
-     * Describes the new solute when a user changes the solute in the combo box
+     * Describes the new solute when a user changes the solute in the combo box.
      * @public
      * @returns {string}
      */
