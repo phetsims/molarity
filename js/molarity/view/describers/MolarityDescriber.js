@@ -86,7 +86,7 @@ define( require => {
      * @returns {string} - the alert string when the "show values" checkbox is either newly checked or newly unchecked.
      */
     getValuesVisibleChangedAlertString() {
-        return this.valuesVisibleProperty.value ? showValuesCheckedAlertString : showValuesUncheckedAlertString;
+      return this.valuesVisibleProperty.value ? showValuesCheckedAlertString : showValuesUncheckedAlertString;
     }
 
     /**
