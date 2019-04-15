@@ -212,8 +212,6 @@ define( function( require ) {
     } );
   }
 
-  molarity.register( 'ConcentrationDisplay.PointerNode', PointerNode );
-
   inherit( Node, PointerNode );
 
   return inherit( Node, ConcentrationDisplay );
