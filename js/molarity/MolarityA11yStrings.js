@@ -66,6 +66,8 @@ define( function( require ) {
     solutionControlsDescriptionString: {
       value: 'Solute Amount and Solution Volume sliders change solution in Beaker.'
     },
+
+    // Volume regions
     fullString: {
       value: 'full'
     },
@@ -87,6 +89,8 @@ define( function( require ) {
     nearlyEmptyString: {
       value: 'nearly empty'
     },
+
+    // Solute Amount Regions
     maxAmountString: {
       value: 'the max amount of'
     },
@@ -108,12 +112,16 @@ define( function( require ) {
     zeroString: {
       value: 'zero'
     },
+
+    // Solids regions
     aCoupleString: {
       value: 'a couple of'
     },
     aFewString: {
       value: 'a few'
     },
+
+    // Concentration regions
     notConcentratedString: {
       value: 'not concentrated'
     },
@@ -163,7 +171,10 @@ define( function( require ) {
       value: '{{moreLess}} concentrated. {{soluteAmount}} in solution. Concentration {{concentration}} Molar'
     },
     volumeSliderInitialAlertPattern: {
-      value: '{{moreLess}} concentrated. {{volume}} of solution in Beaker. Concentration {{concentration}} Molar'
+      value: '{{concentrationChange}}. {{volume}} of solution in Beaker. Concentration {{concentration}} Molar'
+    },
+    concentrationChangePatternString: {
+      value: '{{moreLess}} concentrated.'
     },
     stateInfoPattern: {
       value: '{{soluteAmountClause}}{{volumeClause}}. Solution {{concentration}}.'
@@ -175,8 +186,18 @@ define( function( require ) {
       value: 'Beaker {{volume}}. Solution {{concentration}}'
     },
     sliderAlertStateInfoValuesVisiblePattern: {
-      value: '{{quantity}}, {{moreLess}} concentrated at {{concentration}} Molar.'
+      value: '{{quantity}}, {{concentrationChange}} at {{concentration}} Molar.'
     },
+
+    // quantitative volume alerts
+    quantitativeInitialValueTextPattern: {
+      value: '{{concentrationChange}}. {{quantity}} in solution. Concentration {{concentration}} Molar'
+    },
+
+    quantitativeValueTextPattern: {
+      value: '{{quantity}}, {{concentrationChange}} at {{concentration}} Molar.'
+    },
+
     soluteChangedAlertPattern: {
       value: '{{solute}} concentration readout range 0.00 to {{maxConcentration}} Molar'
     },
@@ -192,6 +213,11 @@ define( function( require ) {
     withSolidsAlertPattern: {
       value: 'with {{solidAmount}} solids'
     },
+
+    concentrationChangePattern: {
+      value: '{{moreLess}} concentrated'
+    },
+
     saturationReachedAlertString: {
       value: 'Solution saturated. Beyond max concentration, solids appear.'
     },

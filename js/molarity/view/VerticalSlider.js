@@ -92,7 +92,8 @@ define( function( require ) {
       accessibleName: accessibleName,
       keyboardStep: 0.050,
       a11yCreateOnFocusAriaValueText: getOnFocusAriaValueText,
-      a11yCreateValueChangeAriaValueText: getOnChangeAriaValueText
+      a11yCreateValueChangeAriaValueText: getOnChangeAriaValueText,
+      containerTagName: 'div' // for fixing layout in a11y-view with aria-valuetext
     } );
 
     // a11y - sets the initial alert status of the describer to true (a special alert is read on initial slider change)

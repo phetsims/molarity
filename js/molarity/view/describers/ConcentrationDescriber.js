@@ -30,6 +30,9 @@ define( require => {
   const stillSaturatedAlertPatternString = MolarityA11yStrings.stillSaturatedAlertPattern.value;
   const veryConcentratedString = MolarityA11yStrings.veryConcentratedString.value;
   const withSolidsAlertPatternString = MolarityA11yStrings.withSolidsAlertPattern.value;
+  const concentrationChangePatternString = MolarityA11yStrings.concentrationChangePattern.value;
+  const lessString = MolarityA11yStrings.lessString.value;
+  const moreString = MolarityA11yStrings.moreString.value;
 
   // constants
   const CONCENTRATION_STRINGS = [
@@ -61,6 +64,21 @@ define( require => {
       this.valuesVisibleProperty = valuesVisibleProperty;
       this.concentrationRegion = 0; // tracks the last descriptive region for concentration
       this.solidsRegion = 0; // tracks the last descriptive region for solids
+      this.currentChange = lessString; // TODO: doc
+
+      this.solution.concentrationProperty.link( ( newValue, oldValue ) => {
+        this.currentChange = newValue > oldValue ? moreString : lessString;
+      } );
+    }
+
+    /**
+     * TODO: support capitalized and lowercase more/less, perhaps with parameter?
+     * @returns {string} - like "more concentrated"
+     */
+    getConcentrationChangeString() {
+      return StringUtils.fillIn( concentrationChangePatternString, {
+        moreLess: this.currentChange
+      } );
     }
 
     /**

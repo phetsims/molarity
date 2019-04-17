@@ -156,7 +156,7 @@ define( function( require ) {
       () => molarityDescriber.getVolumeAriaValueText(),
       model.solution.soluteProperty,
       molarityDescriber,
-      ( formattedString, newValue, oldValue ) => molarityDescriber.getVolumeSliderAlertString( newValue > oldValue )
+      () => molarityDescriber.volumeDescriber.getVolumeChangedValueText() // TODO: volumeDescriber is private!
     );
 
     // concentration display

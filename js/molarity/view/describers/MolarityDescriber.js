@@ -40,9 +40,6 @@ define( require => {
   const stateOfSimPatternString = MolarityA11yStrings.stateOfSimPattern.value;
   const stillSaturatedAlertPatternString = MolarityA11yStrings.stillSaturatedAlertPattern.value;
   const volumeSliderAriaValueTextPatternString = MolarityA11yStrings.volumeSliderAriaValueTextPattern.value;
-  const volumeSliderMovedAlertPatternString = MolarityA11yStrings.volumeSliderMovedAlertPattern.value;
-  const volumeSliderMovedSolidsAlertPatternString = MolarityA11yStrings.volumeSliderMovedSolidsAlertPattern.value;
-  const volumeSliderInitialAlertPatternString = MolarityA11yStrings.volumeSliderInitialAlertPattern.value;
   const volumeSliderValuesVisibleAriaValueTextPatternString = MolarityA11yStrings.volumeSliderValuesVisibleAriaValueTextPattern.value;
   const showValuesCheckedAlertString = MolarityA11yStrings.showValuesCheckedAlert.value;
   const showValuesUncheckedAlertString = MolarityA11yStrings.showValuesUncheckedAlert.value;
@@ -78,7 +75,7 @@ define( require => {
      */
     setInitialAlert() {
       this.initialSoluteAmountAlert = true;
-      this.initialVolumeAlert = true;
+      this.volumeDescriber.initialVolumeAlert = true; // TODO: initialVolumeAlert should be private to VolumeDescriber
     }
 
     /**
@@ -101,7 +98,7 @@ define( require => {
       // If there is no solute in the beaker, a special state description is returned.
       if ( this.solution.soluteAmountProperty.value === 0 ) {
         return StringUtils.fillIn( stateOfSimNoSolutePatternString, {
-          volume: this.volumeDescriber.getCurrentVolume(),
+          volume: this.volumeDescriber.getCurrentVolumeAndUnit(),
           solute: this.soluteDescriber.getCurrentSolute()
         } );
       }
@@ -126,7 +123,7 @@ define( require => {
       }
 
       return StringUtils.fillIn( stateOfSimPatternString, {
-        volume: this.volumeDescriber.getCurrentVolume(),
+        volume: this.volumeDescriber.getCurrentVolumeAndUnit(),
         solute: this.soluteDescriber.getCurrentSolute(),
         soluteAmount: this.soluteAmountDescriber.getCurrentSoluteAmount(),
         concentrationClause: concentrationPattern,
@@ -156,81 +153,83 @@ define( require => {
     updateRegions() {
       const isNewConcentrationRegion = this.concentrationDescriber.updateConcentrationRegion();
       const isNewSoluteAmountRegion = this.soluteAmountDescriber.updateSoluteAmountRegion();
-      const isNewVolumeRegion = this.volumeDescriber.updateVolumeRegion();
+      const isNewVolumeRegion = this.volumeDescriber.changed;
 
       // checks to see if any region has changed
       return isNewConcentrationRegion || isNewSoluteAmountRegion || isNewVolumeRegion;
     }
 
-    /**
-     * Creates the alert that is read out when the volume slider is moved.
-     * @param {boolean} increasing - indicates whether the slider has moved up or down. true if up, false if down.
-     * @public
-     * @returns {string}
-     */
-    getVolumeSliderAlertString( increasing ) {
-      let stateInfo = '';
-      let string = '';
-      const isSaturated = this.solution.concentrationProperty.value >= this.soluteDescriber.getCurrentSaturatedConcentration();
-      const moreLess = increasing ? moreString : lessString;
-      const lessMore = increasing ? lessString : moreString;
+    // TODO: remove me once all has been refactored
+    // /**
+    //  * Creates the alert that is read out when the volume slider is moved.
+    //  * @param {boolean} increasing - indicates whether the slider has moved up or down. true if up, false if down.
+    //  * @public
+    //  * @returns {string}
+    //  */
+    // getVolumeSliderAlertString( increasing ) {
+    //   let stateInfo = '';
+    //   let string = '';
+    //   const isSaturated = this.solution.concentrationProperty.value >= this.soluteDescriber.getCurrentSaturatedConcentration();
+    //   const moreLess = increasing ? moreString : lessString;
+    //   const lessMore = increasing ? lessString : moreString;
+    //
+    //   if ( isSaturated ) {
+    //     string = volumeSliderMovedSolidsAlertPatternString;
+    //     stateInfo = StringUtils.fillIn( stillSaturatedAlertPatternString, { withSolids: '' } );
+    //
+    //     // If solution has just become saturated, a special alert is read out.
+    //     if ( !this.saturatedYet ) {
+    //       this.saturatedYet = true;
+    //       return saturationReachedAlertString;
+    //     }
+    //   }
+    //   else {
+    //     string = volumeSliderMovedAlertPatternString;
+    //
+    //     // If the solution has just lost saturation -- a special alert is read out.
+    //     if ( this.saturatedYet ) {
+    //       this.saturatedYet = false;
+    //       return StringUtils.fillIn( saturationLostAlertPatternString, {
+    //         concentration: this.concentrationDescriber.getCurrentConcentration()
+    //       } );
+    //     }
+    //   }
+    //
+    //   // State info is read out if the descriptive region changes.
+    //   if ( isSaturated && this.concentrationDescriber.updateSolidsRegion() ) {
+    //     stateInfo = this.concentrationDescriber.getStateInfoSaturatedRegionChange();
+    //   }
+    //   else if ( !isSaturated && this.updateRegions() ) {
+    //     stateInfo = this.volumeDescriber.getVolumeStateInfoNotSaturated();
+    //   }
+    //
+    //   // Returns different strings depending on whether the 'show values' checkbox is checked.
+    //   if ( this.valuesVisibleProperty.value && this.initialVolumeAlert ) {
+    //     this.initialVolumeAlert = false;
+    //     return StringUtils.fillIn( volumeSliderInitialAlertPatternString, {
+    //       moreLess: lessMore,
+    //       volume: this.volumeDescriber.getCurrentVolume(),
+    //       concentration: this.concentrationDescriber.getCurrentConcentration()
+    //     } );
+    //   }
+    //   else if ( this.valuesVisibleProperty.value ) {
+    //     this.initialSoluteAmountAlert = false;
+    //     return StringUtils.fillIn( sliderAlertStateInfoValuesVisiblePatternString, {
+    //       quantity: this.volumeDescriber.getCurrentVolume(),
+    //       moreLess: lessMore,
+    //       concentration: this.concentrationDescriber.getCurrentConcentration()
+    //     } );
+    //   }
+    //   else {
+    //     this.initialSoluteAmountAlert = false;
+    //     return StringUtils.fillIn( string, {
+    //       moreLess: moreLess,
+    //       lessMore: lessMore,
+    //       stateInfo: stateInfo
+    //     } );
+    //   }
+    // }
 
-      if ( isSaturated ) {
-        string = volumeSliderMovedSolidsAlertPatternString;
-        stateInfo = StringUtils.fillIn( stillSaturatedAlertPatternString, { withSolids: '' } );
-
-        // If solution has just become saturated, a special alert is read out.
-        if ( !this.saturatedYet ) {
-          this.saturatedYet = true;
-          return saturationReachedAlertString;
-        }
-      }
-      else {
-        string = volumeSliderMovedAlertPatternString;
-
-        // If the solution has just lost saturation -- a special alert is read out.
-        if ( this.saturatedYet ) {
-          this.saturatedYet = false;
-          return StringUtils.fillIn( saturationLostAlertPatternString, {
-            concentration: this.concentrationDescriber.getCurrentConcentration()
-          } );
-        }
-      }
-
-      // State info is read out if the descriptive region changes.
-      if ( isSaturated && this.concentrationDescriber.updateSolidsRegion() ) {
-        stateInfo = this.concentrationDescriber.getStateInfoSaturatedRegionChange();
-      }
-      else if ( !isSaturated && this.updateRegions() ) {
-        stateInfo = this.volumeDescriber.getVolumeStateInfoNotSaturated();
-      }
-
-      // Returns different strings depending on whether the 'show values' checkbox is checked.
-      if ( this.valuesVisibleProperty.value && this.initialVolumeAlert ) {
-        this.initialVolumeAlert = false;
-        return StringUtils.fillIn( volumeSliderInitialAlertPatternString, {
-          moreLess: lessMore,
-          volume: this.volumeDescriber.getCurrentVolume(),
-          concentration: this.concentrationDescriber.getCurrentConcentration()
-        } );
-      }
-      else if ( this.valuesVisibleProperty.value ) {
-        this.initialSoluteAmountAlert = false;
-        return StringUtils.fillIn( sliderAlertStateInfoValuesVisiblePatternString, {
-          quantity: this.volumeDescriber.getCurrentVolume(),
-          moreLess: lessMore,
-          concentration: this.concentrationDescriber.getCurrentConcentration()
-        } );
-      }
-      else {
-        this.initialSoluteAmountAlert = false;
-        return StringUtils.fillIn( string, {
-          moreLess: moreLess,
-          lessMore: lessMore,
-          stateInfo: stateInfo
-        } );
-      }
-    }
 
     /**
      * Creates the alert read out when the solute amount slider is moved.
@@ -321,18 +320,19 @@ define( require => {
 
     /**
      * Creates the string to be used as the volume slider's aria-valueText on focus.
+     * TODO: rename to be about "on focus"?
      * @public
      * @returns {string}
      */
     getVolumeAriaValueText() {
       if ( this.valuesVisibleProperty.value ) {
         return StringUtils.fillIn( volumeSliderValuesVisibleAriaValueTextPatternString, {
-          volume: this.volumeDescriber.getCurrentVolume()
+          volume: this.volumeDescriber.getCurrentVolumeAndUnit()
         } );
       }
       else {
         return StringUtils.fillIn( volumeSliderAriaValueTextPatternString, {
-          volume: this.volumeDescriber.getCurrentVolume()
+          volume: this.volumeDescriber.getCurrentVolumeAndUnit()
         } );
       }
     }
