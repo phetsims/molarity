@@ -272,7 +272,9 @@ define( require => {
       }
 
       // State info is read out if the descriptive region changes.
-      if ( isSaturated && this.concentrationDescriber.updateSolidsRegion() ) {
+      if ( isSaturated && this.concentrationDescriber.getCurrentSolidsRegion() ) {
+
+        // TODO: getStateInfo. . . isn't a method
         stateInfo = this.concentrationDescriber.getStateInfoSaturatedRegionChange();
       }
       else if ( !isSaturated && this.updateRegions() ) {

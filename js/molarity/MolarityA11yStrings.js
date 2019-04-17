@@ -207,15 +207,23 @@ define( function( require ) {
     saturatedAlertString: {
       value: 'Solution saturated. Beyond max concentration, solids appear.'
     },
+
+    qualitativeSaturatedVolumeValueText: {
+      value: '{{propertyAmountChange}}, {{solidsChange}}. {{stillSaturatedClause}}.'
+    },
     stillSaturatedAlertPattern: {
-      value: 'Still saturated {{withSolids}}'
+      value: 'Still saturated{{withSolids}}'
     },
     withSolidsAlertPattern: {
-      value: 'with {{solidAmount}} solids'
+      value: ' with {{solidAmount}} solids'
     },
 
     concentrationChangePattern: {
       value: '{{moreLess}} concentrated'
+    },
+
+    solidsChangePattern: {
+      value: '{{moreLess}} solids'
     },
 
     saturationReachedAlertString: {

@@ -18,7 +18,7 @@ define( require => {
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
 
   // a11y strings
-  const aBunchString = MolarityA11yStrings.aBunchString.value;
+  const aBunchString = MolarityA11yStrings.aBunchString.value; // TODO: include "of" in name
   const aCoupleString = MolarityA11yStrings.aCoupleString.value;
   const aFewString = MolarityA11yStrings.aFewString.value;
   const aLotString = MolarityA11yStrings.aLotString.value;
@@ -31,6 +31,7 @@ define( require => {
   const veryConcentratedString = MolarityA11yStrings.veryConcentratedString.value;
   const withSolidsAlertPatternString = MolarityA11yStrings.withSolidsAlertPattern.value;
   const concentrationChangePatternString = MolarityA11yStrings.concentrationChangePattern.value;
+  const solidsChangePatternString = MolarityA11yStrings.solidsChangePattern.value;
   const lessString = MolarityA11yStrings.lessString.value;
   const moreString = MolarityA11yStrings.moreString.value;
 
@@ -63,11 +64,21 @@ define( require => {
       this.solution = solution;
       this.valuesVisibleProperty = valuesVisibleProperty;
       this.concentrationRegion = 0; // tracks the last descriptive region for concentration
-      this.solidsRegion = 0; // tracks the last descriptive region for solids
-      this.currentChange = lessString; // TODO: doc
+      this.solidsRegion = null; // tracks the last descriptive region for solids, filled in below
+      this.solidsRegionChanged = false; // TODO: doc
+      this.solidsChangeString = false; // TODO: doc
+      this.concentrationChangeString = lessString; // TODO: doc
 
       this.solution.concentrationProperty.link( ( newValue, oldValue ) => {
-        this.currentChange = newValue > oldValue ? moreString : lessString;
+        this.concentrationChangeString = newValue > oldValue ? moreString : lessString;
+
+      } );
+
+      this.solution.precipitateAmountProperty.link( ( newValue, oldValue ) => {
+        const previousSolidsRegion = this.solidsRegion;
+        this.solidsRegion = this.getCurrentSolidsAmount();
+        this.solidsRegionChanged = this.solidsRegion !== previousSolidsRegion;
+        this.solidsChangeString = newValue > oldValue ? moreString : lessString;
       } );
     }
 
@@ -77,7 +88,18 @@ define( require => {
      */
     getConcentrationChangeString() {
       return StringUtils.fillIn( concentrationChangePatternString, {
-        moreLess: this.currentChange
+        moreLess: this.concentrationChangeString
+      } );
+    }
+
+    /**
+     * TODO: support capitalized and lowercase more/less, perhaps with parameter?
+     * @returns {string} - like "more concentrated"
+     */
+    getSolidsChangeString() {
+      // TODO: assert that there is some precipitate
+      return StringUtils.fillIn( solidsChangePatternString, {
+        moreLess: this.solidsChangeString
       } );
     }
 
@@ -124,13 +146,29 @@ define( require => {
       return SOLIDS_STRINGS[ solidsToIndex( this.getCurrentPrecipitates(), this.getCurrentSaturatedConcentration() ) ];
     }
 
+    // /**
+    //  * Checks to see if the descriptive region for amount of solids has changed and updates the stored solidsRegion.
+    //  * @private
+    //  * @returns {boolean}
+    //  */
+    // updateSolidsRegion() {
+    //   const solidsIndex = solidsToIndex( this.getCurrentPrecipitates(), this.getCurrentSaturatedConcentration() );
+    //   const isNewSolidsRegion = this.solidsRegion !== solidsIndex;
+    //
+    //   // checks to see if any region has changed
+    //   if ( isNewSolidsRegion ) {
+    //     this.solidsRegion = solidsIndex;
+    //   }
+    //   return isNewSolidsRegion;
+    // }
+
     /**
      * Checks to see if the descriptive region for amount of solids has changed and updates the stored solidsRegion.
      * @private
      * @returns {boolean}
      */
-    updateSolidsRegion() {
-      const solidsIndex = solidsToIndex( this.getCurrentPrecipitates(), this.getCurrentSaturatedConcentration() );
+    getCurrentSolidsRegion() {
+      const solidsIndex = this.getCurrentSolidsAmount();
       const isNewSolidsRegion = this.solidsRegion !== solidsIndex;
 
       // checks to see if any region has changed
@@ -145,16 +183,13 @@ define( require => {
      * @private
      * @returns {string}
      */
-    getStateInfoSaturatedRegionChange() {
-
-      // Updates the current region for the solids array.
-      this.updateSolidsRegion();
+    getStillSaturatedClause() {
 
       // Fills in the state info with a description of the amount of solids.
       return StringUtils.fillIn( stillSaturatedAlertPatternString, {
-        withSolids: StringUtils.fillIn( withSolidsAlertPatternString, {
+        withSolids: this.solidsRegionChanged ? StringUtils.fillIn( withSolidsAlertPatternString, {
           solidAmount: this.getCurrentSolidsAmount()
-        } )
+        } ) : ''
       } );
     }
 

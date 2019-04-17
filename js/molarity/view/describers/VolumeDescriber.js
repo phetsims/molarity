@@ -27,6 +27,7 @@ define( require => {
   const underHalfString = MolarityA11yStrings.underHalfString.value;
   const quantitativeInitialValueTextPatternString = MolarityA11yStrings.quantitativeInitialValueTextPattern.value;
   const quantitativeValueTextPatternString = MolarityA11yStrings.quantitativeValueTextPattern.value;
+  const qualitativeSaturatedVolumeValueTextString = MolarityA11yStrings.qualitativeSaturatedVolumeValueText.value;
 
   // constants
   const VOLUME_STRINGS = [
@@ -95,9 +96,24 @@ define( require => {
       } );
     }
 
-    // TODO: support this
+    /**
+     * TODO
+     * @returns {*|string}
+     */
     getQualitativeAriaValueText() {
-      return 'this is a simulation, you are dreaming.';
+
+      // TODO: test on saturation
+      if ( this ) {
+
+        return StringUtils.fillIn( qualitativeSaturatedVolumeValueTextString, {
+          propertyAmountChange: this.getCurrentVolumeAndUnit(), // TODO: we want this to be a change like "more solution", not an amount
+          solidsChange: this.concentrationDescriber.getSolidsChangeString(),
+          stillSaturatedClause: this.concentrationDescriber.getStillSaturatedClause()
+        } );
+      }
+      else {
+        //TODO:
+      }
     }
 
     /**
