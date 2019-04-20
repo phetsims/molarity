@@ -34,6 +34,10 @@ define( require => {
   const solidsChangePatternString = MolarityA11yStrings.solidsChangePattern.value;
   const lessString = MolarityA11yStrings.lessString.value;
   const moreString = MolarityA11yStrings.moreString.value;
+  const qualitativeConcentrationStatePatternString = MolarityA11yStrings.qualitativeConcentrationStatePattern.value;
+  const quantitativeConcentrationStatePatternString = MolarityA11yStrings.quantitativeConcentrationStatePattern.value;
+  const saturationLostAlertPatternString = MolarityA11yStrings.saturationLostAlertPattern.value;
+  const saturationReachedAlertString = MolarityA11yStrings.saturationReachedAlertString.value;
 
   // constants
   const CONCENTRATION_STRINGS = [
@@ -62,20 +66,38 @@ define( require => {
 
       // @private
       this.solution = solution;
+      this.saturatedConcentration = this.solution.soluteProperty.value.saturatedConcentration;
+      this.isSaturated = null;
+      this.newSaturationState = false;
       this.valuesVisibleProperty = valuesVisibleProperty;
+
+      // concentration state properties
       this.concentrationRegion = 0; // tracks the last descriptive region for concentration
+      this.concentrationChangeString = lessString; // tracks whether concentration has increased or decreased
+      this.concentrationRegionChanged = null; // tracks whether the concentration descriptive region has changed
+
+      // solids state properties
       this.solidsRegion = null; // tracks the last descriptive region for solids, filled in below
       this.solidsRegionChanged = false; // TODO: doc
       this.solidsChangeString = false; // TODO: doc
-      this.concentrationChangeString = lessString; // TODO: doc
 
       this.solution.concentrationProperty.link( ( newValue, oldValue ) => {
+        const previousConcentrationRegion = this.concentrationRegion;
+        const newConcentrationRegion = concentrationToIndex( this.saturatedConcentration, this.solution.concentrationProperty.value );
+        const previousSaturationState = oldValue > this.solution.soluteProperty.value.saturatedConcentration;
+        const newSaturationState = newValue > this.solution.soluteProperty.value.saturatedConcentration;
+        this.newSaturationState = newSaturationState !== previousSaturationState;
+        this.isSaturated = newSaturationState;
         this.concentrationChangeString = newValue > oldValue ? moreString : lessString;
-
+        this.concentrationRegionChanged = newConcentrationRegion !== previousConcentrationRegion;
       } );
 
       this.solution.precipitateAmountProperty.link( ( newValue, oldValue ) => {
         const previousSolidsRegion = this.solidsRegion;
+        const previousSaturationState = oldValue > 0;
+        const newSaturationState = newValue > 0;
+        this.newSaturationState = newSaturationState !== previousSaturationState;
+        this.isSaturated = newSaturationState;
         this.solidsRegion = this.getCurrentSolidsAmount();
         this.solidsRegionChanged = this.solidsRegion !== previousSolidsRegion;
         this.solidsChangeString = newValue > oldValue ? moreString : lessString;
@@ -92,6 +114,42 @@ define( require => {
       } );
     }
 
+    /*
+    * Creates the description strings that are read out when the solution is either newly saturated or newly unsaturated.
+    * @public
+    * @returns {string | boolean} - returns a string if the saturation state has changed, otherwise returns false.
+    * */
+    getSaturationChangedString() {
+      if ( this.newSaturationState ) {
+        return this.isSaturated ? saturationReachedAlertString : StringUtils.fillIn( saturationLostAlertPatternString, {
+          concentration: this.getCurrentConcentration()
+        } );
+      }
+      else {
+        return false;
+      }
+    }
+
+    /*
+    * Creates the quantitative and qualitative substrings to describe the concentration state of the solution.
+    * @public
+    * @returns {string} - like "Concentration 0.600 Molar" or "Solution very concentrated".
+    * */
+    getConcentrationState() {
+      const concentration = this.solution.concentrationProperty.value;
+      if ( this.valuesVisibleProperty.value ) {
+        return StringUtils.fillIn( quantitativeConcentrationStatePatternString, {
+          concentration: Util.toFixed( concentration, MConstants.CONCENTRATION_DECIMAL_PLACES )
+        } );
+      }
+      else {
+        const index = concentrationToIndex( this.solution.soluteProperty.value.saturatedConcentration, concentration );
+        return StringUtils.fillIn( qualitativeConcentrationStatePatternString, {
+          concentration: CONCENTRATION_STRINGS[ index ]
+        } );
+      }
+    }
+
     /**
      * TODO: support capitalized and lowercase more/less, perhaps with parameter?
      * @returns {string} - like "more concentrated"
@@ -106,7 +164,7 @@ define( require => {
     /**
      * Gets the current value of concentration either quantitatively or quantitatively to plug into descriptions.
      * @public
-     * @returns {number|string} - quantitative or qualitative description of current concentration.
+     * @returns {number|string} - quantitative or qualitative description of current concentration (e.g. 1.500 or "very concentrated")
      */
     getCurrentConcentration() {
       const concentration = this.solution.concentrationProperty.value;
@@ -146,41 +204,9 @@ define( require => {
       return SOLIDS_STRINGS[ solidsToIndex( this.getCurrentPrecipitates(), this.getCurrentSaturatedConcentration() ) ];
     }
 
-    // /**
-    //  * Checks to see if the descriptive region for amount of solids has changed and updates the stored solidsRegion.
-    //  * @private
-    //  * @returns {boolean}
-    //  */
-    // updateSolidsRegion() {
-    //   const solidsIndex = solidsToIndex( this.getCurrentPrecipitates(), this.getCurrentSaturatedConcentration() );
-    //   const isNewSolidsRegion = this.solidsRegion !== solidsIndex;
-    //
-    //   // checks to see if any region has changed
-    //   if ( isNewSolidsRegion ) {
-    //     this.solidsRegion = solidsIndex;
-    //   }
-    //   return isNewSolidsRegion;
-    // }
-
-    /**
-     * Checks to see if the descriptive region for amount of solids has changed and updates the stored solidsRegion.
-     * @private
-     * @returns {boolean}
-     */
-    getCurrentSolidsRegion() {
-      const solidsIndex = this.getCurrentSolidsAmount();
-      const isNewSolidsRegion = this.solidsRegion !== solidsIndex;
-
-      // checks to see if any region has changed
-      if ( isNewSolidsRegion ) {
-        this.solidsRegion = solidsIndex;
-      }
-      return isNewSolidsRegion;
-    }
-
     /**
      * Fills in the state info if region has changed and the solution is saturated.
-     * @private
+     * @public
      * @returns {string}
      */
     getStillSaturatedClause() {
@@ -191,25 +217,6 @@ define( require => {
           solidAmount: this.getCurrentSolidsAmount()
         } ) : ''
       } );
-    }
-
-    /**
-     * Checks to see if the descriptive region for concentration has changed and updates the stored concentrationRegion.
-     * @private
-     * @returns {boolean} - whether or not there was a region to update
-     */
-    updateConcentrationRegion() {
-      const concentration = this.solution.concentrationProperty.value;
-      const saturatedConcentration = this.solution.soluteProperty.value.saturatedConcentration;
-      const concentrationIndex = concentrationToIndex( saturatedConcentration, concentration );
-      const isNewConcentrationRegion = this.concentrationRegion !== concentrationIndex;
-
-      // update the region to the new one if the region has changed
-      if ( isNewConcentrationRegion ) {
-        this.concentrationRegion = concentrationIndex;
-      }
-
-      return isNewConcentrationRegion;
     }
   }
 

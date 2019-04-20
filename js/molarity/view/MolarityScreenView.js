@@ -137,7 +137,7 @@ define( function( require ) {
       () => molarityDescriber.getSoluteAmountAriaValueText(),
       model.solution.soluteProperty,
       molarityDescriber,
-      ( formattedString, newValue, oldValue ) => molarityDescriber.getSoluteAmountSliderAlertString( newValue > oldValue )
+      () => molarityDescriber.soluteAmountDescriber.getSoluteAmountChangedValueText()
     );
 
     // slider for controlling volume of solution, sized to match tick marks on the beaker
@@ -156,7 +156,7 @@ define( function( require ) {
       () => molarityDescriber.getVolumeAriaValueText(),
       model.solution.soluteProperty,
       molarityDescriber,
-      () => molarityDescriber.volumeDescriber.getVolumeChangedValueText() // TODO: volumeDescriber is private!
+      () => molarityDescriber.volumeDescriber.getVolumeChangedValueText()
     );
 
     // concentration display

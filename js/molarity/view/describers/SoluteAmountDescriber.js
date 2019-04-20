@@ -22,10 +22,19 @@ define( require => {
   const aLotString = MolarityA11yStrings.aLotString.value;
   const aLowString = MolarityA11yStrings.aLowString.value;
   const maxAmountString = MolarityA11yStrings.maxAmountString.value;
-  const soluteAmountStateInfoPatternString = MolarityA11yStrings.soluteAmountStateInfoPattern.value;
   const soluteAmountAndUnitPatternString = MolarityA11yStrings.soluteAmountAndUnitPattern.value;
   const someString = MolarityA11yStrings.someString.value;
   const zeroString = MolarityA11yStrings.zeroString.value;
+  const quantitativeInitialValueTextPatternString = MolarityA11yStrings.quantitativeInitialValueTextPattern.value;
+  const quantitativeValueTextPatternString = MolarityA11yStrings.quantitativeValueTextPattern.value;
+  const qualitativeSoluteAmountValueTextPatternString = MolarityA11yStrings.qualitativeSoluteAmountValueTextPattern.value;
+  const qualitativeSaturatedValueTextPatternString = MolarityA11yStrings.qualitativeSaturatedValueTextPattern.value;
+  const qualitativeSoluteAmountStatePatternString = MolarityA11yStrings.qualitativeSoluteAmountStatePattern.value;
+  const qualitativeStateInfoPatternString = MolarityA11yStrings.qualitativeStateInfoPattern.value;
+  const soluteAmountChangedPatternString = MolarityA11yStrings.soluteAmountChangedPattern.value;
+
+  const lessString = MolarityA11yStrings.lessString.value;
+  const moreString = MolarityA11yStrings.moreString.value;
 
   // constants
   const SOLUTE_AMOUNT_STRINGS = [
@@ -47,19 +56,43 @@ define( require => {
      * @param {BooleanProperty} valuesVisibleProperty - whether values are visible in the view.
      */
     constructor( soluteAmountProperty, soluteProperty, concentrationDescriber, valuesVisibleProperty ) {
-
       // @private
+      this.concentrationDescriber = concentrationDescriber;
       this.soluteAmountProperty = soluteAmountProperty;
       this.soluteProperty = soluteProperty;
-      this.concentrationDescriber = concentrationDescriber;
       this.valuesVisibleProperty = valuesVisibleProperty;
-      this.soluteAmountRegion = 0; // tracks the last descriptive region for solute amount
+
+      // @public -- TODO: doc
+      this.initialSoluteAmountAlert = true;
+      this.currentRegion = null; // filled in below, TODO: doc
+      this.soluteAmountRegionChanged = null; // filled in below, TODO: doc
+      this.soluteAmountChangeValue = null;
+
+      soluteAmountProperty.link( ( newValue, oldValue ) => {
+        assert && oldValue && assert( this.currentRegion === soluteAmountToIndex( oldValue ) );
+        const oldRegion = this.currentRegion;
+        this.currentRegion = soluteAmountToIndex( newValue );
+        this.soluteAmountRegionChanged = this.currentRegion !== oldRegion;
+        this.soluteAmountChangeValue = newValue > oldValue ? moreString : lessString;
+      } );
     }
 
     /**
-     * Gets the current value of solute amount either quantitatively or quantitatively to plug into descriptions.
+     * Returns a string describing the change in soluteAmount (e.g. "more solution")
      * @private
-     * @returns {number|string} - quantitative or qualitative description of current solute amount.
+     * @returns {string} - quantitative or qualitative description of current soluteAmount.
+     */
+    getSoluteAmountChangeString() {
+      return StringUtils.fillIn( soluteAmountChangedPatternString, {
+        moreLess: this.soluteAmountChangeValue
+      } );
+    }
+
+    /**
+     * Gets the current value of soluteAmount either quantitatively or quantitatively to plug into descriptions.
+     * Examples: "3.400 Moles" for quantitative or "A lot of" for qualitative
+     * @private
+     * @returns {string} - quantitative or qualitative description of current soluteAmount.
      */
     getCurrentSoluteAmount() {
       if ( this.valuesVisibleProperty.value ) {
@@ -68,39 +101,91 @@ define( require => {
         } );
       }
       else {
-        const index = Util.roundSymmetric( soluteAmountToIndex( this.soluteAmountProperty.value ) );
-        return SOLUTE_AMOUNT_STRINGS[ index ];
+        return SOLUTE_AMOUNT_STRINGS[ soluteAmountToIndex( this.soluteAmountProperty.value ) ];
       }
     }
 
     /**
-     * Checks to see if the solute amount descriptive region has changed, and updates soluteAmountRegion accordingly.
-     * @public
-     * @returns {boolean} - whether or not there was a region to update.
-     */
-    updateSoluteAmountRegion() {
-      const soluteAmountIndex = soluteAmountToIndex( this.soluteAmountProperty.value );
-      const isNewSoluteAmountRegion = this.soluteAmountRegion !== soluteAmountIndex;
-
-      // Updates the region to the new one if a region has changed.
-      if ( isNewSoluteAmountRegion ) {
-        this.soluteAmountRegion = soluteAmountIndex;
-      }
-
-      return isNewSoluteAmountRegion;
-    }
-
-    /**
-     * Fills in the state info if region has changed and the solution is not saturated.
+     * Creates a substring describing the soluteAmount state
      * @private
-     * @returns {string}
+     * @returns {string} - something like "a lot of drink mix"
      */
-    getSoluteAmountStateInfoNotSaturated() {
-      return StringUtils.fillIn( soluteAmountStateInfoPatternString, {
-        solute: this.soluteProperty.value.name,
+    getSoluteAmountState() {
+      return StringUtils.fillIn( qualitativeSoluteAmountStatePatternString, {
         soluteAmount: this.getCurrentSoluteAmount(),
+        solute: this.soluteProperty.value.name
+      } );
+    }
+
+    /**
+     * Creates a substring of state info of the sim if the soluteAmount or concentration regions have changed.
+     * @private
+     * @returns {string} - something like "a lot of drink mix. solution very concentrated."
+     */
+    getSoluteAmountStateInfo() {
+      if ( this.soluteAmountRegionChanged || this.concentrationDescriber.concentrationRegionChanged ) {
+        return StringUtils.fillIn( qualitativeStateInfoPatternString, {
+          quantityState: this.getSoluteAmountState(),
+          concentrationState: this.concentrationDescriber.getConcentrationState()
+        } );
+      }
+      else {
+        return '';
+      }
+    }
+
+
+    /**
+     * @public
+     * @returns {string} - main value text for when soluteAmount changes
+     */
+    getSoluteAmountChangedValueText() {
+      if ( this.concentrationDescriber.getSaturationChangedString() ) {
+        return this.concentrationDescriber.getSaturationChangedString();
+      }
+      else {
+        return this.valuesVisibleProperty.value ? this.getQuantitativeAriaValueText() : this.getQualitativeAriaValueText();
+      }
+    }
+
+    /**
+     * TODO:
+     * @returns {*|string}
+     */
+    getQuantitativeAriaValueText() {
+      let string = quantitativeValueTextPatternString;
+
+      if ( this.initialSoluteAmountAlert ) {
+        string = quantitativeInitialValueTextPatternString;
+        this.initialSoluteAmountAlert = false;
+      }
+
+      return StringUtils.fillIn( string, {
+        concentrationChange: this.concentrationDescriber.getConcentrationChangeString(), // TODO: handle capital more/less on initial text
+        quantity: this.getCurrentSoluteAmount(),
         concentration: this.concentrationDescriber.getCurrentConcentration()
       } );
+    }
+
+    /**
+     * TODO: doc
+     * @returns {*|string}
+     */
+    getQualitativeAriaValueText() {
+      if ( this.concentrationDescriber.isSaturated ) {
+        return StringUtils.fillIn( qualitativeSaturatedValueTextPatternString, {
+          propertyAmountChange: this.getSoluteAmountChangeString(),
+          solidsChange: this.concentrationDescriber.getSolidsChangeString(),
+          stillSaturatedClause: this.concentrationDescriber.getStillSaturatedClause()
+        } );
+      }
+      else {
+        return StringUtils.fillIn( qualitativeSoluteAmountValueTextPatternString, {
+          soluteAmountChange: this.getSoluteAmountChangeString(),
+          concentrationChange: this.concentrationDescriber.getConcentrationChangeString(),
+          stateInfo: this.getSoluteAmountStateInfo()
+        } );
+      }
     }
   }
 

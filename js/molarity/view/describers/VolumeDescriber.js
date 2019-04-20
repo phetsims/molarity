@@ -27,7 +27,15 @@ define( require => {
   const underHalfString = MolarityA11yStrings.underHalfString.value;
   const quantitativeInitialValueTextPatternString = MolarityA11yStrings.quantitativeInitialValueTextPattern.value;
   const quantitativeValueTextPatternString = MolarityA11yStrings.quantitativeValueTextPattern.value;
-  const qualitativeSaturatedVolumeValueTextString = MolarityA11yStrings.qualitativeSaturatedVolumeValueText.value;
+  const qualitativeVolumeValueTextPatternString = MolarityA11yStrings.qualitativeVolumeValueTextPattern.value;
+  const qualitativeSaturatedValueTextPatternString = MolarityA11yStrings.qualitativeSaturatedValueTextPattern.value;
+  const qualitativeVolumeStatePatternString = MolarityA11yStrings.qualitativeVolumeStatePattern.value;
+  const qualitativeStateInfoPatternString = MolarityA11yStrings.qualitativeStateInfoPattern.value;
+  const volumeChangePatternString = MolarityA11yStrings.volumeChangePattern.value;
+
+  const lessString = MolarityA11yStrings.lessString.value;
+  const moreString = MolarityA11yStrings.moreString.value;
+
 
   // constants
   const VOLUME_STRINGS = [
@@ -59,22 +67,70 @@ define( require => {
       // @public -- TODO: doc
       this.initialVolumeAlert = true;
       this.currentRegion = null; // filled in below, TODO: doc
-      this.changed = null; // filled in below, TOOD: doc
+      this.volumeRegionChanged = null; // filled in below, TODO: doc
+      this.volumeChangeValue = null;
 
       volumeProperty.link( ( newValue, oldValue ) => {
         assert && oldValue && assert( this.currentRegion === volumeToIndex( oldValue ) );
         const oldRegion = this.currentRegion;
         this.currentRegion = volumeToIndex( newValue );
-        this.changed = this.currentRegion !== oldRegion;
+        this.volumeRegionChanged = this.currentRegion !== oldRegion;
+        this.volumeChangeValue = newValue > oldValue ? moreString : lessString;
       } );
     }
 
+    /**
+     * Returns a string describing the change in volume (e.g. "more solution")
+     * @private
+     * @returns {string} - quantitative or qualitative description of current volume.
+     */
+    getVolumeChangeString() {
+      return StringUtils.fillIn( volumeChangePatternString, {
+        moreLess: this.volumeChangeValue
+      } );
+    }
+
+    // fills in state info if the volume or concentration regions have changed
+    getVolumeStateInfo() {
+      if ( this.volumeRegionChanged || this.concentrationDescriber.concentrationRegionChanged ) {
+        return StringUtils.fillIn( qualitativeStateInfoPatternString, {
+          quantityState: StringUtils.fillIn( qualitativeVolumeStatePatternString, { volume: this.getCurrentVolume() } ),
+          concentrationState: this.concentrationDescriber.getConcentrationState()
+        } );
+      }
+      else {
+        return '';
+      }
+    }
 
     /**
+     * Gets the current value of volume either quantitatively or quantitatively to plug into descriptions.
+     * Examples: "1.500 Liters" for quantitative or "half full" for qualitative
+     * @private
+     * @returns {string} - quantitative or qualitative description of current volume.
+     */
+    getCurrentVolume() {
+      if ( this.valuesVisibleProperty.value ) {
+        return StringUtils.fillIn( solutionVolumeAndUnitPatternString, {
+          volume: Util.toFixed( this.volumeProperty.value, MConstants.SOLUTION_VOLUME_DECIMAL_PLACES )
+        } );
+      }
+      else {
+        return VOLUME_STRINGS[ volumeToIndex( this.volumeProperty.value ) ];
+      }
+    }
+
+    /**
+     * @public
      * @returns {string} - main value text for when volume changes
      */
     getVolumeChangedValueText() {
-      return this.valuesVisibleProperty.value ? this.getQuantitativeAriaValueText() : this.getQualitativeAriaValueText();
+      if ( this.concentrationDescriber.getSaturationChangedString() ) {
+        return this.concentrationDescriber.getSaturationChangedString();
+      }
+      else {
+        return this.valuesVisibleProperty.value ? this.getQuantitativeAriaValueText() : this.getQualitativeAriaValueText();
+      }
     }
 
     /**
@@ -91,59 +147,31 @@ define( require => {
 
       return StringUtils.fillIn( string, {
         concentrationChange: this.concentrationDescriber.getConcentrationChangeString(), // TODO: handle capital more/less on initial text
-        quantity: this.getCurrentVolumeAndUnit(),
+        quantity: this.getCurrentVolume(),
         concentration: this.concentrationDescriber.getCurrentConcentration()
       } );
     }
 
     /**
-     * TODO
+     * TODO: doc
      * @returns {*|string}
      */
     getQualitativeAriaValueText() {
-
-      // TODO: test on saturation
-      if ( this ) {
-
-        return StringUtils.fillIn( qualitativeSaturatedVolumeValueTextString, {
-          propertyAmountChange: this.getCurrentVolumeAndUnit(), // TODO: we want this to be a change like "more solution", not an amount
+      if ( this.concentrationDescriber.isSaturated ) {
+        return StringUtils.fillIn( qualitativeSaturatedValueTextPatternString, {
+          propertyAmountChange: this.getVolumeChangeString(),
           solidsChange: this.concentrationDescriber.getSolidsChangeString(),
           stillSaturatedClause: this.concentrationDescriber.getStillSaturatedClause()
         } );
       }
       else {
-        //TODO:
-      }
-    }
-
-    /**
-     * Gets the current value of volume either quantitatively or quantitatively to plug into descriptions.
-     * @private
-     * @returns {string} - quantitative or qualitative description of current volume.
-     */
-    getCurrentVolumeAndUnit() {
-      if ( this.valuesVisibleProperty.value ) {
-        return StringUtils.fillIn( solutionVolumeAndUnitPatternString, {
-          volume: Util.toFixed( this.volumeProperty.value, MConstants.SOLUTION_VOLUME_DECIMAL_PLACES )
+        return StringUtils.fillIn( qualitativeVolumeValueTextPatternString, {
+          volumeChange: this.getVolumeChangeString(),
+          concentrationChange: this.concentrationDescriber.getConcentrationChangeString(),
+          stateInfo: this.getVolumeStateInfo()
         } );
       }
-      else {
-        return VOLUME_STRINGS[ volumeToIndex( this.volumeProperty.value ) ];
-      }
     }
-
-    // TODO: use this in new system
-    // /**
-    //  * Fills in the state info if region has changed and the solution is not saturated.
-    //  * @private
-    //  * @returns {string}
-    //  */
-    // getVolumeStateInfoNotSaturated() {
-    //   return StringUtils.fillIn( volumeStateInfoPatternString, {
-    //     volume: this.getCurrentVolumeAndUnit(),
-    //     concentration: this.concentrationDescriber.getCurrentConcentration()
-    //   } );
-    // }
   }
 
   /**
@@ -176,5 +204,4 @@ define( require => {
   };
 
   return molarity.register( 'VolumeDescriber', VolumeDescriber );
-} )
-;
+} );

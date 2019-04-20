@@ -122,6 +122,7 @@ define( function( require ) {
     },
 
     // Concentration regions
+    // TODO: remove "concentrated" from these strings
     notConcentratedString: {
       value: 'not concentrated'
     },
@@ -154,6 +155,12 @@ define( function( require ) {
     },
     soluteString: {
       value: 'solute'
+    },
+    soluteAmountChangedPattern: {
+      value: '{{moreLess}} solute'
+    },
+    volumeChangePattern: {
+      value: '{{moreLess}} solution'
     },
     volumeSliderMovedAlertPattern: {
       value: '{{moreLess}} solution, {{lessMore}} concentrated. {{stateInfo}}'
@@ -189,13 +196,44 @@ define( function( require ) {
       value: '{{quantity}}, {{concentrationChange}} at {{concentration}} Molar.'
     },
 
-    // quantitative volume alerts
+    // Quantitative value text strings for both volume and solute amount sliders
     quantitativeInitialValueTextPattern: {
       value: '{{concentrationChange}}. {{quantity}} in solution. Concentration {{concentration}} Molar'
     },
-
     quantitativeValueTextPattern: {
       value: '{{quantity}}, {{concentrationChange}} at {{concentration}} Molar.'
+    },
+
+    // Quantitative value text strings for both volume and solute amount sliders
+    qualitativeSaturatedValueTextPattern: {
+      value: '{{propertyAmountChange}}, {{solidsChange}}. {{stillSaturatedClause}}.'
+    },
+    qualitativeStateInfoPattern: {
+      value: '{{quantityState}}. {{concentrationState}}.'
+    },
+
+    // Qualitative volume value text strings
+    qualitativeVolumeValueTextPattern: {
+      value: '{{volumeChange}}, {{concentrationChange}}. {{stateInfo}}'
+    },
+    qualitativeVolumeStatePattern: {
+      value: 'Beaker {{volume}}'
+    },
+
+    // Qualitative solute amount value text strings
+    qualitativeSoluteAmountValueTextPattern: {
+      value: '{{soluteAmountChange}}, {{concentrationChange}}. {{stateInfo}}'
+    },
+    qualitativeSoluteAmountStatePattern: {
+      value: '{{soluteAmount}} {{solute}}'
+    },
+
+    // Qualitative concentration value text strings
+    qualitativeConcentrationStatePattern: {
+      value: 'Solution {{concentration}}'
+    },
+    quantitativeConcentrationStatePattern: {
+      value: 'Concentration {{concentration}} Molar'
     },
 
     soluteChangedAlertPattern: {
@@ -206,10 +244,6 @@ define( function( require ) {
     },
     saturatedAlertString: {
       value: 'Solution saturated. Beyond max concentration, solids appear.'
-    },
-
-    qualitativeSaturatedVolumeValueText: {
-      value: '{{propertyAmountChange}}, {{solidsChange}}. {{stillSaturatedClause}}.'
     },
     stillSaturatedAlertPattern: {
       value: 'Still saturated{{withSolids}}'
