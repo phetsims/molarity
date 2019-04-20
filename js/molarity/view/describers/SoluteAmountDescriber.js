@@ -16,23 +16,29 @@ define( require => {
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const Util = require( 'DOT/Util' );
 
-  // a11y strings
-  const aBunchString = MolarityA11yStrings.aBunchString.value;
-  const aLittleString = MolarityA11yStrings.aLittleString.value;
-  const aLotString = MolarityA11yStrings.aLotString.value;
-  const aLowString = MolarityA11yStrings.aLowString.value;
-  const maxAmountString = MolarityA11yStrings.maxAmountString.value;
+  // strings
   const soluteAmountAndUnitPatternString = MolarityA11yStrings.soluteAmountAndUnitPattern.value;
-  const someString = MolarityA11yStrings.someString.value;
-  const zeroString = MolarityA11yStrings.zeroString.value;
+  const soluteAmountChangedPatternString = MolarityA11yStrings.soluteAmountChangedPattern.value;
+  const soluteAmountSliderValueTextPatternString = MolarityA11yStrings.soluteAmountSliderValueTextPattern.value;
   const quantitativeInitialValueTextPatternString = MolarityA11yStrings.quantitativeInitialValueTextPattern.value;
   const quantitativeValueTextPatternString = MolarityA11yStrings.quantitativeValueTextPattern.value;
   const qualitativeSoluteAmountValueTextPatternString = MolarityA11yStrings.qualitativeSoluteAmountValueTextPattern.value;
   const qualitativeSaturatedValueTextPatternString = MolarityA11yStrings.qualitativeSaturatedValueTextPattern.value;
   const qualitativeSoluteAmountStatePatternString = MolarityA11yStrings.qualitativeSoluteAmountStatePattern.value;
   const qualitativeStateInfoPatternString = MolarityA11yStrings.qualitativeStateInfoPattern.value;
-  const soluteAmountChangedPatternString = MolarityA11yStrings.soluteAmountChangedPattern.value;
 
+  // solute Amount regions strings
+  const aBunchString = MolarityA11yStrings.aBunchString.value;
+  const aLittleString = MolarityA11yStrings.aLittleString.value;
+  const aLotString = MolarityA11yStrings.aLotString.value;
+  const aLowString = MolarityA11yStrings.aLowString.value;
+  const maxAmountString = MolarityA11yStrings.maxAmountString.value;
+
+  // solids regions strings
+  const someString = MolarityA11yStrings.someString.value;
+  const zeroString = MolarityA11yStrings.zeroString.value;
+
+  // change strings
   const lessString = MolarityA11yStrings.lessString.value;
   const moreString = MolarityA11yStrings.moreString.value;
 
@@ -51,15 +57,15 @@ define( require => {
 
     /**
      * @param {NumberProperty} soluteAmountProperty - from Solution model element.
-     * @param {Property.<Solute>} soluteProperty - from Solution model element.
+     * @param {SoluteDescriber} soluteDescriber
      * @param {ConcentrationDescriber} concentrationDescriber
      * @param {BooleanProperty} valuesVisibleProperty - whether values are visible in the view.
      */
-    constructor( soluteAmountProperty, soluteProperty, concentrationDescriber, valuesVisibleProperty ) {
+    constructor( soluteAmountProperty, soluteDescriber, concentrationDescriber, valuesVisibleProperty ) {
       // @private
       this.concentrationDescriber = concentrationDescriber;
       this.soluteAmountProperty = soluteAmountProperty;
-      this.soluteProperty = soluteProperty;
+      this.soluteDescriber = soluteDescriber;
       this.valuesVisibleProperty = valuesVisibleProperty;
 
       // @public -- TODO: doc
@@ -113,7 +119,7 @@ define( require => {
     getSoluteAmountState() {
       return StringUtils.fillIn( qualitativeSoluteAmountStatePatternString, {
         soluteAmount: this.getCurrentSoluteAmount(),
-        solute: this.soluteProperty.value.name
+        solute: this.soluteDescriber.getCurrentSolute()
       } );
     }
 
@@ -134,6 +140,17 @@ define( require => {
       }
     }
 
+    /**
+     * Creates the string to be used as the solute amount slider's aria-valueText on focus.
+     * @public
+     * @returns {string}
+     */
+    getOnFocusSoluteAmountAriaValueText() {
+      return StringUtils.fillIn( soluteAmountSliderValueTextPatternString, {
+        soluteAmount: this.getCurrentSoluteAmount(),
+        solute: this.soluteDescriber.getCurrentSolute()
+      } );
+    }
 
     /**
      * @public

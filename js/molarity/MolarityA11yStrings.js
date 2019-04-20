@@ -45,10 +45,10 @@ define( function( require ) {
     solutionVolumeAndUnitPattern: {
       value: '{{volume}} liters'
     },
-    solutionConcentrationValuesVisiblePattern: {
+    concentrationValuesVisiblePattern: {
       value: 'Concentration is {{concentration}} molar'
     },
-    solutionConcentrationPattern: {
+    concentrationPattern: {
       value: 'Solution is {{concentration}} and is {{saturatedConcentration}}'
     },
     beakerHeader: {
@@ -269,13 +269,13 @@ define( function( require ) {
     solidsString: {
       value: 'solids'
     },
-    volumeSliderValuesVisibleAriaValueTextPattern: {
+    volumeSliderValuesVisibleValueTextPattern: {
       value: '{{volume}} in beaker'
     },
-    volumeSliderAriaValueTextPattern: {
+    volumeSliderValueTextPattern: {
       value: 'Beaker {{volume}}'
     },
-    soluteAmountSliderAriaValueTextPattern: {
+    soluteAmountSliderValueTextPattern: {
       value: '{{soluteAmount}} {{solute}}'
     },
     noSoluteAlertString: {

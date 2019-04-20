@@ -134,7 +134,7 @@ define( function( require ) {
       valuesVisibleProperty,
       tandem.createTandem( 'soluteAmountSlider' ),
       soluteAmountAccessibleNameString,
-      () => molarityDescriber.getSoluteAmountAriaValueText(),
+      () => molarityDescriber.soluteAmountDescriber.getOnFocusSoluteAmountAriaValueText(),
       model.solution.soluteProperty,
       molarityDescriber,
       () => molarityDescriber.soluteAmountDescriber.getSoluteAmountChangedValueText()
@@ -153,7 +153,7 @@ define( function( require ) {
       valuesVisibleProperty,
       tandem.createTandem( 'solutionVolumeSlider' ),
       solutionVolumeAccessibleNameString,
-      () => molarityDescriber.getVolumeAriaValueText(),
+      () => molarityDescriber.volumeDescriber.getOnFocusVolumeAriaValueText(),
       model.solution.soluteProperty,
       molarityDescriber,
       () => molarityDescriber.volumeDescriber.getVolumeChangedValueText()
