@@ -66,23 +66,21 @@ define( require => {
      */
     constructor( concentrationProperty, soluteProperty, precipitateAmountProperty, valuesVisibleProperty ) {
 
+      // @public
+      this.isSaturated = null; // boolean -- tracks whether the solution is saturated
+      this.concentrationRegionChanged = null; // boolean - tracks whether the concentration descriptive region has changed
+
       // @private
       this.soluteProperty = soluteProperty;
       this.concentrationProperty = concentrationProperty;
       this.precipitateAmountProperty = precipitateAmountProperty;
-      this.isSaturated = null; // boolean -- tracks whether the solution is saturated
-      this.newSaturationState = false; // boolean -- tracks whether saturation has just changed
       this.valuesVisibleProperty = valuesVisibleProperty;
-
-      // concentration state properties
-      this.concentrationRegion = 0; // tracks the last descriptive region for concentration
-      this.concentrationChangeString = lessString; // tracks whether concentration has increased or decreased
-      this.concentrationRegionChanged = null; // tracks whether the concentration descriptive region has changed
-
-      // solids state properties
-      this.solidsRegion = null; // tracks the last descriptive region for solids, filled in below
-      this.solidsRegionChanged = false; // TODO: doc
-      this.solidsChangeString = false; // TODO: doc
+      this.newSaturationState = false; // boolean -- tracks whether saturation has just changed
+      this.concentrationRegion = null; // number - tracks the index of the last descriptive region for concentration
+      this.concentrationChangeString = null; // string - tracks whether concentration has increased or decreased
+      this.solidsRegion = null; // number - tracks the index of the last descriptive region for solids
+      this.solidsRegionChanged = false; // boolean - tracks whether the solids descriptive region has changed
+      this.solidsChangeString = null; // string - tracks whether there are more or less solids in the beaker
 
       this.concentrationProperty.link( ( newValue, oldValue ) => {
         const previousConcentrationRegion = this.concentrationRegion;
@@ -110,7 +108,9 @@ define( require => {
 
     /**
      * TODO: support capitalized and lowercase more/less, perhaps with parameter?
-     * @returns {string} - like "more concentrated"
+     * Creates a substring to describe how concentration has changed
+     * @public
+     * @returns {string} - example: "more concentrated"
      */
     getConcentrationChangeString() {
       return StringUtils.fillIn( concentrationChangePatternString, {
@@ -118,11 +118,11 @@ define( require => {
       } );
     }
 
-    /*
-    * Creates the description strings that are read out when the solution is either newly saturated or newly unsaturated.
-    * @public
-    * @returns {string | boolean} - returns a string if the saturation state has changed, otherwise returns false.
-    * */
+    /**
+     * Creates the description strings that are read out when the solution is either newly saturated or newly unsaturated.
+     * @public
+     * @returns {string | boolean} - returns a string if the saturation state has changed, otherwise returns false.
+     * */
     getSaturationChangedString() {
       if ( this.newSaturationState ) {
         return this.isSaturated ? saturationReachedAlertString : StringUtils.fillIn( saturationLostAlertPatternString, {
@@ -134,11 +134,11 @@ define( require => {
       }
     }
 
-    /*
-    * Creates the quantitative and qualitative substrings to describe the concentration state of the solution.
-    * @public
-    * @returns {string} - like "Concentration 0.600 Molar" or "Solution very concentrated".
-    * */
+    /**
+     * Creates the quantitative and qualitative substrings to describe the concentration state of the solution.
+     * @public
+     * @returns {string} - examples: "Concentration 0.600 Molar" or "Solution very concentrated".
+     * */
     getConcentrationState() {
       const concentration = this.concentrationProperty.value;
       if ( this.valuesVisibleProperty.value ) {
@@ -156,10 +156,12 @@ define( require => {
 
     /**
      * TODO: support capitalized and lowercase more/less, perhaps with parameter?
-     * @returns {string} - like "more concentrated"
+     * Creates a substring to describe the change in the amount of solids
+     * @public
+     * @returns {string} - example: "more solids"
      */
     getSolidsChangeString() {
-      // TODO: assert that there is some precipitate
+      assert && assert( this.precipitateAmountProperty.value > 0 );
       return StringUtils.fillIn( solidsChangePatternString, {
         moreLess: this.solidsChangeString
       } );
@@ -201,8 +203,8 @@ define( require => {
 
     /**
      * Gets the qualitative description of the amount of solids in the beaker.
-     * @public
-     * @returns {string}
+     * @private
+     * @returns {string} - example: "a bunch"
      */
     getCurrentSolidsAmount() {
       return SOLIDS_STRINGS[ solidsToIndex( this.getCurrentPrecipitates(), this.getCurrentSaturatedConcentration() ) ];
@@ -211,11 +213,9 @@ define( require => {
     /**
      * Fills in the state info if region has changed and the solution is saturated.
      * @public
-     * @returns {string}
+     * @returns {string} - example: "still saturated with a bunch of solids"
      */
     getStillSaturatedClause() {
-
-      // Fills in the state info with a description of the amount of solids.
       return StringUtils.fillIn( stillSaturatedAlertPatternString, {
         withSolids: this.solidsRegionChanged ? StringUtils.fillIn( withSolidsAlertPatternString, {
           solidAmount: this.getCurrentSolidsAmount()
