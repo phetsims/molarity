@@ -67,12 +67,10 @@ define( require => {
       this.soluteAmountProperty = soluteAmountProperty;
       this.soluteDescriber = soluteDescriber;
       this.valuesVisibleProperty = valuesVisibleProperty;
-
-      // @public -- TODO: doc
-      this.initialSoluteAmountAlert = true;
-      this.currentRegion = null; // filled in below, TODO: doc
-      this.soluteAmountRegionChanged = null; // filled in below, TODO: doc
-      this.soluteAmountChangeValue = null;
+      this.currentRegion = null; // number -- the index of the descriptive region from SOLUTE_AMOUNT_STRINGS array.
+      this.soluteAmountRegionChanged = null; // boolean -- tracks whether the descriptive volume region has just changed.
+      this.soluteAmountChangeValue = null; // string -- describes whether volume has just increased or decreased
+      this.initialSoluteAmountAlert = true; // tracks whether the solute amount slider has just been focused
 
       soluteAmountProperty.link( ( newValue, oldValue ) => {
         assert && oldValue && assert( this.currentRegion === soluteAmountToIndex( oldValue ) );
@@ -82,6 +80,15 @@ define( require => {
         this.soluteAmountChangeValue = newValue > oldValue ? moreString : lessString;
       } );
     }
+
+    /**
+     * Sets the initial solute amount alert value to true when a slider is focused to trigger a special alert right after focus.
+     * @public
+     */
+    setInitialSoluteAmountAlert() {
+      this.initialSoluteAmountAlert = true;
+    }
+
 
     /**
      * Returns a string describing the change in soluteAmount (e.g. "more solution")
@@ -153,8 +160,9 @@ define( require => {
     }
 
     /**
+     * Main method for generating aria-valueText when the soluteAmountProperty changes.
      * @public
-     * @returns {string} - main value text for when soluteAmount changes
+     * @returns {string}
      */
     getSoluteAmountChangedValueText() {
       if ( this.concentrationDescriber.getSaturationChangedString() ) {
@@ -166,12 +174,14 @@ define( require => {
     }
 
     /**
-     * TODO:
-     * @returns {*|string}
+     * Creates aria-valueText strings when the "show values" checkbox is checked
+     * @private
+     * @returns {string}
      */
     getQuantitativeAriaValueText() {
       let string = quantitativeValueTextPatternString;
 
+      // sets string to fill in right after slider is focused
       if ( this.initialSoluteAmountAlert ) {
         string = quantitativeInitialValueTextPatternString;
         this.initialSoluteAmountAlert = false;
@@ -185,8 +195,9 @@ define( require => {
     }
 
     /**
-     * TODO: doc
-     * @returns {*|string}
+     * Creates aria-valueText strings when the "show values" checkbox is not checked for saturated and unsaturated states.
+     * @private
+     * @returns {string}
      */
     getQualitativeAriaValueText() {
       if ( this.concentrationDescriber.isSaturated ) {

@@ -47,14 +47,14 @@ define( function( require ) {
    * @param {Tandem} tandem
    * @param {string} accessibleName
    * @param {function} getOnFocusAriaValueText
+   * @param {function} getOnChangeAriaValueText
    * @param {Property} soluteProperty
    * @param {MolarityDescriber} molarityDescriber
-   * @param {function} getOnChangeAriaValueText
    * @constructor
    */
   function VerticalSlider( title, subtitle, minLabel, maxLabel, trackSize, property, range,
                            decimalPlaces, units, valuesVisibleProperty, tandem, accessibleName, getOnFocusAriaValueText,
-                           soluteProperty, molarityDescriber, getOnChangeAriaValueText ) {
+                           getOnChangeAriaValueText, soluteProperty, molarityDescriber ) {
 
     var titleNode = new MultiLineText( title, {
       font: new PhetFont( { size: 24, weight: 'bold' } ),

@@ -1,7 +1,7 @@
 // Copyright 2019, University of Colorado Boulder
 
 /**
- * SoluteAmountDescriber is responsible for generating strings about VolumeProperty.
+ * VolumeDescriber is responsible for generating strings about VolumeProperty.
  *
  * @author Michael Kauzmann (PhET Interactive Simulations)
  * @author Taylor Want (PhET Interactive Simulations)
@@ -66,12 +66,10 @@ define( require => {
       this.volumeProperty = volumeProperty;
       this.concentrationDescriber = concentrationDescriber;
       this.valuesVisibleProperty = valuesVisibleProperty;
-      this.currentRegion = null; // filled in below. number -- the index of the descriptive region from VOLUME_STRINGS array.
-      this.volumeRegionChanged = null; // filled in below. boolean -- tracks whether the descriptive volume region has just changed.
-      this.volumeChangeValue = null; // filled in below. string -- describes whether volume has just increased or decreased
-
-      // @public
-      this.initialVolumeAlert = true; // tracks whether the slider has just been focused
+      this.currentRegion = null; // number -- the index of the descriptive region from VOLUME_STRINGS array.
+      this.volumeRegionChanged = null; // boolean -- tracks whether the descriptive volume region has just changed.
+      this.volumeChangeValue = null; // string -- describes whether volume has just increased or decreased
+      this.initialVolumeAlert = true; // tracks whether the volume slider has just been focused
 
       volumeProperty.link( ( newValue, oldValue ) => {
         assert && oldValue && assert( this.currentRegion === volumeToIndex( oldValue ) );
@@ -80,6 +78,14 @@ define( require => {
         this.volumeRegionChanged = this.currentRegion !== oldRegion;
         this.volumeChangeValue = newValue > oldValue ? moreString : lessString;
       } );
+    }
+
+    /**
+     * Sets the initial volume alert value to true when a slider is focused to trigger a special alert right after focus.
+     * @public
+     */
+    setInitialVolumeAlert() {
+      this.initialVolumeAlert = true;
     }
 
     /**

@@ -135,9 +135,9 @@ define( function( require ) {
       tandem.createTandem( 'soluteAmountSlider' ),
       soluteAmountAccessibleNameString,
       () => molarityDescriber.soluteAmountDescriber.getOnFocusSoluteAmountAriaValueText(),
+      () => molarityDescriber.soluteAmountDescriber.getSoluteAmountChangedValueText(),
       model.solution.soluteProperty,
-      molarityDescriber,
-      () => molarityDescriber.soluteAmountDescriber.getSoluteAmountChangedValueText()
+      molarityDescriber
     );
 
     // slider for controlling volume of solution, sized to match tick marks on the beaker
@@ -154,9 +154,9 @@ define( function( require ) {
       tandem.createTandem( 'solutionVolumeSlider' ),
       solutionVolumeAccessibleNameString,
       () => molarityDescriber.volumeDescriber.getOnFocusVolumeAriaValueText(),
+      () => molarityDescriber.volumeDescriber.getVolumeChangedValueText(),
       model.solution.soluteProperty,
-      molarityDescriber,
-      () => molarityDescriber.volumeDescriber.getVolumeChangedValueText()
+      molarityDescriber
     );
 
     // concentration display
@@ -200,8 +200,11 @@ define( function( require ) {
 
     // a11y - adds an alert when the solute is changed
     model.solution.soluteProperty.lazyLink( () => {
+      const saturationStateChangeUtterance = new Utterance();
+      saturationStateChangeUtterance.alert = molarityDescriber.concentrationDescriber.getSaturationChangedString();
       simStateUtterance.alert = molarityDescriber.soluteDescriber.getSoluteChangedAlertString();
       utteranceQueue.addToBack( simStateUtterance );
+      saturationStateChangeUtterance && utteranceQueue.addToBack( saturationStateChangeUtterance );
     } );
 
     // a11y - contains PDOM heading for Play Area, and orders the PDOM for included elements

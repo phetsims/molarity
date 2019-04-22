@@ -1,9 +1,7 @@
 // Copyright 2019, University of Colorado Boulder
 
 /**
- * MolarityDescriber is responsible for generating all of the strings used for PDOM content and alerts in Molarity.
- * Because many alerts require information about all four Properties (concentration, solute amount, volume, and solute),
- * a more general describer is required to put that information together.
+ * MolarityDescriber is responsible for generating the strings used for PDOM content in Molarity. It also initializes all other describers.
  *
  * @author Michael Kauzmann (PhET Interactive Simulations)
  * @author Taylor Want (PhET Interactive Simulations)
@@ -43,13 +41,16 @@ define( require => {
       this.solution = solution;
       this.valuesVisibleProperty = valuesVisibleProperty;
       this.concentrationDescriber = new ConcentrationDescriber(
-        solution,
+        solution.concentrationProperty,
+        solution.soluteProperty,
+        solution.precipitateAmountProperty,
         valuesVisibleProperty
       );
 
       // @public
       this.soluteDescriber = new SoluteDescriber(
         solution.soluteProperty,
+        this.concentrationDescriber,
         valuesVisibleProperty
       );
       this.volumeDescriber = new VolumeDescriber(
@@ -71,8 +72,8 @@ define( require => {
      * @public
      */
     setInitialAlert() {
-      this.soluteAmountDescriber.initialSoluteAmountAlert = true;
-      this.volumeDescriber.initialVolumeAlert = true; // TODO: initialVolumeAlert should be private to VolumeDescriber
+      this.soluteAmountDescriber.setInitialSoluteAmountAlert();
+      this.volumeDescriber.setInitialVolumeAlert();
     }
 
     /**

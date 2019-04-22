@@ -59,16 +59,19 @@ define( require => {
   class ConcentrationDescriber {
 
     /**
-     * @param {Solution} solution - from MolarityModel.
+     * @param {Property} concentrationProperty - from MolarityModel.
+     * @param {Property} soluteProperty - from MolarityModel.
+     * @param {Property} precipitateAmountProperty - from MolarityModel.
      * @param {BooleanProperty} valuesVisibleProperty - whether values are visible in the view.
      */
-    constructor( solution, valuesVisibleProperty ) {
+    constructor( concentrationProperty, soluteProperty, precipitateAmountProperty, valuesVisibleProperty ) {
 
       // @private
-      this.solution = solution;
-      this.saturatedConcentration = this.solution.soluteProperty.value.saturatedConcentration;
-      this.isSaturated = null;
-      this.newSaturationState = false;
+      this.soluteProperty = soluteProperty;
+      this.concentrationProperty = concentrationProperty;
+      this.precipitateAmountProperty = precipitateAmountProperty;
+      this.isSaturated = null; // boolean -- tracks whether the solution is saturated
+      this.newSaturationState = false; // boolean -- tracks whether saturation has just changed
       this.valuesVisibleProperty = valuesVisibleProperty;
 
       // concentration state properties
@@ -81,18 +84,19 @@ define( require => {
       this.solidsRegionChanged = false; // TODO: doc
       this.solidsChangeString = false; // TODO: doc
 
-      this.solution.concentrationProperty.link( ( newValue, oldValue ) => {
+      this.concentrationProperty.link( ( newValue, oldValue ) => {
         const previousConcentrationRegion = this.concentrationRegion;
-        const newConcentrationRegion = concentrationToIndex( this.saturatedConcentration, this.solution.concentrationProperty.value );
-        const previousSaturationState = oldValue > this.solution.soluteProperty.value.saturatedConcentration;
-        const newSaturationState = newValue > this.solution.soluteProperty.value.saturatedConcentration;
+        const saturatedConcentration = this.soluteProperty.value.saturatedConcentration;
+        const newConcentrationRegion = concentrationToIndex( saturatedConcentration, this.concentrationProperty.value );
+        const previousSaturationState = oldValue > this.soluteProperty.value.saturatedConcentration;
+        const newSaturationState = newValue > this.soluteProperty.value.saturatedConcentration;
         this.newSaturationState = newSaturationState !== previousSaturationState;
         this.isSaturated = newSaturationState;
         this.concentrationChangeString = newValue > oldValue ? moreString : lessString;
         this.concentrationRegionChanged = newConcentrationRegion !== previousConcentrationRegion;
       } );
 
-      this.solution.precipitateAmountProperty.link( ( newValue, oldValue ) => {
+      this.precipitateAmountProperty.link( ( newValue, oldValue ) => {
         const previousSolidsRegion = this.solidsRegion;
         const previousSaturationState = oldValue > 0;
         const newSaturationState = newValue > 0;
@@ -136,14 +140,14 @@ define( require => {
     * @returns {string} - like "Concentration 0.600 Molar" or "Solution very concentrated".
     * */
     getConcentrationState() {
-      const concentration = this.solution.concentrationProperty.value;
+      const concentration = this.concentrationProperty.value;
       if ( this.valuesVisibleProperty.value ) {
         return StringUtils.fillIn( quantitativeConcentrationStatePatternString, {
           concentration: Util.toFixed( concentration, MConstants.CONCENTRATION_DECIMAL_PLACES )
         } );
       }
       else {
-        const index = concentrationToIndex( this.solution.soluteProperty.value.saturatedConcentration, concentration );
+        const index = concentrationToIndex( this.soluteProperty.value.saturatedConcentration, concentration );
         return StringUtils.fillIn( qualitativeConcentrationStatePatternString, {
           concentration: CONCENTRATION_STRINGS[ index ]
         } );
@@ -167,12 +171,12 @@ define( require => {
      * @returns {number|string} - quantitative or qualitative description of current concentration (e.g. 1.500 or "very concentrated")
      */
     getCurrentConcentration() {
-      const concentration = this.solution.concentrationProperty.value;
+      const concentration = this.concentrationProperty.value;
       if ( this.valuesVisibleProperty.value ) {
         return Util.toFixed( concentration, MConstants.CONCENTRATION_DECIMAL_PLACES );
       }
       else {
-        const index = concentrationToIndex( this.solution.soluteProperty.value.saturatedConcentration, concentration );
+        const index = concentrationToIndex( this.soluteProperty.value.saturatedConcentration, concentration );
         return CONCENTRATION_STRINGS[ index ];
       }
     }
@@ -183,7 +187,7 @@ define( require => {
      * @returns {number}
      */
     getCurrentSaturatedConcentration() {
-      return this.solution.soluteProperty.value.saturatedConcentration;
+      return this.soluteProperty.value.saturatedConcentration;
     }
 
     /**
@@ -192,7 +196,7 @@ define( require => {
      * @returns {number}
      */
     getCurrentPrecipitates() {
-      return this.solution.precipitateAmountProperty.value;
+      return this.precipitateAmountProperty.value;
     }
 
     /**
