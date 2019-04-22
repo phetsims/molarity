@@ -55,7 +55,7 @@ define( function( require ) {
       value: 'Beaker'
     },
     beakerDescription: {
-      value: 'Solution Concentration of {{solute}} Is {{concentration}} the peak of this solute is {{maxConcentration}} Molar. The chemical formula for {{solute}} is {{chemicalFormula}}.'
+      value: 'Solution Concentration of {{solute}} Is {{concentration}}. Concentration readout range is 0.00 to {{maxConcentration}}. The chemical formula for {{solute}} is {{chemicalFormula}}.'
     },
     soluteComboBoxLabel: {
       value: 'Select Solute'
