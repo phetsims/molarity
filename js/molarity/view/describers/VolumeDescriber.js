@@ -38,8 +38,8 @@ define( require => {
   const underHalfFullString = MolarityA11yStrings.underHalfFull.value;
 
   // change strings
-  const lessString = MolarityA11yStrings.lessString.value;
-  const moreString = MolarityA11yStrings.moreString.value;
+  const lessString = MolarityA11yStrings.less.value;
+  const moreString = MolarityA11yStrings.more.value;
 
   // constants
   const VOLUME_STRINGS = [

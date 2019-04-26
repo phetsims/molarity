@@ -60,8 +60,8 @@ define( function( require ) {
   const showValuesHelpTextString = MolarityA11yStrings.showValuesHelpText.value;
   const soluteAmountAccessibleNameString = MolarityA11yStrings.soluteAmountAccessibleName.value;
   const solutionVolumeAccessibleNameString = MolarityA11yStrings.solutionVolumeAccessibleName.value;
-  const solutionControlsLabelString = MolarityA11yStrings.solutionControlsLabelString.value;
-  const solutionControlsDescriptionString = MolarityA11yStrings.solutionControlsDescriptionString.value;
+  const solutionControlsLabelString = MolarityA11yStrings.solutionControlsLabel.value;
+  const solutionControlsDescriptionString = MolarityA11yStrings.solutionControlsDescription.value;
 
 
   // constants
