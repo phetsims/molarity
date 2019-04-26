@@ -28,51 +28,53 @@ define( require => {
   const qualitativeStateInfoPatternString = MolarityA11yStrings.qualitativeStateInfoPattern.value;
 
   // solute Amount regions strings
-  const aBunchString = MolarityA11yStrings.aBunchString.value;
-  const aLittleString = MolarityA11yStrings.aLittleString.value;
-  const aLotString = MolarityA11yStrings.aLotString.value;
-  const aLowString = MolarityA11yStrings.aLowString.value;
-  const maxAmountString = MolarityA11yStrings.maxAmountString.value;
+  const aBunchOfString = MolarityA11yStrings.aBunchOf.value;
+  const aLittleString = MolarityA11yStrings.aLittle.value;
+  const aLotOfString = MolarityA11yStrings.aLotOf.value;
+  const aLowAmountOfString = MolarityA11yStrings.aLowAmountOf.value;
+  const theMaxAmountOfString = MolarityA11yStrings.theMaxAmountOf.value;
 
   // solids regions strings
-  const someString = MolarityA11yStrings.someString.value;
-  const zeroString = MolarityA11yStrings.zeroString.value;
+  const someString = MolarityA11yStrings.some.value;
+  const zeroString = MolarityA11yStrings.zero.value;
 
   // change strings
-  const lessString = MolarityA11yStrings.lessString.value;
-  const moreString = MolarityA11yStrings.moreString.value;
+  const lessString = MolarityA11yStrings.less.value;
+  const moreString = MolarityA11yStrings.more.value;
 
   // constants
   const SOLUTE_AMOUNT_STRINGS = [
     zeroString,
     aLittleString,
-    aLowString,
+    aLowAmountOfString,
     someString,
-    aBunchString,
-    aLotString,
-    maxAmountString
+    aBunchOfString,
+    aLotOfString,
+    theMaxAmountOfString
   ];
 
   class SoluteAmountDescriber {
 
     /**
-     * @param {NumberProperty} soluteAmountProperty - from Solution model element.
+     * @param {Solution} solution - from model.
      * @param {SoluteDescriber} soluteDescriber
      * @param {ConcentrationDescriber} concentrationDescriber
-     * @param {BooleanProperty} valuesVisibleProperty - whether values are visible in the view.
+     * @param {BooleanProperty} useQuantitativeDescriptions
      */
-    constructor( soluteAmountProperty, soluteDescriber, concentrationDescriber, valuesVisibleProperty ) {
+    constructor( solution, soluteDescriber, concentrationDescriber, useQuantitativeDescriptions ) {
+
       // @private
+      this.solution = solution;
       this.concentrationDescriber = concentrationDescriber;
-      this.soluteAmountProperty = soluteAmountProperty;
+      this.soluteAmountProperty = solution.soluteAmountProperty;
       this.soluteDescriber = soluteDescriber;
-      this.valuesVisibleProperty = valuesVisibleProperty;
+      this.useQuantitativeDescriptions = useQuantitativeDescriptions;
       this.currentRegion = null; // number -- the index of the descriptive region from SOLUTE_AMOUNT_STRINGS array.
       this.soluteAmountRegionChanged = null; // boolean -- tracks whether the descriptive volume region has just changed.
       this.soluteAmountChangeValue = null; // string -- describes whether volume has just increased or decreased
-      this.initialSoluteAmountAlert = true; // tracks whether the solute amount slider has just been focused
+      this.isInitialSoluteAmountAlert = true; // tracks whether the solute amount slider has just been focused
 
-      soluteAmountProperty.link( ( newValue, oldValue ) => {
+      this.soluteAmountProperty.link( ( newValue, oldValue ) => {
         assert && oldValue && assert( this.currentRegion === soluteAmountToIndex( oldValue ) );
         const oldRegion = this.currentRegion;
         this.currentRegion = soluteAmountToIndex( newValue );
@@ -86,7 +88,7 @@ define( require => {
      * @public
      */
     setInitialSoluteAmountAlert() {
-      this.initialSoluteAmountAlert = true;
+      this.isInitialSoluteAmountAlert = true;
     }
 
 
@@ -108,7 +110,7 @@ define( require => {
      * @returns {string} - quantitative or qualitative description of current soluteAmount.
      */
     getCurrentSoluteAmount() {
-      if ( this.valuesVisibleProperty.value ) {
+      if ( this.useQuantitativeDescriptions.value ) {
         return StringUtils.fillIn( soluteAmountAndUnitPatternString, {
           soluteAmount: Util.toFixed( this.soluteAmountProperty.value, MConstants.SOLUTE_AMOUNT_DECIMAL_PLACES )
         } );
@@ -165,11 +167,13 @@ define( require => {
      * @returns {string}
      */
     getSoluteAmountChangedValueText() {
-      if ( this.concentrationDescriber.getSaturationChangedString() ) {
+      if ( this.concentrationDescriber.isNewSaturationState() ) {
         return this.concentrationDescriber.getSaturationChangedString();
       }
       else {
-        return this.valuesVisibleProperty.value ? this.getQuantitativeAriaValueText() : this.getQualitativeAriaValueText();
+        return this.useQuantitativeDescriptions.value ?
+               this.getQuantitativeAriaValueText() :
+               this.getQualitativeAriaValueText();
       }
     }
 
@@ -182,9 +186,9 @@ define( require => {
       let string = quantitativeValueTextPatternString;
 
       // sets string to fill in right after slider is focused
-      if ( this.initialSoluteAmountAlert ) {
+      if ( this.isInitialSoluteAmountAlert ) {
         string = quantitativeInitialValueTextPatternString;
-        this.initialSoluteAmountAlert = false;
+        this.isInitialSoluteAmountAlert = false;
       }
 
       return StringUtils.fillIn( string, {
@@ -200,7 +204,7 @@ define( require => {
      * @returns {string}
      */
     getQualitativeAriaValueText() {
-      if ( this.concentrationDescriber.isSaturated ) {
+      if ( this.solution.isSaturated() ) {
         return StringUtils.fillIn( qualitativeSaturatedValueTextPatternString, {
           propertyAmountChange: this.getSoluteAmountChangeString(),
           solidsChange: this.concentrationDescriber.getSolidsChangeString(),

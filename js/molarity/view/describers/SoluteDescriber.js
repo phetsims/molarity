@@ -17,19 +17,18 @@ define( require => {
   const Util = require( 'DOT/Util' );
 
   // a11y strings
+  const concentrationAndUnitString = MolarityA11yStrings.concentrationAndUnit.value;
   const soluteChangedAlertPatternString = MolarityA11yStrings.soluteChangedAlertPattern.value;
 
   class SoluteDescriber {
 
     /**
      * @param {Property.<Solute>} soluteProperty - from Solution model element.
-     * @param {BooleanProperty} valuesVisibleProperty - whether values are visible in the view.
      */
-    constructor( soluteProperty, valuesVisibleProperty ) {
+    constructor( soluteProperty ) {
 
       // @private
       this.soluteProperty = soluteProperty;
-      this.valuesVisibleProperty = valuesVisibleProperty;
     }
 
     /**
@@ -67,8 +66,10 @@ define( require => {
     getSoluteChangedAlertString() {
       return StringUtils.fillIn( soluteChangedAlertPatternString, {
         solute: this.getCurrentSolute(),
-        maxConcentration: Util.toFixed( this.getCurrentSaturatedConcentration() > 5.0 ? 5.0 : this.getCurrentSaturatedConcentration(),
-          MConstants.CONCENTRATION_DECIMAL_PLACES )
+        maxConcentration: StringUtils.fillIn( concentrationAndUnitString, {
+          concentration: Util.toFixed( this.getCurrentSaturatedConcentration() > 5.0 ? 5.0 : this.getCurrentSaturatedConcentration(),
+            MConstants.CONCENTRATION_DECIMAL_PLACES )
+        } )
       } );
     }
   }

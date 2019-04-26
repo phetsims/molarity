@@ -17,38 +17,37 @@ define( require => {
   const Util = require( 'DOT/Util' );
 
   // strings
-  const volumeSliderValueTextPatternString = MolarityA11yStrings.volumeSliderValueTextPattern.value;
-  const volumeSliderValuesVisibleValueTextPatternString = MolarityA11yStrings.volumeSliderValuesVisibleValueTextPattern.value;
-  const volumeChangePatternString = MolarityA11yStrings.volumeChangePattern.value;
-  const solutionVolumeAndUnitPatternString = MolarityA11yStrings.solutionVolumeAndUnitPattern.value;
+  const qualitativeSaturatedValueTextPatternString = MolarityA11yStrings.qualitativeSaturatedValueTextPattern.value;
+  const qualitativeStateInfoPatternString = MolarityA11yStrings.qualitativeStateInfoPattern.value;
+  const qualitativeVolumeSliderValueTextPatternString = MolarityA11yStrings.qualitativeVolumeSliderValueTextPattern.value;
+  const qualitativeVolumeStatePatternString = MolarityA11yStrings.qualitativeVolumeStatePattern.value;
+  const qualitativeVolumeValueTextPatternString = MolarityA11yStrings.qualitativeVolumeValueTextPattern.value;
   const quantitativeInitialValueTextPatternString = MolarityA11yStrings.quantitativeInitialValueTextPattern.value;
   const quantitativeValueTextPatternString = MolarityA11yStrings.quantitativeValueTextPattern.value;
-  const qualitativeVolumeValueTextPatternString = MolarityA11yStrings.qualitativeVolumeValueTextPattern.value;
-  const qualitativeSaturatedValueTextPatternString = MolarityA11yStrings.qualitativeSaturatedValueTextPattern.value;
-  const qualitativeVolumeStatePatternString = MolarityA11yStrings.qualitativeVolumeStatePattern.value;
-  const qualitativeStateInfoPatternString = MolarityA11yStrings.qualitativeStateInfoPattern.value;
+  const quantitativeVolumeSliderValueTextPatternString = MolarityA11yStrings.quantitativeVolumeSliderValueTextPattern.value;
+  const solutionVolumeAndUnitPatternString = MolarityA11yStrings.solutionVolumeAndUnitPattern.value;
+  const volumeChangePatternString = MolarityA11yStrings.volumeChangePattern.value;
 
   // volume regions strings
-  const fullString = MolarityA11yStrings.fullString.value;
-  const halfFullString = MolarityA11yStrings.halfFullString.value;
-  const lowString = MolarityA11yStrings.lowString.value;
-  const nearlyEmptyString = MolarityA11yStrings.nearlyEmptyString.value;
-  const nearlyFullString = MolarityA11yStrings.nearlyFullString.value;
-  const overHalfString = MolarityA11yStrings.overHalfString.value;
-  const underHalfString = MolarityA11yStrings.underHalfString.value;
+  const fullString = MolarityA11yStrings.full.value;
+  const halfFullString = MolarityA11yStrings.halfFull.value;
+  const lowString = MolarityA11yStrings.low.value;
+  const nearlyEmptyString = MolarityA11yStrings.nearlyEmpty.value;
+  const nearlyFullString = MolarityA11yStrings.nearlyFull.value;
+  const overHalfFullString = MolarityA11yStrings.overHalfFull.value;
+  const underHalfFullString = MolarityA11yStrings.underHalfFull.value;
 
   // change strings
   const lessString = MolarityA11yStrings.lessString.value;
   const moreString = MolarityA11yStrings.moreString.value;
 
-
   // constants
   const VOLUME_STRINGS = [
     nearlyEmptyString,
     lowString,
-    underHalfString,
+    underHalfFullString,
     halfFullString,
-    overHalfString,
+    overHalfFullString,
     nearlyFullString,
     fullString
   ];
@@ -56,22 +55,23 @@ define( require => {
   class VolumeDescriber {
 
     /**
-     * @param {Property} volumeProperty - from Solution model element
+     * @param {Solution} solution - from model
      * @param {ConcentrationDescriber} concentrationDescriber
-     * @param {BooleanProperty} valuesVisibleProperty - whether values are visible in the view
+     * @param {BooleanProperty} useQuantitativeDescriptions
      */
-    constructor( volumeProperty, concentrationDescriber, valuesVisibleProperty ) {
+    constructor( solution, concentrationDescriber, useQuantitativeDescriptions ) {
 
       // @private
-      this.volumeProperty = volumeProperty;
+      this.solution = solution;
+      this.volumeProperty = solution.volumeProperty;
       this.concentrationDescriber = concentrationDescriber;
-      this.valuesVisibleProperty = valuesVisibleProperty;
+      this.useQuantitativeDescriptions = useQuantitativeDescriptions;
       this.currentRegion = null; // number -- the index of the descriptive region from VOLUME_STRINGS array.
       this.volumeRegionChanged = null; // boolean -- tracks whether the descriptive volume region has just changed.
       this.volumeChangeValue = null; // string -- describes whether volume has just increased or decreased
-      this.initialVolumeAlert = true; // tracks whether the volume slider has just been focused
+      this.isInitialVolumeAlert = true; // tracks whether the volume slider has just been focused
 
-      volumeProperty.link( ( newValue, oldValue ) => {
+      this.volumeProperty.link( ( newValue, oldValue ) => {
         assert && oldValue && assert( this.currentRegion === volumeToIndex( oldValue ) );
         const oldRegion = this.currentRegion;
         this.currentRegion = volumeToIndex( newValue );
@@ -85,7 +85,7 @@ define( require => {
      * @public
      */
     setInitialVolumeAlert() {
-      this.initialVolumeAlert = true;
+      this.isInitialVolumeAlert = true;
     }
 
     /**
@@ -94,7 +94,7 @@ define( require => {
      * @returns {string} - examples: "1.500 Liters" for quantitative or "half full" for qualitative.
      */
     getCurrentVolume() {
-      if ( this.valuesVisibleProperty.value ) {
+      if ( this.useQuantitativeDescriptions.value ) {
         return StringUtils.fillIn( solutionVolumeAndUnitPatternString, {
           volume: Util.toFixed( this.volumeProperty.value, MConstants.SOLUTION_VOLUME_DECIMAL_PLACES )
         } );
@@ -139,8 +139,8 @@ define( require => {
      * @returns {string}
      */
     getOnFocusVolumeAriaValueText() {
-      const string = this.valuesVisibleProperty.value ? volumeSliderValuesVisibleValueTextPatternString :
-                     volumeSliderValueTextPatternString;
+      const string = this.useQuantitativeDescriptions.value ? quantitativeVolumeSliderValueTextPatternString :
+                     qualitativeVolumeSliderValueTextPatternString;
       return StringUtils.fillIn( string, {
         volume: this.getCurrentVolume()
       } );
@@ -152,13 +152,13 @@ define( require => {
      * @returns {string}
      */
     getVolumeChangedValueText() {
-      if ( this.concentrationDescriber.getSaturationChangedString() ) {
+      if ( this.concentrationDescriber.isNewSaturationState() ) {
 
         // special strings are generated if the solution is either newly saturated or newly unsaturated
         return this.concentrationDescriber.getSaturationChangedString();
       }
       else {
-        return this.valuesVisibleProperty.value ? this.getQuantitativeAriaValueText() : this.getQualitativeAriaValueText();
+        return this.useQuantitativeDescriptions.value ? this.getQuantitativeAriaValueText() : this.getQualitativeAriaValueText();
       }
     }
 
@@ -171,9 +171,9 @@ define( require => {
       let string = quantitativeValueTextPatternString;
 
       // A different pattern is used when it's the first alert read out after the volume slider has been focused.
-      if ( this.initialVolumeAlert ) {
+      if ( this.isInitialVolumeAlert ) {
         string = quantitativeInitialValueTextPatternString;
-        this.initialVolumeAlert = false;
+        this.isInitialVolumeAlert = false;
       }
 
       return StringUtils.fillIn( string, {
@@ -189,7 +189,7 @@ define( require => {
      * @returns {string}
      */
     getQualitativeAriaValueText() {
-      if ( this.concentrationDescriber.isSaturated ) {
+      if ( this.solution.isSaturated() ) {
         return StringUtils.fillIn( qualitativeSaturatedValueTextPatternString, {
           propertyAmountChange: this.getVolumeChangeString(),
           solidsChange: this.concentrationDescriber.getSolidsChangeString(),

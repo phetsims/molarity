@@ -18,26 +18,33 @@ define( require => {
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
 
   // a11y strings
-  const aBunchString = MolarityA11yStrings.aBunchString.value; // TODO: include "of" in name
-  const aCoupleString = MolarityA11yStrings.aCoupleString.value;
-  const aFewString = MolarityA11yStrings.aFewString.value;
-  const aLotString = MolarityA11yStrings.aLotString.value;
-  const barelyConcentratedString = MolarityA11yStrings.barelyConcentratedString.value;
-  const concentratedString = MolarityA11yStrings.concentratedString.value;
-  const notConcentratedString = MolarityA11yStrings.notConcentratedString.value;
-  const slightlyConcentratedString = MolarityA11yStrings.slightlyConcentratedString.value;
-  const someString = MolarityA11yStrings.someString.value;
-  const stillSaturatedAlertPatternString = MolarityA11yStrings.stillSaturatedAlertPattern.value;
-  const veryConcentratedString = MolarityA11yStrings.veryConcentratedString.value;
-  const withSolidsAlertPatternString = MolarityA11yStrings.withSolidsAlertPattern.value;
+  const barelyConcentratedString = MolarityA11yStrings.barelyConcentrated.value;
+  const concentrationAndUnitString = MolarityA11yStrings.concentrationAndUnit.value;
   const concentrationChangePatternString = MolarityA11yStrings.concentrationChangePattern.value;
-  const solidsChangePatternString = MolarityA11yStrings.solidsChangePattern.value;
-  const lessString = MolarityA11yStrings.lessString.value;
-  const moreString = MolarityA11yStrings.moreString.value;
   const qualitativeConcentrationStatePatternString = MolarityA11yStrings.qualitativeConcentrationStatePattern.value;
   const quantitativeConcentrationStatePatternString = MolarityA11yStrings.quantitativeConcentrationStatePattern.value;
   const saturationLostAlertPatternString = MolarityA11yStrings.saturationLostAlertPattern.value;
-  const saturationReachedAlertString = MolarityA11yStrings.saturationReachedAlertString.value;
+  const saturationReachedAlertString = MolarityA11yStrings.saturationReachedAlert.value;
+  const stillSaturatedAlertPatternString = MolarityA11yStrings.stillSaturatedAlertPattern.value;
+  const withSolidsAlertPatternString = MolarityA11yStrings.withSolidsAlertPattern.value;
+
+  // Concentration region strings
+  const veryConcentratedString = MolarityA11yStrings.veryConcentrated.value;
+  const concentratedString = MolarityA11yStrings.concentrated.value;
+  const notConcentratedString = MolarityA11yStrings.notConcentrated.value;
+  const slightlyConcentratedString = MolarityA11yStrings.slightlyConcentrated.value;
+  const solidsChangePatternString = MolarityA11yStrings.solidsChangePattern.value;
+  const someString = MolarityA11yStrings.some.value;
+
+  // Solids region strings
+  const aBunchOfString = MolarityA11yStrings.aBunchOf.value;
+  const aCoupleOfString = MolarityA11yStrings.aCoupleOf.value;
+  const aFewString = MolarityA11yStrings.aFew.value;
+  const aLotOfString = MolarityA11yStrings.aLotOf.value;
+
+  // Change strings
+  const lessString = MolarityA11yStrings.less.value;
+  const moreString = MolarityA11yStrings.more.value;
 
   // constants
   const CONCENTRATION_STRINGS = [
@@ -49,32 +56,30 @@ define( require => {
   ];
 
   const SOLIDS_STRINGS = [
-    aCoupleString,
+    aCoupleOfString,
     aFewString,
     someString,
-    aBunchString,
-    aLotString
+    aBunchOfString,
+    aLotOfString
   ];
 
   class ConcentrationDescriber {
 
     /**
-     * @param {Property} concentrationProperty - from MolarityModel.
-     * @param {Property} soluteProperty - from MolarityModel.
-     * @param {Property} precipitateAmountProperty - from MolarityModel.
-     * @param {BooleanProperty} valuesVisibleProperty - whether values are visible in the view.
+     * @param {Solution} solution - from MolarityModel.
+     * @param {BooleanProperty} useQuantitativeDescriptions
      */
-    constructor( concentrationProperty, soluteProperty, precipitateAmountProperty, valuesVisibleProperty ) {
+    constructor( solution, useQuantitativeDescriptions ) {
 
       // @public
-      this.isSaturated = null; // boolean -- tracks whether the solution is saturated
       this.concentrationRegionChanged = null; // boolean - tracks whether the concentration descriptive region has changed
 
       // @private
-      this.soluteProperty = soluteProperty;
-      this.concentrationProperty = concentrationProperty;
-      this.precipitateAmountProperty = precipitateAmountProperty;
-      this.valuesVisibleProperty = valuesVisibleProperty;
+      this.solution = solution;
+      this.soluteProperty = solution.soluteProperty;
+      this.concentrationProperty = solution.concentrationProperty;
+      this.precipitateAmountProperty = solution.precipitateAmountProperty;
+      this.useQuantitativeDescriptions = useQuantitativeDescriptions;
       this.newSaturationState = false; // boolean -- tracks whether saturation has just changed
       this.concentrationRegion = null; // number - tracks the index of the last descriptive region for concentration
       this.concentrationChangeString = null; // string - tracks whether concentration has increased or decreased
@@ -86,10 +91,9 @@ define( require => {
         const previousConcentrationRegion = this.concentrationRegion;
         const saturatedConcentration = this.soluteProperty.value.saturatedConcentration;
         const newConcentrationRegion = concentrationToIndex( saturatedConcentration, this.concentrationProperty.value );
-        const previousSaturationState = oldValue > this.soluteProperty.value.saturatedConcentration;
-        const newSaturationState = newValue > this.soluteProperty.value.saturatedConcentration;
+        const previousSaturationState = oldValue >= this.soluteProperty.value.saturatedConcentration;
+        const newSaturationState = this.solution.isSaturated();
         this.newSaturationState = newSaturationState !== previousSaturationState;
-        this.isSaturated = newSaturationState;
         this.concentrationChangeString = newValue > oldValue ? moreString : lessString;
         this.concentrationRegionChanged = newConcentrationRegion !== previousConcentrationRegion;
       } );
@@ -99,7 +103,6 @@ define( require => {
         const previousSaturationState = oldValue > 0;
         const newSaturationState = newValue > 0;
         this.newSaturationState = newSaturationState !== previousSaturationState;
-        this.isSaturated = newSaturationState;
         this.solidsRegion = this.getCurrentSolidsAmount();
         this.solidsRegionChanged = this.solidsRegion !== previousSolidsRegion;
         this.solidsChangeString = newValue > oldValue ? moreString : lessString;
@@ -119,19 +122,24 @@ define( require => {
     }
 
     /**
+     * Getter for newSaturationState
+     * @public
+     * @returns {boolean} - whether or not the solution has been newly saturated or unsaturated
+     * */
+    isNewSaturationState() {
+      return this.newSaturationState;
+    }
+
+    /**
      * Creates the description strings that are read out when the solution is either newly saturated or newly unsaturated.
      * @public
-     * @returns {string | boolean} - returns a string if the saturation state has changed, otherwise returns false.
+     * @returns {string} - returns a string if the saturation state has changed
      * */
     getSaturationChangedString() {
-      if ( this.newSaturationState ) {
-        return this.isSaturated ? saturationReachedAlertString : StringUtils.fillIn( saturationLostAlertPatternString, {
-          concentration: this.getCurrentConcentration()
-        } );
-      }
-      else {
-        return false;
-      }
+      assert && assert( this.newSaturationState );
+      return this.solution.isSaturated() ? saturationReachedAlertString : StringUtils.fillIn( saturationLostAlertPatternString, {
+        concentration: this.getCurrentConcentration()
+      } );
     }
 
     /**
@@ -141,9 +149,9 @@ define( require => {
      * */
     getConcentrationState() {
       const concentration = this.concentrationProperty.value;
-      if ( this.valuesVisibleProperty.value ) {
+      if ( this.useQuantitativeDescriptions.value ) {
         return StringUtils.fillIn( quantitativeConcentrationStatePatternString, {
-          concentration: Util.toFixed( concentration, MConstants.CONCENTRATION_DECIMAL_PLACES )
+          concentration: this.getCurrentConcentration()
         } );
       }
       else {
@@ -170,12 +178,14 @@ define( require => {
     /**
      * Gets the current value of concentration either quantitatively or quantitatively to plug into descriptions.
      * @public
-     * @returns {number|string} - quantitative or qualitative description of current concentration (e.g. 1.500 or "very concentrated")
+     * @returns {string} - quantitative or qualitative description of current concentration (e.g. "1.500 Molar" or "very concentrated")
      */
     getCurrentConcentration() {
       const concentration = this.concentrationProperty.value;
-      if ( this.valuesVisibleProperty.value ) {
-        return Util.toFixed( concentration, MConstants.CONCENTRATION_DECIMAL_PLACES );
+      if ( this.useQuantitativeDescriptions.value ) {
+        return StringUtils.fillIn( concentrationAndUnitString, {
+          concentration: Util.toFixed( concentration, MConstants.CONCENTRATION_DECIMAL_PLACES )
+        } );
       }
       else {
         const index = concentrationToIndex( this.soluteProperty.value.saturatedConcentration, concentration );

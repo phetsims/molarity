@@ -20,49 +20,44 @@ define( require => {
 
   // a11y strings
   const beakerDescriptionString = MolarityA11yStrings.beakerDescription.value;
-  const notSaturatedString = MolarityA11yStrings.notSaturatedString.value;
-  const saturatedString = MolarityA11yStrings.saturatedString.value;
-  const concentrationPatternString = MolarityA11yStrings.concentrationPattern.value;
-  const concentrationValuesVisiblePatternString = MolarityA11yStrings.concentrationValuesVisiblePattern.value;
+  const concentrationAndUnitString = MolarityA11yStrings.concentrationAndUnit.value;
+  const notSaturatedString = MolarityA11yStrings.notSaturated.value;
+  const qualitativeConcentrationPatternString = MolarityA11yStrings.qualitativeConcentrationPattern.value;
+  const quantitativeConcentrationPatternString = MolarityA11yStrings.quantitativeConcentrationPattern.value;
+  const saturatedString = MolarityA11yStrings.saturated.value;
   const stateOfSimNoSolutePatternString = MolarityA11yStrings.stateOfSimNoSolutePattern.value;
   const stateOfSimPatternString = MolarityA11yStrings.stateOfSimPattern.value;
-  const showValuesCheckedAlertString = MolarityA11yStrings.showValuesCheckedAlert.value;
-  const showValuesUncheckedAlertString = MolarityA11yStrings.showValuesUncheckedAlert.value;
 
   class MolarityDescriber {
 
     /**
      * @param {Solution} solution - from MolarityModel.
-     * @param {BooleanProperty} valuesVisibleProperty - whether values are visible in the view.
+     * @param {BooleanDerivedProperty} useQuantitativeDescriptions
      */
-    constructor( solution, valuesVisibleProperty ) {
+    constructor( solution, useQuantitativeDescriptions ) {
 
       // @private
       this.solution = solution;
-      this.valuesVisibleProperty = valuesVisibleProperty;
+      this.useQuantitativeDescriptions = useQuantitativeDescriptions;
       this.concentrationDescriber = new ConcentrationDescriber(
-        solution.concentrationProperty,
-        solution.soluteProperty,
-        solution.precipitateAmountProperty,
-        valuesVisibleProperty
+        solution,
+        useQuantitativeDescriptions
       );
 
       // @public
       this.soluteDescriber = new SoluteDescriber(
-        solution.soluteProperty,
-        this.concentrationDescriber,
-        valuesVisibleProperty
+        solution.soluteProperty
       );
       this.volumeDescriber = new VolumeDescriber(
-        solution.volumeProperty,
+        solution,
         this.concentrationDescriber,
-        valuesVisibleProperty
+        useQuantitativeDescriptions
       );
       this.soluteAmountDescriber = new SoluteAmountDescriber(
-        solution.soluteAmountProperty,
+        solution,
         this.soluteDescriber,
         this.concentrationDescriber,
-        valuesVisibleProperty
+        useQuantitativeDescriptions
       );
     }
 
@@ -77,21 +72,14 @@ define( require => {
     }
 
     /**
-     * Creates the alert strings that are read out when the "show values" checkbox is newly checked or unchecked
-     *  @public
-     * @returns {string}
-     */
-    getValuesVisibleChangedAlertString() {
-      return this.valuesVisibleProperty.value ? showValuesCheckedAlertString : showValuesUncheckedAlertString;
-    }
-
-    /**
      * Creates the third paragraph of the screen summary description in the PDOM.
      * @public
      * @returns {string}
      */
     getStateOfSimDescription() {
-      const concentrationString = this.valuesVisibleProperty.value ? concentrationValuesVisiblePatternString : concentrationPatternString;
+      const concentrationString = this.useQuantitativeDescriptions.value ?
+                                  quantitativeConcentrationPatternString :
+                                  qualitativeConcentrationPatternString;
       const concentrationPattern = StringUtils.fillIn( concentrationString, {
         concentration: this.concentrationDescriber.getCurrentConcentration(),
         saturatedConcentration: this.concentrationDescriber.isSaturated ? saturatedString : notSaturatedString
@@ -123,7 +111,9 @@ define( require => {
       return StringUtils.fillIn( beakerDescriptionString, {
         solute: this.soluteDescriber.getCurrentSolute(),
         concentration: this.concentrationDescriber.getCurrentConcentration(),
-        maxConcentration: this.soluteDescriber.getCurrentSaturatedConcentration(),
+        maxConcentration: StringUtils.fillIn( concentrationAndUnitString, {
+          concentration: this.soluteDescriber.getCurrentSaturatedConcentration()
+        } ),
         chemicalFormula: this.soluteDescriber.getCurrentChemicalFormula()
       } );
     }

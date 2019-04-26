@@ -45,10 +45,10 @@ define( function( require ) {
     solutionVolumeAndUnitPattern: {
       value: '{{volume}} liters'
     },
-    concentrationValuesVisiblePattern: {
-      value: 'Concentration is {{concentration}} molar'
+    quantitativeConcentrationPattern: {
+      value: 'Concentration is {{concentration}}'
     },
-    concentrationPattern: {
+    qualitativeConcentrationPattern: {
       value: 'Solution is {{concentration}} and is {{saturatedConcentration}}'
     },
     beakerHeader: {
@@ -60,100 +60,99 @@ define( function( require ) {
     soluteComboBoxLabel: {
       value: 'Select Solute'
     },
-    solutionControlsLabelString: {
+    solutionControlsLabel: {
       value: 'Solution Controls'
     },
-    solutionControlsDescriptionString: {
+    solutionControlsDescription: {
       value: 'Solute Amount and Solution Volume sliders change solution in Beaker.'
     },
 
     // Volume regions
-    fullString: {
+    full: {
       value: 'full'
     },
-    nearlyFullString: {
+    nearlyFull: {
       value: 'nearly full'
     },
-    overHalfString: {
+    overHalfFull: {
       value: 'over half full'
     },
-    halfFullString: {
+    halfFull: {
       value: 'half full'
     },
-    underHalfString: {
+    underHalfFull: {
       value: 'under half full'
     },
-    lowString: {
+    low: {
       value: 'low'
     },
-    nearlyEmptyString: {
+    nearlyEmpty: {
       value: 'nearly empty'
     },
 
     // Solute Amount Regions
-    maxAmountString: {
+    theMaxAmountOf: {
       value: 'the max amount of'
     },
-    aLotString: {
+    aLotOf: {
       value: 'A lot of'
     },
-    aBunchString: {
+    aBunchOf: {
       value: 'A bunch of'
     },
-    someString: {
+    some: {
       value: 'Some'
     },
-    aLowString: {
+    aLowAmountOf: {
       value: 'A low amount of'
     },
-    aLittleString: {
+    aLittle: {
       value: 'A little'
     },
-    zeroString: {
+    zero: {
       value: 'zero'
     },
 
     // Solids regions
-    aCoupleString: {
+    aCoupleOf: {
       value: 'a couple of'
     },
-    aFewString: {
+    aFew: {
       value: 'a few'
     },
 
     // Concentration regions
-    // TODO: remove "concentrated" from these strings
-    notConcentratedString: {
+    notConcentrated: {
       value: 'not concentrated'
     },
-    barelyConcentratedString: {
+    barelyConcentrated: {
       value: 'barely concentrated'
     },
-    slightlyConcentratedString: {
+    slightlyConcentrated: {
       value: 'slightly concentrated'
     },
-    concentratedString: {
+    concentrated: {
       value: 'concentrated'
     },
-    veryConcentratedString: {
+    veryConcentrated: {
       value: 'very concentrated'
     },
-    saturatedString: {
+    saturated: {
       value: 'saturated'
     },
-    notSaturatedString: {
+    notSaturated: {
       value: 'not yet saturated'
     },
-    moreString: {
+    more: {
       value: 'More'
     },
-    lessString: {
+    less: {
       value: 'Less'
     },
-    solutionString: {
+    solution: {
       value: 'solution'
     },
-    soluteString: {
+    solute: {
       value: 'solute'
     },
     soluteAmountChangedPattern: {
@@ -175,13 +174,10 @@ define( function( require ) {
       value: '{{moreLess}} solute, {{lessMore}} solids. {{stateInfo}}'
     },
     soluteAmountSliderInitialAlertPattern: {
-      value: '{{moreLess}} concentrated. {{soluteAmount}} in solution. Concentration {{concentration}} Molar'
+      value: '{{moreLess}} concentrated. {{soluteAmount}} in solution. Concentration {{concentration}}.'
     },
     volumeSliderInitialAlertPattern: {
-      value: '{{concentrationChange}}. {{volume}} of solution in Beaker. Concentration {{concentration}} Molar'
-    },
-    concentrationChangePatternString: {
-      value: '{{moreLess}} concentrated.'
+      value: '{{concentrationChange}}. {{volume}} of solution in Beaker. Concentration {{concentration}}.'
     },
     stateInfoPattern: {
       value: '{{soluteAmountClause}}{{volumeClause}}. Solution {{concentration}}.'
@@ -198,10 +194,10 @@ define( function( require ) {
 
     // Quantitative value text strings for both volume and solute amount sliders
     quantitativeInitialValueTextPattern: {
-      value: '{{concentrationChange}}. {{quantity}} in solution. Concentration {{concentration}} Molar'
+      value: '{{concentrationChange}}. {{quantity}} in solution. Concentration {{concentration}}.'
     },
     quantitativeValueTextPattern: {
-      value: '{{quantity}}, {{concentrationChange}} at {{concentration}} Molar.'
+      value: '{{quantity}}, {{concentrationChange}} at {{concentration}}.'
     },
 
     // Quantitative value text strings for both volume and solute amount sliders
@@ -233,16 +229,16 @@ define( function( require ) {
       value: 'Solution {{concentration}}'
     },
     quantitativeConcentrationStatePattern: {
-      value: 'Concentration {{concentration}} Molar'
+      value: 'Concentration {{concentration}}'
     },
 
     soluteChangedAlertPattern: {
-      value: '{{solute}} concentration readout range 0.00 to {{maxConcentration}} Molar'
+      value: '{{solute}} concentration readout range 0.00 to {{maxConcentration}}'
     },
     soluteAmountSliderFocusAlertPattern: {
       value: '{{solute}} {{soluteAmount}} moles, Solute Amount slider'
     },
-    saturatedAlertString: {
+    saturatedAlert: {
       value: 'Solution saturated. Beyond max concentration, solids appear.'
     },
     stillSaturatedAlertPattern: {
@@ -260,25 +256,25 @@ define( function( require ) {
       value: '{{moreLess}} solids'
     },
 
-    saturationReachedAlertString: {
+    saturationReachedAlert: {
       value: 'Solution saturated. Beyond max concentration, solids appear.'
     },
     saturationLostAlertPattern: {
       value: 'Solution no longer saturated. Solution {{concentration}}, solids dissolve.'
     },
-    solidsString: {
+    solids: {
       value: 'solids'
     },
-    volumeSliderValuesVisibleValueTextPattern: {
+    quantitativeVolumeSliderValueTextPattern: {
       value: '{{volume}} in beaker'
     },
-    volumeSliderValueTextPattern: {
+    qualitativeVolumeSliderValueTextPattern: {
       value: 'Beaker {{volume}}'
     },
     soluteAmountSliderValueTextPattern: {
       value: '{{soluteAmount}} {{solute}}'
     },
-    noSoluteAlertString: {
+    noSoluteAlert: {
       value: 'No solute. Solution is pure water.'
     },
     sliderHelpHeading: {
@@ -316,6 +312,9 @@ define( function( require ) {
     },
     showValuesUncheckedAlert: {
       value: 'Values hidden.'
+    },
+    concentrationAndUnit: {
+      value: '{{concentration}} Molar'
     }
   };
 

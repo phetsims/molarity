@@ -15,6 +15,7 @@ define( function( require ) {
   const Checkbox = require( 'SUN/Checkbox' );
   const ConcentrationDisplay = require( 'MOLARITY/molarity/view/ConcentrationDisplay' );
   const ControlAreaNode = require( 'SCENERY_PHET/accessibility/nodes/ControlAreaNode' );
+  const DerivedProperty = require( 'AXON/DerivedProperty' );
   const Dimension2 = require( 'DOT/Dimension2' );
   const inherit = require( 'PHET_CORE/inherit' );
   const MConstants = require( 'MOLARITY/molarity/MConstants' );
@@ -54,11 +55,14 @@ define( function( require ) {
   const unitsMolesString = require( 'string!MOLARITY/units.moles' );
 
   // a11y strings
+  const showValuesCheckedAlertString = MolarityA11yStrings.showValuesCheckedAlert.value;
+  const showValuesUncheckedAlertString = MolarityA11yStrings.showValuesUncheckedAlert.value;
   const showValuesHelpTextString = MolarityA11yStrings.showValuesHelpText.value;
   const soluteAmountAccessibleNameString = MolarityA11yStrings.soluteAmountAccessibleName.value;
   const solutionVolumeAccessibleNameString = MolarityA11yStrings.solutionVolumeAccessibleName.value;
   const solutionControlsLabelString = MolarityA11yStrings.solutionControlsLabelString.value;
   const solutionControlsDescriptionString = MolarityA11yStrings.solutionControlsDescriptionString.value;
+
 
   // constants
   const SLIDER_TRACK_WIDTH = 12;
@@ -82,21 +86,26 @@ define( function( require ) {
       tandem: tandem.createTandem( 'valuesVisibleProperty' )
     } );
 
+    // Determines whether qualitative or quantitative a11y descriptions are used.
+    const useQuantitativeDescriptions = new DerivedProperty( [ valuesVisibleProperty ], () => {
+      return valuesVisibleProperty.value;
+    } );
+
     // a11y - an utterance that can be used whenever the state of the sim changes, using this
     // utterance will prevent the utteranceQueue from spamming alerts with this information
     const simStateUtterance = new Utterance();
 
-    // a11y - adds an alert when the solute is changed
-    valuesVisibleProperty.lazyLink( () => {
-      simStateUtterance.alert = molarityDescriber.getValuesVisibleChangedAlertString();
+    // a11y - adds an alert when the values visible checkbox is checked or unchecked
+    valuesVisibleProperty.lazyLink( newValue => {
+      simStateUtterance.alert = newValue ? showValuesCheckedAlertString : showValuesUncheckedAlertString;
       utteranceQueue.addToBack( simStateUtterance );
     } );
 
     // a11y - initializes describer
-    const molarityDescriber = new MolarityDescriber( model.solution, valuesVisibleProperty );
+    const molarityDescriber = new MolarityDescriber( model.solution, useQuantitativeDescriptions );
 
     // a11y - creates screen summary in the PDOM and add it to the screenView
-    const molarityScreenSummaryNode = new MolarityScreenSummaryNode( model, valuesVisibleProperty, molarityDescriber );
+    const molarityScreenSummaryNode = new MolarityScreenSummaryNode( model, useQuantitativeDescriptions, molarityDescriber );
     this.screenSummaryNode.addChild( molarityScreenSummaryNode );
 
     // beaker, with solution and precipitate inside of it
@@ -104,7 +113,7 @@ define( function( require ) {
       tandem.createTandem( 'beakerNode' ) );
 
     // a11y - update beaker description in the PDOM when model changes
-    Property.multilink( [ model.solution.soluteProperty, model.solution.concentrationProperty, valuesVisibleProperty ], () => {
+    Property.multilink( [ model.solution.soluteProperty, model.solution.concentrationProperty, useQuantitativeDescriptions ], () => {
       beakerNode.descriptionContent = molarityDescriber.getBeakerDescription();
     } );
 
@@ -200,11 +209,15 @@ define( function( require ) {
 
     // a11y - adds an alert when the solute is changed
     model.solution.soluteProperty.lazyLink( () => {
-      const saturationStateChangeUtterance = new Utterance();
-      saturationStateChangeUtterance.alert = molarityDescriber.concentrationDescriber.getSaturationChangedString();
       simStateUtterance.alert = molarityDescriber.soluteDescriber.getSoluteChangedAlertString();
       utteranceQueue.addToBack( simStateUtterance );
-      saturationStateChangeUtterance && utteranceQueue.addToBack( saturationStateChangeUtterance );
+      if ( molarityDescriber.concentrationDescriber.isNewSaturationState() ) {
+
+        // An alert is read out if the change in solute caused a change in saturation state
+        const saturationStateChangeUtterance = new Utterance();
+        saturationStateChangeUtterance.alert = molarityDescriber.concentrationDescriber.getSaturationChangedString();
+        utteranceQueue.addToBack( saturationStateChangeUtterance );
+      }
     } );
 
     // a11y - contains PDOM heading for Play Area, and orders the PDOM for included elements
