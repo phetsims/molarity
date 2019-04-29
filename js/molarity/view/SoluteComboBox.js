@@ -13,6 +13,7 @@ define( function( require ) {
   const ComboBoxItem = require( 'SUN/ComboBoxItem' );
   const HBox = require( 'SCENERY/nodes/HBox' );
   const molarity = require( 'MOLARITY/molarity' );
+  const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
   const Rectangle = require( 'SCENERY/nodes/Rectangle' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
@@ -21,6 +22,9 @@ define( function( require ) {
   // strings
   const pattern0LabelString = require( 'string!MOLARITY/pattern.0label' );
   const soluteString = require( 'string!MOLARITY/solute' );
+
+  // a11y strings
+  const soluteComboBoxHelpTextString = MolarityA11yStrings.soluteComboBoxHelpText.value;
 
   class SoluteComboBox extends ComboBox {
     /**
@@ -42,7 +46,8 @@ define( function( require ) {
         highlightFill: 'rgb( 218, 255, 255 )',
 
         // a11y
-        buttonAccessibleName: 'Solute'
+        accessibleName: soluteString,
+        helpText: soluteComboBoxHelpTextString
       }, options );
 
       assert && assert( !options.tandem, 'tandem is a required constructor parameter' );

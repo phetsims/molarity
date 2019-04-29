@@ -54,6 +54,12 @@ define( function( require ) {
     beakerHeader: {
       value: 'Beaker'
     },
+    soluteComboBoxHelpText: {
+      value: 'Choose one of nine solutes to play with in beaker.'
+    },
+    soluteComboBoxLabel: {
+      value: 'Select Solute'
+    },
     beakerDescription: {
       value: 'Solution Concentration of {{solute}} Is {{concentration}}. Concentration readout range is 0.00 to {{maxConcentration}}. The chemical formula for {{solute}} is {{chemicalFormula}}.'
     },
