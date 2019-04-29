@@ -42,8 +42,7 @@ define( function( require ) {
         highlightFill: 'rgb( 218, 255, 255 )',
 
         // a11y
-        buttonLabelContent: 'Solute'
-
+        buttonAccessibleName: 'Solute'
       }, options );
 
       assert && assert( !options.tandem, 'tandem is a required constructor parameter' );
