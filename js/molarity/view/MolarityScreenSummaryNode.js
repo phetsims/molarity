@@ -16,35 +16,81 @@ define( require => {
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
 
   // a11y strings
+  const saturatedString = MolarityA11yStrings.saturated.value;
+  const notSaturatedString = MolarityA11yStrings.notSaturated.value;
+  const qualitativeConcentrationPatternString = MolarityA11yStrings.qualitativeConcentrationPattern.value;
+  const quantitativeConcentrationPatternString = MolarityA11yStrings.quantitativeConcentrationPattern.value;
   const screenSummaryFirstParagraphPatternString = MolarityA11yStrings.screenSummaryFirstParagraphPattern.value;
+  const stateOfSimNoSolutePatternString = MolarityA11yStrings.stateOfSimNoSolutePattern.value;
+  const stateOfSimPatternString = MolarityA11yStrings.stateOfSimPattern.value;
 
   class MolarityScreenSummaryNode extends Node {
 
     /**
-     * @param {MolarityModel} model
-     * @param {Property.<boolean>} valuesVisibleProperty - tracks whether the values are visible
-     * @param {MolarityDescriber} molarityDescriber
+     * @param {Solution} solution -- from MolarityModel
+     * @param {Array} solutes -- from MolarityModel
+     * @param {Property.<boolean>} useQuantitativeDescriptions- tracks whether the values are visible
+     * @param {ConcentrationDescriber} concentrationDescriber
+     * @param {SoluteAmountDescriber} soluteAmountDescriber
+     * @param {SoluteDescriber} soluteDescriber
+     * @param {VolumeDescriber} volumeDescriber
      */
-    constructor( model, valuesVisibleProperty, molarityDescriber ) {
+    constructor( solution, solutes, useQuantitativeDescriptions, concentrationDescriber, soluteAmountDescriber,
+                 soluteDescriber, volumeDescriber ) {
 
       super();
 
+      //@private
+      this.solution = solution;
+      this.useQuantitativeDescriptions = useQuantitativeDescriptions;
+      this.concentrationDescriber = concentrationDescriber;
+      this.soluteAmountDescriber = soluteAmountDescriber;
+      this.soluteDescriber = soluteDescriber;
+      this.volumeDescriber = volumeDescriber;
+
+      // First paragraph of the screen summary -- static regardless of state of sim.
       this.addChild( new Node( {
         tagName: 'p',
         innerContent: StringUtils.fillIn( screenSummaryFirstParagraphPatternString, {
-          numberOfSolutes: model.solutes.length
+          numberOfSolutes: solutes.length
         } )
       } ) );
 
       const stateOfSimNode = new Node( {
         tagName: 'p'
       } );
-
       this.addChild( stateOfSimNode );
 
-      Property.multilink( [ model.solution.soluteProperty, model.solution.volumeProperty,
-        model.solution.soluteAmountProperty, model.solution.concentrationProperty, valuesVisibleProperty ], () => {
-        stateOfSimNode.innerContent = molarityDescriber.getStateOfSimDescription();
+      // Third paragraph of the screen summary -- updated when model properties change.
+      Property.multilink( [ solution.soluteProperty, solution.volumeProperty,
+        solution.soluteAmountProperty, solution.concentrationProperty, useQuantitativeDescriptions ], () => {
+        stateOfSimNode.innerContent = this.stateOfSimDescription();
+      } );
+    }
+
+    stateOfSimDescription() {
+      const concentrationString = this.useQuantitativeDescriptions.value ?
+                                  quantitativeConcentrationPatternString :
+                                  qualitativeConcentrationPatternString;
+      const concentrationPattern = StringUtils.fillIn( concentrationString, {
+        concentration: this.concentrationDescriber.getCurrentConcentration(),
+        saturatedConcentration: this.solution.isSaturated() ? saturatedString : notSaturatedString
+      } );
+
+      // If there is no solute in the beaker, a special state description is returned.
+      if ( this.solution.soluteAmountProperty.value === 0 ) {
+        return StringUtils.fillIn( stateOfSimNoSolutePatternString, {
+          volume: this.volumeDescriber.getCurrentVolume(),
+          solute: this.soluteDescriber.getCurrentSolute()
+        } );
+      }
+
+      return StringUtils.fillIn( stateOfSimPatternString, {
+        volume: this.volumeDescriber.getCurrentVolume(),
+        solute: this.soluteDescriber.getCurrentSolute(),
+        soluteAmount: this.soluteAmountDescriber.getCurrentSoluteAmount(),
+        concentrationClause: concentrationPattern,
+        saturatedConcentration: this.concentrationDescriber.isSaturated ? saturatedString : ''
       } );
     }
   }

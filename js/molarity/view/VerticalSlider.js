@@ -10,28 +10,28 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var Color = require( 'SCENERY/util/Color' );
-  var Dimension2 = require( 'DOT/Dimension2' );
-  var DualLabelNode = require( 'MOLARITY/molarity/view/DualLabelNode' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var MConstants = require( 'MOLARITY/molarity/MConstants' );
-  var molarity = require( 'MOLARITY/molarity' );
-  var MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  var Text = require( 'SCENERY/nodes/Text' );
-  var Util = require( 'DOT/Util' );
-  var VSlider = require( 'SUN/VSlider' );
+  const Color = require( 'SCENERY/util/Color' );
+  const Dimension2 = require( 'DOT/Dimension2' );
+  const DualLabelNode = require( 'MOLARITY/molarity/view/DualLabelNode' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const MConstants = require( 'MOLARITY/molarity/MConstants' );
+  const molarity = require( 'MOLARITY/molarity' );
+  const MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  const Text = require( 'SCENERY/nodes/Text' );
+  const Util = require( 'DOT/Util' );
+  const VSlider = require( 'SUN/VSlider' );
 
   // strings
-  var pattern0Value1UnitsString = require( 'string!MOLARITY/pattern.0value.1units' );
+  const pattern0Value1UnitsString = require( 'string!MOLARITY/pattern.0value.1units' );
 
   // constants
-  var RANGE_FONT = new PhetFont( 20 );
-  var THUMB_NORMAL_COLOR = new Color( 89, 156, 212 );
-  var THUMB_HIGHLIGHT_COLOR = THUMB_NORMAL_COLOR.brighterColor();
-  var MAX_TEXT_WIDTH = 120; // constrain text for i18n, determined empirically
+  const RANGE_FONT = new PhetFont( 20 );
+  const THUMB_NORMAL_COLOR = new Color( 89, 156, 212 );
+  const THUMB_HIGHLIGHT_COLOR = THUMB_NORMAL_COLOR.brighterColor();
+  const MAX_TEXT_WIDTH = 120; // constrain text for i18n, determined empirically
 
   /**
    * @param {string} title
@@ -45,38 +45,39 @@ define( function( require ) {
    * @param {string} units
    * @param {Property.<boolean>} valuesVisibleProperty
    * @param {Tandem} tandem
-   * @param {string} accessibleName
-   * @param {function} getOnFocusAriaValueText
-   * @param {function} getOnChangeAriaValueText
+   * @param {string} accessibleName - a11y
+   * @param {string} helpText - a11y
+   * @param {function} getOnFocusAriaValueText - a11y
+   * @param {function} getOnChangeAriaValueText - a11y
+   * @param {function} setInitialAlert - a11y: used to trigger the alert read out right after slider is focused
    * @param {Property} soluteProperty
-   * @param {MolarityDescriber} molarityDescriber
    * @constructor
    */
   function VerticalSlider( title, subtitle, minLabel, maxLabel, trackSize, property, range,
-                           decimalPlaces, units, valuesVisibleProperty, tandem, accessibleName, getOnFocusAriaValueText,
-                           getOnChangeAriaValueText, soluteProperty, molarityDescriber ) {
+                           decimalPlaces, units, valuesVisibleProperty, tandem, accessibleName, helpText,
+                           getOnFocusAriaValueText, getOnChangeAriaValueText, setInitialAlert, soluteProperty ) {
 
-    var titleNode = new MultiLineText( title, {
+    const titleNode = new MultiLineText( title, {
       font: new PhetFont( { size: 24, weight: 'bold' } ),
       maxWidth: MAX_TEXT_WIDTH,
       tandem: tandem.createTandem( 'titleNode' )
     } );
 
-    var subtitleNode = new Text( subtitle, {
+    const subtitleNode = new Text( subtitle, {
       font: new PhetFont( 22 ),
       maxWidth: MAX_TEXT_WIDTH,
       tandem: tandem.createTandem( 'subtitleNode' )
     } );
 
-    var minNode = new DualLabelNode( Util.toFixed( range.min, range.min === 0 ? 0 : MConstants.RANGE_DECIMAL_PLACES ),
+    const minNode = new DualLabelNode( Util.toFixed( range.min, range.min === 0 ? 0 : MConstants.RANGE_DECIMAL_PLACES ),
       minLabel, valuesVisibleProperty, RANGE_FONT, tandem.createTandem( 'minNode' ),
       { maxWidth: MAX_TEXT_WIDTH } );
 
-    var maxNode = new DualLabelNode( Util.toFixed( range.max, MConstants.RANGE_DECIMAL_PLACES ),
+    const maxNode = new DualLabelNode( Util.toFixed( range.max, MConstants.RANGE_DECIMAL_PLACES ),
       maxLabel, valuesVisibleProperty, RANGE_FONT, tandem.createTandem( 'maxNode' ),
       { maxWidth: MAX_TEXT_WIDTH } );
 
-    var sliderNode = new VSlider( property, range, {
+    const sliderNode = new VSlider( property, range, {
       trackSize: new Dimension2( trackSize.height, trackSize.width ), // swap dimensions
       trackFillEnabled: 'black',
       trackStroke: 'rgb( 200, 200, 200 )',
@@ -90,6 +91,8 @@ define( function( require ) {
       // a11y
       shiftKeyboardStep: Math.pow( 10, decimalPlaces * -1 ),
       accessibleName: accessibleName,
+      helpText: helpText,
+      appendDescription: true,
       keyboardStep: 0.050,
       a11yCreateOnFocusAriaValueText: getOnFocusAriaValueText,
       a11yCreateValueChangeAriaValueText: getOnChangeAriaValueText,
@@ -98,17 +101,17 @@ define( function( require ) {
 
     // a11y - sets the initial alert status of the describer to true (a special alert is read on initial slider change)
     sliderNode.addInputListener( {
-      focus: () => molarityDescriber.setInitialAlert()
+      focus: setInitialAlert
     } );
 
-    var valueNode = new Text( '?', {
+    const valueNode = new Text( '?', {
       font: new PhetFont( 20 ),
       maxWidth: 90, // constrain for i18n, determined empirically
       tandem: tandem.createTandem( 'valueNode' )
     } );
 
     // layout
-    var centerX = sliderNode.centerX;
+    const centerX = sliderNode.centerX;
     maxNode.centerX = sliderNode.centerX;
     maxNode.bottom = sliderNode.top;
     minNode.centerX = maxNode.centerX;
@@ -125,7 +128,7 @@ define( function( require ) {
     } );
 
     // Update the value display, and position it relative to the track, so it's to the right of the slider thumb.
-    var trackMinY = sliderNode.centerY - ( trackSize.height / 2 );
+    const trackMinY = sliderNode.centerY - ( trackSize.height / 2 );
     property.link( function( value ) {
       valueNode.text = StringUtils.format( pattern0Value1UnitsString, Util.toFixed( value, decimalPlaces ), units );
       valueNode.centerY = trackMinY + Util.linear( range.min, range.max, trackSize.height, 0, value );

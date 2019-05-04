@@ -51,7 +51,7 @@ define( require => {
 
     /**
      * Gets the chemical formula of the currently selected solute.
-     * @private
+     * @public
      * @returns {string}
      */
     getCurrentChemicalFormula() {

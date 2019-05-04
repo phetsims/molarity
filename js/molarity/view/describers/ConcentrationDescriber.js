@@ -98,6 +98,7 @@ define( require => {
         this.concentrationRegionChanged = newConcentrationRegion !== previousConcentrationRegion;
       } );
 
+      //TODO: factor out into solids describer?
       this.precipitateAmountProperty.link( ( newValue, oldValue ) => {
         const previousSolidsRegion = this.solidsRegion;
         const previousSaturationState = oldValue > 0;

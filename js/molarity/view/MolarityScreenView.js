@@ -13,6 +13,7 @@ define( function( require ) {
   const BooleanProperty = require( 'AXON/BooleanProperty' );
   const Bounds2 = require( 'DOT/Bounds2' );
   const Checkbox = require( 'SUN/Checkbox' );
+  const ConcentrationDescriber = require( 'MOLARITY/molarity/view/describers/ConcentrationDescriber' );
   const ConcentrationDisplay = require( 'MOLARITY/molarity/view/ConcentrationDisplay' );
   const ControlAreaNode = require( 'SCENERY_PHET/accessibility/nodes/ControlAreaNode' );
   const DerivedProperty = require( 'AXON/DerivedProperty' );
@@ -31,14 +32,16 @@ define( function( require ) {
   const SaturatedIndicator = require( 'MOLARITY/molarity/view/SaturatedIndicator' );
   const ScreenView = require( 'JOIST/ScreenView' );
   const Shape = require( 'KITE/Shape' );
+  const SoluteAmountDescriber = require( 'MOLARITY/molarity/view/describers/SoluteAmountDescriber' );
   const SoluteComboBox = require( 'MOLARITY/molarity/view/SoluteComboBox' );
-  const MolarityDescriber = require( 'MOLARITY/molarity/view/describers/MolarityDescriber' );
+  const SoluteDescriber = require( 'MOLARITY/molarity/view/describers/SoluteDescriber' );
   const SolutionNode = require( 'MOLARITY/molarity/view/SolutionNode' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const Text = require( 'SCENERY/nodes/Text' );
   const Utterance = require( 'SCENERY_PHET/accessibility/Utterance' );
   const utteranceQueue = require( 'SCENERY_PHET/accessibility/utteranceQueue' );
   const VerticalSlider = require( 'MOLARITY/molarity/view/VerticalSlider' );
+  const VolumeDescriber = require( 'MOLARITY/molarity/view/describers/VolumeDescriber' );
 
   // strings
   const fullString = require( 'string!MOLARITY/full' );
@@ -55,14 +58,17 @@ define( function( require ) {
   const unitsMolesString = require( 'string!MOLARITY/units.moles' );
 
   // a11y strings
+  const beakerDescriptionString = MolarityA11yStrings.beakerDescription.value;
+  const concentrationAndUnitString = MolarityA11yStrings.concentrationAndUnit.value;
   const showValuesCheckedAlertString = MolarityA11yStrings.showValuesCheckedAlert.value;
   const showValuesUncheckedAlertString = MolarityA11yStrings.showValuesUncheckedAlert.value;
   const showValuesHelpTextString = MolarityA11yStrings.showValuesHelpText.value;
   const soluteAmountAccessibleNameString = MolarityA11yStrings.soluteAmountAccessibleName.value;
   const solutionVolumeAccessibleNameString = MolarityA11yStrings.solutionVolumeAccessibleName.value;
   const solutionControlsLabelString = MolarityA11yStrings.solutionControlsLabel.value;
-  const solutionControlsDescriptionString = MolarityA11yStrings.solutionControlsDescription.value;
-
+  const solutionControlsHelpTextString = MolarityA11yStrings.solutionControlsHelpText.value;
+  const soluteAmountHelpTextString = MolarityA11yStrings.soluteAmountHelpText.value;
+  const solutionVolumeHelpTextString = MolarityA11yStrings.solutionVolumeHelpText.value;
 
   // constants
   const SLIDER_TRACK_WIDTH = 12;
@@ -101,20 +107,38 @@ define( function( require ) {
       utteranceQueue.addToBack( simStateUtterance );
     } );
 
-    // a11y - initializes describer
-    const molarityDescriber = new MolarityDescriber( model.solution, useQuantitativeDescriptions );
+    // a11y - initializes describers
+    const concentrationDescriber = new ConcentrationDescriber( model.solution, useQuantitativeDescriptions );
+    const soluteDescriber = new SoluteDescriber( model.solution.soluteProperty );
+    const volumeDescriber = new VolumeDescriber( model.solution, concentrationDescriber, useQuantitativeDescriptions );
+    const soluteAmountDescriber = new SoluteAmountDescriber( model.solution, soluteDescriber, concentrationDescriber,
+      useQuantitativeDescriptions
+    );
+
 
     // a11y - creates screen summary in the PDOM and add it to the screenView
-    const molarityScreenSummaryNode = new MolarityScreenSummaryNode( model, useQuantitativeDescriptions, molarityDescriber );
+    const molarityScreenSummaryNode = new MolarityScreenSummaryNode( model.solution, model.solutes,
+      useQuantitativeDescriptions, concentrationDescriber, soluteAmountDescriber, soluteDescriber, volumeDescriber );
     this.screenSummaryNode.addChild( molarityScreenSummaryNode );
 
     // beaker, with solution and precipitate inside of it
     const beakerNode = new BeakerNode( model.solution, MConstants.SOLUTION_VOLUME_RANGE.max, valuesVisibleProperty,
       tandem.createTandem( 'beakerNode' ) );
 
-    // a11y - update beaker description in the PDOM when model changes
+    // a11y - updates PDOM beaker description when solute, concentration, or quantitative description properties change
+    const getBeakerDescription = () => {
+      return StringUtils.fillIn( beakerDescriptionString, {
+        solute: soluteDescriber.getCurrentSolute(),
+        concentration: concentrationDescriber.getCurrentConcentration(),
+        maxConcentration: StringUtils.fillIn( concentrationAndUnitString, {
+          concentration: soluteDescriber.getCurrentSaturatedConcentration()
+        } ),
+        chemicalFormula: soluteDescriber.getCurrentChemicalFormula()
+      } );
+    };
+
     Property.multilink( [ model.solution.soluteProperty, model.solution.concentrationProperty, useQuantitativeDescriptions ], () => {
-      beakerNode.descriptionContent = molarityDescriber.getBeakerDescription();
+      beakerNode.descriptionContent = getBeakerDescription();
     } );
 
     const cylinderSize = beakerNode.getCylinderSize();
@@ -143,10 +167,11 @@ define( function( require ) {
       valuesVisibleProperty,
       tandem.createTandem( 'soluteAmountSlider' ),
       soluteAmountAccessibleNameString,
-      () => molarityDescriber.soluteAmountDescriber.getOnFocusSoluteAmountAriaValueText(),
-      () => molarityDescriber.soluteAmountDescriber.getSoluteAmountChangedValueText(),
-      model.solution.soluteProperty,
-      molarityDescriber
+      soluteAmountHelpTextString,
+      () => soluteAmountDescriber.getOnFocusSoluteAmountAriaValueText(),
+      () => soluteAmountDescriber.getSoluteAmountChangedValueText(),
+      () => soluteAmountDescriber.setInitialSoluteAmountAlert(),
+      model.solution.soluteProperty
     );
 
     // slider for controlling volume of solution, sized to match tick marks on the beaker
@@ -162,10 +187,11 @@ define( function( require ) {
       valuesVisibleProperty,
       tandem.createTandem( 'solutionVolumeSlider' ),
       solutionVolumeAccessibleNameString,
-      () => molarityDescriber.volumeDescriber.getOnFocusVolumeAriaValueText(),
-      () => molarityDescriber.volumeDescriber.getVolumeChangedValueText(),
-      model.solution.soluteProperty,
-      molarityDescriber
+      solutionVolumeHelpTextString,
+      () => volumeDescriber.getOnFocusVolumeAriaValueText(),
+      () => volumeDescriber.getVolumeChangedValueText(),
+      () => volumeDescriber.setInitialVolumeAlert(),
+      model.solution.soluteProperty
     );
 
     // concentration display
@@ -203,19 +229,19 @@ define( function( require ) {
       tagName: 'div',
       labelTagName: 'h3',
       labelContent: solutionControlsLabelString,
-      descriptionContent: solutionControlsDescriptionString
+      descriptionContent: solutionControlsHelpTextString
     } );
     solutionControlsNode.accessibleOrder = [ soluteAmountSlider, solutionVolumeSlider ];
 
     // a11y - adds an alert when the solute is changed
     model.solution.soluteProperty.lazyLink( () => {
-      simStateUtterance.alert = molarityDescriber.soluteDescriber.getSoluteChangedAlertString();
+      simStateUtterance.alert = soluteDescriber.getSoluteChangedAlertString();
       utteranceQueue.addToBack( simStateUtterance );
-      if ( molarityDescriber.concentrationDescriber.isNewSaturationState() ) {
+      if ( concentrationDescriber.isNewSaturationState() ) {
 
         // An alert is read out if the change in solute caused a change in saturation state
         const saturationStateChangeUtterance = new Utterance();
-        saturationStateChangeUtterance.alert = molarityDescriber.concentrationDescriber.getSaturationChangedString();
+        saturationStateChangeUtterance.alert = concentrationDescriber.getSaturationChangedString();
         utteranceQueue.addToBack( saturationStateChangeUtterance );
       }
     } );

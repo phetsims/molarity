@@ -106,7 +106,7 @@ define( require => {
     /**
      * Gets the current value of soluteAmount either quantitatively or quantitatively to plug into descriptions.
      * Examples: "3.400 Moles" for quantitative or "A lot of" for qualitative
-     * @private
+     * @public
      * @returns {string} - quantitative or qualitative description of current soluteAmount.
      */
     getCurrentSoluteAmount() {

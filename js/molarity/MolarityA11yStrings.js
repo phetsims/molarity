@@ -15,15 +15,43 @@ define( function( require ) {
   const molarity = require( 'MOLARITY/molarity' );
 
   const MolarityA11yStrings = {
+    more: {
+      value: 'More'
+    },
+    less: {
+      value: 'Less'
+    },
+    solute: {
+      value: 'solute'
+    },
+    soluteAmountAccessibleName: {
+      value: 'Solute Amount Slider'
+    },
+    solutionVolumeAccessibleName: {
+      value: 'Solution Volume Slider'
+    },
+    solutionControlsLabel: {
+      value: 'Solution Controls'
+    },
+
+    // Help text strings
     showValuesHelpText: {
       value: 'Explore with values shown.'
     },
-    soluteAmountAccessibleName: {
-      value: 'Solute Amount'
+    solutionControlsHelpText: {
+      value: 'Solute Amount and Solution Volume sliders change solution in Beaker.'
     },
-    solutionVolumeAccessibleName: {
-      value: 'Solution Volume'
+    soluteAmountHelpText: {
+      value: 'Explore how changing Solute Amount affects solution in Beaker.'
     },
+    solutionVolumeHelpText: {
+      value: 'Explore how changing Solution Volume affects solution in Beaker.'
+    },
+    soluteComboBoxHelpText: {
+      value: 'Choose one of nine solutes to play with in beaker.'
+    },
+
+    // Screen summary strings
     screenSummaryFirstParagraphPattern: {
       value: 'In the Play Area, you find a beaker containing a solution, and a concentration readout. You can adjust the amount of solute in the solution and the solution volume. You can also choose from nine different solutes to include in your solution. In the Control Area there is a checkbox to show the exact values for amount of solute (in moles), volume of solution (in liters), and concentration (Molar), and a button to reset the sim.'
     },
@@ -31,46 +59,15 @@ define( function( require ) {
       value: 'Currently, beaker is {{volume}} of a {{saturatedConcentration}} {{solute}} ‬solution containing {{soluteAmount}} ‪{{solute}}‬ solute. {{concentrationClause}}.'
     },
     stateOfSimNoSolutePattern: {
-      value: 'Beaker is {{volume}} of water. {{solute}} is selected, but no {{solute}} is in the beaker.”'
+      value: 'Beaker is {{volume}} of water. {{solute}} is selected, but no {{solute}} is in the beaker.'
     },
-    soluteAmountAndUnitPattern: {
-      value: '{{soluteAmount}} moles'
-    },
-    soluteAmountPattern: {
-      value: 'Solute amount is {{soluteAmount}}.'
-    },
-    solutionVolumePattern: {
-      value: 'Solution is {{volume}}.'
-    },
-    solutionVolumeAndUnitPattern: {
-      value: '{{volume}} liters'
-    },
-    quantitativeConcentrationPattern: {
-      value: 'Concentration is {{concentration}}'
-    },
-    qualitativeConcentrationPattern: {
-      value: 'Solution is {{concentration}} and is {{saturatedConcentration}}'
-    },
+
+    // Beaker description strings
     beakerHeader: {
       value: 'Beaker'
     },
-    soluteComboBoxHelpText: {
-      value: 'Choose one of nine solutes to play with in beaker.'
-    },
-    soluteComboBoxLabel: {
-      value: 'Select Solute'
-    },
     beakerDescription: {
       value: 'Solution Concentration of {{solute}} Is {{concentration}}. Concentration readout range is 0.00 to {{maxConcentration}}. The chemical formula for {{solute}} is {{chemicalFormula}}.'
-    },
-    soluteComboBoxLabel: {
-      value: 'Select Solute'
-    },
-    solutionControlsLabel: {
-      value: 'Solution Controls'
-    },
-    solutionControlsDescription: {
-      value: 'Solute Amount and Solution Volume sliders change solution in Beaker.'
     },
 
     // Volume regions
@@ -149,54 +146,6 @@ define( function( require ) {
     notSaturated: {
       value: 'not yet saturated'
     },
-    more: {
-      value: 'More'
-    },
-    less: {
-      value: 'Less'
-    },
-    solution: {
-      value: 'solution'
-    },
-    solute: {
-      value: 'solute'
-    },
-    soluteAmountChangedPattern: {
-      value: '{{moreLess}} solute'
-    },
-    volumeChangePattern: {
-      value: '{{moreLess}} solution'
-    },
-    volumeSliderMovedAlertPattern: {
-      value: '{{moreLess}} solution, {{lessMore}} concentrated. {{stateInfo}}'
-    },
-    soluteAmountSliderMovedAlertPattern: {
-      value: '{{moreLess}} solute, {{lessMore}} concentrated. {{stateInfo}}'
-    },
-    volumeSliderMovedSolidsAlertPattern: {
-      value: '{{moreLess}} solution, {{lessMore}} solids. {{stateInfo}}'
-    },
-    soluteAmountSliderMovedSolidsAlertPattern: {
-      value: '{{moreLess}} solute, {{lessMore}} solids. {{stateInfo}}'
-    },
-    soluteAmountSliderInitialAlertPattern: {
-      value: '{{moreLess}} concentrated. {{soluteAmount}} in solution. Concentration {{concentration}}.'
-    },
-    volumeSliderInitialAlertPattern: {
-      value: '{{concentrationChange}}. {{volume}} of solution in Beaker. Concentration {{concentration}}.'
-    },
-    stateInfoPattern: {
-      value: '{{soluteAmountClause}}{{volumeClause}}. Solution {{concentration}}.'
-    },
-    soluteAmountStateInfoPattern: {
-      value: '{{soluteAmount}} of {{solute}}. Solution {{concentration}}'
-    },
-    volumeStateInfoPattern: {
-      value: 'Beaker {{volume}}. Solution {{concentration}}'
-    },
-    sliderAlertStateInfoValuesVisiblePattern: {
-      value: '{{quantity}}, {{concentrationChange}} at {{concentration}} Molar.'
-    },
 
     // Quantitative value text strings for both volume and solute amount sliders
     quantitativeInitialValueTextPattern: {
@@ -205,8 +154,17 @@ define( function( require ) {
     quantitativeValueTextPattern: {
       value: '{{quantity}}, {{concentrationChange}} at {{concentration}}.'
     },
+    quantitativeVolumeSliderValueTextPattern: {
+      value: '{{volume}} in beaker'
+    },
+    solutionVolumeAndUnitPattern: {
+      value: '{{volume}} liters'
+    },
+    soluteAmountAndUnitPattern: {
+      value: '{{soluteAmount}} moles'
+    },
 
-    // Quantitative value text strings for both volume and solute amount sliders
+    // Qualitative value text strings for both volume and solute amount sliders
     qualitativeSaturatedValueTextPattern: {
       value: '{{propertyAmountChange}}, {{solidsChange}}. {{stillSaturatedClause}}.'
     },
@@ -221,6 +179,12 @@ define( function( require ) {
     qualitativeVolumeStatePattern: {
       value: 'Beaker {{volume}}'
     },
+    qualitativeVolumeSliderValueTextPattern: {
+      value: 'Beaker {{volume}}'
+    },
+    volumeChangePattern: {
+      value: '{{moreLess}} solution'
+    },
 
     // Qualitative solute amount value text strings
     qualitativeSoluteAmountValueTextPattern: {
@@ -229,98 +193,80 @@ define( function( require ) {
     qualitativeSoluteAmountStatePattern: {
       value: '{{soluteAmount}} {{solute}}'
     },
+    soluteAmountChangedPattern: {
+      value: '{{moreLess}} solute'
+    },
+    soluteAmountSliderValueTextPattern: {
+      value: '{{soluteAmount}} {{solute}}'
+    },
 
-    // Qualitative concentration value text strings
+
+    // Quantitative concentration value text strings
     qualitativeConcentrationStatePattern: {
       value: 'Solution {{concentration}}'
     },
     quantitativeConcentrationStatePattern: {
       value: 'Concentration {{concentration}}'
     },
-
-    soluteChangedAlertPattern: {
-      value: '{{solute}} concentration readout range 0.00 to {{maxConcentration}}'
+    quantitativeConcentrationPattern: {
+      value: 'Concentration is {{concentration}}'
     },
-    soluteAmountSliderFocusAlertPattern: {
-      value: '{{solute}} {{soluteAmount}} moles, Solute Amount slider'
-    },
-    saturatedAlert: {
-      value: 'Solution saturated. Beyond max concentration, solids appear.'
-    },
-    stillSaturatedAlertPattern: {
-      value: 'Still saturated{{withSolids}}'
-    },
-    withSolidsAlertPattern: {
-      value: ' with {{solidAmount}} solids'
+    concentrationAndUnit: {
+      value: '{{concentration}} Molar'
     },
 
+    // Qualitative concentration value text strings
+    qualitativeConcentrationPattern: {
+      value: 'Solution is {{concentration}} and is {{saturatedConcentration}}'
+    },
     concentrationChangePattern: {
       value: '{{moreLess}} concentrated'
     },
 
-    solidsChangePattern: {
-      value: '{{moreLess}} solids'
+    // Solute changed alert string
+    soluteChangedAlertPattern: {
+      value: '{{solute}} concentration readout range 0.00 to {{maxConcentration}}'
     },
 
+    // New saturation state alerts
     saturationReachedAlert: {
       value: 'Solution saturated. Beyond max concentration, solids appear.'
     },
     saturationLostAlertPattern: {
       value: 'Solution no longer saturated. Solution {{concentration}}, solids dissolve.'
     },
-    solids: {
-      value: 'solids'
+
+    // Saturated solution alert strings
+    stillSaturatedAlertPattern: {
+      value: 'Still saturated{{withSolids}}'
     },
-    quantitativeVolumeSliderValueTextPattern: {
-      value: '{{volume}} in beaker'
+    withSolidsAlertPattern: {
+      value: ' with {{solidAmount}} solids'
     },
-    qualitativeVolumeSliderValueTextPattern: {
-      value: 'Beaker {{volume}}'
+    solidsChangePattern: {
+      value: '{{moreLess}} solids'
     },
-    soluteAmountSliderValueTextPattern: {
-      value: '{{soluteAmount}} {{solute}}'
-    },
-    noSoluteAlert: {
-      value: 'No solute. Solution is pure water.'
-    },
-    sliderHelpHeading: {
-      value: 'Solute Amount & Solution Volume'
-    },
-    changeSoluteHelpHeading: {
-      value: 'Change Solute in 3 Steps'
-    },
-    popUpListLabel: {
-      value: 'Pop up list of solutes with [Enter] or [Space] keys'
-    },
+
+    // Keyboard help content section strings
     popUpListDescription: {
       value: 'Pop up list of solutes with [Enter] or [Space] keys'
-    },
-    moveThroughLabel: {
-      value: 'Move through solutes with [Up] and [Down] arrow keys'
     },
     moveThroughDescription: {
       value: 'Move through solutes with [Up] and [Down] arrow keys'
     },
-    changeChooseLabel: {
-      value: 'Change/Choose solute with [Enter] key'
-    },
     changeChooseDescription: {
       value: 'Change/Choose solute with [Enter] key'
-    },
-    closeListLabel: {
-      value: 'Close list without changing with [Esc] key'
     },
     closeListDescription: {
       value: 'Close list without changing with [Esc] key'
     },
+
+    // Alert strings for show values checkbox
     showValuesCheckedAlert: {
       value: 'Moles, litres and concentration values shown.'
     },
     showValuesUncheckedAlert: {
       value: 'Values hidden.'
-    },
-    concentrationAndUnit: {
-      value: '{{concentration}} Molar'
     }
   };
 

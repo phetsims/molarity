@@ -90,7 +90,7 @@ define( require => {
 
     /**
      * Gets the current value of volume either quantitatively or quantitatively to plug into descriptions.
-     * @private
+     * @public
      * @returns {string} - examples: "1.500 Liters" for quantitative or "half full" for qualitative.
      */
     getCurrentVolume() {
