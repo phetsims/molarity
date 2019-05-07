@@ -20,8 +20,6 @@ define( require => {
   const soluteAmountAndUnitPatternString = MolarityA11yStrings.soluteAmountAndUnitPattern.value;
   const soluteAmountChangedPatternString = MolarityA11yStrings.soluteAmountChangedPattern.value;
   const soluteAmountSliderValueTextPatternString = MolarityA11yStrings.soluteAmountSliderValueTextPattern.value;
-  const quantitativeInitialValueTextPatternString = MolarityA11yStrings.quantitativeInitialValueTextPattern.value;
-  const quantitativeValueTextPatternString = MolarityA11yStrings.quantitativeValueTextPattern.value;
   const qualitativeSoluteAmountValueTextPatternString = MolarityA11yStrings.qualitativeSoluteAmountValueTextPattern.value;
   const qualitativeSaturatedValueTextPatternString = MolarityA11yStrings.qualitativeSaturatedValueTextPattern.value;
   const qualitativeSoluteAmountStatePatternString = MolarityA11yStrings.qualitativeSoluteAmountStatePattern.value;
@@ -39,8 +37,8 @@ define( require => {
   const zeroString = MolarityA11yStrings.zero.value;
 
   // change strings
-  const lessString = MolarityA11yStrings.less.value;
-  const moreString = MolarityA11yStrings.more.value;
+  const lessCapitalizedString = MolarityA11yStrings.lessCapitalized.value;
+  const moreCapitalizedString = MolarityA11yStrings.moreCapitalized.value;
 
   // constants
   const SOLUTE_AMOUNT_STRINGS = [
@@ -69,17 +67,31 @@ define( require => {
       this.soluteAmountProperty = solution.soluteAmountProperty;
       this.soluteDescriber = soluteDescriber;
       this.useQuantitativeDescriptions = useQuantitativeDescriptions;
-      this.currentRegion = null; // number -- the index of the descriptive region from SOLUTE_AMOUNT_STRINGS array.
-      this.soluteAmountRegionChanged = null; // boolean -- tracks whether the descriptive volume region has just changed.
-      this.soluteAmountChangeValue = null; // string -- describes whether volume has just increased or decreased
-      this.isInitialSoluteAmountAlert = true; // tracks whether the solute amount slider has just been focused
+
+      // @private
+      // {number} - the index of the descriptive region from SOLUTE_AMOUNT_STRINGS array.
+      this.currentRegion = null;
+
+      // @private
+      // {boolean} - tracks whether the descriptive solute amount region has just changed.
+      this.soluteAmountRegionChanged = false;
+
+      // @private
+      // {boolean} - tracks whether the solute amount slider has just been focused.
+      this.isInitialSoluteAmountAlert = true;
+
+      // @private
+      // {boolean|null} - tracks whether solute amount has just increased. null when simulation starts or resets.
+      this.soluteAmountIncreased = null;
 
       this.soluteAmountProperty.link( ( newValue, oldValue ) => {
-        assert && oldValue && assert( this.currentRegion === soluteAmountToIndex( oldValue ) );
+        assert && assert( newValue !== oldValue, 'unexpected: called with no change in solute amount' );
+        assert && oldValue && assert( this.currentRegion === soluteAmountToIndex( oldValue ),
+          'current solute amount region not tracking the previous region as expected' );
         const oldRegion = this.currentRegion;
         this.currentRegion = soluteAmountToIndex( newValue );
         this.soluteAmountRegionChanged = this.currentRegion !== oldRegion;
-        this.soluteAmountChangeValue = newValue > oldValue ? moreString : lessString;
+        this.soluteAmountIncreased = newValue > oldValue;
       } );
     }
 
@@ -99,7 +111,7 @@ define( require => {
      */
     getSoluteAmountChangeString() {
       return StringUtils.fillIn( soluteAmountChangedPatternString, {
-        moreLess: this.soluteAmountChangeValue
+        moreLess: this.soluteAmountIncreased ? moreCapitalizedString : lessCapitalizedString
       } );
     }
 
@@ -172,7 +184,7 @@ define( require => {
       }
       else {
         return this.useQuantitativeDescriptions.value ?
-               this.getQuantitativeAriaValueText() :
+               this.getQuantitativeSoluteAmountValueText() :
                this.getQualitativeAriaValueText();
       }
     }
@@ -182,20 +194,13 @@ define( require => {
      * @private
      * @returns {string}
      */
-    getQuantitativeAriaValueText() {
-      let string = quantitativeValueTextPatternString;
-
-      // sets string to fill in right after slider is focused
+    getQuantitativeSoluteAmountValueText() {
+      const valueText = this.concentrationDescriber.getQuantitativeAriaValueText( this.isInitialSoluteAmountAlert,
+        this.getCurrentSoluteAmount() );
       if ( this.isInitialSoluteAmountAlert ) {
-        string = quantitativeInitialValueTextPatternString;
         this.isInitialSoluteAmountAlert = false;
       }
-
-      return StringUtils.fillIn( string, {
-        concentrationChange: this.concentrationDescriber.getConcentrationChangeString(), // TODO: handle capital more/less on initial text
-        quantity: this.getCurrentSoluteAmount(),
-        concentration: this.concentrationDescriber.getCurrentConcentration()
-      } );
+      return valueText;
     }
 
     /**

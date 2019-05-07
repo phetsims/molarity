@@ -16,9 +16,15 @@ define( function( require ) {
 
   const MolarityA11yStrings = {
     more: {
-      value: 'More'
+      value: 'more'
     },
     less: {
+      value: 'less'
+    },
+    moreCapitalized: {
+      value: 'More'
+    },
+    lessCapitalized: {
       value: 'Less'
     },
     solute: {
@@ -39,13 +45,13 @@ define( function( require ) {
       value: 'Explore with values shown.'
     },
     solutionControlsHelpText: {
-      value: 'Solute Amount and Solution Volume sliders change solution in Beaker.'
+      value: 'Solute Amount and Solution Volume sliders change solution in beaker.'
     },
     soluteAmountHelpText: {
-      value: 'Explore how changing Solute Amount affects solution in Beaker.'
+      value: 'Explore how changing Solute Amount affects solution in beaker.'
     },
     solutionVolumeHelpText: {
-      value: 'Explore how changing Solution Volume affects solution in Beaker.'
+      value: 'Explore how changing Solution Volume affects solution in beaker.'
     },
     soluteComboBoxHelpText: {
       value: 'Choose one of nine solutes to play with in beaker.'
@@ -70,7 +76,7 @@ define( function( require ) {
       value: 'Solution Concentration of {{solute}} Is {{concentration}}. Concentration readout range is 0.00 to {{maxConcentration}}. The chemical formula for {{solute}} is {{chemicalFormula}}.'
     },
     solutionControlsDescription: {
-      value: 'Solute Amount and Solution Volume sliders change solution in Beaker.'
+      value: 'Solute Amount and Solution Volume sliders change solution in beaker.'
     },
 
     // Volume regions
@@ -116,7 +122,7 @@ define( function( require ) {
       value: 'A little'
     },
     zero: {
-      value: 'zero'
+      value: 'Zero'
     },
 
     // Solids regions

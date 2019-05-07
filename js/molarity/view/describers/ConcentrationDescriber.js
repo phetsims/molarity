@@ -23,6 +23,8 @@ define( require => {
   const concentrationChangePatternString = MolarityA11yStrings.concentrationChangePattern.value;
   const qualitativeConcentrationStatePatternString = MolarityA11yStrings.qualitativeConcentrationStatePattern.value;
   const quantitativeConcentrationStatePatternString = MolarityA11yStrings.quantitativeConcentrationStatePattern.value;
+  const quantitativeInitialValueTextPatternString = MolarityA11yStrings.quantitativeInitialValueTextPattern.value;
+  const quantitativeValueTextPatternString = MolarityA11yStrings.quantitativeValueTextPattern.value;
   const saturationLostAlertPatternString = MolarityA11yStrings.saturationLostAlertPattern.value;
   const saturationReachedAlertString = MolarityA11yStrings.saturationReachedAlert.value;
   const stillSaturatedAlertPatternString = MolarityA11yStrings.stillSaturatedAlertPattern.value;
@@ -45,6 +47,8 @@ define( require => {
   // Change strings
   const lessString = MolarityA11yStrings.less.value;
   const moreString = MolarityA11yStrings.more.value;
+  const lessCapitalizedString = MolarityA11yStrings.lessCapitalized.value;
+  const moreCapitalizedString = MolarityA11yStrings.moreCapitalized.value;
 
   // constants
   const CONCENTRATION_STRINGS = [
@@ -82,20 +86,22 @@ define( require => {
       this.useQuantitativeDescriptions = useQuantitativeDescriptions;
       this.newSaturationState = false; // boolean -- tracks whether saturation has just changed
       this.concentrationRegion = null; // number - tracks the index of the last descriptive region for concentration
-      this.concentrationChangeString = null; // string - tracks whether concentration has increased or decreased
+      this.concentrationIncreased = null; // boolean - tracks whether concentration has increased or decreased
       this.solidsRegion = null; // number - tracks the index of the last descriptive region for solids
       this.solidsRegionChanged = false; // boolean - tracks whether the solids descriptive region has changed
       this.solidsChangeString = null; // string - tracks whether there are more or less solids in the beaker
 
       this.concentrationProperty.link( ( newValue, oldValue ) => {
-        const previousConcentrationRegion = this.concentrationRegion;
+
+        //TODO: figure out concentration region setting issue
+        assert && assert( newValue !== oldValue, 'unexpected: called with no change in concentration' );
         const saturatedConcentration = this.soluteProperty.value.saturatedConcentration;
         const newConcentrationRegion = concentrationToIndex( saturatedConcentration, this.concentrationProperty.value );
         const previousSaturationState = oldValue >= this.soluteProperty.value.saturatedConcentration;
         const newSaturationState = this.solution.isSaturated();
         this.newSaturationState = newSaturationState !== previousSaturationState;
-        this.concentrationChangeString = newValue > oldValue ? moreString : lessString;
-        this.concentrationRegionChanged = newConcentrationRegion !== previousConcentrationRegion;
+        this.concentrationIncreased = newValue > oldValue;
+        this.concentrationRegionChanged = newConcentrationRegion !== this.concentrationRegion;
       } );
 
       //TODO: factor out into solids describer?
@@ -111,14 +117,42 @@ define( require => {
     }
 
     /**
-     * TODO: support capitalized and lowercase more/less, perhaps with parameter?
      * Creates a substring to describe how concentration has changed
+     * @param {boolean} [isCapitalized]
      * @public
      * @returns {string} - example: "more concentrated"
      */
-    getConcentrationChangeString() {
+    getConcentrationChangeString( isCapitalized = false ) {
+      let moreLessString = isCapitalized ? lessCapitalizedString : lessString;
+      if ( this.concentrationIncreased ) {
+        moreLessString = isCapitalized ? moreCapitalizedString : moreString;
+      }
       return StringUtils.fillIn( concentrationChangePatternString, {
-        moreLess: this.concentrationChangeString
+        moreLess: moreLessString
+      } );
+    }
+
+    /**
+     * Creates aria-valueText strings when the "show values" checkbox is checked
+     * @param {boolean} isInitialAlert
+     * @param {string} quantity
+     * @public
+     * @returns {string}
+     */
+    getQuantitativeAriaValueText( isInitialAlert, quantity ) {
+      let quantitativeValueTextString = quantitativeValueTextPatternString;
+      let capitalizeConcentrationChange = false;
+
+      // A different pattern is used when it's the first alert read out after the volume slider has been focused.
+      if ( isInitialAlert ) {
+        quantitativeValueTextString = quantitativeInitialValueTextPatternString;
+        capitalizeConcentrationChange = true;
+      }
+
+      return StringUtils.fillIn( quantitativeValueTextString, {
+        concentrationChange: this.getConcentrationChangeString( capitalizeConcentrationChange ),
+        quantity: quantity,
+        concentration: this.getCurrentConcentration()
       } );
     }
 

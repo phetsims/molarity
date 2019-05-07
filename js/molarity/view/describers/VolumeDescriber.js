@@ -22,8 +22,6 @@ define( require => {
   const qualitativeVolumeSliderValueTextPatternString = MolarityA11yStrings.qualitativeVolumeSliderValueTextPattern.value;
   const qualitativeVolumeStatePatternString = MolarityA11yStrings.qualitativeVolumeStatePattern.value;
   const qualitativeVolumeValueTextPatternString = MolarityA11yStrings.qualitativeVolumeValueTextPattern.value;
-  const quantitativeInitialValueTextPatternString = MolarityA11yStrings.quantitativeInitialValueTextPattern.value;
-  const quantitativeValueTextPatternString = MolarityA11yStrings.quantitativeValueTextPattern.value;
   const quantitativeVolumeSliderValueTextPatternString = MolarityA11yStrings.quantitativeVolumeSliderValueTextPattern.value;
   const solutionVolumeAndUnitPatternString = MolarityA11yStrings.solutionVolumeAndUnitPattern.value;
   const volumeChangePatternString = MolarityA11yStrings.volumeChangePattern.value;
@@ -38,8 +36,8 @@ define( require => {
   const underHalfFullString = MolarityA11yStrings.underHalfFull.value;
 
   // change strings
-  const lessString = MolarityA11yStrings.less.value;
-  const moreString = MolarityA11yStrings.more.value;
+  const lessCapitalizedString = MolarityA11yStrings.lessCapitalized.value;
+  const moreCapitalizedString = MolarityA11yStrings.moreCapitalized.value;
 
   // constants
   const VOLUME_STRINGS = [
@@ -68,15 +66,17 @@ define( require => {
       this.useQuantitativeDescriptions = useQuantitativeDescriptions;
       this.currentRegion = null; // number -- the index of the descriptive region from VOLUME_STRINGS array.
       this.volumeRegionChanged = null; // boolean -- tracks whether the descriptive volume region has just changed.
-      this.volumeChangeValue = null; // string -- describes whether volume has just increased or decreased
+      this.volumeIncreased = null; // boolean -- tracks whether volume has just increased or decreased
       this.isInitialVolumeAlert = true; // tracks whether the volume slider has just been focused
 
       this.volumeProperty.link( ( newValue, oldValue ) => {
-        assert && oldValue && assert( this.currentRegion === volumeToIndex( oldValue ) );
+        assert && assert( newValue !== oldValue, 'unexpected: called with no change in volume' );
+        assert && oldValue && assert( this.currentRegion === volumeToIndex( oldValue ),
+          'current volume region not tracking the previous region as expected' );
         const oldRegion = this.currentRegion;
         this.currentRegion = volumeToIndex( newValue );
         this.volumeRegionChanged = this.currentRegion !== oldRegion;
-        this.volumeChangeValue = newValue > oldValue ? moreString : lessString;
+        this.volumeIncreased = newValue > oldValue;
       } );
     }
 
@@ -111,7 +111,7 @@ define( require => {
      */
     getVolumeChangeString() {
       return StringUtils.fillIn( volumeChangePatternString, {
-        moreLess: this.volumeChangeValue
+        moreLess: this.volumeIncreased ? moreCapitalizedString : lessCapitalizedString
       } );
     }
 
@@ -158,7 +158,9 @@ define( require => {
         return this.concentrationDescriber.getSaturationChangedString();
       }
       else {
-        return this.useQuantitativeDescriptions.value ? this.getQuantitativeAriaValueText() : this.getQualitativeAriaValueText();
+        return this.useQuantitativeDescriptions.value ?
+               this.getQuantitativeVolumeValueText() :
+               this.getQualitativeAriaValueText();
       }
     }
 
@@ -167,20 +169,13 @@ define( require => {
      * @private
      * @returns {string}
      */
-    getQuantitativeAriaValueText() {
-      let string = quantitativeValueTextPatternString;
-
-      // A different pattern is used when it's the first alert read out after the volume slider has been focused.
+    getQuantitativeVolumeValueText() {
+      const valueText = this.concentrationDescriber.getQuantitativeAriaValueText( this.isInitialVolumeAlert,
+        this.getCurrentVolume() );
       if ( this.isInitialVolumeAlert ) {
-        string = quantitativeInitialValueTextPatternString;
         this.isInitialVolumeAlert = false;
       }
-
-      return StringUtils.fillIn( string, {
-        concentrationChange: this.concentrationDescriber.getConcentrationChangeString(), // TODO: handle capital more/less on initial text
-        quantity: this.getCurrentVolume(),
-        concentration: this.concentrationDescriber.getCurrentConcentration()
-      } );
+      return valueText;
     }
 
     /**
