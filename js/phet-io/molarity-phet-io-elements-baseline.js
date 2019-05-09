@@ -793,7 +793,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
     },
-    "molarity.molarityScreen.view.beakerNode.tickLabelNode.element~0": {
+    "molarity.molarityScreen.view.beakerNode.tickLabelNode~0": {
       "phetioDocumentation": "",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -804,7 +804,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "TextIO"
     },
-    "molarity.molarityScreen.view.beakerNode.tickLabelNode.element~0.opacityProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickLabelNode~0.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -815,7 +815,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "molarity.molarityScreen.view.beakerNode.tickLabelNode.element~0.pickableProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickLabelNode~0.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -826,7 +826,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
     },
-    "molarity.molarityScreen.view.beakerNode.tickLabelNode.element~0.textProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickLabelNode~0.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -837,7 +837,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<StringIO>"
     },
-    "molarity.molarityScreen.view.beakerNode.tickLabelNode.element~0.visibleProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickLabelNode~0.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -848,7 +848,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<BooleanIO>"
     },
-    "molarity.molarityScreen.view.beakerNode.tickLabelNode.element~1": {
+    "molarity.molarityScreen.view.beakerNode.tickLabelNode~1": {
       "phetioDocumentation": "",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -859,7 +859,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "TextIO"
     },
-    "molarity.molarityScreen.view.beakerNode.tickLabelNode.element~1.opacityProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickLabelNode~1.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -870,7 +870,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "molarity.molarityScreen.view.beakerNode.tickLabelNode.element~1.pickableProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickLabelNode~1.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -881,7 +881,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
     },
-    "molarity.molarityScreen.view.beakerNode.tickLabelNode.element~1.textProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickLabelNode~1.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -892,7 +892,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<StringIO>"
     },
-    "molarity.molarityScreen.view.beakerNode.tickLabelNode.element~1.visibleProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickLabelNode~1.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -947,7 +947,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<BooleanIO>"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~0": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~0": {
       "phetioDocumentation": "",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -958,7 +958,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~0.opacityProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~0.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -969,7 +969,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~0.pickableProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~0.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -980,7 +980,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~0.visibleProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~0.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -991,7 +991,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<BooleanIO>"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~1": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~1": {
       "phetioDocumentation": "",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1002,7 +1002,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~1.opacityProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~1.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1013,7 +1013,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~1.pickableProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~1.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1024,7 +1024,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~1.visibleProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~1.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1035,7 +1035,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<BooleanIO>"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~2": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~2": {
       "phetioDocumentation": "",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1046,7 +1046,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~2.opacityProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~2.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1057,7 +1057,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~2.pickableProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~2.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1068,7 +1068,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~2.visibleProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~2.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1079,7 +1079,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<BooleanIO>"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~3": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~3": {
       "phetioDocumentation": "",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1090,7 +1090,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~3.opacityProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~3.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1101,7 +1101,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~3.pickableProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~3.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1112,7 +1112,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~3.visibleProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~3.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1123,7 +1123,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<BooleanIO>"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~4": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~4": {
       "phetioDocumentation": "",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1134,7 +1134,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~4.opacityProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~4.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1145,7 +1145,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~4.pickableProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~4.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1156,7 +1156,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~4.visibleProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~4.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1167,7 +1167,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<BooleanIO>"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~5": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~5": {
       "phetioDocumentation": "",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1178,7 +1178,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~5.opacityProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~5.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1189,7 +1189,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~5.pickableProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~5.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1200,7 +1200,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~5.visibleProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~5.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1211,7 +1211,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<BooleanIO>"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~6": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~6": {
       "phetioDocumentation": "",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1222,7 +1222,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~6.opacityProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~6.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1233,7 +1233,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~6.pickableProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~6.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1244,7 +1244,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~6.visibleProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~6.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1255,7 +1255,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<BooleanIO>"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~7": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~7": {
       "phetioDocumentation": "",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1266,7 +1266,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~7.opacityProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~7.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1277,7 +1277,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~7.pickableProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~7.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1288,7 +1288,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~7.visibleProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~7.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1299,7 +1299,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<BooleanIO>"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~8": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~8": {
       "phetioDocumentation": "",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1310,7 +1310,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~8.opacityProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~8.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1321,7 +1321,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~8.pickableProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~8.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1332,7 +1332,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~8.visibleProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~8.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1343,7 +1343,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<BooleanIO>"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~9": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~9": {
       "phetioDocumentation": "",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1354,7 +1354,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~9.opacityProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~9.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1365,7 +1365,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~9.pickableProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~9.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -1376,7 +1376,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
     },
-    "molarity.molarityScreen.view.beakerNode.tickMarkNode.element~9.visibleProperty": {
+    "molarity.molarityScreen.view.beakerNode.tickMarkNode~9.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
       "phetioFeatured": false,
