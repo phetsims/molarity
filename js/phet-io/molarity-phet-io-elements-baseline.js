@@ -1,6 +1,17 @@
 /* eslint-disable */
 window.phet.phetio.phetioElementsBaseline =
   {
+    "molarity.activityMonitor.currentActivityProperty": {
+      "phetioDocumentation": "",
+      "phetioEventType": "model",
+      "phetioFeatured": false,
+      "phetioHighFrequency": false,
+      "phetioPlayback": false,
+      "phetioReadOnly": false,
+      "phetioState": true,
+      "phetioStudioControl": true,
+      "phetioTypeName": "PropertyIO.<ObjectIO>"
+    },
     "molarity.general.activeProperty": {
       "phetioDocumentation": "Determines whether the entire simulation is running and processing user input. Setting this property to false pauses the simulation, and prevents user interaction.",
       "phetioEventType": "model",
