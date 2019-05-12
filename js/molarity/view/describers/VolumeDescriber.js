@@ -17,11 +17,9 @@ define( require => {
   const Util = require( 'DOT/Util' );
 
   // strings
-  const qualitativeSaturatedValueTextPatternString = MolarityA11yStrings.qualitativeSaturatedValueTextPattern.value;
   const qualitativeStateInfoPatternString = MolarityA11yStrings.qualitativeStateInfoPattern.value;
   const qualitativeVolumeSliderValueTextPatternString = MolarityA11yStrings.qualitativeVolumeSliderValueTextPattern.value;
   const qualitativeVolumeStatePatternString = MolarityA11yStrings.qualitativeVolumeStatePattern.value;
-  const qualitativeVolumeValueTextPatternString = MolarityA11yStrings.qualitativeVolumeValueTextPattern.value;
   const quantitativeVolumeSliderValueTextPatternString = MolarityA11yStrings.quantitativeVolumeSliderValueTextPattern.value;
   const solutionVolumeAndUnitPatternString = MolarityA11yStrings.solutionVolumeAndUnitPattern.value;
   const volumeChangePatternString = MolarityA11yStrings.volumeChangePattern.value;
@@ -64,10 +62,22 @@ define( require => {
       this.volumeProperty = solution.volumeProperty;
       this.concentrationDescriber = concentrationDescriber;
       this.useQuantitativeDescriptions = useQuantitativeDescriptions;
-      this.currentRegion = null; // number -- the index of the descriptive region from VOLUME_STRINGS array.
-      this.volumeRegionChanged = null; // boolean -- tracks whether the descriptive volume region has just changed.
-      this.volumeIncreased = null; // boolean -- tracks whether volume has just increased or decreased
-      this.isInitialVolumeAlert = true; // tracks whether the volume slider has just been focused
+
+      // @private
+      // {number} - the index of the descriptive region from VOLUME_STRINGS array.
+      this.currentRegion = null;
+
+      // @private
+      // {boolean} - tracks whether the descriptive volume region has just changed.
+      this.volumeRegionChanged = false;
+
+      // @private
+      // {boolean} - tracks whether the volume slider has just been focused.
+      this.isInitialVolumeAlert = true;
+
+      // @private
+      // {boolean|null} - tracks whether volume has just increased or decreased. null when simulation starts or resets.
+      this.volumeIncreased = null;
 
       this.volumeProperty.link( ( newValue, oldValue ) => {
         assert && assert( newValue !== oldValue, 'unexpected: called with no change in volume' );
@@ -116,6 +126,15 @@ define( require => {
     }
 
     /**
+     * Creates a substring describing the volume state
+     * @private
+     * @returns {string} - something like "Beaker half full"
+     */
+    getVolumeState() {
+      return StringUtils.fillIn( qualitativeVolumeStatePatternString, { volume: this.getCurrentVolume() } );
+    }
+
+    /**
      * Creates a string describing the volume and concentration current state when the volume or concentration
      * descriptive regions have changed.
      * @private
@@ -124,7 +143,7 @@ define( require => {
     getVolumeStateInfo() {
       if ( this.volumeRegionChanged || this.concentrationDescriber.concentrationRegionChanged ) {
         return StringUtils.fillIn( qualitativeStateInfoPatternString, {
-          quantityState: StringUtils.fillIn( qualitativeVolumeStatePatternString, { volume: this.getCurrentVolume() } ),
+          quantityState: this.getVolumeState(),
           concentrationState: this.concentrationDescriber.getConcentrationState()
         } );
       }
@@ -160,7 +179,7 @@ define( require => {
       else {
         return this.useQuantitativeDescriptions.value ?
                this.getQuantitativeVolumeValueText() :
-               this.getQualitativeAriaValueText();
+               this.getQualitativeVolumeValueText();
       }
     }
 
@@ -179,25 +198,18 @@ define( require => {
     }
 
     /**
-     * Creates aria-valueText strings when the "show values" checkbox is not checked.
+     * Creates aria-valueText strings when the "show values" checkbox is not checked for saturated and unsaturated states.
      * @private
      * @returns {string}
      */
-    getQualitativeAriaValueText() {
-      if ( this.solution.isSaturated() ) {
-        return StringUtils.fillIn( qualitativeSaturatedValueTextPatternString, {
-          propertyAmountChange: this.getVolumeChangeString(),
-          solidsChange: this.concentrationDescriber.getSolidsChangeString(),
-          stillSaturatedClause: this.concentrationDescriber.getStillSaturatedClause()
-        } );
-      }
-      else {
-        return StringUtils.fillIn( qualitativeVolumeValueTextPatternString, {
-          volumeChange: this.getVolumeChangeString(),
-          concentrationChange: this.concentrationDescriber.getConcentrationChangeString(),
-          stateInfo: this.getVolumeStateInfo()
-        } );
-      }
+    getQualitativeVolumeValueText() {
+
+      // aria-live alert
+      this.concentrationDescriber.getQualitativeAlert( this.getVolumeChangeString(), this.getVolumeStateInfo(),
+        this.volumeRegionChanged );
+
+      // aria-valueText
+      return this.getVolumeState();
     }
   }
 

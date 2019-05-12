@@ -15,6 +15,8 @@ define( require => {
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const Util = require( 'DOT/Util' );
+  const Utterance = require( 'SCENERY_PHET/accessibility/Utterance' );
+  const utteranceQueue = require( 'SCENERY_PHET/accessibility/utteranceQueue' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
 
   // a11y strings
@@ -22,6 +24,8 @@ define( require => {
   const concentrationAndUnitString = MolarityA11yStrings.concentrationAndUnit.value;
   const concentrationChangePatternString = MolarityA11yStrings.concentrationChangePattern.value;
   const qualitativeConcentrationStatePatternString = MolarityA11yStrings.qualitativeConcentrationStatePattern.value;
+  const qualitativeSaturatedValueTextPatternString = MolarityA11yStrings.qualitativeSaturatedValueTextPattern.value;
+  const qualitativeValueTextPatternString = MolarityA11yStrings.qualitativeValueTextPattern.value;
   const quantitativeConcentrationStatePatternString = MolarityA11yStrings.quantitativeConcentrationStatePattern.value;
   const quantitativeInitialValueTextPatternString = MolarityA11yStrings.quantitativeInitialValueTextPattern.value;
   const quantitativeValueTextPatternString = MolarityA11yStrings.quantitativeValueTextPattern.value;
@@ -84,16 +88,36 @@ define( require => {
       this.concentrationProperty = solution.concentrationProperty;
       this.precipitateAmountProperty = solution.precipitateAmountProperty;
       this.useQuantitativeDescriptions = useQuantitativeDescriptions;
-      this.newSaturationState = false; // boolean -- tracks whether saturation has just changed
-      this.concentrationRegion = null; // number - tracks the index of the last descriptive region for concentration
-      this.concentrationIncreased = null; // boolean - tracks whether concentration has increased or decreased
-      this.solidsRegion = null; // number - tracks the index of the last descriptive region for solids
-      this.solidsRegionChanged = false; // boolean - tracks whether the solids descriptive region has changed
-      this.solidsChangeString = null; // string - tracks whether there are more or less solids in the beaker
+
+      // @private
+      // {number} - the index of the last concentration descriptive region from CONCENTRATION_STRINGS_ARRAY
+      this.concentrationRegion = null;
+
+      // @private
+      // {boolean} - tracks whether the concentration descriptive region has just changed.
+      this.concentrationRegionChanged = false;
+
+      // @private
+      // {boolean|null} - tracks whether concentration has increased or decreased. null when simulation starts or resets.
+      this.concentrationIncreased = null;
+
+      // @private
+      // {number} - tracks the index of the last descriptive region for solids from SOLIDS_STRINGS array
+      this.solidsRegion = null;
+
+      // @private
+      // {boolean} - racks whether the solids descriptive region has just changed
+      this.solidsRegionChanged = false;
+
+      // @private
+      // {boolean|null} - tracks whether solids amount has increased or decreased. null when simulation starts or resets.
+      this.solidsIncreased = null;
+
+      // @private
+      // {boolean} - tracks whether the solution has just become saturated or unsaturated.
+      this.newSaturationState = false;
 
       this.concentrationProperty.link( ( newValue, oldValue ) => {
-
-        //TODO: figure out concentration region setting issue
         assert && assert( newValue !== oldValue, 'unexpected: called with no change in concentration' );
         const saturatedConcentration = this.soluteProperty.value.saturatedConcentration;
         const newConcentrationRegion = concentrationToIndex( saturatedConcentration, this.concentrationProperty.value );
@@ -102,17 +126,17 @@ define( require => {
         this.newSaturationState = newSaturationState !== previousSaturationState;
         this.concentrationIncreased = newValue > oldValue;
         this.concentrationRegionChanged = newConcentrationRegion !== this.concentrationRegion;
+        this.concentrationRegion = newConcentrationRegion;
       } );
 
-      //TODO: factor out into solids describer?
       this.precipitateAmountProperty.link( ( newValue, oldValue ) => {
         const previousSolidsRegion = this.solidsRegion;
         const previousSaturationState = oldValue > 0;
         const newSaturationState = newValue > 0;
         this.newSaturationState = newSaturationState !== previousSaturationState;
-        this.solidsRegion = this.getCurrentSolidsAmount();
+        this.solidsIncreased = newValue > oldValue;
         this.solidsRegionChanged = this.solidsRegion !== previousSolidsRegion;
-        this.solidsChangeString = newValue > oldValue ? moreString : lessString;
+        this.solidsRegion = this.getCurrentSolidsAmount();
       } );
     }
 
@@ -130,6 +154,31 @@ define( require => {
       return StringUtils.fillIn( concentrationChangePatternString, {
         moreLess: moreLessString
       } );
+    }
+
+    getQualitativeAlert( quantityChangeString, stateInfoString, quantityChange ) {
+      const sliderUtterance = new Utterance();
+
+      // alert text is different based on whether or not the solution is saturated.
+      if ( this.solution.isSaturated() ) {
+        sliderUtterance.alert = StringUtils.fillIn( qualitativeSaturatedValueTextPatternString, {
+          propertyAmountChange: quantityChangeString,
+          solidsChange: this.getSolidsChangeString(),
+          stillSaturatedClause: this.getStillSaturatedClause()
+        } );
+      }
+      else {
+        sliderUtterance.alert = StringUtils.fillIn( qualitativeValueTextPatternString, {
+          quantityChange: quantityChangeString,
+          concentrationChange: this.getConcentrationChangeString(),
+          stateInfo: stateInfoString
+        } );
+      }
+
+      // alert is only read out if the region has changed for the quantity, concentration, or solids.
+      if ( quantityChange || this.concentrationRegionChanged || this.solidsRegionChanged ) {
+        utteranceQueue.addToBack( sliderUtterance );
+      }
     }
 
     /**
@@ -206,7 +255,7 @@ define( require => {
     getSolidsChangeString() {
       assert && assert( this.precipitateAmountProperty.value > 0 );
       return StringUtils.fillIn( solidsChangePatternString, {
-        moreLess: this.solidsChangeString
+        moreLess: this.solidsIncreased ? moreString : lessString
       } );
     }
 

@@ -67,13 +67,22 @@ define( function( require ) {
     stateOfSimNoSolutePattern: {
       value: 'Beaker is {{volume}} of water. {{solute}} is selected, but no {{solute}} is in the beaker.'
     },
+    noSoluteAlert: {
+      value: 'No solute. Solution is pure water'
+    },
 
     // Beaker description strings
     beakerHeader: {
       value: 'Beaker'
     },
     beakerDescription: {
-      value: 'Solution Concentration of {{solute}} Is {{concentration}}. Concentration readout range is 0.00 to {{maxConcentration}}. The chemical formula for {{solute}} is {{chemicalFormula}}.'
+      value: 'Solution Concentration of {{solute}} Is {{concentration}}. Concentration readout range is 0.00 to {{maxConcentration}}. {{chemicalFormulaPattern}}'
+    },
+    chemicalFormulaPattern: {
+      value: 'The chemical formula for {{solute}} is {{chemicalFormula}}.'
+    },
+    drinkMixChemicalFormulaPattern: {
+      value: 'Drink mix contains mainly citric acid, which has a chemical formula of {{chemicalFormula}}'
     },
     solutionControlsDescription: {
       value: 'Solute Amount and Solution Volume sliders change solution in beaker.'
@@ -104,7 +113,7 @@ define( function( require ) {
 
     // Solute Amount Regions
     theMaxAmountOf: {
-      value: 'the max amount of'
+      value: 'The max amount of'
     },
     aLotOf: {
       value: 'A lot of'
@@ -180,11 +189,11 @@ define( function( require ) {
     qualitativeStateInfoPattern: {
       value: '{{quantityState}}. {{concentrationState}}.'
     },
+    qualitativeValueTextPattern: {
+      value: '{{quantityChange}}, {{concentrationChange}}. {{stateInfo}}'
+    },
 
     // Qualitative volume value text strings
-    qualitativeVolumeValueTextPattern: {
-      value: '{{volumeChange}}, {{concentrationChange}}. {{stateInfo}}'
-    },
     qualitativeVolumeStatePattern: {
       value: 'Beaker {{volume}}'
     },
@@ -196,9 +205,6 @@ define( function( require ) {
     },
 
     // Qualitative solute amount value text strings
-    qualitativeSoluteAmountValueTextPattern: {
-      value: '{{soluteAmountChange}}, {{concentrationChange}}. {{stateInfo}}'
-    },
     qualitativeSoluteAmountStatePattern: {
       value: '{{soluteAmount}} {{solute}}'
     },

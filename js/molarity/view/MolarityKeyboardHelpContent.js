@@ -68,7 +68,7 @@ define( function( require ) {
       KeyboardHelpSection.alignHelpSectionIcons( [ generalNavigationHelpSection, changeSoluteHelpSection ] );
 
       const rightContent = new VBox( {
-        children: [ generalNavigationHelpSection, changeSoluteHelpSection ],
+        children: [ changeSoluteHelpSection, generalNavigationHelpSection ],
         spacing: 10,
         align: 'left'
       } );

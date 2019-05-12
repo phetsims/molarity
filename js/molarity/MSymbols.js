@@ -28,7 +28,8 @@ define( function( require ) {
     POTASSIUM_CHROMATE: toSubscript( 'K2CrO4' ),
     POTASSIUM_DICHROMATE: toSubscript( 'K2Cr2O7' ),
     POTASSIUM_PERMANGANATE: toSubscript( 'KMnO4' ),
-    WATER: toSubscript( 'H2O' )
+    WATER: toSubscript( 'H2O' ),
+    CITRIC_ACID: toSubscript( 'C6H8O7' )
   };
 
   molarity.register( 'MSymbols', MSymbols );

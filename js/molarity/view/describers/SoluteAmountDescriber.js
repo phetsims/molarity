@@ -20,8 +20,6 @@ define( require => {
   const soluteAmountAndUnitPatternString = MolarityA11yStrings.soluteAmountAndUnitPattern.value;
   const soluteAmountChangedPatternString = MolarityA11yStrings.soluteAmountChangedPattern.value;
   const soluteAmountSliderValueTextPatternString = MolarityA11yStrings.soluteAmountSliderValueTextPattern.value;
-  const qualitativeSoluteAmountValueTextPatternString = MolarityA11yStrings.qualitativeSoluteAmountValueTextPattern.value;
-  const qualitativeSaturatedValueTextPatternString = MolarityA11yStrings.qualitativeSaturatedValueTextPattern.value;
   const qualitativeSoluteAmountStatePatternString = MolarityA11yStrings.qualitativeSoluteAmountStatePattern.value;
   const qualitativeStateInfoPatternString = MolarityA11yStrings.qualitativeStateInfoPattern.value;
 
@@ -185,7 +183,7 @@ define( require => {
       else {
         return this.useQuantitativeDescriptions.value ?
                this.getQuantitativeSoluteAmountValueText() :
-               this.getQualitativeAriaValueText();
+               this.getQualitativeSoluteAmountValueText();
       }
     }
 
@@ -208,21 +206,14 @@ define( require => {
      * @private
      * @returns {string}
      */
-    getQualitativeAriaValueText() {
-      if ( this.solution.isSaturated() ) {
-        return StringUtils.fillIn( qualitativeSaturatedValueTextPatternString, {
-          propertyAmountChange: this.getSoluteAmountChangeString(),
-          solidsChange: this.concentrationDescriber.getSolidsChangeString(),
-          stillSaturatedClause: this.concentrationDescriber.getStillSaturatedClause()
-        } );
-      }
-      else {
-        return StringUtils.fillIn( qualitativeSoluteAmountValueTextPatternString, {
-          soluteAmountChange: this.getSoluteAmountChangeString(),
-          concentrationChange: this.concentrationDescriber.getConcentrationChangeString(),
-          stateInfo: this.getSoluteAmountStateInfo()
-        } );
-      }
+    getQualitativeSoluteAmountValueText() {
+
+      // aria-live alert
+      this.concentrationDescriber.getQualitativeAlert( this.getSoluteAmountChangeString(),
+        this.getSoluteAmountStateInfo(), this.soluteAmountRegionChanged );
+
+      // aria-valueText set
+      return this.getSoluteAmountState();
     }
   }
 
@@ -232,10 +223,10 @@ define( require => {
    * @returns {number} - index (integer) to pull from SOLUTE_AMOUNT_STRINGS array.
    */
   const soluteAmountToIndex = ( soluteAmount ) => {
-    if ( soluteAmount <= 0.050 ) {
+    if ( soluteAmount <= 0.001 ) {
       return 0;
     }
-    else if ( soluteAmount <= .200 ) {
+    else if ( soluteAmount <= .150 ) {
       return 1;
     }
     else if ( soluteAmount <= .450 ) {

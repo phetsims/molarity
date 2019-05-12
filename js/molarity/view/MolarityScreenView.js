@@ -23,6 +23,7 @@ define( function( require ) {
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const MolarityScreenSummaryNode = require( 'MOLARITY/molarity/view/MolarityScreenSummaryNode' );
+  const MSymbols = require( 'MOLARITY/molarity/MSymbols' );
   const Node = require( 'SCENERY/nodes/Node' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
   const PlayAreaNode = require( 'SCENERY_PHET/accessibility/nodes/PlayAreaNode' );
@@ -59,7 +60,9 @@ define( function( require ) {
 
   // a11y strings
   const beakerDescriptionString = MolarityA11yStrings.beakerDescription.value;
+  const chemicalFormulaPatternString = MolarityA11yStrings.chemicalFormulaPattern.value;
   const concentrationAndUnitString = MolarityA11yStrings.concentrationAndUnit.value;
+  const drinkMixChemicalFormulaPatternString = MolarityA11yStrings.drinkMixChemicalFormulaPattern.value;
   const showValuesCheckedAlertString = MolarityA11yStrings.showValuesCheckedAlert.value;
   const showValuesUncheckedAlertString = MolarityA11yStrings.showValuesUncheckedAlert.value;
   const showValuesHelpTextString = MolarityA11yStrings.showValuesHelpText.value;
@@ -127,13 +130,24 @@ define( function( require ) {
 
     // a11y - updates PDOM beaker description when solute, concentration, or quantitative description properties change
     const getBeakerDescription = () => {
+
+      // chemical formula pattern is the same for all solutes except drink mix.
+      let chemicalFormulaPattern = StringUtils.fillIn( chemicalFormulaPatternString, {
+        solute: soluteDescriber.getCurrentSolute(),
+        chemicalFormula: soluteDescriber.getCurrentChemicalFormula()
+      } );
+      if ( soluteDescriber.getCurrentChemicalFormula() === MSymbols.DRINK_MIX ) {
+        chemicalFormulaPattern = StringUtils.fillIn( drinkMixChemicalFormulaPatternString, {
+          chemicalFormula: MSymbols.CITRIC_ACID
+        } );
+      }
       return StringUtils.fillIn( beakerDescriptionString, {
         solute: soluteDescriber.getCurrentSolute(),
         concentration: concentrationDescriber.getCurrentConcentration(),
         maxConcentration: StringUtils.fillIn( concentrationAndUnitString, {
           concentration: soluteDescriber.getCurrentSaturatedConcentration()
         } ),
-        chemicalFormula: soluteDescriber.getCurrentChemicalFormula()
+        chemicalFormulaPattern: chemicalFormulaPattern
       } );
     };
 
