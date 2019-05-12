@@ -65,7 +65,7 @@ define( require => {
 
       // @private
       // {number} - the index of the descriptive region from VOLUME_STRINGS array.
-      this.currentRegion = null;
+      this.currentRegion = volumeToIndex( this.solution.volumeProperty.value );
 
       // @private
       // {boolean} - tracks whether the descriptive volume region has just changed.
@@ -157,7 +157,7 @@ define( require => {
      * @public
      * @returns {string}
      */
-    getOnFocusVolumeAriaValueText() {
+    getOnFocusVolumeValueText() {
       const string = this.useQuantitativeDescriptions.value ? quantitativeVolumeSliderValueTextPatternString :
                      qualitativeVolumeSliderValueTextPatternString;
       return StringUtils.fillIn( string, {
@@ -189,7 +189,7 @@ define( require => {
      * @returns {string}
      */
     getQuantitativeVolumeValueText() {
-      const valueText = this.concentrationDescriber.getQuantitativeAriaValueText( this.isInitialVolumeAlert,
+      const valueText = this.concentrationDescriber.getQuantitativeValueText( this.isInitialVolumeAlert,
         this.getCurrentVolume() );
       if ( this.isInitialVolumeAlert ) {
         this.isInitialVolumeAlert = false;

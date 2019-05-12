@@ -91,7 +91,8 @@ define( require => {
 
       // @private
       // {number} - the index of the last concentration descriptive region from CONCENTRATION_STRINGS_ARRAY
-      this.concentrationRegion = null;
+      this.concentrationRegion = concentrationToIndex( this.soluteProperty.value.saturatedConcentration,
+        this.concentrationProperty.value );
 
       // @private
       // {boolean} - tracks whether the concentration descriptive region has just changed.
@@ -103,10 +104,10 @@ define( require => {
 
       // @private
       // {number} - tracks the index of the last descriptive region for solids from SOLIDS_STRINGS array
-      this.solidsRegion = null;
+      this.solidsRegion = solidsToIndex( this.getCurrentPrecipitates(), this.getCurrentSaturatedConcentration() );
 
       // @private
-      // {boolean} - racks whether the solids descriptive region has just changed
+      // {boolean} - tracks whether the solids descriptive region has just changed
       this.solidsRegionChanged = false;
 
       // @private
@@ -119,8 +120,8 @@ define( require => {
 
       this.concentrationProperty.link( ( newValue, oldValue ) => {
         assert && assert( newValue !== oldValue, 'unexpected: called with no change in concentration' );
-        const saturatedConcentration = this.soluteProperty.value.saturatedConcentration;
-        const newConcentrationRegion = concentrationToIndex( saturatedConcentration, this.concentrationProperty.value );
+        const newConcentrationRegion = concentrationToIndex( this.soluteProperty.value.saturatedConcentration,
+          this.concentrationProperty.value );
         const previousSaturationState = oldValue >= this.soluteProperty.value.saturatedConcentration;
         const newSaturationState = this.solution.isSaturated();
         this.newSaturationState = newSaturationState !== previousSaturationState;
@@ -130,13 +131,13 @@ define( require => {
       } );
 
       this.precipitateAmountProperty.link( ( newValue, oldValue ) => {
-        const previousSolidsRegion = this.solidsRegion;
+        const newSolidsRegion = solidsToIndex( this.getCurrentPrecipitates(), this.getCurrentSaturatedConcentration() );
         const previousSaturationState = oldValue > 0;
         const newSaturationState = newValue > 0;
         this.newSaturationState = newSaturationState !== previousSaturationState;
         this.solidsIncreased = newValue > oldValue;
-        this.solidsRegionChanged = this.solidsRegion !== previousSolidsRegion;
-        this.solidsRegion = this.getCurrentSolidsAmount();
+        this.solidsRegionChanged = newSolidsRegion !== this.solidsRegion;
+        this.solidsRegion = newSolidsRegion;
       } );
     }
 
@@ -188,7 +189,7 @@ define( require => {
      * @public
      * @returns {string}
      */
-    getQuantitativeAriaValueText( isInitialAlert, quantity ) {
+    getQuantitativeValueText( isInitialAlert, quantity ) {
       let quantitativeValueTextString = quantitativeValueTextPatternString;
       let capitalizeConcentrationChange = false;
 

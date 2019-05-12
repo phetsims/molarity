@@ -68,7 +68,7 @@ define( require => {
 
       // @private
       // {number} - the index of the descriptive region from SOLUTE_AMOUNT_STRINGS array.
-      this.currentRegion = null;
+      this.currentRegion = soluteAmountToIndex( this.solution.soluteAmountProperty.value );
 
       // @private
       // {boolean} - tracks whether the descriptive solute amount region has just changed.
@@ -164,7 +164,7 @@ define( require => {
      * @public
      * @returns {string}
      */
-    getOnFocusSoluteAmountAriaValueText() {
+    getOnFocusSoluteAmountValueText() {
       return StringUtils.fillIn( soluteAmountSliderValueTextPatternString, {
         soluteAmount: this.getCurrentSoluteAmount(),
         solute: this.soluteDescriber.getCurrentSolute()
@@ -193,7 +193,7 @@ define( require => {
      * @returns {string}
      */
     getQuantitativeSoluteAmountValueText() {
-      const valueText = this.concentrationDescriber.getQuantitativeAriaValueText( this.isInitialSoluteAmountAlert,
+      const valueText = this.concentrationDescriber.getQuantitativeValueText( this.isInitialSoluteAmountAlert,
         this.getCurrentSoluteAmount() );
       if ( this.isInitialSoluteAmountAlert ) {
         this.isInitialSoluteAmountAlert = false;

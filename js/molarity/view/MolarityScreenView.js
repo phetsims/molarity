@@ -182,7 +182,7 @@ define( function( require ) {
       tandem.createTandem( 'soluteAmountSlider' ),
       soluteAmountAccessibleNameString,
       soluteAmountHelpTextString,
-      () => soluteAmountDescriber.getOnFocusSoluteAmountAriaValueText(),
+      () => soluteAmountDescriber.getOnFocusSoluteAmountValueText(),
       () => soluteAmountDescriber.getSoluteAmountChangedValueText(),
       () => soluteAmountDescriber.setInitialSoluteAmountAlert(),
       model.solution.soluteProperty
@@ -202,7 +202,7 @@ define( function( require ) {
       tandem.createTandem( 'solutionVolumeSlider' ),
       solutionVolumeAccessibleNameString,
       solutionVolumeHelpTextString,
-      () => volumeDescriber.getOnFocusVolumeAriaValueText(),
+      () => volumeDescriber.getOnFocusVolumeValueText(),
       () => volumeDescriber.getVolumeChangedValueText(),
       () => volumeDescriber.setInitialVolumeAlert(),
       model.solution.soluteProperty
