@@ -118,7 +118,7 @@ define( require => {
       // {boolean} - tracks whether the solution has just become saturated or unsaturated.
       this.newSaturationState = false;
 
-      this.concentrationProperty.link( ( newValue, oldValue ) => {
+      this.concentrationProperty.lazyLink( ( newValue, oldValue ) => {
         assert && assert( newValue !== oldValue, 'unexpected: called with no change in concentration' );
         const newConcentrationRegion = concentrationToIndex( this.soluteProperty.value.saturatedConcentration,
           this.concentrationProperty.value );
@@ -130,7 +130,7 @@ define( require => {
         this.concentrationRegion = newConcentrationRegion;
       } );
 
-      this.precipitateAmountProperty.link( ( newValue, oldValue ) => {
+      this.precipitateAmountProperty.lazyLink( ( newValue, oldValue ) => {
         const newSolidsRegion = solidsToIndex( this.getCurrentPrecipitates(), this.getCurrentSaturatedConcentration() );
         const previousSaturationState = oldValue > 0;
         const newSaturationState = newValue > 0;
@@ -157,8 +157,20 @@ define( require => {
       } );
     }
 
-    getQualitativeAlert( quantityChangeString, stateInfoString, quantityChange ) {
+    /**
+     * Creates an alert when one of the sliders is moved
+     * @param {string} quantityChangeString - e.g. "More solution" or "Less solute."
+     * @param {boolean} quantityChange - true if the quantity has increased, false if quantity has d
+     * @public
+     */
+    getQualitativeAlert( quantityChangeString, quantityChange ) {
       const sliderUtterance = new Utterance();
+      let stateInfo = '';
+
+      // state info is appended to the alert if the descriptive region has changed for any relevant quantity.
+      if ( quantityChange || this.concentrationRegionChanged || this.solidsRegionChanged ) {
+        stateInfo = this.getConcentrationState();
+      }
 
       // alert text is different based on whether or not the solution is saturated.
       if ( this.solution.isSaturated() ) {
@@ -172,12 +184,12 @@ define( require => {
         sliderUtterance.alert = StringUtils.fillIn( qualitativeValueTextPatternString, {
           quantityChange: quantityChangeString,
           concentrationChange: this.getConcentrationChangeString(),
-          stateInfo: stateInfoString
+          stateInfo: stateInfo
         } );
       }
 
-      // alert is only read out if the region has changed for the quantity, concentration, or solids.
-      if ( quantityChange || this.concentrationRegionChanged || this.solidsRegionChanged ) {
+      // alert is read out except if sim has just been loaded or reset
+      if ( this.concentrationIncreased !== null || this.solidsIncreased !== null ) {
         utteranceQueue.addToBack( sliderUtterance );
       }
     }
@@ -222,9 +234,11 @@ define( require => {
      * */
     getSaturationChangedString() {
       assert && assert( this.newSaturationState );
-      return this.solution.isSaturated() ? saturationReachedAlertString : StringUtils.fillIn( saturationLostAlertPatternString, {
-        concentration: this.getCurrentConcentration()
-      } );
+      return this.solution.isSaturated() ?
+             saturationReachedAlertString :
+             StringUtils.fillIn( saturationLostAlertPatternString, {
+               concentration: this.getCurrentConcentration()
+             } );
     }
 
     /**

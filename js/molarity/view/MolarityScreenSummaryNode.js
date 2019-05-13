@@ -14,12 +14,9 @@ define( require => {
   const Node = require( 'SCENERY/nodes/Node' );
   const Property = require( 'AXON/Property' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  const Utterance = require( 'SCENERY_PHET/accessibility/Utterance' );
-  const utteranceQueue = require( 'SCENERY_PHET/accessibility/utteranceQueue' );
 
   // a11y strings
   const saturatedString = MolarityA11yStrings.saturated.value;
-  const noSoluteAlertString = MolarityA11yStrings.noSoluteAlert.value;
   const notSaturatedString = MolarityA11yStrings.notSaturated.value;
   const qualitativeConcentrationPatternString = MolarityA11yStrings.qualitativeConcentrationPattern.value;
   const quantitativeConcentrationPatternString = MolarityA11yStrings.quantitativeConcentrationPattern.value;
@@ -80,15 +77,8 @@ define( require => {
         saturatedConcentration: this.solution.isSaturated() ? saturatedString : notSaturatedString
       } );
 
-      // If there is no solute in the beaker, a special state description is returned and alert is read.
+      // If there is no solute in the beaker, the descriptive language changes in the PDOM
       if ( this.solution.soluteAmountProperty.value === 0 ) {
-
-        // aria-live alert
-        const simStateUtterance = new Utterance();
-        simStateUtterance.alert = noSoluteAlertString;
-        utteranceQueue.addToBack( simStateUtterance );
-
-        // PDOM text
         return StringUtils.fillIn( stateOfSimNoSolutePatternString, {
           volume: this.volumeDescriber.getCurrentVolume(),
           solute: this.soluteDescriber.getCurrentSolute()

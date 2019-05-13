@@ -15,13 +15,15 @@ define( require => {
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const Util = require( 'DOT/Util' );
+  const Utterance = require( 'SCENERY_PHET/accessibility/Utterance' );
+  const utteranceQueue = require( 'SCENERY_PHET/accessibility/utteranceQueue' );
 
   // strings
+  const noSoluteAlertString = MolarityA11yStrings.noSoluteAlert.value;
   const soluteAmountAndUnitPatternString = MolarityA11yStrings.soluteAmountAndUnitPattern.value;
   const soluteAmountChangedPatternString = MolarityA11yStrings.soluteAmountChangedPattern.value;
   const soluteAmountSliderValueTextPatternString = MolarityA11yStrings.soluteAmountSliderValueTextPattern.value;
   const qualitativeSoluteAmountStatePatternString = MolarityA11yStrings.qualitativeSoluteAmountStatePattern.value;
-  const qualitativeStateInfoPatternString = MolarityA11yStrings.qualitativeStateInfoPattern.value;
 
   // solute Amount regions strings
   const aBunchOfString = MolarityA11yStrings.aBunchOf.value;
@@ -143,23 +145,6 @@ define( require => {
     }
 
     /**
-     * Creates a substring of state info of the sim if the soluteAmount or concentration regions have changed.
-     * @private
-     * @returns {string} - something like "a lot of drink mix. solution very concentrated."
-     */
-    getSoluteAmountStateInfo() {
-      if ( this.soluteAmountRegionChanged || this.concentrationDescriber.concentrationRegionChanged ) {
-        return StringUtils.fillIn( qualitativeStateInfoPatternString, {
-          quantityState: this.getSoluteAmountState(),
-          concentrationState: this.concentrationDescriber.getConcentrationState()
-        } );
-      }
-      else {
-        return '';
-      }
-    }
-
-    /**
      * Creates the string to be used as the solute amount slider's aria-valueText on focus.
      * @public
      * @returns {string}
@@ -208,11 +193,17 @@ define( require => {
      */
     getQualitativeSoluteAmountValueText() {
 
-      // aria-live alert
-      this.concentrationDescriber.getQualitativeAlert( this.getSoluteAmountChangeString(),
-        this.getSoluteAmountStateInfo(), this.soluteAmountRegionChanged );
+      // aria-live alert (a special alert is read out when there is no solute in the beaker)
+      if ( this.solution.soluteAmountProperty.value <= 0.001 ) {
+        const noSoluteUtterance = new Utterance();
+        noSoluteUtterance.alert = noSoluteAlertString;
+        utteranceQueue.addToBack( noSoluteUtterance );
+      }
+      else {
+        this.concentrationDescriber.getQualitativeAlert( this.getSoluteAmountChangeString(), this.soluteAmountRegionChanged );
+      }
 
-      // aria-valueText set
+      // aria-valueText
       return this.getSoluteAmountState();
     }
   }

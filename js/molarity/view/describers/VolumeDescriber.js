@@ -15,9 +15,11 @@ define( require => {
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const Util = require( 'DOT/Util' );
+  const Utterance = require( 'SCENERY_PHET/accessibility/Utterance' );
+  const utteranceQueue = require( 'SCENERY_PHET/accessibility/utteranceQueue' );
 
   // strings
-  const qualitativeStateInfoPatternString = MolarityA11yStrings.qualitativeStateInfoPattern.value;
+  const noSoluteVolumeAlertPatternString = MolarityA11yStrings.noSoluteVolumeAlertPattern.value;
   const qualitativeVolumeSliderValueTextPatternString = MolarityA11yStrings.qualitativeVolumeSliderValueTextPattern.value;
   const qualitativeVolumeStatePatternString = MolarityA11yStrings.qualitativeVolumeStatePattern.value;
   const quantitativeVolumeSliderValueTextPatternString = MolarityA11yStrings.quantitativeVolumeSliderValueTextPattern.value;
@@ -135,24 +137,6 @@ define( require => {
     }
 
     /**
-     * Creates a string describing the volume and concentration current state when the volume or concentration
-     * descriptive regions have changed.
-     * @private
-     * @returns {string} - example: "Beaker half full. Solution very concentrated."
-     */
-    getVolumeStateInfo() {
-      if ( this.volumeRegionChanged || this.concentrationDescriber.concentrationRegionChanged ) {
-        return StringUtils.fillIn( qualitativeStateInfoPatternString, {
-          quantityState: this.getVolumeState(),
-          concentrationState: this.concentrationDescriber.getConcentrationState()
-        } );
-      }
-      else {
-        return '';
-      }
-    }
-
-    /**
      * Creates the string to be used as the volume slider's aria-valueText on focus.
      * @public
      * @returns {string}
@@ -204,9 +188,17 @@ define( require => {
      */
     getQualitativeVolumeValueText() {
 
-      // aria-live alert
-      this.concentrationDescriber.getQualitativeAlert( this.getVolumeChangeString(), this.getVolumeStateInfo(),
-        this.volumeRegionChanged );
+      // aria-live alert (a special alert is read out when there is no solute in the beaker)
+      if ( this.solution.soluteAmountProperty.value <= 0.001 ) {
+        const noSoluteUtterance = new Utterance();
+        noSoluteUtterance.alert = StringUtils.fillIn( noSoluteVolumeAlertPatternString, {
+          moreLess: this.volumeIncreased ? moreCapitalizedString : lessCapitalizedString
+        } );
+        utteranceQueue.addToBack( noSoluteUtterance );
+      }
+      else {
+        this.concentrationDescriber.getQualitativeAlert( this.getVolumeChangeString(), this.volumeRegionChanged );
+      }
 
       // aria-valueText
       return this.getVolumeState();

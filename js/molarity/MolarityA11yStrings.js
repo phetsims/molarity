@@ -70,6 +70,9 @@ define( function( require ) {
     noSoluteAlert: {
       value: 'No solute. Solution is pure water'
     },
+    noSoluteVolumeAlertPattern: {
+      value: '{{moreLess}} water. No solute in beaker.'
+    },
 
     // Beaker description strings
     beakerHeader: {
@@ -185,9 +188,6 @@ define( function( require ) {
     // Qualitative value text strings for both volume and solute amount sliders
     qualitativeSaturatedValueTextPattern: {
       value: '{{propertyAmountChange}}, {{solidsChange}}. {{stillSaturatedClause}}.'
-    },
-    qualitativeStateInfoPattern: {
-      value: '{{quantityState}}. {{concentrationState}}.'
     },
     qualitativeValueTextPattern: {
       value: '{{quantityChange}}, {{concentrationChange}}. {{stateInfo}}'
