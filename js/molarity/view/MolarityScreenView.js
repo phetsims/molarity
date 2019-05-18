@@ -241,7 +241,7 @@ define( function( require ) {
     const solutionControlsNode = new Node( {
       tagName: 'div',
       labelTagName: 'h3',
-      labelContent: solutionControlsLabelString,
+      labelContent: solutionControlsLabelString
     } );
     solutionControlsNode.accessibleOrder = [ soluteAmountSlider, solutionVolumeSlider ];
 

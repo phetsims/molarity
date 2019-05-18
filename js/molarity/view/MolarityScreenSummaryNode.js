@@ -16,6 +16,9 @@ define( require => {
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
 
   // a11y strings
+  const aLowAmountLowercaseString = MolarityA11yStrings.aLowAmountLowercase.value;
+  const isString = MolarityA11yStrings.is.value;
+  const hasString = MolarityA11yStrings.has.value;
   const saturatedString = MolarityA11yStrings.saturated.value;
   const notSaturatedString = MolarityA11yStrings.notSaturated.value;
   const qualitativeConcentrationPatternString = MolarityA11yStrings.qualitativeConcentrationPattern.value;
@@ -86,7 +89,9 @@ define( require => {
       }
 
       return StringUtils.fillIn( stateOfSimPatternString, {
-        volume: this.volumeDescriber.getCurrentVolume(),
+        volume: this.volumeDescriber.currentRegion === 1 ?
+                hasString + aLowAmountLowercaseString :
+                isString + this.volumeDescriber.getCurrentVolume(),
         solute: this.soluteDescriber.getCurrentSolute(),
         soluteAmount: this.soluteAmountDescriber.getCurrentSoluteAmount(),
         concentrationClause: concentrationPattern,
