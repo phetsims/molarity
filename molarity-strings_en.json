@@ -98,8 +98,8 @@
   "keyboard.moveThrough": {
     "value": "Move through solutes"
   },
-  "keyboard.changeChoose": {
-    "value": "Change/Choose solute"
+  "keyboard.changeSolute": {
+    "value": "Change solute"
   },
   "keyboard.closeList": {
     "value": "Close list without changing"
