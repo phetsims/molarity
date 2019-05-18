@@ -69,7 +69,6 @@ define( function( require ) {
   const soluteAmountAccessibleNameString = MolarityA11yStrings.soluteAmountAccessibleName.value;
   const solutionVolumeAccessibleNameString = MolarityA11yStrings.solutionVolumeAccessibleName.value;
   const solutionControlsLabelString = MolarityA11yStrings.solutionControlsLabel.value;
-  const solutionControlsHelpTextString = MolarityA11yStrings.solutionControlsHelpText.value;
   const soluteAmountHelpTextString = MolarityA11yStrings.soluteAmountHelpText.value;
   const solutionVolumeHelpTextString = MolarityA11yStrings.solutionVolumeHelpText.value;
 
@@ -243,7 +242,6 @@ define( function( require ) {
       tagName: 'div',
       labelTagName: 'h3',
       labelContent: solutionControlsLabelString,
-      descriptionContent: solutionControlsHelpTextString
     } );
     solutionControlsNode.accessibleOrder = [ soluteAmountSlider, solutionVolumeSlider ];
 

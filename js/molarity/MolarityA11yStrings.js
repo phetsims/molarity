@@ -44,9 +44,6 @@ define( function( require ) {
     showValuesHelpText: {
       value: 'Explore with values shown.'
     },
-    solutionControlsHelpText: {
-      value: 'Solute Amount and Solution Volume sliders change solution in beaker.'
-    },
     soluteAmountHelpText: {
       value: 'Explore how changing Solute Amount affects solution in beaker.'
     },
