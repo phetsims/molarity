@@ -202,20 +202,30 @@ define( require => {
      * @returns {string}
      */
     getQuantitativeValueText( isInitialAlert, quantity ) {
-      let quantitativeValueTextString = quantitativeValueTextPatternString;
-      let capitalizeConcentrationChange = false;
+      const capitalizeConcentrationChange = true;
+      const sliderUtterance = new Utterance();
 
       // A different pattern is used when it's the first alert read out after the volume slider has been focused.
       if ( isInitialAlert ) {
-        quantitativeValueTextString = quantitativeInitialValueTextPatternString;
-        capitalizeConcentrationChange = true;
+        return StringUtils.fillIn( quantitativeInitialValueTextPatternString, {
+          concentrationChange: this.getConcentrationChangeString( capitalizeConcentrationChange ),
+          quantity: quantity,
+          concentration: this.getCurrentConcentration()
+        } );
+      }
+      else if ( this.solution.isSaturated() ) {
+        sliderUtterance.alert = this.getStillSaturatedClause();
+      }
+      else {
+        sliderUtterance.alert = StringUtils.fillIn( quantitativeValueTextPatternString, {
+          concentrationChange: this.getConcentrationChangeString( capitalizeConcentrationChange ),
+          concentration: this.getCurrentConcentration()
+        } );
       }
 
-      return StringUtils.fillIn( quantitativeValueTextString, {
-        concentrationChange: this.getConcentrationChangeString( capitalizeConcentrationChange ),
-        quantity: quantity,
-        concentration: this.getCurrentConcentration()
-      } );
+      // set value text to the quantity description
+      utteranceQueue.addToBack( sliderUtterance );
+      return quantity;
     }
 
     /**

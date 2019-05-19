@@ -179,7 +179,7 @@ define( function( require ) {
       value: '{{concentrationChange}}. {{quantity}} in solution. Concentration {{concentration}}.'
     },
     quantitativeValueTextPattern: {
-      value: '{{quantity}}, {{concentrationChange}} at {{concentration}}.'
+      value: '{{concentrationChange}} at {{concentration}}.'
     },
     quantitativeVolumeSliderValueTextPattern: {
       value: '{{volume}} in beaker'
