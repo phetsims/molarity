@@ -72,7 +72,7 @@ define( function( require ) {
         spacing: 20,
         align: 'left'
       } );
-      super( sliderKeyboardHelpSection, rightContent, { spacing: 35 } );
+      super( sliderKeyboardHelpSection, rightContent, { columnSpacing: 35 } );
     }
   }
 
