@@ -270,16 +270,16 @@ define( function( require ) {
 
     // Keyboard help content section strings
     popUpListDescription: {
-      value: 'Pop up list of solutes with [Enter] or [Space] keys'
+      value: 'Pop up list of solutes with Enter or Space keys'
     },
     moveThroughDescription: {
-      value: 'Move through solutes with [Up] and [Down] arrow keys'
+      value: 'Move through solutes with Up and Down arrow keys'
     },
     changeChooseDescription: {
-      value: 'Change/Choose solute with [Enter] key'
+      value: 'Choose solute with Enter key'
     },
     closeListDescription: {
-      value: 'Close list without changing with [Esc] key'
+      value: 'Close list without changing with Esc key'
     },
 
     // Alert strings for show values checkbox
