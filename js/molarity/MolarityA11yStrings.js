@@ -62,13 +62,16 @@ define( function( require ) {
 
     // Screen summary strings
     screenSummaryFirstParagraphPattern: {
-      value: 'In the Play Area, you find a beaker containing a solution, and a concentration readout. You can adjust the amount of solute in the solution and the solution volume. You can also choose from nine different solutes to include in your solution. In the Control Area there is a checkbox to show the exact values for amount of solute (in moles), volume of solution (in liters), and concentration (Molar), and a button to reset the sim.'
+      value: 'In the Play Area, you find a beaker containing a solution, and a concentration readout. You can adjust the amount of solute in the solution and the solution volume. You can also choose from nine different solutes to include in your solution.'
+    },
+    screenSummarySecondParagraph: {
+      value: ' In the Control Area there is a checkbox to show the exact values for amount of solute (in moles), volume of solution (in liters), and concentration (Molar), and a button to reset the sim.'
     },
     stateOfSimPattern: {
-      value: 'Currently, beaker {{volume}} of a {{saturatedConcentration}} {{solute}} ‬solution containing {{soluteAmount}} ‪{{solute}}‬ solute. {{concentrationClause}}.'
+      value: 'Currently, beaker {{hasIs}} {{volume}} of a {{saturatedConcentration}} {{solute}} ‬solution containing {{soluteAmount}} ‪{{solute}}‬ solute. {{concentrationClause}}.'
     },
     stateOfSimNoSolutePattern: {
-      value: 'Beaker is {{volume}} of water. {{solute}} is selected, but no {{solute}} is in the beaker.'
+      value: 'Beaker {{hasIs}} {{volume}} of water. {{solute}} is selected, but no {{solute}} is in the beaker.'
     },
     noSoluteAlert: {
       value: 'No solute. Solution is pure water'
@@ -110,7 +113,7 @@ define( function( require ) {
     underHalfFull: {
       value: 'under half full'
     },
-    aLowAmountLowercase:{
+    aLowAmountLowercase: {
       value: 'a low amount'
     },
     low: {

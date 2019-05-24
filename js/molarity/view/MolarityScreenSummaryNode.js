@@ -24,6 +24,7 @@ define( require => {
   const qualitativeConcentrationPatternString = MolarityA11yStrings.qualitativeConcentrationPattern.value;
   const quantitativeConcentrationPatternString = MolarityA11yStrings.quantitativeConcentrationPattern.value;
   const screenSummaryFirstParagraphPatternString = MolarityA11yStrings.screenSummaryFirstParagraphPattern.value;
+  const screenSummarySecondParagraphString = MolarityA11yStrings.screenSummarySecondParagraph.value;
   const stateOfSimNoSolutePatternString = MolarityA11yStrings.stateOfSimNoSolutePattern.value;
   const stateOfSimPatternString = MolarityA11yStrings.stateOfSimPattern.value;
 
@@ -59,6 +60,11 @@ define( require => {
         } )
       } ) );
 
+      this.addChild( new Node( {
+        tagName: 'p',
+        innerContent: screenSummarySecondParagraphString
+      } ) );
+
       const stateOfSimNode = new Node( {
         tagName: 'p'
       } );
@@ -71,9 +77,16 @@ define( require => {
       } );
     }
 
+    /**
+     * @returns {string} - the screen summary paragraph, which differs based on whether quantitative or qualitative
+     * descriptions are show, and whether or not there is some solute in the beaker.
+     * @private
+     */
     stateOfSimDescription() {
-      const concentrationString = this.useQuantitativeDescriptions.value ?
-                                  quantitativeConcentrationPatternString :
+      let stateString = stateOfSimPatternString;
+
+      // Creates the substring describing concentration -- differs based on use of quantitative descriptions and saturation state.
+      const concentrationString = this.useQuantitativeDescriptions.value ? quantitativeConcentrationPatternString :
                                   qualitativeConcentrationPatternString;
       const concentrationPattern = StringUtils.fillIn( concentrationString, {
         concentration: this.concentrationDescriber.getCurrentConcentration(),
@@ -82,16 +95,12 @@ define( require => {
 
       // If there is no solute in the beaker, the descriptive language changes in the PDOM
       if ( this.solution.soluteAmountProperty.value === 0 ) {
-        return StringUtils.fillIn( stateOfSimNoSolutePatternString, {
-          volume: this.volumeDescriber.getCurrentVolume(),
-          solute: this.soluteDescriber.getCurrentSolute()
-        } );
+        stateString = stateOfSimNoSolutePatternString;
       }
 
-      return StringUtils.fillIn( stateOfSimPatternString, {
-        volume: this.volumeDescriber.currentRegion === 1 ?
-                hasString + aLowAmountLowercaseString :
-                isString + this.volumeDescriber.getCurrentVolume(),
+      return StringUtils.fillIn( stateString, {
+        hasIs: this.useQuantitativeDescriptions.value || this.volumeDescriber.currentRegion === 1 ? hasString : isString,
+        volume: this.volumeDescriber.currentRegion === 1 ? aLowAmountLowercaseString : this.volumeDescriber.getCurrentVolume(),
         solute: this.soluteDescriber.getCurrentSolute(),
         soluteAmount: this.soluteAmountDescriber.getCurrentSoluteAmount(),
         concentrationClause: concentrationPattern,
