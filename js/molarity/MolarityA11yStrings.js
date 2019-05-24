@@ -68,10 +68,10 @@ define( function( require ) {
       value: ' In the Control Area there is a checkbox to show the exact values for amount of solute (in moles), volume of solution (in liters), and concentration (Molar), and a button to reset the sim.'
     },
     stateOfSimPattern: {
-      value: 'Currently, beaker {{hasIs}} {{volume}} of a {{saturatedConcentration}} {{solute}} ‬solution containing {{soluteAmount}} ‪{{solute}}‬ solute. {{concentrationClause}}.'
+      value: 'Currently, beaker {{hasIs}} {{volume}} of a {{saturatedConcentration}} {{solute}} ‬solution containing {{soluteAmount}} ‪{{solute}}‬ solute. {{concentrationClause}}. Play with solute amount and solution volume to explore changes to the concentration of different solutions.\n'
     },
     stateOfSimNoSolutePattern: {
-      value: 'Currently, beaker {{hasIs}} {{volume}} of water. {{solute}} is selected, but no {{solute}} is in the beaker.'
+      value: 'Currently, beaker {{hasIs}} {{volume}} of water. {{solute}} is selected, but no {{solute}} is in the beaker. Play with solute amount and solution volume to explore changes to the concentration of different solutions.\n'
     },
     noSoluteAlert: {
       value: 'No solute. Solution is pure water'
