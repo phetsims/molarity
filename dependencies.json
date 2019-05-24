@@ -1,5 +1,5 @@
 {
-  "comment": "# molarity 1.4.5 Wed Apr 24 2019 16:26:30 GMT-0800 (Alaskan Daylight Time)",
+  "comment": "# molarity 1.4.5 Fri May 24 2019 14:58:01 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "HEAD"
@@ -13,8 +13,8 @@
     "branch": "HEAD"
   },
   "chipper": {
-    "sha": "5aad52804a74a8bb39c57d0812333604a89d15a6",
-    "branch": "HEAD"
+    "sha": "c9538ccad45d69351cc4164c262c8d4d68b3f631",
+    "branch": "molarity-1.4"
   },
   "dot": {
     "sha": "49561319ef6e86bf82c4f33d5296288896750ebc",
@@ -29,7 +29,7 @@
     "branch": "HEAD"
   },
   "molarity": {
-    "sha": "08045607657da9ef410764a3932d146c63eca072",
+    "sha": "f1c1572ad5fdd2fa503c1b3677c3c606e9dc6a3b",
     "branch": "1.4"
   },
   "nitroglycerin": {
@@ -42,18 +42,6 @@
   },
   "phet-io": {
     "sha": "e7a433d6484649cdce9bffc9eaa4be609c4579fe",
-    "branch": "HEAD"
-  },
-  "phet-io-wrapper-classroom-activity": {
-    "sha": "f666b06e42bf66ac5309292299b8e3869c863f3f",
-    "branch": "HEAD"
-  },
-  "phet-io-wrapper-hookes-law-energy": {
-    "sha": "b3ca28bf95da20730885751e2af16cd11b592341",
-    "branch": "HEAD"
-  },
-  "phet-io-wrapper-lab-book": {
-    "sha": "4144509af06bcc55b0caaa4f15b620d9114eceac",
     "branch": "HEAD"
   },
   "phet-io-wrappers": {
