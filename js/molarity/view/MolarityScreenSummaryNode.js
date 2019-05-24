@@ -102,7 +102,7 @@ define( require => {
         hasIs: this.useQuantitativeDescriptions.value || this.volumeDescriber.currentRegion === 1 ? hasString : isString,
         volume: this.volumeDescriber.currentRegion === 1 ? aLowAmountLowercaseString : this.volumeDescriber.getCurrentVolume(),
         solute: this.soluteDescriber.getCurrentSolute(),
-        soluteAmount: this.soluteAmountDescriber.getCurrentSoluteAmount(),
+        soluteAmount: this.soluteAmountDescriber.getCurrentSoluteAmount( true ),
         concentrationClause: concentrationPattern,
         saturatedConcentration: this.concentrationDescriber.isSaturated ? saturatedString : ''
       } );

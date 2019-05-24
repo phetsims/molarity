@@ -27,14 +27,21 @@ define( require => {
 
   // solute Amount regions strings
   const aBunchOfString = MolarityA11yStrings.aBunchOf.value;
+  const aBunchOfLowercaseString = MolarityA11yStrings.aBunchOfLowercase.value;
   const aLittleString = MolarityA11yStrings.aLittle.value;
+  const aLittleLowercaseString = MolarityA11yStrings.aLittleLowercase.value;
   const aLotOfString = MolarityA11yStrings.aLotOf.value;
+  const aLotOfLowercaseString = MolarityA11yStrings.aLotOfLowercase.value;
   const aLowAmountOfString = MolarityA11yStrings.aLowAmountOf.value;
+  const aLowAmountOfLowercaseString = MolarityA11yStrings.aLowAmountOfLowercase.value;
   const theMaxAmountOfString = MolarityA11yStrings.theMaxAmountOf.value;
+  const theMaxAmountOfLowercaseString = MolarityA11yStrings.theMaxAmountOfLowercase.value;
 
   // solids regions strings
   const someString = MolarityA11yStrings.some.value;
+  const someLowercaseString = MolarityA11yStrings.someLowercase.value;
   const zeroString = MolarityA11yStrings.zero.value;
+  const zeroLowercaseString = MolarityA11yStrings.zeroLowercase.value;
 
   // change strings
   const lessCapitalizedString = MolarityA11yStrings.lessCapitalized.value;
@@ -49,6 +56,15 @@ define( require => {
     aBunchOfString,
     aLotOfString,
     theMaxAmountOfString
+  ];
+  const SOLUTE_AMOUNT_STRINGS_LOWERCASE = [
+    zeroLowercaseString,
+    aLittleLowercaseString,
+    aLowAmountOfLowercaseString,
+    someLowercaseString,
+    aBunchOfLowercaseString,
+    aLotOfLowercaseString,
+    theMaxAmountOfLowercaseString
   ];
 
   class SoluteAmountDescriber {
@@ -118,17 +134,19 @@ define( require => {
     /**
      * Gets the current value of soluteAmount either quantitatively or quantitatively to plug into descriptions.
      * Examples: "3.400 Moles" for quantitative or "A lot of" for qualitative
+     * @param lowercase {boolean}
      * @public
      * @returns {string} - quantitative or qualitative description of current soluteAmount.
      */
-    getCurrentSoluteAmount() {
+    getCurrentSoluteAmount( lowercase = false ) {
       if ( this.useQuantitativeDescriptions.value ) {
         return StringUtils.fillIn( soluteAmountAndUnitPatternString, {
           soluteAmount: Util.toFixed( this.soluteAmountProperty.value, MConstants.SOLUTE_AMOUNT_DECIMAL_PLACES )
         } );
       }
       else {
-        return SOLUTE_AMOUNT_STRINGS[ soluteAmountToIndex( this.soluteAmountProperty.value ) ];
+        return lowercase ? SOLUTE_AMOUNT_STRINGS_LOWERCASE[ soluteAmountToIndex( this.soluteAmountProperty.value ) ] :
+               SOLUTE_AMOUNT_STRINGS[ soluteAmountToIndex( this.soluteAmountProperty.value ) ];
       }
     }
 

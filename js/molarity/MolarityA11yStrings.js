@@ -71,7 +71,7 @@ define( function( require ) {
       value: 'Currently, beaker {{hasIs}} {{volume}} of a {{saturatedConcentration}} {{solute}} ‬solution containing {{soluteAmount}} ‪{{solute}}‬ solute. {{concentrationClause}}.'
     },
     stateOfSimNoSolutePattern: {
-      value: 'Beaker {{hasIs}} {{volume}} of water. {{solute}} is selected, but no {{solute}} is in the beaker.'
+      value: 'Currently, beaker {{hasIs}} {{volume}} of water. {{solute}} is selected, but no {{solute}} is in the beaker.'
     },
     noSoluteAlert: {
       value: 'No solute. Solution is pure water'
@@ -123,7 +123,7 @@ define( function( require ) {
       value: 'nearly empty'
     },
 
-    // Solute Amount Regions
+    // Solute Amount Regions - uppercase and lowercase
     theMaxAmountOf: {
       value: 'The max amount of'
     },
@@ -145,6 +145,28 @@ define( function( require ) {
     zero: {
       value: 'Zero'
     },
+    theMaxAmountOfLowercase: {
+      value: 'the max amount of'
+    },
+    aLotOfLowercase: {
+      value: 'a lot of'
+    },
+    aBunchOfLowercase: {
+      value: 'a bunch of'
+    },
+    someLowercase: {
+      value: 'some'
+    },
+    aLowAmountOfLowercase: {
+      value: 'a low amount of'
+    },
+    aLittleLowercase: {
+      value: 'a little'
+    },
+    zeroLowercase: {
+      value: 'zero'
+    },
+
 
     // Solids regions
     aCoupleOf: {
