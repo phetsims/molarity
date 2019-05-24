@@ -141,7 +141,7 @@ define( require => {
     getCurrentSoluteAmount( lowercase = false ) {
       if ( this.useQuantitativeDescriptions.value ) {
         return StringUtils.fillIn( soluteAmountAndUnitPatternString, {
-          soluteAmount: Util.toFixed( this.soluteAmountProperty.value, MConstants.SOLUTE_AMOUNT_DECIMAL_PLACES )
+          soluteAmount: Util.toFixed( Util.clamp( this.soluteAmountProperty.value, 0, 5.0 ), MConstants.SOLUTE_AMOUNT_DECIMAL_PLACES )
         } );
       }
       else {

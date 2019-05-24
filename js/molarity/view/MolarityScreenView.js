@@ -43,6 +43,7 @@ define( function( require ) {
   const utteranceQueue = require( 'SCENERY_PHET/accessibility/utteranceQueue' );
   const VerticalSlider = require( 'MOLARITY/molarity/view/VerticalSlider' );
   const VolumeDescriber = require( 'MOLARITY/molarity/view/describers/VolumeDescriber' );
+  const Util = require( 'DOT/Util' );
 
   // strings
   const fullString = require( 'string!MOLARITY/full' );
@@ -143,7 +144,8 @@ define( function( require ) {
         solute: soluteDescriber.getCurrentSolute(),
         concentration: concentrationDescriber.getCurrentConcentration(),
         maxConcentration: StringUtils.fillIn( concentrationAndUnitString, {
-          concentration: soluteDescriber.getCurrentSaturatedConcentration()
+          concentration: Util.toFixed( Util.clamp( concentrationDescriber.getCurrentSaturatedConcentration(), 0, 5 ),
+            MConstants.CONCENTRATION_DECIMAL_PLACES )
         } ),
         chemicalFormulaPattern: chemicalFormulaPattern
       } );

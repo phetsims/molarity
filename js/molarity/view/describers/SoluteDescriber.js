@@ -38,7 +38,7 @@ define( require => {
      */
     getCurrentSolute() {
       const soluteName = this.soluteProperty.value.name;
-      return soluteName.charAt(1).toLowerCase() + soluteName.slice(2);
+      return soluteName.charAt( 1 ).toLowerCase() + soluteName.slice( 2 );
     }
 
     /**
