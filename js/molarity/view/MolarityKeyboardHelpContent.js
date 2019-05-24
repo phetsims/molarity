@@ -19,7 +19,6 @@ define( function( require ) {
   const SliderKeyboardHelpSection = require( 'SCENERY_PHET/keyboard/help/SliderKeyboardHelpSection' );
   const SpaceKeyNode = require( 'SCENERY_PHET/keyboard/SpaceKeyNode' );
   const TwoColumnKeyboardHelpContent = require( 'SCENERY_PHET/keyboard/help/TwoColumnKeyboardHelpContent' );
-  const VBox = require( 'SCENERY/nodes/VBox' );
 
   // strings
   const keyboardSliderHelpHeadingString = require( 'string!MOLARITY/keyboard.sliderHelpHeading' );
@@ -67,12 +66,9 @@ define( function( require ) {
       const changeSoluteHelpSection = new KeyboardHelpSection( keyboardChangeSoluteHelpHeadingString, changeSoluteContent);
       KeyboardHelpSection.alignHelpSectionIcons( [ generalNavigationHelpSection, changeSoluteHelpSection ] );
 
-      const rightContent = new VBox( {
-        children: [ changeSoluteHelpSection, generalNavigationHelpSection ],
-        spacing: 20,
-        align: 'left'
-      } );
-      super( sliderKeyboardHelpSection, rightContent, { spacing: 35 } );
+      const leftContent = [ sliderKeyboardHelpSection ];
+      const rightContent = [ changeSoluteHelpSection, generalNavigationHelpSection ];
+      super( leftContent, rightContent, { columnSpacing: 35, sectionSpacing: 20 } );
     }
   }
 

@@ -21,7 +21,6 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
   var Util = require( 'DOT/Util' );
 
-
   // constants
   var DEBUG_ORIGIN = false;
 
@@ -56,7 +55,6 @@ define( function( require ) {
     var bottomNode = new Path( endShape, {
       tandem: tandem.createTandem( 'bottomNode' )
     } );
-
 
     this.addChild( bottomNode );
     this.addChild( middleNode );

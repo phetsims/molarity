@@ -117,7 +117,6 @@ define( function( require ) {
       useQuantitativeDescriptions
     );
 
-
     // a11y - creates screen summary in the PDOM and add it to the screenView
     const molarityScreenSummaryNode = new MolarityScreenSummaryNode( model.solution, model.solutes,
       useQuantitativeDescriptions, concentrationDescriber, soluteAmountDescriber, soluteDescriber, volumeDescriber );
