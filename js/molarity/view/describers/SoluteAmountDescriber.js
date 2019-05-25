@@ -119,7 +119,6 @@ define( require => {
       this.isInitialSoluteAmountAlert = true;
     }
 
-
     /**
      * Returns a string describing the change in soluteAmount (e.g. "more solution")
      * @private
