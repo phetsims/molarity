@@ -156,39 +156,41 @@ define( require => {
      */
     getVolumeChangedValueText() {
       if ( this.concentrationDescriber.isNewSaturationState() ) {
-
-        // special strings are generated if the solution is either newly saturated or newly unsaturated
-        return this.concentrationDescriber.getSaturationChangedString();
+        utteranceQueue.addToBack( new Utterance( { alert: this.concentrationDescriber.getSaturationChangedString() } ) );
       }
-      else {
-        return this.useQuantitativeDescriptions.value ?
-               this.getQuantitativeVolumeValueText() :
-               this.getQualitativeVolumeValueText();
-      }
+      return this.useQuantitativeDescriptions.value ?
+             this.getQuantitativeVolumeDescriptions() :
+             this.getQualitativeVolumeDescriptions();
     }
 
     /**
-     * Creates aria-valueText strings when the "show values" checkbox is checked
+     * When VolumeProperty changes when quantitative descriptions are being used, creates aria-valueText strings and
+     * triggers alerts.
      * @private
      * @returns {string}
      */
-    getQuantitativeVolumeValueText() {
-      const valueText = this.concentrationDescriber.getQuantitativeValueText( this.isInitialVolumeAlert,
-        this.getCurrentVolume() );
+    getQuantitativeVolumeDescriptions() {
+
+      // alerts
+      this.concentrationDescriber.getQuantitativeAlert( this.isInitialVolumeAlert );
       if ( this.isInitialVolumeAlert ) {
         this.isInitialVolumeAlert = false;
       }
-      return valueText;
+
+      // aria-valueText
+      return this.concentrationDescriber.getQuantitativeValueText( this.isInitialVolumeAlert,
+        this.getCurrentVolume() );
     }
 
     /**
-     * Creates aria-valueText strings when the "show values" checkbox is not checked for saturated and unsaturated states.
+     * When VolumeProperty changes when qualitative descriptions are being used, creates aria-valueText strings and
+     * triggers alerts.
      * @private
      * @returns {string}
      */
-    getQualitativeVolumeValueText() {
+    getQualitativeVolumeDescriptions() {
 
-      // aria-live alert (a special alert is read out when there is no solute in the beaker)
+      // alerts (a special alert is read out when there is no solute in the beaker)
       if ( this.solution.soluteAmountProperty.value <= 0.001 ) {
         const noSoluteUtterance = new Utterance();
         noSoluteUtterance.alert = StringUtils.fillIn( noSoluteVolumeAlertPatternString, {

@@ -27,6 +27,7 @@ define( require => {
   const qualitativeSaturatedValueTextPatternString = MolarityA11yStrings.qualitativeSaturatedValueTextPattern.value;
   const qualitativeValueTextPatternString = MolarityA11yStrings.qualitativeValueTextPattern.value;
   const quantitativeConcentrationStatePatternString = MolarityA11yStrings.quantitativeConcentrationStatePattern.value;
+  const quantitativeInitialAlertPatternString = MolarityA11yStrings.quantitativeInitialAlertPattern.value;
   const quantitativeInitialValueTextPatternString = MolarityA11yStrings.quantitativeInitialValueTextPattern.value;
   const quantitativeValueTextPatternString = MolarityA11yStrings.quantitativeValueTextPattern.value;
   const saturationLostAlertPatternString = MolarityA11yStrings.saturationLostAlertPattern.value;
@@ -47,6 +48,9 @@ define( require => {
   const aCoupleOfString = MolarityA11yStrings.aCoupleOf.value;
   const aFewString = MolarityA11yStrings.aFew.value;
   const aLotOfString = MolarityA11yStrings.aLotOf.value;
+  const someLowercaseString = MolarityA11yStrings.someLowercase.value;
+  const aBunchOfLowercaseString = MolarityA11yStrings.aBunchOfLowercase.value;
+  const aLotOfLowercaseString = MolarityA11yStrings.aLotOfLowercase.value;
 
   // Change strings
   const lessString = MolarityA11yStrings.less.value;
@@ -69,6 +73,13 @@ define( require => {
     someString,
     aBunchOfString,
     aLotOfString
+  ];
+  const SOLIDS_STRINGS_LOWERCASE = [
+    aCoupleOfString,
+    aFewString,
+    someLowercaseString,
+    aBunchOfLowercaseString,
+    aLotOfLowercaseString
   ];
 
   class ConcentrationDescriber {
@@ -104,7 +115,7 @@ define( require => {
 
       // @private
       // {number} - tracks the index of the last descriptive region for solids from SOLIDS_STRINGS array
-      this.solidsRegion = solidsToIndex( this.getCurrentPrecipitates(), this.getCurrentSaturatedConcentration() );
+      this.solidsRegion = solidsToIndex( this.precipitateAmountProperty.value, this.getCurrentSaturatedConcentration() );
 
       // @private
       // {boolean} - tracks whether the solids descriptive region has just changed
@@ -116,28 +127,90 @@ define( require => {
 
       // @private
       // {boolean} - tracks whether the solution has just become saturated or unsaturated.
-      this.newSaturationState = false;
+      this.saturationStateChanged = false;
 
       this.concentrationProperty.lazyLink( ( newValue, oldValue ) => {
         assert && assert( newValue !== oldValue, 'unexpected: called with no change in concentration' );
         const newConcentrationRegion = concentrationToIndex( this.soluteProperty.value.saturatedConcentration,
           this.concentrationProperty.value );
-        const previousSaturationState = oldValue >= this.soluteProperty.value.saturatedConcentration;
-        const newSaturationState = this.solution.isSaturated();
-        this.newSaturationState = newSaturationState !== previousSaturationState;
+        const previousSaturationState = oldValue >= this.getCurrentSaturatedConcentration();
+        const newSaturationState = newValue >= this.getCurrentSaturatedConcentration();
         this.concentrationIncreased = newValue > oldValue;
         this.concentrationRegionChanged = newConcentrationRegion !== this.concentrationRegion;
         this.concentrationRegion = newConcentrationRegion;
+        this.saturationStateChanged = newSaturationState !== previousSaturationState;
       } );
 
       this.precipitateAmountProperty.lazyLink( ( newValue, oldValue ) => {
-        const newSolidsRegion = solidsToIndex( this.getCurrentPrecipitates(), this.getCurrentSaturatedConcentration() );
-        const previousSaturationState = oldValue > 0;
-        const newSaturationState = newValue > 0;
-        this.newSaturationState = newSaturationState !== previousSaturationState;
+        const newSolidsRegion = solidsToIndex( this.precipitateAmountProperty.value, this.getCurrentSaturatedConcentration() );
+        const previousSaturationState = oldValue !== 0;
+        const newSaturationState = newValue !== 0;
+        this.saturationStateChanged = newSaturationState !== previousSaturationState;
         this.solidsIncreased = newValue > oldValue;
         this.solidsRegionChanged = newSolidsRegion !== this.solidsRegion;
         this.solidsRegion = newSolidsRegion;
+      } );
+    }
+
+    /**
+     * Getter for newSaturationState
+     * @public
+     * @returns {boolean} - whether or not the solution has been newly saturated or unsaturated
+     * */
+    isNewSaturationState() {
+      return this.saturationStateChanged;
+    }
+
+    /**
+     * Gets the current value of concentration either quantitatively or quantitatively to plug into descriptions.
+     * @public
+     * @returns {string} - quantitative or qualitative description of current concentration (e.g. "1.500 Molar" or "very concentrated")
+     */
+    getCurrentConcentration() {
+      const concentration = this.concentrationProperty.value;
+      if ( this.useQuantitativeDescriptions.value ) {
+        return StringUtils.fillIn( concentrationAndUnitString, {
+          concentration: Util.toFixed( concentration, MConstants.CONCENTRATION_DECIMAL_PLACES )
+        } );
+      }
+      else {
+        const index = concentrationToIndex( this.soluteProperty.value.saturatedConcentration, concentration );
+        return CONCENTRATION_STRINGS[ index ];
+      }
+    }
+
+    /**
+     * Gets the saturated concentration amount of the currently selected solute.
+     * @private
+     * @returns {number}
+     */
+    getCurrentSaturatedConcentration() {
+      return this.soluteProperty.value.saturatedConcentration;
+    }
+
+
+    /**
+     * Gets the qualitative description of the amount of solids in the beaker.
+     * @private
+     * @param {boolean} isCapitalized
+     * @returns {string} - example: "a bunch"
+     */
+    getCurrentSolidsAmount( isCapitalized = true ) {
+      return isCapitalized ?
+             SOLIDS_STRINGS[ solidsToIndex( this.precipitateAmountProperty.value, this.getCurrentSaturatedConcentration() ) ] :
+             SOLIDS_STRINGS_LOWERCASE[ solidsToIndex( this.precipitateAmountProperty.value, this.getCurrentSaturatedConcentration() ) ];
+    }
+
+    /**
+     * Fills in the state info if region has changed and the solution is saturated.
+     * @public
+     * @returns {string} - example: "still saturated with a bunch of solids"
+     */
+    getStillSaturatedClause() {
+      return StringUtils.fillIn( stillSaturatedAlertPatternString, {
+        withSolids: this.solidsRegionChanged ? StringUtils.fillIn( withSolidsAlertPatternString, {
+          solidAmount: this.getCurrentSolidsAmount( false )
+        } ) : ''
       } );
     }
 
@@ -158,7 +231,53 @@ define( require => {
     }
 
     /**
-     * Creates an alert when one of the sliders is moved
+     * Creates a substring to describe the change in the amount of solids
+     * @public
+     * @returns {string} - example: "more solids"
+     */
+    getSolidsChangeString() {
+      assert && assert( this.precipitateAmountProperty.value > 0 );
+      return StringUtils.fillIn( solidsChangePatternString, {
+        moreLess: this.solidsIncreased ? moreString : lessString
+      } );
+    }
+
+    /**
+     * Creates the description strings that are read out when the solution is either newly saturated or newly unsaturated.
+     * @public
+     * @returns {string} - returns a string if the saturation state has changed
+     * */
+    getSaturationChangedString() {
+      assert && assert( this.saturationStateChanged, 'failed: saturation state has not changed' );
+      return this.solution.isSaturated() ?
+             saturationReachedAlertString :
+             StringUtils.fillIn( saturationLostAlertPatternString, {
+               concentration: this.getCurrentConcentration()
+             } );
+    }
+
+    /**
+     * Creates the quantitative and qualitative substrings to describe the concentration state of the solution.
+     * @public
+     * @returns {string} - examples: "Concentration 0.600 Molar" or "Solution very concentrated".
+     * */
+    getConcentrationState() {
+      const concentration = this.concentrationProperty.value;
+      if ( this.useQuantitativeDescriptions.value ) {
+        return StringUtils.fillIn( quantitativeConcentrationStatePatternString, {
+          concentration: this.getCurrentConcentration()
+        } );
+      }
+      else {
+        const index = concentrationToIndex( this.soluteProperty.value.saturatedConcentration, concentration );
+        return StringUtils.fillIn( qualitativeConcentrationStatePatternString, {
+          concentration: CONCENTRATION_STRINGS[ index ]
+        } );
+      }
+    }
+
+    /**
+     * When qualitative descriptions are being used and SoluteAmountProperty or VolumeProperty changes, creates an alert.
      * @param {string} quantityChangeString - e.g. "More solution" or "Less solute."
      * @param {boolean} quantityChange - true if the quantity has increased, false if quantity has d
      * @public
@@ -195,21 +314,40 @@ define( require => {
     }
 
     /**
-     * Creates aria-valueText strings when the "show values" checkbox is checked
+     * Creates aria-valueText strings when quantitative descriptions are being used
      * @param {boolean} isInitialAlert
      * @param {string} quantity
      * @public
      * @returns {string}
      */
     getQuantitativeValueText( isInitialAlert, quantity ) {
-      const capitalizeConcentrationChange = true;
-      const sliderUtterance = new Utterance();
 
       // A different pattern is used when it's the first alert read out after the volume slider has been focused.
       if ( isInitialAlert ) {
         return StringUtils.fillIn( quantitativeInitialValueTextPatternString, {
+          quantity: quantity
+        } );
+      }
+      else {
+        return quantity;
+      }
+    }
+
+    /**
+     * Creates aria-valueText strings when the "show values" checkbox is checked
+     * @param {boolean} isInitialAlert
+     * @param {string} quantity
+     * @public
+     * @returns {string}
+     */
+    getQuantitativeAlert( isInitialAlert ) {
+      const capitalizeConcentrationChange = true;
+      const sliderUtterance = new Utterance();
+
+      // A different pattern is used when it's the first alert read out after the volume slider has been focused.
+      if ( isInitialAlert && !this.solution.isSaturated() ) {
+        sliderUtterance.alert = StringUtils.fillIn( quantitativeInitialAlertPatternString, {
           concentrationChange: this.getConcentrationChangeString( capitalizeConcentrationChange ),
-          quantity: quantity,
           concentration: this.getCurrentConcentration()
         } );
       }
@@ -222,124 +360,7 @@ define( require => {
           concentration: this.getCurrentConcentration()
         } );
       }
-
-      // set value text to the quantity description
       utteranceQueue.addToBack( sliderUtterance );
-      return quantity;
-    }
-
-    /**
-     * Getter for newSaturationState
-     * @public
-     * @returns {boolean} - whether or not the solution has been newly saturated or unsaturated
-     * */
-    isNewSaturationState() {
-      return this.newSaturationState;
-    }
-
-    /**
-     * Creates the description strings that are read out when the solution is either newly saturated or newly unsaturated.
-     * @public
-     * @returns {string} - returns a string if the saturation state has changed
-     * */
-    getSaturationChangedString() {
-      assert && assert( this.newSaturationState );
-      return this.solution.isSaturated() ?
-             saturationReachedAlertString :
-             StringUtils.fillIn( saturationLostAlertPatternString, {
-               concentration: this.getCurrentConcentration()
-             } );
-    }
-
-    /**
-     * Creates the quantitative and qualitative substrings to describe the concentration state of the solution.
-     * @public
-     * @returns {string} - examples: "Concentration 0.600 Molar" or "Solution very concentrated".
-     * */
-    getConcentrationState() {
-      const concentration = this.concentrationProperty.value;
-      if ( this.useQuantitativeDescriptions.value ) {
-        return StringUtils.fillIn( quantitativeConcentrationStatePatternString, {
-          concentration: this.getCurrentConcentration()
-        } );
-      }
-      else {
-        const index = concentrationToIndex( this.soluteProperty.value.saturatedConcentration, concentration );
-        return StringUtils.fillIn( qualitativeConcentrationStatePatternString, {
-          concentration: CONCENTRATION_STRINGS[ index ]
-        } );
-      }
-    }
-
-    /**
-     * TODO: support capitalized and lowercase more/less, perhaps with parameter?
-     * Creates a substring to describe the change in the amount of solids
-     * @public
-     * @returns {string} - example: "more solids"
-     */
-    getSolidsChangeString() {
-      assert && assert( this.precipitateAmountProperty.value > 0 );
-      return StringUtils.fillIn( solidsChangePatternString, {
-        moreLess: this.solidsIncreased ? moreString : lessString
-      } );
-    }
-
-    /**
-     * Gets the current value of concentration either quantitatively or quantitatively to plug into descriptions.
-     * @public
-     * @returns {string} - quantitative or qualitative description of current concentration (e.g. "1.500 Molar" or "very concentrated")
-     */
-    getCurrentConcentration() {
-      const concentration = this.concentrationProperty.value;
-      if ( this.useQuantitativeDescriptions.value ) {
-        return StringUtils.fillIn( concentrationAndUnitString, {
-          concentration: Util.toFixed( concentration, MConstants.CONCENTRATION_DECIMAL_PLACES )
-        } );
-      }
-      else {
-        const index = concentrationToIndex( this.soluteProperty.value.saturatedConcentration, concentration );
-        return CONCENTRATION_STRINGS[ index ];
-      }
-    }
-
-    /**
-     * Gets the saturated concentration amount of the currently selected solute.
-     * @private
-     * @returns {number}
-     */
-    getCurrentSaturatedConcentration() {
-      return this.soluteProperty.value.saturatedConcentration;
-    }
-
-    /**
-     * Gets the current amount of precipitates in the beaker.
-     * @private
-     * @returns {number}
-     */
-    getCurrentPrecipitates() {
-      return this.precipitateAmountProperty.value;
-    }
-
-    /**
-     * Gets the qualitative description of the amount of solids in the beaker.
-     * @private
-     * @returns {string} - example: "a bunch"
-     */
-    getCurrentSolidsAmount() {
-      return SOLIDS_STRINGS[ solidsToIndex( this.getCurrentPrecipitates(), this.getCurrentSaturatedConcentration() ) ];
-    }
-
-    /**
-     * Fills in the state info if region has changed and the solution is saturated.
-     * @public
-     * @returns {string} - example: "still saturated with a bunch of solids"
-     */
-    getStillSaturatedClause() {
-      return StringUtils.fillIn( stillSaturatedAlertPatternString, {
-        withSolids: this.solidsRegionChanged ? StringUtils.fillIn( withSolidsAlertPatternString, {
-          solidAmount: this.getCurrentSolidsAmount()
-        } ) : ''
-      } );
     }
   }
 

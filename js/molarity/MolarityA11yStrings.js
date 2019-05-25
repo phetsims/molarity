@@ -204,7 +204,10 @@ define( function( require ) {
 
     // Quantitative value text strings for both volume and solute amount sliders
     quantitativeInitialValueTextPattern: {
-      value: '{{concentrationChange}}. {{quantity}} in solution. Concentration {{concentration}}.'
+      value: '{{quantity}} in solution.'
+    },
+    quantitativeInitialAlertPattern: {
+      value: '{{concentrationChange}}. Concentration {{concentration}}.'
     },
     quantitativeValueTextPattern: {
       value: '{{concentrationChange}} at {{concentration}}.'
@@ -274,7 +277,13 @@ define( function( require ) {
 
     // Solute changed alert string
     soluteChangedAlertPattern: {
-      value: '{{solute}} concentration readout range 0.00 to {{maxConcentration}}'
+      value: 'New solution. {{solute}} concentration readout range 0.00 to {{maxConcentration}}.'
+    },
+    soluteChangedUnsaturatedAlertPattern: {
+      value: 'New solution. Not saturated, no solids. Solution {{concentration}}.'
+    },
+    soluteChangedSaturatedAlertPattern: {
+      value:'New solution. Saturated, {{solids}} solids. Beyond max concentration.'
     },
 
     // New saturation state alerts

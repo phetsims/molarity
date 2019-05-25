@@ -105,7 +105,7 @@ define( function( require ) {
 
     // a11y - initializes describers
     const concentrationDescriber = new ConcentrationDescriber( model.solution, useQuantitativeDescriptions );
-    const soluteDescriber = new SoluteDescriber( model.solution.soluteProperty );
+    const soluteDescriber = new SoluteDescriber( model.solution, concentrationDescriber );
     const volumeDescriber = new VolumeDescriber( model.solution, concentrationDescriber, useQuantitativeDescriptions );
     const soluteAmountDescriber = new SoluteAmountDescriber( model.solution, soluteDescriber, concentrationDescriber,
       useQuantitativeDescriptions
@@ -216,13 +216,6 @@ define( function( require ) {
     model.solution.soluteProperty.lazyLink( () => {
       simStateUtterance.alert = soluteDescriber.getSoluteChangedAlertString();
       utteranceQueue.addToBack( simStateUtterance );
-      if ( concentrationDescriber.isNewSaturationState() ) {
-
-        // An alert is read out if the change in solute caused a change in saturation state
-        const saturationStateChangeUtterance = new Utterance();
-        saturationStateChangeUtterance.alert = concentrationDescriber.getSaturationChangedString();
-        utteranceQueue.addToBack( saturationStateChangeUtterance );
-      }
     } );
 
     // a11y - contains PDOM heading for Play Area, and orders the PDOM for included elements

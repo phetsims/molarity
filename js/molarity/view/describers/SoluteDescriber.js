@@ -19,26 +19,35 @@ define( require => {
   // a11y strings
   const concentrationAndUnitString = MolarityA11yStrings.concentrationAndUnit.value;
   const soluteChangedAlertPatternString = MolarityA11yStrings.soluteChangedAlertPattern.value;
+  const soluteChangedSaturatedAlertPatternString = MolarityA11yStrings.soluteChangedSaturatedAlertPattern.value;
+  const soluteChangedUnsaturatedAlertPatternString = MolarityA11yStrings.soluteChangedUnsaturatedAlertPattern.value;
 
   class SoluteDescriber {
 
     /**
-     * @param {Property.<Solute>} soluteProperty - from Solution model element.
+     * @param {Property.<Solute>} solution.soluteProperty - from Solution model element.
      */
-    constructor( soluteProperty ) {
+    constructor( solution, concentrationDescriber ) {
 
       // @private
-      this.soluteProperty = soluteProperty;
+      this.solution = solution;
+      this.concentrationDescriber = concentrationDescriber;
     }
 
     /**
      * Gets the name of the current solute selected.
      * @public
+     * @param {boolean} isCapitalized
      * @returns {string}
      */
-    getCurrentSolute() {
-      const soluteName = this.soluteProperty.value.name;
-      return soluteName.charAt( 1 ).toLowerCase() + soluteName.slice( 2 );
+    getCurrentSolute( isCapitalized = false ) {
+      const soluteName = this.solution.soluteProperty.value.name;
+      if ( isCapitalized ) {
+        return soluteName;
+      }
+      else {
+        return soluteName.charAt( 1 ).toLowerCase() + soluteName.slice( 2 );
+      }
     }
 
     /**
@@ -47,7 +56,7 @@ define( require => {
      * @returns {number}
      */
     getCurrentSaturatedConcentration() {
-      return this.soluteProperty.value.saturatedConcentration;
+      return this.solution.soluteProperty.value.saturatedConcentration;
     }
 
     /**
@@ -56,17 +65,28 @@ define( require => {
      * @returns {string}
      */
     getCurrentChemicalFormula() {
-      return this.soluteProperty.value.formula;
+      return this.solution.soluteProperty.value.formula;
     }
 
     /**
-     * Describes the new solute when a user changes the solute in the combo box.
+     * Describes the new solute and any change in saturation when a user changes the solute in the combo box.
      * @public
      * @returns {string}
      */
     getSoluteChangedAlertString() {
+
+      // If a solute change causes a change in saturation, special alerts are read out.
+      if ( this.concentrationDescriber.saturationStateChanged ) {
+        return this.solution.isSaturated() ?
+               StringUtils.fillIn( soluteChangedSaturatedAlertPatternString, {
+                 solids: this.concentrationDescriber.getCurrentSolidsAmount()
+               } ) :
+               StringUtils.fillIn( soluteChangedUnsaturatedAlertPatternString, {
+                 concentration: this.concentrationDescriber.getCurrentConcentration()
+               } );
+      }
       return StringUtils.fillIn( soluteChangedAlertPatternString, {
-        solute: this.getCurrentSolute(),
+        solute: this.getCurrentSolute( true ),
         maxConcentration: StringUtils.fillIn( concentrationAndUnitString, {
           concentration: Util.toFixed( this.getCurrentSaturatedConcentration() > 5.0 ? 5.0 : this.getCurrentSaturatedConcentration(),
             MConstants.CONCENTRATION_DECIMAL_PLACES )

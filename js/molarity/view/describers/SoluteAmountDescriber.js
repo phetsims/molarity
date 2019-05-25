@@ -175,43 +175,48 @@ define( require => {
     }
 
     /**
-     * Main method for generating aria-valueText when the soluteAmountProperty changes.
+     * Main method for generating aria-valueText when the soluteAmountProperty changes. Also responsible for the alert
+     * read out when the solution is newly saturated
      * @public
-     * @returns {string}
+     * @returns {null|string}
      */
     getSoluteAmountChangedValueText() {
       if ( this.concentrationDescriber.isNewSaturationState() ) {
-        return this.concentrationDescriber.getSaturationChangedString();
+        utteranceQueue.addToBack( new Utterance( { alert: this.concentrationDescriber.getSaturationChangedString() } ) );
       }
-      else {
-        return this.useQuantitativeDescriptions.value ?
-               this.getQuantitativeSoluteAmountValueText() :
-               this.getQualitativeSoluteAmountValueText();
-      }
+      return this.useQuantitativeDescriptions.value ?
+             this.getQuantitativeSoluteAmountDescriptions() :
+             this.getQualitativeSoluteAmountDescriptions();
     }
 
     /**
-     * Creates aria-valueText strings when the "show values" checkbox is checked
+     * When SoluteAmountProperty changes when quantitative descriptions are being used, creates aria-valueText strings
+     * and triggers alerts.
      * @private
      * @returns {string}
      */
-    getQuantitativeSoluteAmountValueText() {
-      const valueText = this.concentrationDescriber.getQuantitativeValueText( this.isInitialSoluteAmountAlert,
-        this.getCurrentSoluteAmount() );
+    getQuantitativeSoluteAmountDescriptions() {
+
+      // alerts
+      this.concentrationDescriber.getQuantitativeAlert( this.isInitialSoluteAmountAlert );
       if ( this.isInitialSoluteAmountAlert ) {
         this.isInitialSoluteAmountAlert = false;
       }
-      return valueText;
+
+      // aria-valueText
+      return this.concentrationDescriber.getQuantitativeValueText( this.isInitialSoluteAmountAlert,
+        this.getCurrentSoluteAmount() );
     }
 
     /**
-     * Creates aria-valueText strings when the "show values" checkbox is not checked for saturated and unsaturated states.
+     * When SoluteAmountProperty changes when qualitative descriptions are being used, creates aria-valueText strings
+     * and triggers alerts.
      * @private
      * @returns {string}
      */
-    getQualitativeSoluteAmountValueText() {
+    getQualitativeSoluteAmountDescriptions() {
 
-      // aria-live alert (a special alert is read out when there is no solute in the beaker)
+      // alerts (a special alert is read out when there is no solute in the beaker)
       if ( this.solution.soluteAmountProperty.value <= 0.001 ) {
         const noSoluteUtterance = new Utterance();
         noSoluteUtterance.alert = noSoluteAlertString;
