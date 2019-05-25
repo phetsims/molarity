@@ -37,10 +37,10 @@ define( function( require ) {
       value: 'solute'
     },
     soluteAmountAccessibleName: {
-      value: 'Solute Amount Slider'
+      value: 'Solute Amount'
     },
     solutionVolumeAccessibleName: {
-      value: 'Solution Volume Slider'
+      value: 'Solution Volume'
     },
     solutionControlsLabel: {
       value: 'Solution Controls'
@@ -65,7 +65,7 @@ define( function( require ) {
       value: 'In the Play Area, you find a beaker containing a solution, and a concentration readout. You can adjust the amount of solute in the solution and the solution volume. You can also choose from nine different solutes to include in your solution.'
     },
     screenSummarySecondParagraph: {
-      value: ' In the Control Area there is a checkbox to show the exact values for amount of solute (in moles), volume of solution (in liters), and concentration (Molar), and a button to reset the sim.'
+      value: ' In the Control Area there is a checkbox to show the exact values for amount of solute (in moles), volume of solution (in liters), and concentration (molar), and a button to reset the sim.'
     },
     stateOfSimPattern: {
       value: 'Currently, beaker {{hasIs}} {{volume}} of a {{saturatedConcentration}} {{solute}} ‬solution containing {{soluteAmount}} ‪{{solute}}‬ solute. {{concentrationClause}}. Play with solute amount and solution volume to explore changes to the concentration of different solutions.\n'
@@ -84,8 +84,11 @@ define( function( require ) {
     beakerHeader: {
       value: 'Beaker'
     },
-    beakerDescription: {
+    beakerDescriptionPattern: {
       value: 'Solution Concentration of {{solute}} Is {{concentration}}. Concentration readout range is 0.00 to {{maxConcentration}}. {{chemicalFormulaPattern}}'
+    },
+    beakerNoSoluteDescriptionPattern: {
+      value: 'Beaker {{hasIs}} {{volume}} of water, containing no solute'
     },
     chemicalFormulaPattern: {
       value: 'The chemical formula for {{solute}} is {{chemicalFormula}}.'
@@ -258,7 +261,7 @@ define( function( require ) {
       value: 'Concentration is {{concentration}}'
     },
     concentrationAndUnit: {
-      value: '{{concentration}} Molar'
+      value: '{{concentration}} molar'
     },
 
     // Qualitative concentration value text strings
