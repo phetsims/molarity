@@ -63,7 +63,8 @@ define( function( require ) {
       const step4 = KeyboardHelpSection.labelWithIcon( keyboardCloseListString, ICON_CREATOR.esc(), closeListDescriptionString );
       const changeSoluteContent = [ step1, step2, step3, step4 ];
 
-      const changeSoluteHelpSection = new KeyboardHelpSection( keyboardChangeSoluteHelpHeadingString, changeSoluteContent);
+      const changeSoluteHelpSection = new KeyboardHelpSection( keyboardChangeSoluteHelpHeadingString, changeSoluteContent,
+        { a11yContentTagName: 'ol' } );
       KeyboardHelpSection.alignHelpSectionIcons( [ generalNavigationHelpSection, changeSoluteHelpSection ] );
 
       const leftContent = [ sliderKeyboardHelpSection ];
