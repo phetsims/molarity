@@ -61,11 +61,11 @@ define( function( require ) {
    * @param {SoluteDescriber} soluteDescriber - a11y
    * @param {VolumeDescriber} volumeDescriber - a11y
    * @param {concentrationDescriber} concentrationDescriber - a11y
-   * @param {Property.<boolean>} useQuantitativeDescriptions - a11y
+   * @param {Property.<boolean>} useQuantitativeDescriptionsProperty - a11y
    * @constructor
    */
   function BeakerNode( solution, maxVolume, valuesVisibleProperty, tandem, soluteDescriber, volumeDescriber,
-                       concentrationDescriber, useQuantitativeDescriptions ) {
+                       concentrationDescriber, useQuantitativeDescriptionsProperty ) {
 
     Node.call( this, {
       pickable: false,
@@ -177,45 +177,46 @@ define( function( require ) {
     } );
 
     // a11y - updates PDOM beaker description when solute, concentration, or quantitative description properties change
-    Property.multilink( [ solution.soluteProperty, solution.concentrationProperty, useQuantitativeDescriptions ], () => {
-      let descriptionContent = '';
+    Property.multilink( [ solution.soluteProperty, solution.concentrationProperty,
+        useQuantitativeDescriptionsProperty ], () => {
+        let descriptionContent = '';
 
-      // chemical formula pattern is the same for all solutes except drink mix.
-      let chemicalFormulaPattern = StringUtils.fillIn( chemicalFormulaPatternString, {
-        solute: soluteDescriber.getCurrentSolute(),
-        chemicalFormula: soluteDescriber.getCurrentChemicalFormula()
-      } );
-      if ( soluteDescriber.getCurrentChemicalFormula() === MSymbols.DRINK_MIX ) {
-
-        // Because drink mix doesn't have a chemical formula, we decided to add a chemical formula for citric acid,
-        // since drink mix largely consists of citric acid. https://github.com/phetsims/molarity/issues/86
-        chemicalFormulaPattern = StringUtils.fillIn( drinkMixChemicalFormulaPatternString, {
-          chemicalFormula: MSymbols.CITRIC_ACID
-        } );
-      }
-
-      // special case when the solute amount is zero
-      if ( solution.soluteAmountProperty.value - MConstants.CONCENTRATION_RANGE.min <= 0.001 ) {
-        descriptionContent = StringUtils.fillIn( beakerNoSoluteDescriptionPatternString, {
-          volume: volumeDescriber.getCurrentVolume( true )
-        } );
-      }
-      else {
-        const concentrationClamped = Util.clamp( concentrationDescriber.getCurrentSaturatedConcentration(),
-          MConstants.CONCENTRATION_RANGE.min, MConstants.CONCENTRATION_RANGE.max );
-        const concentrationFormatted = StringUtils.fillIn( concentrationAndUnitString, {
-          concentration: Util.toFixed( concentrationClamped, MConstants.CONCENTRATION_DECIMAL_PLACES )
-        } );
-        descriptionContent = StringUtils.fillIn( beakerDescriptionPatternString, {
+        // chemical formula pattern is the same for all solutes except drink mix.
+        let chemicalFormulaPattern = StringUtils.fillIn( chemicalFormulaPatternString, {
           solute: soluteDescriber.getCurrentSolute(),
-          concentration: concentrationDescriber.getCurrentConcentration(),
-          maxConcentration: concentrationFormatted,
-          chemicalFormulaPattern: chemicalFormulaPattern
+          chemicalFormula: soluteDescriber.getCurrentChemicalFormula()
         } );
-      }
+        if ( soluteDescriber.getCurrentChemicalFormula() === MSymbols.DRINK_MIX ) {
 
-      this.descriptionContent = descriptionContent;
-    } );
+          // Because drink mix doesn't have a chemical formula, we decided to add a chemical formula for citric acid,
+          // since drink mix largely consists of citric acid. https://github.com/phetsims/molarity/issues/86
+          chemicalFormulaPattern = StringUtils.fillIn( drinkMixChemicalFormulaPatternString, {
+            chemicalFormula: MSymbols.CITRIC_ACID
+          } );
+        }
+
+        // special case when the solute amount is zero
+        if ( solution.soluteAmountProperty.value - MConstants.CONCENTRATION_RANGE.min <= 0.001 ) {
+          descriptionContent = StringUtils.fillIn( beakerNoSoluteDescriptionPatternString, {
+            volume: volumeDescriber.getCurrentVolume( true )
+          } );
+        }
+        else {
+          const concentrationClamped = Util.clamp( concentrationDescriber.getCurrentSaturatedConcentration(),
+            MConstants.CONCENTRATION_RANGE.min, MConstants.CONCENTRATION_RANGE.max );
+          const concentrationFormatted = StringUtils.fillIn( concentrationAndUnitString, {
+            concentration: Util.toFixed( concentrationClamped, MConstants.CONCENTRATION_DECIMAL_PLACES )
+          } );
+          descriptionContent = StringUtils.fillIn( beakerDescriptionPatternString, {
+            solute: soluteDescriber.getCurrentSolute(),
+            concentration: concentrationDescriber.getCurrentConcentration(),
+            maxConcentration: concentrationFormatted,
+            chemicalFormulaPattern: chemicalFormulaPattern
+          } );
+        }
+
+        this.descriptionContent = descriptionContent;
+      } );
   }
 
   molarity.register( 'BeakerNode', BeakerNode );

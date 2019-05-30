@@ -86,19 +86,19 @@ define( function( require ) {
     } );
 
     // Determines whether qualitative or quantitative a11y descriptions are used.
-    const useQuantitativeDescriptions = new DerivedProperty( [ valuesVisibleProperty ], () => {
+    const useQuantitativeDescriptionsProperty = new DerivedProperty( [ valuesVisibleProperty ], () => {
       return valuesVisibleProperty.value;
     } );
 
     // a11y - initializes describers and alert manager
     const molarityAlertManager = new MolarityAlertManager();
-    const concentrationDescriber = new ConcentrationDescriber( model.solution, useQuantitativeDescriptions,
+    const concentrationDescriber = new ConcentrationDescriber( model.solution, useQuantitativeDescriptionsProperty,
       molarityAlertManager );
     const soluteDescriber = new SoluteDescriber( model.solution, concentrationDescriber, molarityAlertManager );
-    const volumeDescriber = new VolumeDescriber( model.solution, concentrationDescriber, useQuantitativeDescriptions,
-      molarityAlertManager );
+    const volumeDescriber = new VolumeDescriber( model.solution, concentrationDescriber,
+      useQuantitativeDescriptionsProperty, molarityAlertManager );
     const soluteAmountDescriber = new SoluteAmountDescriber( model.solution, soluteDescriber, concentrationDescriber,
-      useQuantitativeDescriptions, molarityAlertManager );
+      useQuantitativeDescriptionsProperty, molarityAlertManager );
 
     // a11y - adds an alert when the values visible checkbox is checked or unchecked
     valuesVisibleProperty.lazyLink( newValue => {
@@ -107,13 +107,14 @@ define( function( require ) {
 
     // a11y - creates screen summary in the PDOM and add it to the screenView
     const molarityScreenSummaryNode = new MolarityScreenSummaryNode( model.solution, model.solutes,
-      useQuantitativeDescriptions, concentrationDescriber, soluteAmountDescriber, soluteDescriber, volumeDescriber );
+      useQuantitativeDescriptionsProperty, concentrationDescriber, soluteAmountDescriber, soluteDescriber,
+      volumeDescriber );
     this.screenSummaryNode.addChild( molarityScreenSummaryNode );
 
     // beaker, with solution and precipitate inside of it
     const beakerNode = new BeakerNode( model.solution, MConstants.SOLUTION_VOLUME_RANGE.max, valuesVisibleProperty,
       tandem.createTandem( 'beakerNode' ), soluteDescriber, volumeDescriber, concentrationDescriber,
-      useQuantitativeDescriptions );
+      useQuantitativeDescriptionsProperty );
 
     const cylinderSize = beakerNode.getCylinderSize();
     const solutionNode = new SolutionNode( cylinderSize, beakerNode.getCylinderEndHeight(), model.solution,

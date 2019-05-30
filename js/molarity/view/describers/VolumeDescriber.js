@@ -73,15 +73,16 @@ define( require => {
     /**
      * @param {Solution} solution - from model
      * @param {ConcentrationDescriber} concentrationDescriber
-     * @param {BooleanProperty} useQuantitativeDescriptions
+     * @param {Property.<boolean>} useQuantitativeDescriptionsProperty
+     * @param {MolarityAlertManager} molarityAlertManager
      */
-    constructor( solution, concentrationDescriber, useQuantitativeDescriptions, molarityAlertManager ) {
+    constructor( solution, concentrationDescriber, useQuantitativeDescriptionsProperty, molarityAlertManager ) {
 
       // @private
       this.solution = solution;
       this.volumeProperty = solution.volumeProperty;
       this.concentrationDescriber = concentrationDescriber;
-      this.useQuantitativeDescriptions = useQuantitativeDescriptions;
+      this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
       this.alertManager = molarityAlertManager;
 
       // @private
@@ -127,7 +128,7 @@ define( require => {
      */
     getCurrentVolume( isActive = false ) {
       const volumeIndex = volumeToIndex( this.volumeProperty.value );
-      if ( this.useQuantitativeDescriptions.value ) {
+      if ( this.useQuantitativeDescriptionsProperty.value ) {
         const quantitativeString = isActive ? hasVolumePatternString : solutionVolumeAndUnitPatternString;
         return StringUtils.fillIn( quantitativeString, {
           volume: Util.toFixed( this.volumeProperty.value, MConstants.SOLUTION_VOLUME_DECIMAL_PLACES )
@@ -167,7 +168,8 @@ define( require => {
      * @returns {string}
      */
     getOnFocusVolumeValueText() {
-      const string = this.useQuantitativeDescriptions.value ? quantitativeVolumeSliderValueTextPatternString :
+      const string = this.useQuantitativeDescriptionsProperty.value ?
+                     quantitativeVolumeSliderValueTextPatternString :
                      qualitativeVolumeSliderValueTextPatternString;
       return StringUtils.fillIn( string, {
         volume: this.getCurrentVolume()
@@ -184,7 +186,7 @@ define( require => {
       if ( this.concentrationDescriber.isNewSaturationState() ) {
         this.alertManager.alertSaturation( this.concentrationDescriber.getSaturationChangedString() );
       }
-      return this.useQuantitativeDescriptions.value ?
+      return this.useQuantitativeDescriptionsProperty.value ?
              this.getQuantitativeVolumeDescriptions() :
              this.getQualitativeVolumeDescriptions();
     }

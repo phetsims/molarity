@@ -84,9 +84,10 @@ define( require => {
 
     /**
      * @param {Solution} solution - from MolarityModel.
-     * @param {BooleanProperty} useQuantitativeDescriptions
+     * @param {Property.<boolean>>} useQuantitativeDescriptionsProperty
+     * @param {MolarityAlertManager} molarityAlertManager
      */
-    constructor( solution, useQuantitativeDescriptions, molarityAlertManager ) {
+    constructor( solution, useQuantitativeDescriptionsProperty, molarityAlertManager ) {
 
       // @public
       this.concentrationRegionChanged = null; // boolean - tracks whether the concentration descriptive region has changed
@@ -96,7 +97,7 @@ define( require => {
       this.soluteProperty = solution.soluteProperty;
       this.concentrationProperty = solution.concentrationProperty;
       this.precipitateAmountProperty = solution.precipitateAmountProperty;
-      this.useQuantitativeDescriptions = useQuantitativeDescriptions;
+      this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
       this.alertManager = molarityAlertManager;
 
       // @private
@@ -167,7 +168,7 @@ define( require => {
      */
     getCurrentConcentration() {
       const concentration = this.concentrationProperty.value;
-      if ( this.useQuantitativeDescriptions.value ) {
+      if ( this.useQuantitativeDescriptionsProperty.value ) {
         return StringUtils.fillIn( concentrationAndUnitString, {
           concentration: Util.toFixed( concentration, MConstants.CONCENTRATION_DECIMAL_PLACES )
         } );
@@ -262,7 +263,7 @@ define( require => {
      * */
     getConcentrationState() {
       const concentration = this.concentrationProperty.value;
-      if ( this.useQuantitativeDescriptions.value ) {
+      if ( this.useQuantitativeDescriptionsProperty.value ) {
         return StringUtils.fillIn( quantitativeConcentrationStatePatternString, {
           concentration: this.getCurrentConcentration()
         } );

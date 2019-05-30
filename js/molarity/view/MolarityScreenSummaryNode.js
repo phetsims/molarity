@@ -30,20 +30,20 @@ define( require => {
     /**
      * @param {Solution} solution -- from MolarityModel
      * @param {Array} solutes -- from MolarityModel
-     * @param {Property.<boolean>} useQuantitativeDescriptions- tracks whether the values are visible
+     * @param {Property.<boolean>} useQuantitativeDescriptionsProperty- tracks whether the values are visible
      * @param {ConcentrationDescriber} concentrationDescriber
      * @param {SoluteAmountDescriber} soluteAmountDescriber
      * @param {SoluteDescriber} soluteDescriber
      * @param {VolumeDescriber} volumeDescriber
      */
-    constructor( solution, solutes, useQuantitativeDescriptions, concentrationDescriber, soluteAmountDescriber,
+    constructor( solution, solutes, useQuantitativeDescriptionsProperty, concentrationDescriber, soluteAmountDescriber,
                  soluteDescriber, volumeDescriber ) {
 
       super();
 
       //@private
       this.solution = solution;
-      this.useQuantitativeDescriptions = useQuantitativeDescriptions;
+      this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
       this.concentrationDescriber = concentrationDescriber;
       this.soluteAmountDescriber = soluteAmountDescriber;
       this.soluteDescriber = soluteDescriber;
@@ -69,7 +69,7 @@ define( require => {
 
       // Third paragraph of the screen summary -- updated when model properties change.
       Property.multilink( [ solution.soluteProperty, solution.volumeProperty,
-        solution.soluteAmountProperty, solution.concentrationProperty, useQuantitativeDescriptions ], () => {
+        solution.soluteAmountProperty, solution.concentrationProperty, useQuantitativeDescriptionsProperty ], () => {
         stateOfSimNode.innerContent = this.stateOfSimDescription();
       } );
     }
@@ -83,7 +83,8 @@ define( require => {
       let stateString = stateOfSimPatternString;
 
       // Creates the substring describing concentration -- differs based on use of quantitative descriptions and saturation state.
-      const concentrationString = this.useQuantitativeDescriptions.value ? quantitativeConcentrationPatternString :
+      const concentrationString = this.useQuantitativeDescriptionsProperty.value ?
+                                  quantitativeConcentrationPatternString :
                                   qualitativeConcentrationPatternString;
       const concentrationPattern = StringUtils.fillIn( concentrationString, {
         concentration: this.concentrationDescriber.getCurrentConcentration(),

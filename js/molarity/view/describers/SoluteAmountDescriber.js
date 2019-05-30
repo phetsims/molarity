@@ -71,16 +71,18 @@ define( require => {
      * @param {Solution} solution - from model.
      * @param {SoluteDescriber} soluteDescriber
      * @param {ConcentrationDescriber} concentrationDescriber
-     * @param {BooleanProperty} useQuantitativeDescriptions
+     * @param {Property.<boolean>} useQuantitativeDescriptionsProperty
+     * @param {MolarityAlertManager} molarityAlertManager
      */
-    constructor( solution, soluteDescriber, concentrationDescriber, useQuantitativeDescriptions, molarityAlertManager ) {
+    constructor( solution, soluteDescriber, concentrationDescriber, useQuantitativeDescriptionsProperty,
+                 molarityAlertManager ) {
 
       // @private
       this.solution = solution;
       this.concentrationDescriber = concentrationDescriber;
       this.soluteAmountProperty = solution.soluteAmountProperty;
       this.soluteDescriber = soluteDescriber;
-      this.useQuantitativeDescriptions = useQuantitativeDescriptions;
+      this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
       this.alertManager = molarityAlertManager;
 
       // @private
@@ -137,7 +139,7 @@ define( require => {
      * @returns {string} - quantitative or qualitative description of current soluteAmount.
      */
     getCurrentSoluteAmount( lowercase = false ) {
-      if ( this.useQuantitativeDescriptions.value ) {
+      if ( this.useQuantitativeDescriptionsProperty.value ) {
         return StringUtils.fillIn( soluteAmountAndUnitPatternString, {
           soluteAmount: Util.toFixed( Util.clamp( this.soluteAmountProperty.value, 0, 5.0 ), MConstants.SOLUTE_AMOUNT_DECIMAL_PLACES )
         } );
@@ -182,7 +184,7 @@ define( require => {
       if ( this.concentrationDescriber.isNewSaturationState() ) {
         this.alertManager.alertSaturation( this.concentrationDescriber.getSaturationChangedString() );
       }
-      return this.useQuantitativeDescriptions.value ?
+      return this.useQuantitativeDescriptionsProperty.value ?
              this.getQuantitativeSoluteAmountDescriptions() :
              this.getQualitativeSoluteAmountDescriptions();
     }
