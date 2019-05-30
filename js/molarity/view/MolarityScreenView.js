@@ -22,6 +22,7 @@ define( function( require ) {
   const MConstants = require( 'MOLARITY/molarity/MConstants' );
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
+  const MolarityAlertManager = require( 'MOLARITY/molarity/view/MolarityAlertManager' );
   const MolarityScreenSummaryNode = require( 'MOLARITY/molarity/view/MolarityScreenSummaryNode' );
   const Node = require( 'SCENERY/nodes/Node' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
@@ -37,8 +38,6 @@ define( function( require ) {
   const SolutionNode = require( 'MOLARITY/molarity/view/SolutionNode' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const Text = require( 'SCENERY/nodes/Text' );
-  const Utterance = require( 'SCENERY_PHET/accessibility/Utterance' );
-  const utteranceQueue = require( 'SCENERY_PHET/accessibility/utteranceQueue' );
   const VerticalSlider = require( 'MOLARITY/molarity/view/VerticalSlider' );
   const VolumeDescriber = require( 'MOLARITY/molarity/view/describers/VolumeDescriber' );
 
@@ -75,9 +74,7 @@ define( function( require ) {
    * @constructor
    */
   function MolarityScreenView( model, tandem ) {
-
     this.model = model;
-
     ScreenView.call( this, {
       layoutBounds: new Bounds2( 0, 0, 1100, 700 ),
       tandem: tandem,
@@ -93,23 +90,20 @@ define( function( require ) {
       return valuesVisibleProperty.value;
     } );
 
-    // a11y - an utterance that can be used whenever the state of the sim changes, using this
-    // utterance will prevent the utteranceQueue from spamming alerts with this information
-    const simStateUtterance = new Utterance();
+    // a11y - initializes describers and alert manager
+    const molarityAlertManager = new MolarityAlertManager();
+    const concentrationDescriber = new ConcentrationDescriber( model.solution, useQuantitativeDescriptions,
+      molarityAlertManager );
+    const soluteDescriber = new SoluteDescriber( model.solution, concentrationDescriber, molarityAlertManager );
+    const volumeDescriber = new VolumeDescriber( model.solution, concentrationDescriber, useQuantitativeDescriptions,
+      molarityAlertManager );
+    const soluteAmountDescriber = new SoluteAmountDescriber( model.solution, soluteDescriber, concentrationDescriber,
+      useQuantitativeDescriptions, molarityAlertManager );
 
     // a11y - adds an alert when the values visible checkbox is checked or unchecked
     valuesVisibleProperty.lazyLink( newValue => {
-      simStateUtterance.alert = newValue ? showValuesCheckedAlertString : showValuesUncheckedAlertString;
-      utteranceQueue.addToBack( simStateUtterance );
+      molarityAlertManager.alertValuesVisible( newValue ? showValuesCheckedAlertString : showValuesUncheckedAlertString );
     } );
-
-    // a11y - initializes describers
-    const concentrationDescriber = new ConcentrationDescriber( model.solution, useQuantitativeDescriptions );
-    const soluteDescriber = new SoluteDescriber( model.solution, concentrationDescriber );
-    const volumeDescriber = new VolumeDescriber( model.solution, concentrationDescriber, useQuantitativeDescriptions );
-    const soluteAmountDescriber = new SoluteAmountDescriber( model.solution, soluteDescriber, concentrationDescriber,
-      useQuantitativeDescriptions
-    );
 
     // a11y - creates screen summary in the PDOM and add it to the screenView
     const molarityScreenSummaryNode = new MolarityScreenSummaryNode( model.solution, model.solutes,
@@ -214,8 +208,7 @@ define( function( require ) {
 
     // a11y - adds an alert when the solute is changed
     model.solution.soluteProperty.lazyLink( () => {
-      simStateUtterance.alert = soluteDescriber.getSoluteChangedAlertString();
-      utteranceQueue.addToBack( simStateUtterance );
+      molarityAlertManager.alertSolute( soluteDescriber.getSoluteChangedAlertString() );
     } );
 
     // a11y - contains PDOM heading for Play Area, and orders the PDOM for included elements

@@ -15,10 +15,9 @@ define( require => {
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const Util = require( 'DOT/Util' );
-  const Utterance = require( 'SCENERY_PHET/accessibility/Utterance' );
-  const utteranceQueue = require( 'SCENERY_PHET/accessibility/utteranceQueue' );
 
   // strings
+  const hasVolumePatternString = MolarityA11yStrings.hasVolumePattern.value;
   const noSoluteVolumeAlertPatternString = MolarityA11yStrings.noSoluteVolumeAlertPattern.value;
   const qualitativeVolumeSliderValueTextPatternString = MolarityA11yStrings.qualitativeVolumeSliderValueTextPattern.value;
   const qualitativeVolumeStatePatternString = MolarityA11yStrings.qualitativeVolumeStatePattern.value;
@@ -35,6 +34,15 @@ define( require => {
   const overHalfFullString = MolarityA11yStrings.overHalfFull.value;
   const underHalfFullString = MolarityA11yStrings.underHalfFull.value;
 
+  // volume active regions strings
+  const isFullString = MolarityA11yStrings.isFull.value;
+  const isNearlyFullString = MolarityA11yStrings.isNearlyFull.value;
+  const isOverHalfFullString = MolarityA11yStrings.isOverHalfFull.value;
+  const isHalfFullString = MolarityA11yStrings.isHalfFull.value;
+  const isUnderHalfFullString = MolarityA11yStrings.isUnderHalfFull.value;
+  const hasALowAmountString = MolarityA11yStrings.hasALowAmount.value;
+  const isNearlyEmptyString = MolarityA11yStrings.isNearlyEmpty.value;
+
   // change strings
   const lessCapitalizedString = MolarityA11yStrings.lessCapitalized.value;
   const moreCapitalizedString = MolarityA11yStrings.moreCapitalized.value;
@@ -50,6 +58,16 @@ define( require => {
     fullString
   ];
 
+  const VOLUME_ACTIVE_STRINGS = [
+    isNearlyEmptyString,
+    hasALowAmountString,
+    isUnderHalfFullString,
+    isHalfFullString,
+    isOverHalfFullString,
+    isNearlyFullString,
+    isFullString
+  ];
+
   class VolumeDescriber {
 
     /**
@@ -57,13 +75,14 @@ define( require => {
      * @param {ConcentrationDescriber} concentrationDescriber
      * @param {BooleanProperty} useQuantitativeDescriptions
      */
-    constructor( solution, concentrationDescriber, useQuantitativeDescriptions ) {
+    constructor( solution, concentrationDescriber, useQuantitativeDescriptions, molarityAlertManager ) {
 
       // @private
       this.solution = solution;
       this.volumeProperty = solution.volumeProperty;
       this.concentrationDescriber = concentrationDescriber;
       this.useQuantitativeDescriptions = useQuantitativeDescriptions;
+      this.alertManager = molarityAlertManager;
 
       // @private
       // {number} - the index of the descriptive region from VOLUME_STRINGS array.
@@ -102,17 +121,23 @@ define( require => {
 
     /**
      * Gets the current value of volume either quantitatively or quantitatively to plug into descriptions.
+     * @param {boolean} [isActive]
      * @public
      * @returns {string} - examples: "1.500 Liters" for quantitative or "half full" for qualitative.
      */
-    getCurrentVolume() {
+    getCurrentVolume( isActive = false ) {
+      const volumeIndex = volumeToIndex( this.volumeProperty.value );
       if ( this.useQuantitativeDescriptions.value ) {
-        return StringUtils.fillIn( solutionVolumeAndUnitPatternString, {
+        const quantitativeString = isActive ? hasVolumePatternString : solutionVolumeAndUnitPatternString;
+        return StringUtils.fillIn( quantitativeString, {
           volume: Util.toFixed( this.volumeProperty.value, MConstants.SOLUTION_VOLUME_DECIMAL_PLACES )
         } );
       }
+      else if ( isActive ) {
+        return VOLUME_ACTIVE_STRINGS [ volumeIndex ];
+      }
       else {
-        return VOLUME_STRINGS[ volumeToIndex( this.volumeProperty.value ) ];
+        return VOLUME_STRINGS[ volumeIndex ];
       }
     }
 
@@ -150,13 +175,14 @@ define( require => {
     }
 
     /**
-     * Main method for generating aria-valueText when the volumeProperty changes.
+     * Main method for generating aria-valueText when the volumeProperty changes. Also triggers an alert if a new
+     * saturation state is attained
      * @public
      * @returns {string}
      */
     getVolumeChangedValueText() {
       if ( this.concentrationDescriber.isNewSaturationState() ) {
-        utteranceQueue.addToBack( new Utterance( { alert: this.concentrationDescriber.getSaturationChangedString() } ) );
+        this.alertManager.alertSaturation( this.concentrationDescriber.getSaturationChangedString() );
       }
       return this.useQuantitativeDescriptions.value ?
              this.getQuantitativeVolumeDescriptions() :
@@ -172,7 +198,7 @@ define( require => {
     getQuantitativeVolumeDescriptions() {
 
       // alerts
-      this.concentrationDescriber.getQuantitativeAlert( this.isInitialVolumeAlert );
+      this.concentrationDescriber.alertQuantitative( this.isInitialVolumeAlert );
       if ( this.isInitialVolumeAlert ) {
         this.isInitialVolumeAlert = false;
       }
@@ -192,11 +218,10 @@ define( require => {
 
       // alerts (a special alert is read out when there is no solute in the beaker)
       if ( this.solution.soluteAmountProperty.value <= 0.001 ) {
-        const noSoluteUtterance = new Utterance();
-        noSoluteUtterance.alert = StringUtils.fillIn( noSoluteVolumeAlertPatternString, {
+        const alertText = StringUtils.fillIn( noSoluteVolumeAlertPatternString, {
           moreLess: this.volumeIncreased ? moreCapitalizedString : lessCapitalizedString
         } );
-        utteranceQueue.addToBack( noSoluteUtterance );
+        this.alertManager.alertSlider( alertText );
       }
       else {
         this.concentrationDescriber.getQualitativeAlert( this.getVolumeChangeString(), this.volumeRegionChanged );

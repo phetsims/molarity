@@ -15,8 +15,6 @@ define( require => {
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const Util = require( 'DOT/Util' );
-  const Utterance = require( 'SCENERY_PHET/accessibility/Utterance' );
-  const utteranceQueue = require( 'SCENERY_PHET/accessibility/utteranceQueue' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
 
   // a11y strings
@@ -88,7 +86,7 @@ define( require => {
      * @param {Solution} solution - from MolarityModel.
      * @param {BooleanProperty} useQuantitativeDescriptions
      */
-    constructor( solution, useQuantitativeDescriptions ) {
+    constructor( solution, useQuantitativeDescriptions, molarityAlertManager ) {
 
       // @public
       this.concentrationRegionChanged = null; // boolean - tracks whether the concentration descriptive region has changed
@@ -99,6 +97,7 @@ define( require => {
       this.concentrationProperty = solution.concentrationProperty;
       this.precipitateAmountProperty = solution.precipitateAmountProperty;
       this.useQuantitativeDescriptions = useQuantitativeDescriptions;
+      this.alertManager = molarityAlertManager;
 
       // @private
       // {number} - the index of the last concentration descriptive region from CONCENTRATION_STRINGS_ARRAY
@@ -188,17 +187,17 @@ define( require => {
       return this.soluteProperty.value.saturatedConcentration;
     }
 
-
     /**
      * Gets the qualitative description of the amount of solids in the beaker.
      * @private
-     * @param {boolean} isCapitalized
+     * @param {boolean} [isCapitalized]
      * @returns {string} - example: "a bunch"
      */
     getCurrentSolidsAmount( isCapitalized = true ) {
+      const solidsIndex = solidsToIndex( this.precipitateAmountProperty.value, this.getCurrentSaturatedConcentration() );
       return isCapitalized ?
-             SOLIDS_STRINGS[ solidsToIndex( this.precipitateAmountProperty.value, this.getCurrentSaturatedConcentration() ) ] :
-             SOLIDS_STRINGS_LOWERCASE[ solidsToIndex( this.precipitateAmountProperty.value, this.getCurrentSaturatedConcentration() ) ];
+             SOLIDS_STRINGS[ solidsIndex ] :
+             SOLIDS_STRINGS_LOWERCASE[ solidsIndex ];
     }
 
     /**
@@ -283,7 +282,7 @@ define( require => {
      * @public
      */
     getQualitativeAlert( quantityChangeString, quantityChange ) {
-      const sliderUtterance = new Utterance();
+      let alertText = '';
       let stateInfo = '';
 
       // state info is appended to the alert if the descriptive region has changed for any relevant quantity.
@@ -293,14 +292,14 @@ define( require => {
 
       // alert text is different based on whether or not the solution is saturated.
       if ( this.solution.isSaturated() ) {
-        sliderUtterance.alert = StringUtils.fillIn( qualitativeSaturatedValueTextPatternString, {
+        alertText = StringUtils.fillIn( qualitativeSaturatedValueTextPatternString, {
           propertyAmountChange: quantityChangeString,
           solidsChange: this.getSolidsChangeString(),
           stillSaturatedClause: this.getStillSaturatedClause()
         } );
       }
       else {
-        sliderUtterance.alert = StringUtils.fillIn( qualitativeValueTextPatternString, {
+        alertText = StringUtils.fillIn( qualitativeValueTextPatternString, {
           quantityChange: quantityChangeString,
           concentrationChange: this.getConcentrationChangeString(),
           stateInfo: stateInfo
@@ -309,7 +308,7 @@ define( require => {
 
       // alert is read out except if sim has just been loaded or reset
       if ( this.concentrationIncreased !== null || this.solidsIncreased !== null ) {
-        utteranceQueue.addToBack( sliderUtterance );
+        this.alertManager.alertSlider( alertText );
       }
     }
 
@@ -340,27 +339,27 @@ define( require => {
      * @public
      * @returns {string}
      */
-    getQuantitativeAlert( isInitialAlert ) {
+    alertQuantitative( isInitialAlert ) {
       const capitalizeConcentrationChange = true;
-      const sliderUtterance = new Utterance();
+      let alertText = '';
 
       // A different pattern is used when it's the first alert read out after the volume slider has been focused.
       if ( isInitialAlert && !this.solution.isSaturated() ) {
-        sliderUtterance.alert = StringUtils.fillIn( quantitativeInitialAlertPatternString, {
+        alertText = StringUtils.fillIn( quantitativeInitialAlertPatternString, {
           concentrationChange: this.getConcentrationChangeString( capitalizeConcentrationChange ),
           concentration: this.getCurrentConcentration()
         } );
       }
       else if ( this.solution.isSaturated() ) {
-        sliderUtterance.alert = this.getStillSaturatedClause();
+        alertText = this.getStillSaturatedClause();
       }
       else {
-        sliderUtterance.alert = StringUtils.fillIn( quantitativeValueTextPatternString, {
+        alertText = StringUtils.fillIn( quantitativeValueTextPatternString, {
           concentrationChange: this.getConcentrationChangeString( capitalizeConcentrationChange ),
           concentration: this.getCurrentConcentration()
         } );
       }
-      utteranceQueue.addToBack( sliderUtterance );
+      this.alertManager.alertSlider( alertText );
     }
   }
 

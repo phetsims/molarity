@@ -21,12 +21,6 @@ define( function( require ) {
     less: {
       value: 'less'
     },
-    is: {
-      value: 'is '
-    },
-    has: {
-      value: 'has '
-    },
     moreCapitalized: {
       value: 'More'
     },
@@ -68,10 +62,10 @@ define( function( require ) {
       value: ' In the Control Area there is a checkbox to show the exact values for amount of solute (in moles), volume of solution (in liters), and concentration (molar), and a button to reset the sim.'
     },
     stateOfSimPattern: {
-      value: 'Currently, beaker {{hasIs}} {{volume}} of a {{saturatedConcentration}} {{solute}} ‬solution containing {{soluteAmount}} ‪{{solute}}‬ solute. {{concentrationClause}}. Play with solute amount and solution volume to explore changes to the concentration of different solutions.\n'
+      value: 'Currently, beaker {{volume}} of a {{saturatedConcentration}} {{solute}} ‬solution containing {{soluteAmount}} ‪{{solute}}‬ solute. {{concentrationClause}}. Play with solute amount and solution volume to explore changes to the concentration of different solutions.\n'
     },
     stateOfSimNoSolutePattern: {
-      value: 'Currently, beaker {{hasIs}} {{volume}} of water. {{solute}} is selected, but no {{solute}} is in the beaker. Play with solute amount and solution volume to explore changes to the concentration of different solutions.\n'
+      value: 'Currently, beaker {{volume}} of water. {{solute}} is selected, but no {{solute}} is in the beaker. Play with solute amount and solution volume to explore changes to the concentration of different solutions.\n'
     },
     noSoluteAlert: {
       value: 'No solute. Solution is pure water'
@@ -88,7 +82,7 @@ define( function( require ) {
       value: 'Solution Concentration of {{solute}} Is {{concentration}}. Concentration readout range is 0.00 to {{maxConcentration}}. {{chemicalFormulaPattern}}'
     },
     beakerNoSoluteDescriptionPattern: {
-      value: 'Beaker {{hasIs}} {{volume}} of water, containing no solute'
+      value: 'Beaker {{volume}} of water, containing no solute'
     },
     chemicalFormulaPattern: {
       value: 'The chemical formula for {{solute}} is {{chemicalFormula}}.'
@@ -116,14 +110,34 @@ define( function( require ) {
     underHalfFull: {
       value: 'under half full'
     },
-    aLowAmountLowercase: {
-      value: 'a low amount'
-    },
     low: {
       value: 'low'
     },
     nearlyEmpty: {
       value: 'nearly empty'
+    },
+
+    // Volume active regions
+    isFull: {
+      value: 'is full'
+    },
+    isNearlyFull: {
+      value: 'is nearly full'
+    },
+    isOverHalfFull: {
+      value: 'is over half full'
+    },
+    isHalfFull: {
+      value: 'is half full'
+    },
+    isUnderHalfFull: {
+      value: 'is under half full'
+    },
+    hasALowAmount: {
+      value: 'has a low amount'
+    },
+    isNearlyEmpty: {
+      value: 'is nearly empty'
     },
 
     // Solute Amount Regions - uppercase and lowercase
@@ -217,6 +231,9 @@ define( function( require ) {
     },
     solutionVolumeAndUnitPattern: {
       value: '{{volume}} liters'
+    },
+    hasVolumePattern: {
+      value: 'has {{volume}} liters'
     },
     soluteAmountAndUnitPattern: {
       value: '{{soluteAmount}} moles'
@@ -325,6 +342,35 @@ define( function( require ) {
     },
     showValuesUncheckedAlert: {
       value: 'Values hidden.'
+    },
+
+    // Lowercase solute names
+    cobaltIINitrateLowercase: {
+      value: 'cobalt(II) nitrate'
+    },
+    cobaltChlorideLowercase: {
+      value: 'cobalt(II) chloride'
+    },
+    copperSulfateLowercase: {
+      value: 'copper(II) sulfate'
+    },
+    drinkMixLowercase: {
+      value: 'drink mix'
+    },
+    goldIIIChlorideLowercase: {
+      value: 'gold(III) chloride'
+    },
+    nickelIIChlorideLowercase: {
+      value: 'nickel(II) chloride'
+    },
+    potassiumChromateLowercase: {
+      value: 'potassium chromate'
+    },
+    potassiumDichromateLowercase: {
+      value: 'potassium dichromate'
+    },
+    potassiumPermanganateLowercase: {
+      value: 'potassium permanganate'
     }
   };
 

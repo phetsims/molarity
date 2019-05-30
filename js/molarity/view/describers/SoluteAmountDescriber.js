@@ -15,8 +15,6 @@ define( require => {
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const Util = require( 'DOT/Util' );
-  const Utterance = require( 'SCENERY_PHET/accessibility/Utterance' );
-  const utteranceQueue = require( 'SCENERY_PHET/accessibility/utteranceQueue' );
 
   // strings
   const noSoluteAlertString = MolarityA11yStrings.noSoluteAlert.value;
@@ -75,7 +73,7 @@ define( require => {
      * @param {ConcentrationDescriber} concentrationDescriber
      * @param {BooleanProperty} useQuantitativeDescriptions
      */
-    constructor( solution, soluteDescriber, concentrationDescriber, useQuantitativeDescriptions ) {
+    constructor( solution, soluteDescriber, concentrationDescriber, useQuantitativeDescriptions, molarityAlertManager ) {
 
       // @private
       this.solution = solution;
@@ -83,6 +81,7 @@ define( require => {
       this.soluteAmountProperty = solution.soluteAmountProperty;
       this.soluteDescriber = soluteDescriber;
       this.useQuantitativeDescriptions = useQuantitativeDescriptions;
+      this.alertManager = molarityAlertManager;
 
       // @private
       // {number} - the index of the descriptive region from SOLUTE_AMOUNT_STRINGS array.
@@ -181,7 +180,7 @@ define( require => {
      */
     getSoluteAmountChangedValueText() {
       if ( this.concentrationDescriber.isNewSaturationState() ) {
-        utteranceQueue.addToBack( new Utterance( { alert: this.concentrationDescriber.getSaturationChangedString() } ) );
+        this.alertManager.alertSaturation( this.concentrationDescriber.getSaturationChangedString() );
       }
       return this.useQuantitativeDescriptions.value ?
              this.getQuantitativeSoluteAmountDescriptions() :
@@ -197,7 +196,7 @@ define( require => {
     getQuantitativeSoluteAmountDescriptions() {
 
       // alerts
-      this.concentrationDescriber.getQuantitativeAlert( this.isInitialSoluteAmountAlert );
+      this.concentrationDescriber.alertQuantitative( this.isInitialSoluteAmountAlert );
       if ( this.isInitialSoluteAmountAlert ) {
         this.isInitialSoluteAmountAlert = false;
       }
@@ -217,9 +216,7 @@ define( require => {
 
       // alerts (a special alert is read out when there is no solute in the beaker)
       if ( this.solution.soluteAmountProperty.value <= 0.001 ) {
-        const noSoluteUtterance = new Utterance();
-        noSoluteUtterance.alert = noSoluteAlertString;
-        utteranceQueue.addToBack( noSoluteUtterance );
+        this.alertManager.alertSlider( noSoluteAlertString );
       }
       else {
         this.concentrationDescriber.getQualitativeAlert( this.getSoluteAmountChangeString(), this.soluteAmountRegionChanged );

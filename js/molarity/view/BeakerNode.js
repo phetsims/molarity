@@ -36,15 +36,12 @@ define( function( require ) {
   var unitsLitersString = require( 'string!MOLARITY/units.liters' );
 
   //a11y strings
-  var aLowAmountLowercaseString = MolarityA11yStrings.aLowAmountLowercase.value;
   var beakerHeaderString = MolarityA11yStrings.beakerHeader.value;
   var beakerDescriptionPatternString = MolarityA11yStrings.beakerDescriptionPattern.value;
   var beakerNoSoluteDescriptionPatternString = MolarityA11yStrings.beakerNoSoluteDescriptionPattern.value;
   var chemicalFormulaPatternString = MolarityA11yStrings.chemicalFormulaPattern.value;
   var concentrationAndUnitString = MolarityA11yStrings.concentrationAndUnit.value;
   var drinkMixChemicalFormulaPatternString = MolarityA11yStrings.drinkMixChemicalFormulaPattern.value;
-  var hasString = MolarityA11yStrings.has.value;
-  var isString = MolarityA11yStrings.is.value;
 
   // constants
   var DEBUG_SHAPES = false;
@@ -180,15 +177,8 @@ define( function( require ) {
     } );
 
     // a11y - updates PDOM beaker description when solute, concentration, or quantitative description properties change
-    var getBeakerDescription = () => {
-
-      // special case when the solute amount is zero
-      if ( solution.soluteAmountProperty.value <= 0.001 ) {
-        return StringUtils.fillIn( beakerNoSoluteDescriptionPatternString, {
-          hasIs: useQuantitativeDescriptions.value || volumeDescriber.currentRegion === 1 ? hasString : isString,
-          volume: volumeDescriber.currentRegion === 1 ? aLowAmountLowercaseString : volumeDescriber.getCurrentVolume()
-        } );
-      }
+    Property.multilink( [ solution.soluteProperty, solution.concentrationProperty, useQuantitativeDescriptions ], () => {
+      let descriptionContent = '';
 
       // chemical formula pattern is the same for all solutes except drink mix.
       let chemicalFormulaPattern = StringUtils.fillIn( chemicalFormulaPatternString, {
@@ -196,23 +186,35 @@ define( function( require ) {
         chemicalFormula: soluteDescriber.getCurrentChemicalFormula()
       } );
       if ( soluteDescriber.getCurrentChemicalFormula() === MSymbols.DRINK_MIX ) {
+
+        // Because drink mix doesn't have a chemical formula, we decided to add a chemical formula for citric acid,
+        // since drink mix largely consists of citric acid. https://github.com/phetsims/molarity/issues/86
         chemicalFormulaPattern = StringUtils.fillIn( drinkMixChemicalFormulaPatternString, {
           chemicalFormula: MSymbols.CITRIC_ACID
         } );
       }
-      return StringUtils.fillIn( beakerDescriptionPatternString, {
-        solute: soluteDescriber.getCurrentSolute(),
-        concentration: concentrationDescriber.getCurrentConcentration(),
-        maxConcentration: StringUtils.fillIn( concentrationAndUnitString, {
-          concentration: Util.toFixed( Util.clamp( concentrationDescriber.getCurrentSaturatedConcentration(), 0, 5 ),
-            MConstants.CONCENTRATION_DECIMAL_PLACES )
-        } ),
-        chemicalFormulaPattern: chemicalFormulaPattern
-      } );
-    };
 
-    Property.multilink( [ solution.soluteProperty, solution.concentrationProperty, useQuantitativeDescriptions ], () => {
-      this.descriptionContent = getBeakerDescription();
+      // special case when the solute amount is zero
+      if ( solution.soluteAmountProperty.value - MConstants.CONCENTRATION_RANGE.min <= 0.001 ) {
+        descriptionContent = StringUtils.fillIn( beakerNoSoluteDescriptionPatternString, {
+          volume: volumeDescriber.getCurrentVolume( true )
+        } );
+      }
+      else {
+        const concentrationClamped = Util.clamp( concentrationDescriber.getCurrentSaturatedConcentration(),
+          MConstants.CONCENTRATION_RANGE.min, MConstants.CONCENTRATION_RANGE.max );
+        const concentrationFormatted = StringUtils.fillIn( concentrationAndUnitString, {
+          concentration: Util.toFixed( concentrationClamped, MConstants.CONCENTRATION_DECIMAL_PLACES )
+        } );
+        descriptionContent = StringUtils.fillIn( beakerDescriptionPatternString, {
+          solute: soluteDescriber.getCurrentSolute(),
+          concentration: concentrationDescriber.getCurrentConcentration(),
+          maxConcentration: concentrationFormatted,
+          chemicalFormulaPattern: chemicalFormulaPattern
+        } );
+      }
+
+      this.descriptionContent = descriptionContent;
     } );
   }
 
