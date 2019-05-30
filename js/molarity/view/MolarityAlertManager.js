@@ -15,13 +15,14 @@ define( require => {
   const molarity = require( 'MOLARITY/molarity' );
   const utteranceQueue = require( 'SCENERY_PHET/accessibility/utteranceQueue' );
   const Utterance = require( 'SCENERY_PHET/accessibility/Utterance' );
+  const ValueChangeUtterance = require( 'SCENERY_PHET/accessibility/ValueChangeUtterance' );
 
   class MolarityAlertManager {
     constructor() {
 
       // create utterances
       this.saturationUtterance = new Utterance();
-      this.sliderUtterance = new ActivationUtterance( { alertMaximumDelay: 1000 } );
+      this.sliderUtterance = new ValueChangeUtterance();
       this.soluteUtterance = new ActivationUtterance();
       this.valuesVisibleUtterance = new ActivationUtterance();
     }
