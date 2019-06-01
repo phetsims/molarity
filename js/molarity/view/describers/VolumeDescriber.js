@@ -200,7 +200,7 @@ define( require => {
     getQuantitativeVolumeDescriptions() {
 
       // alerts
-      this.concentrationDescriber.alertQuantitative( this.isInitialVolumeAlert );
+      this.alertManager.alertSliderQuantitative( this.isInitialVolumeAlert );
       if ( this.isInitialVolumeAlert ) {
         this.isInitialVolumeAlert = false;
       }
@@ -226,7 +226,7 @@ define( require => {
         this.alertManager.alertSlider( alertText );
       }
       else {
-        this.concentrationDescriber.getQualitativeAlert( this.getVolumeChangeString(), this.volumeRegionChanged );
+        this.alertManager.alertSliderQualitative( this.getVolumeChangeString(), this.volumeRegionChanged );
       }
 
       // aria-valueText

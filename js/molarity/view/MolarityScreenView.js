@@ -91,9 +91,8 @@ define( function( require ) {
     } );
 
     // a11y - initializes describers and alert manager
-    const molarityAlertManager = new MolarityAlertManager();
-    const concentrationDescriber = new ConcentrationDescriber( model.solution, useQuantitativeDescriptionsProperty,
-      molarityAlertManager );
+    const concentrationDescriber = new ConcentrationDescriber( model.solution, useQuantitativeDescriptionsProperty );
+    const molarityAlertManager = new MolarityAlertManager( model.solution, concentrationDescriber );
     const soluteDescriber = new SoluteDescriber( model.solution, concentrationDescriber, molarityAlertManager );
     const volumeDescriber = new VolumeDescriber( model.solution, concentrationDescriber,
       useQuantitativeDescriptionsProperty, molarityAlertManager );

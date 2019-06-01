@@ -22,12 +22,8 @@ define( require => {
   const concentrationAndUnitString = MolarityA11yStrings.concentrationAndUnit.value;
   const concentrationChangePatternString = MolarityA11yStrings.concentrationChangePattern.value;
   const qualitativeConcentrationStatePatternString = MolarityA11yStrings.qualitativeConcentrationStatePattern.value;
-  const qualitativeSaturatedValueTextPatternString = MolarityA11yStrings.qualitativeSaturatedValueTextPattern.value;
-  const qualitativeValueTextPatternString = MolarityA11yStrings.qualitativeValueTextPattern.value;
   const quantitativeConcentrationStatePatternString = MolarityA11yStrings.quantitativeConcentrationStatePattern.value;
-  const quantitativeInitialAlertPatternString = MolarityA11yStrings.quantitativeInitialAlertPattern.value;
   const quantitativeInitialValueTextPatternString = MolarityA11yStrings.quantitativeInitialValueTextPattern.value;
-  const quantitativeValueTextPatternString = MolarityA11yStrings.quantitativeValueTextPattern.value;
   const saturationLostAlertPatternString = MolarityA11yStrings.saturationLostAlertPattern.value;
   const saturationReachedAlertString = MolarityA11yStrings.saturationReachedAlert.value;
   const stillSaturatedAlertPatternString = MolarityA11yStrings.stillSaturatedAlertPattern.value;
@@ -85,9 +81,8 @@ define( require => {
     /**
      * @param {Solution} solution - from MolarityModel.
      * @param {Property.<boolean>>} useQuantitativeDescriptionsProperty
-     * @param {MolarityAlertManager} molarityAlertManager
      */
-    constructor( solution, useQuantitativeDescriptionsProperty, molarityAlertManager ) {
+    constructor( solution, useQuantitativeDescriptionsProperty ) {
 
       // @public
       this.concentrationRegionChanged = null; // boolean - tracks whether the concentration descriptive region has changed
@@ -98,7 +93,6 @@ define( require => {
       this.concentrationProperty = solution.concentrationProperty;
       this.precipitateAmountProperty = solution.precipitateAmountProperty;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
-      this.alertManager = molarityAlertManager;
 
       // @private
       // {number} - the index of the last concentration descriptive region from CONCENTRATION_STRINGS_ARRAY
@@ -277,43 +271,6 @@ define( require => {
     }
 
     /**
-     * When qualitative descriptions are being used and SoluteAmountProperty or VolumeProperty changes, creates an alert.
-     * @param {string} quantityChangeString - e.g. "More solution" or "Less solute."
-     * @param {boolean} quantityChange - true if the quantity has increased, false if quantity has d
-     * @public
-     */
-    getQualitativeAlert( quantityChangeString, quantityChange ) {
-      let alertText = '';
-      let stateInfo = '';
-
-      // state info is appended to the alert if the descriptive region has changed for any relevant quantity.
-      if ( quantityChange || this.concentrationRegionChanged || this.solidsRegionChanged ) {
-        stateInfo = this.getConcentrationState();
-      }
-
-      // alert text is different based on whether or not the solution is saturated.
-      if ( this.solution.isSaturated() ) {
-        alertText = StringUtils.fillIn( qualitativeSaturatedValueTextPatternString, {
-          propertyAmountChange: quantityChangeString,
-          solidsChange: this.getSolidsChangeString(),
-          stillSaturatedClause: this.getStillSaturatedClause()
-        } );
-      }
-      else {
-        alertText = StringUtils.fillIn( qualitativeValueTextPatternString, {
-          quantityChange: quantityChangeString,
-          concentrationChange: this.getConcentrationChangeString(),
-          stateInfo: stateInfo
-        } );
-      }
-
-      // alert is read out except if sim has just been loaded or reset
-      if ( this.concentrationIncreased !== null || this.solidsIncreased !== null ) {
-        this.alertManager.alertSlider( alertText );
-      }
-    }
-
-    /**
      * Creates aria-valueText strings when quantitative descriptions are being used
      * @param {boolean} isInitialAlert
      * @param {string} quantity
@@ -331,36 +288,6 @@ define( require => {
       else {
         return quantity;
       }
-    }
-
-    /**
-     * Creates aria-valueText strings when the "show values" checkbox is checked
-     * @param {boolean} isInitialAlert
-     * @param {string} quantity
-     * @public
-     * @returns {string}
-     */
-    alertQuantitative( isInitialAlert ) {
-      const capitalizeConcentrationChange = true;
-      let alertText = '';
-
-      // A different pattern is used when it's the first alert read out after the volume slider has been focused.
-      if ( isInitialAlert && !this.solution.isSaturated() ) {
-        alertText = StringUtils.fillIn( quantitativeInitialAlertPatternString, {
-          concentrationChange: this.getConcentrationChangeString( capitalizeConcentrationChange ),
-          concentration: this.getCurrentConcentration()
-        } );
-      }
-      else if ( this.solution.isSaturated() ) {
-        alertText = this.getStillSaturatedClause();
-      }
-      else {
-        alertText = StringUtils.fillIn( quantitativeValueTextPatternString, {
-          concentrationChange: this.getConcentrationChangeString( capitalizeConcentrationChange ),
-          concentration: this.getCurrentConcentration()
-        } );
-      }
-      this.alertManager.alertSlider( alertText );
     }
   }
 

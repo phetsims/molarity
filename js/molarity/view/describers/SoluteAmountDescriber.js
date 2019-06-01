@@ -198,7 +198,7 @@ define( require => {
     getQuantitativeSoluteAmountDescriptions() {
 
       // alerts
-      this.concentrationDescriber.alertQuantitative( this.isInitialSoluteAmountAlert );
+      this.alertManager.alertSliderQuantitative( this.isInitialSoluteAmountAlert );
       if ( this.isInitialSoluteAmountAlert ) {
         this.isInitialSoluteAmountAlert = false;
       }
@@ -221,7 +221,7 @@ define( require => {
         this.alertManager.alertSlider( noSoluteAlertString );
       }
       else {
-        this.concentrationDescriber.getQualitativeAlert( this.getSoluteAmountChangeString(), this.soluteAmountRegionChanged );
+        this.alertManager.alertSliderQualitative( this.getSoluteAmountChangeString(), this.soluteAmountRegionChanged );
       }
 
       // aria-valueText
