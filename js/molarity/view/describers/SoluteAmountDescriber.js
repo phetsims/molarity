@@ -180,13 +180,13 @@ define( require => {
      * @public
      * @returns {null|string}
      */
-    getSoluteAmountChangedValueText() {
+    getSoluteAmountDescriptionsAndAlert() {
       if ( this.concentrationDescriber.isNewSaturationState() ) {
         this.alertManager.alertSaturation( this.concentrationDescriber.getSaturationChangedString() );
       }
       return this.useQuantitativeDescriptionsProperty.value ?
-             this.getQuantitativeSoluteAmountDescriptions() :
-             this.getQualitativeSoluteAmountDescriptions();
+             this.getQuantitativeSoluteAmountDescriptionsAndAlert() :
+             this.getQualitativeSoluteAmountDescriptionsAndAlert();
     }
 
     /**
@@ -195,7 +195,7 @@ define( require => {
      * @private
      * @returns {string}
      */
-    getQuantitativeSoluteAmountDescriptions() {
+    getQuantitativeSoluteAmountDescriptionsAndAlert() {
 
       // alerts
       this.alertManager.alertSliderQuantitative( this.isInitialSoluteAmountAlert );
@@ -214,7 +214,7 @@ define( require => {
      * @private
      * @returns {string}
      */
-    getQualitativeSoluteAmountDescriptions() {
+    getQualitativeSoluteAmountDescriptionsAndAlert() {
 
       // alerts (a special alert is read out when there is no solute in the beaker)
       if ( this.solution.soluteAmountProperty.value <= 0.001 ) {

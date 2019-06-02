@@ -300,7 +300,7 @@ define( function( require ) {
       value: 'New solution. Not saturated, no solids. Solution {{concentration}}.'
     },
     soluteChangedSaturatedAlertPattern: {
-      value:'New solution. Saturated, {{solids}} solids. Beyond max concentration.'
+      value: 'New solution. Saturated, {{solids}} solids. Beyond max concentration.'
     },
 
     // New saturation state alerts

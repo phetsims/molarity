@@ -163,7 +163,7 @@ define( require => {
     }
 
     /**
-     * Creates the string to be used as the volume slider's aria-valueText on focus.
+     * Creates the string to be used as the volume slider's aria-valueText on focus, and .
      * @public
      * @returns {string}
      */
@@ -182,7 +182,7 @@ define( require => {
      * @public
      * @returns {string}
      */
-    getVolumeChangedValueText() {
+    getVolumeDescriptionsAndAlert() {
       if ( this.concentrationDescriber.isNewSaturationState() ) {
         this.alertManager.alertSaturation( this.concentrationDescriber.getSaturationChangedString() );
       }

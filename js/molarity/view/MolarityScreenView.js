@@ -143,7 +143,7 @@ define( function( require ) {
       soluteAmountAccessibleNameString,
       soluteAmountHelpTextString,
       () => soluteAmountDescriber.getOnFocusSoluteAmountValueText(),
-      () => soluteAmountDescriber.getSoluteAmountChangedValueText(),
+      () => soluteAmountDescriber.getSoluteAmountDescriptionsAndAlert(),
       () => soluteAmountDescriber.setInitialSoluteAmountAlert(),
       model.solution.soluteProperty
     );
@@ -163,7 +163,7 @@ define( function( require ) {
       solutionVolumeAccessibleNameString,
       solutionVolumeHelpTextString,
       () => volumeDescriber.getOnFocusVolumeValueText(),
-      () => volumeDescriber.getVolumeChangedValueText(),
+      () => volumeDescriber.getVolumeDescriptionsAndAlert(),
       () => volumeDescriber.setInitialVolumeAlert(),
       model.solution.soluteProperty
     );
