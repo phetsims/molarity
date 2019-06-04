@@ -18,7 +18,6 @@ define( require => {
 
   // strings
   const hasVolumePatternString = MolarityA11yStrings.hasVolumePattern.value;
-  const noSoluteVolumeAlertPatternString = MolarityA11yStrings.noSoluteVolumeAlertPattern.value;
   const qualitativeVolumeSliderValueTextPatternString = MolarityA11yStrings.qualitativeVolumeSliderValueTextPattern.value;
   const qualitativeVolumeStatePatternString = MolarityA11yStrings.qualitativeVolumeStatePattern.value;
   const quantitativeVolumeSliderValueTextPatternString = MolarityA11yStrings.quantitativeVolumeSliderValueTextPattern.value;
@@ -74,16 +73,14 @@ define( require => {
      * @param {Solution} solution - from model
      * @param {ConcentrationDescriber} concentrationDescriber
      * @param {Property.<boolean>} useQuantitativeDescriptionsProperty
-     * @param {MolarityAlertManager} molarityAlertManager
      */
-    constructor( solution, concentrationDescriber, useQuantitativeDescriptionsProperty, molarityAlertManager ) {
+    constructor( solution, concentrationDescriber, useQuantitativeDescriptionsProperty ) {
 
       // @private
       this.solution = solution;
       this.volumeProperty = solution.volumeProperty;
       this.concentrationDescriber = concentrationDescriber;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
-      this.alertManager = molarityAlertManager;
 
       // @private
       // {number} - the index of the descriptive region from VOLUME_STRINGS array.
@@ -144,7 +141,7 @@ define( require => {
 
     /**
      * Creates a substring describing the change in volume
-     * @private
+     * @public
      * @returns {string} - example "More solution"
      */
     getVolumeChangeString() {
@@ -155,7 +152,7 @@ define( require => {
 
     /**
      * Creates a substring describing the volume state
-     * @private
+     * @public
      * @returns {string} - something like "Beaker half full"
      */
     getVolumeState() {
@@ -174,63 +171,6 @@ define( require => {
       return StringUtils.fillIn( string, {
         volume: this.getCurrentVolume()
       } );
-    }
-
-    /**
-     * Main method for generating aria-valueText when the volumeProperty changes. Also triggers an alert if a new
-     * saturation state is attained
-     * @public
-     * @returns {string}
-     */
-    getVolumeDescriptionsAndAlert() {
-      if ( this.concentrationDescriber.isNewSaturationState() ) {
-        this.alertManager.alertSaturation( this.concentrationDescriber.getSaturationChangedString() );
-      }
-      return this.useQuantitativeDescriptionsProperty.value ?
-             this.getQuantitativeVolumeDescriptions() :
-             this.getQualitativeVolumeDescriptions();
-    }
-
-    /**
-     * When VolumeProperty changes when quantitative descriptions are being used, creates aria-valueText strings and
-     * triggers alerts.
-     * @private
-     * @returns {string}
-     */
-    getQuantitativeVolumeDescriptions() {
-
-      // alerts
-      this.alertManager.alertSliderQuantitative( this.isInitialVolumeAlert );
-      if ( this.isInitialVolumeAlert ) {
-        this.isInitialVolumeAlert = false;
-      }
-
-      // aria-valueText
-      return this.concentrationDescriber.getQuantitativeValueText( this.isInitialVolumeAlert,
-        this.getCurrentVolume() );
-    }
-
-    /**
-     * When VolumeProperty changes when qualitative descriptions are being used, creates aria-valueText strings and
-     * triggers alerts.
-     * @private
-     * @returns {string}
-     */
-    getQualitativeVolumeDescriptions() {
-
-      // alerts (a special alert is read out when there is no solute in the beaker)
-      if ( this.solution.soluteAmountProperty.value <= 0.001 ) {
-        const alertText = StringUtils.fillIn( noSoluteVolumeAlertPatternString, {
-          moreLess: this.volumeIncreased ? moreCapitalizedString : lessCapitalizedString
-        } );
-        this.alertManager.alertSlider( alertText );
-      }
-      else {
-        this.alertManager.alertSliderQualitative( this.getVolumeChangeString(), this.volumeRegionChanged );
-      }
-
-      // aria-valueText
-      return this.getVolumeState();
     }
   }
 

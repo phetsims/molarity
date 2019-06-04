@@ -56,8 +56,6 @@ define( function( require ) {
   const unitsMolesString = require( 'string!MOLARITY/units.moles' );
 
   // a11y strings
-  const showValuesCheckedAlertString = MolarityA11yStrings.showValuesCheckedAlert.value;
-  const showValuesUncheckedAlertString = MolarityA11yStrings.showValuesUncheckedAlert.value;
   const showValuesHelpTextString = MolarityA11yStrings.showValuesHelpText.value;
   const soluteAmountAccessibleNameString = MolarityA11yStrings.soluteAmountAccessibleName.value;
   const solutionVolumeAccessibleNameString = MolarityA11yStrings.solutionVolumeAccessibleName.value;
@@ -85,24 +83,23 @@ define( function( require ) {
       tandem: tandem.createTandem( 'valuesVisibleProperty' )
     } );
 
-    // Determines whether qualitative or quantitative a11y descriptions are used.
+    // Determines whether qualitative or quantitative a11y descriptions are used. Even though it is the same as the
+    // valuesVisibleProperty currently, improve maintainability by not overloading valuesVisibleProperty with
+    // description-specific use-case. For example, we could decide to display quantitative descriptions when not showing
+    // values, but the state of solution is "x," with no refactoring.
     const useQuantitativeDescriptionsProperty = new DerivedProperty( [ valuesVisibleProperty ], () => {
       return valuesVisibleProperty.value;
     } );
 
     // a11y - initializes describers and alert manager
     const concentrationDescriber = new ConcentrationDescriber( model.solution, useQuantitativeDescriptionsProperty );
-    const molarityAlertManager = new MolarityAlertManager( model.solution, concentrationDescriber );
-    const soluteDescriber = new SoluteDescriber( model.solution, concentrationDescriber, molarityAlertManager );
+    const soluteDescriber = new SoluteDescriber( model.solution, concentrationDescriber );
     const volumeDescriber = new VolumeDescriber( model.solution, concentrationDescriber,
-      useQuantitativeDescriptionsProperty, molarityAlertManager );
+      useQuantitativeDescriptionsProperty );
     const soluteAmountDescriber = new SoluteAmountDescriber( model.solution, soluteDescriber, concentrationDescriber,
-      useQuantitativeDescriptionsProperty, molarityAlertManager );
-
-    // a11y - adds an alert when the values visible checkbox is checked or unchecked
-    valuesVisibleProperty.lazyLink( newValue => {
-      molarityAlertManager.alertValuesVisible( newValue ? showValuesCheckedAlertString : showValuesUncheckedAlertString );
-    } );
+      useQuantitativeDescriptionsProperty );
+    new MolarityAlertManager( model.solution, useQuantitativeDescriptionsProperty, // eslint-disable-line no-new
+      concentrationDescriber, soluteAmountDescriber, volumeDescriber, soluteDescriber, valuesVisibleProperty);
 
     // a11y - creates screen summary in the PDOM and add it to the screenView
     const molarityScreenSummaryNode = new MolarityScreenSummaryNode( model.solution, model.solutes,
@@ -143,7 +140,12 @@ define( function( require ) {
       soluteAmountAccessibleNameString,
       soluteAmountHelpTextString,
       () => soluteAmountDescriber.getOnFocusSoluteAmountValueText(),
-      () => soluteAmountDescriber.getSoluteAmountDescriptionsAndAlert(),
+      () => {
+        return useQuantitativeDescriptionsProperty.value ?
+               concentrationDescriber.getQuantitativeValueText( soluteAmountDescriber.isInitialSoluteAmountAlert,
+                 soluteAmountDescriber.getCurrentSoluteAmount() ) :
+               soluteAmountDescriber.getSoluteAmountState();
+      },
       () => soluteAmountDescriber.setInitialSoluteAmountAlert(),
       model.solution.soluteProperty
     );
@@ -163,7 +165,12 @@ define( function( require ) {
       solutionVolumeAccessibleNameString,
       solutionVolumeHelpTextString,
       () => volumeDescriber.getOnFocusVolumeValueText(),
-      () => volumeDescriber.getVolumeDescriptionsAndAlert(),
+      () => {
+        return useQuantitativeDescriptionsProperty.value ?
+               concentrationDescriber.getQuantitativeValueText( volumeDescriber.isInitialVolumeAlert,
+                 volumeDescriber.getCurrentVolume() ) :
+               volumeDescriber.getVolumeState();
+      },
       () => volumeDescriber.setInitialVolumeAlert(),
       model.solution.soluteProperty
     );
@@ -205,11 +212,6 @@ define( function( require ) {
       labelContent: solutionControlsLabelString
     } );
     solutionControlsNode.accessibleOrder = [ soluteAmountSlider, solutionVolumeSlider ];
-
-    // a11y - adds an alert when the solute is changed
-    model.solution.soluteProperty.lazyLink( () => {
-      molarityAlertManager.alertSolute( soluteDescriber.getSoluteChangedAlertString() );
-    } );
 
     // a11y - contains PDOM heading for Play Area, and orders the PDOM for included elements
     const playAreaNode = new PlayAreaNode();

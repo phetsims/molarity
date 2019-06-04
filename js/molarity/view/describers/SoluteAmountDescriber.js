@@ -17,7 +17,6 @@ define( require => {
   const Util = require( 'DOT/Util' );
 
   // strings
-  const noSoluteAlertString = MolarityA11yStrings.noSoluteAlert.value;
   const soluteAmountAndUnitPatternString = MolarityA11yStrings.soluteAmountAndUnitPattern.value;
   const soluteAmountChangedPatternString = MolarityA11yStrings.soluteAmountChangedPattern.value;
   const soluteAmountSliderValueTextPatternString = MolarityA11yStrings.soluteAmountSliderValueTextPattern.value;
@@ -72,10 +71,8 @@ define( require => {
      * @param {SoluteDescriber} soluteDescriber
      * @param {ConcentrationDescriber} concentrationDescriber
      * @param {Property.<boolean>} useQuantitativeDescriptionsProperty
-     * @param {MolarityAlertManager} molarityAlertManager
      */
-    constructor( solution, soluteDescriber, concentrationDescriber, useQuantitativeDescriptionsProperty,
-                 molarityAlertManager ) {
+    constructor( solution, soluteDescriber, concentrationDescriber, useQuantitativeDescriptionsProperty ) {
 
       // @private
       this.solution = solution;
@@ -83,7 +80,6 @@ define( require => {
       this.soluteAmountProperty = solution.soluteAmountProperty;
       this.soluteDescriber = soluteDescriber;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
-      this.alertManager = molarityAlertManager;
 
       // @private
       // {number} - the index of the descriptive region from SOLUTE_AMOUNT_STRINGS array.
@@ -122,7 +118,7 @@ define( require => {
 
     /**
      * Returns a string describing the change in soluteAmount (e.g. "more solution")
-     * @private
+     * @public
      * @returns {string} - quantitative or qualitative description of current soluteAmount.
      */
     getSoluteAmountChangeString() {
@@ -152,7 +148,7 @@ define( require => {
 
     /**
      * Creates a substring describing the soluteAmount state
-     * @private
+     * @public
      * @returns {string} - something like "a lot of drink mix"
      */
     getSoluteAmountState() {

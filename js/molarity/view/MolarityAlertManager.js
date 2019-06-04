@@ -20,62 +20,122 @@ define( require => {
   const ValueChangeUtterance = require( 'SCENERY_PHET/accessibility/ValueChangeUtterance' );
 
   // a11y strings
+  const noSoluteAlertString = MolarityA11yStrings.noSoluteAlert.value;
   const qualitativeSaturatedValueTextPatternString = MolarityA11yStrings.qualitativeSaturatedValueTextPattern.value;
   const qualitativeValueTextPatternString = MolarityA11yStrings.qualitativeValueTextPattern.value;
   const quantitativeInitialAlertPatternString = MolarityA11yStrings.quantitativeInitialAlertPattern.value;
   const quantitativeValueTextPatternString = MolarityA11yStrings.quantitativeValueTextPattern.value;
+  const showValuesCheckedAlertString = MolarityA11yStrings.showValuesCheckedAlert.value;
+  const showValuesUncheckedAlertString = MolarityA11yStrings.showValuesUncheckedAlert.value;
 
   class MolarityAlertManager {
 
     /**
      * @param {Solution} solution - from MolarityModel.
+     * @param {Property.<boolean>} useQuantitativeDescriptionsProperty - whether or not to use qualitative or
+     *                                                                   quantitative descriptions.
      * @param {ConcentrationDescriber} concentrationDescriber
+     * @param {SoluteAmountDescriber} soluteAmountDescriber
+     * @param {VolumeDescriber} volumeDescriber
+     * @param {SoluteDescriber} soluteDescriber
+     * @param {Property.<boolean>} valuesVisibleProperty - toggles display for whether the "show values" checkbox is
+     *                                                     checked.
      */
-    constructor( solution, concentrationDescriber ) {
+    constructor( solution, useQuantitativeDescriptionsProperty, concentrationDescriber, soluteAmountDescriber,
+                 volumeDescriber, soluteDescriber, valuesVisibleProperty ) {
+
+      // @private
       this.concentrationDescriber = concentrationDescriber;
+      this.soluteDescriber = soluteDescriber;
       this.solution = solution;
 
-      // create utterances
+      // @private - create utterances
       this.saturationUtterance = new Utterance();
       this.sliderUtterance = new ValueChangeUtterance();
       this.soluteUtterance = new ActivationUtterance();
       this.valuesVisibleUtterance = new ActivationUtterance();
+
+      solution.soluteAmountProperty.link( () => {
+        this.alertSaturation();
+        if ( useQuantitativeDescriptionsProperty.value ) {
+          this.alertSliderQuantitative( soluteAmountDescriber.isInitialSoluteAmountAlert );
+          if ( soluteAmountDescriber.isInitialSoluteAmountAlert ) {
+            soluteAmountDescriber.isInitialSoluteAmountAlert = false;
+          }
+        }
+        else {
+
+          // a special alert is read out when there is no solute in the beaker
+          if ( this.solution.soluteAmountProperty.value <= 0.001 ) {
+            this.alertNoSolute();
+          }
+          else {
+            this.alertSliderQualitative( soluteAmountDescriber.getSoluteAmountChangeString(),
+              soluteAmountDescriber.soluteAmountRegionChanged );
+          }
+        }
+      } );
+
+      solution.volumeProperty.link( () => {
+        this.alertSaturation();
+        if ( useQuantitativeDescriptionsProperty.value ) {
+          this.alertSliderQuantitative( volumeDescriber.isInitialVolumeAlert );
+          if ( volumeDescriber.isInitialVolumeAlert ) {
+            volumeDescriber.isInitialVolumeAlert = false;
+          }
+        }
+        else {
+
+          // a special alert is read out when there is no solute in the beaker
+          if ( this.solution.soluteAmountProperty.value <= 0.001 ) {
+            this.alertNoSolute();
+          }
+          else {
+            this.alertSliderQualitative( volumeDescriber.getVolumeChangeString(), volumeDescriber.volumeRegionChanged );
+          }
+        }
+      } );
+
+      solution.soluteProperty.lazyLink( () => this.alertSolute() );
+      valuesVisibleProperty.lazyLink( newValue => this.alertValuesVisible( newValue ) );
     }
 
     /**
-     * Responsible for adding the alerts associated with both sliders to the utteranceQueue. Includes alerts for
-     * concentration increasing or decreasing, solute amount being zero, and saturation state changing.
-     * @public
+     * Alerts when there is no solute in the beaker.
+     * @private
      */
-    alertSlider( alertText ) {
-      this.sliderUtterance.alert = alertText;
+    alertNoSolute() {
+      this.sliderUtterance.alert = noSoluteAlertString;
       utteranceQueue.addToBack( this.sliderUtterance );
     }
 
     /**
-     * Responsible for adding the alerts associated saturation state changing.
-     * @public
+     * Alert only when the solution is either newly saturated or newly unsaturated.
+     * @private
      */
-    alertSaturation( alertText ) {
-      this.saturationUtterance.alert = alertText;
-      utteranceQueue.addToBack( this.saturationUtterance );
+    alertSaturation() {
+      if ( this.concentrationDescriber.isNewSaturationState() ) {
+        this.saturationUtterance.alert = this.concentrationDescriber.getSaturationChangedString();
+        utteranceQueue.addToBack( this.saturationUtterance );
+      }
     }
 
     /**
      * Responsible for adding the alert associated with a change in solute to the utteranceQueue.
-     * @public
+     * @private
      */
-    alertSolute( alertText ) {
-      this.soluteUtterance.alert = alertText;
+    alertSolute() {
+      this.soluteUtterance.alert = this.soluteDescriber.getSoluteChangedAlertString();
       utteranceQueue.addToBack( this.soluteUtterance );
     }
 
     /**
      * Responsible for adding the alert associated with a change in the "show values" checkbox.
-     * @public
+     * @param {boolean} valuesVisible
+     * @private
      */
-    alertValuesVisible( alertText ) {
-      this.valuesVisibleUtterance.alert = alertText;
+    alertValuesVisible( valuesVisible ) {
+      this.valuesVisibleUtterance.alert = valuesVisible ? showValuesCheckedAlertString : showValuesUncheckedAlertString;
       utteranceQueue.addToBack( this.valuesVisibleUtterance );
     }
 
@@ -83,7 +143,7 @@ define( require => {
      * When qualitative descriptions are being used and SoluteAmountProperty or VolumeProperty changes, creates an alert.
      * @param {string} quantityChangeString - e.g. "More solution" or "Less solute."
      * @param {boolean} quantityChange - true if the quantity has increased, false if quantity has d
-     * @public
+     * @private
      */
     alertSliderQualitative( quantityChangeString, quantityChange ) {
       let alertText = '';
@@ -114,22 +174,23 @@ define( require => {
       // alert is read out except if sim has just been loaded or reset
       if ( this.concentrationDescriber.concentrationIncreased !== null ||
            this.concentrationDescriber.solidsIncreased !== null ) {
-        this.alertSlider( alertText );
+        this.sliderUtterance.alert = alertText;
+        utteranceQueue.addToBack( this.sliderUtterance );
       }
     }
 
 
     /**
-     * When quantitative descriptions are use, creates and triggers the alerts when the sliders move.
+     * When quantitative descriptions are used, and SoluteAmountProperty or VolumeProperty changes, creates an alert.
      * @param {boolean} isInitialAlert
-     * @public
+     * @private
      * @returns {string}
      */
     alertSliderQuantitative( isInitialAlert ) {
       const capitalizeConcentrationChange = true;
       let alertText = '';
 
-      // A different pattern is used when it's the first alert read out after the volume slider has been focused.
+      // A different pattern is used when it's the first alert read out after the slider has been focused.
       if ( isInitialAlert && !this.solution.isSaturated() ) {
         alertText = StringUtils.fillIn( quantitativeInitialAlertPatternString, {
           concentrationChange: this.concentrationDescriber.getConcentrationChangeString( capitalizeConcentrationChange ),
@@ -145,9 +206,11 @@ define( require => {
           concentration: this.concentrationDescriber.getCurrentConcentration()
         } );
       }
-      this.alertSlider( alertText );
+      this.sliderUtterance.alert = alertText;
+      utteranceQueue.addToBack( this.sliderUtterance );
     }
   }
 
   return molarity.register( 'MolarityAlertManager', MolarityAlertManager );
-} );
+} )
+;
