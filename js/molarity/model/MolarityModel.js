@@ -9,6 +9,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var BooleanProperty = require( 'AXON/BooleanProperty' );
   var Color = require( 'SCENERY/util/Color' );
   var inherit = require( 'PHET_CORE/inherit' );
   var MConstants = require( 'MOLARITY/molarity/MConstants' );
@@ -73,6 +74,9 @@ define( function( require ) {
       MConstants.SOLUTE_AMOUNT_RANGE.defaultValue, MConstants.SOLUTION_VOLUME_RANGE.defaultValue,
       tandem.createTandem( 'solution' ) );
 
+    // @public (read-only) BooleanProperty
+    this.resetInProgressProperty = new BooleanProperty( false );
+
     // compute the max amount of precipitate, used by the view to create the precipitate particles
     var minSaturateConcentration = _.minBy( this.solutes, function( solute ) {
       return solute.saturatedConcentration;
@@ -89,7 +93,9 @@ define( function( require ) {
 
     // @public Resets all model elements
     reset: function() {
+      this.resetInProgressProperty.set( true );
       this.solution.reset();
+      this.resetInProgressProperty.set( false );
     }
   } );
 
