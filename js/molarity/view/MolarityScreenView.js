@@ -37,6 +37,7 @@ define( function( require ) {
   const SoluteComboBox = require( 'MOLARITY/molarity/view/SoluteComboBox' );
   const SoluteDescriber = require( 'MOLARITY/molarity/view/describers/SoluteDescriber' );
   const SolutionNode = require( 'MOLARITY/molarity/view/SolutionNode' );
+  const SoundClip = require( 'TAMBO/sound-generators/SoundClip' );
   const soundManager = require( 'TAMBO/soundManager' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const Text = require( 'SCENERY/nodes/Text' );
@@ -56,6 +57,10 @@ define( function( require ) {
   const solutionVolumeString = require( 'string!MOLARITY/solutionVolume' );
   const unitsLitersString = require( 'string!MOLARITY/units.liters' );
   const unitsMolesString = require( 'string!MOLARITY/units.moles' );
+
+  // sounds
+  const checkboxCheckedSound = require( 'sound!TAMBO/check-box-checked.mp3' );
+  const checkboxUncheckedSound = require( 'sound!TAMBO/check-box-unchecked.mp3' );
 
   // a11y strings
   const showValuesCheckedAlertString = MolarityA11yStrings.showValuesCheckedAlert.value;
@@ -189,6 +194,20 @@ define( function( require ) {
       helpText: showValuesHelpTextString
     } );
     showValuesCheckbox.touchArea = Shape.rectangle( showValuesCheckbox.left, showValuesCheckbox.top - 15, showValuesCheckbox.width, showValuesCheckbox.height + 30 );
+
+    // sound generator for check box
+    const uncheckedClip = new SoundClip( checkboxUncheckedSound );
+    soundManager.addSoundGenerator( uncheckedClip );
+    const checkedClip = new SoundClip( checkboxCheckedSound );
+    soundManager.addSoundGenerator( checkedClip );
+    valuesVisibleProperty.lazyLink( value => {
+      if ( value ) {
+        checkedClip.play();
+      }
+      else {
+        uncheckedClip.play();
+      }
+    } );
 
     // Reset All button
     const resetAllButton = new ResetAllButton( {
