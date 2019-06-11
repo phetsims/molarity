@@ -10,17 +10,36 @@ define( require => {
   'use strict';
 
   // modules
-  const MConstants = require( 'MOLARITY/molarity/MConstants' );
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  const Util = require( 'DOT/Util' );
+
+  // strings
+  const cobaltChlorideString = require( 'string!MOLARITY/cobaltChloride' );
+  const cobaltIINitrateString = require( 'string!MOLARITY/cobaltIINitrate' );
+  const copperSulfateString = require( 'string!MOLARITY/copperSulfate' );
+  const drinkMixString = require( 'string!MOLARITY/drinkMix' );
+  const goldIIIChlorideString = require( 'string!MOLARITY/goldIIIChloride' );
+  const nickelIIChlorideString = require( 'string!MOLARITY/nickelIIChloride' );
+  const potassiumChromateString = require( 'string!MOLARITY/potassiumChromate' );
+  const potassiumDichromateString = require( 'string!MOLARITY/potassiumDichromate' );
+  const potassiumPermanganateString = require( 'string!MOLARITY/potassiumPermanganate' );
 
   // a11y strings
-  const concentrationAndUnitString = MolarityA11yStrings.concentrationAndUnit.value;
+  const beakerChemicalFormulaPatternString = MolarityA11yStrings.beakerChemicalFormulaPattern.value;
   const soluteChangedAlertPatternString = MolarityA11yStrings.soluteChangedAlertPattern.value;
   const soluteChangedSaturatedAlertPatternString = MolarityA11yStrings.soluteChangedSaturatedAlertPattern.value;
   const soluteChangedUnsaturatedAlertPatternString = MolarityA11yStrings.soluteChangedUnsaturatedAlertPattern.value;
+
+  // color strings
+  const redString = MolarityA11yStrings.red.value;
+  const pinkString = MolarityA11yStrings.pink.value;
+  const orangeString = MolarityA11yStrings.orange.value;
+  const goldString = MolarityA11yStrings.gold.value;
+  const yellowString = MolarityA11yStrings.yellow.value;
+  const greenString = MolarityA11yStrings.green.value;
+  const blueString = MolarityA11yStrings.blue.value;
+  const purpleString = MolarityA11yStrings.purple.value;
 
   class SoluteDescriber {
 
@@ -51,21 +70,49 @@ define( require => {
     }
 
     /**
-     * Gets the saturated concentration level for the currently selected solute.
+     * Gets the chemical formula of the currently selected solute.
      * @public
-     * @returns {number}
+     * @returns {string} - e.g. 'chemical formula of potassium permanganate is KMnO4.'
      */
-    getCurrentSaturatedConcentration() {
-      return this.solution.soluteProperty.value.saturatedConcentration;
+    getBeakerChemicalFormulaString() {
+      assert && assert( this.getCurrentSolute( true ) !== drinkMixString,
+        'attempted to generate chemical formula string for drink mix, which has no chemical formula' );
+      return StringUtils.fillIn( beakerChemicalFormulaPatternString, {
+        chemicalFormula: this.solution.soluteProperty.value.formula,
+        solute: this.getCurrentSolute()
+      } );
     }
 
     /**
-     * Gets the chemical formula of the currently selected solute.
+     * //TODO: make static with parameter
+     * Gets the color of the solution.
      * @public
      * @returns {string}
      */
-    getCurrentChemicalFormula() {
-      return this.solution.soluteProperty.value.formula;
+    getCurrentColor() {
+      const currentSolute = this.getCurrentSolute( true );
+      switch( currentSolute ) {
+        case drinkMixString:
+          return redString;
+        case cobaltIINitrateString:
+          return redString;
+        case cobaltChlorideString:
+          return pinkString;
+        case potassiumDichromateString:
+          return orangeString;
+        case goldIIIChlorideString:
+          return goldString;
+        case potassiumChromateString:
+          return yellowString;
+        case nickelIIChlorideString:
+          return greenString;
+        case copperSulfateString:
+          return blueString;
+        case potassiumPermanganateString:
+          return purpleString;
+        default:
+          return '';
+      }
     }
 
     /**
@@ -87,10 +134,7 @@ define( require => {
       }
       return StringUtils.fillIn( soluteChangedAlertPatternString, {
         solute: this.getCurrentSolute( true ),
-        maxConcentration: StringUtils.fillIn( concentrationAndUnitString, {
-          concentration: Util.toFixed( this.getCurrentSaturatedConcentration() > 5.0 ? 5.0 : this.getCurrentSaturatedConcentration(),
-            MConstants.CONCENTRATION_DECIMAL_PLACES )
-        } )
+        concentrationRange: this.concentrationDescriber.getCurrentConcentrationRange()
       } );
     }
   }

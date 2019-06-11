@@ -156,7 +156,7 @@ define( require => {
       }
 
       // alert text is different based on whether or not the solution is saturated.
-      if ( this.concentrationDescriber.solution.isSaturated() ) {
+      if ( this.solution.isSaturated() ) {
         alertText = StringUtils.fillIn( qualitativeSaturatedValueTextPatternString, {
           propertyAmountChange: quantityChangeString,
           solidsChange: this.concentrationDescriber.getSolidsChangeString(),

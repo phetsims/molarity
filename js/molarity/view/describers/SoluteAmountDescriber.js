@@ -16,7 +16,8 @@ define( require => {
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const Util = require( 'DOT/Util' );
 
-  // strings
+  // a11y strings
+  const beakerSoluteAmountPatternString = MolarityA11yStrings.beakerSoluteAmountPattern.value;
   const soluteAmountAndUnitPatternString = MolarityA11yStrings.soluteAmountAndUnitPattern.value;
   const soluteAmountChangedPatternString = MolarityA11yStrings.soluteAmountChangedPattern.value;
   const soluteAmountSliderValueTextPatternString = MolarityA11yStrings.soluteAmountSliderValueTextPattern.value;
@@ -114,6 +115,18 @@ define( require => {
      */
     setInitialSoluteAmountAlert() {
       this.isInitialSoluteAmountAlert = true;
+    }
+
+    /**
+     * Creates a string that describes the solute amount in the beaker.
+     * @public
+     * @returns {string} - e.g. 'contains a lot of potassium permanganate"
+     */
+    getBeakerSoluteAmountString() {
+      return StringUtils.fillIn( beakerSoluteAmountPatternString, {
+        soluteAmount: this.getCurrentSoluteAmount(true),
+        solute: this.soluteDescriber.getCurrentSolute()
+      } );
     }
 
     /**

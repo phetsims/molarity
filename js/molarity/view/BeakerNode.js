@@ -18,12 +18,10 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var molarity = require( 'MOLARITY/molarity' );
   var MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
-  var MConstants = require( 'MOLARITY/molarity/MConstants' );
-  var MSymbols = require( 'MOLARITY/molarity/MSymbols' );
+  var MolarityBeakerDescriptionNode = require( 'MOLARITY/molarity/view/MolarityBeakerDescriptionNode' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
@@ -37,11 +35,7 @@ define( function( require ) {
 
   //a11y strings
   var beakerHeaderString = MolarityA11yStrings.beakerHeader.value;
-  var beakerDescriptionPatternString = MolarityA11yStrings.beakerDescriptionPattern.value;
-  var beakerNoSoluteDescriptionPatternString = MolarityA11yStrings.beakerNoSoluteDescriptionPattern.value;
-  var chemicalFormulaPatternString = MolarityA11yStrings.chemicalFormulaPattern.value;
-  var concentrationAndUnitString = MolarityA11yStrings.concentrationAndUnit.value;
-  var drinkMixChemicalFormulaPatternString = MolarityA11yStrings.drinkMixChemicalFormulaPattern.value;
+
 
   // constants
   var DEBUG_SHAPES = false;
@@ -59,13 +53,14 @@ define( function( require ) {
    * @param {Property.<boolean>} valuesVisibleProperty
    * @param {Tandem} tandem
    * @param {SoluteDescriber} soluteDescriber - a11y
+   * @param {SoluteAmountDescriber} soluteAmountDescriber - a11y
    * @param {VolumeDescriber} volumeDescriber - a11y
    * @param {concentrationDescriber} concentrationDescriber - a11y
    * @param {Property.<boolean>} useQuantitativeDescriptionsProperty - a11y
    * @constructor
    */
-  function BeakerNode( solution, maxVolume, valuesVisibleProperty, tandem, soluteDescriber, volumeDescriber,
-                       concentrationDescriber, useQuantitativeDescriptionsProperty ) {
+  function BeakerNode( solution, maxVolume, valuesVisibleProperty, tandem, soluteDescriber, soluteAmountDescriber,
+                       volumeDescriber, concentrationDescriber, useQuantitativeDescriptionsProperty ) {
 
     Node.call( this, {
       pickable: false,
@@ -176,47 +171,10 @@ define( function( require ) {
       tickLabelsParent.visible = visible;
     } );
 
-    // a11y - updates PDOM beaker description when solute, concentration, or quantitative description properties change
-    Property.multilink( [ solution.soluteProperty, solution.concentrationProperty,
-        useQuantitativeDescriptionsProperty ], () => {
-        let descriptionContent = '';
+    // a11y -- adds the description node that holds the PDOM summary of the beaker.
+    this.addChild( new MolarityBeakerDescriptionNode( solution, useQuantitativeDescriptionsProperty, soluteDescriber,
+      concentrationDescriber, soluteAmountDescriber, volumeDescriber ) );
 
-        // chemical formula pattern is the same for all solutes except drink mix.
-        let chemicalFormulaPattern = StringUtils.fillIn( chemicalFormulaPatternString, {
-          solute: soluteDescriber.getCurrentSolute(),
-          chemicalFormula: soluteDescriber.getCurrentChemicalFormula()
-        } );
-        if ( soluteDescriber.getCurrentChemicalFormula() === MSymbols.DRINK_MIX ) {
-
-          // Because drink mix doesn't have a chemical formula, we decided to add a chemical formula for citric acid,
-          // since drink mix largely consists of citric acid. https://github.com/phetsims/molarity/issues/86
-          chemicalFormulaPattern = StringUtils.fillIn( drinkMixChemicalFormulaPatternString, {
-            chemicalFormula: MSymbols.CITRIC_ACID
-          } );
-        }
-
-        // special case when the solute amount is zero
-        if ( solution.soluteAmountProperty.value - MConstants.CONCENTRATION_RANGE.min <= 0.001 ) {
-          descriptionContent = StringUtils.fillIn( beakerNoSoluteDescriptionPatternString, {
-            volume: volumeDescriber.getCurrentVolume( true )
-          } );
-        }
-        else {
-          const concentrationClamped = Util.clamp( concentrationDescriber.getCurrentSaturatedConcentration(),
-            MConstants.CONCENTRATION_RANGE.min, MConstants.CONCENTRATION_RANGE.max );
-          const concentrationFormatted = StringUtils.fillIn( concentrationAndUnitString, {
-            concentration: Util.toFixed( concentrationClamped, MConstants.CONCENTRATION_DECIMAL_PLACES )
-          } );
-          descriptionContent = StringUtils.fillIn( beakerDescriptionPatternString, {
-            solute: soluteDescriber.getCurrentSolute(),
-            concentration: concentrationDescriber.getCurrentConcentration(),
-            maxConcentration: concentrationFormatted,
-            chemicalFormulaPattern: chemicalFormulaPattern
-          } );
-        }
-
-        this.descriptionContent = descriptionContent;
-      } );
   }
 
   molarity.register( 'BeakerNode', BeakerNode );

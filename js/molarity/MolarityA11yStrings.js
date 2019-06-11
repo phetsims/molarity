@@ -79,7 +79,25 @@ define( function( require ) {
       value: 'Beaker'
     },
     beakerDescriptionPattern: {
-      value: 'Solution Concentration of {{solute}} Is {{concentration}}. Concentration readout range is 0.00 to {{maxConcentration}}. {{chemicalFormulaPattern}}'
+      value: 'Beaker {{volume}} of a {{solute}} solution. The solution: '
+    },
+    beakerSoluteAmountPattern: {
+      value: 'contains {{soluteAmount}} {{solute}}'
+    },
+    beakerSaturationPattern: {
+      value: 'Is saturated with {{solids}} solids'
+    },
+    beakerQualitativeConcentrationPattern: {
+      value: 'Is {{concentration}}'
+    },
+    beakerQuantitativeConcentrationPattern: {
+      value: 'concentration {{concentration}}'
+    },
+    beakerChemicalFormulaPattern: {
+      value: 'The chemical formula of {{solute}} is {{chemicalFormula}}.'
+    },
+    beakerConcentrationRange: {
+      value: 'Concentration readout range {{0.00}} to {{0.500}}'
     },
     beakerNoSoluteDescriptionPattern: {
       value: 'Beaker {{volume}} of water, containing no solute'
@@ -88,7 +106,7 @@ define( function( require ) {
       value: 'The chemical formula for {{solute}} is {{chemicalFormula}}.'
     },
     drinkMixChemicalFormulaPattern: {
-      value: 'Drink mix contains mainly citric acid, which has a chemical formula of {{chemicalFormula}}'
+      value: 'Drink mix contains multiple compounds, no chemical formula provided.'
     },
     solutionControlsDescription: {
       value: 'Solute Amount and Solution Volume sliders change solution in beaker.'
@@ -291,10 +309,13 @@ define( function( require ) {
     concentrationChangePattern: {
       value: '{{moreLess}} concentrated'
     },
+    concentrationRangePattern: {
+      value: 'concentration readout range 0.00 to {{maxConcentration}}'
+    },
 
     // Solute changed alert string
     soluteChangedAlertPattern: {
-      value: 'New solution. {{solute}} concentration readout range 0.00 to {{maxConcentration}}.'
+      value: 'New solution. {{solute}} {{concentrationRange}}.'
     },
     soluteChangedUnsaturatedAlertPattern: {
       value: 'New solution. Not saturated, no solids. Solution {{concentration}}.'
@@ -371,6 +392,32 @@ define( function( require ) {
     },
     potassiumPermanganateLowercase: {
       value: 'potassium permanganate'
+    },
+
+    // color strings
+    red: {
+      value: 'red'
+    },
+    pink: {
+      value: 'pink'
+    },
+    orange: {
+      value: 'orange'
+    },
+    gold: {
+      value: 'gold'
+    },
+    yellow: {
+      value: 'yellow'
+    },
+    green: {
+      value: 'green'
+    },
+    blue: {
+      value: 'blue'
+    },
+    purple: {
+      value: 'purple'
     }
   };
 

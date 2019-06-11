@@ -19,8 +19,12 @@ define( require => {
 
   // a11y strings
   const barelyConcentratedString = MolarityA11yStrings.barelyConcentrated.value;
+  const beakerQuantitativeConcentrationPatternString = MolarityA11yStrings.beakerQuantitativeConcentrationPattern.value;
+  const beakerQualitativeConcentrationPatternString = MolarityA11yStrings.beakerQualitativeConcentrationPattern.value;
+  const beakerSaturationPatternString = MolarityA11yStrings.beakerSaturationPattern.value;
   const concentrationAndUnitString = MolarityA11yStrings.concentrationAndUnit.value;
   const concentrationChangePatternString = MolarityA11yStrings.concentrationChangePattern.value;
+  const concentrationRangePatternString = MolarityA11yStrings.concentrationRangePattern.value;
   const qualitativeConcentrationStatePatternString = MolarityA11yStrings.qualitativeConcentrationStatePattern.value;
   const quantitativeConcentrationStatePatternString = MolarityA11yStrings.quantitativeConcentrationStatePattern.value;
   const quantitativeInitialValueTextPatternString = MolarityA11yStrings.quantitativeInitialValueTextPattern.value;
@@ -174,6 +178,18 @@ define( require => {
     }
 
     /**
+     * Creates a string describing the concentration range of the current solute.
+     * @public
+     * @returns {string} - quantitative or qualitative description of current concentration (e.g. "1.500 Molar" or "very concentrated")
+     */
+    getCurrentConcentrationRange() {
+      const maxConcentration = this.getCurrentSaturatedConcentration() > 5.0 ? 5.0 : this.getCurrentSaturatedConcentration();
+      return StringUtils.fillIn( concentrationRangePatternString, {
+        maxConcentration: Util.toFixed( maxConcentration, MConstants.CONCENTRATION_DECIMAL_PLACES )
+      } );
+    }
+
+    /**
      * Gets the saturated concentration amount of the currently selected solute.
      * @private
      * @returns {number}
@@ -193,6 +209,32 @@ define( require => {
       return isCapitalized ?
              SOLIDS_STRINGS[ solidsIndex ] :
              SOLIDS_STRINGS_LOWERCASE[ solidsIndex ];
+    }
+
+    /**
+     * Creates a string that describes the solids in the beaker
+     * @public
+     * @returns {string} - e.g. "is saturated with a bunch of solids"
+     */
+    getBeakerSaturationString() {
+      return StringUtils.fillIn( beakerSaturationPatternString, {
+        solids: this.getCurrentSolidsAmount( false )
+      } );
+    }
+
+    /**
+     * Creates a string that describes the concentration of in the beaker
+     * {Property.<boolean>} useQuantitativeDescriptionsProperty
+     * @public
+     * @returns {string} - e.g. "concentration 1.400 molar" or "is very concentrated"
+     */
+    getBeakerConcentrationString( useQuantitativeDescriptionsProperty ) {
+      const concentrationString = useQuantitativeDescriptionsProperty.value ?
+                                  beakerQuantitativeConcentrationPatternString :
+                                  beakerQualitativeConcentrationPatternString;
+      return StringUtils.fillIn( concentrationString, {
+        concentration: this.getCurrentConcentration()
+      } );
     }
 
     /**

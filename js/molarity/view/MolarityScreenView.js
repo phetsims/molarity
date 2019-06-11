@@ -87,9 +87,8 @@ define( function( require ) {
     // valuesVisibleProperty currently, improve maintainability by not overloading valuesVisibleProperty with
     // description-specific use-case. For example, we could decide to display quantitative descriptions when not showing
     // values, but the state of solution is "x," with no refactoring.
-    const useQuantitativeDescriptionsProperty = new DerivedProperty( [ valuesVisibleProperty ], () => {
-      return valuesVisibleProperty.value;
-    } );
+    const useQuantitativeDescriptionsProperty = new DerivedProperty( [ valuesVisibleProperty ],
+      currentValuesVisible => currentValuesVisible );
 
     // a11y - initializes describers and alert manager
     const concentrationDescriber = new ConcentrationDescriber( model.solution, useQuantitativeDescriptionsProperty );
@@ -99,7 +98,7 @@ define( function( require ) {
     const soluteAmountDescriber = new SoluteAmountDescriber( model.solution, soluteDescriber, concentrationDescriber,
       useQuantitativeDescriptionsProperty );
     new MolarityAlertManager( model.solution, useQuantitativeDescriptionsProperty, // eslint-disable-line no-new
-      concentrationDescriber, soluteAmountDescriber, volumeDescriber, soluteDescriber, valuesVisibleProperty);
+      concentrationDescriber, soluteAmountDescriber, volumeDescriber, soluteDescriber, valuesVisibleProperty );
 
     // a11y - creates screen summary in the PDOM and add it to the screenView
     const molarityScreenSummaryNode = new MolarityScreenSummaryNode( model.solution, model.solutes,
@@ -109,8 +108,8 @@ define( function( require ) {
 
     // beaker, with solution and precipitate inside of it
     const beakerNode = new BeakerNode( model.solution, MConstants.SOLUTION_VOLUME_RANGE.max, valuesVisibleProperty,
-      tandem.createTandem( 'beakerNode' ), soluteDescriber, volumeDescriber, concentrationDescriber,
-      useQuantitativeDescriptionsProperty );
+      tandem.createTandem( 'beakerNode' ), soluteDescriber, soluteAmountDescriber, volumeDescriber,
+      concentrationDescriber, useQuantitativeDescriptionsProperty );
 
     const cylinderSize = beakerNode.getCylinderSize();
     const solutionNode = new SolutionNode( cylinderSize, beakerNode.getCylinderEndHeight(), model.solution,
