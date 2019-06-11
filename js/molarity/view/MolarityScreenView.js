@@ -15,6 +15,7 @@ define( function( require ) {
   const Checkbox = require( 'SUN/Checkbox' );
   const ConcentrationDescriber = require( 'MOLARITY/molarity/view/describers/ConcentrationDescriber' );
   const ConcentrationDisplay = require( 'MOLARITY/molarity/view/ConcentrationDisplay' );
+  const ConcentrationSoundGenerator = require( 'MOLARITY/molarity/view/ConcentrationSoundGenerator' );
   const ControlAreaNode = require( 'SCENERY_PHET/accessibility/nodes/ControlAreaNode' );
   const DerivedProperty = require( 'AXON/DerivedProperty' );
   const Dimension2 = require( 'DOT/Dimension2' );
@@ -185,6 +186,14 @@ define( function( require ) {
     const concentrationBarSize = new Dimension2( 40, cylinderSize.height + 50 );
     const concentrationDisplay = new ConcentrationDisplay( model.solution, MConstants.CONCENTRATION_RANGE,
       valuesVisibleProperty, concentrationBarSize, tandem.createTandem( 'concentrationDisplay' ) );
+
+    // sound generator for concentration
+    soundManager.addSoundGenerator( new ConcentrationSoundGenerator(
+      model.solution,
+      new BooleanProperty( false ),
+      model.resetInProgressProperty,
+      { initialOutputLevel: 0.7 }
+    ) );
 
     // Show Values checkbox
     const showValuesLabel = new Text( showValuesString, {
