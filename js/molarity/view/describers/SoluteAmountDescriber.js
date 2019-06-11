@@ -182,60 +182,6 @@ define( require => {
         solute: this.soluteDescriber.getCurrentSolute()
       } );
     }
-
-    /**
-     * Main method for generating aria-valueText when the soluteAmountProperty changes. Also responsible for the alert
-     * read out when the solution is newly saturated
-     * @public
-     * @returns {null|string}
-     */
-    getSoluteAmountDescriptionsAndAlert() {
-      if ( this.concentrationDescriber.isNewSaturationState() ) {
-        this.alertManager.alertSaturation( this.concentrationDescriber.getSaturationChangedString() );
-      }
-      return this.useQuantitativeDescriptionsProperty.value ?
-             this.getQuantitativeSoluteAmountDescriptionsAndAlert() :
-             this.getQualitativeSoluteAmountDescriptionsAndAlert();
-    }
-
-    /**
-     * When SoluteAmountProperty changes when quantitative descriptions are being used, creates aria-valueText strings
-     * and triggers alerts.
-     * @private
-     * @returns {string}
-     */
-    getQuantitativeSoluteAmountDescriptionsAndAlert() {
-
-      // alerts
-      this.alertManager.alertSliderQuantitative( this.isInitialSoluteAmountAlert );
-      if ( this.isInitialSoluteAmountAlert ) {
-        this.isInitialSoluteAmountAlert = false;
-      }
-
-      // aria-valueText
-      return this.concentrationDescriber.getQuantitativeValueText( this.isInitialSoluteAmountAlert,
-        this.getCurrentSoluteAmount() );
-    }
-
-    /**
-     * When SoluteAmountProperty changes when qualitative descriptions are being used, creates aria-valueText strings
-     * and triggers alerts.
-     * @private
-     * @returns {string}
-     */
-    getQualitativeSoluteAmountDescriptionsAndAlert() {
-
-      // alerts (a special alert is read out when there is no solute in the beaker)
-      if ( this.solution.soluteAmountProperty.value <= 0.001 ) {
-        this.alertManager.alertSlider( noSoluteAlertString );
-      }
-      else {
-        this.alertManager.alertSliderQualitative( this.getSoluteAmountChangeString(), this.soluteAmountRegionChanged );
-      }
-
-      // aria-valueText
-      return this.getSoluteAmountState();
-    }
   }
 
   /**
