@@ -29,6 +29,7 @@ define( function( require ) {
   const PlayAreaNode = require( 'SCENERY_PHET/accessibility/nodes/PlayAreaNode' );
   const PrecipitateNode = require( 'MOLARITY/molarity/view/PrecipitateNode' );
   const ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
+  const ResetAllSoundGenerator = require( 'TAMBO/sound-generators/ResetAllSoundGenerator' );
   const SaturatedIndicator = require( 'MOLARITY/molarity/view/SaturatedIndicator' );
   const ScreenView = require( 'JOIST/ScreenView' );
   const Shape = require( 'KITE/Shape' );
@@ -36,6 +37,8 @@ define( function( require ) {
   const SoluteComboBox = require( 'MOLARITY/molarity/view/SoluteComboBox' );
   const SoluteDescriber = require( 'MOLARITY/molarity/view/describers/SoluteDescriber' );
   const SolutionNode = require( 'MOLARITY/molarity/view/SolutionNode' );
+  const SoundClip = require( 'TAMBO/sound-generators/SoundClip' );
+  const soundManager = require( 'TAMBO/soundManager' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const Text = require( 'SCENERY/nodes/Text' );
   const VerticalSlider = require( 'MOLARITY/molarity/view/VerticalSlider' );
@@ -54,6 +57,10 @@ define( function( require ) {
   const solutionVolumeString = require( 'string!MOLARITY/solutionVolume' );
   const unitsLitersString = require( 'string!MOLARITY/units.liters' );
   const unitsMolesString = require( 'string!MOLARITY/units.moles' );
+
+  // sounds
+  const checkboxCheckedSound = require( 'sound!TAMBO/check-box-checked.mp3' );
+  const checkboxUncheckedSound = require( 'sound!TAMBO/check-box-unchecked.mp3' );
 
   // a11y strings
   const showValuesHelpTextString = MolarityA11yStrings.showValuesHelpText.value;
@@ -194,6 +201,20 @@ define( function( require ) {
     } );
     showValuesCheckbox.touchArea = Shape.rectangle( showValuesCheckbox.left, showValuesCheckbox.top - 15, showValuesCheckbox.width, showValuesCheckbox.height + 30 );
 
+    // sound generator for check box
+    const uncheckedClip = new SoundClip( checkboxUncheckedSound );
+    soundManager.addSoundGenerator( uncheckedClip );
+    const checkedClip = new SoundClip( checkboxCheckedSound );
+    soundManager.addSoundGenerator( checkedClip );
+    valuesVisibleProperty.lazyLink( value => {
+      if ( value ) {
+        checkedClip.play();
+      }
+      else {
+        uncheckedClip.play();
+      }
+    } );
+
     // Reset All button
     const resetAllButton = new ResetAllButton( {
       listener: function() {
@@ -203,6 +224,12 @@ define( function( require ) {
       scale: 1.32,
       tandem: tandem.createTandem( 'resetAllButton' )
     } );
+
+    // Reset All sound generator
+    // hook up the reset all sound generator
+    soundManager.addSoundGenerator( new ResetAllSoundGenerator( model.resetInProgressProperty, {
+      initialOutputLevel: 0.7
+    } ) );
 
     // a11y - heading for slider controls: contains heading for slider controls and orders included PDOM elements
     const solutionControlsNode = new Node( {

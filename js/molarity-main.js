@@ -31,7 +31,8 @@ define( function( require ) {
       team: 'Kelly Lancaster, Robert Parson, Kathy Perkins',
       qualityAssurance: 'Steele Dalton, Alex Dornan, Ethan Johnson, Elise Morgan, Oliver Orejola, Bryan Yoelin'
     },
-    keyboardHelpNode: keyboardHelpContent
+    keyboardHelpNode: keyboardHelpContent,
+    supportsSound: true
   };
 
   SimLauncher.launch( function() {

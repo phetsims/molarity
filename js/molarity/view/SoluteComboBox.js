@@ -84,7 +84,7 @@ define( function( require ) {
     } );
 
     return new ComboBoxItem( hBox, solute, {
-      tandemName: solute.tandem.tail,
+      tandemName: solute.tandem.name,
       a11yLabel: solute.name
     } );
   };
