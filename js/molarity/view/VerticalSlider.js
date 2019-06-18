@@ -10,6 +10,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  const BooleanProperty = require( 'AXON/BooleanProperty' );
   const Color = require( 'SCENERY/util/Color' );
   const Dimension2 = require( 'DOT/Dimension2' );
   const DualLabelNode = require( 'MOLARITY/molarity/view/DualLabelNode' );
@@ -77,6 +78,9 @@ define( function( require ) {
       maxLabel, valuesVisibleProperty, RANGE_FONT, tandem.createTandem( 'maxNode' ),
       { maxWidth: MAX_TEXT_WIDTH } );
 
+    // @public (read-only) {BooleanProperty} - true if the slider is being dragged via the keyboard
+    this.keyboardDraggingProperty = new BooleanProperty( false );
+
     const sliderNode = new VSlider( property, range, {
       trackSize: new Dimension2( trackSize.height, trackSize.width ), // swap dimensions
       trackFillEnabled: 'black',
@@ -96,7 +100,15 @@ define( function( require ) {
       keyboardStep: 0.050,
       a11yCreateOnFocusAriaValueText: getOnFocusAriaValueText,
       a11yCreateValueChangeAriaValueText: getOnChangeAriaValueText,
-      containerTagName: 'div' // for fixing layout in a11y-view with aria-valuetext
+      containerTagName: 'div', // for fixing layout in a11y-view with aria-valuetext
+      startDrag: event => {
+        if ( event.type === 'keydown' ) {
+          this.keyboardDraggingProperty.set( true );
+        }
+      },
+      endDrag: () => {
+        this.keyboardDraggingProperty.set( false );
+      }
     } );
 
     // a11y - sets the initial alert status of the describer to true (a special alert is read on initial slider change)

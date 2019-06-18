@@ -188,10 +188,18 @@ define( function( require ) {
     const concentrationDisplay = new ConcentrationDisplay( model.solution, MConstants.CONCENTRATION_RANGE,
       valuesVisibleProperty, concentrationBarSize, tandem.createTandem( 'concentrationDisplay' ) );
 
+    // a property that tracks whether either of the sliders is being dragged via the keyboard
+    const sliderBeingDraggedByKeyboardProperty = new DerivedProperty(
+      [ soluteAmountSlider.keyboardDraggingProperty, solutionVolumeSlider.keyboardDraggingProperty ],
+      ( keyDraging1, keyDragging2 ) => {
+        return keyDraging1 || keyDragging2;
+      }
+    );
+
     // sound generator for concentration
     soundManager.addSoundGenerator( new ConcentrationSoundGenerator(
       model.solution,
-      new BooleanProperty( false ),
+      sliderBeingDraggedByKeyboardProperty,
       model.resetInProgressProperty,
       { initialOutputLevel: 0.7 }
     ) );
@@ -200,7 +208,7 @@ define( function( require ) {
     soundManager.addSoundGenerator( new PrecipitateSoundGenerator(
       model.solution.precipitateAmountProperty,
       model.solution.soluteProperty,
-      new BooleanProperty( false ),
+      sliderBeingDraggedByKeyboardProperty,
       model.resetInProgressProperty
     ) );
 
