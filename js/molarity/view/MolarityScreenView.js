@@ -29,6 +29,7 @@ define( function( require ) {
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
   const PlayAreaNode = require( 'SCENERY_PHET/accessibility/nodes/PlayAreaNode' );
   const PrecipitateNode = require( 'MOLARITY/molarity/view/PrecipitateNode' );
+  const PrecipitateSoundGenerator = require( 'MOLARITY/molarity/view/PrecipitateSoundGenerator' );
   const ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   const ResetAllSoundGenerator = require( 'TAMBO/sound-generators/ResetAllSoundGenerator' );
   const SaturatedIndicator = require( 'MOLARITY/molarity/view/SaturatedIndicator' );
@@ -193,6 +194,14 @@ define( function( require ) {
       new BooleanProperty( false ),
       model.resetInProgressProperty,
       { initialOutputLevel: 0.7 }
+    ) );
+
+    // sound generator for precipitate amount
+    soundManager.addSoundGenerator( new PrecipitateSoundGenerator(
+      model.solution.precipitateAmountProperty,
+      model.solution.soluteProperty,
+      new BooleanProperty( false ),
+      model.resetInProgressProperty
     ) );
 
     // Show Values checkbox
