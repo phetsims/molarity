@@ -56,10 +56,10 @@ define( function( require ) {
 
     // Screen summary strings
     screenSummaryFirstParagraphPattern: {
-      value: 'In the Play Area, you find a beaker containing a solution, and a concentration readout. You can adjust the amount of solute in the solution and the solution volume. You can also choose from nine different solutes to include in your solution.'
+      value: 'In the Play Area, you find a beaker containing a solution, and a concentration readout. You can change solute amount, solution volume, and choose from nine different solutes to play with the solution in beaker.'
     },
     screenSummarySecondParagraph: {
-      value: ' In the Control Area there is a checkbox to show the exact values for amount of solute (in moles), volume of solution (in liters), and concentration (molar), and a button to reset the sim.'
+      value: ' In the Control Area there is a checkbox to show exact values for amount of solute (in moles), volume of solution (in liters), and concentration (in molar), and a button to reset the sim.'
     },
     stateOfSimPattern: {
       value: 'Currently, beaker {{volume}} of a {{saturatedConcentration}} {{solute}} ‬solution containing {{soluteAmount}} ‪{{solute}}‬ solute. {{concentrationClause}}. Play with solute amount and solution volume to explore changes to the concentration of different solutions.\n'

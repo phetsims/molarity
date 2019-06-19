@@ -24,7 +24,7 @@ define( require => {
   class MolarityBeakerDescriptionNode extends Node {
 
     /**
-     * @param {Solution} solution -- from MolarityModel
+     * @param {Solution} solution - from MolarityModel
      * @param {Property.<boolean>} useQuantitativeDescriptionsProperty
      * @param {SoluteDescriber} soluteDescriber
      * @param {ConcentrationDescriber} concentrationDescriber
@@ -77,7 +77,7 @@ define( require => {
         () => this.updateBeakerDescriptionList() );
     }
 
-    // @priave
+    // @private
     updateBeakerDescriptionList() {
       this.updateColorSummary();
       this.updateSoluteAmountSummary();
