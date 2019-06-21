@@ -27,7 +27,7 @@ define( function( require ) {
 
     /**
      * @param {Solution} solution - model of the solution
-     * @param {Property.<boolean>} alwaysPlayOnChangesProperty - play on any change to the solute or solution amounts,
+     * @param {Property.<boolean>} alwaysPlayOnChangesProperty - play on any change to the solute or solution amounts
      * @param {Property.<boolean>} resetInProgressProperty - indicates when a reset is happening, used to mute sounds
      * supports keyboard interaction
      * @param {Object} [options]
@@ -45,24 +45,38 @@ define( function( require ) {
       // trigger playing of the concentration sound as the solute amount changes
       const soluteAmountBinMapper = new BinMapper( MConstants.SOLUTE_AMOUNT_RANGE, NUM_SOLUTE_BINS );
       solution.soluteAmountProperty.lazyLink( ( soluteAmount, previousSoluteAmount ) => {
-        const previousBin = soluteAmountBinMapper.mapToBin( previousSoluteAmount );
-        const currentBin = soluteAmountBinMapper.mapToBin( soluteAmount );
-        if ( previousBin !== currentBin || alwaysPlayOnChangesProperty.value ) {
-          this.playConcentrationSound();
+
+        // don't play if saturated - other sounds are used in that case
+        if ( !solution.precipitateAmountProperty.value > 0 ) {
+
+          // map the solute amount value to bins
+          const previousBin = soluteAmountBinMapper.mapToBin( previousSoluteAmount );
+          const currentBin = soluteAmountBinMapper.mapToBin( soluteAmount );
+
+          // play the sound if the value maps to a new bin or if the sound play on all changes
+          if ( previousBin !== currentBin || alwaysPlayOnChangesProperty.value ) {
+            this.playConcentrationSound();
+          }
         }
       } );
 
       // trigger playing of the concentration sound as the solution volume changes
       const volumeBinMapper = new BinMapper( MConstants.SOLUTION_VOLUME_RANGE, NUM_VOLUME_BINS );
       solution.volumeProperty.lazyLink( ( volume, previousVolume ) => {
-        const previousBin = volumeBinMapper.mapToBin( previousVolume );
-        const currentBin = volumeBinMapper.mapToBin( volume );
-        if ( solution.concentrationProperty.value > 0 &&
-             ( previousBin !== currentBin ||
-               volume === MConstants.SOLUTION_VOLUME_RANGE.max ||
-               volume === MConstants.SOLUTION_VOLUME_RANGE.min ||
-               alwaysPlayOnChangesProperty.value ) ) {
-          this.playConcentrationSound();
+
+        // don't play if saturated - other sounds are used in that case
+        if ( !solution.precipitateAmountProperty.value > 0 ) {
+
+          // map the solution volume value to bins
+          const previousBin = volumeBinMapper.mapToBin( previousVolume );
+          const currentBin = volumeBinMapper.mapToBin( volume );
+          if ( solution.concentrationProperty.value > 0 &&
+               ( previousBin !== currentBin ||
+                 volume === MConstants.SOLUTION_VOLUME_RANGE.max ||
+                 volume === MConstants.SOLUTION_VOLUME_RANGE.min ||
+                 alwaysPlayOnChangesProperty.value ) ) {
+            this.playConcentrationSound();
+          }
         }
       } );
 
