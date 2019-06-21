@@ -12,18 +12,20 @@ define( function( require ) {
   const BinMapper = require( 'TAMBO/BinMapper' );
   const molarity = require( 'MOLARITY/molarity' );
   const SoundClip = require( 'TAMBO/sound-generators/SoundClip' );
+  const SoundGenerator = require( 'TAMBO/sound-generators/SoundGenerator' );
   const InvertedBooleanProperty = require( 'TAMBO/InvertedBooleanProperty' );
   const MConstants = require( 'MOLARITY/molarity/MConstants' );
 
   // sounds
   const marimbaSound = require( 'sound!TAMBO/bright-marimba.mp3' );
+  const softLowMarimbaSound = require( 'sound!MOLARITY/no-solute-solution-volume-bonk.mp3' );
 
   // constants
   const NUM_SOLUTE_BINS = 13; // empirically determined to produce sounds as frequently as needed but not TOO frequently
   const NUM_VOLUME_BINS = 10; // empirically determined to produce sounds as frequently as needed but not TOO frequently
   const ZERO_CONCENTRATION_PITCH_RATE = 0.33; // about 2.5 octaves below the nominal pitch, empirically determined
 
-  class ConcentrationSoundGenerator extends SoundClip {
+  class ConcentrationSoundGenerator extends SoundGenerator {
 
     /**
      * @param {Solution} solution - model of the solution
@@ -33,14 +35,41 @@ define( function( require ) {
      * @param {Object} [options]
      */
     constructor( solution, alwaysPlayOnChangesProperty, resetInProgressProperty, options ) {
-      super( marimbaSound, _.extend( options, {
+      super( _.extend( options, {
         initialOutputLevel: 0.5,
         rateChangesAffectPlayingSounds: false,
         enableControlProperties: [ new InvertedBooleanProperty( resetInProgressProperty ) ]
       } ) );
 
-      // @private
-      this.concentrationProperty = solution.concentrationProperty;
+      // create and hook up the sound clips
+      const nonZeroConcentrationSoundClip = new SoundClip( marimbaSound, { rateChangesAffectPlayingSounds: false } );
+      nonZeroConcentrationSoundClip.connect( this.masterGainNode );
+      const zeroConcentrationSoundClip = new SoundClip( softLowMarimbaSound );
+      zeroConcentrationSoundClip.connect( this.masterGainNode );
+
+      // keep track of the concentration value each time sound is played
+      let concentrationAtLastSoundProduction = solution.concentrationProperty.value;
+
+      // closure for playing the appropriate concentration sound
+      const playConcentrationSound = () => {
+        const concentration = solution.concentrationProperty.value;
+        if ( concentration > 0 ) {
+          nonZeroConcentrationSoundClip.setPlaybackRate( 0.5 + concentration / MConstants.CONCENTRATION_RANGE.max );
+          nonZeroConcentrationSoundClip.play();
+        }
+        else if ( concentrationAtLastSoundProduction > 0 ) {
+
+          // the concentration value has transitioned to zero, so play the long version of the low bonk sound
+          nonZeroConcentrationSoundClip.setPlaybackRate( ZERO_CONCENTRATION_PITCH_RATE );
+          nonZeroConcentrationSoundClip.play();
+        }
+        else {
+
+          // the user is changing the volume of the solution with no solute in it, play the sound for this specific case
+          zeroConcentrationSoundClip.play();
+        }
+        concentrationAtLastSoundProduction = concentration;
+      };
 
       // trigger playing of the concentration sound as the solute amount changes
       const soluteAmountBinMapper = new BinMapper( MConstants.SOLUTE_AMOUNT_RANGE, NUM_SOLUTE_BINS );
@@ -54,8 +83,11 @@ define( function( require ) {
           const currentBin = soluteAmountBinMapper.mapToBin( soluteAmount );
 
           // play the sound if the value maps to a new bin or if the sound play on all changes
-          if ( previousBin !== currentBin || alwaysPlayOnChangesProperty.value ) {
-            this.playConcentrationSound();
+          if ( previousBin !== currentBin ||
+               soluteAmount === MConstants.SOLUTE_AMOUNT_RANGE.max ||
+               soluteAmount === MConstants.SOLUTE_AMOUNT_RANGE.min ||
+               alwaysPlayOnChangesProperty.value ) {
+            playConcentrationSound();
           }
         }
       } );
@@ -70,38 +102,14 @@ define( function( require ) {
           // map the solution volume value to bins
           const previousBin = volumeBinMapper.mapToBin( previousVolume );
           const currentBin = volumeBinMapper.mapToBin( volume );
-          if ( solution.concentrationProperty.value > 0 &&
-               ( previousBin !== currentBin ||
-                 volume === MConstants.SOLUTION_VOLUME_RANGE.max ||
-                 volume === MConstants.SOLUTION_VOLUME_RANGE.min ||
-                 alwaysPlayOnChangesProperty.value ) ) {
-            this.playConcentrationSound();
+          if ( previousBin !== currentBin ||
+               volume === MConstants.SOLUTION_VOLUME_RANGE.max ||
+               volume === MConstants.SOLUTION_VOLUME_RANGE.min ||
+               alwaysPlayOnChangesProperty.value ) {
+            playConcentrationSound();
           }
         }
       } );
-
-      // trigger playing of the concentration sound at the min and max values
-      solution.concentrationProperty.lazyLink( concentration => {
-        if ( concentration === MConstants.CONCENTRATION_RANGE.min ||
-             concentration === MConstants.CONCENTRATION_RANGE.max ) {
-          this.playConcentrationSound();
-        }
-      } );
-    }
-
-    /**
-     * play a discrete sound with pitch adjusted to indicate the concentration level
-     * @private
-     */
-    playConcentrationSound() {
-      const concentration = this.concentrationProperty.value;
-      if ( concentration > 0 ) {
-        this.setPlaybackRate( 0.5 + this.concentrationProperty.value / MConstants.CONCENTRATION_RANGE.max );
-      }
-      else {
-        this.setPlaybackRate( ZERO_CONCENTRATION_PITCH_RATE );
-      }
-      this.play();
     }
   }
 
