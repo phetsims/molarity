@@ -24,6 +24,7 @@ define( require => {
   const screenSummarySecondParagraphString = MolarityA11yStrings.screenSummarySecondParagraph.value;
   const stateOfSimNoSolutePatternString = MolarityA11yStrings.stateOfSimNoSolutePattern.value;
   const stateOfSimPatternString = MolarityA11yStrings.stateOfSimPattern.value;
+  const stateOfSimInteractionHintString = MolarityA11yStrings.stateOfSimInteractionHint.value;
 
   class MolarityScreenSummaryNode extends Node {
 
@@ -65,7 +66,13 @@ define( require => {
       const stateOfSimNode = new Node( {
         tagName: 'p'
       } );
+      const interactionHintNode = new Node({
+        tagName: 'p',
+        innerContent: stateOfSimInteractionHintString
+      });
+
       this.addChild( stateOfSimNode );
+      this.addChild( interactionHintNode );
 
       // Third paragraph of the screen summary -- updated when model properties change.
       Property.multilink( [ solution.soluteProperty, solution.volumeProperty,
