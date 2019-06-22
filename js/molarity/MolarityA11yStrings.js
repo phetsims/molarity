@@ -177,8 +177,8 @@ define( function( require ) {
     aLittle: {
       value: 'A little'
     },
-    zero: {
-      value: 'Zero'
+    no: {
+      value: 'No'
     },
     theMaxAmountOfLowercase: {
       value: 'the max amount of'
@@ -198,8 +198,8 @@ define( function( require ) {
     aLittleLowercase: {
       value: 'a little'
     },
-    zeroLowercase: {
-      value: 'zero'
+    noLowercase: {
+      value: 'no'
     },
 
 

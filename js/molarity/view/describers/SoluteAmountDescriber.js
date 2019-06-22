@@ -38,8 +38,8 @@ define( require => {
   // solids regions strings
   const someString = MolarityA11yStrings.some.value;
   const someLowercaseString = MolarityA11yStrings.someLowercase.value;
-  const zeroString = MolarityA11yStrings.zero.value;
-  const zeroLowercaseString = MolarityA11yStrings.zeroLowercase.value;
+  const noString = MolarityA11yStrings.no.value;
+  const noLowercaseString = MolarityA11yStrings.noLowercase.value;
 
   // change strings
   const lessCapitalizedString = MolarityA11yStrings.lessCapitalized.value;
@@ -47,7 +47,7 @@ define( require => {
 
   // constants
   const SOLUTE_AMOUNT_STRINGS = [
-    zeroString,
+    noString,
     aLittleString,
     aLowAmountOfString,
     someString,
@@ -56,7 +56,7 @@ define( require => {
     theMaxAmountOfString
   ];
   const SOLUTE_AMOUNT_STRINGS_LOWERCASE = [
-    zeroLowercaseString,
+    noLowercaseString,
     aLittleLowercaseString,
     aLowAmountOfLowercaseString,
     someLowercaseString,
