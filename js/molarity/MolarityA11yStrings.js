@@ -44,11 +44,8 @@ define( function( require ) {
     showValuesHelpText: {
       value: 'Explore with values shown.'
     },
-    soluteAmountHelpText: {
-      value: 'Explore how changing Solute Amount affects solution in beaker.'
-    },
-    solutionVolumeHelpText: {
-      value: 'Explore how changing Solution Volume affects solution in beaker.'
+    sliderHelpText: {
+      value: 'Solute amount and solution volume allow changes to chosen solution.'
     },
     soluteComboBoxHelpText: {
       value: 'Choose one of nine solutes to play with in beaker.'

@@ -69,8 +69,7 @@ define( function( require ) {
   const soluteAmountAccessibleNameString = MolarityA11yStrings.soluteAmountAccessibleName.value;
   const solutionVolumeAccessibleNameString = MolarityA11yStrings.solutionVolumeAccessibleName.value;
   const solutionControlsLabelString = MolarityA11yStrings.solutionControlsLabel.value;
-  const soluteAmountHelpTextString = MolarityA11yStrings.soluteAmountHelpText.value;
-  const solutionVolumeHelpTextString = MolarityA11yStrings.solutionVolumeHelpText.value;
+  const sliderHelpTextString = MolarityA11yStrings.sliderHelpText.value;
 
   // constants
   const SLIDER_TRACK_WIDTH = 12;
@@ -146,7 +145,6 @@ define( function( require ) {
       valuesVisibleProperty,
       tandem.createTandem( 'soluteAmountSlider' ),
       soluteAmountAccessibleNameString,
-      soluteAmountHelpTextString,
       () => soluteAmountDescriber.getOnFocusSoluteAmountValueText(),
       () => {
         return useQuantitativeDescriptionsProperty.value ?
@@ -171,7 +169,6 @@ define( function( require ) {
       valuesVisibleProperty,
       tandem.createTandem( 'solutionVolumeSlider' ),
       solutionVolumeAccessibleNameString,
-      solutionVolumeHelpTextString,
       () => volumeDescriber.getOnFocusVolumeValueText(),
       () => {
         return useQuantitativeDescriptionsProperty.value ?
@@ -261,7 +258,9 @@ define( function( require ) {
     const solutionControlsNode = new Node( {
       tagName: 'div',
       labelTagName: 'h3',
-      labelContent: solutionControlsLabelString
+      labelContent: solutionControlsLabelString,
+      descriptionTagName: 'p',
+      descriptionContent: sliderHelpTextString
     } );
     solutionControlsNode.accessibleOrder = [ soluteAmountSlider, solutionVolumeSlider ];
 

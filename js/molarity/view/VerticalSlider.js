@@ -55,7 +55,7 @@ define( function( require ) {
    * @constructor
    */
   function VerticalSlider( title, subtitle, minLabel, maxLabel, trackSize, property, range,
-                           decimalPlaces, units, valuesVisibleProperty, tandem, accessibleName, helpText,
+                           decimalPlaces, units, valuesVisibleProperty, tandem, accessibleName,
                            getOnFocusAriaValueText, getOnChangeAriaValueText, setInitialAlert, soluteProperty ) {
 
     const titleNode = new MultiLineText( title, {
@@ -95,7 +95,6 @@ define( function( require ) {
       // a11y
       shiftKeyboardStep: Math.pow( 10, decimalPlaces * -1 ),
       accessibleName: accessibleName,
-      helpText: helpText,
       appendDescription: true,
       keyboardStep: 0.050,
       a11yCreateOnFocusAriaValueText: getOnFocusAriaValueText,
