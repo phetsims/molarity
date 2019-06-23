@@ -48,7 +48,7 @@ define( function( require ) {
       value: 'Solute amount and solution volume allow changes to chosen solution.'
     },
     soluteComboBoxHelpText: {
-      value: 'Choose one of nine solutes to play with in beaker.'
+      value: 'Choose a different solute for beaker.'
     },
 
     // Screen summary strings
