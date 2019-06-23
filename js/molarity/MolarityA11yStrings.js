@@ -79,7 +79,7 @@ define( function( require ) {
       value: 'Beaker'
     },
     beakerDescriptionPattern: {
-      value: 'Beaker {{volume}} of a {{solute}} solution. The solution: '
+      value: 'Beaker {{volume}} of a {{solute}} solution. The {{color}} solution: '
     },
     beakerSoluteAmountPattern: {
       value: 'contains {{soluteAmount}} {{solute}}'

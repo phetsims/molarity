@@ -19,7 +19,6 @@ define( require => {
 
   // a11y strings
   const beakerDescriptionPatternString = MolarityA11yStrings.beakerDescriptionPattern.value;
-  const drinkMixChemicalFormulaPatternString = MolarityA11yStrings.drinkMixChemicalFormulaPattern.value;
 
   class MolarityBeakerDescriptionNode extends Node {
 
@@ -38,29 +37,24 @@ define( require => {
 
       //@private
       this.solution = solution;
+      this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
       this.concentrationDescriber = concentrationDescriber;
       this.soluteDescriber = soluteDescriber;
       this.soluteAmountDescriber = soluteAmountDescriber;
-      this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
+      this.volumeDescriber = volumeDescriber;
 
       this.beakerDescriptionList = new Node( {
         tagName: 'ul',
         labelTagName: 'p',
-        labelContent: StringUtils.fillIn( beakerDescriptionPatternString, {
-          solute: soluteDescriber.getCurrentSolute(),
-          volume: volumeDescriber.getCurrentVolume( true )
-        } )
+        labelContent: this.updateBeakerSummaryString()
       } );
-      this.colorSummaryItem = new Node( { tagName: 'li' } );
       this.soluteAmountSummaryItem = new Node( { tagName: 'li' } );
       this.saturationSummaryItem = new Node( { tagName: 'li' } );
       this.concentrationSummaryItem = new Node( { tagName: 'li' } );
       this.chemicalFormulaSummaryItem = new Node( { tagName: 'li' } );
       this.concentrationRangeSummaryItem = new Node( { tagName: 'li' } );
       this.beakerDescriptionList.setChildren( [
-        this.colorSummaryItem,
         this.soluteAmountSummaryItem,
-        this.saturationSummaryItem,
         this.concentrationSummaryItem,
         this.chemicalFormulaSummaryItem,
         this.concentrationRangeSummaryItem
@@ -79,7 +73,7 @@ define( require => {
 
     // @private
     updateBeakerDescriptionList() {
-      this.updateColorSummary();
+      this.beakerDescriptionList.labelContent = this.updateBeakerSummaryString();
       this.updateSoluteAmountSummary();
       this.updateSaturationSummary();
       this.updateConcentrationSummary();
@@ -87,9 +81,12 @@ define( require => {
       this.updateConcentrationRangeSummary();
     }
 
-    // @private
-    updateColorSummary() {
-      this.colorSummaryItem.innerContent = this.soluteDescriber.getCurrentColor();
+    updateBeakerSummaryString() {
+      return StringUtils.fillIn( beakerDescriptionPatternString, {
+        solute: this.soluteDescriber.getCurrentSolute(),
+        volume: this.volumeDescriber.getCurrentVolume( true ),
+        color: this.soluteDescriber.getCurrentColor()
+      } );
     }
 
     //@private
@@ -101,13 +98,12 @@ define( require => {
     updateSaturationSummary() {
       if ( this.solution.isSaturated() ) {
         this.beakerDescriptionList.canAddChild( this.saturationSummaryItem ) &&
-        this.beakerDescriptionList.insertChild( 2, this.saturationSummaryItem );
+        this.beakerDescriptionList.insertChild( 1, this.saturationSummaryItem );
         this.saturationSummaryItem.innerContent = this.concentrationDescriber.getBeakerSaturationString();
       }
       else {
-        if ( this.beakerDescriptionList.getChildAt( 2 ) === this.saturationSummaryItem ) {
-          this.beakerDescriptionList.removeChildAt( 2 );
-        }
+        this.beakerDescriptionList.children.includes( this.saturationSummaryItem ) &&
+        this.beakerDescriptionList.removeChild( this.saturationSummaryItem );
       }
     }
 
@@ -119,9 +115,19 @@ define( require => {
 
     // @private
     updateChemicalFormulaSummary() {
-      this.chemicalFormulaSummaryItem.innerContent = this.soluteDescriber.getCurrentSolute( true ) === drinkMixString ?
-                                                     drinkMixChemicalFormulaPatternString :
-                                                     this.soluteDescriber.getBeakerChemicalFormulaString();
+      const isDrinkMix = this.soluteDescriber.getCurrentSolute( true ) === drinkMixString;
+      const containsChemicalFormula = this.beakerDescriptionList.children.includes( this.chemicalFormulaSummaryItem );
+
+      // doesn't display the chemical formula if drink mix is selected, otherwise displays as the second-to-last item.
+      if ( isDrinkMix ) {
+        containsChemicalFormula && this.beakerDescriptionList.removeChild( this.chemicalFormulaSummaryItem );
+      }
+      else {
+        this.beakerDescriptionList.canAddChild( this.chemicalFormulaSummaryItem ) &&
+        this.beakerDescriptionList.insertChild( this.beakerDescriptionList.children.length - 1,
+          this.chemicalFormulaSummaryItem );
+        this.chemicalFormulaSummaryItem.innerContent = this.soluteDescriber.getBeakerChemicalFormulaString();
+      }
     }
 
     // @private
