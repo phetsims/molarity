@@ -70,8 +70,11 @@ define( function( require ) {
     noSoluteAlert: {
       value: 'No solute. Solution is pure water'
     },
-    noSoluteVolumeAlertPattern: {
-      value: '{{moreLess}} water. No solute in beaker.'
+    pureWater: {
+      value: 'pure water'
+    },
+    waterFormula: {
+      value: 'chemical formula of pure water is H2O'
     },
 
     // Beaker description strings
@@ -94,22 +97,7 @@ define( function( require ) {
       value: 'concentration {{concentration}}'
     },
     beakerChemicalFormulaPattern: {
-      value: 'The chemical formula of {{solute}} is {{chemicalFormula}}.'
-    },
-    beakerConcentrationRange: {
-      value: 'Concentration readout range {{0.00}} to {{0.500}}'
-    },
-    beakerNoSoluteDescriptionPattern: {
-      value: 'Beaker {{volume}} of water, containing no solute'
-    },
-    chemicalFormulaPattern: {
-      value: 'The chemical formula for {{solute}} is {{chemicalFormula}}.'
-    },
-    drinkMixChemicalFormulaPattern: {
-      value: 'Drink mix contains multiple compounds, no chemical formula provided.'
-    },
-    solutionControlsDescription: {
-      value: 'Solute Amount and Solution Volume sliders change solution in beaker.'
+      value: 'chemical formula of {{solute}} is {{chemicalFormula}}.'
     },
 
     // Volume regions
@@ -127,9 +115,6 @@ define( function( require ) {
     },
     underHalfFull: {
       value: 'under half full'
-    },
-    low: {
-      value: 'low'
     },
     nearlyEmpty: {
       value: 'nearly empty'
@@ -418,6 +403,9 @@ define( function( require ) {
     },
     purple: {
       value: 'purple'
+    },
+    clear: {
+      value: 'clear'
     }
   };
 

@@ -40,6 +40,7 @@ define( require => {
   const greenString = MolarityA11yStrings.green.value;
   const blueString = MolarityA11yStrings.blue.value;
   const purpleString = MolarityA11yStrings.purple.value;
+  const clearString = MolarityA11yStrings.clear.value;
 
   class SoluteDescriber {
 
@@ -91,6 +92,10 @@ define( require => {
      */
     getCurrentColor() {
       const currentSolute = this.getCurrentSolute( true );
+
+      if ( this.concentrationDescriber.isNoSolute() ) {
+        return clearString;
+      }
       switch( currentSolute ) {
         case drinkMixString:
           return redString;

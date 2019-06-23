@@ -66,7 +66,7 @@ define( require => {
         else {
 
           // a special alert is read out when there is no solute in the beaker
-          if ( this.solution.soluteAmountProperty.value <= 0.001 ) {
+          if ( concentrationDescriber.isNoSolute() ) {
             this.alertNoSolute();
           }
           else {
@@ -87,7 +87,7 @@ define( require => {
         else {
 
           // a special alert is read out when there is no solute in the beaker
-          if ( this.solution.soluteAmountProperty.value <= 0.001 ) {
+          if ( concentrationDescriber.isNoSolute() ) {
             this.alertNoSolute();
           }
           else {

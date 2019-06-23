@@ -19,6 +19,8 @@ define( require => {
 
   // a11y strings
   const beakerDescriptionPatternString = MolarityA11yStrings.beakerDescriptionPattern.value;
+  const pureWaterString = MolarityA11yStrings.pureWater.value;
+  const waterFormulaString = MolarityA11yStrings.waterFormula.value;
 
   class MolarityBeakerDescriptionNode extends Node {
 
@@ -83,7 +85,7 @@ define( require => {
 
     updateBeakerSummaryString() {
       return StringUtils.fillIn( beakerDescriptionPatternString, {
-        solute: this.soluteDescriber.getCurrentSolute(),
+        solute: this.concentrationDescriber.isNoSolute() ? pureWaterString : this.soluteDescriber.getCurrentSolute(),
         volume: this.volumeDescriber.getCurrentVolume( true ),
         color: this.soluteDescriber.getCurrentColor()
       } );
@@ -119,7 +121,13 @@ define( require => {
       const containsChemicalFormula = this.beakerDescriptionList.children.includes( this.chemicalFormulaSummaryItem );
 
       // doesn't display the chemical formula if drink mix is selected, otherwise displays as the second-to-last item.
-      if ( isDrinkMix ) {
+      if ( this.concentrationDescriber.isNoSolute() ) {
+        this.beakerDescriptionList.canAddChild( this.chemicalFormulaSummaryItem ) &&
+        this.beakerDescriptionList.insertChild( this.beakerDescriptionList.children.length - 1,
+          this.chemicalFormulaSummaryItem );
+        this.chemicalFormulaSummaryItem.innerContent = waterFormulaString;
+      }
+      else if ( isDrinkMix ) {
         containsChemicalFormula && this.beakerDescriptionList.removeChild( this.chemicalFormulaSummaryItem );
       }
       else {
