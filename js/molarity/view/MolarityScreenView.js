@@ -207,7 +207,6 @@ define( function( require ) {
     // sound generator for precipitate amount
     soundManager.addSoundGenerator( new PrecipitateSoundGenerator(
       model.solution.precipitateAmountProperty,
-      model.solution.soluteProperty,
       sliderBeingDraggedByKeyboardProperty,
       model.resetInProgressProperty
     ) );

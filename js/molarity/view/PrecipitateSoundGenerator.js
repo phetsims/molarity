@@ -37,14 +37,12 @@ define( function( require ) {
 
     /**
      * @param {Property.<number>} precipitateAmountProperty
-     * @param {Property.<Solute>} soluteProperty
      * @param {Property.<boolean>} alwaysPlayOnChangesProperty - play on any change to the solute or solution amounts
      * @param {Property.<boolean>} resetInProgressProperty - indicates when a reset is happening, used to mute sounds
-     * supports keyboard interaction
+     * supports keyboard interaction, has precedence over alwaysPlayOnChanges
      * @param {Object} [options]
      */
     constructor( precipitateAmountProperty,
-                 soluteProperty,
                  alwaysPlayOnChangesProperty,
                  resetInProgressProperty,
                  options ) {
@@ -66,30 +64,26 @@ define( function( require ) {
       // monitor the precipitate level and play sounds as it changes
       precipitateAmountProperty.lazyLink( ( precipitateAmount, previousPrecipitateAmount ) => {
 
-        // only play if the change to the precipitate amount is NOT due to a change to the selected solute
-        if ( !soluteProperty.notifying ) {
+        // Check if a sound should be played regardless of the change amount, generally because of changes made through
+        // keyboard interaction.
+        if ( alwaysPlayOnChangesProperty.value ) {
 
-          // Check if a sound should be played regardless of the change amount, generally because of changes made through
-          // keyboard interaction.
-          if ( alwaysPlayOnChangesProperty.value ) {
-
-            // for fine changes, play one sound, for larger ones, play two
-            const changeAmount = Math.abs( previousPrecipitateAmount - precipitateAmount );
-            this.playPrecipitateSound( precipitateAmount );
-            if ( changeAmount > 0.04 ) {
-              this.playPrecipitateSound( precipitateAmount, 0.1 );
-            }
+          // for fine changes, play one sound, for larger ones, play two
+          const changeAmount = Math.abs( previousPrecipitateAmount - precipitateAmount );
+          this.playPrecipitateSound( precipitateAmount );
+          if ( changeAmount > 0.04 ) {
+            this.playPrecipitateSound( precipitateAmount, 0.1 );
           }
-          else {
+        }
+        else {
 
-            // otherwise only play if the bin changed or we hit are un-hit one of the rails
-            const oldBin = precipitateAmountBinMapper.mapToBin( previousPrecipitateAmount );
-            const newBin = precipitateAmountBinMapper.mapToBin( precipitateAmount );
-            if ( newBin !== oldBin ||
-                 precipitateAmount > 0 && previousPrecipitateAmount === 0 ||
-                 precipitateAmount === 0 && previousPrecipitateAmount > 0 ) {
-              this.playPrecipitateSound( precipitateAmount );
-            }
+          // otherwise only play if the bin changed or we hit are un-hit one of the rails
+          const oldBin = precipitateAmountBinMapper.mapToBin( previousPrecipitateAmount );
+          const newBin = precipitateAmountBinMapper.mapToBin( precipitateAmount );
+          if ( newBin !== oldBin ||
+               precipitateAmount > 0 && previousPrecipitateAmount === 0 ||
+               precipitateAmount === 0 && previousPrecipitateAmount > 0 ) {
+            this.playPrecipitateSound( precipitateAmount );
           }
         }
       } );
