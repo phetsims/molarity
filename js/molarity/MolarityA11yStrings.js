@@ -151,8 +151,8 @@ define( function( require ) {
     isUnderHalfFull: {
       value: 'is under half full'
     },
-    hasALowAmount: {
-      value: 'has a low amount'
+    hasLowestAmount: {
+      value: 'has the lowest amount'
     },
     isNearlyEmpty: {
       value: 'is nearly empty'
