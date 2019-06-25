@@ -12,7 +12,6 @@ define( function( require ) {
   const BinMapper = require( 'TAMBO/BinMapper' );
   const molarity = require( 'MOLARITY/molarity' );
   const SoundClip = require( 'TAMBO/sound-generators/SoundClip' );
-  const InvertedBooleanProperty = require( 'TAMBO/InvertedBooleanProperty' );
   const Range = require( 'DOT/Range' );
 
   // sounds
@@ -37,24 +36,18 @@ define( function( require ) {
 
     /**
      * @param {Property.<number>} precipitateAmountProperty
-     * @param {Property.<Solute>} soluteProperty
-     * @param {Property.<boolean>} alwaysPlayOnChangesProperty - play on any change to the solute or solution amounts
-     * @param {Property.<boolean>} resetInProgressProperty - indicates when a reset is happening, used to mute sounds
-     * supports keyboard interaction
+     * @param {VerticalSlider} soluteAmountSlider - slider that controls the amount of solute
+     * @param {VerticalSlider} solutionVolumeSlider - slider that controls the volume of the solution
      * @param {Object} [options]
      */
     constructor( precipitateAmountProperty,
-                 soluteProperty,
-                 alwaysPlayOnChangesProperty,
-                 resetInProgressProperty,
+                 soluteAmountSlider,
+                 solutionVolumeSlider,
                  options ) {
 
       super( precipitateSound, _.extend( options, {
         initialOutputLevel: 0.5,
-        rateChangesAffectPlayingSounds: false,
-        enableControlProperties: [
-          new InvertedBooleanProperty( resetInProgressProperty )
-        ]
+        rateChangesAffectPlayingSounds: false
       } ) );
 
       // @private {number} - keeps track of previous played sound so that we never play it twice in a row
@@ -66,30 +59,33 @@ define( function( require ) {
       // monitor the precipitate level and play sounds as it changes
       precipitateAmountProperty.lazyLink( ( precipitateAmount, previousPrecipitateAmount ) => {
 
-        // only play if the change to the precipitate amount is NOT due to a change to the selected solute
-        if ( !soluteProperty.notifying ) {
+        // is the change was due to an a11y-caused event, a sound should be played on every change
+        const changeDueToA11yAction = soluteAmountSlider.draggingPointerType === 'a11y' ||
+                                      solutionVolumeSlider.draggingPointerType === 'a11y';
 
-          // Check if a sound should be played regardless of the change amount, generally because of changes made through
-          // keyboard interaction.
-          if ( alwaysPlayOnChangesProperty.value ) {
+        // Check if a sound should be played regardless of the change amount, generally because of changes made through
+        // keyboard interaction.
+        if ( changeDueToA11yAction ) {
 
-            // for fine changes, play one sound, for larger ones, play two
-            const changeAmount = Math.abs( previousPrecipitateAmount - precipitateAmount );
-            this.playPrecipitateSound( precipitateAmount );
-            if ( changeAmount > 0.04 ) {
-              this.playPrecipitateSound( precipitateAmount, 0.1 );
-            }
+          // for fine changes, play one sound, for larger ones, play two
+          const changeAmount = Math.abs( previousPrecipitateAmount - precipitateAmount );
+          this.playPrecipitateSound( precipitateAmount );
+          if ( changeAmount > 0.04 ) {
+            this.playPrecipitateSound( precipitateAmount, 0.1 );
           }
-          else {
+        }
 
-            // otherwise only play if the bin changed or we hit are un-hit one of the rails
-            const oldBin = precipitateAmountBinMapper.mapToBin( previousPrecipitateAmount );
-            const newBin = precipitateAmountBinMapper.mapToBin( precipitateAmount );
-            if ( newBin !== oldBin ||
-                 precipitateAmount > 0 && previousPrecipitateAmount === 0 ||
-                 precipitateAmount === 0 && previousPrecipitateAmount > 0 ) {
-              this.playPrecipitateSound( precipitateAmount );
-            }
+        // Otherwise only play if the change was initiated by the user changing the solute amount or solution volume
+        else if ( soluteAmountSlider.draggingPointerType !== null ||
+                  solutionVolumeSlider.draggingPointerType !== null ) {
+
+          // otherwise only play if the bin changed or we hit are un-hit one of the rails
+          const oldBin = precipitateAmountBinMapper.mapToBin( previousPrecipitateAmount );
+          const newBin = precipitateAmountBinMapper.mapToBin( precipitateAmount );
+          if ( newBin !== oldBin ||
+               precipitateAmount > 0 && previousPrecipitateAmount === 0 ||
+               precipitateAmount === 0 && previousPrecipitateAmount > 0 ) {
+            this.playPrecipitateSound( precipitateAmount );
           }
         }
       } );

@@ -185,18 +185,11 @@ define( function( require ) {
     const concentrationDisplay = new ConcentrationDisplay( model.solution, MConstants.CONCENTRATION_RANGE,
       valuesVisibleProperty, concentrationBarSize, tandem.createTandem( 'concentrationDisplay' ) );
 
-    // a property that tracks whether either of the sliders is being dragged via the keyboard
-    const sliderBeingDraggedByKeyboardProperty = new DerivedProperty(
-      [ soluteAmountSlider.keyboardDraggingProperty, solutionVolumeSlider.keyboardDraggingProperty ],
-      ( keyDraging1, keyDragging2 ) => {
-        return keyDraging1 || keyDragging2;
-      }
-    );
-
     // sound generator for concentration
     soundManager.addSoundGenerator( new ConcentrationSoundGenerator(
       model.solution,
-      sliderBeingDraggedByKeyboardProperty,
+      soluteAmountSlider,
+      solutionVolumeSlider,
       model.resetInProgressProperty,
       { initialOutputLevel: 0.7 }
     ) );
@@ -204,9 +197,9 @@ define( function( require ) {
     // sound generator for precipitate amount
     soundManager.addSoundGenerator( new PrecipitateSoundGenerator(
       model.solution.precipitateAmountProperty,
-      model.solution.soluteProperty,
-      sliderBeingDraggedByKeyboardProperty,
-      model.resetInProgressProperty
+      soluteAmountSlider,
+      solutionVolumeSlider,
+      { initialOutputLevel: 0.7 }
     ) );
 
     // Solution Values checkbox
@@ -249,7 +242,6 @@ define( function( require ) {
     } );
 
     // Reset All sound generator
-    // hook up the reset all sound generator
     soundManager.addSoundGenerator( new ResetAllSoundGenerator( model.resetInProgressProperty, {
       initialOutputLevel: 0.7
     } ) );

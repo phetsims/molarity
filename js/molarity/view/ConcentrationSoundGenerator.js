@@ -29,12 +29,12 @@ define( function( require ) {
 
     /**
      * @param {Solution} solution - model of the solution
-     * @param {Property.<boolean>} alwaysPlayOnChangesProperty - play on any change to the solute or solution amounts
+     * @param {VerticalSlider} soluteAmountSlider - slider that controls the amount of solute
+     * @param {VerticalSlider} solutionVolumeSlider - slider that controls the volume of the solution
      * @param {Property.<boolean>} resetInProgressProperty - indicates when a reset is happening, used to mute sounds
-     * supports keyboard interaction
      * @param {Object} [options]
      */
-    constructor( solution, alwaysPlayOnChangesProperty, resetInProgressProperty, options ) {
+    constructor( solution, soluteAmountSlider, solutionVolumeSlider, resetInProgressProperty, options ) {
       super( _.extend( options, {
         initialOutputLevel: 0.5,
         rateChangesAffectPlayingSounds: false,
@@ -71,6 +71,10 @@ define( function( require ) {
         concentrationAtLastSoundProduction = concentration;
       };
 
+      // Was the change was due to an a11y-caused action?
+      const changeDueToA11yAction = soluteAmountSlider.draggingPointerType === 'a11y' ||
+                                    solutionVolumeSlider.draggingPointerType === 'a11y';
+
       // trigger playing of the concentration sound as the solute amount changes
       const soluteAmountBinMapper = new BinMapper( MConstants.SOLUTE_AMOUNT_RANGE, NUM_SOLUTE_BINS );
       solution.soluteAmountProperty.lazyLink( ( soluteAmount, previousSoluteAmount ) => {
@@ -82,11 +86,11 @@ define( function( require ) {
           const previousBin = soluteAmountBinMapper.mapToBin( previousSoluteAmount );
           const currentBin = soluteAmountBinMapper.mapToBin( soluteAmount );
 
-          // play the sound if the value maps to a new bin or if the sound play on all changes
-          if ( previousBin !== currentBin ||
+          // play the sound if appropriate
+          if ( changeDueToA11yAction ||
+               previousBin !== currentBin ||
                soluteAmount === MConstants.SOLUTE_AMOUNT_RANGE.max ||
-               soluteAmount === MConstants.SOLUTE_AMOUNT_RANGE.min ||
-               alwaysPlayOnChangesProperty.value ) {
+               soluteAmount === MConstants.SOLUTE_AMOUNT_RANGE.min ) {
             playConcentrationSound();
           }
         }
@@ -102,10 +106,10 @@ define( function( require ) {
           // map the solution volume value to bins
           const previousBin = volumeBinMapper.mapToBin( previousVolume );
           const currentBin = volumeBinMapper.mapToBin( volume );
-          if ( previousBin !== currentBin ||
+          if ( changeDueToA11yAction ||
+               previousBin !== currentBin ||
                volume === MConstants.SOLUTION_VOLUME_RANGE.max ||
-               volume === MConstants.SOLUTION_VOLUME_RANGE.min ||
-               alwaysPlayOnChangesProperty.value ) {
+               volume === MConstants.SOLUTION_VOLUME_RANGE.min ) {
             playConcentrationSound();
           }
         }
