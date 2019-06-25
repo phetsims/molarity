@@ -41,7 +41,7 @@ define( function( require ) {
     },
 
     // Help text strings
-    showValuesHelpText: {
+    solutionValuesHelpText: {
       value: 'Explore with values shown.'
     },
     sliderHelpText: {
@@ -342,11 +342,11 @@ define( function( require ) {
       value: 'Close list without changing with Esc key'
     },
 
-    // Alert strings for show values checkbox
-    showValuesCheckedAlert: {
+    // Alert strings for solution values checkbox
+    solutionValuesCheckedAlert: {
       value: 'Moles, litres and concentration values shown.'
     },
-    showValuesUncheckedAlert: {
+    solutionValuesUncheckedAlert: {
       value: 'Values hidden.'
     },
 
