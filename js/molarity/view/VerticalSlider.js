@@ -10,7 +10,6 @@ define( function( require ) {
   'use strict';
 
   // modules
-  const BooleanProperty = require( 'AXON/BooleanProperty' );
   const Color = require( 'SCENERY/util/Color' );
   const Dimension2 = require( 'DOT/Dimension2' );
   const DualLabelNode = require( 'MOLARITY/molarity/view/DualLabelNode' );
@@ -78,8 +77,8 @@ define( function( require ) {
       maxLabel, valuesVisibleProperty, RANGE_FONT, tandem.createTandem( 'maxNode' ),
       { maxWidth: MAX_TEXT_WIDTH } );
 
-    // @public (read-only) {BooleanProperty} - true if the slider is being dragged via the keyboard
-    this.keyboardDraggingProperty = new BooleanProperty( false );
+    // @public (read-only) {string|null} - what, if anything, is currently dragging the thumb, null if nothing
+    this.draggingPointerType = null;
 
     const sliderNode = new VSlider( property, range, {
       trackSize: new Dimension2( trackSize.height, trackSize.width ), // swap dimensions
@@ -102,12 +101,10 @@ define( function( require ) {
       a11yCreateValueChangeAriaValueText: getOnChangeAriaValueText,
       containerTagName: 'div', // for fixing layout in a11y-view with aria-valuetext
       startDrag: event => {
-        if ( event.type === 'keydown' ) {
-          this.keyboardDraggingProperty.set( true );
-        }
+        this.draggingPointerType = event.pointer.type;
       },
       endDrag: () => {
-        this.keyboardDraggingProperty.set( false );
+        this.draggingPointerType = null;
       }
     } );
 
