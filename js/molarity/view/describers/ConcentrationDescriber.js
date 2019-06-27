@@ -159,6 +159,16 @@ define( require => {
       return this.saturationStateChanged;
     }
 
+
+    /**
+     * determines if there is no solute in the beaker.
+     * @returns {boolean}
+     * @public
+     */
+    isNoSolute(){
+      return this.solution.soluteAmountProperty.value <= 0.001;
+    }
+
     /**
      * Gets the current value of concentration either quantitatively or quantitatively to plug into descriptions.
      * @public

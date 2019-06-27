@@ -25,8 +25,8 @@ define( require => {
   const qualitativeValueTextPatternString = MolarityA11yStrings.qualitativeValueTextPattern.value;
   const quantitativeInitialAlertPatternString = MolarityA11yStrings.quantitativeInitialAlertPattern.value;
   const quantitativeValueTextPatternString = MolarityA11yStrings.quantitativeValueTextPattern.value;
-  const showValuesCheckedAlertString = MolarityA11yStrings.showValuesCheckedAlert.value;
-  const showValuesUncheckedAlertString = MolarityA11yStrings.showValuesUncheckedAlert.value;
+  const solutionValuesCheckedAlertString = MolarityA11yStrings.solutionValuesCheckedAlert.value;
+  const solutionValuesUncheckedAlertString = MolarityA11yStrings.solutionValuesUncheckedAlert.value;
 
   class MolarityAlertManager {
 
@@ -38,7 +38,7 @@ define( require => {
      * @param {SoluteAmountDescriber} soluteAmountDescriber
      * @param {VolumeDescriber} volumeDescriber
      * @param {SoluteDescriber} soluteDescriber
-     * @param {Property.<boolean>} valuesVisibleProperty - toggles display for whether the "show values" checkbox is
+     * @param {Property.<boolean>} valuesVisibleProperty - toggles display for whether the "solution values" checkbox is
      *                                                     checked.
      */
     constructor( solution, useQuantitativeDescriptionsProperty, concentrationDescriber, soluteAmountDescriber,
@@ -66,7 +66,7 @@ define( require => {
         else {
 
           // a special alert is read out when there is no solute in the beaker
-          if ( this.solution.soluteAmountProperty.value <= 0.001 ) {
+          if ( concentrationDescriber.isNoSolute() ) {
             this.alertNoSolute();
           }
           else {
@@ -87,7 +87,7 @@ define( require => {
         else {
 
           // a special alert is read out when there is no solute in the beaker
-          if ( this.solution.soluteAmountProperty.value <= 0.001 ) {
+          if ( concentrationDescriber.isNoSolute() ) {
             this.alertNoSolute();
           }
           else {
@@ -130,12 +130,12 @@ define( require => {
     }
 
     /**
-     * Responsible for adding the alert associated with a change in the "show values" checkbox.
+     * Responsible for adding the alert associated with a change in the "solution values" checkbox.
      * @param {boolean} valuesVisible
      * @private
      */
     alertValuesVisible( valuesVisible ) {
-      this.valuesVisibleUtterance.alert = valuesVisible ? showValuesCheckedAlertString : showValuesUncheckedAlertString;
+      this.valuesVisibleUtterance.alert = valuesVisible ? solutionValuesCheckedAlertString : solutionValuesUncheckedAlertString;
       utteranceQueue.addToBack( this.valuesVisibleUtterance );
     }
 

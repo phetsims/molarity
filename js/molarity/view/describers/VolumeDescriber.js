@@ -27,7 +27,6 @@ define( require => {
   // volume regions strings
   const fullString = MolarityA11yStrings.full.value;
   const halfFullString = MolarityA11yStrings.halfFull.value;
-  const lowString = MolarityA11yStrings.low.value;
   const nearlyEmptyString = MolarityA11yStrings.nearlyEmpty.value;
   const nearlyFullString = MolarityA11yStrings.nearlyFull.value;
   const overHalfFullString = MolarityA11yStrings.overHalfFull.value;
@@ -39,7 +38,7 @@ define( require => {
   const isOverHalfFullString = MolarityA11yStrings.isOverHalfFull.value;
   const isHalfFullString = MolarityA11yStrings.isHalfFull.value;
   const isUnderHalfFullString = MolarityA11yStrings.isUnderHalfFull.value;
-  const hasALowAmountString = MolarityA11yStrings.hasALowAmount.value;
+  const hasLowestAmountString = MolarityA11yStrings.hasLowestAmount.value;
   const isNearlyEmptyString = MolarityA11yStrings.isNearlyEmpty.value;
 
   // change strings
@@ -48,8 +47,8 @@ define( require => {
 
   // constants
   const VOLUME_STRINGS = [
+    hasLowestAmountString,
     nearlyEmptyString,
-    lowString,
     underHalfFullString,
     halfFullString,
     overHalfFullString,
@@ -58,8 +57,8 @@ define( require => {
   ];
 
   const VOLUME_ACTIVE_STRINGS = [
+    hasLowestAmountString,
     isNearlyEmptyString,
-    hasALowAmountString,
     isUnderHalfFullString,
     isHalfFullString,
     isOverHalfFullString,
@@ -180,22 +179,22 @@ define( require => {
    * @returns {number} - index to pull from VOLUME_STRINGS array.
    */
   const volumeToIndex = ( volume ) => {
-    if ( volume <= .220 ) {
+    if ( volume <= .200 ) {
       return 0;
     }
-    else if ( volume <= .330 ) {
+    else if ( volume <= .350 ) {
       return 1;
     }
-    else if ( volume <= .410 ) {
+    else if ( volume <= .499 ) {
       return 2;
     }
-    else if ( volume <= .530 ) {
+    else if ( volume === .500 ) {
       return 3;
     }
-    else if ( volume <= .780 ) {
+    else if ( volume <= .750 ) {
       return 4;
     }
-    else if ( volume <= .960 ) {
+    else if ( volume <= .999 ) {
       return 5;
     }
     else {

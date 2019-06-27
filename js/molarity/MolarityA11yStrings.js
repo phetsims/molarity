@@ -41,28 +41,28 @@ define( function( require ) {
     },
 
     // Help text strings
-    showValuesHelpText: {
+    solutionValuesHelpText: {
       value: 'Explore with values shown.'
     },
-    soluteAmountHelpText: {
-      value: 'Explore how changing Solute Amount affects solution in beaker.'
-    },
-    solutionVolumeHelpText: {
-      value: 'Explore how changing Solution Volume affects solution in beaker.'
+    sliderHelpText: {
+      value: 'Solute amount and solution volume allow changes to chosen solution.'
     },
     soluteComboBoxHelpText: {
-      value: 'Choose one of nine solutes to play with in beaker.'
+      value: 'Choose a different solute for beaker.'
     },
 
     // Screen summary strings
     screenSummaryFirstParagraphPattern: {
-      value: 'In the Play Area, you find a beaker containing a solution, and a concentration readout. You can adjust the amount of solute in the solution and the solution volume. You can also choose from nine different solutes to include in your solution.'
+      value: 'In the Play Area, you find a beaker containing a solution, and a concentration readout. You can change solute amount, solution volume, and choose from nine different solutes to play with the solution in beaker.'
     },
     screenSummarySecondParagraph: {
-      value: ' In the Control Area there is a checkbox to show the exact values for amount of solute (in moles), volume of solution (in liters), and concentration (molar), and a button to reset the sim.'
+      value: ' In the Control Area there is a checkbox to show exact values for amount of solute (in moles), volume of solution (in liters), and concentration (in molar), and a button to reset the sim.'
     },
     stateOfSimPattern: {
-      value: 'Currently, beaker {{volume}} of a {{saturatedConcentration}} {{solute}} ‬solution containing {{soluteAmount}} ‪{{solute}}‬ solute. {{concentrationClause}}. Play with solute amount and solution volume to explore changes to the concentration of different solutions.\n'
+      value: 'Currently, beaker {{volume}} of a {{saturatedConcentration}} {{solute}} ‬solution containing {{soluteAmount}} ‪{{solute}}‬ solute. {{concentrationClause}}.\n'
+    },
+    stateOfSimInteractionHint: {
+      value: 'Play with solution in beaker and observe changes to concentration.'
     },
     stateOfSimNoSolutePattern: {
       value: 'Currently, beaker {{volume}} of water. {{solute}} is selected, but no {{solute}} is in the beaker. Play with solute amount and solution volume to explore changes to the concentration of different solutions.\n'
@@ -70,8 +70,11 @@ define( function( require ) {
     noSoluteAlert: {
       value: 'No solute. Solution is pure water'
     },
-    noSoluteVolumeAlertPattern: {
-      value: '{{moreLess}} water. No solute in beaker.'
+    pureWater: {
+      value: 'pure water'
+    },
+    waterFormula: {
+      value: 'chemical formula of pure water is H2O'
     },
 
     // Beaker description strings
@@ -79,7 +82,7 @@ define( function( require ) {
       value: 'Beaker'
     },
     beakerDescriptionPattern: {
-      value: 'Beaker {{volume}} of a {{solute}} solution. The solution: '
+      value: 'Beaker {{volume}} of a {{solute}} solution. The {{color}} solution: '
     },
     beakerSoluteAmountPattern: {
       value: 'contains {{soluteAmount}} {{solute}}'
@@ -94,22 +97,7 @@ define( function( require ) {
       value: 'concentration {{concentration}}'
     },
     beakerChemicalFormulaPattern: {
-      value: 'The chemical formula of {{solute}} is {{chemicalFormula}}.'
-    },
-    beakerConcentrationRange: {
-      value: 'Concentration readout range {{0.00}} to {{0.500}}'
-    },
-    beakerNoSoluteDescriptionPattern: {
-      value: 'Beaker {{volume}} of water, containing no solute'
-    },
-    chemicalFormulaPattern: {
-      value: 'The chemical formula for {{solute}} is {{chemicalFormula}}.'
-    },
-    drinkMixChemicalFormulaPattern: {
-      value: 'Drink mix contains multiple compounds, no chemical formula provided.'
-    },
-    solutionControlsDescription: {
-      value: 'Solute Amount and Solution Volume sliders change solution in beaker.'
+      value: 'chemical formula of {{solute}} is {{chemicalFormula}}.'
     },
 
     // Volume regions
@@ -127,9 +115,6 @@ define( function( require ) {
     },
     underHalfFull: {
       value: 'under half full'
-    },
-    low: {
-      value: 'low'
     },
     nearlyEmpty: {
       value: 'nearly empty'
@@ -151,8 +136,8 @@ define( function( require ) {
     isUnderHalfFull: {
       value: 'is under half full'
     },
-    hasALowAmount: {
-      value: 'has a low amount'
+    hasLowestAmount: {
+      value: 'has the lowest amount'
     },
     isNearlyEmpty: {
       value: 'is nearly empty'
@@ -177,8 +162,8 @@ define( function( require ) {
     aLittle: {
       value: 'A little'
     },
-    zero: {
-      value: 'Zero'
+    no: {
+      value: 'No'
     },
     theMaxAmountOfLowercase: {
       value: 'the max amount of'
@@ -198,8 +183,8 @@ define( function( require ) {
     aLittleLowercase: {
       value: 'a little'
     },
-    zeroLowercase: {
-      value: 'zero'
+    noLowercase: {
+      value: 'no'
     },
 
 
@@ -357,11 +342,11 @@ define( function( require ) {
       value: 'Close list without changing with Esc key'
     },
 
-    // Alert strings for show values checkbox
-    showValuesCheckedAlert: {
+    // Alert strings for solution values checkbox
+    solutionValuesCheckedAlert: {
       value: 'Moles, litres and concentration values shown.'
     },
-    showValuesUncheckedAlert: {
+    solutionValuesUncheckedAlert: {
       value: 'Values hidden.'
     },
 
@@ -418,6 +403,9 @@ define( function( require ) {
     },
     purple: {
       value: 'purple'
+    },
+    clear: {
+      value: 'clear'
     }
   };
 

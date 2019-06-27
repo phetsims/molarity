@@ -29,8 +29,8 @@
   "saturated": {
     "value": "Saturated!"
   },
-  "showValues": {
-    "value": "Show Values"
+  "solutionValues": {
+    "value": "Solution Values"
   },
   "solute": {
     "value": "Solute"

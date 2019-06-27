@@ -55,7 +55,7 @@ define( function( require ) {
   const molesString = require( 'string!MOLARITY/moles' );
   const noneString = require( 'string!MOLARITY/none' );
   const patternParentheses0TextString = require( 'string!MOLARITY/pattern.parentheses.0text' );
-  const showValuesString = require( 'string!MOLARITY/showValues' );
+  const solutionValuesString = require( 'string!MOLARITY/solutionValues' );
   const soluteAmountString = require( 'string!MOLARITY/soluteAmount' );
   const solutionVolumeString = require( 'string!MOLARITY/solutionVolume' );
   const unitsLitersString = require( 'string!MOLARITY/units.liters' );
@@ -66,12 +66,11 @@ define( function( require ) {
   const checkboxUncheckedSound = require( 'sound!TAMBO/check-box-unchecked.mp3' );
 
   // a11y strings
-  const showValuesHelpTextString = MolarityA11yStrings.showValuesHelpText.value;
+  const solutionValuesHelpTextString = MolarityA11yStrings.solutionValuesHelpText.value;
   const soluteAmountAccessibleNameString = MolarityA11yStrings.soluteAmountAccessibleName.value;
   const solutionVolumeAccessibleNameString = MolarityA11yStrings.solutionVolumeAccessibleName.value;
   const solutionControlsLabelString = MolarityA11yStrings.solutionControlsLabel.value;
-  const soluteAmountHelpTextString = MolarityA11yStrings.soluteAmountHelpText.value;
-  const solutionVolumeHelpTextString = MolarityA11yStrings.solutionVolumeHelpText.value;
+  const sliderHelpTextString = MolarityA11yStrings.sliderHelpText.value;
 
   // constants
   const SLIDER_TRACK_WIDTH = 12;
@@ -147,7 +146,6 @@ define( function( require ) {
       valuesVisibleProperty,
       tandem.createTandem( 'soluteAmountSlider' ),
       soluteAmountAccessibleNameString,
-      soluteAmountHelpTextString,
       () => soluteAmountDescriber.getOnFocusSoluteAmountValueText(),
       () => {
         return useQuantitativeDescriptionsProperty.value ?
@@ -172,7 +170,6 @@ define( function( require ) {
       valuesVisibleProperty,
       tandem.createTandem( 'solutionVolumeSlider' ),
       solutionVolumeAccessibleNameString,
-      solutionVolumeHelpTextString,
       () => volumeDescriber.getOnFocusVolumeValueText(),
       () => {
         return useQuantitativeDescriptionsProperty.value ?
@@ -214,20 +211,20 @@ define( function( require ) {
       { initialOutputLevel: 0.7 }
     ) );
 
-    // Show Values checkbox
-    const showValuesLabel = new Text( showValuesString, {
+    // Solution Values checkbox
+    const solutionValuesLabel = new Text( solutionValuesString, {
       font: new PhetFont( 22 ),
-      tandem: tandem.createTandem( 'showValuesText' )
+      tandem: tandem.createTandem( 'solutionValuesText' )
     } );
-    const showValuesCheckbox = new Checkbox( showValuesLabel, valuesVisibleProperty, {
+    const solutionValuesCheckbox = new Checkbox( solutionValuesLabel, valuesVisibleProperty, {
       maxWidth: 175,
-      tandem: tandem.createTandem( 'showValuesCheckbox' ),
+      tandem: tandem.createTandem( 'solutionValuesCheckbox' ),
 
       // a11y
-      accessibleName: showValuesString,
-      helpText: showValuesHelpTextString
+      accessibleName: solutionValuesString,
+      helpText: solutionValuesHelpTextString
     } );
-    showValuesCheckbox.touchArea = Shape.rectangle( showValuesCheckbox.left, showValuesCheckbox.top - 15, showValuesCheckbox.width, showValuesCheckbox.height + 30 );
+    solutionValuesCheckbox.touchArea = Shape.rectangle( solutionValuesCheckbox.left, solutionValuesCheckbox.top - 15, solutionValuesCheckbox.width, solutionValuesCheckbox.height + 30 );
 
     // sound generator for check box
     const uncheckedClip = new SoundClip( checkboxUncheckedSound );
@@ -262,7 +259,9 @@ define( function( require ) {
     const solutionControlsNode = new Node( {
       tagName: 'div',
       labelTagName: 'h3',
-      labelContent: solutionControlsLabelString
+      labelContent: solutionControlsLabelString,
+      descriptionTagName: 'p',
+      descriptionContent: sliderHelpTextString
     } );
     solutionControlsNode.accessibleOrder = [ soluteAmountSlider, solutionVolumeSlider ];
 
@@ -278,7 +277,7 @@ define( function( require ) {
     // a11y - contains PDOM heading for control area, and orders the PDOM for included elements
     const controlAreaNode = new ControlAreaNode();
     controlAreaNode.accessibleOrder = [
-      showValuesCheckbox,
+      solutionValuesCheckbox,
       resetAllButton
     ];
 
@@ -311,8 +310,8 @@ define( function( require ) {
       concentrationDisplay.left = beakerNode.right + 40;
       concentrationDisplay.bottom = beakerNode.bottom;
       // left of combo box
-      showValuesCheckbox.right = soluteComboBox.left - 50;
-      showValuesCheckbox.centerY = soluteComboBox.centerY;
+      solutionValuesCheckbox.right = soluteComboBox.left - 50;
+      solutionValuesCheckbox.centerY = soluteComboBox.centerY;
       // right of combo box
       resetAllButton.left = Math.max( soluteComboBox.right + 10, concentrationDisplay.centerX - ( resetAllButton.width / 2 ) );
       resetAllButton.centerY = soluteComboBox.centerY;
@@ -328,7 +327,7 @@ define( function( require ) {
         soluteAmountSlider,
         solutionVolumeSlider,
         concentrationDisplay,
-        showValuesCheckbox,
+        solutionValuesCheckbox,
         resetAllButton,
         soluteComboBox,
         soluteComboBoxListParent,
