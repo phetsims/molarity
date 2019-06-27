@@ -40,10 +40,7 @@ define( function( require ) {
      * @param {VerticalSlider} solutionVolumeSlider - slider that controls the volume of the solution
      * @param {Object} [options]
      */
-    constructor( precipitateAmountProperty,
-                 soluteAmountSlider,
-                 solutionVolumeSlider,
-                 options ) {
+    constructor( precipitateAmountProperty, soluteAmountSlider, solutionVolumeSlider, options ) {
 
       super( precipitateSound, _.extend( options, {
         initialOutputLevel: 0.5,

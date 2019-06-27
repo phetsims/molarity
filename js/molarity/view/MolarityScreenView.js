@@ -38,6 +38,7 @@ define( function( require ) {
   const SoluteAmountDescriber = require( 'MOLARITY/molarity/view/describers/SoluteAmountDescriber' );
   const SoluteComboBox = require( 'MOLARITY/molarity/view/SoluteComboBox' );
   const SoluteDescriber = require( 'MOLARITY/molarity/view/describers/SoluteDescriber' );
+  const SoluteSelectionSoundGenerator = require( 'MOLARITY/molarity/view/SoluteSelectionSoundGenerator' );
   const SolutionNode = require( 'MOLARITY/molarity/view/SolutionNode' );
   const SoundClip = require( 'TAMBO/sound-generators/SoundClip' );
   const soundManager = require( 'TAMBO/soundManager' );
@@ -202,6 +203,14 @@ define( function( require ) {
       model.solution.precipitateAmountProperty,
       soluteAmountSlider,
       solutionVolumeSlider,
+      { initialOutputLevel: 0.7 }
+    ) );
+
+    // sound generator for solute selection
+    soundManager.addSoundGenerator( new SoluteSelectionSoundGenerator(
+      model.solution.soluteProperty,
+      model.solutes,
+      model.resetInProgressProperty,
       { initialOutputLevel: 0.7 }
     ) );
 
