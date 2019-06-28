@@ -64,7 +64,7 @@ define( function( require ) {
       super( items, selectedSoluteProperty, listParent, options );
 
       // sound generation
-      const comboBoxOpenSoundClip = new SoundClip( comboBoxOpenSound );
+      const comboBoxOpenSoundClip = new SoundClip( comboBoxOpenSound, { initialOutputLevel: 0.3 } );
       soundManager.addSoundGenerator( comboBoxOpenSoundClip );
 
       // play a sound when the list box opens

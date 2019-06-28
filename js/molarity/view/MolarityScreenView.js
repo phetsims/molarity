@@ -192,7 +192,7 @@ define( function( require ) {
       soluteAmountSlider,
       solutionVolumeSlider,
       model.resetInProgressProperty,
-      { initialOutputLevel: 0.7 }
+      { initialOutputLevel: 0.15 }
     ) );
 
     // sound generator for precipitate amount
@@ -200,16 +200,15 @@ define( function( require ) {
       model.solution.precipitateAmountProperty,
       soluteAmountSlider,
       solutionVolumeSlider,
-      { initialOutputLevel: 0.7 }
+      { initialOutputLevel: 0.2 }
     ) );
 
-    // TODO: move this into SoluteComboBox
     // sound generator for solute selection
     soundManager.addSoundGenerator( new SoluteSelectionSoundGenerator(
       model.solution.soluteProperty,
       model.solutes,
       model.resetInProgressProperty,
-      { initialOutputLevel: 0.7 }
+      { initialOutputLevel: 0.4 }
     ) );
 
     // Solution Values checkbox

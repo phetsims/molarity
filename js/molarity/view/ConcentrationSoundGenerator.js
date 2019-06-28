@@ -34,10 +34,7 @@ define( function( require ) {
      * @param {Object} [options]
      */
     constructor( solution, soluteAmountSlider, solutionVolumeSlider, resetInProgressProperty, options ) {
-      super( _.extend( options, {
-        initialOutputLevel: 0.5,
-        rateChangesAffectPlayingSounds: false
-      } ) );
+      super( options );
 
       // create and hook up the sound clips
       const nonZeroConcentrationSoundClip = new SoundClip( marimbaSound, { rateChangesAffectPlayingSounds: false } );
