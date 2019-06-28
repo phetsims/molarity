@@ -20,6 +20,7 @@ define( function( require ) {
   const DerivedProperty = require( 'AXON/DerivedProperty' );
   const Dimension2 = require( 'DOT/Dimension2' );
   const inherit = require( 'PHET_CORE/inherit' );
+  const InvertedBooleanProperty = require( 'TAMBO/InvertedBooleanProperty' );
   const MConstants = require( 'MOLARITY/molarity/MConstants' );
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
@@ -227,7 +228,9 @@ define( function( require ) {
     solutionValuesCheckbox.touchArea = Shape.rectangle( solutionValuesCheckbox.left, solutionValuesCheckbox.top - 15, solutionValuesCheckbox.width, solutionValuesCheckbox.height + 30 );
 
     // sound generator for check box
-    const uncheckedClip = new SoundClip( checkboxUncheckedSound );
+    const uncheckedClip = new SoundClip( checkboxUncheckedSound, {
+      enableControlProperties: [ new InvertedBooleanProperty( model.resetInProgressProperty ) ]
+    } );
     soundManager.addSoundGenerator( uncheckedClip );
     const checkedClip = new SoundClip( checkboxCheckedSound );
     soundManager.addSoundGenerator( checkedClip );
