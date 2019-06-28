@@ -203,6 +203,7 @@ define( function( require ) {
       { initialOutputLevel: 0.7 }
     ) );
 
+    // TODO: move this into SoluteComboBox
     // sound generator for solute selection
     soundManager.addSoundGenerator( new SoluteSelectionSoundGenerator(
       model.solution.soluteProperty,

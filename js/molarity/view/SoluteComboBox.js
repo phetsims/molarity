@@ -16,6 +16,8 @@ define( function( require ) {
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
   const Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  const SoundClip = require( 'TAMBO/sound-generators/SoundClip' );
+  const soundManager = require( 'TAMBO/soundManager' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const Text = require( 'SCENERY/nodes/Text' );
 
@@ -25,6 +27,9 @@ define( function( require ) {
 
   // a11y strings
   const soluteComboBoxHelpTextString = MolarityA11yStrings.soluteComboBoxHelpText.value;
+
+  // sounds
+  const comboBoxOpenSound = require( 'sound!TAMBO/combo-box-open.mp3' );
 
   class SoluteComboBox extends ComboBox {
     /**
@@ -57,6 +62,17 @@ define( function( require ) {
       const items = solutes.map( createItem );
 
       super( items, selectedSoluteProperty, listParent, options );
+
+      // sound generation
+      const comboBoxOpenSoundClip = new SoundClip( comboBoxOpenSound );
+      soundManager.addSoundGenerator( comboBoxOpenSoundClip );
+
+      // play a sound when the list box opens
+      this.listBox.on( 'visibility', () => {
+        if ( this.listBox.visible ) {
+          comboBoxOpenSoundClip.play();
+        }
+      } );
     }
   }
 
