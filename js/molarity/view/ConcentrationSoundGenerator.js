@@ -13,7 +13,6 @@ define( function( require ) {
   const molarity = require( 'MOLARITY/molarity' );
   const SoundClip = require( 'TAMBO/sound-generators/SoundClip' );
   const SoundGenerator = require( 'TAMBO/sound-generators/SoundGenerator' );
-  const InvertedBooleanProperty = require( 'TAMBO/InvertedBooleanProperty' );
   const MConstants = require( 'MOLARITY/molarity/MConstants' );
 
   // sounds
@@ -37,8 +36,7 @@ define( function( require ) {
     constructor( solution, soluteAmountSlider, solutionVolumeSlider, resetInProgressProperty, options ) {
       super( _.extend( options, {
         initialOutputLevel: 0.5,
-        rateChangesAffectPlayingSounds: false,
-        enableControlProperties: [ new InvertedBooleanProperty( resetInProgressProperty ) ]
+        rateChangesAffectPlayingSounds: false
       } ) );
 
       // create and hook up the sound clips
@@ -87,10 +85,12 @@ define( function( require ) {
           const currentBin = soluteAmountBinMapper.mapToBin( soluteAmount );
 
           // play the sound if appropriate
-          if ( changeDueToA11yAction ||
-               previousBin !== currentBin ||
-               soluteAmount === MConstants.SOLUTE_AMOUNT_RANGE.max ||
-               soluteAmount === MConstants.SOLUTE_AMOUNT_RANGE.min ) {
+          if ( !resetInProgressProperty.value &&
+               ( changeDueToA11yAction ||
+                 previousBin !== currentBin ||
+                 soluteAmount === MConstants.SOLUTE_AMOUNT_RANGE.max ||
+                 soluteAmount === MConstants.SOLUTE_AMOUNT_RANGE.min ) ) {
+
             playConcentrationSound();
           }
         }
@@ -106,10 +106,12 @@ define( function( require ) {
           // map the solution volume value to bins
           const previousBin = volumeBinMapper.mapToBin( previousVolume );
           const currentBin = volumeBinMapper.mapToBin( volume );
-          if ( changeDueToA11yAction ||
-               previousBin !== currentBin ||
-               volume === MConstants.SOLUTION_VOLUME_RANGE.max ||
-               volume === MConstants.SOLUTION_VOLUME_RANGE.min ) {
+          if ( !resetInProgressProperty.value &&
+               ( changeDueToA11yAction ||
+                 previousBin !== currentBin ||
+                 volume === MConstants.SOLUTION_VOLUME_RANGE.max ||
+                 volume === MConstants.SOLUTION_VOLUME_RANGE.min ) ) {
+
             playConcentrationSound();
           }
         }
