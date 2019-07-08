@@ -48,6 +48,7 @@ define( require => {
       this.concentrationDescriber = concentrationDescriber;
       this.soluteDescriber = soluteDescriber;
       this.solution = solution;
+      this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
 
       // @private - create utterances
       this.saturationUtterance = new Utterance();
@@ -125,7 +126,7 @@ define( require => {
      * @private
      */
     alertSolute() {
-      this.soluteUtterance.alert = this.soluteDescriber.getSoluteChangedAlertString();
+      this.soluteUtterance.alert = this.soluteDescriber.getSoluteChangedAlertString( this.useQuantitativeDescriptionsProperty );
       utteranceQueue.addToBack( this.soluteUtterance );
     }
 

@@ -16,10 +16,10 @@ define( require => {
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
 
   // a11y strings
+  const beakerQuantitativeConcentrationPatternString = MolarityA11yStrings.beakerQuantitativeConcentrationPattern.value;
   const saturatedString = MolarityA11yStrings.saturated.value;
   const notSaturatedString = MolarityA11yStrings.notSaturated.value;
   const qualitativeConcentrationPatternString = MolarityA11yStrings.qualitativeConcentrationPattern.value;
-  const quantitativeConcentrationPatternString = MolarityA11yStrings.quantitativeConcentrationPattern.value;
   const screenSummaryFirstParagraphPatternString = MolarityA11yStrings.screenSummaryFirstParagraphPattern.value;
   const screenSummarySecondParagraphString = MolarityA11yStrings.screenSummarySecondParagraph.value;
   const stateOfSimNoSolutePatternString = MolarityA11yStrings.stateOfSimNoSolutePattern.value;
@@ -91,7 +91,7 @@ define( require => {
 
       // Creates the substring describing concentration -- differs based on use of quantitative descriptions and saturation state.
       const concentrationString = this.useQuantitativeDescriptionsProperty.value ?
-                                  quantitativeConcentrationPatternString :
+                                  beakerQuantitativeConcentrationPatternString :
                                   qualitativeConcentrationPatternString;
       const concentrationPattern = StringUtils.fillIn( concentrationString, {
         concentration: this.concentrationDescriber.getCurrentConcentration(),

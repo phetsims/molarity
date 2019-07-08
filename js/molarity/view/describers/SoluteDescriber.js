@@ -27,9 +27,11 @@ define( require => {
 
   // a11y strings
   const beakerChemicalFormulaPatternString = MolarityA11yStrings.beakerChemicalFormulaPattern.value;
+  const quantitativeConcentrationStatePatternString = MolarityA11yStrings.quantitativeConcentrationStatePattern.value;
   const soluteChangedAlertPatternString = MolarityA11yStrings.soluteChangedAlertPattern.value;
   const soluteChangedSaturatedAlertPatternString = MolarityA11yStrings.soluteChangedSaturatedAlertPattern.value;
   const soluteChangedUnsaturatedAlertPatternString = MolarityA11yStrings.soluteChangedUnsaturatedAlertPattern.value;
+  const soluteChangedQualitativePatternString = MolarityA11yStrings.soluteChangedQualitativePattern.value;
 
   // color strings
   const redString = MolarityA11yStrings.red.value;
@@ -122,24 +124,34 @@ define( require => {
 
     /**
      * Describes the new solute and any change in saturation when a user changes the solute in the combo box.
+     * @param {Property.<boolean>} useQuantitativeDescriptionsProperty
      * @public
      * @returns {string}
      */
-    getSoluteChangedAlertString() {
-
-      // If a solute change causes a change in saturation, special alerts are read out.
-      if ( this.concentrationDescriber.saturationStateChanged ) {
-        return this.solution.isSaturated() ?
-               StringUtils.fillIn( soluteChangedSaturatedAlertPatternString, {
-                 solids: this.concentrationDescriber.getCurrentSolidsAmount()
-               } ) :
-               StringUtils.fillIn( soluteChangedUnsaturatedAlertPatternString, {
-                 concentration: this.concentrationDescriber.getCurrentConcentration()
-               } );
+    getSoluteChangedAlertString( useQuantitativeDescriptionsProperty ) {
+      let concentrationClause;
+      let soluteChangedString;
+      if ( this.solution.isSaturated() ) {
+        soluteChangedString = soluteChangedSaturatedAlertPatternString
+        concentrationClause = useQuantitativeDescriptionsProperty.value ?
+                                StringUtils.fillIn( quantitativeConcentrationStatePatternString, {
+                                  concentration: this.concentrationDescriber.getCurrentConcentration()
+                                } ) :
+                                soluteChangedQualitativePatternString;
       }
-      return StringUtils.fillIn( soluteChangedAlertPatternString, {
-        solute: this.getCurrentSolute( true ),
-        concentrationRange: this.concentrationDescriber.getCurrentConcentrationRange()
+      else {
+        soluteChangedString = soluteChangedUnsaturatedAlertPatternString;
+        concentrationClause = useQuantitativeDescriptionsProperty.value ?
+                              StringUtils.fillIn( quantitativeConcentrationStatePatternString, {
+                                concentration: this.concentrationDescriber.getCurrentConcentration()
+                              } ) :
+                              this.concentrationDescriber.getCurrentConcentration();
+      }
+
+      return StringUtils.fillIn( soluteChangedString, {
+        color: this.getCurrentColor(),
+        solids: this.concentrationDescriber.getCurrentSolidsAmount(),
+        concentrationClause: concentrationClause
       } );
     }
   }
