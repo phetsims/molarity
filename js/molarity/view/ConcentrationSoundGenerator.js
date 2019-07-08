@@ -66,16 +66,16 @@ define( function( require ) {
         concentrationAtLastSoundProduction = concentration;
       };
 
-      // Was the change was due to an a11y-caused action?
-      const changeDueToA11yAction = soluteAmountSlider.draggingPointerType === 'a11y' ||
-                                    solutionVolumeSlider.draggingPointerType === 'a11y';
-
       // trigger playing of the concentration sound as the solute amount changes
       const soluteAmountBinMapper = new BinMapper( MConstants.SOLUTE_AMOUNT_RANGE, NUM_SOLUTE_BINS );
       solution.soluteAmountProperty.lazyLink( ( soluteAmount, previousSoluteAmount ) => {
 
         // don't play if saturated - other sounds are used in that case
         if ( !solution.precipitateAmountProperty.value > 0 ) {
+
+          // determine if the sound was caused by an a11y-related action, such as kayboard manipulation
+          const changeDueToA11yAction = soluteAmountSlider.draggingPointerType === 'a11y' ||
+                                        solutionVolumeSlider.draggingPointerType === 'a11y';
 
           // map the solute amount value to bins
           const previousBin = soluteAmountBinMapper.mapToBin( previousSoluteAmount );
@@ -99,6 +99,10 @@ define( function( require ) {
 
         // don't play if saturated - other sounds are used in that case
         if ( !solution.precipitateAmountProperty.value > 0 ) {
+
+          // determine if the sound was caused by an a11y-related action, such as kayboard manipulation
+          const changeDueToA11yAction = soluteAmountSlider.draggingPointerType === 'a11y' ||
+                                        solutionVolumeSlider.draggingPointerType === 'a11y';
 
           // map the solution volume value to bins
           const previousBin = volumeBinMapper.mapToBin( previousVolume );
