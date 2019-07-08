@@ -28,7 +28,6 @@ define( require => {
   // a11y strings
   const beakerChemicalFormulaPatternString = MolarityA11yStrings.beakerChemicalFormulaPattern.value;
   const quantitativeConcentrationStatePatternString = MolarityA11yStrings.quantitativeConcentrationStatePattern.value;
-  const soluteChangedAlertPatternString = MolarityA11yStrings.soluteChangedAlertPattern.value;
   const soluteChangedSaturatedAlertPatternString = MolarityA11yStrings.soluteChangedSaturatedAlertPattern.value;
   const soluteChangedUnsaturatedAlertPatternString = MolarityA11yStrings.soluteChangedUnsaturatedAlertPattern.value;
   const soluteChangedQualitativePatternString = MolarityA11yStrings.soluteChangedQualitativePattern.value;
@@ -132,7 +131,7 @@ define( require => {
       let concentrationClause;
       let soluteChangedString;
       if ( this.solution.isSaturated() ) {
-        soluteChangedString = soluteChangedSaturatedAlertPatternString
+        soluteChangedString = soluteChangedSaturatedAlertPatternString;
         concentrationClause = useQuantitativeDescriptionsProperty.value ?
                                 StringUtils.fillIn( quantitativeConcentrationStatePatternString, {
                                   concentration: this.concentrationDescriber.getCurrentConcentration()
