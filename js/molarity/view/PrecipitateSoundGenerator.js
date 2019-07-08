@@ -21,7 +21,7 @@ define( function( require ) {
   const ONE_OCTAVE_NOTE_MULTIPLIERS = [ 1, 1.122, 1.260, 1.414, 1.587, 1.782 ]; // whole tone scale
   const NUM_OCTAVES = 2;
   const NOTE_SPAN = 4; // span of notes to choose from for a given precipitate level
-  const NUM_BINS = 20;
+  const NUM_BINS = 50;
 
   // create an array with several octaves of frequency multipliers to use for generating variations of the base sound
   const FREQUENCY_MULTIPLIERS = [];
@@ -42,10 +42,10 @@ define( function( require ) {
      */
     constructor( precipitateAmountProperty, soluteAmountSlider, solutionVolumeSlider, options ) {
 
-      super( precipitateSound, _.extend( options, {
+      super( precipitateSound, _.extend( {
         initialOutputLevel: 0.5,
         rateChangesAffectPlayingSounds: false
-      } ) );
+      }, options ) );
 
       // @private {number} - keeps track of previous played sound so that we never play it twice in a row
       this.previousMultiplierIndex = -1;

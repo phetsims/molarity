@@ -201,7 +201,7 @@ define( function( require ) {
       model.solution.precipitateAmountProperty,
       soluteAmountSlider,
       solutionVolumeSlider,
-      { initialOutputLevel: 0.2 }
+      { initialOutputLevel: 0.1 }
     ) );
 
     // sound generator for solute selection
