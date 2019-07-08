@@ -106,6 +106,7 @@ define( require => {
       //TODO: add "has" back into
       return StringUtils.fillIn( stateString, {
         volume: this.volumeDescriber.getCurrentVolume(true),
+        color: this.soluteDescriber.getCurrentColor(),
         solute: this.soluteDescriber.getCurrentSolute(),
         soluteAmount: this.soluteAmountDescriber.getCurrentSoluteAmount( true ),
         concentrationClause: concentrationPattern,
