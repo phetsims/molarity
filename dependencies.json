@@ -1,5 +1,5 @@
 {
-  "comment": "# molarity 1.4.6 Fri Jul 05 2019 16:00:06 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# molarity 1.4.7-rc.1 Mon Jul 08 2019 14:44:43 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "HEAD"
@@ -29,7 +29,7 @@
     "branch": "HEAD"
   },
   "molarity": {
-    "sha": "82fdb996888ef322a470bfc710523e4bf75e2fbe",
+    "sha": "b165f9abbef777ca6ce64c17ce3f42288b1b03f8",
     "branch": "1.4"
   },
   "nitroglycerin": {
@@ -50,7 +50,7 @@
   },
   "phetcommon": {
     "sha": "2929fdcd05d795775106f2f7e24a2c6980ccbe0b",
-    "branch": "molarity-1.4"
+    "branch": "HEAD"
   },
   "phetmarks": {
     "sha": "65d8f170461528d3ae77989fcb3d6c7d25584435",
