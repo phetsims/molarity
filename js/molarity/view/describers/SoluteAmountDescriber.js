@@ -32,8 +32,8 @@ define( require => {
   const aLotOfLowercaseString = MolarityA11yStrings.aLotOfLowercase.value;
   const aLowAmountOfString = MolarityA11yStrings.aLowAmountOf.value;
   const aLowAmountOfLowercaseString = MolarityA11yStrings.aLowAmountOfLowercase.value;
-  const theMaxAmountOfString = MolarityA11yStrings.theMaxAmountOf.value;
-  const theMaxAmountOfLowercaseString = MolarityA11yStrings.theMaxAmountOfLowercase.value;
+  const maxAmountOfString = MolarityA11yStrings.maxAmountOf.value;
+  const maxAmountOfLowercaseString = MolarityA11yStrings.maxAmountOfLowercase.value;
 
   // solids regions strings
   const someString = MolarityA11yStrings.some.value;
@@ -53,7 +53,7 @@ define( require => {
     someString,
     aBunchOfString,
     aLotOfString,
-    theMaxAmountOfString
+    maxAmountOfString
   ];
   const SOLUTE_AMOUNT_STRINGS_LOWERCASE = [
     noLowercaseString,
@@ -62,7 +62,7 @@ define( require => {
     someLowercaseString,
     aBunchOfLowercaseString,
     aLotOfLowercaseString,
-    theMaxAmountOfLowercaseString
+    maxAmountOfLowercaseString
   ];
 
   class SoluteAmountDescriber {

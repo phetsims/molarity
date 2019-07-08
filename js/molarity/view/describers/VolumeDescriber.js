@@ -31,6 +31,7 @@ define( require => {
   const nearlyFullString = MolarityA11yStrings.nearlyFull.value;
   const overHalfFullString = MolarityA11yStrings.overHalfFull.value;
   const underHalfFullString = MolarityA11yStrings.underHalfFull.value;
+  const atLowestAmountString = MolarityA11yStrings.atLowestAmount.value;
 
   // volume active regions strings
   const isFullString = MolarityA11yStrings.isFull.value;
@@ -38,7 +39,7 @@ define( require => {
   const isOverHalfFullString = MolarityA11yStrings.isOverHalfFull.value;
   const isHalfFullString = MolarityA11yStrings.isHalfFull.value;
   const isUnderHalfFullString = MolarityA11yStrings.isUnderHalfFull.value;
-  const hasLowestAmountString = MolarityA11yStrings.hasLowestAmount.value;
+  const isAtLowestAmountString = MolarityA11yStrings.isAtLowestAmount.value;
   const isNearlyEmptyString = MolarityA11yStrings.isNearlyEmpty.value;
 
   // change strings
@@ -47,7 +48,7 @@ define( require => {
 
   // constants
   const VOLUME_STRINGS = [
-    hasLowestAmountString,
+    atLowestAmountString,
     nearlyEmptyString,
     underHalfFullString,
     halfFullString,
@@ -57,7 +58,7 @@ define( require => {
   ];
 
   const VOLUME_ACTIVE_STRINGS = [
-    hasLowestAmountString,
+    isAtLowestAmountString,
     isNearlyEmptyString,
     isUnderHalfFullString,
     isHalfFullString,

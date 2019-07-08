@@ -8,6 +8,7 @@ define( require => {
   'use strict';
 
   // modules
+  const ChemUtils = require( 'NITROGLYCERIN/ChemUtils' );
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const Node = require( 'SCENERY/nodes/Node' );
@@ -19,6 +20,8 @@ define( require => {
 
   // a11y strings
   const beakerDescriptionPatternString = MolarityA11yStrings.beakerDescriptionPattern.value;
+  const hasZeroConcentrationString = MolarityA11yStrings.hasZeroConcentration.value;
+  const pureWaterPatternString = MolarityA11yStrings.pureWaterPattern.value;
   const pureWaterString = MolarityA11yStrings.pureWater.value;
   const waterFormulaString = MolarityA11yStrings.waterFormula.value;
 
@@ -84,7 +87,8 @@ define( require => {
     }
 
     updateBeakerSummaryString() {
-      return StringUtils.fillIn( beakerDescriptionPatternString, {
+      const summaryString = this.concentrationDescriber.isNoSolute() ? pureWaterPatternString : beakerDescriptionPatternString;
+      return StringUtils.fillIn( summaryString, {
         solute: this.concentrationDescriber.isNoSolute() ? pureWaterString : this.soluteDescriber.getCurrentSolute(),
         volume: this.volumeDescriber.getCurrentVolume( true ),
         color: this.soluteDescriber.getCurrentColor()
@@ -111,8 +115,13 @@ define( require => {
 
     // @private
     updateConcentrationSummary() {
-      this.concentrationSummaryItem.innerContent = this.concentrationDescriber.getBeakerConcentrationString(
-        this.useQuantitativeDescriptionsProperty );
+      if ( this.concentrationDescriber.isNoSolute() ) {
+        this.concentrationSummaryItem.innerContent = hasZeroConcentrationString;
+      }
+      else {
+        this.concentrationSummaryItem.innerContent = this.concentrationDescriber.getBeakerConcentrationString(
+          this.useQuantitativeDescriptionsProperty ).toLowerCase();
+      }
     }
 
     // @private
@@ -125,7 +134,7 @@ define( require => {
         this.beakerDescriptionList.canAddChild( this.chemicalFormulaSummaryItem ) &&
         this.beakerDescriptionList.insertChild( this.beakerDescriptionList.children.length - 1,
           this.chemicalFormulaSummaryItem );
-        this.chemicalFormulaSummaryItem.innerContent = waterFormulaString;
+        this.chemicalFormulaSummaryItem.innerContent = ChemUtils.toSubscript( waterFormulaString );
       }
       else if ( isDrinkMix ) {
         containsChemicalFormula && this.beakerDescriptionList.removeChild( this.chemicalFormulaSummaryItem );

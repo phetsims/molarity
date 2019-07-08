@@ -195,7 +195,7 @@ define( require => {
     getCurrentConcentrationRange() {
       const maxConcentration = this.getCurrentSaturatedConcentration() > 5.0 ? 5.0 : this.getCurrentSaturatedConcentration();
       return StringUtils.fillIn( concentrationRangePatternString, {
-        maxConcentration: Util.toFixed( maxConcentration, MConstants.CONCENTRATION_DECIMAL_PLACES )
+        maxConcentration: Util.toFixed( maxConcentration, 1)
       } );
     }
 

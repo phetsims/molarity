@@ -84,8 +84,14 @@ define( function( require ) {
     beakerDescriptionPattern: {
       value: 'Beaker {{volume}} of a {{solute}} solution. The {{color}} solution: '
     },
+    hasZeroConcentration:{
+      value: 'has zero concentration'
+    },
+    pureWaterPattern: {
+      value: 'Beaker {{volume}} of pure water. The {{color}} solution: '
+    },
     beakerSoluteAmountPattern: {
-      value: 'contains {{soluteAmount}} {{solute}}'
+      value: 'contains {{soluteAmount}} of {{solute}}'
     },
     beakerSaturationPattern: {
       value: 'Is saturated with {{solids}} solids'
@@ -119,6 +125,9 @@ define( function( require ) {
     nearlyEmpty: {
       value: 'nearly empty'
     },
+    atLowestAmount: {
+      value: 'at lowest amount'
+    },
 
     // Volume active regions
     isFull: {
@@ -136,16 +145,16 @@ define( function( require ) {
     isUnderHalfFull: {
       value: 'is under half full'
     },
-    hasLowestAmount: {
-      value: 'has the lowest amount'
+    isAtLowestAmount: {
+      value: 'is at lowest amount'
     },
     isNearlyEmpty: {
       value: 'is nearly empty'
     },
 
     // Solute Amount Regions - uppercase and lowercase
-    theMaxAmountOf: {
-      value: 'The max amount of'
+    maxAmountOf: {
+      value: 'Max amount of'
     },
     aLotOf: {
       value: 'A lot of'
@@ -165,8 +174,8 @@ define( function( require ) {
     no: {
       value: 'No'
     },
-    theMaxAmountOfLowercase: {
-      value: 'the max amount of'
+    maxAmountOfLowercase: {
+      value: 'max amount of'
     },
     aLotOfLowercase: {
       value: 'a lot of'
@@ -295,7 +304,7 @@ define( function( require ) {
       value: '{{moreLess}} concentrated'
     },
     concentrationRangePattern: {
-      value: 'concentration readout range 0.00 to {{maxConcentration}}'
+      value: 'concentration readout range 0.0 to {{maxConcentration}} molar'
     },
 
     // Solute changed alert string
