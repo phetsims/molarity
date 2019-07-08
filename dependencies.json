@@ -1,11 +1,11 @@
 {
-  "comment": "# molarity 1.5.0-dev.15 Wed Jun 26 2019 10:25:05 GMT-0400 (EDT)",
+  "comment": "# molarity 1.5.0-dev.17 Mon Jul 08 2019 14:08:55 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "d8a2e8992420327ff72a6fc4bb93ec76549ded0e",
     "branch": "master"
   },
   "axon": {
-    "sha": "9ebbc9e32ebeac7973a9e2ab51db4a73218aab15",
+    "sha": "80c14e83a6d8956112022dc8e99a13fb44ce60b9",
     "branch": "master"
   },
   "brand": {
@@ -13,7 +13,7 @@
     "branch": "master"
   },
   "chipper": {
-    "sha": "a568557b56c7af43ed61e660c8d42200db1201cd",
+    "sha": "ea746031aecfad577748e3a97283800e8c3bc987",
     "branch": "master"
   },
   "dot": {
@@ -21,15 +21,15 @@
     "branch": "master"
   },
   "joist": {
-    "sha": "bf09a9480573f65f610bf9e5a3d48befe5e23db5",
+    "sha": "1f1714eae784ad10521d44e112cf809c9bac8ec4",
     "branch": "master"
   },
   "kite": {
-    "sha": "cdafa7433d2f42d79c6500b4198f064adf8f9991",
+    "sha": "38d4076754ae8dd00024a6973f8cf9d622dfcf5c",
     "branch": "master"
   },
   "molarity": {
-    "sha": "4753db63b89b0a9038bb073b812ef78dbdc83b11",
+    "sha": "b6d81807803c98dea6bc1b4a0a563d290dd64572",
     "branch": "master"
   },
   "nitroglycerin": {
@@ -37,23 +37,23 @@
     "branch": "master"
   },
   "phet-core": {
-    "sha": "fabfb24bd5a49ea95b28a59b48329efe99d44a1a",
+    "sha": "a97d1d4fbf91a52a2144fcb32452317277821aed",
     "branch": "master"
   },
   "phet-io": {
-    "sha": "4befb7d634b11afc223aa07b7d44af1150d7965a",
+    "sha": "638d3f1a3bfde660d61df2b52de596234e2ac4fd",
     "branch": "master"
   },
   "phet-io-wrappers": {
-    "sha": "b63f432f014a7b0e5566535c98d11ba21c074bf4",
+    "sha": "02bcd0382e253b8197f774a52b56e7c5e5dc6582",
     "branch": "master"
   },
   "phetcommon": {
-    "sha": "ea3bd75fec8a3ba5afe2f6df23cf4be18d767cec",
+    "sha": "412d3d857167437abbd7aacb8a809361dbb701ed",
     "branch": "master"
   },
   "phetmarks": {
-    "sha": "01cbbd71ad4ca7d29bf68de518e0d3215acf3528",
+    "sha": "4bc3905a3643e235cb09c380cdf706e4eefc6ef0",
     "branch": "master"
   },
   "query-string-machine": {
@@ -61,11 +61,11 @@
     "branch": "master"
   },
   "scenery": {
-    "sha": "106268124d95c0ec82ce6b6584f8fc4b7f18ed7e",
+    "sha": "c032833b81be8cf11d176a7cbd7fefbe520b15a8",
     "branch": "master"
   },
   "scenery-phet": {
-    "sha": "cb1d37c0d298dc06d80579df8bcc7b09f7344b6c",
+    "sha": "5da2cc0662f3bdc921d9a1f6c47b4cee8cdb986d",
     "branch": "master"
   },
   "sherpa": {
@@ -73,15 +73,15 @@
     "branch": "master"
   },
   "sun": {
-    "sha": "b403b62d6208b347f71b76ec80c6a2b568d7ca28",
+    "sha": "e0a45b5ebad14e37eec8c53fbbc306a7e8933a15",
     "branch": "master"
   },
   "tambo": {
-    "sha": "0c6273ed50d38b6f06a84a09197ba646a51dfdbd",
+    "sha": "58682946cec691bbfdf5039f96d8b91a0b38afc4",
     "branch": "master"
   },
   "tandem": {
-    "sha": "b1c2834c62c36fbd8ac538b4abae4153868e1231",
+    "sha": "5124322afe8111792f7f0da6ea02cae6dba955b8",
     "branch": "master"
   }
 }
