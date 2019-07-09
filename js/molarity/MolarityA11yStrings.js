@@ -91,7 +91,7 @@ define( function( require ) {
       value: 'Beaker {{volume}} of pure water. The {{color}} solution: '
     },
     beakerSoluteAmountPattern: {
-      value: 'contains {{soluteAmount}} of {{solute}}'
+      value: 'contains {{soluteAmount}} {{solute}}'
     },
     beakerSaturationPattern: {
       value: 'Is saturated with {{solids}} solids'
