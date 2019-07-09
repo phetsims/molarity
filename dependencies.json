@@ -1,5 +1,5 @@
 {
-  "comment": "# molarity 1.5.0-dev.17 Mon Jul 08 2019 14:08:55 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# molarity 1.5.0-dev.18 Tue Jul 09 2019 09:35:25 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "d8a2e8992420327ff72a6fc4bb93ec76549ded0e",
     "branch": "master"
@@ -29,7 +29,7 @@
     "branch": "master"
   },
   "molarity": {
-    "sha": "b6d81807803c98dea6bc1b4a0a563d290dd64572",
+    "sha": "bc68ef81c3ba3ea96e8427658afec41dcbf84ae8",
     "branch": "master"
   },
   "nitroglycerin": {
@@ -77,7 +77,7 @@
     "branch": "master"
   },
   "tambo": {
-    "sha": "58682946cec691bbfdf5039f96d8b91a0b38afc4",
+    "sha": "54c92956d824768d96f14d609fd409e9c14ee3ab",
     "branch": "master"
   },
   "tandem": {
