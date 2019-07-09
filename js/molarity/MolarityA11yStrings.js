@@ -225,7 +225,7 @@ define( function( require ) {
       value: 'saturated'
     },
     notSaturated: {
-      value: 'not yet saturated'
+      value: 'not saturated'
     },
 
     // Quantitative value text strings for both volume and solute amount sliders
