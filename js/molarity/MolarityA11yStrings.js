@@ -320,6 +320,12 @@ define( function( require ) {
     soluteChangedQualitativePattern: {
       value: 'beyond max concentration'
     },
+    noSoluteAlertQuantitative: {
+      value: 'Clear solution, pure water at 0.000 molar.'
+    },
+    noSoluteAlertQualitative: {
+      value: 'Clear solution, pure water with no solute.'
+    },
 
     // New saturation state alerts
     saturationReachedAlert: {
