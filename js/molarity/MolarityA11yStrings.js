@@ -97,7 +97,7 @@ define( function( require ) {
       value: 'Is saturated with {{solids}} solids'
     },
     beakerQualitativeConcentrationPattern: {
-      value: 'Is {{concentration}}'
+      value: '{{concentration}}'
     },
     beakerQuantitativeConcentrationPattern: {
       value: 'concentration {{concentration}}'
@@ -206,21 +206,29 @@ define( function( require ) {
     },
 
     // Concentration regions
-    notConcentrated: {
-      value: 'not concentrated'
+    zeroConcentration: {
+      value: 'has zero concentration'
     },
-    barelyConcentrated: {
-      value: 'barely concentrated'
+    lowConcentration: {
+      value: 'has low concentration'
     },
-    slightlyConcentrated: {
-      value: 'slightly concentrated'
+    slightlyConcentrated:{
+      value: 'is slightly concentrated'
     },
-    concentrated: {
-      value: 'concentrated'
+    notVeryConcentrated: {
+      value: 'is not very concentrated'
     },
     veryConcentrated: {
-      value: 'very concentrated'
+      value: 'is very concentrated'
     },
+    highlyConcentrated: {
+      value: 'is highly concentrated'
+    },
+    maxConcentration:{
+      value: 'has max concentration'
+    },
+
+    // saturation states
     saturated: {
       value: 'saturated'
     },
@@ -298,7 +306,7 @@ define( function( require ) {
 
     // Qualitative concentration value text strings
     qualitativeConcentrationPattern: {
-      value: 'Solution is {{concentration}} and is {{saturatedConcentration}}'
+      value: 'Solution {{concentration}} and is {{saturatedConcentration}}'
     },
     concentrationChangePattern: {
       value: '{{moreLess}} concentrated'

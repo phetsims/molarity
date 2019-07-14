@@ -18,7 +18,6 @@ define( require => {
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
 
   // a11y strings
-  const barelyConcentratedString = MolarityA11yStrings.barelyConcentrated.value;
   const beakerQuantitativeConcentrationPatternString = MolarityA11yStrings.beakerQuantitativeConcentrationPattern.value;
   const beakerQualitativeConcentrationPatternString = MolarityA11yStrings.beakerQualitativeConcentrationPattern.value;
   const beakerSaturationPatternString = MolarityA11yStrings.beakerSaturationPattern.value;
@@ -34,12 +33,15 @@ define( require => {
   const withSolidsAlertPatternString = MolarityA11yStrings.withSolidsAlertPattern.value;
 
   // Concentration region strings
-  const veryConcentratedString = MolarityA11yStrings.veryConcentrated.value;
-  const concentratedString = MolarityA11yStrings.concentrated.value;
-  const notConcentratedString = MolarityA11yStrings.notConcentrated.value;
-  const slightlyConcentratedString = MolarityA11yStrings.slightlyConcentrated.value;
   const solidsChangePatternString = MolarityA11yStrings.solidsChangePattern.value;
   const someString = MolarityA11yStrings.some.value;
+  const zeroConcentrationString = MolarityA11yStrings.zeroConcentration.value;
+  const lowConcentrationString = MolarityA11yStrings.lowConcentration.value;
+  const slightlyConcentratedString = MolarityA11yStrings.slightlyConcentrated.value;
+  const notVeryConcentratedString = MolarityA11yStrings.notVeryConcentrated.value;
+  const veryConcentratedString = MolarityA11yStrings.veryConcentrated.value;
+  const highlyConcentratedString = MolarityA11yStrings.highlyConcentrated.value;
+  const maxConcentrationString = MolarityA11yStrings.maxConcentration.value;
 
   // Solids region strings
   const aBunchOfString = MolarityA11yStrings.aBunchOf.value;
@@ -58,11 +60,13 @@ define( require => {
 
   // constants
   const CONCENTRATION_STRINGS = [
-    notConcentratedString,
-    barelyConcentratedString,
+    zeroConcentrationString,
+    lowConcentrationString,
     slightlyConcentratedString,
-    concentratedString,
-    veryConcentratedString
+    notVeryConcentratedString,
+    veryConcentratedString,
+    highlyConcentratedString,
+    maxConcentrationString
   ];
 
   const SOLIDS_STRINGS = [
@@ -165,7 +169,7 @@ define( require => {
      * @returns {boolean}
      * @public
      */
-    isNoSolute(){
+    isNoSolute() {
       return this.solution.soluteAmountProperty.value <= 0.001;
     }
 
@@ -195,7 +199,7 @@ define( require => {
     getCurrentConcentrationRange() {
       const maxConcentration = this.getCurrentSaturatedConcentration() > 5.0 ? 5.0 : this.getCurrentSaturatedConcentration();
       return StringUtils.fillIn( concentrationRangePatternString, {
-        maxConcentration: Util.toFixed( maxConcentration, 1)
+        maxConcentration: Util.toFixed( maxConcentration, 1 )
       } );
     }
 
@@ -391,8 +395,11 @@ define( require => {
     else if ( concentration <= 5 * fraction ) {
       return 4;
     }
-    else {
+    else if ( concentration <= 6 * fraction ) {
       return 5;
+    }
+    else {
+      return 6;
     }
   };
 
