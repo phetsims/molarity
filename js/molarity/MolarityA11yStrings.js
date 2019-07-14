@@ -91,7 +91,7 @@ define( function( require ) {
       value: 'Beaker {{volume}} of pure water. The {{color}} solution: '
     },
     beakerSoluteAmountPattern: {
-      value: 'contains {{soluteAmount}} of {{solute}}'
+      value: 'contains {{soluteAmount}} {{solute}}'
     },
     beakerSaturationPattern: {
       value: 'Is saturated with {{solids}} solids'
@@ -233,7 +233,7 @@ define( function( require ) {
       value: 'saturated'
     },
     notSaturated: {
-      value: 'not yet saturated'
+      value: 'not saturated'
     },
 
     // Quantitative value text strings for both volume and solute amount sliders
