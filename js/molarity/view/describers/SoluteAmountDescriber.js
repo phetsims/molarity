@@ -193,19 +193,19 @@ define( require => {
     if ( soluteAmount <= 0.001 ) {
       return 0;
     }
-    else if ( soluteAmount <= .150 ) {
+    else if ( soluteAmount <= .151 ) {
       return 1;
     }
-    else if ( soluteAmount <= .450 ) {
+    else if ( soluteAmount <= .351 ) {
       return 2;
     }
-    else if ( soluteAmount <= .650 ) {
+    else if ( soluteAmount <= .601 ) {
       return 3;
     }
-    else if ( soluteAmount <= .850 ) {
+    else if ( soluteAmount <= .801 ) {
       return 4;
     }
-    else if ( soluteAmount <= .950 ) {
+    else if ( soluteAmount <= .999 ) {
       return 5;
     }
     else {

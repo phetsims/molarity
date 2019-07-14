@@ -180,19 +180,19 @@ define( require => {
    * @returns {number} - index to pull from VOLUME_STRINGS array.
    */
   const volumeToIndex = ( volume ) => {
-    if ( volume <= .200 ) {
+    if ( volume <= .201 ) {
       return 0;
     }
-    else if ( volume <= .350 ) {
+    else if ( volume <= .349 ) {
       return 1;
     }
     else if ( volume <= .499 ) {
       return 2;
     }
-    else if ( volume === .500 ) {
+    else if ( volume <= .501 ) {
       return 3;
     }
-    else if ( volume <= .750 ) {
+    else if ( volume <= .799 ) {
       return 4;
     }
     else if ( volume <= .999 ) {
