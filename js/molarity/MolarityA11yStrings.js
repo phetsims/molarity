@@ -15,6 +15,9 @@ define( function( require ) {
   const molarity = require( 'MOLARITY/molarity' );
 
   const MolarityA11yStrings = {
+    of: {
+      value: 'of '
+    },
     more: {
       value: 'more'
     },
@@ -59,13 +62,13 @@ define( function( require ) {
       value: ' In the Control Area there is a checkbox to show exact values for amount of solute (in moles), volume of solution (in liters), and concentration (in molar), and a button to reset the sim.'
     },
     stateOfSimPattern: {
-      value: 'Currently, beaker {{volume}} of a {{color}} ‬solution containing {{soluteAmount}} ‪{{solute}}‬ solute. {{concentrationClause}}.\n'
+      value: 'Currently, beaker {{volume}} of a {{color}} ‬solution containing {{soluteAmount}} {{of}}‪{{solute}}‬ solute. {{concentrationClause}}.\n'
     },
     stateOfSimInteractionHint: {
       value: 'Play with solution in beaker and observe changes to concentration.'
     },
     stateOfSimNoSolutePattern: {
-      value: 'Currently, beaker {{volume}} of pure water with no {{solute}} solute.'
+      value: 'Currently, beaker {{volume}} of pure water, and contains no {{solute}} solute.'
     },
     noSoluteAlert: {
       value: 'No solute. Solution is pure water'
@@ -318,7 +321,7 @@ define( function( require ) {
       value: 'Concentration {{concentration}}'
     },
     quantitativeConcentrationPattern: {
-      value: 'Solution is {{saturatedConcentration}} with concentration of {{concentration}}'
+      value: 'Solution is {{saturatedConcentration}}, and concentration is {{concentration}}'
     },
     concentrationAndUnit: {
       value: '{{concentration}} molar'

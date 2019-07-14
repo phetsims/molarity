@@ -16,14 +16,15 @@ define( require => {
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
 
   // a11y strings
-  const beakerQuantitativeConcentrationPatternString = MolarityA11yStrings.beakerQuantitativeConcentrationPattern.value;
   const saturatedString = MolarityA11yStrings.saturated.value;
+  const ofString = MolarityA11yStrings.of.value;
   const notSaturatedString = MolarityA11yStrings.notSaturated.value;
   const qualitativeConcentrationPatternString = MolarityA11yStrings.qualitativeConcentrationPattern.value;
   const screenSummaryFirstParagraphPatternString = MolarityA11yStrings.screenSummaryFirstParagraphPattern.value;
   const screenSummarySecondParagraphString = MolarityA11yStrings.screenSummarySecondParagraph.value;
   const stateOfSimNoSolutePatternString = MolarityA11yStrings.stateOfSimNoSolutePattern.value;
   const stateOfSimPatternString = MolarityA11yStrings.stateOfSimPattern.value;
+  const quantitativeConcentrationPatternString = MolarityA11yStrings.quantitativeConcentrationPattern.value;
   const stateOfSimInteractionHintString = MolarityA11yStrings.stateOfSimInteractionHint.value;
 
   class MolarityScreenSummaryNode extends Node {
@@ -66,10 +67,10 @@ define( require => {
       const stateOfSimNode = new Node( {
         tagName: 'p'
       } );
-      const interactionHintNode = new Node({
+      const interactionHintNode = new Node( {
         tagName: 'p',
         innerContent: stateOfSimInteractionHintString
-      });
+      } );
 
       this.addChild( stateOfSimNode );
       this.addChild( interactionHintNode );
@@ -91,7 +92,7 @@ define( require => {
 
       // Creates the substring describing concentration -- differs based on use of quantitative descriptions and saturation state.
       const concentrationString = this.useQuantitativeDescriptionsProperty.value ?
-                                  beakerQuantitativeConcentrationPatternString :
+                                  quantitativeConcentrationPatternString :
                                   qualitativeConcentrationPatternString;
       const concentrationPattern = StringUtils.fillIn( concentrationString, {
         concentration: this.concentrationDescriber.getCurrentConcentration(),
@@ -103,12 +104,12 @@ define( require => {
         stateString = stateOfSimNoSolutePatternString;
       }
 
-      //TODO: add "has" back into
       return StringUtils.fillIn( stateString, {
-        volume: this.volumeDescriber.getCurrentVolume(true),
+        volume: this.volumeDescriber.getCurrentVolume( true ),
         color: this.soluteDescriber.getCurrentColor(),
         solute: this.soluteDescriber.getCurrentSolute(),
         soluteAmount: this.soluteAmountDescriber.getCurrentSoluteAmount( true ),
+        of: this.useQuantitativeDescriptionsProperty.value ? ofString : '',
         concentrationClause: concentrationPattern,
         saturatedConcentration: this.concentrationDescriber.isSaturated ? saturatedString : ''
       } );
