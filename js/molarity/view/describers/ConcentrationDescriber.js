@@ -43,6 +43,14 @@ define( require => {
   const highlyConcentratedString = MolarityA11yStrings.highlyConcentrated.value;
   const maxConcentrationString = MolarityA11yStrings.maxConcentration.value;
 
+  const hasZeroConcentrationString = MolarityA11yStrings.hasZeroConcentration.value;
+  const hasLowConcentrationString = MolarityA11yStrings.hasLowConcentration.value;
+  const isSlightlyConcentratedString = MolarityA11yStrings.isSlightlyConcentrated.value;
+  const isNotVeryConcentratedString = MolarityA11yStrings.isNotVeryConcentrated.value;
+  const isVeryConcentratedString = MolarityA11yStrings.isVeryConcentrated.value;
+  const isHighlyConcentratedString = MolarityA11yStrings.isHighlyConcentrated.value;
+  const hasMaxConcentrationString = MolarityA11yStrings.hasMaxConcentration.value;
+
   // Solids region strings
   const aBunchOfString = MolarityA11yStrings.aBunchOf.value;
   const aCoupleOfString = MolarityA11yStrings.aCoupleOf.value;
@@ -59,6 +67,16 @@ define( require => {
   const moreCapitalizedString = MolarityA11yStrings.moreCapitalized.value;
 
   // constants
+  const ACTIVE_CONCENTRATION_STRINGS = [
+    hasZeroConcentrationString,
+    hasLowConcentrationString,
+    isSlightlyConcentratedString,
+    isNotVeryConcentratedString,
+    isVeryConcentratedString,
+    isHighlyConcentratedString,
+    hasMaxConcentrationString
+  ];
+
   const CONCENTRATION_STRINGS = [
     zeroConcentrationString,
     lowConcentrationString,
@@ -103,7 +121,7 @@ define( require => {
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
 
       // @private
-      // {number} - the index of the last concentration descriptive region from CONCENTRATION_STRINGS_ARRAY
+      // {number} - the index of the last concentration descriptive region
       this.concentrationRegion = concentrationToIndex( this.soluteProperty.value.saturatedConcentration,
         this.concentrationProperty.value );
 
@@ -175,8 +193,9 @@ define( require => {
 
     /**
      * Gets the current value of concentration either quantitatively or quantitatively to plug into descriptions.
+     * Qualitative description is in active voice.
      * @public
-     * @returns {string} - quantitative or qualitative description of current concentration (e.g. "1.500 Molar" or "very concentrated")
+     * @returns {string} - description of current concentration (e.g. "1.500 Molar" or "is very concentrated")
      */
     getCurrentConcentration() {
       const concentration = this.concentrationProperty.value;
@@ -187,8 +206,19 @@ define( require => {
       }
       else {
         const index = concentrationToIndex( this.soluteProperty.value.saturatedConcentration, concentration );
-        return CONCENTRATION_STRINGS[ index ];
+        return ACTIVE_CONCENTRATION_STRINGS[ index ];
       }
+    }
+
+    /**
+     * Gets the current qualitative passive concentration description (e.g. "slightly concentrated").
+     * @public
+     * @returns {string}
+     */
+    getCurrentPassiveConcentration() {
+      const concentration = this.concentrationProperty.value;
+      const index = concentrationToIndex( this.soluteProperty.value.saturatedConcentration, concentration );
+      return CONCENTRATION_STRINGS[ index ];
     }
 
     /**
@@ -312,16 +342,14 @@ define( require => {
      * @returns {string} - examples: "Concentration 0.600 Molar" or "Solution very concentrated".
      * */
     getConcentrationState() {
-      const concentration = this.concentrationProperty.value;
       if ( this.useQuantitativeDescriptionsProperty.value ) {
         return StringUtils.fillIn( quantitativeConcentrationStatePatternString, {
           concentration: this.getCurrentConcentration()
         } );
       }
       else {
-        const index = concentrationToIndex( this.soluteProperty.value.saturatedConcentration, concentration );
         return StringUtils.fillIn( qualitativeConcentrationStatePatternString, {
-          concentration: CONCENTRATION_STRINGS[ index ]
+          concentration: this.getCurrentConcentration()
         } );
       }
     }

@@ -205,27 +205,47 @@ define( function( require ) {
       value: 'a few'
     },
 
-    // Concentration regions
-    zeroConcentration: {
-      value: 'has zero concentration'
-    },
-    lowConcentration: {
+    // Active concentration regions
+    hasLowConcentration: {
       value: 'has low concentration'
     },
-    slightlyConcentrated:{
+    isSlightlyConcentrated:{
       value: 'is slightly concentrated'
     },
-    notVeryConcentrated: {
+    isNotVeryConcentrated: {
       value: 'is not very concentrated'
     },
-    veryConcentrated: {
+    isVeryConcentrated: {
       value: 'is very concentrated'
     },
-    highlyConcentrated: {
+    isHighlyConcentrated: {
       value: 'is highly concentrated'
     },
-    maxConcentration:{
+    hasMaxConcentration:{
       value: 'has max concentration'
+    },
+
+    // Concentration regions
+    zeroConcentration: {
+      value: 'zero concentration'
+    },
+    lowConcentration: {
+      value: 'low concentration'
+    },
+    slightlyConcentrated:{
+      value: 'slightly concentrated'
+    },
+    notVeryConcentrated: {
+      value: 'not very concentrated'
+    },
+    veryConcentrated: {
+      value: 'very concentrated'
+    },
+    highlyConcentrated: {
+      value: 'highly concentrated'
+    },
+    maxConcentration:{
+      value: 'max concentration'
     },
 
     // saturation states
