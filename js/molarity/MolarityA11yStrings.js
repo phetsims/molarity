@@ -87,7 +87,7 @@ define( function( require ) {
     beakerDescriptionPattern: {
       value: 'Beaker {{volume}} of a {{solute}} solution. The {{color}} solution: '
     },
-    hasZeroConcentration:{
+    hasZeroConcentration: {
       value: 'has zero concentration'
     },
     pureWaterPattern: {
@@ -214,7 +214,7 @@ define( function( require ) {
     hasLowConcentration: {
       value: 'has low concentration'
     },
-    isSlightlyConcentrated:{
+    isSlightlyConcentrated: {
       value: 'is slightly concentrated'
     },
     isNotVeryConcentrated: {
@@ -226,7 +226,7 @@ define( function( require ) {
     isHighlyConcentrated: {
       value: 'is highly concentrated'
     },
-    hasMaxConcentration:{
+    hasMaxConcentration: {
       value: 'has max concentration'
     },
 
@@ -237,7 +237,7 @@ define( function( require ) {
     lowConcentration: {
       value: 'low concentration'
     },
-    slightlyConcentrated:{
+    slightlyConcentrated: {
       value: 'slightly concentrated'
     },
     notVeryConcentrated: {
@@ -249,7 +249,7 @@ define( function( require ) {
     highlyConcentrated: {
       value: 'highly concentrated'
     },
-    maxConcentration:{
+    maxConcentration: {
       value: 'max concentration'
     },
 
