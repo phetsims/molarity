@@ -33,13 +33,13 @@ define( function( require ) {
     solute: {
       value: 'solute'
     },
-    soluteAmountAccessibleName: {
+    soluteAmount: {
       value: 'Solute Amount'
     },
-    solutionVolumeAccessibleName: {
+    solutionVolume: {
       value: 'Solution Volume'
     },
-    solutionControlsLabel: {
+    solutionControls: {
       value: 'Solution Controls'
     },
 
