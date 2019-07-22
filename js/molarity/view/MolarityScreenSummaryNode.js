@@ -20,8 +20,8 @@ define( require => {
   const ofString = MolarityA11yStrings.of.value;
   const notSaturatedString = MolarityA11yStrings.notSaturated.value;
   const qualitativeConcentrationPatternString = MolarityA11yStrings.qualitativeConcentrationPattern.value;
-  const screenSummaryFirstParagraphPatternString = MolarityA11yStrings.screenSummaryFirstParagraphPattern.value;
-  const screenSummarySecondParagraphString = MolarityA11yStrings.screenSummarySecondParagraph.value;
+  const screenSummaryPlayAreaPatternString = MolarityA11yStrings.screenSummaryPlayAreaPattern.value;
+  const screenSummaryControlAreaPatternString = MolarityA11yStrings.screenSummaryControlAreaPattern.value;
   const stateOfSimNoSolutePatternString = MolarityA11yStrings.stateOfSimNoSolutePattern.value;
   const stateOfSimPatternString = MolarityA11yStrings.stateOfSimPattern.value;
   const quantitativeConcentrationPatternString = MolarityA11yStrings.quantitativeConcentrationPattern.value;
@@ -54,14 +54,14 @@ define( require => {
       // First paragraph of the screen summary -- static regardless of state of sim.
       this.addChild( new Node( {
         tagName: 'p',
-        innerContent: StringUtils.fillIn( screenSummaryFirstParagraphPatternString, {
+        innerContent: StringUtils.fillIn( screenSummaryPlayAreaPatternString, {
           numberOfSolutes: solutes.length
         } )
       } ) );
 
       this.addChild( new Node( {
         tagName: 'p',
-        innerContent: screenSummarySecondParagraphString
+        innerContent: screenSummaryControlAreaPatternString
       } ) );
 
       const stateOfSimNode = new Node( {

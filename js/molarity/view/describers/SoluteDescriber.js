@@ -147,7 +147,7 @@ define( require => {
         soluteChangedString = soluteChangedUnsaturatedAlertPatternString;
         concentrationClause = useQuantitativeDescriptionsProperty.value ?
                               StringUtils.fillIn( quantitativeConcentrationStatePatternString, {
-                                concentration: this.concentrationDescriber.getCurrentPassiveConcentration()
+                                concentration: this.concentrationDescriber.getCurrentConcentration()
                               } ) :
                               this.concentrationDescriber.getCurrentPassiveConcentration();
       }

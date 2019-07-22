@@ -55,10 +55,10 @@ define( function( require ) {
     },
 
     // Screen summary strings
-    screenSummaryFirstParagraphPattern: {
+    screenSummaryPlayAreaPattern: {
       value: 'In the Play Area, you find a beaker containing a solution, and a concentration readout. You can change solute amount, solution volume, and choose from nine different solutes to play with the solution in beaker.'
     },
-    screenSummarySecondParagraph: {
+    screenSummaryControlAreaPattern: {
       value: ' In the Control Area there is a checkbox to show exact values for amount of solute (in moles), volume of solution (in liters), and concentration (in molar), and a button to reset the sim.'
     },
     stateOfSimPattern: {
@@ -155,7 +155,7 @@ define( function( require ) {
       value: 'is nearly empty'
     },
 
-    // Solute Amount Regions - uppercase and lowercase
+    // Solute Amount Regions - uppercase
     maxAmountOf: {
       value: 'Max amount of'
     },
@@ -177,6 +177,8 @@ define( function( require ) {
     no: {
       value: 'No'
     },
+
+    // Solute Amount regions -- lowercase
     maxAmountOfLowercase: {
       value: 'max amount of'
     },
@@ -339,9 +341,6 @@ define( function( require ) {
     },
 
     // Solute changed alert string
-    soluteChangedAlertPattern: {
-      value: '{{color}} solution, {{concentrationClause}}.'
-    },
     soluteChangedUnsaturatedAlertPattern: {
       value: '{{color}} solution, {{concentrationClause}}.'
     },
@@ -397,35 +396,6 @@ define( function( require ) {
     },
     solutionValuesUncheckedAlert: {
       value: 'Values hidden.'
-    },
-
-    // Lowercase solute names
-    cobaltIINitrateLowercase: {
-      value: 'cobalt(II) nitrate'
-    },
-    cobaltChlorideLowercase: {
-      value: 'cobalt(II) chloride'
-    },
-    copperSulfateLowercase: {
-      value: 'copper(II) sulfate'
-    },
-    drinkMixLowercase: {
-      value: 'drink mix'
-    },
-    goldIIIChlorideLowercase: {
-      value: 'gold(III) chloride'
-    },
-    nickelIIChlorideLowercase: {
-      value: 'nickel(II) chloride'
-    },
-    potassiumChromateLowercase: {
-      value: 'potassium chromate'
-    },
-    potassiumDichromateLowercase: {
-      value: 'potassium dichromate'
-    },
-    potassiumPermanganateLowercase: {
-      value: 'potassium permanganate'
     },
 
     // color strings
