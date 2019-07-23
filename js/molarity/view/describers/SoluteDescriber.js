@@ -132,16 +132,16 @@ define( require => {
     getSoluteChangedAlertString( useQuantitativeDescriptionsProperty ) {
       let concentrationClause;
       let soluteChangedString;
-      if (this.concentrationDescriber.isNoSolute()){
+      if ( this.concentrationDescriber.isNoSolute() ) {
         return useQuantitativeDescriptionsProperty.value ? noSoluteAlertQuantitativeString : noSoluteAlertQualitativeString;
       }
       if ( this.solution.isSaturated() ) {
         soluteChangedString = soluteChangedSaturatedAlertPatternString;
         concentrationClause = useQuantitativeDescriptionsProperty.value ?
-                                StringUtils.fillIn( quantitativeConcentrationStatePatternString, {
-                                  concentration: this.concentrationDescriber.getCurrentPassiveConcentration()
-                                } ) :
-                                soluteChangedQualitativePatternString;
+                              StringUtils.fillIn( quantitativeConcentrationStatePatternString, {
+                                concentration: this.concentrationDescriber.getCurrentPassiveConcentration()
+                              } ) :
+                              soluteChangedQualitativePatternString;
       }
       else {
         soluteChangedString = soluteChangedUnsaturatedAlertPatternString;

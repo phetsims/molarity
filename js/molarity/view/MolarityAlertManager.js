@@ -1,8 +1,7 @@
 // Copyright 2019, University of Colorado Boulder
 
 /**
- * MolarityAlertManager is responsible for generating strings about ConcentrationProperty. Also includes alert text
- * for alerts past saturation point, including descriptions about the amount of solids (precipitate) in the beaker.
+ * MolarityAlertManager is responsible for generating and adding alerts to the utteranceQueue.
  *
  * @author Michael Kauzmann (PhET Interactive Simulations)
  * @author Taylor Want (PhET Interactive Simulations)
@@ -56,8 +55,13 @@ define( require => {
       this.soluteUtterance = new ActivationUtterance();
       this.valuesVisibleUtterance = new ActivationUtterance();
 
+
       solution.soluteAmountProperty.link( () => {
+
+        // If the solution is newly saturated or newly unsaturated, an alert is read out
         this.alertSaturation();
+
+        // Different alert text is read out depending on whether descriptions are qualitative or quantitative.
         if ( useQuantitativeDescriptionsProperty.value ) {
           this.alertSliderQuantitative( soluteAmountDescriber.isInitialSoluteAmountAlert );
           if ( soluteAmountDescriber.isInitialSoluteAmountAlert ) {
@@ -66,7 +70,7 @@ define( require => {
         }
         else {
 
-          // a special alert is read out when there is no solute in the beaker
+          // A special alert is read out when there is no solute in the beaker
           if ( concentrationDescriber.isNoSolute() ) {
             this.alertNoSolute();
           }
@@ -78,7 +82,11 @@ define( require => {
       } );
 
       solution.volumeProperty.link( () => {
+
+        // If the solution is newly saturated or newly unsaturated, an alert is read out
         this.alertSaturation();
+
+        // Different alert text is read out depending on whether descriptions are qualitative or quantitative.
         if ( useQuantitativeDescriptionsProperty.value ) {
           this.alertSliderQuantitative( volumeDescriber.isInitialVolumeAlert );
           if ( volumeDescriber.isInitialVolumeAlert ) {
@@ -87,7 +95,7 @@ define( require => {
         }
         else {
 
-          // a special alert is read out when there is no solute in the beaker
+          // A special alert is read out when there is no solute in the beaker
           if ( concentrationDescriber.isNoSolute() ) {
             this.alertNoSolute();
           }
@@ -97,7 +105,10 @@ define( require => {
         }
       } );
 
+      // An alert is read out when the solute is changed
       solution.soluteProperty.lazyLink( () => this.alertSolute() );
+
+      // An alert is read out when the valuesVisibleProperty.
       valuesVisibleProperty.lazyLink( newValue => this.alertValuesVisible( newValue ) );
     }
 
@@ -122,7 +133,7 @@ define( require => {
     }
 
     /**
-     * Responsible for adding the alert associated with a change in solute to the utteranceQueue.
+     * Alerts when there is a change in solute.
      * @private
      */
     alertSolute() {
@@ -131,19 +142,21 @@ define( require => {
     }
 
     /**
-     * Responsible for adding the alert associated with a change in the "solution values" checkbox.
-     * @param {boolean} valuesVisible
+     * Alerts when there is a change in the valuesVisibleProperty
+     * @param {Property.<boolean>} valuesVisibleProperty
      * @private
      */
-    alertValuesVisible( valuesVisible ) {
-      this.valuesVisibleUtterance.alert = valuesVisible ? solutionValuesCheckedAlertString : solutionValuesUncheckedAlertString;
+    alertValuesVisible( valuesVisibleProperty ) {
+      this.valuesVisibleUtterance.alert = valuesVisibleProperty ?
+                                          solutionValuesCheckedAlertString :
+                                          solutionValuesUncheckedAlertString;
       utteranceQueue.addToBack( this.valuesVisibleUtterance );
     }
 
     /**
      * When qualitative descriptions are being used and SoluteAmountProperty or VolumeProperty changes, creates an alert.
      * @param {string} quantityChangeString - e.g. "More solution" or "Less solute."
-     * @param {boolean} quantityChange - true if the quantity has increased, false if quantity has d
+     * @param {boolean} quantityChange - true if the quantity has increased, false if quantity has decreased
      * @private
      */
     alertSliderQualitative( quantityChangeString, quantityChange ) {
