@@ -82,11 +82,6 @@ define( function( require ) {
    */
   function MolarityScreenView( model, tandem ) {
     this.model = model;
-    ScreenView.call( this, {
-      layoutBounds: new Bounds2( 0, 0, 1100, 700 ),
-      tandem: tandem,
-      addScreenSummaryNode: true
-    } );
 
     const valuesVisibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'valuesVisibleProperty' )
@@ -109,11 +104,13 @@ define( function( require ) {
     new MolarityAlertManager( model.solution, useQuantitativeDescriptionsProperty, // eslint-disable-line no-new
       concentrationDescriber, soluteAmountDescriber, volumeDescriber, soluteDescriber, valuesVisibleProperty );
 
-    // a11y - creates screen summary in the PDOM and add it to the screenView
-    const molarityScreenSummaryNode = new MolarityScreenSummaryNode( model.solution, model.solutes,
-      useQuantitativeDescriptionsProperty, concentrationDescriber, soluteAmountDescriber, soluteDescriber,
-      volumeDescriber );
-    this.screenSummaryNode.addChild( molarityScreenSummaryNode );
+    ScreenView.call( this, {
+      layoutBounds: new Bounds2( 0, 0, 1100, 700 ),
+      tandem: tandem,
+      screenSummaryContent: new MolarityScreenSummaryNode( model.solution, model.solutes,
+        useQuantitativeDescriptionsProperty, concentrationDescriber, soluteAmountDescriber, soluteDescriber,
+        volumeDescriber )
+    } );
 
     // beaker, with solution and precipitate inside of it
     const beakerNode = new BeakerNode( model.solution, MConstants.SOLUTION_VOLUME_RANGE.max, valuesVisibleProperty,
