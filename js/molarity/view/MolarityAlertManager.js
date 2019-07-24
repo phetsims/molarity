@@ -21,6 +21,8 @@ define( require => {
   // a11y strings
   const noSoluteAlertString = MolarityA11yStrings.noSoluteAlert.value;
   const qualitativeSaturatedValueTextPatternString = MolarityA11yStrings.qualitativeSaturatedValueTextPattern.value;
+
+  // REVIEW: this is used as an alert, rename from "value text"
   const qualitativeValueTextPatternString = MolarityA11yStrings.qualitativeValueTextPattern.value;
   const quantitativeInitialAlertPatternString = MolarityA11yStrings.quantitativeInitialAlertPattern.value;
   const quantitativeValueTextPatternString = MolarityA11yStrings.quantitativeValueTextPattern.value;
@@ -126,6 +128,8 @@ define( require => {
      * @private
      */
     alertSaturation() {
+
+      // REVIEW: The name of this function suggests that it would always alert, but this is hidden behind this conditional
       if ( this.concentrationDescriber.isNewSaturationState() ) {
         this.saturationUtterance.alert = this.concentrationDescriber.getSaturationChangedString();
         utteranceQueue.addToBack( this.saturationUtterance );
@@ -186,6 +190,7 @@ define( require => {
       }
 
       // alert is read out except if sim has just been loaded or reset
+      // REVIEW: The name of this function suggests that it would always alert, but this is hidden behind this conditional
       if ( this.concentrationDescriber.concentrationIncreased !== null ||
            this.concentrationDescriber.solidsIncreased !== null ) {
         this.sliderUtterance.alert = alertText;
@@ -201,6 +206,8 @@ define( require => {
      * @returns {string}
      */
     alertSliderQuantitative( isInitialAlert ) {
+
+      // REVIEW: this doesn't change, perhaps a constant or just pass true to getConcentrationChangeString
       const capitalizeConcentrationChange = true;
       let alertText = '';
 
@@ -226,5 +233,4 @@ define( require => {
   }
 
   return molarity.register( 'MolarityAlertManager', MolarityAlertManager );
-} )
-;
+} );
