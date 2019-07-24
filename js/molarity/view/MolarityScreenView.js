@@ -16,7 +16,6 @@ define( function( require ) {
   const ConcentrationDescriber = require( 'MOLARITY/molarity/view/describers/ConcentrationDescriber' );
   const ConcentrationDisplay = require( 'MOLARITY/molarity/view/ConcentrationDisplay' );
   const ConcentrationSoundGenerator = require( 'MOLARITY/molarity/view/ConcentrationSoundGenerator' );
-  const ControlAreaNode = require( 'SCENERY_PHET/accessibility/nodes/ControlAreaNode' );
   const DerivedProperty = require( 'AXON/DerivedProperty' );
   const Dimension2 = require( 'DOT/Dimension2' );
   const inherit = require( 'PHET_CORE/inherit' );
@@ -28,7 +27,6 @@ define( function( require ) {
   const MolarityScreenSummaryNode = require( 'MOLARITY/molarity/view/MolarityScreenSummaryNode' );
   const Node = require( 'SCENERY/nodes/Node' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  const PlayAreaNode = require( 'SCENERY_PHET/accessibility/nodes/PlayAreaNode' );
   const PrecipitateNode = require( 'MOLARITY/molarity/view/PrecipitateNode' );
   const PrecipitateSoundGenerator = require( 'MOLARITY/molarity/view/PrecipitateSoundGenerator' );
   const ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
@@ -91,7 +89,7 @@ define( function( require ) {
     // valuesVisibleProperty currently, improve maintainability by not overloading valuesVisibleProperty with
     // description-specific use-case. For example, we could decide to display quantitative descriptions when not showing
     // values, but the state of solution is "x," with no refactoring.
-    const useQuantitativeDescriptionsProperty = new DerivedProperty( [ valuesVisibleProperty ],
+    const useQuantitativeDescriptionsProperty = new DerivedProperty( [valuesVisibleProperty],
       currentValuesVisible => currentValuesVisible );
 
     // a11y - initializes describers and alert manager
@@ -225,7 +223,7 @@ define( function( require ) {
 
     // sound generator for check box
     const uncheckedClip = new SoundClip( checkboxUncheckedSound, {
-      enableControlProperties: [ new InvertedBooleanProperty( model.resetInProgressProperty ) ]
+      enableControlProperties: [new InvertedBooleanProperty( model.resetInProgressProperty )]
     } );
     soundManager.addSoundGenerator( uncheckedClip );
     const checkedClip = new SoundClip( checkboxCheckedSound );
@@ -262,11 +260,10 @@ define( function( require ) {
       descriptionTagName: 'p',
       descriptionContent: sliderHelpTextString
     } );
-    solutionControlsNode.accessibleOrder = [ soluteAmountSlider, solutionVolumeSlider ];
+    solutionControlsNode.accessibleOrder = [soluteAmountSlider, solutionVolumeSlider];
 
     // a11y - contains PDOM heading for Play Area, and orders the PDOM for included elements
-    const playAreaNode = new PlayAreaNode();
-    playAreaNode.accessibleOrder = [
+    this.playAreaNode.accessibleOrder = [
       beakerNode,
       solutionControlsNode,
       soluteComboBox,
@@ -274,8 +271,7 @@ define( function( require ) {
     ];
 
     // a11y - contains PDOM heading for control area, and orders the PDOM for included elements
-    const controlAreaNode = new ControlAreaNode();
-    controlAreaNode.accessibleOrder = [
+    this.controlAreaNode.accessibleOrder = [
       solutionValuesCheckbox,
       resetAllButton
     ];
@@ -330,9 +326,7 @@ define( function( require ) {
         resetAllButton,
         soluteComboBox,
         soluteComboBoxListParent,
-        solutionControlsNode,
-        playAreaNode,
-        controlAreaNode
+        solutionControlsNode
       ],
       center: this.layoutBounds.center
     } ) );
