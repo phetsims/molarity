@@ -50,7 +50,6 @@ define( require => {
 
       this.beakerDescriptionList = new Node( {
         tagName: 'ul',
-        labelTagName: 'p',
         labelContent: this.updateBeakerSummaryString()
       } );
       this.soluteAmountSummaryItem = new Node( { tagName: 'li' } );
