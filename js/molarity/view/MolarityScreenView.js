@@ -257,7 +257,6 @@ define( function( require ) {
       tagName: 'div',
       labelTagName: 'h3',
       labelContent: solutionControlsString,
-      descriptionTagName: 'p',
       descriptionContent: sliderHelpTextString
     } );
     solutionControlsNode.accessibleOrder = [soluteAmountSlider, solutionVolumeSlider];
