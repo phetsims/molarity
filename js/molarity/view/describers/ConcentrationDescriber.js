@@ -407,27 +407,27 @@ define( require => {
    * @returns {number} index to pull from CONCENTRATION_STRINGS array
    */
   const concentrationToIndex = ( maxConcentration, concentration ) => {
-    const fraction = maxConcentration / ( CONCENTRATION_STRINGS.length );
-    if ( concentration <= fraction ) {
+    const scaleIncrement = maxConcentration / ( CONCENTRATION_STRINGS.length - 2 );
+    if ( concentration <= 0.001 ) {
       return 0;
     }
-    else if ( concentration <= 2 * fraction ) {
+    else if ( concentration <= scaleIncrement ) {
       return 1;
     }
-    else if ( concentration <= 3 * fraction ) {
+    else if ( concentration <= 2 * scaleIncrement ) {
       return 2;
     }
-    else if ( concentration <= 4 * fraction ) {
+    else if ( concentration <= 3 * scaleIncrement ) {
       return 3;
     }
-    else if ( concentration <= 5 * fraction ) {
+    else if ( concentration <= 4 * scaleIncrement ) {
       return 4;
     }
-    else if ( concentration <= 6 * fraction ) {
-      return 5;
+    else if ( concentration >= scaleIncrement * 5 ) {
+      return 6;
     }
     else {
-      return 6;
+      return 5;
     }
   };
 
