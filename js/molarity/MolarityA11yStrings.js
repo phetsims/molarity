@@ -331,7 +331,7 @@ define( function( require ) {
 
     // Qualitative concentration value text strings
     qualitativeConcentrationPattern: {
-      value: 'Solution {{concentration}} and is {{saturatedConcentration}}'
+      value: 'Solution is {{saturatedConcentration}} and {{concentration}}.'
     },
     concentrationChangePattern: {
       value: '{{moreLess}} concentrated'
