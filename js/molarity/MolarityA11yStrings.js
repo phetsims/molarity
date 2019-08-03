@@ -97,7 +97,7 @@ define( function( require ) {
       value: 'contains {{soluteAmount}} {{solute}}'
     },
     beakerSaturationPattern: {
-      value: 'Is saturated with {{solids}} solids'
+      value: 'is saturated with {{solids}} solids'
     },
     beakerQualitativeConcentrationPattern: {
       value: '{{concentration}}'
@@ -337,7 +337,7 @@ define( function( require ) {
       value: '{{moreLess}} concentrated'
     },
     concentrationRangePattern: {
-      value: 'concentration readout range 0.0 to {{maxConcentration}} molar'
+      value: 'concentration readout range 0 to {{maxConcentration}} molar'
     },
 
     // Solute changed alert string

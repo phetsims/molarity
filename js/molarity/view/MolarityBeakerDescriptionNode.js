@@ -119,7 +119,7 @@ define( require => {
       }
       else {
         this.concentrationSummaryItem.innerContent = this.concentrationDescriber.getBeakerConcentrationString(
-          this.useQuantitativeDescriptionsProperty ).toLowerCase();
+          this.useQuantitativeDescriptionsProperty );
       }
     }
 
