@@ -268,7 +268,7 @@ define( function( require ) {
     quantitativeInitialAlertPattern: {
       value: '{{concentrationChange}}. Concentration {{concentration}}.'
     },
-    quantitativeValueTextPattern: {
+    quantitativeSliderAlertPattern: {
       value: '{{concentrationChange}} at {{concentration}}.'
     },
     quantitativeVolumeSliderValueTextPattern: {
@@ -288,7 +288,7 @@ define( function( require ) {
     qualitativeSaturatedValueTextPattern: {
       value: '{{propertyAmountChange}}, {{solidsChange}}. {{stillSaturatedClause}}.'
     },
-    qualitativeValueTextPattern: {
+    qualitativeSliderAlertPattern: {
       value: '{{quantityChange}}, {{concentrationChange}}. {{stateInfo}}'
     },
 

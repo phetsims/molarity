@@ -21,10 +21,8 @@ define( require => {
   // a11y strings
   const noSoluteAlertString = MolarityA11yStrings.noSoluteAlert.value;
   const qualitativeSaturatedValueTextPatternString = MolarityA11yStrings.qualitativeSaturatedValueTextPattern.value;
-
-  // REVIEW: this is used as an alert, rename from "value text"
-  const qualitativeValueTextPatternString = MolarityA11yStrings.qualitativeValueTextPattern.value;
-  const quantitativeValueTextPatternString = MolarityA11yStrings.quantitativeValueTextPattern.value;
+  const qualitativeSliderAlertPatternString = MolarityA11yStrings.qualitativeSliderAlertPattern.value;
+  const quantitativeSliderAlertPatternString = MolarityA11yStrings.quantitativeSliderAlertPattern.value;
   const solutionValuesCheckedAlertString = MolarityA11yStrings.solutionValuesCheckedAlert.value;
   const solutionValuesUncheckedAlertString = MolarityA11yStrings.solutionValuesUncheckedAlert.value;
 
@@ -59,11 +57,12 @@ define( require => {
 
       solution.soluteAmountProperty.link( () => {
 
-        // If the solution is newly saturated or newly unsaturated, an alert is read out
-        this.alertSaturation();
-
-        // Different alert text is read out depending on whether descriptions are qualitative or quantitative.
-        if ( useQuantitativeDescriptionsProperty.value ) {
+        // If the solution is newly saturated or newly unsaturated, an alert is read out. Different alert text is read
+        // out depending on whether descriptions are qualitative or quantitative.
+        if ( this.concentrationDescriber.isNewSaturationState() ) {
+          this.alertNewSaturation();
+        }
+        else if ( useQuantitativeDescriptionsProperty.value ) {
           this.alertSliderQuantitative();
         }
         else {
@@ -73,19 +72,23 @@ define( require => {
             this.alertNoSolute();
           }
           else {
-            this.alertSliderQualitative( soluteAmountDescriber.getSoluteAmountChangeString(),
-              soluteAmountDescriber.soluteAmountRegionChanged );
+            if ( this.concentrationDescriber.concentrationIncreased !== null ||
+                 this.concentrationDescriber.solidsIncreased !== null ) {
+              this.alertSliderQualitative( soluteAmountDescriber.getSoluteAmountChangeString(),
+                soluteAmountDescriber.soluteAmountRegionChanged );
+            }
           }
         }
       } );
 
       solution.volumeProperty.link( () => {
 
-        // If the solution is newly saturated or newly unsaturated, an alert is read out
-        this.alertSaturation();
-
-        // Different alert text is read out depending on whether descriptions are qualitative or quantitative.
-        if ( useQuantitativeDescriptionsProperty.value ) {
+        // If the solution is newly saturated or newly unsaturated, an alert is read out. Different alert text is read
+        // out depending on whether descriptions are qualitative or quantitative.
+        if ( this.concentrationDescriber.isNewSaturationState() ) {
+          this.alertNewSaturation();
+        }
+        else if ( useQuantitativeDescriptionsProperty.value ) {
           this.alertSliderQuantitative();
         }
         else {
@@ -95,7 +98,10 @@ define( require => {
             this.alertNoSolute();
           }
           else {
-            this.alertSliderQualitative( volumeDescriber.getVolumeChangeString(), volumeDescriber.volumeRegionChanged );
+            if ( this.concentrationDescriber.concentrationIncreased !== null ||
+                 this.concentrationDescriber.solidsIncreased !== null ) {
+              this.alertSliderQualitative( volumeDescriber.getVolumeChangeString(), volumeDescriber.volumeRegionChanged );
+            }
           }
         }
       } );
@@ -110,25 +116,21 @@ define( require => {
     }
 
     /**
+     * Alert only when the solution is either newly saturated or newly unsaturated.
+     * @private
+     */
+    alertNewSaturation() {
+      this.saturationUtterance.alert = this.concentrationDescriber.getSaturationChangedString();
+      utteranceQueue.addToBack( this.saturationUtterance );
+    }
+
+    /**
      * Alerts when there is no solute in the beaker.
      * @private
      */
     alertNoSolute() {
       this.sliderUtterance.alert = noSoluteAlertString;
       utteranceQueue.addToBack( this.sliderUtterance );
-    }
-
-    /**
-     * Alert only when the solution is either newly saturated or newly unsaturated.
-     * @private
-     */
-    alertSaturation() {
-
-      // REVIEW: The name of this function suggests that it would always alert, but this is hidden behind this conditional
-      if ( this.concentrationDescriber.isNewSaturationState() ) {
-        this.saturationUtterance.alert = this.concentrationDescriber.getSaturationChangedString();
-        utteranceQueue.addToBack( this.saturationUtterance );
-      }
     }
 
     /**
@@ -156,6 +158,7 @@ define( require => {
      * When qualitative descriptions are being used and SoluteAmountProperty or VolumeProperty changes, creates an alert.
      * @param {string} quantityChangeString - e.g. "More solution" or "Less solute."
      * @param {boolean} quantityChange - true if the quantity has increased, false if quantity has decreased
+     * @returns {string} - text of alert to add to back
      * @private
      */
     alertSliderQualitative( quantityChangeString, quantityChange ) {
@@ -177,44 +180,36 @@ define( require => {
         } );
       }
       else {
-        alertText = StringUtils.fillIn( qualitativeValueTextPatternString, {
+        alertText = StringUtils.fillIn( qualitativeSliderAlertPatternString, {
           quantityChange: quantityChangeString,
           concentrationChange: this.concentrationDescriber.getConcentrationChangeString(),
           stateInfo: stateInfo
         } );
       }
 
-      // alert is read out except if sim has just been loaded or reset
-      // REVIEW: The name of this function suggests that it would always alert, but this is hidden behind this conditional
-      if ( this.concentrationDescriber.concentrationIncreased !== null ||
-           this.concentrationDescriber.solidsIncreased !== null ) {
-        this.sliderUtterance.alert = alertText;
-        utteranceQueue.addToBack( this.sliderUtterance );
-      }
+      this.sliderUtterance.alert = alertText;
+      utteranceQueue.addToBack( this.sliderUtterance );
     }
 
 
     /**
      * When quantitative descriptions are used, and SoluteAmountProperty or VolumeProperty changes, creates an alert.
-     * @param {boolean}
      * @private
      * @returns {string}
      */
     alertSliderQuantitative() {
-
-      // REVIEW: this doesn't change, perhaps a constant or just pass true to getConcentrationChangeString
-      const capitalizeConcentrationChange = true;
       let alertText = '';
 
       if ( this.solution.isSaturated() ) {
         alertText = this.concentrationDescriber.getStillSaturatedClause();
       }
       else {
-        alertText = StringUtils.fillIn( quantitativeValueTextPatternString, {
-          concentrationChange: this.concentrationDescriber.getConcentrationChangeString( capitalizeConcentrationChange ),
+        alertText = StringUtils.fillIn( quantitativeSliderAlertPatternString, {
+          concentrationChange: this.concentrationDescriber.getConcentrationChangeString( true ),
           concentration: this.concentrationDescriber.getCurrentConcentration()
         } );
       }
+
       this.sliderUtterance.alert = alertText;
       utteranceQueue.addToBack( this.sliderUtterance );
     }
