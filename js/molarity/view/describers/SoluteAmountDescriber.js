@@ -131,19 +131,19 @@ define( require => {
     /**
      * Gets the current value of soluteAmount either quantitatively or quantitatively to plug into descriptions.
      * Examples: "3.400 Moles" for quantitative or "A lot of" for qualitative
-     * @param lowercase {boolean}
+     * @param isCapitalized {boolean}
      * @public
      * @returns {string} - quantitative or qualitative description of current soluteAmount.
      */
-    getCurrentSoluteAmount( lowercase = false ) {
+    getCurrentSoluteAmount( isCapitalized = true ) {
       if ( this.useQuantitativeDescriptionsProperty.value ) {
         return StringUtils.fillIn( soluteAmountAndUnitPatternString, {
           soluteAmount: Util.toFixed( Util.clamp( this.soluteAmountProperty.value, 0, 5.0 ), MConstants.SOLUTE_AMOUNT_DECIMAL_PLACES )
         } );
       }
       else {
-        return lowercase ? SOLUTE_AMOUNT_STRINGS_LOWERCASE[ soluteAmountToIndex( this.soluteAmountProperty.value ) ] :
-               SOLUTE_AMOUNT_STRINGS[ soluteAmountToIndex( this.soluteAmountProperty.value ) ];
+        return isCapitalized ? SOLUTE_AMOUNT_STRINGS[ soluteAmountToIndex( this.soluteAmountProperty.value ) ] :
+               SOLUTE_AMOUNT_STRINGS_LOWERCASE[ soluteAmountToIndex( this.soluteAmountProperty.value ) ];
       }
     }
 

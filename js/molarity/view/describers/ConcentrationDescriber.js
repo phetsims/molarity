@@ -180,7 +180,6 @@ define( require => {
       return this.saturationStateChanged;
     }
 
-
     /**
      * determines if there is no solute in the beaker.
      * @returns {boolean}

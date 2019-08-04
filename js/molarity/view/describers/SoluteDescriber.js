@@ -80,6 +80,8 @@ define( require => {
         return soluteName;
       }
       else {
+
+        //TODO: use SOLUTE_LOWERCASE_STRINGS array instead of .toLowerCase
         return soluteName.charAt( 1 ).toLowerCase() + soluteName.slice( 2 );
       }
     }

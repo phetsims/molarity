@@ -16,23 +16,23 @@ define( require => {
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
 
   // a11y strings
-  const saturatedString = MolarityA11yStrings.saturated.value;
   const ofString = MolarityA11yStrings.of.value;
   const notSaturatedString = MolarityA11yStrings.notSaturated.value;
   const qualitativeConcentrationPatternString = MolarityA11yStrings.qualitativeConcentrationPattern.value;
+  const quantitativeConcentrationPatternString = MolarityA11yStrings.quantitativeConcentrationPattern.value;
+  const saturatedString = MolarityA11yStrings.saturated.value;
   const screenSummaryPlayAreaPatternString = MolarityA11yStrings.screenSummaryPlayAreaPattern.value;
   const screenSummaryControlAreaPatternString = MolarityA11yStrings.screenSummaryControlAreaPattern.value;
+  const stateOfSimInteractionHintString = MolarityA11yStrings.stateOfSimInteractionHint.value;
   const stateOfSimNoSolutePatternString = MolarityA11yStrings.stateOfSimNoSolutePattern.value;
   const stateOfSimPatternString = MolarityA11yStrings.stateOfSimPattern.value;
-  const quantitativeConcentrationPatternString = MolarityA11yStrings.quantitativeConcentrationPattern.value;
-  const stateOfSimInteractionHintString = MolarityA11yStrings.stateOfSimInteractionHint.value;
 
   class MolarityScreenSummaryNode extends Node {
 
     /**
-     * @param {Solution} solution -- from MolarityModel
-     * @param {Array} solutes -- from MolarityModel
-     * @param {Property.<boolean>} useQuantitativeDescriptionsProperty- tracks whether the values are visible
+     * @param {Solution} solution - from MolarityModel
+     * @param {Array} solutes - from MolarityModel
+     * @param {Property.<boolean>} useQuantitativeDescriptionsProperty - tracks whether the values are visible
      * @param {ConcentrationDescriber} concentrationDescriber
      * @param {SoluteAmountDescriber} soluteAmountDescriber
      * @param {SoluteDescriber} soluteDescriber
@@ -51,7 +51,7 @@ define( require => {
       this.soluteDescriber = soluteDescriber;
       this.volumeDescriber = volumeDescriber;
 
-      // First paragraph of the screen summary -- static regardless of state of sim.
+      // First paragraph of the screen summary -- static regardless of state of sim, describes the play area
       this.addChild( new Node( {
         tagName: 'p',
         innerContent: StringUtils.fillIn( screenSummaryPlayAreaPatternString, {
@@ -59,14 +59,18 @@ define( require => {
         } )
       } ) );
 
+      // Second paragraph of the screen summary -- static regardless of state of sim, describes the control area
       this.addChild( new Node( {
         tagName: 'p',
         innerContent: screenSummaryControlAreaPatternString
       } ) );
 
+      // Third paragraph of the screen summary -- dynamic depending on the state of the sim.
       const stateOfSimNode = new Node( {
         tagName: 'p'
       } );
+
+      // Fourth paragraph of the screen summary -- static regardless of state of sim, gives the interaction hint
       const interactionHintNode = new Node( {
         tagName: 'p',
         innerContent: stateOfSimInteractionHintString
@@ -75,22 +79,22 @@ define( require => {
       this.addChild( stateOfSimNode );
       this.addChild( interactionHintNode );
 
-      // Third paragraph of the screen summary -- updated when model properties change.
-      Property.multilink( [ solution.soluteProperty, solution.volumeProperty,
-        solution.soluteAmountProperty, solution.concentrationProperty, useQuantitativeDescriptionsProperty ], () => {
-        stateOfSimNode.innerContent = this.stateOfSimDescription();
+      // Updates the third paragraph of the screen summary when sim properties change.
+      Property.multilink( [ solution.soluteProperty, solution.volumeProperty, solution.soluteAmountProperty,
+        solution.concentrationProperty, useQuantitativeDescriptionsProperty ], () => {
+        stateOfSimNode.innerContent = this.getStateOfSimDescription();
       } );
     }
 
     /**
+     * @private
      * @returns {string} - the screen summary paragraph, which differs based on whether quantitative or qualitative
      * descriptions are show, and whether or not there is some solute in the beaker.
-     * @private
      */
-    stateOfSimDescription() {
+    getStateOfSimDescription() {
       let stateString = stateOfSimPatternString;
 
-      // Creates the substring describing concentration -- differs based on use of quantitative descriptions and saturation state.
+      // concentrationString will form the base of the concentrationPattern substring (filled in below)
       const concentrationString = this.useQuantitativeDescriptionsProperty.value ?
                                   quantitativeConcentrationPatternString :
                                   qualitativeConcentrationPatternString;
@@ -99,8 +103,8 @@ define( require => {
         saturatedConcentration: this.solution.isSaturated() ? saturatedString : notSaturatedString
       } );
 
-      // If there is no solute in the beaker, the descriptive language changes in the PDOM
-      if ( this.solution.soluteAmountProperty.value === 0 ) {
+      // If there is no solute in the beaker, the PDOM descriptions change.
+      if ( this.concentrationDescriber.isNoSolute() ) {
         stateString = stateOfSimNoSolutePatternString;
       }
 
@@ -108,10 +112,10 @@ define( require => {
         volume: this.volumeDescriber.getCurrentVolume( true ),
         color: this.soluteDescriber.getCurrentColor(),
         solute: this.soluteDescriber.getCurrentSolute(),
-        soluteAmount: this.soluteAmountDescriber.getCurrentSoluteAmount( true ),
+        soluteAmount: this.soluteAmountDescriber.getCurrentSoluteAmount( false ),
         of: this.useQuantitativeDescriptionsProperty.value ? ofString : '',
         concentrationClause: concentrationPattern,
-        saturatedConcentration: this.concentrationDescriber.isSaturated ? saturatedString : ''
+        saturatedConcentration: this.solution.isSaturated() ? saturatedString : ''
       } );
     }
   }

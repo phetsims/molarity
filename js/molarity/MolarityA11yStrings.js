@@ -62,7 +62,7 @@ define( function( require ) {
       value: ' In the Control Area there is a checkbox to show exact values for amount of solute (in moles), volume of solution (in liters), and concentration (in molar), and a button to reset the sim.'
     },
     stateOfSimPattern: {
-      value: 'Currently, beaker {{volume}} of a {{color}} ‬solution containing {{soluteAmount}} {{of}}‪{{solute}}‬ solute. {{concentrationClause}}.\n'
+      value: 'Currently, beaker {{volume}} of a {{color}} ‬solution containing {{soluteAmount}} {{of}}‪{{solute}}‬ solute. {{concentrationClause}}\n'
     },
     stateOfSimInteractionHint: {
       value: 'Play with solution in beaker and observe changes to concentration.'
@@ -454,6 +454,35 @@ define( function( require ) {
     },
     clear: {
       value: 'clear'
+    },
+
+    // Lowercase solute names
+    cobaltIINitrateLowercase: {
+      value: 'cobalt(II) nitrate'
+    },
+    cobaltChlorideLowercase: {
+      value: 'cobalt(II) chloride'
+    },
+    copperSulfateLowercase: {
+      value: 'copper(II) sulfate'
+    },
+    drinkMixLowercase: {
+      value: 'drink mix'
+    },
+    goldIIIChlorideLowercase: {
+      value: 'gold(III) chloride'
+    },
+    nickelIIChlorideLowercase: {
+      value: 'nickel(II) chloride'
+    },
+    potassiumChromateLowercase: {
+      value: 'potassium chromate'
+    },
+    potassiumDichromateLowercase: {
+      value: 'potassium dichromate'
+    },
+    potassiumPermanganateLowercase: {
+      value: 'potassium permanganate'
     }
   };
 
