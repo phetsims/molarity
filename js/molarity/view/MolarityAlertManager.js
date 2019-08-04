@@ -24,7 +24,6 @@ define( require => {
 
   // REVIEW: this is used as an alert, rename from "value text"
   const qualitativeValueTextPatternString = MolarityA11yStrings.qualitativeValueTextPattern.value;
-  const quantitativeInitialAlertPatternString = MolarityA11yStrings.quantitativeInitialAlertPattern.value;
   const quantitativeValueTextPatternString = MolarityA11yStrings.quantitativeValueTextPattern.value;
   const solutionValuesCheckedAlertString = MolarityA11yStrings.solutionValuesCheckedAlert.value;
   const solutionValuesUncheckedAlertString = MolarityA11yStrings.solutionValuesUncheckedAlert.value;
@@ -87,10 +86,7 @@ define( require => {
 
         // Different alert text is read out depending on whether descriptions are qualitative or quantitative.
         if ( useQuantitativeDescriptionsProperty.value ) {
-          this.alertSliderQuantitative( volumeDescriber.isInitialVolumeAlert );
-          if ( volumeDescriber.isInitialVolumeAlert ) {
-            volumeDescriber.isInitialVolumeAlert = false;
-          }
+          this.alertSliderQuantitative();
         }
         else {
 
@@ -110,7 +106,6 @@ define( require => {
       // An alert is read out when the valuesVisibleProperty changes.
       valuesVisibleProperty.lazyLink(
         newValue => this.alertValuesVisible( newValue )
-
       );
     }
 
@@ -201,24 +196,17 @@ define( require => {
 
     /**
      * When quantitative descriptions are used, and SoluteAmountProperty or VolumeProperty changes, creates an alert.
-     * @param {boolean} isInitialAlert
+     * @param {boolean}
      * @private
      * @returns {string}
      */
-    alertSliderQuantitative( isInitialAlert ) {
+    alertSliderQuantitative() {
 
       // REVIEW: this doesn't change, perhaps a constant or just pass true to getConcentrationChangeString
       const capitalizeConcentrationChange = true;
       let alertText = '';
 
-      // A different pattern is used when it's the first alert read out after the slider has been focused.
-      if ( isInitialAlert && !this.solution.isSaturated() ) {
-        alertText = StringUtils.fillIn( quantitativeInitialAlertPatternString, {
-          concentrationChange: this.concentrationDescriber.getConcentrationChangeString( capitalizeConcentrationChange ),
-          concentration: this.concentrationDescriber.getCurrentConcentration()
-        } );
-      }
-      else if ( this.solution.isSaturated() ) {
+      if ( this.solution.isSaturated() ) {
         alertText = this.concentrationDescriber.getStillSaturatedClause();
       }
       else {
