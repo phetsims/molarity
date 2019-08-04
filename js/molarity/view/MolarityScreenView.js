@@ -158,11 +158,7 @@ define( function( require ) {
       valuesVisibleProperty,
       tandem.createTandem( 'solutionVolumeSlider' ),
       solutionVolumeString,
-      () => {
-        return useQuantitativeDescriptionsProperty.value ?
-               volumeDescriber.getCurrentVolume() :
-               volumeDescriber.getVolumeState();
-      },
+      () => volumeDescriber.getVolumeValueText(),
       model.solution.soluteProperty
     );
 

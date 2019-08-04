@@ -18,9 +18,7 @@ define( require => {
 
   // strings
   const hasVolumePatternString = MolarityA11yStrings.hasVolumePattern.value;
-  const qualitativeVolumeSliderValueTextPatternString = MolarityA11yStrings.qualitativeVolumeSliderValueTextPattern.value;
   const qualitativeVolumeStatePatternString = MolarityA11yStrings.qualitativeVolumeStatePattern.value;
-  const quantitativeVolumeSliderValueTextPatternString = MolarityA11yStrings.quantitativeVolumeSliderValueTextPattern.value;
   const solutionVolumeAndUnitPatternString = MolarityA11yStrings.solutionVolumeAndUnitPattern.value;
   const volumeChangePatternString = MolarityA11yStrings.volumeChangePattern.value;
 
@@ -139,26 +137,23 @@ define( require => {
     }
 
     /**
+     * Generates the aria-valuetext for the volume slider.
+     * @public
+     * @returns {string}
+     */
+    getVolumeValueText() {
+      return this.useQuantitativeDescriptionsProperty.value ?
+             this.getCurrentVolume() :
+             this.getVolumeState();
+    }
+
+    /**
      * Creates a substring describing the volume state
      * @public
      * @returns {string} - something like "Beaker half full"
      */
     getVolumeState() {
       return StringUtils.fillIn( qualitativeVolumeStatePatternString, { volume: this.getCurrentVolume() } );
-    }
-
-    /**
-     * Creates the string to be used as the volume slider's aria-valueText on focus, and .
-     * @public
-     * @returns {string}
-     */
-    getOnFocusVolumeValueText() {
-      const string = this.useQuantitativeDescriptionsProperty.value ?
-                     quantitativeVolumeSliderValueTextPatternString :
-                     qualitativeVolumeSliderValueTextPatternString;
-      return StringUtils.fillIn( string, {
-        volume: this.getCurrentVolume()
-      } );
     }
   }
 
