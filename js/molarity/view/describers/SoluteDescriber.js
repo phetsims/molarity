@@ -45,6 +45,17 @@ define( require => {
   const purpleString = MolarityA11yStrings.purple.value;
   const clearString = MolarityA11yStrings.clear.value;
 
+  // capitalized color strings
+  const redCapitalizedString = MolarityA11yStrings.redCapitalized.value;
+  const pinkCapitalizedString = MolarityA11yStrings.pinkCapitalized.value;
+  const orangeCapitalizedString = MolarityA11yStrings.orangeCapitalized.value;
+  const goldCapitalizedString = MolarityA11yStrings.goldCapitalized.value;
+  const yellowCapitalizedString = MolarityA11yStrings.yellowCapitalized.value;
+  const greenCapitalizedString = MolarityA11yStrings.greenCapitalized.value;
+  const blueCapitalizedString = MolarityA11yStrings.blueCapitalized.value;
+  const purpleCapitalizedString = MolarityA11yStrings.purpleCapitalized.value;
+  const clearCapitalizedString = MolarityA11yStrings.clearCapitalized.value;
+
   class SoluteDescriber {
 
     /**
@@ -90,34 +101,35 @@ define( require => {
     /**
      * //TODO: make static with parameter
      * Gets the color of the solution.
+     * @param {boolean}  isCapitalized
      * @public
      * @returns {string}
      */
-    getCurrentColor() {
+    getCurrentColor( isCapitalized = false ) {
       const currentSolute = this.getCurrentSolute( true );
 
       if ( this.concentrationDescriber.isNoSolute() ) {
-        return clearString;
+        return isCapitalized ? clearCapitalizedString : clearString;
       }
       switch( currentSolute ) {
         case drinkMixString:
-          return redString;
+          return isCapitalized ? redCapitalizedString : redString;
         case cobaltIINitrateString:
-          return redString;
+          return isCapitalized ? redCapitalizedString : redString;
         case cobaltChlorideString:
-          return pinkString;
+          return isCapitalized ? pinkCapitalizedString : pinkString;
         case potassiumDichromateString:
-          return orangeString;
+          return isCapitalized ? orangeCapitalizedString : orangeString;
         case goldIIIChlorideString:
-          return goldString;
+          return isCapitalized ? goldCapitalizedString : goldString;
         case potassiumChromateString:
-          return yellowString;
+          return isCapitalized ? yellowCapitalizedString : yellowString;
         case nickelIIChlorideString:
-          return greenString;
+          return isCapitalized ? greenCapitalizedString : greenString;
         case copperSulfateString:
-          return blueString;
+          return isCapitalized ? blueCapitalizedString : blueString;
         case potassiumPermanganateString:
-          return purpleString;
+          return isCapitalized ? purpleCapitalizedString : purpleString;
         default:
           return '';
       }
@@ -153,8 +165,8 @@ define( require => {
       }
 
       return StringUtils.fillIn( soluteChangedString, {
-        color: this.getCurrentColor(),
-        solids: this.concentrationDescriber.getCurrentSolidsAmount(),
+        color: this.getCurrentColor( true ),
+        solids: this.concentrationDescriber.getCurrentSolidsAmount( false ),
         concentrationClause: concentrationClause
       } );
     }

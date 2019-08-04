@@ -320,7 +320,7 @@ define( function( require ) {
       value: 'Solution {{concentration}}'
     },
     quantitativeConcentrationStatePattern: {
-      value: 'Concentration {{concentration}}'
+      value: 'concentration {{concentration}}'
     },
     quantitativeConcentrationPattern: {
       value: 'Solution is {{saturatedConcentration}}, and concentration is {{concentration}}'
@@ -351,7 +351,7 @@ define( function( require ) {
       value: 'beyond max concentration'
     },
     noSoluteAlertQuantitative: {
-      value: 'Clear solution, pure water at 0.000 molar.'
+      value: 'Clear solution, pure water at zero moles.'
     },
     noSoluteAlertQualitative: {
       value: 'Clear solution, pure water with no solute.'
@@ -396,6 +396,35 @@ define( function( require ) {
     },
     solutionValuesUncheckedAlert: {
       value: 'Values hidden.'
+    },
+
+    // capitalized color strings
+    redCapitalized: {
+      value: 'Red'
+    },
+    pinkCapitalized: {
+      value: 'Pink'
+    },
+    orangeCapitalized: {
+      value: 'Orange'
+    },
+    goldCapitalized: {
+      value: 'Gold'
+    },
+    yellowCapitalized: {
+      value: 'Yellow'
+    },
+    greenCapitalized: {
+      value: 'Green'
+    },
+    blueCapitalized: {
+      value: 'Blue'
+    },
+    purpleCapitalized: {
+      value: 'Purple'
+    },
+    clearCapitalized: {
+      value: 'Clear'
     },
 
     // color strings
