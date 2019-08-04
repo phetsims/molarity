@@ -26,7 +26,6 @@ define( require => {
   const concentrationRangePatternString = MolarityA11yStrings.concentrationRangePattern.value;
   const qualitativeConcentrationStatePatternString = MolarityA11yStrings.qualitativeConcentrationStatePattern.value;
   const quantitativeConcentrationStatePatternString = MolarityA11yStrings.quantitativeConcentrationStatePattern.value;
-  const quantitativeInitialValueTextPatternString = MolarityA11yStrings.quantitativeInitialValueTextPattern.value;
   const saturationLostAlertPatternString = MolarityA11yStrings.saturationLostAlertPattern.value;
   const saturationReachedAlertString = MolarityA11yStrings.saturationReachedAlert.value;
   const stillSaturatedAlertPatternString = MolarityA11yStrings.stillSaturatedAlertPattern.value;
@@ -351,26 +350,6 @@ define( require => {
         return StringUtils.fillIn( qualitativeConcentrationStatePatternString, {
           concentration: this.getCurrentConcentration()
         } );
-      }
-    }
-
-    /**
-     * Creates aria-valueText strings when quantitative descriptions are being used
-     * @param {boolean} isInitialAlert
-     * @param {string} quantity
-     * @public
-     * @returns {string}
-     */
-    getQuantitativeValueText( isInitialAlert, quantity ) {
-
-      // A different pattern is used when it's the first alert read out after the volume slider has been focused.
-      if ( isInitialAlert ) {
-        return StringUtils.fillIn( quantitativeInitialValueTextPatternString, {
-          quantity: quantity
-        } );
-      }
-      else {
-        return quantity;
       }
     }
   }

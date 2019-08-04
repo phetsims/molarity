@@ -65,10 +65,7 @@ define( require => {
 
         // Different alert text is read out depending on whether descriptions are qualitative or quantitative.
         if ( useQuantitativeDescriptionsProperty.value ) {
-          this.alertSliderQuantitative( soluteAmountDescriber.isInitialSoluteAmountAlert );
-          if ( soluteAmountDescriber.isInitialSoluteAmountAlert ) {
-            soluteAmountDescriber.isInitialSoluteAmountAlert = false;
-          }
+          this.alertSliderQuantitative();
         }
         else {
 
@@ -110,8 +107,11 @@ define( require => {
       // An alert is read out when the solute is changed
       solution.soluteProperty.lazyLink( () => this.alertSolute() );
 
-      // An alert is read out when the valuesVisibleProperty.
-      valuesVisibleProperty.lazyLink( newValue => this.alertValuesVisible( newValue ) );
+      // An alert is read out when the valuesVisibleProperty changes.
+      valuesVisibleProperty.lazyLink(
+        newValue => this.alertValuesVisible( newValue )
+
+      );
     }
 
     /**

@@ -91,10 +91,6 @@ define( require => {
       this.soluteAmountRegionChanged = false;
 
       // @private
-      // {boolean} - tracks whether the solute amount slider has just been focused.
-      this.isInitialSoluteAmountAlert = true;
-
-      // @private
       // {boolean|null} - tracks whether solute amount has just increased. null when simulation starts or resets.
       this.soluteAmountIncreased = null;
 
@@ -110,21 +106,13 @@ define( require => {
     }
 
     /**
-     * Sets the initial solute amount alert value to true when a slider is focused to trigger a special alert right after focus.
-     * @public
-     */
-    setInitialSoluteAmountAlert() {
-      this.isInitialSoluteAmountAlert = true;
-    }
-
-    /**
      * Creates a string that describes the solute amount in the beaker.
      * @public
      * @returns {string} - e.g. 'contains a lot of potassium permanganate"
      */
     getBeakerSoluteAmountString() {
       return StringUtils.fillIn( beakerSoluteAmountPatternString, {
-        soluteAmount: this.getCurrentSoluteAmount(true),
+        soluteAmount: this.getCurrentSoluteAmount( true ),
         solute: this.soluteDescriber.getCurrentSolute()
       } );
     }
@@ -182,7 +170,20 @@ define( require => {
         solute: this.soluteDescriber.getCurrentSolute()
       } );
     }
+
+
+    /**
+     * Generates the aria-value text for the solute amount slider
+     * @public
+     * @returns {string}
+     */
+    getSoluteAmountValueText() {
+      return this.useQuantitativeDescriptionsProperty.value ?
+             this.getCurrentSoluteAmount() :
+             this.getSoluteAmountState();
+    }
   }
+
 
   /**
    * Calculates which item to use from the SOLUTE_AMOUNT_STRINGS array.

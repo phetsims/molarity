@@ -91,10 +91,6 @@ define( require => {
       this.volumeRegionChanged = false;
 
       // @private
-      // {boolean} - tracks whether the volume slider has just been focused.
-      this.isInitialVolumeAlert = true;
-
-      // @private
       // {boolean|null} - tracks whether volume has just increased or decreased. null when simulation starts or resets.
       this.volumeIncreased = null;
 
@@ -107,14 +103,6 @@ define( require => {
         this.volumeRegionChanged = this.currentRegion !== oldRegion;
         this.volumeIncreased = newValue > oldValue;
       } );
-    }
-
-    /**
-     * Sets the initial volume alert value to true when a slider is focused to trigger a special alert right after focus.
-     * @public
-     */
-    setInitialVolumeAlert() {
-      this.isInitialVolumeAlert = true;
     }
 
     /**

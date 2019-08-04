@@ -46,16 +46,13 @@ define( function( require ) {
    * @param {Property.<boolean>} valuesVisibleProperty
    * @param {Tandem} tandem
    * @param {string} accessibleName - a11y
-   * @param {string} helpText - a11y
-   * @param {function} getOnFocusAriaValueText - a11y
    * @param {function} getOnChangeAriaValueText - a11y
-   * @param {function} setInitialAlert - a11y: used to trigger the alert read out right after slider is focused
    * @param {Property} soluteProperty
    * @constructor
    */
   function VerticalSlider( title, subtitle, minLabel, maxLabel, trackSize, property, range,
                            decimalPlaces, units, valuesVisibleProperty, tandem, accessibleName,
-                           getOnFocusAriaValueText, getOnChangeAriaValueText, setInitialAlert, soluteProperty ) {
+                           getOnChangeAriaValueText, soluteProperty ) {
 
     const titleNode = new MultiLineText( title, {
       font: new PhetFont( { size: 24, weight: 'bold' } ),
@@ -96,7 +93,6 @@ define( function( require ) {
       accessibleName: accessibleName,
       appendDescription: true,
       keyboardStep: 0.050,
-      a11yCreateOnFocusAriaValueText: getOnFocusAriaValueText,
       a11yCreateValueChangeAriaValueText: getOnChangeAriaValueText,
       containerTagName: 'div', // for fixing layout in a11y-view with aria-valuetext
       startDrag: event => {
@@ -105,11 +101,6 @@ define( function( require ) {
       endDrag: () => {
         this.draggingPointerType = null;
       }
-    } );
-
-    // a11y - sets the initial alert status of the describer to true (a special alert is read on initial slider change)
-    sliderNode.addInputListener( {
-      focus: setInitialAlert
     } );
 
     const valueNode = new Text( '?', {

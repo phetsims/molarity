@@ -89,7 +89,7 @@ define( function( require ) {
     // valuesVisibleProperty currently, improve maintainability by not overloading valuesVisibleProperty with
     // description-specific use-case. For example, we could decide to display quantitative descriptions when not showing
     // values, but the state of solution is "x," with no refactoring.
-    const useQuantitativeDescriptionsProperty = new DerivedProperty( [valuesVisibleProperty],
+    const useQuantitativeDescriptionsProperty = new DerivedProperty( [ valuesVisibleProperty ],
       currentValuesVisible => currentValuesVisible );
 
     // a11y - initializes describers and alert manager
@@ -141,14 +141,7 @@ define( function( require ) {
       valuesVisibleProperty,
       tandem.createTandem( 'soluteAmountSlider' ),
       soluteAmountNoNewlineString,
-      () => soluteAmountDescriber.getOnFocusSoluteAmountValueText(),
-      () => {
-        return useQuantitativeDescriptionsProperty.value ?
-               concentrationDescriber.getQuantitativeValueText( soluteAmountDescriber.isInitialSoluteAmountAlert,
-                 soluteAmountDescriber.getCurrentSoluteAmount() ) :
-               soluteAmountDescriber.getSoluteAmountState();
-      },
-      () => soluteAmountDescriber.setInitialSoluteAmountAlert(),
+      () => soluteAmountDescriber.getSoluteAmountValueText(),
       model.solution.soluteProperty
     );
 
@@ -165,14 +158,11 @@ define( function( require ) {
       valuesVisibleProperty,
       tandem.createTandem( 'solutionVolumeSlider' ),
       solutionVolumeString,
-      () => volumeDescriber.getOnFocusVolumeValueText(),
       () => {
         return useQuantitativeDescriptionsProperty.value ?
-               concentrationDescriber.getQuantitativeValueText( volumeDescriber.isInitialVolumeAlert,
-                 volumeDescriber.getCurrentVolume() ) :
+               volumeDescriber.getCurrentVolume() :
                volumeDescriber.getVolumeState();
       },
-      () => volumeDescriber.setInitialVolumeAlert(),
       model.solution.soluteProperty
     );
 
@@ -223,7 +213,7 @@ define( function( require ) {
 
     // sound generator for check box
     const uncheckedClip = new SoundClip( checkboxUncheckedSound, {
-      enableControlProperties: [new InvertedBooleanProperty( model.resetInProgressProperty )]
+      enableControlProperties: [ new InvertedBooleanProperty( model.resetInProgressProperty ) ]
     } );
     soundManager.addSoundGenerator( uncheckedClip );
     const checkedClip = new SoundClip( checkboxCheckedSound );
@@ -259,7 +249,7 @@ define( function( require ) {
       labelContent: solutionControlsString,
       descriptionContent: sliderHelpTextString
     } );
-    solutionControlsNode.accessibleOrder = [soluteAmountSlider, solutionVolumeSlider];
+    solutionControlsNode.accessibleOrder = [ soluteAmountSlider, solutionVolumeSlider ];
 
     // a11y - contains PDOM heading for Play Area, and orders the PDOM for included elements
     this.playAreaNode.accessibleOrder = [
