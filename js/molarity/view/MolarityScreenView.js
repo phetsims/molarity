@@ -162,6 +162,13 @@ define( function( require ) {
       model.solution.soluteProperty
     );
 
+    // a11y - when descriptions switch from quantitative to qualitative or vice versa, aria-valueText of both sliders
+    // is updated.
+    useQuantitativeDescriptionsProperty.link( () => {
+      solutionVolumeSlider.setAriaValueText( volumeDescriber.getVolumeValueText() );
+      soluteAmountSlider.setAriaValueText( soluteAmountDescriber.getSoluteAmountValueText() );
+    } );
+
     // concentration display
     const concentrationBarSize = new Dimension2( 40, cylinderSize.height + 50 );
     const concentrationDisplay = new ConcentrationDisplay( model.solution, MConstants.CONCENTRATION_RANGE,
