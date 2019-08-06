@@ -1433,6 +1433,63 @@ window.phet.phetio.phetioTypes = assert &&
       "supertype": "NodeIO",
       "typeName": "TextIO"
     },
+    "UtteranceQueueIO": {
+      "documentation": "Manages a queue of Utterances that are read in order by a screen reader.",
+      "events": [
+        "announced"
+      ],
+      "methodOrder": [],
+      "methods": {
+        "addToBack": {
+          "documentation": "Add the utterance (string) to the end of the queue.",
+          "invocableForReadOnlyElements": false,
+          "parameterTypes": [
+            "StringIO"
+          ],
+          "returnType": "VoidIO"
+        },
+        "addToFront": {
+          "documentation": "Add the utterance (string) to the beginning of the queue.",
+          "invocableForReadOnlyElements": false,
+          "parameterTypes": [
+            "StringIO"
+          ],
+          "returnType": "VoidIO"
+        },
+        "getEnabled": {
+          "documentation": "Get whether the utteranceQueue is enabled. When enabled, Utterances cannot be added to the queue, and the Queue cannot be cleared. Also nothing will be sent to assistive technology.",
+          "parameterTypes": [
+            "VoidIO"
+          ],
+          "returnType": "BooleanIO"
+        },
+        "getMuted": {
+          "documentation": "Get whether the utteranceQueue is muted. If muted, utterances still move through the queue but will not be read by screen readers.",
+          "parameterTypes": [
+            "VoidIO"
+          ],
+          "returnType": "BooleanIO"
+        },
+        "setEnabled": {
+          "documentation": "Set whether the utteranceQueue will be enabled or not. When enabled, Utterances cannot be added to the queue, and the Queue cannot be cleared. Also nothing will be sent to assistive technology.",
+          "invocableForReadOnlyElements": false,
+          "parameterTypes": [
+            "BooleanIO"
+          ],
+          "returnType": "VoidIO"
+        },
+        "setMuted": {
+          "documentation": "Set whether the utteranceQueue will be muted or not. If muted, utterances still move through the queue but will not be read by screen readers.",
+          "invocableForReadOnlyElements": false,
+          "parameterTypes": [
+            "BooleanIO"
+          ],
+          "returnType": "VoidIO"
+        }
+      },
+      "supertype": "ObjectIO",
+      "typeName": "UtteranceQueueIO"
+    },
     "Vector2IO": {
       "documentation": "A numerical object with x and y properties, like {x:3,y:4}",
       "events": [],
