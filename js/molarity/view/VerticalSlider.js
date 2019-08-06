@@ -5,6 +5,8 @@
  * Can be switched between qualitative and quantitative display of range and value.
  *
  * @author Chris Malley (PixelZoom, Inc.)
+ * @author Michael Kauzmann (PhET Interactive Simulations)
+ * @author Taylor Want (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

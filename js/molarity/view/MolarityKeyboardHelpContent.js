@@ -4,6 +4,7 @@
  * Content for the "Keyboard Shortcuts" dialog that can be brought up from the sim navigation bar.
  *
  * @author Taylor Want (PhET Interactive Simulations)
+ * @author Michael Kauzmann (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

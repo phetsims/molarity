@@ -3,6 +3,7 @@
 /**
  * Node for the PDOM content to describe the beaker.
  * @author Taylor Want (PhET Interactive Simulations)
+ * @author Michael Kauzmann (PhET Interactive Simulations)
  */
 define( require => {
   'use strict';
