@@ -35,13 +35,21 @@ define( function( require ) {
      */
     constructor( soluteProperty, solutes, resetInProgressProperty, options ) {
 
-      super( selectionSounds, _.extend( { orderedValueList: solutes }, options ) );
+      // the number of solutes needs to match the number of available sounds
+      assert( solutes.length === selectionSounds.length, 'the number of solutes must match the number of selection sounds' );
+
+      // map the solutes to the sounds
+      const soluteToSoundInfoMappings = [];
+      solutes.forEach( ( solute, index ) => {
+        soluteToSoundInfoMappings.push( { value: solute, soundInfo: selectionSounds[ index ] } );
+      } );
+      super( soluteToSoundInfoMappings, options );
 
       // play a sound when the solute change unless a reset is in progress
       soluteProperty.lazyLink( solute => {
 
         if ( !resetInProgressProperty.value ) {
-          this.playByValue( solute );
+          this.playAssociatedSound( solute );
         }
       } );
     }
