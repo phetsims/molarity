@@ -36,7 +36,7 @@ define( function( require ) {
     constructor( soluteProperty, solutes, resetInProgressProperty, options ) {
 
       // the number of solutes needs to match the number of available sounds
-      assert( solutes.length === selectionSounds.length, 'the number of solutes must match the number of selection sounds' );
+      assert && assert( solutes.length === selectionSounds.length, 'the number of solutes must match the number of selection sounds' );
 
       // map the solutes to the sounds
       const soluteToSoundInfoMappings = [];
