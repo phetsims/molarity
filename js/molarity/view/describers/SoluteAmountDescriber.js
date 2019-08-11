@@ -112,7 +112,7 @@ define( require => {
      */
     getBeakerSoluteAmountString() {
       return StringUtils.fillIn( beakerSoluteAmountPatternString, {
-        soluteAmount: this.getCurrentSoluteAmount( true ),
+        soluteAmount: this.getCurrentSoluteAmount(false),
         solute: this.soluteDescriber.getCurrentSolute()
       } );
     }
