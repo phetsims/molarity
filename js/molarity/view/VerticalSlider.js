@@ -22,6 +22,7 @@ define( function( require ) {
   const Node = require( 'SCENERY/nodes/Node' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  const Tandem = require('TANDEM/Tandem');
   const Text = require( 'SCENERY/nodes/Text' );
   const Util = require( 'DOT/Util' );
   const VSlider = require( 'SUN/VSlider' );
@@ -40,47 +41,52 @@ define( function( require ) {
    * @param {string} subtitle
    * @param {string} minLabel
    * @param {string} maxLabel
-   * @param {Dimension2} trackSize
    * @param {Property.<number>} property
    * @param {Range} range
    * @param {number} decimalPlaces
    * @param {string} units
    * @param {Property.<boolean>} valuesVisibleProperty
-   * @param {Tandem} tandem
-   * @param {string} accessibleName - a11y
-   * @param {function} getOnChangeAriaValueText - a11y
-   * @param {Property} soluteProperty
+   * @param {Property.<boolean>} useQuantitativeDescriptionsProperty -  whether quantitative or qualitative alerts and descriptions are used.
+   * @param {Object} [options]
    * @constructor
    */
-  function VerticalSlider( title, subtitle, minLabel, maxLabel, trackSize, property, range,
-                           decimalPlaces, units, valuesVisibleProperty, tandem, accessibleName,
-                           getOnChangeAriaValueText, soluteProperty ) {
+  function VerticalSlider( title, subtitle, minLabel, maxLabel, property, range, decimalPlaces, units,
+                           valuesVisibleProperty, useQuantitativeDescriptionsProperty, options ) {
+
+    options = _.extend( {
+      trackSize: null, // {Dimension2}
+      tandem: Tandem.required, // {Tandem}
+      accessibleName: null, // {string}
+
+      // {function} - responsible for dynamically setting aria-valuetext of the slider. See AccessibleValueHandler.js
+      getOnChangeAriaValueText: null
+    }, options );
 
     const titleNode = new MultiLineText( title, {
       font: new PhetFont( { size: 24, weight: 'bold' } ),
       maxWidth: MAX_TEXT_WIDTH,
-      tandem: tandem.createTandem( 'titleNode' )
+      tandem: options.tandem.createTandem( 'titleNode' )
     } );
 
     const subtitleNode = new Text( subtitle, {
       font: new PhetFont( 22 ),
       maxWidth: MAX_TEXT_WIDTH,
-      tandem: tandem.createTandem( 'subtitleNode' )
+      tandem: options.tandem.createTandem( 'subtitleNode' )
     } );
 
     const minNode = new DualLabelNode( Util.toFixed( range.min, range.min === 0 ? 0 : MConstants.RANGE_DECIMAL_PLACES ),
-      minLabel, valuesVisibleProperty, RANGE_FONT, tandem.createTandem( 'minNode' ),
+      minLabel, valuesVisibleProperty, RANGE_FONT, options.tandem.createTandem( 'minNode' ),
       { maxWidth: MAX_TEXT_WIDTH } );
 
     const maxNode = new DualLabelNode( Util.toFixed( range.max, MConstants.RANGE_DECIMAL_PLACES ),
-      maxLabel, valuesVisibleProperty, RANGE_FONT, tandem.createTandem( 'maxNode' ),
+      maxLabel, valuesVisibleProperty, RANGE_FONT, options.tandem.createTandem( 'maxNode' ),
       { maxWidth: MAX_TEXT_WIDTH } );
 
     // @public (read-only) {string|null} - what, if anything, is currently dragging the thumb, null if nothing
     this.draggingPointerType = null;
 
     const sliderNode = new VSlider( property, range, {
-      trackSize: new Dimension2( trackSize.height, trackSize.width ), // swap dimensions
+      trackSize: new Dimension2( options.trackSize.height, options.trackSize.width ), // swap dimensions
       trackFillEnabled: 'black',
       trackStroke: 'rgb( 200, 200, 200 )',
       trackLineWidth: 7,
@@ -88,14 +94,15 @@ define( function( require ) {
       thumbSize: new Dimension2( 30, 68 ), // in horizontal orientation!
       thumbFill: THUMB_NORMAL_COLOR,
       thumbFillHighlighted: THUMB_HIGHLIGHT_COLOR,
-      tandem: tandem.createTandem( 'sliderNode' ),
+      tandem: options.tandem.createTandem( 'sliderNode' ),
 
       // a11y
       shiftKeyboardStep: Math.pow( 10, decimalPlaces * -1 ),
-      accessibleName: accessibleName,
+      accessibleName: options.accessibleName,
       appendDescription: true,
       keyboardStep: 0.050,
-      a11yCreateValueChangeAriaValueText: getOnChangeAriaValueText,
+      a11yCreateValueChangeAriaValueText: options.getOnChangeAriaValueText,
+      a11yDependencies: [ useQuantitativeDescriptionsProperty ], // aria-valuetext is updated whenever this Property changes
       containerTagName: 'div', // for fixing layout in a11y-view with aria-valuetext
       startDrag: event => {
         this.draggingPointerType = event.pointer.type;
@@ -108,7 +115,7 @@ define( function( require ) {
     const valueNode = new Text( '?', {
       font: new PhetFont( 20 ),
       maxWidth: 90, // constrain for i18n, determined empirically
-      tandem: tandem.createTandem( 'valueNode' )
+      tandem: options.tandem.createTandem( 'valueNode' )
     } );
 
     // layout
@@ -125,14 +132,14 @@ define( function( require ) {
 
     Node.call( this, {
       children: [ titleNode, subtitleNode, minNode, maxNode, sliderNode, valueNode ],
-      tandem: tandem
+      tandem: options.tandem
     } );
 
     // Update the value display, and position it relative to the track, so it's to the right of the slider thumb.
-    const trackMinY = sliderNode.centerY - ( trackSize.height / 2 );
+    const trackMinY = sliderNode.centerY - ( options.trackSize.height / 2 );
     property.link( function( value ) {
       valueNode.text = StringUtils.format( pattern0Value1UnitsString, Util.toFixed( value, decimalPlaces ), units );
-      valueNode.centerY = trackMinY + Util.linear( range.min, range.max, trackSize.height, 0, value );
+      valueNode.centerY = trackMinY + Util.linear( range.min, range.max, options.trackSize.height, 0, value );
     } );
 
     // switch between quantitative and qualitative display

@@ -133,16 +133,19 @@ define( function( require ) {
     const soluteAmountSlider = new VerticalSlider( soluteAmountString,
       StringUtils.format( patternParentheses0TextString, molesString ),
       noneString, lotsString,
-      new Dimension2( SLIDER_TRACK_WIDTH, cylinderSize.height ),
       model.solution.soluteAmountProperty,
       MConstants.SOLUTE_AMOUNT_RANGE,
       MConstants.SOLUTE_AMOUNT_DECIMAL_PLACES,
       unitsMolesString,
       valuesVisibleProperty,
-      tandem.createTandem( 'soluteAmountSlider' ),
-      soluteAmountNoNewlineString,
-      () => soluteAmountDescriber.getSoluteAmountValueText(),
-      model.solution.soluteProperty
+      useQuantitativeDescriptionsProperty, {
+        trackSize: new Dimension2( SLIDER_TRACK_WIDTH, cylinderSize.height ),
+        tandem: tandem.createTandem( 'soluteAmountSlider' ),
+
+        // a11y
+        accessibleName: soluteAmountNoNewlineString,
+        getOnChangeAriaValueText: () => soluteAmountDescriber.getSoluteAmountValueText()
+      }
     );
 
     // slider for controlling volume of solution, sized to match tick marks on the beaker
@@ -150,24 +153,20 @@ define( function( require ) {
     const solutionVolumeSlider = new VerticalSlider( solutionVolumeString,
       StringUtils.format( patternParentheses0TextString, litersString ),
       lowString, fullString,
-      new Dimension2( SLIDER_TRACK_WIDTH, volumeSliderHeight ),
       model.solution.volumeProperty,
       MConstants.SOLUTION_VOLUME_RANGE,
       MConstants.SOLUTION_VOLUME_DECIMAL_PLACES,
       unitsLitersString,
       valuesVisibleProperty,
-      tandem.createTandem( 'solutionVolumeSlider' ),
-      solutionVolumeString,
-      () => volumeDescriber.getVolumeValueText(),
-      model.solution.soluteProperty
-    );
+      useQuantitativeDescriptionsProperty, {
+        trackSize: new Dimension2( SLIDER_TRACK_WIDTH, volumeSliderHeight ),
+        tandem: tandem.createTandem( 'solutionVolumeSlider' ),
 
-    // a11y - when descriptions switch from quantitative to qualitative or vice versa, aria-valueText of both sliders
-    // is updated.
-    useQuantitativeDescriptionsProperty.link( () => {
-      solutionVolumeSlider.setAriaValueText( volumeDescriber.getVolumeValueText() );
-      soluteAmountSlider.setAriaValueText( soluteAmountDescriber.getSoluteAmountValueText() );
-    } );
+        // a11y
+        accessibleName: solutionVolumeString,
+        getOnChangeAriaValueText: () => volumeDescriber.getVolumeValueText()
+      }
+    );
 
     // concentration display
     const concentrationBarSize = new Dimension2( 40, cylinderSize.height + 50 );

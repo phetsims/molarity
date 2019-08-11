@@ -49,6 +49,7 @@ define( require => {
       this.soluteAmountDescriber = soluteAmountDescriber;
       this.volumeDescriber = volumeDescriber;
 
+      // Create the list of beaker descriptions for the PDOM
       this.beakerDescriptionList = new Node( {
         tagName: 'ul',
         labelContent: this.updateBeakerSummaryString()
