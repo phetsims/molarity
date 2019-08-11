@@ -191,7 +191,7 @@ define( require => {
    * @returns {number} - index (integer) to pull from SOLUTE_AMOUNT_STRINGS array.
    */
   const soluteAmountToIndex = ( soluteAmount ) => {
-    if ( soluteAmount <= 0.001 ) {
+    if ( soluteAmount < 0.001 ) {
       return 0;
     }
     else if ( soluteAmount <= .151 ) {

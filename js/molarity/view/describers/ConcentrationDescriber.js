@@ -186,7 +186,7 @@ define( require => {
      * @public
      */
     isNoSolute() {
-      return this.solution.soluteAmountProperty.value <= 0.001;
+      return this.solution.soluteAmountProperty.value < 0.001;
     }
 
     /**
@@ -386,7 +386,7 @@ define( require => {
    */
   const concentrationToIndex = ( maxConcentration, concentration ) => {
     const scaleIncrement = maxConcentration / ( CONCENTRATION_STRINGS.length - 2 );
-    if ( concentration <= 0.001 ) {
+    if ( concentration < 0.001 ) {
       return 0;
     }
     else if ( concentration <= scaleIncrement ) {
