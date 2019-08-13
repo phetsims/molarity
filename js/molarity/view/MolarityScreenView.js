@@ -92,13 +92,15 @@ define( function( require ) {
     const useQuantitativeDescriptionsProperty = new DerivedProperty( [ valuesVisibleProperty ],
       currentValuesVisible => currentValuesVisible );
 
-    // a11y - initializes describers and alert manager
+    // a11y - instantiates describers and alert manager to generate and update all PDOM and alert content.
     const concentrationDescriber = new ConcentrationDescriber( model.solution, useQuantitativeDescriptionsProperty );
     const soluteDescriber = new SoluteDescriber( model.solution, concentrationDescriber );
     const volumeDescriber = new VolumeDescriber( model.solution, concentrationDescriber,
       useQuantitativeDescriptionsProperty );
     const soluteAmountDescriber = new SoluteAmountDescriber( model.solution, soluteDescriber, concentrationDescriber,
       useQuantitativeDescriptionsProperty );
+
+    // TODO: should this be a singleton? or are we going to stick with disabling the eslint rule?
     new MolarityAlertManager( model.solution, useQuantitativeDescriptionsProperty, // eslint-disable-line no-new
       concentrationDescriber, soluteAmountDescriber, volumeDescriber, soluteDescriber, valuesVisibleProperty );
 
@@ -261,7 +263,7 @@ define( function( require ) {
       soluteComboBoxListParent
     ];
 
-    // a11y - contains PDOM heading for control area, and orders the PDOM for included elements
+    // a11y - contains PDOM heading for Control Area, and orders the PDOM for included elements
     this.controlAreaNode.accessibleOrder = [
       solutionValuesCheckbox,
       resetAllButton

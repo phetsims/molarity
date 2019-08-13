@@ -160,19 +160,6 @@ define( require => {
     }
 
     /**
-     * Creates the string to be used as the solute amount slider's aria-valueText on focus.
-     * @public
-     * @returns {string}
-     */
-    getOnFocusSoluteAmountValueText() {
-      return StringUtils.fillIn( soluteAmountSliderValueTextPatternString, {
-        soluteAmount: this.getCurrentSoluteAmount(),
-        solute: this.soluteDescriber.getCurrentSolute()
-      } );
-    }
-
-
-    /**
      * Generates the aria-value text for the solute amount slider
      * @public
      * @returns {string}

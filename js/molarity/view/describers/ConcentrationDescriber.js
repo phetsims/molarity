@@ -42,6 +42,7 @@ define( require => {
   const highlyConcentratedString = MolarityA11yStrings.highlyConcentrated.value;
   const maxConcentrationString = MolarityA11yStrings.maxConcentration.value;
 
+  // Concentration active region strings
   const hasZeroConcentrationString = MolarityA11yStrings.hasZeroConcentration.value;
   const hasLowConcentrationString = MolarityA11yStrings.hasLowConcentration.value;
   const isSlightlyConcentratedString = MolarityA11yStrings.isSlightlyConcentrated.value;
@@ -55,6 +56,8 @@ define( require => {
   const aCoupleOfString = MolarityA11yStrings.aCoupleOf.value;
   const aFewString = MolarityA11yStrings.aFew.value;
   const aLotOfString = MolarityA11yStrings.aLotOf.value;
+
+  // Solids lowercase region strings
   const someLowercaseString = MolarityA11yStrings.someLowercase.value;
   const aBunchOfLowercaseString = MolarityA11yStrings.aBunchOfLowercase.value;
   const aLotOfLowercaseString = MolarityA11yStrings.aLotOfLowercase.value;
@@ -148,6 +151,7 @@ define( require => {
       // {boolean} - tracks whether the solution has just become saturated or unsaturated.
       this.saturationStateChanged = false;
 
+      // update properties (documented above) when ConcentrationProperty changes
       this.concentrationProperty.lazyLink( ( newValue, oldValue ) => {
         assert && assert( newValue !== oldValue, 'unexpected: called with no change in concentration' );
         const newConcentrationRegion = concentrationToIndex( this.soluteProperty.value.saturatedConcentration,
@@ -160,6 +164,7 @@ define( require => {
         this.saturationStateChanged = newSaturationState !== previousSaturationState;
       } );
 
+      // update properties (documented above) when ConcentrationProperty changes
       this.precipitateAmountProperty.lazyLink( ( newValue, oldValue ) => {
         const newSolidsRegion = solidsToIndex( this.precipitateAmountProperty.value, this.getCurrentSaturatedConcentration() );
         const previousSaturationState = oldValue !== 0;
@@ -181,7 +186,7 @@ define( require => {
     }
 
     /**
-     * determines if there is no solute in the beaker.
+     * Determines if there is no solute in the beaker.
      * @returns {boolean}
      * @public
      */
@@ -222,7 +227,7 @@ define( require => {
     /**
      * Creates a string describing the concentration range of the current solute.
      * @public
-     * @returns {string} - quantitative or qualitative description of current concentration (e.g. "1.500 Molar" or "very concentrated")
+     * @returns {string} - quantitative or qualitative description of concentration (e.g. "1.500 Molar" or "very concentrated")
      */
     getCurrentConcentrationRange() {
       const maxConcentration = this.getCurrentSaturatedConcentration() > 5.0 ? 5.0 : this.getCurrentSaturatedConcentration();
@@ -232,7 +237,7 @@ define( require => {
     }
 
     /**
-     * Gets the saturated concentration amount of the currently selected solute.
+     * Gets the saturated concentration level of the currently selected solute.
      * @private
      * @returns {number}
      */
@@ -321,9 +326,9 @@ define( require => {
     }
 
     /**
-     * Creates the description strings that are read out when the solution is either newly saturated or newly unsaturated.
+     * Creates the string to be read out when the solution is either newly saturated or newly unsaturated.
      * @public
-     * @returns {string} - returns a string if the saturation state has changed
+     * @returns {string}
      * */
     getSaturationChangedString() {
       assert && assert( this.saturationStateChanged, 'failed: saturation state has not changed' );
@@ -385,6 +390,9 @@ define( require => {
    * @returns {number} index to pull from CONCENTRATION_STRINGS array
    */
   const concentrationToIndex = ( maxConcentration, concentration ) => {
+
+    // Concentration regions are evenly spaced within the region from 0 to max concentration for a given solute except
+    // for the lowest region (zero) and the highest region (max concentration) which are single value regions.
     const scaleIncrement = maxConcentration / ( CONCENTRATION_STRINGS.length - 2 );
     if ( concentration < 0.001 ) {
       return 0;

@@ -19,7 +19,8 @@ define( require => {
   const ValueChangeUtterance = require( 'SCENERY_PHET/accessibility/ValueChangeUtterance' );
 
   // a11y strings
-  const noSoluteAlertString = MolarityA11yStrings.noSoluteAlert.value;
+  const noSoluteQualitativeAlertString = MolarityA11yStrings.noSoluteQualitativeAlert.value;
+  const noSoluteQuantitativeAlertString = MolarityA11yStrings.noSoluteQuantitativeAlert.value;
   const qualitativeSaturatedValueTextPatternString = MolarityA11yStrings.qualitativeSaturatedValueTextPattern.value;
   const qualitativeSliderAlertPatternString = MolarityA11yStrings.qualitativeSliderAlertPattern.value;
   const quantitativeSliderAlertPatternString = MolarityA11yStrings.quantitativeSliderAlertPattern.value;
@@ -58,25 +59,22 @@ define( require => {
       solution.soluteAmountProperty.link( () => {
 
         // If the solution is newly saturated or newly unsaturated, an alert is read out. Different alert text is read
-        // out depending on whether descriptions are qualitative or quantitative.
+        // out depending on whether descriptions are qualitative or quantitative, and a special alert is read out when
+        // there is no solute in the beaker.
         if ( this.concentrationDescriber.isNewSaturationState() ) {
           this.alertNewSaturation();
+        }
+        else if ( concentrationDescriber.isNoSolute() ) {
+          this.alertNoSolute( useQuantitativeDescriptionsProperty );
         }
         else if ( useQuantitativeDescriptionsProperty.value ) {
           this.alertSliderQuantitative();
         }
         else {
-
-          // A special alert is read out when there is no solute in the beaker
-          if ( concentrationDescriber.isNoSolute() ) {
-            this.alertNoSolute();
-          }
-          else {
-            if ( this.concentrationDescriber.concentrationIncreased !== null ||
-                 this.concentrationDescriber.solidsIncreased !== null ) {
-              this.alertSliderQualitative( soluteAmountDescriber.getSoluteAmountChangeString(),
-                soluteAmountDescriber.soluteAmountRegionChanged );
-            }
+          if ( this.concentrationDescriber.concentrationIncreased !== null ||
+               this.concentrationDescriber.solidsIncreased !== null ) {
+            this.alertSliderQualitative( soluteAmountDescriber.getSoluteAmountChangeString(),
+              soluteAmountDescriber.soluteAmountRegionChanged );
           }
         }
       } );
@@ -84,24 +82,21 @@ define( require => {
       solution.volumeProperty.link( () => {
 
         // If the solution is newly saturated or newly unsaturated, an alert is read out. Different alert text is read
-        // out depending on whether descriptions are qualitative or quantitative.
+        // out depending on whether descriptions are qualitative or quantitative, and a special alert is read out when
+        // there is no solute in the beaker.
         if ( this.concentrationDescriber.isNewSaturationState() ) {
           this.alertNewSaturation();
+        }
+        else if ( concentrationDescriber.isNoSolute() ) {
+          this.alertNoSolute( useQuantitativeDescriptionsProperty );
         }
         else if ( useQuantitativeDescriptionsProperty.value ) {
           this.alertSliderQuantitative();
         }
         else {
-
-          // A special alert is read out when there is no solute in the beaker
-          if ( concentrationDescriber.isNoSolute() ) {
-            this.alertNoSolute();
-          }
-          else {
-            if ( this.concentrationDescriber.concentrationIncreased !== null ||
-                 this.concentrationDescriber.solidsIncreased !== null ) {
-              this.alertSliderQualitative( volumeDescriber.getVolumeChangeString(), volumeDescriber.volumeRegionChanged );
-            }
+          if ( this.concentrationDescriber.concentrationIncreased !== null ||
+               this.concentrationDescriber.solidsIncreased !== null ) {
+            this.alertSliderQualitative( volumeDescriber.getVolumeChangeString(), volumeDescriber.volumeRegionChanged );
           }
         }
       } );
@@ -110,9 +105,7 @@ define( require => {
       solution.soluteProperty.lazyLink( () => this.alertSolute() );
 
       // An alert is read out when the valuesVisibleProperty changes.
-      valuesVisibleProperty.lazyLink(
-        newValue => this.alertValuesVisible( newValue )
-      );
+      valuesVisibleProperty.lazyLink( newValue => this.alertValuesVisible( newValue ) );
     }
 
     /**
@@ -128,8 +121,10 @@ define( require => {
      * Alerts when there is no solute in the beaker.
      * @private
      */
-    alertNoSolute() {
-      this.sliderUtterance.alert = noSoluteAlertString;
+    alertNoSolute( useQuantitativeDescriptionsProperty ) {
+      this.sliderUtterance.alert = useQuantitativeDescriptionsProperty ?
+                                   noSoluteQuantitativeAlertString :
+                                   noSoluteQualitativeAlertString;
       utteranceQueue.addToBack( this.sliderUtterance );
     }
 
