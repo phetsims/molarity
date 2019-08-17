@@ -114,7 +114,10 @@ define( require => {
      */
     alertNewSaturation() {
       this.saturationUtterance.alert = this.concentrationDescriber.getSaturationChangedString();
-      utteranceQueue.addToBack( this.saturationUtterance );
+
+      // clears the utteranceQueue to remove utterances from previous saturation region, then adds the saturation utterance.
+      utteranceQueue.clear();
+      utteranceQueue.addToFront( this.saturationUtterance );
     }
 
     /**
