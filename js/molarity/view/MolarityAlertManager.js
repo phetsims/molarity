@@ -125,7 +125,7 @@ define( require => {
      * @private
      */
     alertNoSolute( useQuantitativeDescriptionsProperty ) {
-      this.sliderUtterance.alert = useQuantitativeDescriptionsProperty ?
+      this.sliderUtterance.alert = useQuantitativeDescriptionsProperty.value ?
                                    noSoluteQuantitativeAlertString :
                                    noSoluteQualitativeAlertString;
       utteranceQueue.addToBack( this.sliderUtterance );
