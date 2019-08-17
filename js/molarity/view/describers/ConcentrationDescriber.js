@@ -156,8 +156,8 @@ define( require => {
         assert && assert( newValue !== oldValue, 'unexpected: called with no change in concentration' );
         const newConcentrationRegion = concentrationToIndex( this.soluteProperty.value.saturatedConcentration,
           this.concentrationProperty.value );
-        const previousSaturationState = oldValue >= this.getCurrentSaturatedConcentration();
-        const newSaturationState = newValue >= this.getCurrentSaturatedConcentration();
+        const previousSaturationState = oldValue > this.getCurrentSaturatedConcentration();
+        const newSaturationState = this.solution.isSaturated();
         this.concentrationIncreased = newValue > oldValue;
         this.concentrationRegionChanged = newConcentrationRegion !== this.concentrationRegion;
         this.concentrationRegion = newConcentrationRegion;
@@ -409,11 +409,11 @@ define( require => {
     else if ( concentration <= 4 * scaleIncrement ) {
       return 4;
     }
-    else if ( concentration >= scaleIncrement * 5 ) {
-      return 6;
+    else if ( concentration < 5 * scaleIncrement ) {
+      return 5;
     }
     else {
-      return 5;
+      return 6;
     }
   };
 
