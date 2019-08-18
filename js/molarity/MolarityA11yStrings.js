@@ -42,6 +42,12 @@ define( function( require ) {
     solutionControls: {
       value: 'Solution Controls'
     },
+    concentration: {
+      value: 'Concentration'
+    },
+    solution: {
+      value: 'Solution'
+    },
 
     // Help text strings
     solutionValuesHelpText: {
@@ -365,7 +371,7 @@ define( function( require ) {
       value: 'Solution saturated. Beyond max concentration, solids appear.'
     },
     saturationLostAlertPattern: {
-      value: 'Solution no longer saturated. Solution {{concentration}}, solids dissolve.'
+      value: 'Solution no longer saturated. {{solutionOrConcentration}} {{concentration}}, solids dissolve.'
     },
 
     // Saturated solution alert strings

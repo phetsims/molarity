@@ -21,6 +21,7 @@ define( require => {
   const beakerQuantitativeConcentrationPatternString = MolarityA11yStrings.beakerQuantitativeConcentrationPattern.value;
   const beakerQualitativeConcentrationPatternString = MolarityA11yStrings.beakerQualitativeConcentrationPattern.value;
   const beakerSaturationPatternString = MolarityA11yStrings.beakerSaturationPattern.value;
+  const concentrationString = MolarityA11yStrings.concentration.value;
   const concentrationAndUnitString = MolarityA11yStrings.concentrationAndUnit.value;
   const concentrationChangePatternString = MolarityA11yStrings.concentrationChangePattern.value;
   const concentrationRangePatternString = MolarityA11yStrings.concentrationRangePattern.value;
@@ -28,6 +29,7 @@ define( require => {
   const quantitativeConcentrationStatePatternString = MolarityA11yStrings.quantitativeConcentrationStatePattern.value;
   const saturationLostAlertPatternString = MolarityA11yStrings.saturationLostAlertPattern.value;
   const saturationReachedAlertString = MolarityA11yStrings.saturationReachedAlert.value;
+  const solutionString = MolarityA11yStrings.solution.value;
   const stillSaturatedAlertPatternString = MolarityA11yStrings.stillSaturatedAlertPattern.value;
   const withSolidsAlertPatternString = MolarityA11yStrings.withSolidsAlertPattern.value;
 
@@ -330,12 +332,13 @@ define( require => {
      * @public
      * @returns {string}
      * */
-    getSaturationChangedString() {
+    getSaturationChangedString( useQuantitativeDescriptionsProperty ) {
       assert && assert( this.saturationStateChanged, 'failed: saturation state has not changed' );
       return this.solution.isSaturated() ?
              saturationReachedAlertString :
              StringUtils.fillIn( saturationLostAlertPatternString, {
-               concentration: this.getCurrentConcentration()
+               concentration: this.getCurrentConcentration(),
+               solutionOrConcentration: useQuantitativeDescriptionsProperty.value ? concentrationString : solutionString
              } );
     }
 
