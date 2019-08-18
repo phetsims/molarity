@@ -320,10 +320,10 @@ define( function( require ) {
       value: 'Solution {{concentration}}'
     },
     quantitativeConcentrationStatePattern: {
-      value: 'concentration {{concentration}}'
+      value: 'concentration {{concentration}}.'
     },
     quantitativeConcentrationPattern: {
-      value: 'Solution is {{saturatedConcentration}}, and concentration is {{concentration}}'
+      value: 'Solution is {{saturatedConcentration}}, and concentration is {{concentration}}.'
     },
     concentrationAndUnit: {
       value: '{{concentration}} molar'
@@ -331,7 +331,7 @@ define( function( require ) {
 
     // Qualitative concentration value text strings
     qualitativeConcentrationPattern: {
-      value: 'Solution is {{saturatedConcentration}} and {{concentration}}.'
+      value: 'Solution is {{saturatedConcentration}} and {{concentration}}'
     },
     concentrationChangePattern: {
       value: '{{moreLess}} concentrated'
