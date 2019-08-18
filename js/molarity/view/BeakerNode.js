@@ -36,7 +36,6 @@ define( function( require ) {
   //a11y strings
   var beakerHeaderString = MolarityA11yStrings.beakerHeader.value;
 
-
   // constants
   var DEBUG_SHAPES = false;
   var TICK_COLOR = Color.GRAY;
@@ -171,7 +170,7 @@ define( function( require ) {
       tickLabelsParent.visible = visible;
     } );
 
-    // a11y -- adds the description node that holds the PDOM summary of the beaker.
+    // a11y - adds the description node that holds the PDOM summary of the beaker.
     this.addChild( new MolarityBeakerDescriptionNode( solution, useQuantitativeDescriptionsProperty, soluteDescriber,
       concentrationDescriber, soluteAmountDescriber, volumeDescriber ) );
 

@@ -42,6 +42,12 @@ define( function( require ) {
     solutionControls: {
       value: 'Solution Controls'
     },
+    concentration: {
+      value: 'Concentration'
+    },
+    solution: {
+      value: 'Solution'
+    },
 
     // Help text strings
     solutionValuesHelpText: {
@@ -62,7 +68,7 @@ define( function( require ) {
       value: ' In the Control Area there is a checkbox to show exact values for amount of solute (in moles), volume of solution (in liters), and concentration (in molar), and a button to reset the sim.'
     },
     stateOfSimPattern: {
-      value: 'Currently, beaker {{volume}} of a {{color}} ‬solution containing {{soluteAmount}} {{of}}‪{{solute}}‬ solute. {{concentrationClause}}\n'
+      value: 'Currently, beaker {{volume}} of a {{color}} ‬solution containing {{soluteAmount}} {{of}}‪{{solute}}‬ solute. {{concentrationClause}}.\n'
     },
     stateOfSimInteractionHint: {
       value: 'Play with solution in beaker and observe changes to concentration.'
@@ -70,8 +76,11 @@ define( function( require ) {
     stateOfSimNoSolutePattern: {
       value: 'Currently, beaker {{volume}} of pure water, and contains no {{solute}} solute.'
     },
-    noSoluteAlert: {
+    noSoluteQualitativeAlert: {
       value: 'No solute. Solution is pure water'
+    },
+    noSoluteQuantitativeAlert: {
+      value: 'Zero solute. Solution is pure water'
     },
     pureWater: {
       value: 'pure water'
@@ -362,7 +371,7 @@ define( function( require ) {
       value: 'Solution saturated. Beyond max concentration, solids appear.'
     },
     saturationLostAlertPattern: {
-      value: 'Solution no longer saturated. Solution {{concentration}}, solids dissolve.'
+      value: 'Solution no longer saturated. {{solutionOrConcentration}} {{concentration}}, solids dissolve.'
     },
 
     // Saturated solution alert strings

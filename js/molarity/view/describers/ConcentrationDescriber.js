@@ -21,6 +21,7 @@ define( require => {
   const beakerQuantitativeConcentrationPatternString = MolarityA11yStrings.beakerQuantitativeConcentrationPattern.value;
   const beakerQualitativeConcentrationPatternString = MolarityA11yStrings.beakerQualitativeConcentrationPattern.value;
   const beakerSaturationPatternString = MolarityA11yStrings.beakerSaturationPattern.value;
+  const concentrationString = MolarityA11yStrings.concentration.value;
   const concentrationAndUnitString = MolarityA11yStrings.concentrationAndUnit.value;
   const concentrationChangePatternString = MolarityA11yStrings.concentrationChangePattern.value;
   const concentrationRangePatternString = MolarityA11yStrings.concentrationRangePattern.value;
@@ -28,6 +29,7 @@ define( require => {
   const quantitativeConcentrationStatePatternString = MolarityA11yStrings.quantitativeConcentrationStatePattern.value;
   const saturationLostAlertPatternString = MolarityA11yStrings.saturationLostAlertPattern.value;
   const saturationReachedAlertString = MolarityA11yStrings.saturationReachedAlert.value;
+  const solutionString = MolarityA11yStrings.solution.value;
   const stillSaturatedAlertPatternString = MolarityA11yStrings.stillSaturatedAlertPattern.value;
   const withSolidsAlertPatternString = MolarityA11yStrings.withSolidsAlertPattern.value;
 
@@ -42,6 +44,7 @@ define( require => {
   const highlyConcentratedString = MolarityA11yStrings.highlyConcentrated.value;
   const maxConcentrationString = MolarityA11yStrings.maxConcentration.value;
 
+  // Concentration active region strings
   const hasZeroConcentrationString = MolarityA11yStrings.hasZeroConcentration.value;
   const hasLowConcentrationString = MolarityA11yStrings.hasLowConcentration.value;
   const isSlightlyConcentratedString = MolarityA11yStrings.isSlightlyConcentrated.value;
@@ -55,6 +58,8 @@ define( require => {
   const aCoupleOfString = MolarityA11yStrings.aCoupleOf.value;
   const aFewString = MolarityA11yStrings.aFew.value;
   const aLotOfString = MolarityA11yStrings.aLotOf.value;
+
+  // Solids lowercase region strings
   const someLowercaseString = MolarityA11yStrings.someLowercase.value;
   const aBunchOfLowercaseString = MolarityA11yStrings.aBunchOfLowercase.value;
   const aLotOfLowercaseString = MolarityA11yStrings.aLotOfLowercase.value;
@@ -148,18 +153,20 @@ define( require => {
       // {boolean} - tracks whether the solution has just become saturated or unsaturated.
       this.saturationStateChanged = false;
 
+      // update properties (documented above) when ConcentrationProperty changes
       this.concentrationProperty.lazyLink( ( newValue, oldValue ) => {
         assert && assert( newValue !== oldValue, 'unexpected: called with no change in concentration' );
         const newConcentrationRegion = concentrationToIndex( this.soluteProperty.value.saturatedConcentration,
           this.concentrationProperty.value );
-        const previousSaturationState = oldValue >= this.getCurrentSaturatedConcentration();
-        const newSaturationState = newValue >= this.getCurrentSaturatedConcentration();
+        const previousSaturationState = oldValue > this.getCurrentSaturatedConcentration();
+        const newSaturationState = this.solution.isSaturated();
         this.concentrationIncreased = newValue > oldValue;
         this.concentrationRegionChanged = newConcentrationRegion !== this.concentrationRegion;
         this.concentrationRegion = newConcentrationRegion;
         this.saturationStateChanged = newSaturationState !== previousSaturationState;
       } );
 
+      // update properties (documented above) when ConcentrationProperty changes
       this.precipitateAmountProperty.lazyLink( ( newValue, oldValue ) => {
         const newSolidsRegion = solidsToIndex( this.precipitateAmountProperty.value, this.getCurrentSaturatedConcentration() );
         const previousSaturationState = oldValue !== 0;
@@ -181,7 +188,7 @@ define( require => {
     }
 
     /**
-     * determines if there is no solute in the beaker.
+     * Determines if there is no solute in the beaker.
      * @returns {boolean}
      * @public
      */
@@ -222,7 +229,7 @@ define( require => {
     /**
      * Creates a string describing the concentration range of the current solute.
      * @public
-     * @returns {string} - quantitative or qualitative description of current concentration (e.g. "1.500 Molar" or "very concentrated")
+     * @returns {string} - quantitative or qualitative description of concentration (e.g. "1.500 Molar" or "very concentrated")
      */
     getCurrentConcentrationRange() {
       const maxConcentration = this.getCurrentSaturatedConcentration() > 5.0 ? 5.0 : this.getCurrentSaturatedConcentration();
@@ -232,7 +239,7 @@ define( require => {
     }
 
     /**
-     * Gets the saturated concentration amount of the currently selected solute.
+     * Gets the saturated concentration level of the currently selected solute.
      * @private
      * @returns {number}
      */
@@ -321,16 +328,17 @@ define( require => {
     }
 
     /**
-     * Creates the description strings that are read out when the solution is either newly saturated or newly unsaturated.
+     * Creates the string to be read out when the solution is either newly saturated or newly unsaturated.
      * @public
-     * @returns {string} - returns a string if the saturation state has changed
+     * @returns {string}
      * */
-    getSaturationChangedString() {
+    getSaturationChangedString( useQuantitativeDescriptionsProperty ) {
       assert && assert( this.saturationStateChanged, 'failed: saturation state has not changed' );
       return this.solution.isSaturated() ?
              saturationReachedAlertString :
              StringUtils.fillIn( saturationLostAlertPatternString, {
-               concentration: this.getCurrentConcentration()
+               concentration: this.getCurrentConcentration(),
+               solutionOrConcentration: useQuantitativeDescriptionsProperty.value ? concentrationString : solutionString
              } );
     }
 
@@ -385,6 +393,9 @@ define( require => {
    * @returns {number} index to pull from CONCENTRATION_STRINGS array
    */
   const concentrationToIndex = ( maxConcentration, concentration ) => {
+
+    // Concentration regions are evenly spaced within the region from 0 to max concentration for a given solute except
+    // for the lowest region (zero) and the highest region (max concentration) which are single value regions.
     const scaleIncrement = maxConcentration / ( CONCENTRATION_STRINGS.length - 2 );
     if ( concentration < 0.001 ) {
       return 0;
@@ -401,11 +412,11 @@ define( require => {
     else if ( concentration <= 4 * scaleIncrement ) {
       return 4;
     }
-    else if ( concentration >= scaleIncrement * 5 ) {
-      return 6;
+    else if ( concentration < 5 * scaleIncrement ) {
+      return 5;
     }
     else {
-      return 5;
+      return 6;
     }
   };
 

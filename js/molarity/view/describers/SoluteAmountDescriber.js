@@ -9,7 +9,7 @@
 define( require => {
   'use strict';
 
-  // modules
+  // Modules
   const MConstants = require( 'MOLARITY/molarity/MConstants' );
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
@@ -20,10 +20,9 @@ define( require => {
   const beakerSoluteAmountPatternString = MolarityA11yStrings.beakerSoluteAmountPattern.value;
   const soluteAmountAndUnitPatternString = MolarityA11yStrings.soluteAmountAndUnitPattern.value;
   const soluteAmountChangedPatternString = MolarityA11yStrings.soluteAmountChangedPattern.value;
-  const soluteAmountSliderValueTextPatternString = MolarityA11yStrings.soluteAmountSliderValueTextPattern.value;
   const qualitativeSoluteAmountStatePatternString = MolarityA11yStrings.qualitativeSoluteAmountStatePattern.value;
 
-  // solute Amount regions strings
+  // Solute Amount regions strings
   const aBunchOfString = MolarityA11yStrings.aBunchOf.value;
   const aBunchOfLowercaseString = MolarityA11yStrings.aBunchOfLowercase.value;
   const aLittleString = MolarityA11yStrings.aLittle.value;
@@ -35,17 +34,17 @@ define( require => {
   const maxAmountOfString = MolarityA11yStrings.maxAmountOf.value;
   const maxAmountOfLowercaseString = MolarityA11yStrings.maxAmountOfLowercase.value;
 
-  // solids regions strings
+  // Solids regions strings
   const someString = MolarityA11yStrings.some.value;
   const someLowercaseString = MolarityA11yStrings.someLowercase.value;
   const noString = MolarityA11yStrings.no.value;
   const noLowercaseString = MolarityA11yStrings.noLowercase.value;
 
-  // change strings
+  // Change strings
   const lessCapitalizedString = MolarityA11yStrings.lessCapitalized.value;
   const moreCapitalizedString = MolarityA11yStrings.moreCapitalized.value;
 
-  // constants
+  // Constants
   const SOLUTE_AMOUNT_STRINGS = [
     noString,
     aLittleString,
@@ -112,7 +111,7 @@ define( require => {
      */
     getBeakerSoluteAmountString() {
       return StringUtils.fillIn( beakerSoluteAmountPatternString, {
-        soluteAmount: this.getCurrentSoluteAmount(false),
+        soluteAmount: this.getCurrentSoluteAmount( false ),
         solute: this.soluteDescriber.getCurrentSolute()
       } );
     }
@@ -158,19 +157,6 @@ define( require => {
         solute: this.soluteDescriber.getCurrentSolute()
       } );
     }
-
-    /**
-     * Creates the string to be used as the solute amount slider's aria-valueText on focus.
-     * @public
-     * @returns {string}
-     */
-    getOnFocusSoluteAmountValueText() {
-      return StringUtils.fillIn( soluteAmountSliderValueTextPatternString, {
-        soluteAmount: this.getCurrentSoluteAmount(),
-        solute: this.soluteDescriber.getCurrentSolute()
-      } );
-    }
-
 
     /**
      * Generates the aria-value text for the solute amount slider

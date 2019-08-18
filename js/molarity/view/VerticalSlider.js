@@ -101,8 +101,8 @@ define( function( require ) {
       accessibleName: options.accessibleName,
       appendDescription: true,
       keyboardStep: 0.050,
-      a11yCreateValueChangeAriaValueText: options.getOnChangeAriaValueText,
-      a11yDependencies: [ useQuantitativeDescriptionsProperty ], // aria-valuetext is updated whenever this Property changes
+      a11yCreateValueChangeAriaValueText: options.getOnChangeAriaValueText, // aria-valuetext is updated when the property changes
+      a11yDependencies: [ useQuantitativeDescriptionsProperty ], // aria-valuetext is also updated whenever useQuantitative Descriptions Property changes
       containerTagName: 'div', // for fixing layout in a11y-view with aria-valuetext
       startDrag: event => {
         this.draggingPointerType = event.pointer.type;
