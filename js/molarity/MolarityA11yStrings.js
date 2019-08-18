@@ -332,7 +332,7 @@ define( function( require ) {
       value: 'concentration {{concentration}}.'
     },
     quantitativeConcentrationPattern: {
-      value: 'Solution is {{saturatedConcentration}}, and concentration is {{concentration}}.'
+      value: 'Solution is {{saturatedConcentration}}, and concentration is {{concentration}}'
     },
     concentrationAndUnit: {
       value: '{{concentration}} molar'
