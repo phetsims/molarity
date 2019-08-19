@@ -329,7 +329,7 @@ define( function( require ) {
       value: 'Solution {{concentration}}'
     },
     quantitativeConcentrationStatePattern: {
-      value: 'concentration {{concentration}}'
+      value: 'concentration {{concentration}}.'
     },
     quantitativeConcentrationPattern: {
       value: 'Solution is {{saturatedConcentration}}, and concentration is {{concentration}}'
