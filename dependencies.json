@@ -1,5 +1,5 @@
 {
-  "comment": "# molarity 1.4.8 Mon Aug 05 2019 16:13:14 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# molarity 1.4.8 Mon Aug 19 2019 14:17:46 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "HEAD"
@@ -21,15 +21,15 @@
     "branch": "HEAD"
   },
   "joist": {
-    "sha": "45167bf9741f298e608b4dcebfb761e02b1a8dc2",
-    "branch": "HEAD"
+    "sha": "f4fae1fa0e4ff2d674c5d4e78db45d6e18c1d343",
+    "branch": "molarity-1.4"
   },
   "kite": {
     "sha": "a43e7dd976f982ec74f2d0084ec65b80ff0507e4",
     "branch": "HEAD"
   },
   "molarity": {
-    "sha": "e828d13e6c8539b7feb00c5c061f6c77030a58f3",
+    "sha": "605529bdc5d874b37cf896b4f454fb9430f2e3db",
     "branch": "1.4"
   },
   "nitroglycerin": {
@@ -65,8 +65,8 @@
     "branch": "HEAD"
   },
   "scenery-phet": {
-    "sha": "fd193b3affed0f241b91e6de4070fb6b9506db6f",
-    "branch": "HEAD"
+    "sha": "01777f4bff8efddd17b8d58a5ca6befc071fd7f9",
+    "branch": "molarity-1.4"
   },
   "sherpa": {
     "sha": "79fb5b8c6f27048495f6ee7bb113221319a22407",
