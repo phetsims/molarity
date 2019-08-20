@@ -29,6 +29,7 @@ define( function( require ) {
   const keyboardCloseListString = require( 'string!MOLARITY/keyboard.closeList' );
   const keyboardChangeSoluteHelpHeadingString = require( 'string!MOLARITY/keyboard.changeSoluteHelpHeading' );
 
+  // Description strings for list of help commands
   const popUpListDescriptionString = MolarityA11yStrings.popUpListDescription.value;
   const moveThroughDescriptionString = MolarityA11yStrings.moveThroughDescription.value;
   const changeChooseDescriptionString = MolarityA11yStrings.changeChooseDescription.value;
@@ -63,11 +64,11 @@ define( function( require ) {
       const step3 = KeyboardHelpSection.labelWithIcon( keyboardChangeSoluteString, ICON_CREATOR.enter(), changeChooseDescriptionString );
       const step4 = KeyboardHelpSection.labelWithIcon( keyboardCloseListString, ICON_CREATOR.esc(), closeListDescriptionString );
       const changeSoluteContent = [ step1, step2, step3, step4 ];
-
       const changeSoluteHelpSection = new KeyboardHelpSection( keyboardChangeSoluteHelpHeadingString, changeSoluteContent,
         { a11yContentTagName: 'ol' } );
-      KeyboardHelpSection.alignHelpSectionIcons( [ generalNavigationHelpSection, changeSoluteHelpSection ] );
 
+      // Layout of all components of the help section created above.
+      KeyboardHelpSection.alignHelpSectionIcons( [ generalNavigationHelpSection, changeSoluteHelpSection ] );
       const leftContent = [ sliderKeyboardHelpSection ];
       const rightContent = [ changeSoluteHelpSection, generalNavigationHelpSection ];
       super( leftContent, rightContent, { columnSpacing: 35, sectionSpacing: 20 } );
@@ -75,6 +76,5 @@ define( function( require ) {
   }
 
   molarity.register( 'MolarityKeyboardHelpContent', MolarityKeyboardHelpContent );
-
   return MolarityKeyboardHelpContent;
 } );
