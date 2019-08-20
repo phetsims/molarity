@@ -56,6 +56,17 @@ define( require => {
   const purpleCapitalizedString = MolarityA11yStrings.purpleCapitalized.value;
   const clearCapitalizedString = MolarityA11yStrings.clearCapitalized.value;
 
+  // Lowercase solute name strings
+  const cobaltChlorideLowercaseString = MolarityA11yStrings.cobaltChlorideLowercase.value;
+  const cobaltIINitrateLowercaseString = MolarityA11yStrings.cobaltIINitrateLowercase.value;
+  const copperSulfateLowercaseString = MolarityA11yStrings.copperSulfateLowercase.value;
+  const drinkMixLowercaseString = MolarityA11yStrings.drinkMixLowercase.value;
+  const goldIIIChlorideLowercaseString = MolarityA11yStrings.goldIIIChlorideLowercase.value;
+  const nickelIIChlorideLowercaseString = MolarityA11yStrings.nickelIIChlorideLowercase.value;
+  const potassiumChromateLowercaseString = MolarityA11yStrings.potassiumChromateLowercase.value;
+  const potassiumDichromateLowercaseString = MolarityA11yStrings.potassiumDichromateLowercase.value;
+  const potassiumPermanganateLowercaseString = MolarityA11yStrings.potassiumPermanganateLowercase.value;
+
   class SoluteDescriber {
 
     /**
@@ -80,9 +91,28 @@ define( require => {
         return soluteName;
       }
       else {
-
-        //TODO: use SOLUTE_LOWERCASE_STRINGS array instead of .toLowerCase
-        return soluteName.charAt( 1 ).toLowerCase() + soluteName.slice( 2 );
+        switch( soluteName ) {
+          case drinkMixString:
+            return drinkMixLowercaseString;
+          case cobaltIINitrateString:
+            return cobaltIINitrateLowercaseString;
+          case cobaltChlorideString:
+            return cobaltChlorideLowercaseString;
+          case potassiumDichromateString:
+            return potassiumDichromateLowercaseString;
+          case goldIIIChlorideString:
+            return goldIIIChlorideLowercaseString;
+          case potassiumChromateString:
+            return potassiumChromateLowercaseString;
+          case nickelIIChlorideString:
+            return nickelIIChlorideLowercaseString;
+          case copperSulfateString:
+            return copperSulfateLowercaseString;
+          case potassiumPermanganateString:
+            return potassiumPermanganateLowercaseString;
+          default:
+            return '';
+        }
       }
     }
 
@@ -101,7 +131,6 @@ define( require => {
     }
 
     /**
-     * //TODO: make static with parameter
      * Gets the color of the solution.
      * @param {boolean}  isCapitalized
      * @public

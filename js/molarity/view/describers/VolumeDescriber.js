@@ -104,7 +104,7 @@ define( require => {
     }
 
     /**
-     * Gets the current value of volume either quantitatively or quantitatively to plug into descriptions.
+     * Gets the current value of volume either quantitatively or quantitatively to put into descriptions.
      * @param {boolean} [isActive]
      * @public
      * @returns {string} - examples: "1.500 Liters" for quantitative or "half full" for qualitative.
