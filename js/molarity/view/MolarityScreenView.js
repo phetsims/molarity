@@ -145,8 +145,10 @@ define( function( require ) {
         tandem: tandem.createTandem( 'soluteAmountSlider' ),
 
         // a11y
-        accessibleName: soluteAmountNoNewlineString,
-        getOnChangeAriaValueText: () => soluteAmountDescriber.getSoluteAmountValueText()
+        sliderOptions: {
+          accessibleName: soluteAmountNoNewlineString,
+          a11yCreateValueChangeAriaValueText: () => soluteAmountDescriber.getSoluteAmountValueText()
+        }
       }
     );
 
@@ -165,10 +167,11 @@ define( function( require ) {
         tandem: tandem.createTandem( 'solutionVolumeSlider' ),
 
         // a11y
-        accessibleName: solutionVolumeString,
-        getOnChangeAriaValueText: () => volumeDescriber.getVolumeValueText()
-      }
-    );
+        sliderOptions: {
+          accessibleName: solutionVolumeString,
+          a11yCreateValueChangeAriaValueText: () => volumeDescriber.getVolumeValueText()
+        }
+      } );
 
     // concentration display
     const concentrationBarSize = new Dimension2( 40, cylinderSize.height + 50 );

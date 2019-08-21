@@ -17,12 +17,13 @@ define( function( require ) {
   const DualLabelNode = require( 'MOLARITY/molarity/view/DualLabelNode' );
   const inherit = require( 'PHET_CORE/inherit' );
   const MConstants = require( 'MOLARITY/molarity/MConstants' );
+  const merge = require( 'PHET_CORE/merge' );
   const molarity = require( 'MOLARITY/molarity' );
   const MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
   const Node = require( 'SCENERY/nodes/Node' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  const Tandem = require('TANDEM/Tandem');
+  const Tandem = require( 'TANDEM/Tandem' );
   const Text = require( 'SCENERY/nodes/Text' );
   const Util = require( 'DOT/Util' );
   const VSlider = require( 'SUN/VSlider' );
@@ -53,13 +54,44 @@ define( function( require ) {
   function VerticalSlider( title, subtitle, minLabel, maxLabel, property, range, decimalPlaces, units,
                            valuesVisibleProperty, useQuantitativeDescriptionsProperty, options ) {
 
-    options = _.extend( {
-      trackSize: null, // {Dimension2}
+    options = merge( {
+      trackSize: null, // {Dimension2} - where width is the narrow slider width and height is the full height of the slider
       tandem: Tandem.required, // {Tandem}
-      accessibleName: null, // {string}
+      sliderOptions: {
+        trackFillEnabled: 'black',
+        trackStroke: 'rgb( 200, 200, 200 )',
+        trackLineWidth: 7,
+        trackCornerRadius: 10,
+        thumbSize: new Dimension2( 30, 68 ), // in horizontal orientation!
+        thumbFill: THUMB_NORMAL_COLOR,
+        thumbFillHighlighted: THUMB_HIGHLIGHT_COLOR,
 
-      // {function} - responsible for dynamically setting aria-valuetext of the slider. See AccessibleValueHandler.js
-      getOnChangeAriaValueText: null
+        // a11y
+        shiftKeyboardStep: Math.pow( 10, decimalPlaces * -1 ),
+        appendDescription: true,
+        keyboardStep: 0.050,
+        a11yDependencies: [ useQuantitativeDescriptionsProperty ], // aria-valuetext is also updated whenever useQuantitative Descriptions Property changes
+        containerTagName: 'div' // for fixing layout in a11y-view with aria-valuetext
+      }
+    }, options );
+
+    assert && assert( options.sliderOptions.tandem === undefined, 'VerticalSlider sets its own sliderOptions.tandem' );
+    assert && assert( options.sliderOptions.trackSize === undefined, 'VerticalSlider sets its own sliderOptions.trackSize' );
+    assert && assert( options.sliderOptions.startDrag === undefined, 'VerticalSlider sets its own sliderOptions.startDrag' );
+    assert && assert( options.sliderOptions.endDrag === undefined, 'VerticalSlider sets its own sliderOptions.endDrag' );
+
+    // options set by VerticalSlider
+    options = merge( {
+      sliderOptions: {
+        tandem: options.tandem.createTandem( 'sliderNode' ),
+        trackSize: new Dimension2( options.trackSize.height, options.trackSize.width ), // swap dimensions
+        startDrag: event => {
+          this.draggingPointerType = event.pointer.type;
+        },
+        endDrag: () => {
+          this.draggingPointerType = null;
+        }
+      }
     }, options );
 
     const titleNode = new MultiLineText( title, {
@@ -85,32 +117,7 @@ define( function( require ) {
     // @public (read-only) {string|null} - what, if anything, is currently dragging the thumb, null if nothing
     this.draggingPointerType = null;
 
-    const sliderNode = new VSlider( property, range, {
-      trackSize: new Dimension2( options.trackSize.height, options.trackSize.width ), // swap dimensions
-      trackFillEnabled: 'black',
-      trackStroke: 'rgb( 200, 200, 200 )',
-      trackLineWidth: 7,
-      trackCornerRadius: 10,
-      thumbSize: new Dimension2( 30, 68 ), // in horizontal orientation!
-      thumbFill: THUMB_NORMAL_COLOR,
-      thumbFillHighlighted: THUMB_HIGHLIGHT_COLOR,
-      tandem: options.tandem.createTandem( 'sliderNode' ),
-
-      // a11y
-      shiftKeyboardStep: Math.pow( 10, decimalPlaces * -1 ),
-      accessibleName: options.accessibleName,
-      appendDescription: true,
-      keyboardStep: 0.050,
-      a11yCreateValueChangeAriaValueText: options.getOnChangeAriaValueText, // aria-valuetext is updated when the property changes
-      a11yDependencies: [ useQuantitativeDescriptionsProperty ], // aria-valuetext is also updated whenever useQuantitative Descriptions Property changes
-      containerTagName: 'div', // for fixing layout in a11y-view with aria-valuetext
-      startDrag: event => {
-        this.draggingPointerType = event.pointer.type;
-      },
-      endDrag: () => {
-        this.draggingPointerType = null;
-      }
-    } );
+    const sliderNode = new VSlider( property, range, options.sliderOptions );
 
     const valueNode = new Text( '?', {
       font: new PhetFont( 20 ),
