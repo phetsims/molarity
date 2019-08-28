@@ -39,11 +39,11 @@ define( function( require ) {
       assert && assert( solutes.length === selectionSounds.length, 'the number of solutes must match the number of selection sounds' );
 
       // map the solutes to the sounds
-      const soluteToSoundInfoMappings = [];
+      const soluteToSoundInfoMap = new Map();
       solutes.forEach( ( solute, index ) => {
-        soluteToSoundInfoMappings.push( { value: solute, soundInfo: selectionSounds[ index ] } );
+        soluteToSoundInfoMap.set( solute, selectionSounds[ index ] );
       } );
-      super( soluteToSoundInfoMappings, options );
+      super( soluteToSoundInfoMap, options );
 
       // play a sound when the solute change unless a reset is in progress
       soluteProperty.lazyLink( solute => {
