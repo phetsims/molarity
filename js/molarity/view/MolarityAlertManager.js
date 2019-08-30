@@ -58,9 +58,8 @@ define( require => {
 
       solution.soluteAmountProperty.link( () => {
 
-        // If the solution is newly saturated or newly unsaturated, an alert is read out. Different alert text is read
-        // out depending on whether descriptions are qualitative or quantitative, and a special alert is read out when
-        // there is no solute in the beaker.
+        // If the solution is newly saturated or newly unsaturated, an alert is read out. The text depends on whether
+        // descriptions are qualitative or quantitative, and if there is any solute in the beaker.
         if ( this.concentrationDescriber.isNewSaturationState() ) {
           this.alertNewSaturation();
         }
@@ -81,9 +80,8 @@ define( require => {
 
       solution.volumeProperty.link( () => {
 
-        // If the solution is newly saturated or newly unsaturated, an alert is read out. Different alert text is read
-        // out depending on whether descriptions are qualitative or quantitative, and a special alert is read out when
-        // there is no solute in the beaker.
+        // If the solution is newly saturated or newly unsaturated, an alert is read out. The text depends on whether
+        // descriptions are qualitative or quantitative, and if there is any solute in the beaker.
         if ( this.concentrationDescriber.isNewSaturationState() ) {
           this.alertNewSaturation();
         }
@@ -101,7 +99,7 @@ define( require => {
         }
       } );
 
-      // An alert is read out when the solute is changed
+      // An alert is read out when the solute is changed.
       solution.soluteProperty.lazyLink( () => this.alertSolute() );
 
       // An alert is read out when the valuesVisibleProperty changes.

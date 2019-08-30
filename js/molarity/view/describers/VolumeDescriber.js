@@ -158,7 +158,8 @@ define( require => {
   }
 
   /**
-   * Calculates which item to use from the VOLUME_STRINGS array.
+   * Calculates which item to use from the VOLUME_STRINGS array. Region cutoff numbers are based on keypress balances,
+   * which are documented here: https://github.com/phetsims/molarity/issues/128
    * @param {number} volume
    * @returns {number} - index to pull from VOLUME_STRINGS array.
    */

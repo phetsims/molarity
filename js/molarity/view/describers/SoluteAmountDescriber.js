@@ -172,7 +172,8 @@ define( require => {
 
 
   /**
-   * Calculates which item to use from the SOLUTE_AMOUNT_STRINGS array.
+   * Calculates which item to use from the SOLUTE_AMOUNT_STRINGS array. Region cutoff numbers are based on keypress balances,
+   * which are documented here: https://github.com/phetsims/molarity/issues/128
    * @param {number} soluteAmount
    * @returns {number} - index (integer) to pull from SOLUTE_AMOUNT_STRINGS array.
    */

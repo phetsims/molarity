@@ -86,7 +86,7 @@ define( function( require ) {
     } );
 
     // Determines whether qualitative or quantitative a11y descriptions are used. Even though it is the same as the
-    // valuesVisibleProperty currently, improve maintainability by not overloading valuesVisibleProperty with
+    // valuesVisibleProperty currently, improves maintainability by not overloading valuesVisibleProperty with
     // description-specific use-case. For example, we could decide to display quantitative descriptions when not showing
     // values, but the state of solution is "x," with no refactoring.
     const useQuantitativeDescriptionsProperty = new DerivedProperty( [ valuesVisibleProperty ],
@@ -249,7 +249,7 @@ define( function( require ) {
       initialOutputLevel: 0.7
     } ) );
 
-    // a11y - heading for slider controls: contains heading for slider controls and orders included PDOM elements
+    // a11y - heading and accessible order for slider controls section of PDOM
     const solutionControlsNode = new Node( {
       tagName: 'div',
       labelTagName: 'h3',
@@ -258,7 +258,7 @@ define( function( require ) {
     } );
     solutionControlsNode.accessibleOrder = [ soluteAmountSlider, solutionVolumeSlider ];
 
-    // a11y - contains PDOM heading for Play Area, and orders the PDOM for included elements
+    // a11y - heading and accessible order for play area section of PDOM
     this.playAreaNode.accessibleOrder = [
       beakerNode,
       solutionControlsNode,

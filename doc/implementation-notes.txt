@@ -18,3 +18,8 @@ To make this easier, node constructors typically have this structure:
 
         // register observers
     }
+
+## Disposal
+
+There are no dynamic pieces to this simulation, and as a result nothing is disposed.
+As a result no listeners need to be unlinked or removed.

@@ -41,7 +41,7 @@ define( require => {
 
       super();
 
-      //@private
+      // @private
       this.solution = solution;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
       this.concentrationDescriber = concentrationDescriber;
@@ -49,11 +49,13 @@ define( require => {
       this.soluteAmountDescriber = soluteAmountDescriber;
       this.volumeDescriber = volumeDescriber;
 
-      // Create the list of beaker descriptions for the PDOM
+      // @private - Create the list of beaker descriptions for the PDOM
       this.beakerDescriptionList = new Node( {
         tagName: 'ul',
         labelContent: this.updateBeakerSummaryString()
       } );
+
+      // @private
       this.soluteAmountSummaryItem = new Node( { tagName: 'li' } );
       this.saturationSummaryItem = new Node( { tagName: 'li' } );
       this.concentrationSummaryItem = new Node( { tagName: 'li' } );
@@ -96,7 +98,7 @@ define( require => {
       } );
     }
 
-    //@private
+    // @private
     updateSoluteAmountSummary() {
       this.soluteAmountSummaryItem.innerContent = this.soluteAmountDescriber.getBeakerSoluteAmountString();
     }
