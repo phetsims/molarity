@@ -16,7 +16,7 @@ define( function( require ) {
 
   const MolarityA11yStrings = {
     of: {
-      value: 'of '
+      value: 'of'
     },
     more: {
       value: 'more'
@@ -65,10 +65,10 @@ define( function( require ) {
       value: 'In the Play Area, you find a beaker containing a solution, and a concentration readout. You can change solute amount, solution volume, and choose from nine different solutes to play with the solution in beaker.'
     },
     screenSummaryControlAreaPattern: {
-      value: ' In the Control Area there is a checkbox to show exact values for amount of solute (in moles), volume of solution (in liters), and concentration (in molar), and a button to reset the sim.'
+      value: 'In the Control Area there is a checkbox to show exact values for amount of solute (in moles), volume of solution (in liters), and concentration (in molar), and a button to reset the sim.'
     },
     stateOfSimPattern: {
-      value: 'Currently, beaker {{volume}} of a {{color}} ‬solution containing {{soluteAmount}} {{of}}‪{{solute}}‬ solute. {{concentrationClause}}.\n'
+      value: 'Currently, beaker {{volume}} of a {{color}} ‬solution containing {{soluteAmount}} {{of}} ‪{{solute}}‬ solute. {{concentrationClause}}.'
     },
     stateOfSimInteractionHint: {
       value: 'Play with solution in beaker and observe changes to concentration.'
@@ -94,13 +94,13 @@ define( function( require ) {
       value: 'Beaker'
     },
     beakerDescriptionPattern: {
-      value: 'Beaker {{volume}} of a {{solute}} solution. The {{color}} solution: '
+      value: 'Beaker {{volume}} of a {{solute}} solution. The {{color}} solution:'
     },
     hasZeroConcentration: {
       value: 'has zero concentration'
     },
     pureWaterPattern: {
-      value: 'Beaker {{volume}} of pure water. The {{color}} solution: '
+      value: 'Beaker {{volume}} of pure water. The {{color}} solution:'
     },
     beakerSoluteAmountPattern: {
       value: 'contains {{soluteAmount}} {{solute}}'
@@ -379,7 +379,7 @@ define( function( require ) {
       value: 'Still saturated{{withSolids}}'
     },
     withSolidsAlertPattern: {
-      value: ' with {{solidAmount}} solids'
+      value: 'with {{solidAmount}} solids'
     },
     solidsChangePattern: {
       value: '{{moreLess}} solids'
