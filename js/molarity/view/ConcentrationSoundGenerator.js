@@ -13,7 +13,7 @@ define( function( require ) {
   const molarity = require( 'MOLARITY/molarity' );
   const SoundClip = require( 'TAMBO/sound-generators/SoundClip' );
   const SoundGenerator = require( 'TAMBO/sound-generators/SoundGenerator' );
-  const MConstants = require( 'MOLARITY/molarity/MConstants' );
+  const MolarityConstants = require( 'MOLARITY/molarity/MolarityConstants' );
 
   // sounds
   const marimbaSound = require( 'sound!TAMBO/bright-marimba.mp3' );
@@ -49,7 +49,7 @@ define( function( require ) {
       const playConcentrationSound = () => {
         const concentration = solution.concentrationProperty.value;
         if ( concentration > 0 ) {
-          nonZeroConcentrationSoundClip.setPlaybackRate( 0.5 + concentration / MConstants.CONCENTRATION_RANGE.max );
+          nonZeroConcentrationSoundClip.setPlaybackRate( 0.5 + concentration / MolarityConstants.CONCENTRATION_RANGE.max );
           nonZeroConcentrationSoundClip.play();
         }
         else if ( concentrationAtLastSoundProduction > 0 ) {
@@ -67,7 +67,7 @@ define( function( require ) {
       };
 
       // trigger playing of the concentration sound as the solute amount changes
-      const soluteAmountBinMapper = new BinMapper( MConstants.SOLUTE_AMOUNT_RANGE, NUM_SOLUTE_BINS );
+      const soluteAmountBinMapper = new BinMapper( MolarityConstants.SOLUTE_AMOUNT_RANGE, NUM_SOLUTE_BINS );
       solution.soluteAmountProperty.lazyLink( ( soluteAmount, previousSoluteAmount ) => {
 
         // don't play if saturated - other sounds are used in that case
@@ -85,8 +85,8 @@ define( function( require ) {
           if ( !resetInProgressProperty.value &&
                ( changeDueToA11yAction ||
                  previousBin !== currentBin ||
-                 soluteAmount === MConstants.SOLUTE_AMOUNT_RANGE.max ||
-                 soluteAmount === MConstants.SOLUTE_AMOUNT_RANGE.min ) ) {
+                 soluteAmount === MolarityConstants.SOLUTE_AMOUNT_RANGE.max ||
+                 soluteAmount === MolarityConstants.SOLUTE_AMOUNT_RANGE.min ) ) {
 
             playConcentrationSound();
           }
@@ -94,7 +94,7 @@ define( function( require ) {
       } );
 
       // trigger playing of the concentration sound as the solution volume changes
-      const volumeBinMapper = new BinMapper( MConstants.SOLUTION_VOLUME_RANGE, NUM_VOLUME_BINS );
+      const volumeBinMapper = new BinMapper( MolarityConstants.SOLUTION_VOLUME_RANGE, NUM_VOLUME_BINS );
       solution.volumeProperty.lazyLink( ( volume, previousVolume ) => {
 
         // don't play if saturated - other sounds are used in that case
@@ -110,8 +110,8 @@ define( function( require ) {
           if ( !resetInProgressProperty.value &&
                ( changeDueToA11yAction ||
                  previousBin !== currentBin ||
-                 volume === MConstants.SOLUTION_VOLUME_RANGE.max ||
-                 volume === MConstants.SOLUTION_VOLUME_RANGE.min ) ) {
+                 volume === MolarityConstants.SOLUTION_VOLUME_RANGE.max ||
+                 volume === MolarityConstants.SOLUTION_VOLUME_RANGE.min ) ) {
 
             playConcentrationSound();
           }

@@ -11,7 +11,7 @@ define( require => {
   'use strict';
 
   // modules
-  const MConstants = require( 'MOLARITY/molarity/MConstants' );
+  const MolarityConstants = require( 'MOLARITY/molarity/MolarityConstants' );
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const Util = require( 'DOT/Util' );
@@ -206,7 +206,7 @@ define( require => {
       const concentration = this.concentrationProperty.value;
       if ( this.useQuantitativeDescriptionsProperty.value ) {
         return StringUtils.fillIn( concentrationAndUnitString, {
-          concentration: Util.toFixed( concentration, MConstants.CONCENTRATION_DECIMAL_PLACES )
+          concentration: Util.toFixed( concentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES )
         } );
       }
       else {

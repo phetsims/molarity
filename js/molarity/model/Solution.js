@@ -13,7 +13,7 @@ define( function( require ) {
   var DerivedProperty = require( 'AXON/DerivedProperty' );
   var DerivedPropertyIO = require( 'AXON/DerivedPropertyIO' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var MConstants = require( 'MOLARITY/molarity/MConstants' );
+  var MolarityConstants = require( 'MOLARITY/molarity/MolarityConstants' );
   var molarity = require( 'MOLARITY/molarity' );
   var NumberIO = require( 'TANDEM/types/NumberIO' );
   var NumberProperty = require( 'AXON/NumberProperty' );
@@ -45,20 +45,20 @@ define( function( require ) {
     this.soluteAmountProperty = new NumberProperty( soluteAmount, {
       tandem: tandem.createTandem( 'soluteAmountProperty' ),
       units: 'moles',
-      range: MConstants.SOLUTE_AMOUNT_RANGE
+      range: MolarityConstants.SOLUTE_AMOUNT_RANGE
     } );
 
     // @public
     this.volumeProperty = new NumberProperty( volume, {
       tandem: tandem.createTandem( 'volumeProperty' ),
       units: 'liters',
-      range: MConstants.SOLUTION_VOLUME_RANGE
+      range: MolarityConstants.SOLUTION_VOLUME_RANGE
     } );
 
     // @public derive the concentration: M = moles/liter
     this.concentrationProperty = new DerivedProperty( [ this.soluteProperty, this.soluteAmountProperty, this.volumeProperty ],
       function( solute, soluteAmount, volume ) {
-        return Util.toFixedNumber( volume > 0 ? Math.min( solute.saturatedConcentration, soluteAmount / volume ) : 0, MConstants.CONCENTRATION_DECIMAL_PLACES );
+        return Util.toFixedNumber( volume > 0 ? Math.min( solute.saturatedConcentration, soluteAmount / volume ) : 0, MolarityConstants.CONCENTRATION_DECIMAL_PLACES );
       }, {
         tandem: tandem.createTandem( 'concentrationProperty' ),
         units: 'moles/liter',

@@ -10,7 +10,7 @@ define( require => {
   'use strict';
 
   // Modules
-  const MConstants = require( 'MOLARITY/molarity/MConstants' );
+  const MolarityConstants = require( 'MOLARITY/molarity/MolarityConstants' );
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
@@ -137,7 +137,7 @@ define( require => {
     getCurrentSoluteAmount( isCapitalized = true ) {
       if ( this.useQuantitativeDescriptionsProperty.value ) {
         return StringUtils.fillIn( soluteAmountAndUnitPatternString, {
-          soluteAmount: Util.toFixed( Util.clamp( this.soluteAmountProperty.value, 0, 5.0 ), MConstants.SOLUTE_AMOUNT_DECIMAL_PLACES )
+          soluteAmount: Util.toFixed( Util.clamp( this.soluteAmountProperty.value, 0, 5.0 ), MolarityConstants.SOLUTE_AMOUNT_DECIMAL_PLACES )
         } );
       }
       else {

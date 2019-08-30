@@ -18,7 +18,7 @@ define( function( require ) {
   // constants
   var toSubscript = ChemUtils.toSubscript;
 
-  var MSymbols = {
+  var MolaritySymbols = {
     COBALT_II_NITRATE: toSubscript( 'Co(NO3)2' ),
     COBALT_CHLORIDE: toSubscript( 'CoCl2' ),
     COPPER_SULFATE: toSubscript( 'CuSO4' ),
@@ -32,7 +32,7 @@ define( function( require ) {
     CITRIC_ACID: toSubscript( 'C6H8O7' )
   };
 
-  molarity.register( 'MSymbols', MSymbols );
+  molarity.register( 'MolaritySymbols', MolaritySymbols );
 
-  return MSymbols;
+  return MolaritySymbols;
 } );

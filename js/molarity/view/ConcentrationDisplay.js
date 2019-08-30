@@ -18,7 +18,7 @@ define( function( require ) {
   var DualLabelNode = require( 'MOLARITY/molarity/view/DualLabelNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var LinearGradient = require( 'SCENERY/util/LinearGradient' );
-  var MConstants = require( 'MOLARITY/molarity/MConstants' );
+  var MolarityConstants = require( 'MOLARITY/molarity/MolarityConstants' );
   var molarity = require( 'MOLARITY/molarity' );
   var MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
   var Node = require( 'SCENERY/nodes/Node' );
@@ -80,12 +80,12 @@ define( function( require ) {
       tandem: tandem.createTandem( 'subtitleNode' )
     } );
 
-    var maxNode = new DualLabelNode( Util.toFixed( concentrationRange.max, MConstants.RANGE_DECIMAL_PLACES ),
+    var maxNode = new DualLabelNode( Util.toFixed( concentrationRange.max, MolarityConstants.RANGE_DECIMAL_PLACES ),
       highString, valuesVisibleProperty, RANGE_FONT, tandem.createTandem( 'maxNode' ),
       { maxWidth: maxTextWidth } );
 
     var minNode = new DualLabelNode( Util.toFixed( concentrationRange.min,
-      concentrationRange.min === 0 ? 0 : MConstants.RANGE_DECIMAL_PLACES ), zeroString,
+      concentrationRange.min === 0 ? 0 : MolarityConstants.RANGE_DECIMAL_PLACES ), zeroString,
       valuesVisibleProperty, RANGE_FONT, tandem.createTandem( 'minNode' ),
       { maxWidth: maxTextWidth } );
 
@@ -200,7 +200,7 @@ define( function( require ) {
       self.arrowNode.fill = solution.getColor();
 
       // update the value
-      valueNode.text = StringUtils.format( pattern0Value1UnitsString, Util.toFixed( concentration, MConstants.CONCENTRATION_DECIMAL_PLACES ), unitsMolarityString );
+      valueNode.text = StringUtils.format( pattern0Value1UnitsString, Util.toFixed( concentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES ), unitsMolarityString );
       valueNode.left = self.arrowNode.right + 5;
       valueNode.centerY = self.arrowNode.centerY;
     };

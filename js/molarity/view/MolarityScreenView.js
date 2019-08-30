@@ -20,7 +20,7 @@ define( function( require ) {
   const Dimension2 = require( 'DOT/Dimension2' );
   const inherit = require( 'PHET_CORE/inherit' );
   const InvertedBooleanProperty = require( 'TAMBO/InvertedBooleanProperty' );
-  const MConstants = require( 'MOLARITY/molarity/MConstants' );
+  const MolarityConstants = require( 'MOLARITY/molarity/MolarityConstants' );
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const MolarityAlertManager = require( 'MOLARITY/molarity/view/MolarityAlertManager' );
@@ -113,13 +113,13 @@ define( function( require ) {
     } );
 
     // beaker, with solution and precipitate inside of it
-    const beakerNode = new BeakerNode( model.solution, MConstants.SOLUTION_VOLUME_RANGE.max, valuesVisibleProperty,
+    const beakerNode = new BeakerNode( model.solution, MolarityConstants.SOLUTION_VOLUME_RANGE.max, valuesVisibleProperty,
       tandem.createTandem( 'beakerNode' ), soluteDescriber, soluteAmountDescriber, volumeDescriber,
       concentrationDescriber, useQuantitativeDescriptionsProperty );
 
     const cylinderSize = beakerNode.getCylinderSize();
     const solutionNode = new SolutionNode( cylinderSize, beakerNode.getCylinderEndHeight(), model.solution,
-      MConstants.SOLUTION_VOLUME_RANGE.max, tandem.createTandem( 'solutionNode' ) );
+      MolarityConstants.SOLUTION_VOLUME_RANGE.max, tandem.createTandem( 'solutionNode' ) );
     const precipitateNode = new PrecipitateNode( model.solution, cylinderSize, beakerNode.getCylinderEndHeight(),
       model.maxPrecipitateAmount, tandem.createTandem( 'precipitateNode' ) );
     const saturatedIndicator = new SaturatedIndicator( model.solution, tandem.createTandem( 'saturatedIndicator' ) );
@@ -136,8 +136,8 @@ define( function( require ) {
       StringUtils.format( patternParentheses0TextString, molesString ),
       noneString, lotsString,
       model.solution.soluteAmountProperty,
-      MConstants.SOLUTE_AMOUNT_RANGE,
-      MConstants.SOLUTE_AMOUNT_DECIMAL_PLACES,
+      MolarityConstants.SOLUTE_AMOUNT_RANGE,
+      MolarityConstants.SOLUTE_AMOUNT_DECIMAL_PLACES,
       unitsMolesString,
       valuesVisibleProperty,
       useQuantitativeDescriptionsProperty, {
@@ -153,13 +153,13 @@ define( function( require ) {
     );
 
     // slider for controlling volume of solution, sized to match tick marks on the beaker
-    const volumeSliderHeight = ( MConstants.SOLUTION_VOLUME_RANGE.getLength() / MConstants.SOLUTION_VOLUME_RANGE.max ) * cylinderSize.height;
+    const volumeSliderHeight = ( MolarityConstants.SOLUTION_VOLUME_RANGE.getLength() / MolarityConstants.SOLUTION_VOLUME_RANGE.max ) * cylinderSize.height;
     const solutionVolumeSlider = new VerticalSlider( solutionVolumeString,
       StringUtils.format( patternParentheses0TextString, litersString ),
       lowString, fullString,
       model.solution.volumeProperty,
-      MConstants.SOLUTION_VOLUME_RANGE,
-      MConstants.SOLUTION_VOLUME_DECIMAL_PLACES,
+      MolarityConstants.SOLUTION_VOLUME_RANGE,
+      MolarityConstants.SOLUTION_VOLUME_DECIMAL_PLACES,
       unitsLitersString,
       valuesVisibleProperty,
       useQuantitativeDescriptionsProperty, {
@@ -175,7 +175,7 @@ define( function( require ) {
 
     // concentration display
     const concentrationBarSize = new Dimension2( 40, cylinderSize.height + 50 );
-    const concentrationDisplay = new ConcentrationDisplay( model.solution, MConstants.CONCENTRATION_RANGE,
+    const concentrationDisplay = new ConcentrationDisplay( model.solution, MolarityConstants.CONCENTRATION_RANGE,
       valuesVisibleProperty, concentrationBarSize, tandem.createTandem( 'concentrationDisplay' ) );
 
     // sound generator for concentration

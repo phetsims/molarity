@@ -16,7 +16,7 @@ define( function( require ) {
   const Dimension2 = require( 'DOT/Dimension2' );
   const DualLabelNode = require( 'MOLARITY/molarity/view/DualLabelNode' );
   const inherit = require( 'PHET_CORE/inherit' );
-  const MConstants = require( 'MOLARITY/molarity/MConstants' );
+  const MolarityConstants = require( 'MOLARITY/molarity/MolarityConstants' );
   const merge = require( 'PHET_CORE/merge' );
   const molarity = require( 'MOLARITY/molarity' );
   const MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
@@ -106,11 +106,11 @@ define( function( require ) {
       tandem: options.tandem.createTandem( 'subtitleNode' )
     } );
 
-    const minNode = new DualLabelNode( Util.toFixed( range.min, range.min === 0 ? 0 : MConstants.RANGE_DECIMAL_PLACES ),
+    const minNode = new DualLabelNode( Util.toFixed( range.min, range.min === 0 ? 0 : MolarityConstants.RANGE_DECIMAL_PLACES ),
       minLabel, valuesVisibleProperty, RANGE_FONT, options.tandem.createTandem( 'minNode' ),
       { maxWidth: MAX_TEXT_WIDTH } );
 
-    const maxNode = new DualLabelNode( Util.toFixed( range.max, MConstants.RANGE_DECIMAL_PLACES ),
+    const maxNode = new DualLabelNode( Util.toFixed( range.max, MolarityConstants.RANGE_DECIMAL_PLACES ),
       maxLabel, valuesVisibleProperty, RANGE_FONT, options.tandem.createTandem( 'maxNode' ),
       { maxWidth: MAX_TEXT_WIDTH } );
 

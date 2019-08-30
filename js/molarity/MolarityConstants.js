@@ -17,7 +17,7 @@ define( function( require ) {
   var SOLUTE_AMOUNT_RANGE = new RangeWithValue( 0, 1, 0.5 ); // moles
   var SOLUTION_VOLUME_RANGE = new RangeWithValue( 0.2, 1, 0.5 ); // liters
 
-  var MConstants = {
+  var MolarityConstants = {
 
     // moles
     SOLUTE_AMOUNT_RANGE: SOLUTE_AMOUNT_RANGE,
@@ -43,7 +43,7 @@ define( function( require ) {
     RANGE_DECIMAL_PLACES: 1
   };
 
-  molarity.register( 'MConstants', MConstants );
+  molarity.register( 'MolarityConstants', MolarityConstants );
 
-  return MConstants;
+  return MolarityConstants;
 } );
