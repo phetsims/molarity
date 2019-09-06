@@ -9,28 +9,18 @@ define( function( require ) {
   'use strict';
 
   // modules
+  const ObjectIO = require( 'TANDEM/types/ObjectIO' );
   var molarity = require( 'MOLARITY/molarity' );
   var ReferenceIO = require( 'TANDEM/types/ReferenceIO' );
-  var phetioInherit = require( 'TANDEM/phetioInherit' );
 
-  /**
-   * @param {Solute} solute
-   * @param {string} phetioID
-   * @constructor
-   */
-  function SoluteIO( solute, phetioID ) {
+  // Objects are statically created, use reference equality to look up instances for toStateObject/fromStateObject
+  class SoluteIO extends ReferenceIO {}
 
-    // Objects are statically created, use reference equality to look up instances for toStateObject/fromStateObject
-    ReferenceIO.call( this, solute, phetioID );
-  }
+  SoluteIO.documentation = 'The solute for the sim';
+  SoluteIO.validator = { isValidValue: v => v instanceof phet.molarity.Solute }; //TODO #51 replace global with require?
+  SoluteIO.typeName = 'SoluteIO';
+  ObjectIO.validateSubtype( SoluteIO );
 
-  phetioInherit( ReferenceIO, 'SoluteIO', SoluteIO, {}, {
-    documentation: 'The solute for the sim',
-    validator: { isValidValue: v => v instanceof phet.molarity.Solute } //TODO #51 replace global with require?
-  } );
-
-  molarity.register( 'SoluteIO', SoluteIO );
-
-  return SoluteIO;
+  return molarity.register( 'SoluteIO', SoluteIO );
 } );
 
