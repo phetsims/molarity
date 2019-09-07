@@ -54,7 +54,7 @@ define( function( require ) {
   const molesString = require( 'string!MOLARITY/moles' );
   const noneString = require( 'string!MOLARITY/none' );
   const patternParentheses0TextString = require( 'string!MOLARITY/pattern.parentheses.0text' );
-  const solutionValuesString = require( 'string!MOLARITY/solutionValues' );
+  const showValuesString = require( 'string!MOLARITY/showValues' );
   const soluteAmountString = require( 'string!MOLARITY/soluteAmount' );
   const solutionVolumeString = require( 'string!MOLARITY/solutionVolume' );
   const unitsLitersString = require( 'string!MOLARITY/units.liters' );
@@ -204,7 +204,7 @@ define( function( require ) {
     ) );
 
     // Solution Values checkbox
-    const solutionValuesLabel = new Text( solutionValuesString, {
+    const solutionValuesLabel = new Text( showValuesString, {
       font: new PhetFont( 22 ),
       tandem: tandem.createTandem( 'solutionValuesText' )
     } );
@@ -213,7 +213,7 @@ define( function( require ) {
       tandem: tandem.createTandem( 'solutionValuesCheckbox' ),
 
       // a11y
-      accessibleName: solutionValuesString,
+      accessibleName: showValuesString,
       helpText: solutionValuesHelpTextString
     } );
     solutionValuesCheckbox.touchArea = Shape.rectangle( solutionValuesCheckbox.left, solutionValuesCheckbox.top - 15, solutionValuesCheckbox.width, solutionValuesCheckbox.height + 30 );
