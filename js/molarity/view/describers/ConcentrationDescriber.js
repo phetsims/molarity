@@ -109,13 +109,13 @@ define( require => {
   class ConcentrationDescriber {
 
     /**
-     * @param {Solution} solution - from MolarityModel.
+     * @param {Solution} solution - from MolarityModel
      * @param {Property.<boolean>>} useQuantitativeDescriptionsProperty
      */
     constructor( solution, useQuantitativeDescriptionsProperty ) {
 
-      // @public
-      this.concentrationRegionChanged = null; // boolean - tracks whether the concentration descriptive region has changed
+      // @public {boolean} - tracks whether the concentration descriptive region has changed
+      this.concentrationRegionChanged = null;
 
       // @private
       this.solution = solution;
@@ -124,33 +124,28 @@ define( require => {
       this.precipitateAmountProperty = solution.precipitateAmountProperty;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
 
-      // @private
-      // {number} - the index of the last concentration descriptive region
+      // @private {number} - the index of the last concentration descriptive region
       this.concentrationRegion = concentrationToIndex( this.soluteProperty.value.saturatedConcentration,
         this.concentrationProperty.value );
 
-      // @private
-      // {boolean} - tracks whether the concentration descriptive region has just changed.
+      // @private {boolean} - tracks whether the concentration descriptive region has just changed.
       this.concentrationRegionChanged = false;
 
-      // @private
-      // {boolean|null} - tracks whether concentration has increased or decreased. null when simulation starts or resets.
+      // @private {boolean|null} - tracks whether concentration has increased or decreased. null when simulation starts
+      // or resets.
       this.concentrationIncreased = null;
 
-      // @private
-      // {number} - tracks the index of the last descriptive region for solids from SOLIDS_STRINGS array
+      // @private {number} - tracks the index of the last descriptive region for solids from SOLIDS_STRINGS array
       this.solidsRegion = solidsToIndex( this.precipitateAmountProperty.value, this.getCurrentSaturatedConcentration() );
 
-      // @private
-      // {boolean} - tracks whether the solids descriptive region has just changed
+      // @private {boolean} - tracks whether the solids descriptive region has just changed
       this.solidsRegionChanged = false;
 
-      // @private
-      // {boolean|null} - tracks whether solids amount has increased or decreased. null when simulation starts or resets.
+      // @private {boolean|null} - tracks whether solids amount has increased or decreased. null when simulation
+      // starts or resets.
       this.solidsIncreased = null;
 
-      // @private
-      // {boolean} - tracks whether the solution has just become saturated or unsaturated.
+      // @private {boolean} - tracks whether the solution has just become saturated or unsaturated.
       this.saturationStateChanged = false;
 
       // update properties (documented above) when ConcentrationProperty changes
