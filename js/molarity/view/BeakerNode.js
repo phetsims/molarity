@@ -33,7 +33,7 @@ define( function( require ) {
   var pattern0Value1UnitsString = require( 'string!MOLARITY/pattern.0value.1units' );
   var unitsLitersString = require( 'string!MOLARITY/units.liters' );
 
-  //a11y strings
+  // a11y strings
   var beakerHeaderString = MolarityA11yStrings.beakerHeader.value;
 
   // constants
