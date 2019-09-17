@@ -29,7 +29,12 @@ define( require => {
 
   class MolarityAlertManager {
 
+    constructor() {
+      this.initialized = false;
+    }
+
     /**
+     * @public
      * @param {Solution} solution - from MolarityModel.
      * @param {Property.<boolean>} useQuantitativeDescriptionsProperty - whether or not to use qualitative or
      *                                                                   quantitative descriptions.
@@ -40,8 +45,10 @@ define( require => {
      * @param {Property.<boolean>} valuesVisibleProperty - toggles display for whether the "solution values" checkbox is
      *                                                     checked.
      */
-    constructor( solution, useQuantitativeDescriptionsProperty, concentrationDescriber, soluteAmountDescriber,
-                 volumeDescriber, soluteDescriber, valuesVisibleProperty ) {
+    initialize( solution, useQuantitativeDescriptionsProperty, concentrationDescriber, soluteAmountDescriber,
+                volumeDescriber, soluteDescriber, valuesVisibleProperty ) {
+      assert && assert( !this.initialized, 'molarityAlertManager has already been initialized' );
+      this.initialized = true;
 
       // @private
       this.concentrationDescriber = concentrationDescriber;
@@ -212,5 +219,5 @@ define( require => {
     }
   }
 
-  return molarity.register( 'MolarityAlertManager', MolarityAlertManager );
+  return molarity.register( 'molarityAlertManager', new MolarityAlertManager() );
 } );

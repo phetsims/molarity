@@ -23,7 +23,7 @@ define( function( require ) {
   const MolarityConstants = require( 'MOLARITY/molarity/MolarityConstants' );
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
-  const MolarityAlertManager = require( 'MOLARITY/molarity/view/MolarityAlertManager' );
+  const molarityAlertManager = require( 'MOLARITY/molarity/view/molarityAlertManager' );
   const MolarityScreenSummaryNode = require( 'MOLARITY/molarity/view/MolarityScreenSummaryNode' );
   const Node = require( 'SCENERY/nodes/Node' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
@@ -99,9 +99,7 @@ define( function( require ) {
       useQuantitativeDescriptionsProperty );
     const soluteAmountDescriber = new SoluteAmountDescriber( model.solution, soluteDescriber, concentrationDescriber,
       useQuantitativeDescriptionsProperty );
-
-    // TODO: should this be a singleton? or are we going to stick with disabling the eslint rule?
-    new MolarityAlertManager( model.solution, useQuantitativeDescriptionsProperty, // eslint-disable-line no-new
+    molarityAlertManager.initialize( model.solution, useQuantitativeDescriptionsProperty,
       concentrationDescriber, soluteAmountDescriber, volumeDescriber, soluteDescriber, valuesVisibleProperty );
 
     ScreenView.call( this, {
