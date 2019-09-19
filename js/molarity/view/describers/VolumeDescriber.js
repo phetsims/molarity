@@ -163,7 +163,7 @@ define( require => {
    * @param {number} volume
    * @returns {number} - index to pull from VOLUME_STRINGS array.
    */
-  const volumeToIndex = ( volume ) => {
+  const volumeToIndex = volume => {
     if ( volume <= .201 ) {
       return 0;
     }
