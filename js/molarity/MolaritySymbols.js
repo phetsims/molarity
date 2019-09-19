@@ -16,9 +16,9 @@ define( require => {
   const drinkMixString = require( 'string!MOLARITY/drinkMix' );
 
   // constants
-  var toSubscript = ChemUtils.toSubscript;
+  const toSubscript = ChemUtils.toSubscript;
 
-  var MolaritySymbols = {
+  const MolaritySymbols = {
     COBALT_II_NITRATE: toSubscript( 'Co(NO3)2' ),
     COBALT_CHLORIDE: toSubscript( 'CoCl2' ),
     COPPER_SULFATE: toSubscript( 'CuSO4' ),

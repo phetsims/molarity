@@ -24,8 +24,8 @@ define( require => {
   const StringIO = require( 'TANDEM/types/StringIO' );
 
   // constants
-  var LABEL_SIZE = new Dimension2( 180, 80 );
-  var LABEL_FONT = new PhetFont( { size: 28, weight: 'bold' } );
+  const LABEL_SIZE = new Dimension2( 180, 80 );
+  const LABEL_FONT = new PhetFont( { size: 28, weight: 'bold' } );
 
   /**
    * @param {Solution} solution
@@ -36,13 +36,13 @@ define( require => {
 
     Node.call( this, { tandem: tandem } );
 
-    var textNode = new RichText( '?', {
+    const textNode = new RichText( '?', {
       font: LABEL_FONT,
       maxWidth: 0.9 * LABEL_SIZE.width,
       tandem: tandem.createTandem( 'textNode' )
     } );
 
-    var backgroundNode = new Rectangle( -LABEL_SIZE.width / 2, 0, LABEL_SIZE.width, LABEL_SIZE.height, 10, 10, {
+    const backgroundNode = new Rectangle( -LABEL_SIZE.width / 2, 0, LABEL_SIZE.width, LABEL_SIZE.height, 10, 10, {
       fill: new Color( 255, 255, 255, 0.6 ), stroke: Color.LIGHT_GRAY,
       tandem: tandem.createTandem( 'backgroundNode' )
     } );
@@ -51,9 +51,9 @@ define( require => {
     this.addChild( textNode );
 
     // label on the beaker
-    var beakerLabelProperty = new DerivedProperty( [ solution.soluteProperty, solution.volumeProperty, solution.concentrationProperty ],
+    const beakerLabelProperty = new DerivedProperty( [ solution.soluteProperty, solution.volumeProperty, solution.concentrationProperty ],
       function( solute, volume, concentration ) {
-        var label;
+        let label;
         if ( volume === 0 ) {
           label = '';
         }

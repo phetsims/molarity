@@ -22,10 +22,10 @@ define( require => {
   const beakerImage = require( 'image!MOLARITY/beaker.png' );
 
   // points of interest in the image file
-  var CYLINDER_UPPER_LEFT = new Vector2( 98, 192 );
-  var CYLINDER_LOWER_RIGHT = new Vector2( 526, 644 );
-  var CYLINDER_END_BACKGROUND = new Vector2( 210, 166 );
-  var CYLINDER_END_FOREGROUND = new Vector2( 210, 218 );
+  const CYLINDER_UPPER_LEFT = new Vector2( 98, 192 );
+  const CYLINDER_LOWER_RIGHT = new Vector2( 526, 644 );
+  const CYLINDER_END_BACKGROUND = new Vector2( 210, 166 );
+  const CYLINDER_END_FOREGROUND = new Vector2( 210, 218 );
 
   /**
    * @param {Tandem} tandem
@@ -47,8 +47,8 @@ define( require => {
 
     // @public Gets the cylinder dimensions.
     getCylinderSize: function() {
-      var pUpperLeft = this.localToParentPoint( CYLINDER_UPPER_LEFT );
-      var pLowerRight = this.localToParentPoint( CYLINDER_LOWER_RIGHT );
+      const pUpperLeft = this.localToParentPoint( CYLINDER_UPPER_LEFT );
+      const pLowerRight = this.localToParentPoint( CYLINDER_LOWER_RIGHT );
       return new Dimension2( pLowerRight.x - pUpperLeft.x, pLowerRight.y - pUpperLeft.y );
     },
 

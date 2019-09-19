@@ -13,7 +13,7 @@ define( require => {
   const molarity = require( 'MOLARITY/molarity' );
   const MolaritySymbols = require( 'MOLARITY/molarity/MolaritySymbols' );
 
-  var Water = {
+  const Water = {
     formula: MolaritySymbols.WATER,
     color: new Color( 224, 255, 255 )
   };

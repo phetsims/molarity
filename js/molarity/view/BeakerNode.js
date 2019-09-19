@@ -34,17 +34,17 @@ define( require => {
   const unitsLitersString = require( 'string!MOLARITY/units.liters' );
 
   // a11y strings
-  var beakerHeaderString = MolarityA11yStrings.beakerHeader.value;
+  const beakerHeaderString = MolarityA11yStrings.beakerHeader.value;
 
   // constants
-  var DEBUG_SHAPES = false;
-  var TICK_COLOR = Color.GRAY;
-  var MINOR_TICK_SPACING = 0.1; // L
-  var MINOR_TICKS_PER_MAJOR_TICK = 5;
-  var MAJOR_TICK_LABELS = [ '\u00bd', '1' ]; // 1/2L, 1L
-  var TICK_LABEL_FONT = new PhetFont( 20 );
-  var TICK_LABEL_COLOR = Color.DARK_GRAY;
-  var TICK_LABEL_X_SPACING = 8;
+  const DEBUG_SHAPES = false;
+  const TICK_COLOR = Color.GRAY;
+  const MINOR_TICK_SPACING = 0.1; // L
+  const MINOR_TICKS_PER_MAJOR_TICK = 5;
+  const MAJOR_TICK_LABELS = [ '\u00bd', '1' ]; // 1/2L, 1L
+  const TICK_LABEL_FONT = new PhetFont( 20 );
+  const TICK_LABEL_COLOR = Color.DARK_GRAY;
+  const TICK_LABEL_X_SPACING = 8;
 
   /**
    * @param {Solution} solution
@@ -71,29 +71,29 @@ define( require => {
 
     // @private the glass beaker
     this.beakerImageNode = new BeakerImageNode( tandem.createTandem( 'beakerImageNode' ), { scale: 0.75 } );
-    var cylinderSize = this.beakerImageNode.getCylinderSize();
-    var cylinderOffset = this.beakerImageNode.getCylinderOffset();
-    var cylinderEndHeight = this.beakerImageNode.getCylinderEndHeight();
+    const cylinderSize = this.beakerImageNode.getCylinderSize();
+    const cylinderOffset = this.beakerImageNode.getCylinderOffset();
+    const cylinderEndHeight = this.beakerImageNode.getCylinderEndHeight();
     this.beakerImageNode.translation = new Vector2( -cylinderOffset.x, -cylinderOffset.y );
 
     // inside bottom line
-    var bottomShape = new Shape().ellipticalArc( cylinderSize.width / 2, cylinderSize.height,
+    const bottomShape = new Shape().ellipticalArc( cylinderSize.width / 2, cylinderSize.height,
       cylinderSize.width / 2, cylinderEndHeight / 2,
       0, Util.toRadians( 0 ), Util.toRadians( 180 ), true );
-    var bottomNode = new Path( bottomShape, {
+    const bottomNode = new Path( bottomShape, {
       stroke: new Color( 150, 150, 150, 100 ),
       lineWidth: 2,
       tandem: tandem.createTandem( 'bottomNode' )
     } );
 
     // label on the beaker
-    var labelNode = new BeakerLabelNode( solution, tandem.createTandem( 'labelNode' ) );
+    const labelNode = new BeakerLabelNode( solution, tandem.createTandem( 'labelNode' ) );
     labelNode.x = cylinderSize.width / 2;
     labelNode.y = 0.15 * cylinderSize.height;
 
     // parents for tick marks and labels
-    var tickMarksParent = new Node( { tandem: tandem.createTandem( 'tickMarksParent' ) } );
-    var tickLabelsParent = new Node( { tandem: tandem.createTandem( 'tickLabelsParent' ) } );
+    const tickMarksParent = new Node( { tandem: tandem.createTandem( 'tickMarksParent' ) } );
+    const tickLabelsParent = new Node( { tandem: tandem.createTandem( 'tickLabelsParent' ) } );
 
     // rendering order
     this.addChild( bottomNode );
@@ -103,22 +103,22 @@ define( require => {
     this.addChild( labelNode );
 
     // tick marks, arcs that wrap around the edge of the beaker's cylinder
-    var numberOfTicks = Util.roundSymmetric( maxVolume / MINOR_TICK_SPACING );
-    var bottomY = cylinderSize.height; // don't use bounds or position will be off because of stroke width
-    var deltaY = cylinderSize.height / numberOfTicks;
+    const numberOfTicks = Util.roundSymmetric( maxVolume / MINOR_TICK_SPACING );
+    const bottomY = cylinderSize.height; // don't use bounds or position will be off because of stroke width
+    const deltaY = cylinderSize.height / numberOfTicks;
 
     // vars used inside the for-loop
-    var y;
-    var tickMarkShape;
-    var tickMarkNode;
-    var tickLabelIndex;
-    var tickLabel;
-    var tickLabelNode;
+    let y;
+    let tickMarkShape;
+    let tickMarkNode;
+    let tickLabelIndex;
+    let tickLabel;
+    let tickLabelNode;
 
-    var tickMarkNodeGroupTandem = tandem.createGroupTandem( 'tickMarkNode' );
-    var tickLabelNodeGroupTandem = tandem.createGroupTandem( 'tickLabelNode' );
+    const tickMarkNodeGroupTandem = tandem.createGroupTandem( 'tickMarkNode' );
+    const tickLabelNodeGroupTandem = tandem.createGroupTandem( 'tickLabelNode' );
 
-    for ( var i = 1; i <= numberOfTicks; i++ ) {
+    for ( let i = 1; i <= numberOfTicks; i++ ) {
       y = bottomY - ( i * deltaY );
       if ( i % MINOR_TICKS_PER_MAJOR_TICK === 0 ) {
 

@@ -21,7 +21,7 @@ define( require => {
    */
   function MolarityScreen( tandem ) {
 
-    var options = {
+    const options = {
       tandem: tandem
     };
 

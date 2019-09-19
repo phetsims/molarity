@@ -78,7 +78,7 @@ define( require => {
     this.resetInProgressProperty = new BooleanProperty( false );
 
     // compute the max amount of precipitate, used by the view to create the precipitate particles
-    var minSaturateConcentration = _.minBy( this.solutes, function( solute ) {
+    const minSaturateConcentration = _.minBy( this.solutes, function( solute ) {
       return solute.saturatedConcentration;
     } ).saturatedConcentration;
 

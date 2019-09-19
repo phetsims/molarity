@@ -40,14 +40,14 @@ define( require => {
   const zeroString = require( 'string!MOLARITY/zero' );
 
   // constants
-  var TITLE_FONT = new PhetFont( { size: 24, weight: 'bold' } );
-  var SUBTITLE_FONT = new PhetFont( 22 );
-  var RANGE_FONT = new PhetFont( 20 );
-  var VALUE_FONT = new PhetFont( 20 );
-  var ARROW_LENGTH = 55;
-  var ARROW_HEAD_HEIGHT = 0.6 * ARROW_LENGTH;
-  var ARROW_HEAD_WIDTH = 0.7 * ARROW_LENGTH;
-  var ARROW_TAIL_WIDTH = 0.4 * ARROW_LENGTH;
+  const TITLE_FONT = new PhetFont( { size: 24, weight: 'bold' } );
+  const SUBTITLE_FONT = new PhetFont( 22 );
+  const RANGE_FONT = new PhetFont( 20 );
+  const VALUE_FONT = new PhetFont( 20 );
+  const ARROW_LENGTH = 55;
+  const ARROW_HEAD_HEIGHT = 0.6 * ARROW_LENGTH;
+  const ARROW_HEAD_WIDTH = 0.7 * ARROW_LENGTH;
+  const ARROW_TAIL_WIDTH = 0.4 * ARROW_LENGTH;
 
   /**
    * @param {Solution} solution
@@ -65,42 +65,42 @@ define( require => {
     } );
 
     // nodes
-    var maxTextWidth = 175; // constrain width for i18n, determined empirically
+    const maxTextWidth = 175; // constrain width for i18n, determined empirically
 
-    var titleNode = new MultiLineText( solutionConcentrationString, {
+    const titleNode = new MultiLineText( solutionConcentrationString, {
       align: 'center',
       font: TITLE_FONT,
       maxWidth: maxTextWidth,
       tandem: tandem.createTandem( 'titleNode' )
     } );
 
-    var subtitleNode = new Text( StringUtils.format( patternParentheses0TextString, molarityString ), {
+    const subtitleNode = new Text( StringUtils.format( patternParentheses0TextString, molarityString ), {
       font: SUBTITLE_FONT,
       maxWidth: maxTextWidth,
       tandem: tandem.createTandem( 'subtitleNode' )
     } );
 
-    var maxNode = new DualLabelNode( Util.toFixed( concentrationRange.max, MolarityConstants.RANGE_DECIMAL_PLACES ),
+    const maxNode = new DualLabelNode( Util.toFixed( concentrationRange.max, MolarityConstants.RANGE_DECIMAL_PLACES ),
       highString, valuesVisibleProperty, RANGE_FONT, tandem.createTandem( 'maxNode' ),
       { maxWidth: maxTextWidth } );
 
-    var minNode = new DualLabelNode( Util.toFixed( concentrationRange.min,
+    const minNode = new DualLabelNode( Util.toFixed( concentrationRange.min,
       concentrationRange.min === 0 ? 0 : MolarityConstants.RANGE_DECIMAL_PLACES ), zeroString,
       valuesVisibleProperty, RANGE_FONT, tandem.createTandem( 'minNode' ),
       { maxWidth: maxTextWidth } );
 
-    var barNode = new Rectangle( 0, 0, barSize.width, barSize.height, {
+    const barNode = new Rectangle( 0, 0, barSize.width, barSize.height, {
       stroke: 'black',
       tandem: tandem.createTandem( 'barNode' )
     } );
 
-    var saturatedBarNode = new Rectangle( 0, 0, barSize.width, barSize.height, {
+    const saturatedBarNode = new Rectangle( 0, 0, barSize.width, barSize.height, {
       stroke: 'black',
       fill: Color.LIGHT_GRAY,
       tandem: tandem.createTandem( 'saturatedBarNode' )
     } );
 
-    var pointerNode = new PointerNode( solution, concentrationRange, barSize, valuesVisibleProperty,
+    const pointerNode = new PointerNode( solution, concentrationRange, barSize, valuesVisibleProperty,
       tandem.createTandem( 'pointerNode') );
 
     // rendering order
@@ -130,8 +130,8 @@ define( require => {
     solution.soluteProperty.link( function( solute ) {
 
       // Color the bar using a gradient that corresponds to the solute's color range.
-      var concentrationScale = Math.min( 1, solute.saturatedConcentration / concentrationRange.max );
-      var y = barSize.height - ( barSize.height * concentrationScale );
+      const concentrationScale = Math.min( 1, solute.saturatedConcentration / concentrationRange.max );
+      const y = barSize.height - ( barSize.height * concentrationScale );
       if ( y < 0 ) {
         console.log( 'solute.saturatedConcentration=' + solute.saturatedConcentration + ' concentrationRange.max=' + concentrationRange.max );
       }
@@ -158,15 +158,15 @@ define( require => {
 
     Node.call( this, { tandem: tandem } );
 
-    var valueNode = new Text( '?', {
+    const valueNode = new Text( '?', {
       font: VALUE_FONT,
       maxWidth: 75,
       tandem: tandem.createTandem( 'valueNode' )
     } );
 
-    var x = barSize.width;
-    var y = 0;
-    var arrowShape = new Shape()
+    const x = barSize.width;
+    const y = 0;
+    const arrowShape = new Shape()
       .moveTo( x, y )
       .lineTo( x + ARROW_HEAD_HEIGHT, y - (ARROW_HEAD_WIDTH / 2) )
       .lineTo( x + ARROW_HEAD_HEIGHT, y - (ARROW_TAIL_WIDTH / 2) )
@@ -192,8 +192,8 @@ define( require => {
     } );
 
     // when the concentration or solute changes...
-    var self = this;
-    var update = function( concentration ) {
+    const self = this;
+    const update = function( concentration ) {
 
       // update the arrow
       self.arrowNode.y = barSize.height - Util.linear( concentrationRange.min, concentrationRange.max, 0, barSize.height, concentration );

@@ -19,12 +19,12 @@ define( require => {
   const molarityTitleString = require( 'string!MOLARITY/molarity.title' );
 
   // constants
-  var tandem = Tandem.rootTandem;
+  const tandem = Tandem.rootTandem;
 
   // help content to describe keyboard interactions
-  var keyboardHelpContent = new MolarityKeyboardHelpContent();
+  const keyboardHelpContent = new MolarityKeyboardHelpContent();
 
-  var options = {
+  const options = {
     credits: {
       leadDesign: 'Julia Chamberlain',
       softwareDevelopment: 'Chris Malley (PixelZoom, Inc.)',
@@ -37,8 +37,8 @@ define( require => {
   };
 
   SimLauncher.launch( function() {
-    var screens = [ new MolarityScreen( tandem.createTandem( 'molarityScreen' ) ) ];
-    var sim = new Sim( molarityTitleString, screens, options );
+    const screens = [ new MolarityScreen( tandem.createTandem( 'molarityScreen' ) ) ];
+    const sim = new Sim( molarityTitleString, screens, options );
     sim.start();
   } );
 } );

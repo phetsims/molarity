@@ -14,10 +14,10 @@ define( require => {
   const RangeWithValue = require( 'DOT/RangeWithValue' );
 
   // constants
-  var SOLUTE_AMOUNT_RANGE = new RangeWithValue( 0, 1, 0.5 ); // moles
-  var SOLUTION_VOLUME_RANGE = new RangeWithValue( 0.2, 1, 0.5 ); // liters
+  const SOLUTE_AMOUNT_RANGE = new RangeWithValue( 0, 1, 0.5 ); // moles
+  const SOLUTION_VOLUME_RANGE = new RangeWithValue( 0.2, 1, 0.5 ); // liters
 
-  var MolarityConstants = {
+  const MolarityConstants = {
 
     // moles
     SOLUTE_AMOUNT_RANGE: SOLUTE_AMOUNT_RANGE,

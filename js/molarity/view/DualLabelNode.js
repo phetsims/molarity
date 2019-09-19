@@ -18,7 +18,7 @@ define( require => {
   const Text = require( 'SCENERY/nodes/Text' );
 
   // constants
-  var DEBUG_BOUNDS = false;
+  const DEBUG_BOUNDS = false;
 
   /**
    * @param {string} quantitativeValue
@@ -33,13 +33,13 @@ define( require => {
 
     Node.call( this );
 
-    var quantitativeNode = new Text( quantitativeValue, {
+    const quantitativeNode = new Text( quantitativeValue, {
       font: font,
       tandem: tandem.createTandem( 'quantitativeNode' )
     } );
     this.addChild( quantitativeNode );
 
-    var qualitativeNode = new Text( qualitativeValue, {
+    const qualitativeNode = new Text( qualitativeValue, {
       font: font,
       center: quantitativeNode.center,
       tandem: tandem.createTandem( 'qualitativeNode' )
@@ -47,7 +47,7 @@ define( require => {
     this.addChild( qualitativeNode );
 
     // add an invisible rectangle so that bounds don't change
-    var boundsNode = new Rectangle( this.left, this.top, this.width, this.height );
+    const boundsNode = new Rectangle( this.left, this.top, this.width, this.height );
     if ( DEBUG_BOUNDS ) {
       boundsNode.stroke = 'red';
     }
