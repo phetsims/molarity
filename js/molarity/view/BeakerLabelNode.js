@@ -6,22 +6,22 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var Color = require( 'SCENERY/util/Color' );
-  var DerivedProperty = require( 'AXON/DerivedProperty' );
-  var DerivedPropertyIO = require( 'AXON/DerivedPropertyIO' );
-  var Dimension2 = require( 'DOT/Dimension2' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var molarity = require( 'MOLARITY/molarity' );
-  var MolaritySymbols = require( 'MOLARITY/molarity/MolaritySymbols' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var RichText = require( 'SCENERY/nodes/RichText' );
-  var StringIO = require( 'TANDEM/types/StringIO' );
+  const Color = require( 'SCENERY/util/Color' );
+  const DerivedProperty = require( 'AXON/DerivedProperty' );
+  const DerivedPropertyIO = require( 'AXON/DerivedPropertyIO' );
+  const Dimension2 = require( 'DOT/Dimension2' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const molarity = require( 'MOLARITY/molarity' );
+  const MolaritySymbols = require( 'MOLARITY/molarity/MolaritySymbols' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  const Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  const RichText = require( 'SCENERY/nodes/RichText' );
+  const StringIO = require( 'TANDEM/types/StringIO' );
 
   // constants
   var LABEL_SIZE = new Dimension2( 180, 80 );

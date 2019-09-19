@@ -5,13 +5,13 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var Color = require( 'SCENERY/util/Color' );
-  var molarity = require( 'MOLARITY/molarity' );
-  var MolaritySymbols = require( 'MOLARITY/molarity/MolaritySymbols' );
+  const Color = require( 'SCENERY/util/Color' );
+  const molarity = require( 'MOLARITY/molarity' );
+  const MolaritySymbols = require( 'MOLARITY/molarity/MolaritySymbols' );
 
   var Water = {
     formula: MolaritySymbols.WATER,

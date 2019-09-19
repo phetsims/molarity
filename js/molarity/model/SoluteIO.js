@@ -5,13 +5,13 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
   const ObjectIO = require( 'TANDEM/types/ObjectIO' );
-  var molarity = require( 'MOLARITY/molarity' );
-  var ReferenceIO = require( 'TANDEM/types/ReferenceIO' );
+  const molarity = require( 'MOLARITY/molarity' );
+  const ReferenceIO = require( 'TANDEM/types/ReferenceIO' );
 
   // Objects are statically created, use reference equality to look up instances for toStateObject/fromStateObject
   class SoluteIO extends ReferenceIO {}

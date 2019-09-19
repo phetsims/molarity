@@ -5,30 +5,30 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var BooleanProperty = require( 'AXON/BooleanProperty' );
-  var Color = require( 'SCENERY/util/Color' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var MolarityConstants = require( 'MOLARITY/molarity/MolarityConstants' );
-  var molarity = require( 'MOLARITY/molarity' );
-  var MolaritySymbols = require( 'MOLARITY/molarity/MolaritySymbols' );
-  var Solute = require( 'MOLARITY/molarity/model/Solute' );
-  var Solution = require( 'MOLARITY/molarity/model/Solution' );
-  var Water = require( 'MOLARITY/molarity/model/Water' );
+  const BooleanProperty = require( 'AXON/BooleanProperty' );
+  const Color = require( 'SCENERY/util/Color' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const MolarityConstants = require( 'MOLARITY/molarity/MolarityConstants' );
+  const molarity = require( 'MOLARITY/molarity' );
+  const MolaritySymbols = require( 'MOLARITY/molarity/MolaritySymbols' );
+  const Solute = require( 'MOLARITY/molarity/model/Solute' );
+  const Solution = require( 'MOLARITY/molarity/model/Solution' );
+  const Water = require( 'MOLARITY/molarity/model/Water' );
 
   // strings
-  var cobaltChlorideString = require( 'string!MOLARITY/cobaltChloride' );
-  var cobaltIINitrateString = require( 'string!MOLARITY/cobaltIINitrate' );
-  var copperSulfateString = require( 'string!MOLARITY/copperSulfate' );
-  var drinkMixString = require( 'string!MOLARITY/drinkMix' );
-  var goldIIIChlorideString = require( 'string!MOLARITY/goldIIIChloride' );
-  var nickelIIChlorideString = require( 'string!MOLARITY/nickelIIChloride' );
-  var potassiumChromateString = require( 'string!MOLARITY/potassiumChromate' );
-  var potassiumDichromateString = require( 'string!MOLARITY/potassiumDichromate' );
-  var potassiumPermanganateString = require( 'string!MOLARITY/potassiumPermanganate' );
+  const cobaltChlorideString = require( 'string!MOLARITY/cobaltChloride' );
+  const cobaltIINitrateString = require( 'string!MOLARITY/cobaltIINitrate' );
+  const copperSulfateString = require( 'string!MOLARITY/copperSulfate' );
+  const drinkMixString = require( 'string!MOLARITY/drinkMix' );
+  const goldIIIChlorideString = require( 'string!MOLARITY/goldIIIChloride' );
+  const nickelIIChlorideString = require( 'string!MOLARITY/nickelIIChloride' );
+  const potassiumChromateString = require( 'string!MOLARITY/potassiumChromate' );
+  const potassiumDichromateString = require( 'string!MOLARITY/potassiumDichromate' );
+  const potassiumPermanganateString = require( 'string!MOLARITY/potassiumPermanganate' );
 
   /**
    * @param {Tandem} tandem

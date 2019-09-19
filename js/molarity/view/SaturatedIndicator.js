@@ -6,19 +6,19 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-  var molarity = require( 'MOLARITY/molarity' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var Text = require( 'SCENERY/nodes/Text' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const molarity = require( 'MOLARITY/molarity' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  const Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  const Text = require( 'SCENERY/nodes/Text' );
 
   // strings
-  var saturatedString = require( 'string!MOLARITY/saturated' );
+  const saturatedString = require( 'string!MOLARITY/saturated' );
 
   /**
    * @param {Solution} solution

@@ -5,15 +5,15 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var ChemUtils = require( 'NITROGLYCERIN/ChemUtils' );
-  var molarity = require( 'MOLARITY/molarity' );
+  const ChemUtils = require( 'NITROGLYCERIN/ChemUtils' );
+  const molarity = require( 'MOLARITY/molarity' );
 
   // strings
-  var drinkMixString = require( 'string!MOLARITY/drinkMix' );
+  const drinkMixString = require( 'string!MOLARITY/drinkMix' );
 
   // constants
   var toSubscript = ChemUtils.toSubscript;

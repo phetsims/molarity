@@ -10,34 +10,34 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var Color = require( 'SCENERY/util/Color' );
-  var DualLabelNode = require( 'MOLARITY/molarity/view/DualLabelNode' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var LinearGradient = require( 'SCENERY/util/LinearGradient' );
-  var MolarityConstants = require( 'MOLARITY/molarity/MolarityConstants' );
-  var molarity = require( 'MOLARITY/molarity' );
-  var MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var Path = require( 'SCENERY/nodes/Path' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var Shape = require( 'KITE/Shape' );
-  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  var Text = require( 'SCENERY/nodes/Text' );
-  var Util = require( 'DOT/Util' );
+  const Color = require( 'SCENERY/util/Color' );
+  const DualLabelNode = require( 'MOLARITY/molarity/view/DualLabelNode' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const LinearGradient = require( 'SCENERY/util/LinearGradient' );
+  const MolarityConstants = require( 'MOLARITY/molarity/MolarityConstants' );
+  const molarity = require( 'MOLARITY/molarity' );
+  const MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const Path = require( 'SCENERY/nodes/Path' );
+  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  const Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  const Shape = require( 'KITE/Shape' );
+  const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  const Text = require( 'SCENERY/nodes/Text' );
+  const Util = require( 'DOT/Util' );
 
   // strings
-  var highString = require( 'string!MOLARITY/high' );
-  var molarityString = require( 'string!MOLARITY/molarity' );
-  var pattern0Value1UnitsString = require( 'string!MOLARITY/pattern.0value.1units' );
-  var patternParentheses0TextString = require( 'string!MOLARITY/pattern.parentheses.0text' );
-  var solutionConcentrationString = require( 'string!MOLARITY/solutionConcentration' );
-  var unitsMolarityString = require( 'string!MOLARITY/units.molarity' );
-  var zeroString = require( 'string!MOLARITY/zero' );
+  const highString = require( 'string!MOLARITY/high' );
+  const molarityString = require( 'string!MOLARITY/molarity' );
+  const pattern0Value1UnitsString = require( 'string!MOLARITY/pattern.0value.1units' );
+  const patternParentheses0TextString = require( 'string!MOLARITY/pattern.parentheses.0text' );
+  const solutionConcentrationString = require( 'string!MOLARITY/solutionConcentration' );
+  const unitsMolarityString = require( 'string!MOLARITY/units.molarity' );
+  const zeroString = require( 'string!MOLARITY/zero' );
 
   // constants
   var TITLE_FONT = new PhetFont( { size: 24, weight: 'bold' } );

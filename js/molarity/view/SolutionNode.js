@@ -7,19 +7,19 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var Circle = require( 'SCENERY/nodes/Circle' );
-  var Color = require( 'SCENERY/util/Color' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var molarity = require( 'MOLARITY/molarity' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var Path = require( 'SCENERY/nodes/Path' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var Shape = require( 'KITE/Shape' );
-  var Util = require( 'DOT/Util' );
+  const Circle = require( 'SCENERY/nodes/Circle' );
+  const Color = require( 'SCENERY/util/Color' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const molarity = require( 'MOLARITY/molarity' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const Path = require( 'SCENERY/nodes/Path' );
+  const Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  const Shape = require( 'KITE/Shape' );
+  const Util = require( 'DOT/Util' );
 
   // constants
   var DEBUG_ORIGIN = false;

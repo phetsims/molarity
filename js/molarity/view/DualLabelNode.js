@@ -7,15 +7,15 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-  var molarity = require( 'MOLARITY/molarity' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var Text = require( 'SCENERY/nodes/Text' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const molarity = require( 'MOLARITY/molarity' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  const Text = require( 'SCENERY/nodes/Text' );
 
   // constants
   var DEBUG_BOUNDS = false;

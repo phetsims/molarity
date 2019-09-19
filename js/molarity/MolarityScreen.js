@@ -5,15 +5,15 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-  var molarity = require( 'MOLARITY/molarity' );
-  var MolarityModel = require( 'MOLARITY/molarity/model/MolarityModel' );
-  var MolarityScreenView = require( 'MOLARITY/molarity/view/MolarityScreenView' );
-  var Screen = require( 'JOIST/Screen' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const molarity = require( 'MOLARITY/molarity' );
+  const MolarityModel = require( 'MOLARITY/molarity/model/MolarityModel' );
+  const MolarityScreenView = require( 'MOLARITY/molarity/view/MolarityScreenView' );
+  const Screen = require( 'JOIST/Screen' );
 
   /**
    * @param {Tandem} tandem

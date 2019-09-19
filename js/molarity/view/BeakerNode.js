@@ -7,31 +7,31 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var BeakerImageNode = require( 'MOLARITY/molarity/view/BeakerImageNode' );
-  var BeakerLabelNode = require( 'MOLARITY/molarity/view/BeakerLabelNode' );
-  var Circle = require( 'SCENERY/nodes/Circle' );
-  var Color = require( 'SCENERY/util/Color' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var molarity = require( 'MOLARITY/molarity' );
-  var MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
-  var MolarityBeakerDescriptionNode = require( 'MOLARITY/molarity/view/MolarityBeakerDescriptionNode' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var Path = require( 'SCENERY/nodes/Path' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var Shape = require( 'KITE/Shape' );
-  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  var Text = require( 'SCENERY/nodes/Text' );
-  var Util = require( 'DOT/Util' );
-  var Vector2 = require( 'DOT/Vector2' );
+  const BeakerImageNode = require( 'MOLARITY/molarity/view/BeakerImageNode' );
+  const BeakerLabelNode = require( 'MOLARITY/molarity/view/BeakerLabelNode' );
+  const Circle = require( 'SCENERY/nodes/Circle' );
+  const Color = require( 'SCENERY/util/Color' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const molarity = require( 'MOLARITY/molarity' );
+  const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
+  const MolarityBeakerDescriptionNode = require( 'MOLARITY/molarity/view/MolarityBeakerDescriptionNode' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const Path = require( 'SCENERY/nodes/Path' );
+  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  const Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  const Shape = require( 'KITE/Shape' );
+  const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  const Text = require( 'SCENERY/nodes/Text' );
+  const Util = require( 'DOT/Util' );
+  const Vector2 = require( 'DOT/Vector2' );
 
   // strings
-  var pattern0Value1UnitsString = require( 'string!MOLARITY/pattern.0value.1units' );
-  var unitsLitersString = require( 'string!MOLARITY/units.liters' );
+  const pattern0Value1UnitsString = require( 'string!MOLARITY/pattern.0value.1units' );
+  const unitsLitersString = require( 'string!MOLARITY/units.liters' );
 
   // a11y strings
   var beakerHeaderString = MolarityA11yStrings.beakerHeader.value;

@@ -7,14 +7,14 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-  var molarity = require( 'MOLARITY/molarity' );
-  var PhetioObject = require( 'TANDEM/PhetioObject' );
-  var SoluteIO = require( 'MOLARITY/molarity/model/SoluteIO' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const molarity = require( 'MOLARITY/molarity' );
+  const PhetioObject = require( 'TANDEM/PhetioObject' );
+  const SoluteIO = require( 'MOLARITY/molarity/model/SoluteIO' );
 
   /**
    * @param {string} name

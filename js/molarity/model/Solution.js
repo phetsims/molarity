@@ -5,22 +5,22 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var Color = require( 'SCENERY/util/Color' );
-  var DerivedProperty = require( 'AXON/DerivedProperty' );
-  var DerivedPropertyIO = require( 'AXON/DerivedPropertyIO' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var MolarityConstants = require( 'MOLARITY/molarity/MolarityConstants' );
-  var molarity = require( 'MOLARITY/molarity' );
-  var NumberIO = require( 'TANDEM/types/NumberIO' );
-  var NumberProperty = require( 'AXON/NumberProperty' );
-  var Property = require( 'AXON/Property' );
-  var PropertyIO = require( 'AXON/PropertyIO' );
-  var SoluteIO = require( 'MOLARITY/molarity/model/SoluteIO' );
-  var Util = require( 'DOT/Util' );
+  const Color = require( 'SCENERY/util/Color' );
+  const DerivedProperty = require( 'AXON/DerivedProperty' );
+  const DerivedPropertyIO = require( 'AXON/DerivedPropertyIO' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const MolarityConstants = require( 'MOLARITY/molarity/MolarityConstants' );
+  const molarity = require( 'MOLARITY/molarity' );
+  const NumberIO = require( 'TANDEM/types/NumberIO' );
+  const NumberProperty = require( 'AXON/NumberProperty' );
+  const Property = require( 'AXON/Property' );
+  const PropertyIO = require( 'AXON/PropertyIO' );
+  const SoluteIO = require( 'MOLARITY/molarity/model/SoluteIO' );
+  const Util = require( 'DOT/Util' );
 
   /**
    * @param {Solvent} solvent

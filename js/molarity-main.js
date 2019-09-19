@@ -5,18 +5,18 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var MolarityKeyboardHelpContent = require( 'MOLARITY/molarity/view/MolarityKeyboardHelpContent' );
-  var MolarityScreen = require( 'MOLARITY/molarity/MolarityScreen' );
-  var Sim = require( 'JOIST/Sim' );
-  var SimLauncher = require( 'JOIST/SimLauncher' );
-  var Tandem = require( 'TANDEM/Tandem' );
+  const MolarityKeyboardHelpContent = require( 'MOLARITY/molarity/view/MolarityKeyboardHelpContent' );
+  const MolarityScreen = require( 'MOLARITY/molarity/MolarityScreen' );
+  const Sim = require( 'JOIST/Sim' );
+  const SimLauncher = require( 'JOIST/SimLauncher' );
+  const Tandem = require( 'TANDEM/Tandem' );
 
   // strings
-  var molarityTitleString = require( 'string!MOLARITY/molarity.title' );
+  const molarityTitleString = require( 'string!MOLARITY/molarity.title' );
 
   // constants
   var tandem = Tandem.rootTandem;

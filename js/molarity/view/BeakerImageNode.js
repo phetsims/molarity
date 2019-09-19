@@ -8,18 +8,18 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var Dimension2 = require( 'DOT/Dimension2' );
-  var Image = require( 'SCENERY/nodes/Image' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var molarity = require( 'MOLARITY/molarity' );
-  var Vector2 = require( 'DOT/Vector2' );
+  const Dimension2 = require( 'DOT/Dimension2' );
+  const Image = require( 'SCENERY/nodes/Image' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const molarity = require( 'MOLARITY/molarity' );
+  const Vector2 = require( 'DOT/Vector2' );
 
   // images
-  var beakerImage = require( 'image!MOLARITY/beaker.png' );
+  const beakerImage = require( 'image!MOLARITY/beaker.png' );
 
   // points of interest in the image file
   var CYLINDER_UPPER_LEFT = new Vector2( 98, 192 );

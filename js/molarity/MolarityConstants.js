@@ -5,13 +5,13 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var molarity = require( 'MOLARITY/molarity' );
-  var Range = require( 'DOT/Range' );
-  var RangeWithValue = require( 'DOT/RangeWithValue' );
+  const molarity = require( 'MOLARITY/molarity' );
+  const Range = require( 'DOT/Range' );
+  const RangeWithValue = require( 'DOT/RangeWithValue' );
 
   // constants
   var SOLUTE_AMOUNT_RANGE = new RangeWithValue( 0, 1, 0.5 ); // moles
