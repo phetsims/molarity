@@ -146,7 +146,7 @@ define( require => {
       this.solidsIncreased = null;
 
       // @private {boolean} - tracks whether the solution has just become saturated or unsaturated.
-      this.saturationStateChanged = false;
+      this._saturationStateChanged = false;
 
       // update properties (documented above) when ConcentrationProperty changes
       this.concentrationProperty.lazyLink( ( newValue, oldValue ) => {
@@ -158,7 +158,7 @@ define( require => {
         this.concentrationIncreased = newValue > oldValue;
         this.concentrationRegionChanged = newConcentrationRegion !== this.concentrationRegion;
         this.concentrationRegion = newConcentrationRegion;
-        this.saturationStateChanged = newSaturationState !== previousSaturationState;
+        this._saturationStateChanged = newSaturationState !== previousSaturationState;
       } );
 
       // update properties (documented above) when ConcentrationProperty changes
@@ -166,7 +166,7 @@ define( require => {
         const newSolidsRegion = solidsToIndex( this.precipitateAmountProperty.value, this.getCurrentSaturatedConcentration() );
         const previousSaturationState = oldValue !== 0;
         const newSaturationState = newValue !== 0;
-        this.saturationStateChanged = newSaturationState !== previousSaturationState;
+        this._saturationStateChanged = newSaturationState !== previousSaturationState;
         this.solidsIncreased = newValue > oldValue;
         this.solidsRegionChanged = newSolidsRegion !== this.solidsRegion;
         this.solidsRegion = newSolidsRegion;
@@ -178,9 +178,7 @@ define( require => {
      * @public
      * @returns {boolean} - whether or not the solution has been newly saturated or unsaturated
      * */
-    isNewSaturationState() {
-      return this.saturationStateChanged;
-    }
+    get saturationStateChanged(){ return this._saturationStateChanged; }
 
     /**
      * Determines if there is no solute in the beaker.
@@ -328,7 +326,7 @@ define( require => {
      * @returns {string}
      * */
     getSaturationChangedString( useQuantitativeDescriptionsProperty ) {
-      assert && assert( this.saturationStateChanged, 'failed: saturation state has not changed' );
+      assert && assert( this._saturationStateChanged, 'failed: saturation state has not changed' );
       return this.solution.isSaturated() ?
              saturationReachedAlertString :
              StringUtils.fillIn( saturationLostAlertPatternString, {
