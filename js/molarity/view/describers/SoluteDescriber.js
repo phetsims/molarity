@@ -139,7 +139,7 @@ define( require => {
     getCurrentColor( isCapitalized = false ) {
       const currentSolute = this.getCurrentSolute( true );
 
-      if ( this.concentrationDescriber.isNoSolute() ) {
+      if ( !this.concentrationDescriber.hasSolute() ) {
         return isCapitalized ? clearCapitalizedString : clearString;
       }
       switch( currentSolute ) {
@@ -175,7 +175,7 @@ define( require => {
     getSoluteChangedAlertString( useQuantitativeDescriptionsProperty ) {
       let concentrationClause;
       let soluteChangedString;
-      if ( this.concentrationDescriber.isNoSolute() ) {
+      if ( !this.concentrationDescriber.hasSolute() ) {
         return useQuantitativeDescriptionsProperty.value ? noSoluteAlertQuantitativeString : noSoluteAlertQualitativeString;
       }
       if ( this.solution.isSaturated() ) {

@@ -181,12 +181,12 @@ define( require => {
     get saturationStateChanged(){ return this._saturationStateChanged; }
 
     /**
-     * Determines if there is no solute in the beaker.
+     * Determines if there is solute in the beaker.
      * @returns {boolean}
      * @public
      */
-    isNoSolute() {
-      return this.solution.soluteAmountProperty.value < 0.001;
+    hasSolute() {
+      return this.solution.soluteAmountProperty.value > 0;
     }
 
     /**

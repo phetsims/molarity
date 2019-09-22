@@ -70,7 +70,7 @@ define( require => {
         if ( this.concentrationDescriber.saturationStateChanged ) {
           this.alertNewSaturation();
         }
-        else if ( concentrationDescriber.isNoSolute() ) {
+        else if ( !concentrationDescriber.hasSolute() ) {
           this.alertNoSolute( useQuantitativeDescriptionsProperty );
         }
         else if ( useQuantitativeDescriptionsProperty.value ) {
@@ -92,7 +92,7 @@ define( require => {
         if ( this.concentrationDescriber.saturationStateChanged ) {
           this.alertNewSaturation();
         }
-        else if ( concentrationDescriber.isNoSolute() ) {
+        else if ( !concentrationDescriber.hasSolute() ) {
           this.alertNoSolute( useQuantitativeDescriptionsProperty );
         }
         else if ( useQuantitativeDescriptionsProperty.value ) {

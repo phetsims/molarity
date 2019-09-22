@@ -90,9 +90,9 @@ define( require => {
     }
 
     updateBeakerSummaryString() {
-      const summaryString = this.concentrationDescriber.isNoSolute() ? pureWaterPatternString : beakerDescriptionPatternString;
+      const summaryString = !this.concentrationDescriber.hasSolute() ? pureWaterPatternString : beakerDescriptionPatternString;
       return StringUtils.fillIn( summaryString, {
-        solute: this.concentrationDescriber.isNoSolute() ? pureWaterString : this.soluteDescriber.getCurrentSolute(),
+        solute: !this.concentrationDescriber.hasSolute() ? pureWaterString : this.soluteDescriber.getCurrentSolute(),
         volume: this.volumeDescriber.getCurrentVolume( true ),
         color: this.soluteDescriber.getCurrentColor()
       } );
@@ -118,7 +118,7 @@ define( require => {
 
     // @private
     updateConcentrationSummary() {
-      if ( this.concentrationDescriber.isNoSolute() ) {
+      if ( !this.concentrationDescriber.hasSolute() ) {
         this.concentrationSummaryItem.innerContent = hasZeroConcentrationString;
       }
       else {
@@ -133,7 +133,7 @@ define( require => {
       const containsChemicalFormula = this.beakerDescriptionList.children.includes( this.chemicalFormulaSummaryItem );
 
       // doesn't display the chemical formula if drink mix is selected, otherwise displays as the second-to-last item.
-      if ( this.concentrationDescriber.isNoSolute() ) {
+      if ( !this.concentrationDescriber.hasSolute() ) {
         this.beakerDescriptionList.canAddChild( this.chemicalFormulaSummaryItem ) &&
         this.beakerDescriptionList.insertChild( this.beakerDescriptionList.children.length - 1,
           this.chemicalFormulaSummaryItem );
