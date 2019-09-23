@@ -125,7 +125,7 @@ define( require => {
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
 
       // @private {number} - the index of the last concentration descriptive region
-      this.concentrationRegion = concentrationToIndex( this.soluteProperty.value.saturatedConcentration,
+      this.concentrationIndex = concentrationToIndex( this.soluteProperty.value.saturatedConcentration,
         this.concentrationProperty.value );
 
       // @private {boolean} - tracks whether the concentration descriptive region has just changed.
@@ -136,7 +136,7 @@ define( require => {
       this.concentrationIncreased = null;
 
       // @private {number} - tracks the index of the last descriptive region for solids from SOLIDS_STRINGS array
-      this.solidsRegion = solidsToIndex( this.precipitateAmountProperty.value, this.getCurrentSaturatedConcentration() );
+      this.solidsIndex = solidsToIndex( this.precipitateAmountProperty.value, this.getCurrentSaturatedConcentration() );
 
       // @private {boolean} - tracks whether the solids descriptive region has just changed
       this.solidsRegionChanged = false;
@@ -148,28 +148,28 @@ define( require => {
       // @private {boolean} - tracks whether the solution has just become saturated or unsaturated.
       this._saturationStateChanged = false;
 
-      // update properties (documented above) when ConcentrationProperty changes
+      // update fields (documented above) when ConcentrationProperty changes
       this.concentrationProperty.lazyLink( ( newValue, oldValue ) => {
         assert && assert( newValue !== oldValue, 'unexpected: called with no change in concentration' );
-        const newConcentrationRegion = concentrationToIndex( this.soluteProperty.value.saturatedConcentration,
+        const newConcentrationIndex = concentrationToIndex( this.soluteProperty.value.saturatedConcentration,
           this.concentrationProperty.value );
         const previousSaturationState = oldValue > this.getCurrentSaturatedConcentration();
         const newSaturationState = this.solution.isSaturated();
         this.concentrationIncreased = newValue > oldValue;
-        this.concentrationRegionChanged = newConcentrationRegion !== this.concentrationRegion;
-        this.concentrationRegion = newConcentrationRegion;
+        this.concentrationRegionChanged = newConcentrationIndex !== this.concentrationIndex;
+        this.concentrationIndex = newConcentrationIndex;
         this._saturationStateChanged = newSaturationState !== previousSaturationState;
       } );
 
-      // update properties (documented above) when ConcentrationProperty changes
+      // update fields (documented above) when precipitateAmountProperty changes
       this.precipitateAmountProperty.lazyLink( ( newValue, oldValue ) => {
-        const newSolidsRegion = solidsToIndex( this.precipitateAmountProperty.value, this.getCurrentSaturatedConcentration() );
+        const newSolidsIndex = solidsToIndex( this.precipitateAmountProperty.value, this.getCurrentSaturatedConcentration() );
         const previousSaturationState = oldValue !== 0;
         const newSaturationState = newValue !== 0;
         this._saturationStateChanged = newSaturationState !== previousSaturationState;
         this.solidsIncreased = newValue > oldValue;
-        this.solidsRegionChanged = newSolidsRegion !== this.solidsRegion;
-        this.solidsRegion = newSolidsRegion;
+        this.solidsRegionChanged = newSolidsIndex !== this.solidsIndex;
+        this.solidsIndex= newSolidsIndex;
       } );
     }
 
@@ -195,7 +195,7 @@ define( require => {
      * @public
      * @returns {string} - description of current concentration (e.g. "1.500 Molar" or "is very concentrated")
      */
-    getCurrentConcentration() {
+    getCurrentConcentrationClause() {
       const concentration = this.concentrationProperty.value;
       if ( this.useQuantitativeDescriptionsProperty.value ) {
         return StringUtils.fillIn( concentrationAndUnitString, {
@@ -213,7 +213,7 @@ define( require => {
      * @public
      * @returns {string}
      */
-    getCurrentPassiveConcentration() {
+    getCurrentPassiveConcentrationClause() {
       const concentration = this.concentrationProperty.value;
       const index = concentrationToIndex( this.soluteProperty.value.saturatedConcentration, concentration );
       return CONCENTRATION_STRINGS[ index ];
@@ -222,9 +222,9 @@ define( require => {
     /**
      * Creates a string describing the concentration range of the current solute.
      * @public
-     * @returns {string} - quantitative or qualitative description of concentration (e.g. "1.500 Molar" or "very concentrated")
+     * @returns {string} - description of concentration range (e.g. "concentration readout range 0 to 0.5 molar")
      */
-    getCurrentConcentrationRange() {
+    getCurrentConcentrationRangeClause() {
       const maxConcentration = this.getCurrentSaturatedConcentration() > 5.0 ? 5.0 : this.getCurrentSaturatedConcentration();
       return StringUtils.fillIn( concentrationRangePatternString, {
         maxConcentration: Util.toFixed( maxConcentration, 1 )
@@ -275,7 +275,7 @@ define( require => {
                                   beakerQuantitativeConcentrationPatternString :
                                   beakerQualitativeConcentrationPatternString;
       return StringUtils.fillIn( concentrationString, {
-        concentration: this.getCurrentConcentration()
+        concentration: this.getCurrentConcentrationClause()
       } );
     }
 
@@ -330,7 +330,7 @@ define( require => {
       return this.solution.isSaturated() ?
              saturationReachedAlertString :
              StringUtils.fillIn( saturationLostAlertPatternString, {
-               concentration: this.getCurrentConcentration(),
+               concentration: this.getCurrentConcentrationClause(),
                solutionOrConcentration: useQuantitativeDescriptionsProperty.value ? concentrationString : solutionString
              } );
     }
@@ -343,12 +343,12 @@ define( require => {
     getConcentrationState() {
       if ( this.useQuantitativeDescriptionsProperty.value ) {
         return StringUtils.fillIn( quantitativeConcentrationStatePatternString, {
-          concentration: this.getCurrentConcentration()
+          concentration: this.getCurrentConcentrationClause()
         } );
       }
       else {
         return StringUtils.fillIn( qualitativeConcentrationStatePatternString, {
-          concentration: this.getCurrentConcentration()
+          concentration: this.getCurrentConcentrationClause()
         } );
       }
     }
@@ -381,7 +381,7 @@ define( require => {
 
   /**
    * Calculates the which item to use from the CONCENTRATION_STRINGS array.
-   * @param {number} maxConcentration
+   * @param {number} maxConcentration - the saturation point for the specific solute that is currently selected.
    * @param {number} concentration
    * @returns {number} index to pull from CONCENTRATION_STRINGS array
    */

@@ -210,7 +210,7 @@ define( require => {
       else {
         alertText = StringUtils.fillIn( quantitativeSliderAlertPatternString, {
           concentrationChange: this.concentrationDescriber.getConcentrationChangeString( true ),
-          concentration: this.concentrationDescriber.getCurrentConcentration()
+          concentration: this.concentrationDescriber.getCurrentConcentrationClause()
         } );
       }
 

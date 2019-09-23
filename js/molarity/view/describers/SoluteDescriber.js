@@ -182,7 +182,7 @@ define( require => {
         soluteChangedString = soluteChangedSaturatedAlertPatternString;
         concentrationClause = useQuantitativeDescriptionsProperty.value ?
                               StringUtils.fillIn( quantitativeConcentrationStatePatternString, {
-                                concentration: this.concentrationDescriber.getCurrentConcentration()
+                                concentration: this.concentrationDescriber.getCurrentConcentrationClause()
                               } ) :
                               soluteChangedQualitativePatternString;
       }
@@ -190,9 +190,9 @@ define( require => {
         soluteChangedString = soluteChangedUnsaturatedAlertPatternString;
         concentrationClause = useQuantitativeDescriptionsProperty.value ?
                               StringUtils.fillIn( quantitativeConcentrationStatePatternString, {
-                                concentration: this.concentrationDescriber.getCurrentConcentration()
+                                concentration: this.concentrationDescriber.getCurrentConcentrationClause()
                               } ) :
-                              this.concentrationDescriber.getCurrentPassiveConcentration();
+                              this.concentrationDescriber.getCurrentPassiveConcentrationClause();
       }
 
       return StringUtils.fillIn( soluteChangedString, {

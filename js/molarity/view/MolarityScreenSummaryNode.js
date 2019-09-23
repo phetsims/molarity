@@ -99,7 +99,7 @@ define( require => {
                                   quantitativeConcentrationPatternString :
                                   qualitativeConcentrationPatternString;
       const concentrationPattern = StringUtils.fillIn( concentrationString, {
-        concentration: this.concentrationDescriber.getCurrentConcentration(),
+        concentration: this.concentrationDescriber.getCurrentConcentrationClause(),
         saturatedConcentration: this.solution.isSaturated() ? saturatedString : notSaturatedString
       } );
 

@@ -152,7 +152,7 @@ define( require => {
 
     // @private
     updateConcentrationRangeSummary() {
-      this.concentrationRangeSummaryItem.innerContent = this.concentrationDescriber.getCurrentConcentrationRange();
+      this.concentrationRangeSummaryItem.innerContent = this.concentrationDescriber.getCurrentConcentrationRangeClause();
     }
   }
 
