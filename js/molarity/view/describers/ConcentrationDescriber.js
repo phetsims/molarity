@@ -169,7 +169,7 @@ define( require => {
         this._saturationStateChanged = newSaturationState !== previousSaturationState;
         this.solidsIncreased = newValue > oldValue;
         this.solidsRegionChanged = newSolidsIndex !== this.solidsIndex;
-        this.solidsIndex= newSolidsIndex;
+        this.solidsIndex = newSolidsIndex;
       } );
     }
 
@@ -178,7 +178,7 @@ define( require => {
      * @public
      * @returns {boolean} - whether or not the solution has been newly saturated or unsaturated
      * */
-    get saturationStateChanged(){ return this._saturationStateChanged; }
+    get saturationStateChanged() { return this._saturationStateChanged; }
 
     /**
      * Determines if there is solute in the beaker.
@@ -314,7 +314,7 @@ define( require => {
      * @returns {string} - example: "more solids"
      */
     getSolidsChangeString() {
-      assert && assert( this.precipitateAmountProperty.value > 0 );
+      assert && assert( this.precipitateAmountProperty.value > 0, 'precipitateAmountProperty should be greater than 0');
       return StringUtils.fillIn( solidsChangePatternString, {
         moreLess: this.solidsIncreased ? moreString : lessString
       } );
@@ -361,20 +361,22 @@ define( require => {
    * @returns {number} - index to pull from SOLIDS_STRINGS array
    */
   const solidsToIndex = ( precipitateAmount, saturatedConcentration ) => {
-    const fraction = ( 5 - saturatedConcentration ) / SOLIDS_STRINGS.length;
-    if ( precipitateAmount <= fraction / 5 ) {
+    assert && assert( precipitateAmount >= 0, 'precipitateAmount should be greater than or equal to 0' );
+    const scaleIncrement = ( 5 - saturatedConcentration ) / SOLIDS_STRINGS.length;
+    if ( precipitateAmount <= scaleIncrement / 5 ) {
       return 0;
     }
-    else if ( precipitateAmount <= 2 * fraction / 5 ) {
+    else if ( precipitateAmount <= 2 * scaleIncrement / 5 ) {
       return 1;
     }
-    else if ( precipitateAmount <= 3 * fraction / 5 ) {
+    else if ( precipitateAmount <= 3 * scaleIncrement / 5 ) {
       return 2;
     }
-    else if ( precipitateAmount <= 4 * fraction / 5 ) {
+    else if ( precipitateAmount <= 4 * scaleIncrement / 5 ) {
       return 3;
     }
     else {
+      assert && assert( precipitateAmount > 4 * scaleIncrement / 5, 'invalid precipitateAmount value' );
       return 4;
     }
   };
@@ -386,7 +388,7 @@ define( require => {
    * @returns {number} index to pull from CONCENTRATION_STRINGS array
    */
   const concentrationToIndex = ( maxConcentration, concentration ) => {
-
+    assert && assert( concentration >= 0, 'concentration should be greater than or equal to 0' );
     // Concentration regions are evenly spaced within the region from 0 to max concentration for a given solute except
     // for the lowest region (zero) and the highest region (max concentration) which are single value regions.
     const scaleIncrement = maxConcentration / ( CONCENTRATION_STRINGS.length - 2 );
@@ -409,6 +411,7 @@ define( require => {
       return 5;
     }
     else {
+      assert && assert( concentration >= 5 * scaleIncrement, 'invalid concentration value' );
       return 6;
     }
   };
