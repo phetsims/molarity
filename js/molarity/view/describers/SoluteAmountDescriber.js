@@ -94,7 +94,6 @@ define( require => {
       this.soluteAmountIncreased = null;
 
       this.soluteAmountProperty.link( ( newValue, oldValue ) => {
-        assert && assert( newValue !== oldValue, 'unexpected: called with no change in solute amount' );
         assert && oldValue && assert( this.currentRegion === soluteAmountToIndex( oldValue ),
           'current solute amount region not tracking the previous region as expected' );
         const oldRegion = this.currentRegion;

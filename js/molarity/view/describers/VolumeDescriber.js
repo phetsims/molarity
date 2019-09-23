@@ -93,7 +93,6 @@ define( require => {
       this.volumeIncreased = null;
 
       this.volumeProperty.link( ( newValue, oldValue ) => {
-        assert && assert( newValue !== oldValue, 'unexpected: called with no change in volume' );
         assert && oldValue && assert( this.currentRegion === volumeToIndex( oldValue ),
           'current volume region not tracking the previous region as expected' );
         const oldRegion = this.currentRegion;

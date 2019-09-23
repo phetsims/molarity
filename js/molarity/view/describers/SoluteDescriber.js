@@ -138,7 +138,6 @@ define( require => {
      */
     getCurrentColor( isCapitalized = false ) {
       const currentSolute = this.getCurrentSolute( true );
-
       if ( !this.concentrationDescriber.hasSolute() ) {
         return isCapitalized ? clearCapitalizedString : clearString;
       }
