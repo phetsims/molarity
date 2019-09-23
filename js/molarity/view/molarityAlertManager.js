@@ -62,7 +62,6 @@ define( require => {
       this.soluteUtterance = new ActivationUtterance();
       this.valuesVisibleUtterance = new ActivationUtterance();
 
-
       solution.soluteAmountProperty.link( () => {
 
         // If the solution is newly saturated or newly unsaturated, an alert is read out. The text depends on whether
@@ -77,6 +76,9 @@ define( require => {
           this.alertSliderQuantitative();
         }
         else {
+
+          // concentrationDescriber.concentrationIncreased and concentrationDescriber.solidsIncreased are both null on
+          // initial load or reset of the sim. No alert is read out in this case.
           if ( this.concentrationDescriber.concentrationIncreased !== null ||
                this.concentrationDescriber.solidsIncreased !== null ) {
             this.alertSliderQualitative( soluteAmountDescriber.getSoluteAmountChangeString(),
@@ -99,6 +101,9 @@ define( require => {
           this.alertSliderQuantitative();
         }
         else {
+
+          // concentrationDescriber.concentrationIncreased and concentrationDescriber.solidsIncreased are both null on
+          // initial load or reset of the sim. No alert is read out in this case.
           if ( this.concentrationDescriber.concentrationIncreased !== null ||
                this.concentrationDescriber.solidsIncreased !== null ) {
             this.alertSliderQualitative( volumeDescriber.getVolumeChangeString(), volumeDescriber.volumeRegionChanged );
@@ -107,17 +112,18 @@ define( require => {
       } );
 
       // An alert is read out when the solute is changed.
-      solution.soluteProperty.lazyLink( () => this.alertSolute() );
+      solution.soluteProperty.lazyLink( () => this.alertSoluteChanged() );
 
       // An alert is read out when the valuesVisibleProperty changes.
-      valuesVisibleProperty.lazyLink( newValue => this.alertValuesVisible( newValue ) );
+      valuesVisibleProperty.lazyLink( newValue => this.alertValuesVisibleChanged( newValue ) );
     }
 
     /**
-     * Alert only when the solution is either newly saturated or newly unsaturated.
+     * Alert when the solution is either newly saturated or newly unsaturated.
      * @private
      */
     alertNewSaturation() {
+      assert && assert( this.concentrationDescriber.saturationStateChanged, 'alert triggered when saturation state has not changed' );
       this.saturationUtterance.alert = this.concentrationDescriber.getSaturationChangedString(
         this.useQuantitativeDescriptionsProperty );
 
@@ -131,6 +137,7 @@ define( require => {
      * @private
      */
     alertNoSolute( useQuantitativeDescriptionsProperty ) {
+      assert && assert( !this.concentrationDescriber.hasSolute(), 'no solute alert triggered with solute in the beaker' );
       this.sliderUtterance.alert = useQuantitativeDescriptionsProperty.value ?
                                    noSoluteQuantitativeAlertString :
                                    noSoluteQualitativeAlertString;
@@ -141,7 +148,7 @@ define( require => {
      * Alerts when there is a change in solute.
      * @private
      */
-    alertSolute() {
+    alertSoluteChanged() {
       this.soluteUtterance.alert = this.soluteDescriber.getSoluteChangedAlertString( this.useQuantitativeDescriptionsProperty );
       utteranceQueue.addToBack( this.soluteUtterance );
     }
@@ -151,7 +158,7 @@ define( require => {
      * @param {Property.<boolean>} valuesVisibleProperty
      * @private
      */
-    alertValuesVisible( valuesVisibleProperty ) {
+    alertValuesVisibleChanged( valuesVisibleProperty ) {
       this.valuesVisibleUtterance.alert = valuesVisibleProperty ?
                                           solutionValuesCheckedAlertString :
                                           solutionValuesUncheckedAlertString;
@@ -166,6 +173,7 @@ define( require => {
      * @private
      */
     alertSliderQualitative( quantityChangeString, quantityChange ) {
+      assert && assert( !this.useQuantitativeDescriptionsProperty, 'quantitative descriptions should be used.' );
       let alertText = '';
       let stateInfo = '';
 
@@ -202,8 +210,8 @@ define( require => {
      * @returns {string}
      */
     alertSliderQuantitative() {
+      assert && assert( this.useQuantitativeDescriptionsProperty, 'qualitative descriptions should be used.' );
       let alertText = '';
-
       if ( this.solution.isSaturated() ) {
         alertText = this.concentrationDescriber.getStillSaturatedClause();
       }
