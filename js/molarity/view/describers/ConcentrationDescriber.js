@@ -326,7 +326,7 @@ define( require => {
      * @returns {string}
      * */
     getSaturationChangedString( useQuantitativeDescriptionsProperty ) {
-      assert && assert( this._saturationStateChanged, 'failed: saturation state has not changed' );
+      assert && assert( this._saturationStateChanged, 'saturation state has not changed' );
       return this.solution.isSaturated() ?
              saturationReachedAlertString :
              StringUtils.fillIn( saturationLostAlertPatternString, {
