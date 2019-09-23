@@ -104,9 +104,9 @@ define( require => {
     }
 
     /**
-     * Creates a string that describes the solute amount in the beaker.
+     * Creates a string that qualitatively or quantitatively describes the solute amount in the beaker.
      * @public
-     * @returns {string} - e.g. 'contains a lot of potassium permanganate"
+     * @returns {string} - e.g. 'contains a lot of potassium permanganate" or "contains 3.400 moles of drink mix"
      */
     getBeakerSoluteAmountString() {
       return StringUtils.fillIn( beakerSoluteAmountPatternString, {
@@ -146,11 +146,12 @@ define( require => {
     }
 
     /**
-     * Creates a substring describing the soluteAmount state
+     * Creates a substring qualitatively describing the soluteAmount state
      * @public
      * @returns {string} - something like "a lot of drink mix"
      */
     getSoluteAmountState() {
+      assert && assert( !this.useQuantitativeDescriptionsProperty.value, 'descriptions should be quantitative' );
       return StringUtils.fillIn( qualitativeSoluteAmountStatePatternString, {
         soluteAmount: this.getCurrentSoluteAmount(),
         solute: this.soluteDescriber.getCurrentSolute()
@@ -163,9 +164,7 @@ define( require => {
      * @returns {string}
      */
     getSoluteAmountValueText() {
-      return this.useQuantitativeDescriptionsProperty.value ?
-             this.getCurrentSoluteAmount() :
-             this.getSoluteAmountState();
+      return this.useQuantitativeDescriptionsProperty.value ? this.getCurrentSoluteAmount() : this.getSoluteAmountState();
     }
   }
 

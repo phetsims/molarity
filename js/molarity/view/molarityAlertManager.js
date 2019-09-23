@@ -173,7 +173,7 @@ define( require => {
      * @private
      */
     alertSliderQualitative( quantityChangeString, quantityChange ) {
-      assert && assert( !this.useQuantitativeDescriptionsProperty, 'quantitative descriptions should be used.' );
+      assert && assert( !this.useQuantitativeDescriptionsProperty.value, 'quantitative descriptions should be used.' );
       let alertText = '';
       let stateInfo = '';
 
@@ -210,7 +210,7 @@ define( require => {
      * @returns {string}
      */
     alertSliderQuantitative() {
-      assert && assert( this.useQuantitativeDescriptionsProperty, 'qualitative descriptions should be used.' );
+      assert && assert( this.useQuantitativeDescriptionsProperty.value, 'qualitative descriptions should be used.' );
       let alertText = '';
       if ( this.solution.isSaturated() ) {
         alertText = this.concentrationDescriber.getStillSaturatedClause();
