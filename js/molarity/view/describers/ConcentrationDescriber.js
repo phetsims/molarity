@@ -150,7 +150,6 @@ define( require => {
 
       // update fields (documented above) when ConcentrationProperty changes
       this.concentrationProperty.lazyLink( ( newValue, oldValue ) => {
-        assert && assert( newValue !== oldValue, 'unexpected: called with no change in concentration' );
         const newConcentrationIndex = concentrationToIndex( this.soluteProperty.value.saturatedConcentration,
           this.concentrationProperty.value );
         const previousSaturationState = oldValue > this.getCurrentSaturatedConcentration();
