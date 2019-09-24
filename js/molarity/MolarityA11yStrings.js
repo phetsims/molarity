@@ -354,7 +354,7 @@ define( require => {
       value: '{{color}} solution, {{concentrationClause}}.'
     },
     soluteChangedSaturatedAlertPattern: {
-      value: '{{color}} solution, saturated with {{solids}} solids, {{concentrationClause}}'
+      value: '{{color}} solution, saturated with {{solids}} solids, {{concentrationClause}}.'
     },
     soluteChangedQualitativePattern: {
       value: 'beyond max concentration'

@@ -313,7 +313,7 @@ define( require => {
      * @returns {string} - example: "more solids"
      */
     getSolidsChangeString() {
-      assert && assert( this.precipitateAmountProperty.value > 0, 'precipitateAmountProperty should be greater than 0');
+      assert && assert( this.precipitateAmountProperty.value > 0, 'precipitateAmountProperty should be greater than 0' );
       return StringUtils.fillIn( solidsChangePatternString, {
         moreLess: this.solidsIncreased ? moreString : lessString
       } );
@@ -360,7 +360,6 @@ define( require => {
    * @returns {number} - index to pull from SOLIDS_STRINGS array
    */
   const solidsToIndex = ( precipitateAmount, saturatedConcentration ) => {
-    assert && assert( precipitateAmount >= 0, 'precipitateAmount should be greater than or equal to 0' );
     const scaleIncrement = ( 5 - saturatedConcentration ) / SOLIDS_STRINGS.length;
     if ( precipitateAmount <= scaleIncrement / 5 ) {
       return 0;
@@ -387,7 +386,7 @@ define( require => {
    * @returns {number} index to pull from CONCENTRATION_STRINGS array
    */
   const concentrationToIndex = ( maxConcentration, concentration ) => {
-    assert && assert( concentration >= 0, 'concentration should be greater than or equal to 0' );
+
     // Concentration regions are evenly spaced within the region from 0 to max concentration for a given solute except
     // for the lowest region (zero) and the highest region (max concentration) which are single value regions.
     const scaleIncrement = maxConcentration / ( CONCENTRATION_STRINGS.length - 2 );
