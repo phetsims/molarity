@@ -92,7 +92,7 @@ define( require => {
     const useQuantitativeDescriptionsProperty = new DerivedProperty( [ valuesVisibleProperty ],
       currentValuesVisible => currentValuesVisible );
 
-    // a11y - instantiates describers and alert manager to generate and update all PDOM and alert content.
+    // a11y - initializes describers and alert manager to generate and update all PDOM and alert content.
     const concentrationDescriber = new ConcentrationDescriber( model.solution, useQuantitativeDescriptionsProperty );
     const soluteDescriber = new SoluteDescriber( model.solution, concentrationDescriber );
     const volumeDescriber = new VolumeDescriber( model.solution, concentrationDescriber,

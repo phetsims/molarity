@@ -79,7 +79,7 @@ define( require => {
       this.addChild( stateOfSimNode );
       this.addChild( interactionHintNode );
 
-      // Updates the third paragraph of the screen summary when sim properties change.
+      // Updates the third paragraph of the screen summary when sim Properties change.
       Property.multilink( [ solution.soluteProperty, solution.volumeProperty, solution.soluteAmountProperty,
         solution.concentrationProperty, useQuantitativeDescriptionsProperty ], () => {
         stateOfSimNode.innerContent = this.getStateOfSimDescription();

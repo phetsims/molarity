@@ -79,9 +79,16 @@ define( require => {
         () => this.updateBeakerDescriptionList() );
     }
 
-    // @private
+    /**
+     * updates the entire beaker summary in the PDOM when a model property changes.
+     * @private
+     */
     updateBeakerDescriptionList() {
+
+      // summary string above the list items
       this.beakerDescriptionList.labelContent = this.updateBeakerSummaryString();
+
+      // each method updates a single list item in the description
       this.updateSoluteAmountSummary();
       this.updateSaturationSummary();
       this.updateConcentrationSummary();
@@ -89,6 +96,10 @@ define( require => {
       this.updateConcentrationRangeSummary();
     }
 
+    /**
+     * updates the summary sentence before the bulleted list of descriptions
+     * @private
+     */
     updateBeakerSummaryString() {
       const summaryString = !this.concentrationDescriber.hasSolute() ? pureWaterPatternString : beakerDescriptionPatternString;
       return StringUtils.fillIn( summaryString, {
@@ -98,12 +109,20 @@ define( require => {
       } );
     }
 
-    // @private
+    /**
+     * updates the first bullet point - e.g. 'contains some drink mix'
+     * @private
+     */
     updateSoluteAmountSummary() {
       this.soluteAmountSummaryItem.innerContent = this.soluteAmountDescriber.getBeakerSoluteAmountString();
     }
 
-    // @private
+
+    /**
+     * if the solution is saturated, creates second bullet point - e.g. 'is saturated with a few solids'.
+     * Otherwise, it removes that bullet point from the list
+     * @private
+     */
     updateSaturationSummary() {
       if ( this.solution.isSaturated() ) {
         this.beakerDescriptionList.canAddChild( this.saturationSummaryItem ) &&
@@ -116,7 +135,10 @@ define( require => {
       }
     }
 
-    // @private
+    /**
+     * updates second/third (depending on saturation state) bullet - e.g. 'has low concentration'.
+     * @private
+     */
     updateConcentrationSummary() {
       if ( !this.concentrationDescriber.hasSolute() ) {
         this.concentrationSummaryItem.innerContent = hasZeroConcentrationString;
@@ -127,12 +149,17 @@ define( require => {
       }
     }
 
-    // @private
+    /**
+     * updates third/fourth (depending on saturation state) bullet - e.g. 'chemical formula of potassium permanganate
+     * is KMnO4.' If the solute is drink mix, this bullet is not created.
+     * @private
+     */
     updateChemicalFormulaSummary() {
       const isDrinkMix = this.soluteDescriber.getCurrentSolute( true ) === drinkMixString;
       const containsChemicalFormula = this.beakerDescriptionList.children.includes( this.chemicalFormulaSummaryItem );
 
       // doesn't display the chemical formula if drink mix is selected, otherwise displays as the second-to-last item.
+      // if there is no solute in the beaker, the chemical formula of water is displayed instead.
       if ( !this.concentrationDescriber.hasSolute() ) {
         this.beakerDescriptionList.canAddChild( this.chemicalFormulaSummaryItem ) &&
         this.beakerDescriptionList.insertChild( this.beakerDescriptionList.children.length - 1,
@@ -150,7 +177,10 @@ define( require => {
       }
     }
 
-    // @private
+    /**
+     * updates the concentration range bullet - e.g. 'concentration readout range 0 to 5.0 molar.'
+     * @private
+     */
     updateConcentrationRangeSummary() {
       this.concentrationRangeSummaryItem.innerContent = this.concentrationDescriber.getCurrentConcentrationRangeClause();
     }
