@@ -114,7 +114,7 @@ define( require => {
      */
     constructor( solution, useQuantitativeDescriptionsProperty ) {
 
-      // @public {boolean} - tracks whether the concentration descriptive region has changed
+      // @public (read-only) {boolean} - tracks whether the concentration descriptive region has changed
       this.concentrationRegionChanged = null;
 
       // @private
