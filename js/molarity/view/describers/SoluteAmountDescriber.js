@@ -153,7 +153,7 @@ define( require => {
     getSoluteAmountState() {
       assert && assert( !this.useQuantitativeDescriptionsProperty.value, 'descriptions should be quantitative' );
       return StringUtils.fillIn( qualitativeSoluteAmountStatePatternString, {
-        soluteAmount: this.getCurrentSoluteAmount(),
+        soluteAmount: this.getCurrentSoluteAmount( false ),
         solute: this.soluteDescriber.getCurrentSolute()
       } );
     }

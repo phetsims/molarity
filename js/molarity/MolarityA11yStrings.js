@@ -303,7 +303,7 @@ define( require => {
 
     // Qualitative volume value text strings
     qualitativeVolumeStatePattern: {
-      value: 'Beaker {{volume}}'
+      value: 'beaker {{volume}}'
     },
     qualitativeVolumeSliderValueTextPattern: {
       value: 'Beaker {{volume}}'
