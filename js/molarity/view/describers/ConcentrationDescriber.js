@@ -185,7 +185,7 @@ define( require => {
      * @public
      */
     hasSolute() {
-      return this.solution.soluteAmountProperty.value > 0;
+      return this.solution.soluteAmountProperty.value.toFixed( 3 ) > 0;
     }
 
     /**
