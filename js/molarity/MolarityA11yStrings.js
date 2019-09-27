@@ -326,7 +326,7 @@ define( require => {
 
     // Quantitative concentration value text strings
     qualitativeConcentrationStatePattern: {
-      value: 'Solution {{concentration}}'
+      value: 'Solution {{concentration}}.'
     },
     quantitativeConcentrationStatePattern: {
       value: 'concentration {{concentration}}.'
