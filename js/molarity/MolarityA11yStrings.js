@@ -115,7 +115,7 @@ define( require => {
       value: 'concentration {{concentration}}'
     },
     beakerChemicalFormulaPattern: {
-      value: 'chemical formula of {{solute}} is {{chemicalFormula}}.'
+      value: 'chemical formula of {{solute}} is {{chemicalFormula}}'
     },
 
     // Volume regions
