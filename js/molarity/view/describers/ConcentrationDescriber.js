@@ -410,7 +410,6 @@ define( require => {
       return 5;
     }
     else {
-      //assert && assert( concentrationRounded > 5 * scaleIncrement, 'invalid concentration value' );
       return 6;
     }
   };
