@@ -185,7 +185,7 @@ define( require => {
      * @public
      */
     hasSolute() {
-      return this.solution.soluteAmountProperty.value.toFixed( 3 ) > 0;
+      return Util.toFixed( this.solution.soluteAmountProperty.value, 3 ) > 0;
     }
 
     /**
@@ -226,7 +226,7 @@ define( require => {
     getCurrentConcentrationRangeClause() {
       const maxConcentration = this.getCurrentSaturatedConcentration() > 5.0 ? 5.0 : this.getCurrentSaturatedConcentration();
       return StringUtils.fillIn( concentrationRangePatternString, {
-        maxConcentration: Util.toFixed( maxConcentration, 1 )
+        maxConcentration: Util.toFixed( maxConcentration, 3 )
       } );
     }
 
