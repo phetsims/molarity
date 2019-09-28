@@ -246,7 +246,7 @@ define( require => {
      * @returns {string} - example: "a bunch"
      */
     getCurrentSolidsAmount( isCapitalized = true ) {
-      let solidsIndex = solidsToIndex( this.precipitateAmountProperty.value, this.getCurrentSaturatedConcentration() );
+      let solidsIndex = this.solidsIndex;
 
       // for the descriptions, solidsIndex needs to be adjusted to ensure that the first solids region alert is still read out.
       // see https://github.com/phetsims/molarity/issues/148.
@@ -289,7 +289,10 @@ define( require => {
      */
     getStillSaturatedClause() {
       return StringUtils.fillIn( stillSaturatedAlertPatternString, {
-        withSolids: this.solidsRegionChanged ? StringUtils.fillIn( withSolidsAlertPatternString, {
+
+        // the solids state information is only given if the region has changed, and if solids amount is not in the
+        // lowest region (which is right after saturation point).
+        withSolids: ( this.solidsRegionChanged && this.solidsIndex !== 0 ) ? StringUtils.fillIn( withSolidsAlertPatternString, {
           solidAmount: this.getCurrentSolidsAmount( false )
         } ) : ''
       } );
