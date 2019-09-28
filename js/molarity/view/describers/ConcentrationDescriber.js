@@ -407,7 +407,6 @@ define( require => {
       return 4;
     }
     else if ( concentrationRounded < 5 * scaleIncrement - .001 ) {
-      console.log( concentrationRounded );
       return 5;
     }
     else {
