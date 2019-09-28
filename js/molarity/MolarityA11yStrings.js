@@ -376,10 +376,10 @@ define( require => {
 
     // Saturated solution alert strings
     stillSaturatedAlertPattern: {
-      value: 'Still saturated {{withSolids}}'
+      value: 'Still saturated{{withSolids}}'
     },
     withSolidsAlertPattern: {
-      value: 'with {{solidAmount}} solids'
+      value: ' with {{solidAmount}} solids'
     },
     solidsChangePattern: {
       value: '{{moreLess}} solids'

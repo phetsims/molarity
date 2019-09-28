@@ -390,26 +390,28 @@ define( require => {
     // Concentration regions are evenly spaced within the region from 0 to max concentration for a given solute except
     // for the lowest region (zero) and the highest region (max concentration) which are single value regions.
     const scaleIncrement = maxConcentration / ( CONCENTRATION_STRINGS.length - 2 );
-    if ( concentration < 0.001 ) {
+    const concentrationRounded = Util.toFixed( concentration, 3 );
+    if ( concentrationRounded < 0.001 ) {
       return 0;
     }
-    else if ( concentration <= scaleIncrement ) {
+    else if ( concentrationRounded <= scaleIncrement ) {
       return 1;
     }
-    else if ( concentration <= 2 * scaleIncrement ) {
+    else if ( concentrationRounded <= 2 * scaleIncrement ) {
       return 2;
     }
-    else if ( concentration <= 3 * scaleIncrement ) {
+    else if ( concentrationRounded <= 3 * scaleIncrement ) {
       return 3;
     }
-    else if ( concentration <= 4 * scaleIncrement ) {
+    else if ( concentrationRounded <= 4 * scaleIncrement ) {
       return 4;
     }
-    else if ( concentration < 5 * scaleIncrement ) {
+    else if ( concentrationRounded < 5 * scaleIncrement - .001 ) {
+      console.log( concentrationRounded );
       return 5;
     }
     else {
-      assert && assert( concentration >= 5 * scaleIncrement, 'invalid concentration value' );
+      //assert && assert( concentrationRounded > 5 * scaleIncrement, 'invalid concentration value' );
       return 6;
     }
   };
