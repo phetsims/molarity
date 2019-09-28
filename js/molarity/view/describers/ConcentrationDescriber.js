@@ -246,7 +246,11 @@ define( require => {
      * @returns {string} - example: "a bunch"
      */
     getCurrentSolidsAmount( isCapitalized = true ) {
-      const solidsIndex = solidsToIndex( this.precipitateAmountProperty.value, this.getCurrentSaturatedConcentration() );
+      let solidsIndex = solidsToIndex( this.precipitateAmountProperty.value, this.getCurrentSaturatedConcentration() );
+
+      // for the descriptions, solidsIndex needs to be adjusted to ensure that the first solids region alert is still read out.
+      // see https://github.com/phetsims/molarity/issues/148.
+      solidsIndex !== 0 ? solidsIndex -= 1 : 0;
       return isCapitalized ?
              SOLIDS_STRINGS[ solidsIndex ] :
              SOLIDS_STRINGS_LOWERCASE[ solidsIndex ];
@@ -360,22 +364,33 @@ define( require => {
    * @returns {number} - index to pull from SOLIDS_STRINGS array
    */
   const solidsToIndex = ( precipitateAmount, saturatedConcentration ) => {
-    const scaleIncrement = ( 5 - saturatedConcentration ) / SOLIDS_STRINGS.length;
-    if ( precipitateAmount <= scaleIncrement / 5 ) {
+
+    // maximum: solute amount max - solute amount it takes to saturate at min volume. Varies with the selected solute.
+    const maxPrecipitateAmount = MolarityConstants.SOLUTE_AMOUNT_RANGE.max - saturatedConcentration * MolarityConstants.SOLUTION_VOLUME_RANGE.min;
+
+    // there is an unnamed region right after saturation point that doesn't have a description, so 1 more region must be
+    // added to the length of SOLIDS_STRINGS.
+    const numberOfIncrements = SOLIDS_STRINGS.length + 1;
+    const scaleIncrement = maxPrecipitateAmount / numberOfIncrements;
+
+    if ( precipitateAmount < scaleIncrement ) {
       return 0;
     }
-    else if ( precipitateAmount <= 2 * scaleIncrement / 5 ) {
+    else if ( precipitateAmount <= 2 * scaleIncrement ) {
       return 1;
     }
-    else if ( precipitateAmount <= 3 * scaleIncrement / 5 ) {
+    else if ( precipitateAmount <= 3 * scaleIncrement ) {
       return 2;
     }
-    else if ( precipitateAmount <= 4 * scaleIncrement / 5 ) {
+    else if ( precipitateAmount <= 4 * scaleIncrement ) {
       return 3;
     }
-    else {
-      assert && assert( precipitateAmount > 4 * scaleIncrement / 5, 'invalid precipitateAmount value' );
+    else if ( precipitateAmount <= 5 * scaleIncrement ) {
       return 4;
+    }
+    else {
+      assert && assert( precipitateAmount > 5 * scaleIncrement, 'invalid precipitateAmount value' );
+      return 5;
     }
   };
 
