@@ -145,7 +145,7 @@ define( require => {
         // a11y
         sliderOptions: {
           accessibleName: soluteAmountNoNewlineString,
-          a11yCreateValueChangeAriaValueText: () => soluteAmountDescriber.getSoluteAmountValueText()
+          a11yCreateAriaValueText: () => soluteAmountDescriber.getSoluteAmountValueText()
         }
       }
     );
@@ -167,7 +167,7 @@ define( require => {
         // a11y
         sliderOptions: {
           accessibleName: solutionVolumeString,
-          a11yCreateValueChangeAriaValueText: () => volumeDescriber.getVolumeValueText()
+          a11yCreateAriaValueText: () => volumeDescriber.getVolumeValueText()
         }
       } );
 
