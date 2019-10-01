@@ -327,7 +327,7 @@ define( require => {
       value: '{{moreLess}} concentrated'
     },
     concentrationRangePattern: {
-      value: 'concentration readout range 0 to {{maxConcentration}} molar'
+      value: 'concentration readout range for this solution 0 to {{maxConcentration}} molar'
     },
 
     // Solute changed alert string
