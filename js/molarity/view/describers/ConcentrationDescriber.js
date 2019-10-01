@@ -18,7 +18,6 @@ define( require => {
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
 
   // a11y strings
-  const beakerQuantitativeConcentrationPatternString = MolarityA11yStrings.beakerQuantitativeConcentrationPattern.value;
   const beakerQualitativeConcentrationPatternString = MolarityA11yStrings.beakerQualitativeConcentrationPattern.value;
   const beakerSaturationPatternString = MolarityA11yStrings.beakerSaturationPattern.value;
   const concentrationString = MolarityA11yStrings.concentration.value;
@@ -275,7 +274,7 @@ define( require => {
      */
     getBeakerConcentrationString( useQuantitativeDescriptionsProperty ) {
       const concentrationString = useQuantitativeDescriptionsProperty.value ?
-                                  beakerQuantitativeConcentrationPatternString :
+                                  quantitativeConcentrationStatePatternString :
                                   beakerQualitativeConcentrationPatternString;
       return StringUtils.fillIn( concentrationString, {
         concentration: this.getCurrentConcentrationClause()

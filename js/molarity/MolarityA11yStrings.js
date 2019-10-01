@@ -111,9 +111,6 @@ define( require => {
     beakerQualitativeConcentrationPattern: {
       value: '{{concentration}}'
     },
-    beakerQuantitativeConcentrationPattern: {
-      value: 'concentration {{concentration}}'
-    },
     beakerChemicalFormulaPattern: {
       value: 'chemical formula of {{solute}} is {{chemicalFormula}}'
     },
@@ -271,17 +268,8 @@ define( require => {
     },
 
     // Quantitative value text strings for both volume and solute amount sliders
-    quantitativeInitialValueTextPattern: {
-      value: '{{quantity}} in solution.'
-    },
-    quantitativeInitialAlertPattern: {
-      value: '{{concentrationChange}}. Concentration {{concentration}}.'
-    },
     quantitativeSliderAlertPattern: {
       value: '{{concentrationChange}} at {{concentration}}.'
-    },
-    quantitativeVolumeSliderValueTextPattern: {
-      value: '{{volume}} in beaker'
     },
     solutionVolumeAndUnitPattern: {
       value: '{{volume}} liters'
@@ -295,7 +283,7 @@ define( require => {
 
     // Qualitative value text strings for both volume and solute amount sliders
     qualitativeSaturatedValueTextPattern: {
-      value: '{{propertyAmountChange}}, {{solidsChange}}. {{stillSaturatedClause}}.'
+      value: '{{propertyAmountChange}}, {{solidsChange}}. {{stillSaturatedClause}}'
     },
     qualitativeSliderAlertPattern: {
       value: '{{quantityChange}}, {{concentrationChange}}. {{stateInfo}}'
@@ -304,9 +292,6 @@ define( require => {
     // Qualitative volume value text strings
     qualitativeVolumeStatePattern: {
       value: 'beaker {{volume}}'
-    },
-    qualitativeVolumeSliderValueTextPattern: {
-      value: 'Beaker {{volume}}'
     },
     volumeChangePattern: {
       value: '{{moreLess}} solution'
@@ -319,17 +304,13 @@ define( require => {
     soluteAmountChangedPattern: {
       value: '{{moreLess}} solute'
     },
-    soluteAmountSliderValueTextPattern: {
-      value: '{{soluteAmount}} {{solute}}'
-    },
-
 
     // Quantitative concentration value text strings
     qualitativeConcentrationStatePattern: {
       value: 'Solution {{concentration}}.'
     },
     quantitativeConcentrationStatePattern: {
-      value: 'concentration {{concentration}}.'
+      value: 'concentration {{concentration}}'
     },
     quantitativeConcentrationPattern: {
       value: 'Solution is {{saturatedConcentration}}, and concentration is {{concentration}}'
@@ -376,7 +357,7 @@ define( require => {
 
     // Saturated solution alert strings
     stillSaturatedAlertPattern: {
-      value: 'Still saturated{{withSolids}}'
+      value: 'Still saturated{{withSolids}}.'
     },
     withSolidsAlertPattern: {
       value: ' with {{solidAmount}} solids'
