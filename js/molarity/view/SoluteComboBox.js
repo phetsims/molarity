@@ -12,6 +12,7 @@ define( require => {
   const ComboBox = require( 'SUN/ComboBox' );
   const ComboBoxItem = require( 'SUN/ComboBoxItem' );
   const HBox = require( 'SCENERY/nodes/HBox' );
+  const merge = require( 'PHET_CORE/merge' );
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
@@ -42,7 +43,7 @@ define( require => {
      */
     constructor( solutes, selectedSoluteProperty, listParent, tandem, options ) {
 
-      options = _.extend( {
+      options = merge( {
         labelNode: new Text( StringUtils.format( pattern0LabelString, soluteString ), { font: new PhetFont( 22 ) } ), // 'Solute' label
         listPosition: 'above',
         cornerRadius: 8,

@@ -10,9 +10,10 @@ define( require => {
 
   // modules
   const BinMapper = require( 'TAMBO/BinMapper' );
+  const merge = require( 'PHET_CORE/merge' );
   const molarity = require( 'MOLARITY/molarity' );
-  const SoundClip = require( 'TAMBO/sound-generators/SoundClip' );
   const Range = require( 'DOT/Range' );
+  const SoundClip = require( 'TAMBO/sound-generators/SoundClip' );
 
   // sounds
   const precipitateSound = require( 'sound!MOLARITY/precipitate.mp3' );
@@ -42,7 +43,7 @@ define( require => {
      */
     constructor( precipitateAmountProperty, soluteAmountSlider, solutionVolumeSlider, options ) {
 
-      super( precipitateSound, _.extend( {
+      super( precipitateSound, merge( {
         initialOutputLevel: 0.5,
         rateChangesAffectPlayingSounds: false
       }, options ) );

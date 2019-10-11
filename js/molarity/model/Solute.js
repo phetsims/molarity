@@ -12,6 +12,7 @@ define( require => {
 
   // modules
   const inherit = require( 'PHET_CORE/inherit' );
+  const merge = require( 'PHET_CORE/merge' );
   const molarity = require( 'MOLARITY/molarity' );
   const PhetioObject = require( 'TANDEM/PhetioObject' );
   const SoluteIO = require( 'MOLARITY/molarity/model/SoluteIO' );
@@ -27,7 +28,7 @@ define( require => {
    */
   function Solute( name, formula, saturatedConcentration, minColor, maxColor, options ) {
 
-    options = _.extend( {
+    options = merge( {
       particleColor: maxColor, // the solute's color as a particle
       phetioType: SoluteIO
     }, options );
