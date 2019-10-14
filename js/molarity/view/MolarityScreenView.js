@@ -214,7 +214,7 @@ define( require => {
       accessibleName: showValuesString,
       helpText: solutionValuesHelpTextString
     } );
-    solutionValuesCheckbox.touchArea = Shape.rectangle( solutionValuesCheckbox.left, solutionValuesCheckbox.top - 15, solutionValuesCheckbox.width, solutionValuesCheckbox.height + 30 );
+    solutionValuesCheckbox.touchArea = Shape.rectangle( solutionValuesCheckbox.left, solutionValuesCheckbox.top - 15, solutionValuesCheckbox.width + 5, solutionValuesCheckbox.height + 30 );
 
     // sound generator for check box
     const uncheckedClip = new SoundClip( checkboxUncheckedSound, {
