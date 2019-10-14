@@ -130,7 +130,7 @@ define( require => {
         this.saturationSummaryItem.innerContent = this.concentrationDescriber.getBeakerSaturationString();
       }
       else {
-        this.beakerDescriptionList.children.includes( this.saturationSummaryItem ) &&
+        this.beakerDescriptionList.children.indexOf( this.saturationSummaryItem ) >= 0 &&
         this.beakerDescriptionList.removeChild( this.saturationSummaryItem );
       }
     }
@@ -156,7 +156,7 @@ define( require => {
      */
     updateChemicalFormulaSummary() {
       const isDrinkMix = this.soluteDescriber.getCurrentSolute( true ) === drinkMixString;
-      const containsChemicalFormula = this.beakerDescriptionList.children.includes( this.chemicalFormulaSummaryItem );
+      const containsChemicalFormula = this.beakerDescriptionList.children.indexOf( this.chemicalFormulaSummaryItem ) >= 0;
 
       // doesn't display the chemical formula if drink mix is selected, otherwise displays as the second-to-last item.
       // if there is no solute in the beaker, the chemical formula of water is displayed instead.
