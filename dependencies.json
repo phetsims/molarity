@@ -1,11 +1,11 @@
 {
-  "comment": "# molarity 1.5.0-dev.24 Sun Oct 13 2019 18:05:57 GMT-0700 (PDT)",
+  "comment": "# molarity 1.5.0-dev.25 Wed Oct 16 2019 13:05:35 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "bd6e3ed0a8b6fea73a4a176d5364809666833e58",
     "branch": "master"
   },
   "axon": {
-    "sha": "21a78bb2e0acc14914a7da9b25038441e671520a",
+    "sha": "3d36adc7bfac7e919e0dfc8dba8f276a87b8bb00",
     "branch": "master"
   },
   "brand": {
@@ -13,11 +13,11 @@
     "branch": "master"
   },
   "chipper": {
-    "sha": "f426c162a9a5c40cce07cb74628a9626814119c9",
+    "sha": "fb8e801094be8f576c7a2d04622ebe5f4f6d0ca2",
     "branch": "master"
   },
   "dot": {
-    "sha": "149992d25a11dbef5bbe1a2b21ca9135246dee6e",
+    "sha": "2131e58ccc9bd41598d1a8478c45b4d1cc1f8755",
     "branch": "master"
   },
   "joist": {
@@ -29,7 +29,7 @@
     "branch": "master"
   },
   "molarity": {
-    "sha": "75d34d223a1d6ad8d60c9a397e4c6753757343f5",
+    "sha": "0aace211f80c0f17c7a1eb825b8441b2d23bc88f",
     "branch": "master"
   },
   "nitroglycerin": {
@@ -37,7 +37,7 @@
     "branch": "master"
   },
   "phet-core": {
-    "sha": "abfe2607f09a608418c9db138a6a19a28892fd2d",
+    "sha": "0fd3dba96e62d77510ee4c3f514a72e5aa0f59b8",
     "branch": "master"
   },
   "phet-io": {
@@ -65,23 +65,23 @@
     "branch": "master"
   },
   "scenery-phet": {
-    "sha": "ecb41fe57fbbbf0772a4147f61a712eaec3a2c48",
-    "branch": "master"
+    "sha": "02137d63ac17265e5916f04f79c4f180099a92df",
+    "branch": "sounds-in-common-code"
   },
   "sherpa": {
     "sha": "bb2e5f425493d7475b2ed85af4338eb9f57ea835",
     "branch": "master"
   },
   "sun": {
-    "sha": "b25b1f73f61c2271ac938a4fe6c7f0b2a0fa1e9b",
-    "branch": "master"
+    "sha": "d1c7bc9111a20a378cf1e063416546c9996147bb",
+    "branch": "sounds-in-common-code"
   },
   "tambo": {
-    "sha": "c7151db2d0865e358412d3d03fb0135ccad1814b",
+    "sha": "44e878a8cfd7c750e1761e94e5e657e1d4fbecdf",
     "branch": "master"
   },
   "tandem": {
-    "sha": "b533ba868e16c6159259561994f47aa5899f2f48",
+    "sha": "a6d8e915af255b0721eaf6f47510dd973209176a",
     "branch": "master"
   }
 }
