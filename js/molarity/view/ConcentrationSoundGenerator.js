@@ -22,7 +22,7 @@ define( require => {
   // constants
   const NUM_SOLUTE_BINS = 13; // empirically determined to produce sounds as frequently as needed but not TOO frequently
   const NUM_VOLUME_BINS = 10; // empirically determined to produce sounds as frequently as needed but not TOO frequently
-  const ZERO_CONCENTRATION_PITCH_RATE = 0.33; // about 2.5 octaves below the nominal pitch, empirically determined
+  const ZERO_CONCENTRATION_PITCH_RATE = 2; // about 2 octaves above the nominal pitch, empirically determined
 
   class ConcentrationSoundGenerator extends SoundGenerator {
 
@@ -48,8 +48,9 @@ define( require => {
       // closure for playing the appropriate concentration sound
       const playConcentrationSound = () => {
         const concentration = solution.concentrationProperty.value;
-        if ( concentration > 0 ) {
-          nonZeroConcentrationSoundClip.setPlaybackRate( 0.5 + concentration / MolarityConstants.CONCENTRATION_RANGE.max );
+        const normalizedConcentration = concentration / MolarityConstants.CONCENTRATION_RANGE.max;
+        if ( normalizedConcentration > 0 ) {
+          nonZeroConcentrationSoundClip.setPlaybackRate( 1.5 - normalizedConcentration );
           nonZeroConcentrationSoundClip.play();
         }
         else if ( concentrationAtLastSoundProduction > 0 ) {
