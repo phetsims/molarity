@@ -17,7 +17,7 @@ define( require => {
 
   // sounds
   const marimbaSound = require( 'sound!TAMBO/bright-marimba.mp3' );
-  const softLowMarimbaSound = require( 'sound!MOLARITY/no-solute-solution-volume-bonk.mp3' );
+  const noSoluteSound = require( 'sound!MOLARITY/soft-no-solute-v2.mp3' );
 
   // constants
   const NUM_SOLUTE_BINS = 13; // empirically determined to produce sounds as frequently as needed but not TOO frequently
@@ -39,7 +39,7 @@ define( require => {
       // create and hook up the sound clips
       const nonZeroConcentrationSoundClip = new SoundClip( marimbaSound, { rateChangesAffectPlayingSounds: false } );
       nonZeroConcentrationSoundClip.connect( this.masterGainNode );
-      const zeroConcentrationSoundClip = new SoundClip( softLowMarimbaSound );
+      const zeroConcentrationSoundClip = new SoundClip( noSoluteSound, { initialOutputLevel: 0.6 } );
       zeroConcentrationSoundClip.connect( this.masterGainNode );
 
       // keep track of the concentration value each time sound is played
@@ -55,7 +55,7 @@ define( require => {
         }
         else if ( concentrationAtLastSoundProduction > 0 ) {
 
-          // the concentration value has transitioned to zero, so play the long version of the low bonk sound
+          // the concentration value has transitioned to zero, so play the sound at a pitch meant to convey emptiness
           nonZeroConcentrationSoundClip.setPlaybackRate( ZERO_CONCENTRATION_PITCH_RATE );
           nonZeroConcentrationSoundClip.play();
         }
