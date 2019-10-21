@@ -61,8 +61,8 @@ define( require => {
   const unitsMolesString = require( 'string!MOLARITY/units.moles' );
 
   // sounds
-  const checkboxCheckedSound = require( 'sound!TAMBO/check-box-checked.mp3' );
-  const checkboxUncheckedSound = require( 'sound!TAMBO/check-box-unchecked.mp3' );
+  const checkboxCheckedSound = require( 'sound!TAMBO/checkbox-checked.mp3' );
+  const checkboxUncheckedSound = require( 'sound!TAMBO/checkbox-unchecked.mp3' );
 
   // a11y strings
   const solutionValuesHelpTextString = MolarityA11yStrings.solutionValuesHelpText.value;
