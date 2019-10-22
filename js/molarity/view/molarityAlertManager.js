@@ -10,13 +10,13 @@ define( require => {
   'use strict';
 
   // modules
-  const ActivationUtterance = require( 'SCENERY_PHET/accessibility/ActivationUtterance' );
+  const ActivationUtterance = require( 'UTTERANCE_QUEUE/ActivationUtterance' );
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  const utteranceQueue = require( 'SCENERY_PHET/accessibility/utteranceQueue' );
-  const Utterance = require( 'SCENERY_PHET/accessibility/Utterance' );
-  const ValueChangeUtterance = require( 'SCENERY_PHET/accessibility/ValueChangeUtterance' );
+  const utteranceQueue = require( 'UTTERANCE_QUEUE/utteranceQueue' );
+  const Utterance = require( 'UTTERANCE_QUEUE/Utterance' );
+  const ValueChangeUtterance = require( 'UTTERANCE_QUEUE/ValueChangeUtterance' );
 
   // a11y strings
   const noSoluteQualitativeAlertString = MolarityA11yStrings.noSoluteQualitativeAlert.value;
