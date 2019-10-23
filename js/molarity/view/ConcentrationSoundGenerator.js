@@ -22,7 +22,7 @@ define( require => {
   // constants
   const NUM_SOLUTE_BINS = 13; // empirically determined to produce sounds as frequently as needed but not TOO frequently
   const NUM_VOLUME_BINS = 10; // empirically determined to produce sounds as frequently as needed but not TOO frequently
-  const ZERO_CONCENTRATION_PITCH_RATE = 2; // about 2 octaves above the nominal pitch, empirically determined
+  const ZERO_CONCENTRATION_PLAYBACK_RATE = 2; // about 2 octaves above the nominal pitch, empirically determined
 
   class ConcentrationSoundGenerator extends SoundGenerator {
 
@@ -36,11 +36,20 @@ define( require => {
     constructor( solution, soluteAmountSlider, solutionVolumeSlider, resetInProgressProperty, options ) {
       super( options );
 
-      // create and hook up the sound clips
+      // sound clip that is played when the concentration is above zero (pitch is varied as a function of concentration)
       const nonZeroConcentrationSoundClip = new SoundClip( marimbaSound, { rateChangesAffectPlayingSounds: false } );
       nonZeroConcentrationSoundClip.connect( this.masterGainNode );
-      const zeroConcentrationSoundClip = new SoundClip( noSoluteSound, { initialOutputLevel: 0.6 } );
-      zeroConcentrationSoundClip.connect( this.masterGainNode );
+
+      // sound clip that is played when the solute amount transitions to zero
+      const transitionToZeroConcentrationSoundClip = new SoundClip( marimbaSound, {
+        initialOutputLevel: 1.5, // higher than nominal, seems to work to make it more pronounced
+        initialPlaybackRate: ZERO_CONCENTRATION_PLAYBACK_RATE
+      } );
+      transitionToZeroConcentrationSoundClip.connect( this.masterGainNode );
+
+      // sound clip that is played when the solution level is changed when the concentration is zero
+      const atZeroConcentrationSoundClip = new SoundClip( noSoluteSound, { initialOutputLevel: 0.6 } );
+      atZeroConcentrationSoundClip.connect( this.masterGainNode );
 
       // keep track of the concentration value each time sound is played
       let concentrationAtLastSoundProduction = solution.concentrationProperty.value;
@@ -56,13 +65,12 @@ define( require => {
         else if ( concentrationAtLastSoundProduction > 0 ) {
 
           // the concentration value has transitioned to zero, so play the sound at a pitch meant to convey emptiness
-          nonZeroConcentrationSoundClip.setPlaybackRate( ZERO_CONCENTRATION_PITCH_RATE );
-          nonZeroConcentrationSoundClip.play();
+          transitionToZeroConcentrationSoundClip.play();
         }
         else {
 
           // the user is changing the volume of the solution with no solute in it, play the sound for this specific case
-          zeroConcentrationSoundClip.play();
+          atZeroConcentrationSoundClip.play();
         }
         concentrationAtLastSoundProduction = concentration;
       };
