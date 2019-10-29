@@ -257,7 +257,7 @@ define( require => {
     solutionControlsNode.accessibleOrder = [ soluteAmountSlider, solutionVolumeSlider ];
 
     // a11y - heading and accessible order for play area section of PDOM
-    this.playAreaNode.accessibleOrder = [
+    this.pdomPlayAreaNode.accessibleOrder = [
       beakerNode,
       solutionControlsNode,
       soluteComboBox,
@@ -265,7 +265,7 @@ define( require => {
     ];
 
     // a11y - contains PDOM heading for Control Area, and orders the PDOM for included elements
-    this.controlAreaNode.accessibleOrder = [
+    this.pdomControlAreaNode.accessibleOrder = [
       solutionValuesCheckbox,
       resetAllButton
     ];
