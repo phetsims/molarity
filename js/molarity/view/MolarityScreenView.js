@@ -265,7 +265,7 @@ define( require => {
     ];
 
     // a11y - contains PDOM heading for Control Area, and orders the PDOM for included elements
-    this.controlAreaNode.accessibleOrder = [
+    this.pdomControlAreaNode.accessibleOrder = [
       solutionValuesCheckbox,
       resetAllButton
     ];
