@@ -2,9 +2,9 @@
 window.phet.phetio.phetioElementsBaseline = assert &&
   {
     "molarity.general.activeProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Determines whether the entire simulation is running and processing user input. Setting this property to false pauses the simulation, and prevents user interaction.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
@@ -15,9 +15,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.general.barrierRectangle": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Semi-transparent barrier used to block input events when a dialog is shown, also fades out the background",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -28,9 +28,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.general.barrierRectangle.inputListener.firedEmitter": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "A function that executes. No arguments.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -41,9 +41,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "EmitterIO<>"
     },
     "molarity.general.barrierRectangle.inputListener.pressAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -54,9 +54,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<EventIO>"
     },
     "molarity.general.barrierRectangle.inputListener.releaseAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -67,9 +67,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<NullableIO<EventIO>>"
     },
     "molarity.general.barrierRectangle.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -80,9 +80,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.general.barrierRectangle.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -93,9 +93,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.general.barrierRectangle.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -106,9 +106,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.general.browserTabVisibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Indicates whether the browser tab containing the simulation is currently visible",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -119,9 +119,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.general.controller.input.changeAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Emits when the PDOM root gets the change DOM event. The arguments are:<br/><ol><li>event: DOMEventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -132,9 +132,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<DOMEventIO>"
     },
     "molarity.general.controller.input.clickAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Emits when the PDOM root gets the click DOM event. The arguments are:<br/><ol><li>event: DOMEventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -145,9 +145,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<DOMEventIO>"
     },
     "molarity.general.controller.input.focusinAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Emits when the PDOM root gets the focusin DOM event. The arguments are:<br/><ol><li>event: DOMEventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -158,9 +158,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<DOMEventIO>"
     },
     "molarity.general.controller.input.focusoutAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Emits when the PDOM root gets the focusout DOM event. The arguments are:<br/><ol><li>event: DOMEventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -171,9 +171,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<DOMEventIO>"
     },
     "molarity.general.controller.input.inputAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Emits when the PDOM root gets the input DOM event. The arguments are:<br/><ol><li>event: DOMEventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -184,9 +184,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<DOMEventIO>"
     },
     "molarity.general.controller.input.keydownAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Emits when the PDOM root gets the keydown DOM event. The arguments are:<br/><ol><li>event: DOMEventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -197,9 +197,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<DOMEventIO>"
     },
     "molarity.general.controller.input.keyupAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Emits when the PDOM root gets the keyup DOM event. The arguments are:<br/><ol><li>event: DOMEventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -210,9 +210,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<DOMEventIO>"
     },
     "molarity.general.controller.input.mouseDownAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Emits when a mouse button is pressed The arguments are:<br/><ol><li>point: Vector2IO</li><br/><li>event: DOMEventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -223,9 +223,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO, DOMEventIO>"
     },
     "molarity.general.controller.input.mouseMovedAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Emits when the mouse is moved The arguments are:<br/><ol><li>point: Vector2IO</li><br/><li>event: DOMEventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
@@ -236,9 +236,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO, DOMEventIO>"
     },
     "molarity.general.controller.input.mouseOutAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Emits when the mouse moves out of the display The arguments are:<br/><ol><li>point: Vector2IO</li><br/><li>event: DOMEventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -249,9 +249,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO, DOMEventIO>"
     },
     "molarity.general.controller.input.mouseOverAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Emits when the mouse is moved over a Node The arguments are:<br/><ol><li>point: Vector2IO</li><br/><li>event: DOMEventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -262,9 +262,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO, DOMEventIO>"
     },
     "molarity.general.controller.input.mouseUpAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Emits when a mouse button is released The arguments are:<br/><ol><li>point: Vector2IO</li><br/><li>event: DOMEventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -275,9 +275,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO, DOMEventIO>"
     },
     "molarity.general.controller.input.penCancelAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Emits when a pen is canceled The arguments are:<br/><ol><li>id: NumberIO</li><br/><li>point: Vector2IO</li><br/><li>event: DOMEventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -288,9 +288,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<NumberIO, Vector2IO, DOMEventIO>"
     },
     "molarity.general.controller.input.penEndAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Emits when a pen is lifted The arguments are:<br/><ol><li>id: NumberIO</li><br/><li>point: Vector2IO</li><br/><li>event: DOMEventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -301,9 +301,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<NumberIO, Vector2IO, DOMEventIO>"
     },
     "molarity.general.controller.input.penMoveAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Emits when a pen is moved The arguments are:<br/><ol><li>id: NumberIO</li><br/><li>point: Vector2IO</li><br/><li>event: DOMEventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
@@ -314,9 +314,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<NumberIO, Vector2IO, DOMEventIO>"
     },
     "molarity.general.controller.input.penStartAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Emits when a pen touches the screen The arguments are:<br/><ol><li>id: NumberIO</li><br/><li>point: Vector2IO</li><br/><li>event: DOMEventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -327,9 +327,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<NumberIO, Vector2IO, DOMEventIO>"
     },
     "molarity.general.controller.input.touchCancelAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Emits when a touch is canceled The arguments are:<br/><ol><li>id: NumberIO</li><br/><li>point: Vector2IO</li><br/><li>event: DOMEventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -340,9 +340,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<NumberIO, Vector2IO, DOMEventIO>"
     },
     "molarity.general.controller.input.touchEndAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Emits when a touch ends The arguments are:<br/><ol><li>id: NumberIO</li><br/><li>point: Vector2IO</li><br/><li>event: DOMEventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -353,9 +353,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<NumberIO, Vector2IO, DOMEventIO>"
     },
     "molarity.general.controller.input.touchMoveAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Emits when a touch moves The arguments are:<br/><ol><li>id: NumberIO</li><br/><li>point: Vector2IO</li><br/><li>event: DOMEventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
@@ -366,9 +366,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<NumberIO, Vector2IO, DOMEventIO>"
     },
     "molarity.general.controller.input.touchStartAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Emits when a touch begins The arguments are:<br/><ol><li>id: NumberIO</li><br/><li>point: Vector2IO</li><br/><li>event: DOMEventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -379,9 +379,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<NumberIO, Vector2IO, DOMEventIO>"
     },
     "molarity.general.controller.input.validatePointersAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "A function that executes. No arguments.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
@@ -392,9 +392,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<>"
     },
     "molarity.general.controller.input.wheelScrollAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Emits when the mouse wheel scrolls The arguments are:<br/><ol><li>event: DOMEventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
@@ -405,9 +405,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<DOMEventIO>"
     },
     "molarity.general.focusProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Stores the current focus for the simulation, null if there is not focus. This is not updated based on mouse or touch input, only keyboard and other alternative inputs.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -418,9 +418,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<FocusIO>>"
     },
     "molarity.general.navigationBar.a11yButtonsHBox.keyboardHelpButton": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -431,9 +431,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.general.navigationBar.a11yButtonsHBox.keyboardHelpButton.enabledProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
@@ -444,9 +444,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.general.navigationBar.a11yButtonsHBox.keyboardHelpButton.firedEmitter": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Emits when the button is fired No arguments.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -457,9 +457,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "EmitterIO<>"
     },
     "molarity.general.navigationBar.a11yButtonsHBox.keyboardHelpButton.keyboardHelpDialogCapsule": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -470,9 +470,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PhetioCapsuleIO<DialogIO>"
     },
     "molarity.general.navigationBar.a11yButtonsHBox.keyboardHelpButton.keyboardHelpDialogCapsule.prototype": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
-      "phetioDynamicElement": true,
+      "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": true,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -483,9 +483,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "DialogIO"
     },
     "molarity.general.navigationBar.a11yButtonsHBox.keyboardHelpButton.keyboardHelpDialogCapsule.prototype.closeButton": {
-      "isDynamicElementPrototype": true,
       "phetioDocumentation": "",
-      "phetioDynamicElement": true,
+      "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": true,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -496,9 +496,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.general.navigationBar.a11yButtonsHBox.keyboardHelpButton.keyboardHelpDialogCapsule.prototype.closeButton.enabledProperty": {
-      "isDynamicElementPrototype": true,
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
-      "phetioDynamicElement": true,
+      "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": true,
       "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
@@ -509,9 +509,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.general.navigationBar.a11yButtonsHBox.keyboardHelpButton.keyboardHelpDialogCapsule.prototype.closeButton.firedEmitter": {
-      "isDynamicElementPrototype": true,
       "phetioDocumentation": "Emits when the button is fired No arguments.",
-      "phetioDynamicElement": true,
+      "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": true,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -522,9 +522,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "EmitterIO<>"
     },
     "molarity.general.navigationBar.a11yButtonsHBox.keyboardHelpButton.keyboardHelpDialogCapsule.prototype.closeButton.opacityProperty": {
-      "isDynamicElementPrototype": true,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
-      "phetioDynamicElement": true,
+      "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": true,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -535,9 +535,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.general.navigationBar.a11yButtonsHBox.keyboardHelpButton.keyboardHelpDialogCapsule.prototype.closeButton.pickableProperty": {
-      "isDynamicElementPrototype": true,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
-      "phetioDynamicElement": true,
+      "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": true,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -548,9 +548,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.general.navigationBar.a11yButtonsHBox.keyboardHelpButton.keyboardHelpDialogCapsule.prototype.closeButton.pressListener.pressAction": {
-      "isDynamicElementPrototype": true,
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
-      "phetioDynamicElement": true,
+      "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": true,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -561,9 +561,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<EventIO>"
     },
     "molarity.general.navigationBar.a11yButtonsHBox.keyboardHelpButton.keyboardHelpDialogCapsule.prototype.closeButton.pressListener.releaseAction": {
-      "isDynamicElementPrototype": true,
       "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
-      "phetioDynamicElement": true,
+      "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": true,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -574,9 +574,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<NullableIO<EventIO>>"
     },
     "molarity.general.navigationBar.a11yButtonsHBox.keyboardHelpButton.keyboardHelpDialogCapsule.prototype.closeButton.visibleProperty": {
-      "isDynamicElementPrototype": true,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
-      "phetioDynamicElement": true,
+      "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": true,
       "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
@@ -587,9 +587,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.general.navigationBar.a11yButtonsHBox.keyboardHelpButton.keyboardHelpDialogCapsule.prototype.isShowingProperty": {
-      "isDynamicElementPrototype": true,
       "phetioDocumentation": "",
-      "phetioDynamicElement": true,
+      "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": true,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -600,9 +600,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.general.navigationBar.a11yButtonsHBox.keyboardHelpButton.keyboardHelpDialogCapsule.prototype.opacityProperty": {
-      "isDynamicElementPrototype": true,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
-      "phetioDynamicElement": true,
+      "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": true,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -613,9 +613,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.general.navigationBar.a11yButtonsHBox.keyboardHelpButton.keyboardHelpDialogCapsule.prototype.pickableProperty": {
-      "isDynamicElementPrototype": true,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
-      "phetioDynamicElement": true,
+      "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": true,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -626,9 +626,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.general.navigationBar.a11yButtonsHBox.keyboardHelpButton.keyboardHelpDialogCapsule.prototype.visibleProperty": {
-      "isDynamicElementPrototype": true,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
-      "phetioDynamicElement": true,
+      "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": true,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -639,9 +639,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.general.navigationBar.a11yButtonsHBox.keyboardHelpButton.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -652,9 +652,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.general.navigationBar.a11yButtonsHBox.keyboardHelpButton.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -665,9 +665,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.general.navigationBar.a11yButtonsHBox.keyboardHelpButton.pressListener.pressAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -678,9 +678,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<EventIO>"
     },
     "molarity.general.navigationBar.a11yButtonsHBox.keyboardHelpButton.pressListener.releaseAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -691,9 +691,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<NullableIO<EventIO>>"
     },
     "molarity.general.navigationBar.a11yButtonsHBox.keyboardHelpButton.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -704,9 +704,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.general.navigationBar.phetButton": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "The button that appears at the right side of the navigation bar, which shows a menu when pressed",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -717,9 +717,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PhetButtonIO"
     },
     "molarity.general.navigationBar.phetButton.enabledProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
@@ -730,9 +730,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.general.navigationBar.phetButton.firedEmitter": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Emits when the button is fired No arguments.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -743,9 +743,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "EmitterIO<>"
     },
     "molarity.general.navigationBar.phetButton.phetMenu": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "This menu is displayed when the PhET button is pressed.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -756,9 +756,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PhetMenuIO"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -769,9 +769,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PhetioCapsuleIO<DialogIO>"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.prototype": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
-      "phetioDynamicElement": true,
+      "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": true,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -782,9 +782,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "DialogIO"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.prototype.closeButton": {
-      "isDynamicElementPrototype": true,
       "phetioDocumentation": "",
-      "phetioDynamicElement": true,
+      "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": true,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -795,9 +795,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.prototype.closeButton.enabledProperty": {
-      "isDynamicElementPrototype": true,
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
-      "phetioDynamicElement": true,
+      "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": true,
       "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
@@ -808,9 +808,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.prototype.closeButton.firedEmitter": {
-      "isDynamicElementPrototype": true,
       "phetioDocumentation": "Emits when the button is fired No arguments.",
-      "phetioDynamicElement": true,
+      "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": true,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -821,9 +821,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "EmitterIO<>"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.prototype.closeButton.opacityProperty": {
-      "isDynamicElementPrototype": true,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
-      "phetioDynamicElement": true,
+      "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": true,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -834,9 +834,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.prototype.closeButton.pickableProperty": {
-      "isDynamicElementPrototype": true,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
-      "phetioDynamicElement": true,
+      "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": true,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -847,9 +847,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.prototype.closeButton.pressListener.pressAction": {
-      "isDynamicElementPrototype": true,
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
-      "phetioDynamicElement": true,
+      "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": true,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -860,9 +860,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<EventIO>"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.prototype.closeButton.pressListener.releaseAction": {
-      "isDynamicElementPrototype": true,
       "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
-      "phetioDynamicElement": true,
+      "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": true,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -873,9 +873,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<NullableIO<EventIO>>"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.prototype.closeButton.visibleProperty": {
-      "isDynamicElementPrototype": true,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
-      "phetioDynamicElement": true,
+      "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": true,
       "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
@@ -886,9 +886,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.prototype.isShowingProperty": {
-      "isDynamicElementPrototype": true,
       "phetioDocumentation": "",
-      "phetioDynamicElement": true,
+      "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": true,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -899,9 +899,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.prototype.opacityProperty": {
-      "isDynamicElementPrototype": true,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
-      "phetioDynamicElement": true,
+      "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": true,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -912,9 +912,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.prototype.pickableProperty": {
-      "isDynamicElementPrototype": true,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
-      "phetioDynamicElement": true,
+      "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": true,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -925,9 +925,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.prototype.visibleProperty": {
-      "isDynamicElementPrototype": true,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
-      "phetioDynamicElement": true,
+      "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": true,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -938,9 +938,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.aboutMenuItem": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "This menu item shows a dialog with information about the simulation.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -951,9 +951,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.aboutMenuItem.inputListener.firedEmitter": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "A function that executes. No arguments.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -964,9 +964,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "EmitterIO<>"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.aboutMenuItem.inputListener.pressAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -977,9 +977,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<EventIO>"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.aboutMenuItem.inputListener.releaseAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -990,9 +990,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<NullableIO<EventIO>>"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.aboutMenuItem.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1003,9 +1003,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.aboutMenuItem.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
@@ -1016,9 +1016,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.aboutMenuItem.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
@@ -1029,9 +1029,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.screenshotMenuItem": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "This menu item captures a screenshot from the simulation and saves it to the file system.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1042,9 +1042,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.screenshotMenuItem.inputListener.firedEmitter": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "A function that executes. No arguments.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1055,9 +1055,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "EmitterIO<>"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.screenshotMenuItem.inputListener.pressAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1068,9 +1068,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<EventIO>"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.screenshotMenuItem.inputListener.releaseAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1081,9 +1081,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<NullableIO<EventIO>>"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.screenshotMenuItem.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1094,9 +1094,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.screenshotMenuItem.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1107,9 +1107,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.general.navigationBar.phetButton.phetMenu.screenshotMenuItem.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
@@ -1120,9 +1120,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.general.navigationBar.phetButton.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Set whether the phetButton will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1133,9 +1133,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.general.navigationBar.phetButton.pressListener.pressAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1146,9 +1146,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<EventIO>"
     },
     "molarity.general.navigationBar.phetButton.pressListener.releaseAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1159,9 +1159,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<NullableIO<EventIO>>"
     },
     "molarity.general.navigationBar.titleTextNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Displays the title of the simulation in the navigation bar (bottom left)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1172,9 +1172,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "TextIO"
     },
     "molarity.general.navigationBar.titleTextNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1185,9 +1185,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.general.navigationBar.titleTextNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1198,9 +1198,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.general.navigationBar.titleTextNode.textProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1211,9 +1211,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<StringIO>"
     },
     "molarity.general.navigationBar.titleTextNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1224,9 +1224,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.general.phetioCommandProcessor": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Processes messages from the wrapper frame and returns the results. This serves as the source of PhET-iO data stream messages when commands are invoked from the wrapper.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1237,9 +1237,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PhetioCommandProcessorIO"
     },
     "molarity.general.resizeAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Executes when the sim is resized The arguments are:<br/><ol><li>width: NumberIO</li><br/><li>height: NumberIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1250,9 +1250,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<NumberIO, NumberIO>"
     },
     "molarity.general.screenIndexProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Indicates which screen is selected (0-indexed)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
@@ -1263,9 +1263,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.general.soundEnabledProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1276,9 +1276,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.general.stepSimulationAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>dt: NumberIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
@@ -1289,9 +1289,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<NumberIO>"
     },
     "molarity.general.utteranceQueue": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1302,9 +1302,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "UtteranceQueueIO"
     },
     "molarity.molarityScreen.activeProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Indicates whether the screen is active.  For single-screen simulations, the screen is always active.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1315,9 +1315,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.model.cobaltChloride": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1328,9 +1328,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "SoluteIO"
     },
     "molarity.molarityScreen.model.cobaltIINitrate": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1341,9 +1341,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "SoluteIO"
     },
     "molarity.molarityScreen.model.copperSulfate": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1354,9 +1354,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "SoluteIO"
     },
     "molarity.molarityScreen.model.drinkMix": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1367,9 +1367,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "SoluteIO"
     },
     "molarity.molarityScreen.model.goldIIIChloride": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1380,9 +1380,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "SoluteIO"
     },
     "molarity.molarityScreen.model.nickelIIChloride": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1393,9 +1393,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "SoluteIO"
     },
     "molarity.molarityScreen.model.potassiumChromate": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1406,9 +1406,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "SoluteIO"
     },
     "molarity.molarityScreen.model.potassiumDichromate": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1419,9 +1419,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "SoluteIO"
     },
     "molarity.molarityScreen.model.potassiumPermanganate": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1432,9 +1432,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "SoluteIO"
     },
     "molarity.molarityScreen.model.solution.concentrationProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1445,9 +1445,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "DerivedPropertyIO<NumberIO>"
     },
     "molarity.molarityScreen.model.solution.precipitateAmountProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1458,9 +1458,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "DerivedPropertyIO<NumberIO>"
     },
     "molarity.molarityScreen.model.solution.soluteAmountProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1471,9 +1471,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.model.solution.soluteProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1484,9 +1484,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<SoluteIO>"
     },
     "molarity.molarityScreen.model.solution.volumeProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1497,9 +1497,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1510,9 +1510,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.beakerNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1523,9 +1523,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.beakerNode.beakerImageNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1536,9 +1536,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.beakerNode.beakerImageNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1549,9 +1549,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.beakerNode.beakerImageNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1562,9 +1562,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.beakerNode.beakerImageNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1575,9 +1575,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.beakerNode.bottomNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1588,9 +1588,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.beakerNode.bottomNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1601,9 +1601,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.beakerNode.bottomNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1614,9 +1614,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.beakerNode.bottomNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1627,9 +1627,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.beakerNode.labelNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1640,9 +1640,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.beakerNode.labelNode.backgroundNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1653,9 +1653,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.beakerNode.labelNode.backgroundNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1666,9 +1666,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.beakerNode.labelNode.backgroundNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1679,9 +1679,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.beakerNode.labelNode.backgroundNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1692,9 +1692,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.beakerNode.labelNode.beakerLabelProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1705,9 +1705,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "DerivedPropertyIO<StringIO>"
     },
     "molarity.molarityScreen.view.beakerNode.labelNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1718,9 +1718,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.beakerNode.labelNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1731,9 +1731,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.beakerNode.labelNode.textNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1744,9 +1744,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "RichTextIO"
     },
     "molarity.molarityScreen.view.beakerNode.labelNode.textNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1757,9 +1757,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.beakerNode.labelNode.textNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1770,9 +1770,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.beakerNode.labelNode.textNode.textProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1783,9 +1783,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<StringIO>"
     },
     "molarity.molarityScreen.view.beakerNode.labelNode.textNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1796,9 +1796,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.beakerNode.labelNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1809,9 +1809,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.beakerNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1822,9 +1822,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.beakerNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1835,9 +1835,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.beakerNode.tickLabelNode~0": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1848,9 +1848,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "TextIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickLabelNode~0.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1861,9 +1861,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickLabelNode~0.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1874,9 +1874,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.beakerNode.tickLabelNode~0.textProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1887,9 +1887,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<StringIO>"
     },
     "molarity.molarityScreen.view.beakerNode.tickLabelNode~0.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1900,9 +1900,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.beakerNode.tickLabelNode~1": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1913,9 +1913,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "TextIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickLabelNode~1.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1926,9 +1926,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickLabelNode~1.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1939,9 +1939,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.beakerNode.tickLabelNode~1.textProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1952,9 +1952,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<StringIO>"
     },
     "molarity.molarityScreen.view.beakerNode.tickLabelNode~1.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1965,9 +1965,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.beakerNode.tickLabelsParent": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1978,9 +1978,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickLabelsParent.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -1991,9 +1991,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickLabelsParent.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2004,9 +2004,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.beakerNode.tickLabelsParent.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2017,9 +2017,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~0": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2030,9 +2030,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~0.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2043,9 +2043,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~0.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2056,9 +2056,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~0.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2069,9 +2069,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~1": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2082,9 +2082,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~1.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2095,9 +2095,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~1.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2108,9 +2108,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~1.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2121,9 +2121,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~2": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2134,9 +2134,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~2.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2147,9 +2147,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~2.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2160,9 +2160,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~2.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2173,9 +2173,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~3": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2186,9 +2186,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~3.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2199,9 +2199,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~3.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2212,9 +2212,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~3.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2225,9 +2225,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~4": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2238,9 +2238,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~4.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2251,9 +2251,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~4.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2264,9 +2264,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~4.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2277,9 +2277,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~5": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2290,9 +2290,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~5.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2303,9 +2303,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~5.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2316,9 +2316,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~5.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2329,9 +2329,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~6": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2342,9 +2342,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~6.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2355,9 +2355,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~6.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2368,9 +2368,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~6.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2381,9 +2381,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~7": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2394,9 +2394,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~7.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2407,9 +2407,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~7.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2420,9 +2420,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~7.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2433,9 +2433,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~8": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2446,9 +2446,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~8.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2459,9 +2459,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~8.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2472,9 +2472,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~8.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2485,9 +2485,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~9": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2498,9 +2498,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~9.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2511,9 +2511,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~9.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2524,9 +2524,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarkNode~9.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2537,9 +2537,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarksParent": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2550,9 +2550,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarksParent.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2563,9 +2563,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarksParent.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2576,9 +2576,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.beakerNode.tickMarksParent.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2589,9 +2589,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.beakerNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2602,9 +2602,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.concentrationDisplay": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2615,9 +2615,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.concentrationDisplay.barNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2628,9 +2628,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.concentrationDisplay.barNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2641,9 +2641,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.concentrationDisplay.barNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2654,9 +2654,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.barNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2667,9 +2667,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.maxNode.qualitativeNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2680,9 +2680,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "TextIO"
     },
     "molarity.molarityScreen.view.concentrationDisplay.maxNode.qualitativeNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2693,9 +2693,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.concentrationDisplay.maxNode.qualitativeNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2706,9 +2706,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.maxNode.qualitativeNode.textProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2719,9 +2719,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<StringIO>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.maxNode.qualitativeNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2732,9 +2732,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.maxNode.quantitativeNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2745,9 +2745,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "TextIO"
     },
     "molarity.molarityScreen.view.concentrationDisplay.maxNode.quantitativeNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2758,9 +2758,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.concentrationDisplay.maxNode.quantitativeNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2771,9 +2771,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.maxNode.quantitativeNode.textProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2784,9 +2784,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<StringIO>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.maxNode.quantitativeNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2797,9 +2797,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.minNode.qualitativeNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2810,9 +2810,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "TextIO"
     },
     "molarity.molarityScreen.view.concentrationDisplay.minNode.qualitativeNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2823,9 +2823,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.concentrationDisplay.minNode.qualitativeNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2836,9 +2836,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.minNode.qualitativeNode.textProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2849,9 +2849,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<StringIO>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.minNode.qualitativeNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2862,9 +2862,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.minNode.quantitativeNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2875,9 +2875,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "TextIO"
     },
     "molarity.molarityScreen.view.concentrationDisplay.minNode.quantitativeNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2888,9 +2888,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.concentrationDisplay.minNode.quantitativeNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2901,9 +2901,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.minNode.quantitativeNode.textProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2914,9 +2914,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<StringIO>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.minNode.quantitativeNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2927,9 +2927,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2940,9 +2940,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.concentrationDisplay.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2953,9 +2953,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.pointerNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2966,9 +2966,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.concentrationDisplay.pointerNode.arrowNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2979,9 +2979,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.concentrationDisplay.pointerNode.arrowNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -2992,9 +2992,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.concentrationDisplay.pointerNode.arrowNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3005,9 +3005,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.pointerNode.arrowNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3018,9 +3018,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.pointerNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3031,9 +3031,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.concentrationDisplay.pointerNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3044,9 +3044,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.pointerNode.valueNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3057,9 +3057,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "TextIO"
     },
     "molarity.molarityScreen.view.concentrationDisplay.pointerNode.valueNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3070,9 +3070,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.concentrationDisplay.pointerNode.valueNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3083,9 +3083,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.pointerNode.valueNode.textProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3096,9 +3096,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<StringIO>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.pointerNode.valueNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3109,9 +3109,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.pointerNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3122,9 +3122,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.saturatedBarNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3135,9 +3135,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.concentrationDisplay.saturatedBarNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3148,9 +3148,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.concentrationDisplay.saturatedBarNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3161,9 +3161,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.saturatedBarNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3174,9 +3174,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.subtitleNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3187,9 +3187,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "TextIO"
     },
     "molarity.molarityScreen.view.concentrationDisplay.subtitleNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3200,9 +3200,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.concentrationDisplay.subtitleNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3213,9 +3213,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.subtitleNode.textProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3226,9 +3226,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<StringIO>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.subtitleNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3239,9 +3239,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.titleNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3252,9 +3252,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "RichTextIO"
     },
     "molarity.molarityScreen.view.concentrationDisplay.titleNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3265,9 +3265,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.concentrationDisplay.titleNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3278,9 +3278,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.titleNode.textProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3291,9 +3291,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<StringIO>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.titleNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3304,9 +3304,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.concentrationDisplay.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3317,9 +3317,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3330,9 +3330,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3343,9 +3343,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.precipitateNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3356,9 +3356,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.precipitateNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3369,9 +3369,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.precipitateNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3382,9 +3382,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.precipitateNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3395,9 +3395,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.resetAllButton": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "The orange, round button that can be used to restore the initial state",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3408,9 +3408,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ResetAllButtonIO"
     },
     "molarity.molarityScreen.view.resetAllButton.enabledProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
@@ -3421,9 +3421,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.resetAllButton.firedEmitter": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Emits when the button is fired No arguments.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3434,9 +3434,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "EmitterIO<>"
     },
     "molarity.molarityScreen.view.resetAllButton.isFiringProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Temporarily becomes true while the Reset All button is firing.  Commonly used to disable audio effects during reset.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3447,9 +3447,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "DerivedPropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.resetAllButton.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3460,9 +3460,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.resetAllButton.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3473,9 +3473,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.resetAllButton.pressListener.pressAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3486,9 +3486,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<EventIO>"
     },
     "molarity.molarityScreen.view.resetAllButton.pressListener.releaseAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3499,9 +3499,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<NullableIO<EventIO>>"
     },
     "molarity.molarityScreen.view.resetAllButton.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
@@ -3512,9 +3512,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.saturatedIndicator": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3525,9 +3525,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.saturatedIndicator.backgroundNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3538,9 +3538,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.saturatedIndicator.backgroundNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3551,9 +3551,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.saturatedIndicator.backgroundNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3564,9 +3564,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.saturatedIndicator.backgroundNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3577,9 +3577,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.saturatedIndicator.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3590,9 +3590,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.saturatedIndicator.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3603,9 +3603,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.saturatedIndicator.textNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3616,9 +3616,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "TextIO"
     },
     "molarity.molarityScreen.view.saturatedIndicator.textNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3629,9 +3629,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.saturatedIndicator.textNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3642,9 +3642,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.saturatedIndicator.textNode.textProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3655,9 +3655,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<StringIO>"
     },
     "molarity.molarityScreen.view.saturatedIndicator.textNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3668,9 +3668,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.saturatedIndicator.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3681,9 +3681,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3694,9 +3694,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.maxNode.qualitativeNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3707,9 +3707,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "TextIO"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.maxNode.qualitativeNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3720,9 +3720,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.maxNode.qualitativeNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3733,9 +3733,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.maxNode.qualitativeNode.textProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3746,9 +3746,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<StringIO>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.maxNode.qualitativeNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3759,9 +3759,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.maxNode.quantitativeNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3772,9 +3772,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "TextIO"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.maxNode.quantitativeNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3785,9 +3785,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.maxNode.quantitativeNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3798,9 +3798,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.maxNode.quantitativeNode.textProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3811,9 +3811,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<StringIO>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.maxNode.quantitativeNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3824,9 +3824,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.minNode.qualitativeNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3837,9 +3837,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "TextIO"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.minNode.qualitativeNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3850,9 +3850,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.minNode.qualitativeNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3863,9 +3863,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.minNode.qualitativeNode.textProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3876,9 +3876,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<StringIO>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.minNode.qualitativeNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3889,9 +3889,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.minNode.quantitativeNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3902,9 +3902,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "TextIO"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.minNode.quantitativeNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3915,9 +3915,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.minNode.quantitativeNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3928,9 +3928,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.minNode.quantitativeNode.textProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3941,9 +3941,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<StringIO>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.minNode.quantitativeNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3954,9 +3954,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3967,9 +3967,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3980,9 +3980,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.sliderNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -3993,9 +3993,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "SliderIO"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.sliderNode.enabledProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
@@ -4006,9 +4006,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.sliderNode.enabledRangeProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4019,9 +4019,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<RangeIO>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.sliderNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4032,9 +4032,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.sliderNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4045,9 +4045,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.sliderNode.thumb": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4058,9 +4058,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.sliderNode.thumb.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4071,9 +4071,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.sliderNode.thumb.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4084,9 +4084,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.sliderNode.thumb.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4097,9 +4097,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.sliderNode.thumbInputListener": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4110,9 +4110,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ObjectIO"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.sliderNode.thumbInputListener.dragAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag in view coordinates</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
@@ -4123,9 +4123,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.sliderNode.thumbInputListener.dragEndAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag end in view coordinates</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4136,9 +4136,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.sliderNode.thumbInputListener.dragStartAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag start in view coordinates</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4149,9 +4149,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.sliderNode.thumbInputListener.isDraggingProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Indicates whether the object is dragging",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4162,9 +4162,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.sliderNode.track.trackInputListener": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4175,9 +4175,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ObjectIO"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.sliderNode.track.trackInputListener.dragAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag in view coordinates</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
@@ -4188,9 +4188,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.sliderNode.track.trackInputListener.dragEndAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag end in view coordinates</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4201,9 +4201,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.sliderNode.track.trackInputListener.dragStartAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag start in view coordinates</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4214,9 +4214,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.sliderNode.track.trackInputListener.isDraggingProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Indicates whether the object is dragging",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4227,9 +4227,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.sliderNode.valueProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4240,9 +4240,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "LinkedElementIO"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.sliderNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
@@ -4253,9 +4253,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.subtitleNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4266,9 +4266,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "TextIO"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.subtitleNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4279,9 +4279,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.subtitleNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4292,9 +4292,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.subtitleNode.textProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4305,9 +4305,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<StringIO>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.subtitleNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4318,9 +4318,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.titleNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4331,9 +4331,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "RichTextIO"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.titleNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4344,9 +4344,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.titleNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4357,9 +4357,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.titleNode.textProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4370,9 +4370,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<StringIO>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.titleNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4383,9 +4383,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.valueNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4396,9 +4396,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "TextIO"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.valueNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4409,9 +4409,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.valueNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4422,9 +4422,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.valueNode.textProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4435,9 +4435,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<StringIO>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.valueNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4448,9 +4448,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteAmountSlider.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4461,9 +4461,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteComboBox": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4474,9 +4474,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ComboBoxIO"
     },
     "molarity.molarityScreen.view.soluteComboBox.button": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4487,9 +4487,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.soluteComboBox.button.enabledProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
@@ -4500,9 +4500,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteComboBox.button.firedEmitter": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Emits when the button is fired No arguments.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4513,9 +4513,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "EmitterIO<>"
     },
     "molarity.molarityScreen.view.soluteComboBox.button.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4526,9 +4526,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.soluteComboBox.button.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4539,9 +4539,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.soluteComboBox.button.pressListener.pressAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4552,9 +4552,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<EventIO>"
     },
     "molarity.molarityScreen.view.soluteComboBox.button.pressListener.releaseAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4565,9 +4565,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<NullableIO<EventIO>>"
     },
     "molarity.molarityScreen.view.soluteComboBox.button.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
@@ -4578,9 +4578,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteComboBox.displayOnlyProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "disables interaction with the ComboBox and makes it appear like a display that shows the current selection",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4591,9 +4591,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteComboBox.enabledProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4604,9 +4604,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4617,9 +4617,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.cobaltChloride": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4630,9 +4630,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.cobaltChloride.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4643,9 +4643,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.cobaltChloride.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4656,9 +4656,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.cobaltChloride.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4669,9 +4669,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.cobaltIINitrate": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4682,9 +4682,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.cobaltIINitrate.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4695,9 +4695,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.cobaltIINitrate.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4708,9 +4708,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.cobaltIINitrate.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4721,9 +4721,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.copperSulfate": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4734,9 +4734,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.copperSulfate.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4747,9 +4747,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.copperSulfate.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4760,9 +4760,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.copperSulfate.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4773,9 +4773,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.drinkMix": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4786,9 +4786,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.drinkMix.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4799,9 +4799,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.drinkMix.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4812,9 +4812,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.drinkMix.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4825,9 +4825,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.fireAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "A function that executes. No arguments.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4838,9 +4838,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<>"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.goldIIIChloride": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4851,9 +4851,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.goldIIIChloride.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4864,9 +4864,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.goldIIIChloride.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4877,9 +4877,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.goldIIIChloride.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4890,9 +4890,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.nickelIIChloride": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4903,9 +4903,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.nickelIIChloride.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4916,9 +4916,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.nickelIIChloride.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4929,9 +4929,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.nickelIIChloride.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4942,9 +4942,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4955,9 +4955,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4968,9 +4968,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.potassiumChromate": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4981,9 +4981,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.potassiumChromate.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -4994,9 +4994,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.potassiumChromate.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5007,9 +5007,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.potassiumChromate.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5020,9 +5020,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.potassiumDichromate": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5033,9 +5033,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.potassiumDichromate.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5046,9 +5046,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.potassiumDichromate.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5059,9 +5059,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.potassiumDichromate.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5072,9 +5072,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.potassiumPermanganate": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5085,9 +5085,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.potassiumPermanganate.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5098,9 +5098,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.potassiumPermanganate.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5111,9 +5111,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.potassiumPermanganate.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5124,9 +5124,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteComboBox.listBox.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5137,9 +5137,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.soluteComboBox.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5150,9 +5150,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.soluteComboBox.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5163,9 +5163,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.soluteComboBox.property": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5176,9 +5176,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "LinkedElementIO"
     },
     "molarity.molarityScreen.view.soluteComboBox.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5189,9 +5189,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.solutionNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5202,9 +5202,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.solutionNode.bottomNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5215,9 +5215,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.solutionNode.bottomNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5228,9 +5228,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.solutionNode.bottomNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5241,9 +5241,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.solutionNode.bottomNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5254,9 +5254,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.solutionNode.middleNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5267,9 +5267,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.solutionNode.middleNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5280,9 +5280,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.solutionNode.middleNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5293,9 +5293,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.solutionNode.middleNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5306,9 +5306,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.solutionNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5319,9 +5319,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.solutionNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5332,9 +5332,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.solutionNode.topNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5345,9 +5345,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.solutionNode.topNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5358,9 +5358,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.solutionNode.topNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5371,9 +5371,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.solutionNode.topNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5384,9 +5384,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.solutionNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5397,9 +5397,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.solutionValuesCheckbox": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5410,9 +5410,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.solutionValuesCheckbox.enabledProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
@@ -5423,9 +5423,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.solutionValuesCheckbox.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5436,9 +5436,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.solutionValuesCheckbox.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5449,9 +5449,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.solutionValuesCheckbox.property": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5462,9 +5462,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "LinkedElementIO"
     },
     "molarity.molarityScreen.view.solutionValuesCheckbox.toggleAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Emits when user input causes the checkbox to toggle, emitting a single arg: the new boolean value of the checkbox state. The arguments are:<br/><ol><li>isChecked: BooleanIO</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5475,9 +5475,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.solutionValuesCheckbox.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
@@ -5488,9 +5488,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.solutionValuesText": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5501,9 +5501,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "TextIO"
     },
     "molarity.molarityScreen.view.solutionValuesText.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5514,9 +5514,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.solutionValuesText.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5527,9 +5527,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.solutionValuesText.textProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5540,9 +5540,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<StringIO>"
     },
     "molarity.molarityScreen.view.solutionValuesText.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5553,9 +5553,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5566,9 +5566,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.maxNode.qualitativeNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5579,9 +5579,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "TextIO"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.maxNode.qualitativeNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5592,9 +5592,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.maxNode.qualitativeNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5605,9 +5605,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.maxNode.qualitativeNode.textProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5618,9 +5618,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<StringIO>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.maxNode.qualitativeNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5631,9 +5631,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.maxNode.quantitativeNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5644,9 +5644,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "TextIO"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.maxNode.quantitativeNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5657,9 +5657,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.maxNode.quantitativeNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5670,9 +5670,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.maxNode.quantitativeNode.textProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5683,9 +5683,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<StringIO>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.maxNode.quantitativeNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5696,9 +5696,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.minNode.qualitativeNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5709,9 +5709,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "TextIO"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.minNode.qualitativeNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5722,9 +5722,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.minNode.qualitativeNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5735,9 +5735,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.minNode.qualitativeNode.textProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5748,9 +5748,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<StringIO>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.minNode.qualitativeNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5761,9 +5761,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.minNode.quantitativeNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5774,9 +5774,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "TextIO"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.minNode.quantitativeNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5787,9 +5787,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.minNode.quantitativeNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5800,9 +5800,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.minNode.quantitativeNode.textProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5813,9 +5813,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<StringIO>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.minNode.quantitativeNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5826,9 +5826,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5839,9 +5839,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5852,9 +5852,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.sliderNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5865,9 +5865,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "SliderIO"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.sliderNode.enabledProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
@@ -5878,9 +5878,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.sliderNode.enabledRangeProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5891,9 +5891,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<RangeIO>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.sliderNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5904,9 +5904,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.sliderNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5917,9 +5917,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.sliderNode.thumb": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5930,9 +5930,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.sliderNode.thumb.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5943,9 +5943,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.sliderNode.thumb.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5956,9 +5956,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.sliderNode.thumb.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5969,9 +5969,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.sliderNode.thumbInputListener": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -5982,9 +5982,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ObjectIO"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.sliderNode.thumbInputListener.dragAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag in view coordinates</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
@@ -5995,9 +5995,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.sliderNode.thumbInputListener.dragEndAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag end in view coordinates</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -6008,9 +6008,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.sliderNode.thumbInputListener.dragStartAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag start in view coordinates</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -6021,9 +6021,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.sliderNode.thumbInputListener.isDraggingProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Indicates whether the object is dragging",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -6034,9 +6034,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.sliderNode.track.trackInputListener": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -6047,9 +6047,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ObjectIO"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.sliderNode.track.trackInputListener.dragAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag in view coordinates</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
@@ -6060,9 +6060,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.sliderNode.track.trackInputListener.dragEndAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag end in view coordinates</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -6073,9 +6073,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.sliderNode.track.trackInputListener.dragStartAction": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag start in view coordinates</li></ol>",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -6086,9 +6086,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.sliderNode.track.trackInputListener.isDraggingProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Indicates whether the object is dragging",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -6099,9 +6099,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.sliderNode.valueProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -6112,9 +6112,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "LinkedElementIO"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.sliderNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
@@ -6125,9 +6125,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.subtitleNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -6138,9 +6138,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "TextIO"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.subtitleNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -6151,9 +6151,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.subtitleNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -6164,9 +6164,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.subtitleNode.textProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -6177,9 +6177,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<StringIO>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.subtitleNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -6190,9 +6190,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.titleNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -6203,9 +6203,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "RichTextIO"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.titleNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -6216,9 +6216,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.titleNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -6229,9 +6229,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.titleNode.textProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -6242,9 +6242,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<StringIO>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.titleNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -6255,9 +6255,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.valueNode": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -6268,9 +6268,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "TextIO"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.valueNode.opacityProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -6281,9 +6281,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NumberPropertyIO"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.valueNode.pickableProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -6294,9 +6294,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.valueNode.textProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -6307,9 +6307,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<StringIO>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.valueNode.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -6320,9 +6320,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.solutionVolumeSlider.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -6333,9 +6333,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.valuesVisibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -6346,9 +6346,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "molarity.molarityScreen.view.visibleProperty": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
@@ -6359,9 +6359,9 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "phetioEngine": {
-      "isDynamicElementPrototype": false,
       "phetioDocumentation": "Central point for PhET-iO interoperability",
       "phetioDynamicElement": false,
+      "phetioDynamicElementPrototype": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
