@@ -20,6 +20,7 @@ define( require => {
   const beakerSoluteAmountPatternString = MolarityA11yStrings.beakerSoluteAmountPattern.value;
   const soluteAmountAndUnitPatternString = MolarityA11yStrings.soluteAmountAndUnitPattern.value;
   const soluteAmountChangedPatternString = MolarityA11yStrings.soluteAmountChangedPattern.value;
+  const qualitativeColorChangePatternString = MolarityA11yStrings.qualitativeColorChangePattern.value;
   const qualitativeSoluteAmountStatePatternString = MolarityA11yStrings.qualitativeSoluteAmountStatePattern.value;
 
   // Solute Amount regions strings
@@ -43,6 +44,8 @@ define( require => {
   // Change strings
   const lessCapitalizedString = MolarityA11yStrings.lessCapitalized.value;
   const moreCapitalizedString = MolarityA11yStrings.moreCapitalized.value;
+  const lighterString = MolarityA11yStrings.lighter.value;
+  const darkerString = MolarityA11yStrings.darker.value;
 
   // Constants
   const SOLUTE_AMOUNT_STRINGS = [
@@ -116,14 +119,19 @@ define( require => {
     }
 
     /**
-     * Returns a string describing the change in soluteAmount (e.g. "more solution")
+     * Creates the substrings to describe the change in volume and the resulting change in solution color
      * @public
-     * @returns {string} - quantitative or qualitative description of current soluteAmount.
+     * @returns {Object} - contains two strings.
      */
     getSoluteAmountChangeString() {
-      return StringUtils.fillIn( soluteAmountChangedPatternString, {
-        moreLess: this.soluteAmountIncreased ? moreCapitalizedString : lessCapitalizedString
-      } );
+      return {
+        quantityChangeString: StringUtils.fillIn( soluteAmountChangedPatternString, {
+          moreLess: this.soluteAmountIncreased ? moreCapitalizedString : lessCapitalizedString
+        } ),
+        colorChangeString: StringUtils.fillIn( qualitativeColorChangePatternString, {
+          lighterDarker: this.soluteAmountIncreased ? darkerString : lighterString
+        } )
+      };
     }
 
     /**

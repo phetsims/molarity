@@ -353,7 +353,7 @@ define( require => {
       }
       else {
         return StringUtils.fillIn( qualitativeConcentrationStatePatternString, {
-          concentration: this.getCurrentConcentrationClause()
+          concentration: this.getCurrentPassiveConcentrationClause()
         } );
       }
     }

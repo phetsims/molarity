@@ -18,6 +18,7 @@ define( require => {
 
   // strings
   const hasVolumePatternString = MolarityA11yStrings.hasVolumePattern.value;
+  const qualitativeColorChangePatternString = MolarityA11yStrings.qualitativeColorChangePattern.value;
   const qualitativeVolumeStatePatternString = MolarityA11yStrings.qualitativeVolumeStatePattern.value;
   const solutionVolumeAndUnitPatternString = MolarityA11yStrings.solutionVolumeAndUnitPattern.value;
   const volumeChangePatternString = MolarityA11yStrings.volumeChangePattern.value;
@@ -43,6 +44,8 @@ define( require => {
   // change strings
   const lessCapitalizedString = MolarityA11yStrings.lessCapitalized.value;
   const moreCapitalizedString = MolarityA11yStrings.moreCapitalized.value;
+  const lighterString = MolarityA11yStrings.lighter.value;
+  const darkerString = MolarityA11yStrings.darker.value;
 
   // constants
   const VOLUME_STRINGS = [
@@ -125,14 +128,19 @@ define( require => {
     }
 
     /**
-     * Creates a substring describing the change in volume
+     * Creates the substrings to describe the change in volume and the resulting change in solution color
      * @public
-     * @returns {string} - example "More solution"
+     * @returns {Object} - contains two strings.
      */
-    getVolumeChangeString() {
-      return StringUtils.fillIn( volumeChangePatternString, {
-        moreLess: this.volumeIncreased ? moreCapitalizedString : lessCapitalizedString
-      } );
+    getVolumeChangeStrings() {
+      return {
+        quantityChangeString: StringUtils.fillIn( volumeChangePatternString, {
+          moreLess: this.volumeIncreased ? moreCapitalizedString : lessCapitalizedString
+        } ),
+        colorChangeString: StringUtils.fillIn( qualitativeColorChangePatternString, {
+          lighterDarker: this.volumeIncreased ? lighterString : darkerString
+        } )
+      };
     }
 
     /**

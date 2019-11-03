@@ -106,7 +106,7 @@ define( require => {
           // initial load or reset of the sim. No alert is read out in this case.
           if ( this.concentrationDescriber.concentrationIncreased !== null ||
                this.concentrationDescriber.solidsIncreased !== null ) {
-            this.alertSliderQualitative( volumeDescriber.getVolumeChangeString(), volumeDescriber.volumeRegionChanged );
+            this.alertSliderQualitative( volumeDescriber.getVolumeChangeStrings(), volumeDescriber.volumeRegionChanged );
           }
         }
       } );
@@ -167,12 +167,12 @@ define( require => {
 
     /**
      * When qualitative descriptions are being used and SoluteAmountProperty or VolumeProperty changes, creates an alert.
-     * @param {string} quantityChangeString - e.g. "More solution" or "Less solute."
+     * @param {Object} changeStrings - contains multiple strings.
      * @param {boolean} quantityChange - true if the quantity has increased, false if quantity has decreased
      * @returns {string} - text of alert to add to back
      * @private
      */
-    alertSliderQualitative( quantityChangeString, quantityChange ) {
+    alertSliderQualitative( changeStrings, quantityChange ) {
       assert && assert( !this.useQuantitativeDescriptionsProperty.value, 'quantitative descriptions should be used.' );
       let alertText = '';
       let stateInfo = '';
@@ -186,15 +186,17 @@ define( require => {
       // alert text is different based on whether or not the solution is saturated.
       if ( this.solution.isSaturated() ) {
         alertText = StringUtils.fillIn( qualitativeSaturatedValueTextPatternString, {
-          propertyAmountChange: quantityChangeString,
+          propertyAmountChange: changeStrings.quantityChangeString,
           solidsChange: this.concentrationDescriber.getSolidsChangeString(),
+          colorChange: changeStrings.colorChangeString,
           stillSaturatedClause: this.concentrationDescriber.getStillSaturatedClause()
         } );
       }
       else {
         alertText = StringUtils.fillIn( qualitativeSliderAlertPatternString, {
-          quantityChange: quantityChangeString,
+          quantityChange: changeStrings.quantityChangeString,
           concentrationChange: this.concentrationDescriber.getConcentrationChangeString(),
+          colorChange: changeStrings.colorChangeString,
           stateInfo: stateInfo
         } );
       }

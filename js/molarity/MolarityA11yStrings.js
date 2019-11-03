@@ -286,7 +286,18 @@ define( require => {
       value: '{{propertyAmountChange}}, {{solidsChange}}. {{stillSaturatedClause}}'
     },
     qualitativeSliderAlertPattern: {
-      value: '{{quantityChange}}, {{concentrationChange}}. {{stateInfo}}'
+      value: '{{quantityChange}}, {{concentrationChange}}. {{colorChange}}{{stateInfo}}.'
+    },
+
+    // Qualitative color change strings
+    qualitativeColorChangePattern: {
+      value: 'Solution {{lighterDarker}}'
+    },
+    lighter: {
+      value: 'lighter'
+    },
+    darker: {
+      value: 'darker'
     },
 
     // Qualitative volume value text strings
@@ -307,7 +318,7 @@ define( require => {
 
     // Quantitative concentration value text strings
     qualitativeConcentrationStatePattern: {
-      value: 'Solution {{concentration}}.'
+      value: ', {{concentration}}'
     },
     quantitativeConcentrationStatePattern: {
       value: 'concentration {{concentration}}'
