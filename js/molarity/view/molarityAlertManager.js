@@ -14,7 +14,7 @@ define( require => {
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-const Utterance = require( 'UTTERANCE_QUEUE/Utterance' );
+  const Utterance = require( 'UTTERANCE_QUEUE/Utterance' );
   const ValueChangeUtterance = require( 'UTTERANCE_QUEUE/ValueChangeUtterance' );
 
   // a11y strings
@@ -80,7 +80,7 @@ const Utterance = require( 'UTTERANCE_QUEUE/Utterance' );
           // initial load or reset of the sim. No alert is read out in this case.
           if ( this.concentrationDescriber.concentrationIncreased !== null ||
                this.concentrationDescriber.solidsIncreased !== null ) {
-            this.alertSliderQualitative( soluteAmountDescriber.getSoluteAmountChangeString(),
+            this.alertSliderQualitative( soluteAmountDescriber.getSoluteAmountChangeStrings(),
               soluteAmountDescriber.soluteAmountRegionChanged );
           }
         }
@@ -194,7 +194,6 @@ const Utterance = require( 'UTTERANCE_QUEUE/Utterance' );
       else {
         alertText = StringUtils.fillIn( qualitativeSliderAlertPatternString, {
           quantityChange: changeStrings.quantityChangeString,
-          concentrationChange: this.concentrationDescriber.getConcentrationChangeString(),
           colorChange: changeStrings.colorChangeString,
           stateInfo: stateInfo
         } );
@@ -219,7 +218,8 @@ const Utterance = require( 'UTTERANCE_QUEUE/Utterance' );
       else {
         alertText = StringUtils.fillIn( quantitativeSliderAlertPatternString, {
           concentrationChange: this.concentrationDescriber.getConcentrationChangeString( true ),
-          concentration: this.concentrationDescriber.getCurrentConcentrationClause()
+          concentration: this.concentrationDescriber.getCurrentConcentrationClause(),
+          colorChange: this.concentrationDescriber.getColorChangeString()
         } );
       }
 

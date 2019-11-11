@@ -18,7 +18,7 @@ define( require => {
 
   // strings
   const hasVolumePatternString = MolarityA11yStrings.hasVolumePattern.value;
-  const qualitativeColorChangePatternString = MolarityA11yStrings.qualitativeColorChangePattern.value;
+  const colorChangePatternString = MolarityA11yStrings.colorChangePattern.value;
   const qualitativeVolumeStatePatternString = MolarityA11yStrings.qualitativeVolumeStatePattern.value;
   const solutionVolumeAndUnitPatternString = MolarityA11yStrings.solutionVolumeAndUnitPattern.value;
   const volumeChangePatternString = MolarityA11yStrings.volumeChangePattern.value;
@@ -137,7 +137,7 @@ define( require => {
         quantityChangeString: StringUtils.fillIn( volumeChangePatternString, {
           moreLess: this.volumeIncreased ? moreCapitalizedString : lessCapitalizedString
         } ),
-        colorChangeString: StringUtils.fillIn( qualitativeColorChangePatternString, {
+        colorChangeString: StringUtils.fillIn( colorChangePatternString, {
           lighterDarker: this.volumeIncreased ? lighterString : darkerString
         } )
       };

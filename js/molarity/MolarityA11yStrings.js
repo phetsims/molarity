@@ -269,7 +269,7 @@ define( require => {
 
     // Quantitative value text strings for both volume and solute amount sliders
     quantitativeSliderAlertPattern: {
-      value: '{{concentrationChange}} at {{concentration}}.'
+      value: '{{concentrationChange}} at {{concentration}}. {{colorChange}}.'
     },
     solutionVolumeAndUnitPattern: {
       value: '{{volume}} liters'
@@ -286,11 +286,11 @@ define( require => {
       value: '{{propertyAmountChange}}, {{solidsChange}}. {{stillSaturatedClause}}'
     },
     qualitativeSliderAlertPattern: {
-      value: '{{quantityChange}}, {{concentrationChange}}. {{colorChange}}{{stateInfo}}.'
+      value: '{{quantityChange}}. {{colorChange}}{{stateInfo}}.'
     },
 
     // Qualitative color change strings
-    qualitativeColorChangePattern: {
+    colorChangePattern: {
       value: 'Solution {{lighterDarker}}'
     },
     lighter: {

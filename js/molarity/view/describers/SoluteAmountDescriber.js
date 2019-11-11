@@ -20,7 +20,7 @@ define( require => {
   const beakerSoluteAmountPatternString = MolarityA11yStrings.beakerSoluteAmountPattern.value;
   const soluteAmountAndUnitPatternString = MolarityA11yStrings.soluteAmountAndUnitPattern.value;
   const soluteAmountChangedPatternString = MolarityA11yStrings.soluteAmountChangedPattern.value;
-  const qualitativeColorChangePatternString = MolarityA11yStrings.qualitativeColorChangePattern.value;
+  const colorChangePatternString = MolarityA11yStrings.colorChangePattern.value;
   const qualitativeSoluteAmountStatePatternString = MolarityA11yStrings.qualitativeSoluteAmountStatePattern.value;
 
   // Solute Amount regions strings
@@ -123,12 +123,12 @@ define( require => {
      * @public
      * @returns {Object} - contains two strings.
      */
-    getSoluteAmountChangeString() {
+    getSoluteAmountChangeStrings() {
       return {
         quantityChangeString: StringUtils.fillIn( soluteAmountChangedPatternString, {
           moreLess: this.soluteAmountIncreased ? moreCapitalizedString : lessCapitalizedString
         } ),
-        colorChangeString: StringUtils.fillIn( qualitativeColorChangePatternString, {
+        colorChangeString: StringUtils.fillIn( colorChangePatternString, {
           lighterDarker: this.soluteAmountIncreased ? darkerString : lighterString
         } )
       };

@@ -20,6 +20,7 @@ define( require => {
   // a11y strings
   const beakerQualitativeConcentrationPatternString = MolarityA11yStrings.beakerQualitativeConcentrationPattern.value;
   const beakerSaturationPatternString = MolarityA11yStrings.beakerSaturationPattern.value;
+  const colorChangePatternString = MolarityA11yStrings.colorChangePattern.value;
   const concentrationString = MolarityA11yStrings.concentration.value;
   const concentrationAndUnitString = MolarityA11yStrings.concentrationAndUnit.value;
   const concentrationChangePatternString = MolarityA11yStrings.concentrationChangePattern.value;
@@ -68,6 +69,8 @@ define( require => {
   const moreString = MolarityA11yStrings.more.value;
   const lessCapitalizedString = MolarityA11yStrings.lessCapitalized.value;
   const moreCapitalizedString = MolarityA11yStrings.moreCapitalized.value;
+  const lighterString = MolarityA11yStrings.lighter.value;
+  const darkerString = MolarityA11yStrings.darker.value;
 
   // constants
   const ACTIVE_CONCENTRATION_STRINGS = [
@@ -310,6 +313,17 @@ define( require => {
       }
       return StringUtils.fillIn( concentrationChangePatternString, {
         moreLess: moreLessString
+      } );
+    }
+
+    /**
+     * Creates a substring to describe how the color of the solution has changed
+     * @public
+     * @returns {string} - example: "Solution lighter"
+     */
+    getColorChangeString() {
+      return StringUtils.fillIn( colorChangePatternString, {
+        lighterDarker: this.concentrationIncreased ? darkerString : lighterString
       } );
     }
 
