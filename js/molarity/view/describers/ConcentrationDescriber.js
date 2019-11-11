@@ -18,10 +18,10 @@ define( require => {
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
 
   // a11y strings
+  const atMaxConcentrationString = MolarityA11yStrings.atMaxConcentration.value;
   const beakerQualitativeConcentrationPatternString = MolarityA11yStrings.beakerQualitativeConcentrationPattern.value;
   const beakerSaturationPatternString = MolarityA11yStrings.beakerSaturationPattern.value;
   const colorChangePatternString = MolarityA11yStrings.colorChangePattern.value;
-  const concentrationString = MolarityA11yStrings.concentration.value;
   const concentrationAndUnitString = MolarityA11yStrings.concentrationAndUnit.value;
   const concentrationChangePatternString = MolarityA11yStrings.concentrationChangePattern.value;
   const concentrationRangePatternString = MolarityA11yStrings.concentrationRangePattern.value;
@@ -29,7 +29,6 @@ define( require => {
   const quantitativeConcentrationStatePatternString = MolarityA11yStrings.quantitativeConcentrationStatePattern.value;
   const saturationLostAlertPatternString = MolarityA11yStrings.saturationLostAlertPattern.value;
   const saturationReachedAlertString = MolarityA11yStrings.saturationReachedAlert.value;
-  const solutionString = MolarityA11yStrings.solution.value;
   const stillSaturatedAlertPatternString = MolarityA11yStrings.stillSaturatedAlertPattern.value;
   const withSolidsAlertPatternString = MolarityA11yStrings.withSolidsAlertPattern.value;
 
@@ -42,7 +41,6 @@ define( require => {
   const notVeryConcentratedString = MolarityA11yStrings.notVeryConcentrated.value;
   const veryConcentratedString = MolarityA11yStrings.veryConcentrated.value;
   const highlyConcentratedString = MolarityA11yStrings.highlyConcentrated.value;
-  const maxConcentrationString = MolarityA11yStrings.maxConcentration.value;
 
   // Concentration active region strings
   const hasZeroConcentrationString = MolarityA11yStrings.hasZeroConcentration.value;
@@ -51,7 +49,6 @@ define( require => {
   const isNotVeryConcentratedString = MolarityA11yStrings.isNotVeryConcentrated.value;
   const isVeryConcentratedString = MolarityA11yStrings.isVeryConcentrated.value;
   const isHighlyConcentratedString = MolarityA11yStrings.isHighlyConcentrated.value;
-  const hasMaxConcentrationString = MolarityA11yStrings.hasMaxConcentration.value;
 
   // Solids region strings
   const aBunchOfString = MolarityA11yStrings.aBunchOf.value;
@@ -79,8 +76,7 @@ define( require => {
     isSlightlyConcentratedString,
     isNotVeryConcentratedString,
     isVeryConcentratedString,
-    isHighlyConcentratedString,
-    hasMaxConcentrationString
+    isHighlyConcentratedString
   ];
 
   const CONCENTRATION_STRINGS = [
@@ -89,8 +85,7 @@ define( require => {
     slightlyConcentratedString,
     notVeryConcentratedString,
     veryConcentratedString,
-    highlyConcentratedString,
-    maxConcentrationString
+    highlyConcentratedString
   ];
 
   const SOLIDS_STRINGS = [
@@ -192,11 +187,12 @@ define( require => {
 
     /**
      * Gets the current value of concentration either quantitatively or quantitatively to plug into descriptions.
-     * Qualitative description is in active voice.
+     * Qualitative description can be in active or passive voice depending on isPassive parameter.
+     * @param {boolean} [isPassive]
      * @public
      * @returns {string} - description of current concentration (e.g. "1.500 Molar" or "is very concentrated")
      */
-    getCurrentConcentrationClause() {
+    getCurrentConcentrationClause( isPassive = false ) {
       const concentration = this.concentrationProperty.value;
       if ( this.useQuantitativeDescriptionsProperty.value ) {
         return StringUtils.fillIn( concentrationAndUnitString, {
@@ -204,20 +200,10 @@ define( require => {
         } );
       }
       else {
+        const concentration = this.concentrationProperty.value;
         const index = concentrationToIndex( this.soluteProperty.value.saturatedConcentration, concentration );
-        return ACTIVE_CONCENTRATION_STRINGS[ index ];
+        return isPassive ? CONCENTRATION_STRINGS[ index ] : ACTIVE_CONCENTRATION_STRINGS[ index ];
       }
-    }
-
-    /**
-     * Gets the current qualitative passive concentration description (e.g. "slightly concentrated").
-     * @public
-     * @returns {string}
-     */
-    getCurrentPassiveConcentrationClause() {
-      const concentration = this.concentrationProperty.value;
-      const index = concentrationToIndex( this.soluteProperty.value.saturatedConcentration, concentration );
-      return CONCENTRATION_STRINGS[ index ];
     }
 
     /**
@@ -296,7 +282,7 @@ define( require => {
         // lowest region (which is right after saturation point).
         withSolids: ( this.solidsRegionChanged && this.solidsIndex !== 0 ) ? StringUtils.fillIn( withSolidsAlertPatternString, {
           solidAmount: this.getCurrentSolidsAmount( false )
-        } ) : ''
+        } ) : atMaxConcentrationString
       } );
     }
 
@@ -340,17 +326,28 @@ define( require => {
     }
 
     /**
+     * determines if the solution is saturated but does not yet have any solids
+     * @public
+     * @returns {boolean}
+     */
+    isExactlySaturated() {
+      return ( this.concentrationProperty.value === this.soluteProperty.value.saturatedConcentration &&
+               this.solution.precipitateAmountProperty.value === 0 );
+    }
+
+    /**
      * Creates the string to be read out when the solution is either newly saturated or newly unsaturated.
      * @public
      * @returns {string}
      * */
-    getSaturationChangedString( useQuantitativeDescriptionsProperty ) {
+    getSaturationChangedString() {
       assert && assert( this._saturationStateChanged, 'saturation state has not changed' );
       return this.solution.isSaturated() ?
-             saturationReachedAlertString :
+             StringUtils.fillIn( saturationReachedAlertString, {
+               solidAmount: this.getCurrentSolidsAmount()
+             } ) :
              StringUtils.fillIn( saturationLostAlertPatternString, {
-               concentration: this.getCurrentConcentrationClause(),
-               solutionOrConcentration: useQuantitativeDescriptionsProperty.value ? concentrationString : solutionString
+               concentration: this.getCurrentConcentrationClause( true )
              } );
     }
 
@@ -367,7 +364,7 @@ define( require => {
       }
       else {
         return StringUtils.fillIn( qualitativeConcentrationStatePatternString, {
-          concentration: this.getCurrentPassiveConcentrationClause()
+          concentration: this.getCurrentConcentrationClause( true )
         } );
       }
     }
@@ -437,11 +434,8 @@ define( require => {
     else if ( concentrationRounded <= 4 * scaleIncrement ) {
       return 4;
     }
-    else if ( concentrationRounded < 5 * scaleIncrement - .001 ) {
-      return 5;
-    }
     else {
-      return 6;
+      return 5;
     }
   };
 

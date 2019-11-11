@@ -191,7 +191,7 @@ define( require => {
                               StringUtils.fillIn( quantitativeConcentrationStatePatternString, {
                                 concentration: this.concentrationDescriber.getCurrentConcentrationClause()
                               } ) :
-                              this.concentrationDescriber.getCurrentPassiveConcentrationClause();
+                              this.concentrationDescriber.getCurrentConcentrationClause(true);
       }
 
       return StringUtils.fillIn( soluteChangedString, {

@@ -18,6 +18,7 @@ define( require => {
   const ValueChangeUtterance = require( 'UTTERANCE_QUEUE/ValueChangeUtterance' );
 
   // a11y strings
+  const atMaxConcentrationAlertString = MolarityA11yStrings.atMaxConcentrationAlert.value;
   const noSoluteAlertString = MolarityA11yStrings.noSoluteAlert.value;
   const qualitativeSaturatedValueTextPatternString = MolarityA11yStrings.qualitativeSaturatedValueTextPattern.value;
   const qualitativeSliderAlertPatternString = MolarityA11yStrings.qualitativeSliderAlertPattern.value;
@@ -64,7 +65,10 @@ define( require => {
 
         // If the solution is newly saturated or newly unsaturated, an alert is read out. The text depends on whether
         // descriptions are qualitative or quantitative, and if there is any solute in the beaker.
-        if ( this.concentrationDescriber.saturationStateChanged ) {
+        if ( this.concentrationDescriber.isExactlySaturated() ) {
+          this.alertMaxConcentration();
+        }
+        else if ( this.concentrationDescriber.saturationStateChanged ) {
           this.alertNewSaturation();
         }
         else if ( !concentrationDescriber.hasSolute() ) {
@@ -87,9 +91,13 @@ define( require => {
 
       solution.volumeProperty.link( () => {
 
-        // If the solution is newly saturated or newly unsaturated, an alert is read out. The text depends on whether
-        // descriptions are qualitative or quantitative, and if there is any solute in the beaker.
-        if ( this.concentrationDescriber.saturationStateChanged ) {
+        // A special alert is read out if the solution is saturated without any solids. If the solution is newly
+        // saturated or newly unsaturated, an alert is read out. The text depends on whether descriptions are
+        // qualitative or quantitative, and if there is any solute in the beaker.
+        if ( this.concentrationDescriber.isExactlySaturated() ) {
+          this.alertMaxConcentration();
+        }
+        else if ( this.concentrationDescriber.saturationStateChanged ) {
           this.alertNewSaturation();
         }
         else if ( !concentrationDescriber.hasSolute() ) {
@@ -114,6 +122,15 @@ define( require => {
 
       // An alert is read out when the valuesVisibleProperty changes.
       valuesVisibleProperty.lazyLink( newValue => this.alertValuesVisibleChanged( newValue ) );
+    }
+
+    /**
+     * Alert when the solution is exactly at the saturation point without any solids
+     * @private
+     */
+    alertMaxConcentration() {
+      this.sliderUtterance.alert = atMaxConcentrationAlertString;
+      phet.joist.sim.display.utteranceQueue.addToBack( this.sliderUtterance );
     }
 
     /**

@@ -42,12 +42,6 @@ define( require => {
     solutionControls: {
       value: 'Solution Controls'
     },
-    concentration: {
-      value: 'Concentration'
-    },
-    solution: {
-      value: 'Solution'
-    },
 
     // Help text strings
     solutionValuesHelpText: {
@@ -356,19 +350,25 @@ define( require => {
     },
 
     // New saturation state alerts
+    atMaxConcentration: {
+      value: 'at max concentration'
+    },
+    atMaxConcentrationAlert: {
+      value:  'At max concentration. Solution darkest.'
+    },
     saturationReachedAlert: {
-      value: 'Solution saturated. Beyond max concentration, solids appear.'
+      value: 'Saturated with {{solidAmount}} solids at max concentration'
     },
     saturationLostAlertPattern: {
-      value: 'Solution no longer saturated. {{solutionOrConcentration}} {{concentration}}, solids dissolve.'
+      value: 'No longer saturated. Solution lighter, {{concentration}}'
     },
 
     // Saturated solution alert strings
     stillSaturatedAlertPattern: {
-      value: 'Still saturated{{withSolids}}.'
+      value: 'Saturated {{withSolids}}.'
     },
     withSolidsAlertPattern: {
-      value: ' with {{solidAmount}} solids'
+      value: 'with {{solidAmount}} solids'
     },
     solidsChangePattern: {
       value: '{{moreLess}} solids'
