@@ -18,8 +18,7 @@ define( require => {
   const ValueChangeUtterance = require( 'UTTERANCE_QUEUE/ValueChangeUtterance' );
 
   // a11y strings
-  const noSoluteQualitativeAlertString = MolarityA11yStrings.noSoluteQualitativeAlert.value;
-  const noSoluteQuantitativeAlertString = MolarityA11yStrings.noSoluteQuantitativeAlert.value;
+  const noSoluteAlertString = MolarityA11yStrings.noSoluteAlert.value;
   const qualitativeSaturatedValueTextPatternString = MolarityA11yStrings.qualitativeSaturatedValueTextPattern.value;
   const qualitativeSliderAlertPatternString = MolarityA11yStrings.qualitativeSliderAlertPattern.value;
   const quantitativeSliderAlertPatternString = MolarityA11yStrings.quantitativeSliderAlertPattern.value;
@@ -135,11 +134,9 @@ define( require => {
      * Alerts when there is no solute in the beaker.
      * @private
      */
-    alertNoSolute( useQuantitativeDescriptionsProperty ) {
+    alertNoSolute() {
       assert && assert( !this.concentrationDescriber.hasSolute(), 'no solute alert triggered with solute in the beaker' );
-      this.sliderUtterance.alert = useQuantitativeDescriptionsProperty.value ?
-                                   noSoluteQuantitativeAlertString :
-                                   noSoluteQualitativeAlertString;
+      this.sliderUtterance.alert = noSoluteAlertString;
       phet.joist.sim.display.utteranceQueue.addToBack( this.sliderUtterance );
     }
 

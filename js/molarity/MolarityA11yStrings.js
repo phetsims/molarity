@@ -76,11 +76,8 @@ define( require => {
     stateOfSimNoSolutePattern: {
       value: 'Currently, beaker {{volume}} of pure water, and contains no {{solute}} solute.'
     },
-    noSoluteQualitativeAlert: {
-      value: 'No solute. Solution is pure water.'
-    },
-    noSoluteQuantitativeAlert: {
-      value: 'Zero solute. Solution is pure water'
+    noSoluteAlert: {
+      value: 'Zero concentration. Solution pure water.'
     },
     pureWater: {
       value: 'pure water'
