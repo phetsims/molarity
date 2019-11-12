@@ -32,7 +32,6 @@ define( require => {
       qualityAssurance: 'Steele Dalton, Alex Dornan, Ethan Johnson, Elise Morgan, Oliver Orejola, Bryan Yoelin'
     },
     keyboardHelpNode: keyboardHelpContent,
-    supportsSound: true,
     accessibility: true
   };
 
