@@ -123,7 +123,7 @@ define( require => {
     const saturatedIndicator = new SaturatedIndicator( model.solution, tandem.createTandem( 'saturatedIndicator' ) );
 
     // solute control
-    const soluteComboBoxListParent = new Node( { maxWidth: 300 } );
+    const soluteComboBoxListParent = new Node();
     const soluteComboBox = new SoluteComboBox( model.solutes, model.solution.soluteProperty, soluteComboBoxListParent,
       tandem.createTandem( 'soluteComboBox' ), {
         maxWidth: 500
