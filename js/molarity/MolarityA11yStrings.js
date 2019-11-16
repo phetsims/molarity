@@ -357,7 +357,7 @@ define( require => {
       value: 'at {{concentration}}'
     },
     atMaxConcentrationAlert: {
-      value:  'At {{concentration}}. Solution darkest.'
+      value: 'At {{concentration}}. Solution darkest.'
     },
     saturationReachedAlert: {
       value: 'Saturated with {{solidAmount}} solids at {{concentration}}.'
