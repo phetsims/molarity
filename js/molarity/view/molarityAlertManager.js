@@ -22,6 +22,7 @@ define( require => {
   const noSoluteAlertString = MolarityA11yStrings.noSoluteAlert.value;
   const qualitativeSaturatedValueTextPatternString = MolarityA11yStrings.qualitativeSaturatedValueTextPattern.value;
   const qualitativeSliderAlertPatternString = MolarityA11yStrings.qualitativeSliderAlertPattern.value;
+  const quantitativeSaturatedValueTextPatternString = MolarityA11yStrings.quantitativeSaturatedValueTextPattern.value;
   const quantitativeSliderAlertPatternString = MolarityA11yStrings.quantitativeSliderAlertPattern.value;
   const solutionValuesCheckedAlertString = MolarityA11yStrings.solutionValuesCheckedAlert.value;
   const solutionValuesUncheckedAlertString = MolarityA11yStrings.solutionValuesUncheckedAlert.value;
@@ -129,7 +130,9 @@ define( require => {
      * @private
      */
     alertMaxConcentration() {
-      this.sliderUtterance.alert = atMaxConcentrationAlertString;
+      this.sliderUtterance.alert = StringUtils.fillIn( atMaxConcentrationAlertString, {
+        concentration: this.concentrationDescriber.getCurrentConcentrationClause( true )
+      } );
       phet.joist.sim.display.utteranceQueue.addToBack( this.sliderUtterance );
     }
 
@@ -139,8 +142,7 @@ define( require => {
      */
     alertNewSaturation() {
       assert && assert( this.concentrationDescriber.saturationStateChanged, 'alert triggered when saturation state has not changed' );
-      this.saturationUtterance.alert = this.concentrationDescriber.getSaturationChangedString(
-        this.useQuantitativeDescriptionsProperty );
+      this.saturationUtterance.alert = this.concentrationDescriber.getSaturationChangedString();
 
       // clears the utteranceQueue to remove utterances from previous saturation region, then adds the saturation utterance.
       phet.joist.sim.display.utteranceQueue.clear();
@@ -227,7 +229,10 @@ define( require => {
       assert && assert( this.useQuantitativeDescriptionsProperty.value, 'qualitative descriptions should be used.' );
       let alertText = '';
       if ( this.solution.isSaturated() ) {
-        alertText = this.concentrationDescriber.getStillSaturatedClause();
+        alertText = StringUtils.fillIn( quantitativeSaturatedValueTextPatternString, {
+          solidsChange: this.concentrationDescriber.getSolidsChangeString( true ),
+          stillSaturatedClause: this.concentrationDescriber.getStillSaturatedClause()
+        } );
       }
       else {
         alertText = StringUtils.fillIn( quantitativeSliderAlertPatternString, {

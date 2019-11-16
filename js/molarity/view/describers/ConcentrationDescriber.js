@@ -41,6 +41,7 @@ define( require => {
   const notVeryConcentratedString = MolarityA11yStrings.notVeryConcentrated.value;
   const veryConcentratedString = MolarityA11yStrings.veryConcentrated.value;
   const highlyConcentratedString = MolarityA11yStrings.highlyConcentrated.value;
+  const maxConcentrationString = MolarityA11yStrings.maxConcentration.value;
 
   // Concentration active region strings
   const hasZeroConcentrationString = MolarityA11yStrings.hasZeroConcentration.value;
@@ -49,6 +50,7 @@ define( require => {
   const isNotVeryConcentratedString = MolarityA11yStrings.isNotVeryConcentrated.value;
   const isVeryConcentratedString = MolarityA11yStrings.isVeryConcentrated.value;
   const isHighlyConcentratedString = MolarityA11yStrings.isHighlyConcentrated.value;
+  const hasMaxConcentrationString = MolarityA11yStrings.hasMaxConcentration.value;
 
   // Solids region strings
   const aBunchOfString = MolarityA11yStrings.aBunchOf.value;
@@ -76,7 +78,8 @@ define( require => {
     isSlightlyConcentratedString,
     isNotVeryConcentratedString,
     isVeryConcentratedString,
-    isHighlyConcentratedString
+    isHighlyConcentratedString,
+    hasMaxConcentrationString
   ];
 
   const CONCENTRATION_STRINGS = [
@@ -85,7 +88,8 @@ define( require => {
     slightlyConcentratedString,
     notVeryConcentratedString,
     veryConcentratedString,
-    highlyConcentratedString
+    highlyConcentratedString,
+    maxConcentrationString
   ];
 
   const SOLIDS_STRINGS = [
@@ -280,9 +284,14 @@ define( require => {
 
         // the solids state information is only given if the region has changed, and if solids amount is not in the
         // lowest region (which is right after saturation point).
-        withSolids: ( this.solidsRegionChanged && this.solidsIndex !== 0 ) ? StringUtils.fillIn( withSolidsAlertPatternString, {
-          solidAmount: this.getCurrentSolidsAmount( false )
-        } ) : atMaxConcentrationString
+        withSolids: ( this.solidsRegionChanged && this.solidsIndex !== 0 ) ?
+                    StringUtils.fillIn( withSolidsAlertPatternString, {
+                      solidAmount: this.getCurrentSolidsAmount( false )
+                    } ) : '',
+        quantitativeConcentration: this.useQuantitativeDescriptionsProperty ?
+                                   StringUtils.fillIn( atMaxConcentrationString, {
+                                     concentration: this.getCurrentConcentrationClause( true )
+                                   } ) : ''
       } );
     }
 
@@ -315,13 +324,18 @@ define( require => {
 
     /**
      * Creates a substring to describe the change in the amount of solids
+     * @param {boolean} [isCapitalized]
      * @public
      * @returns {string} - example: "more solids"
      */
-    getSolidsChangeString() {
+    getSolidsChangeString( isCapitalized = false ) {
       assert && assert( this.precipitateAmountProperty.value > 0, 'precipitateAmountProperty should be greater than 0' );
+      let moreLessString = isCapitalized ? lessCapitalizedString : lessString;
+      if ( this.solidsIncreased ) {
+        moreLessString = isCapitalized ? moreCapitalizedString : moreString;
+      }
       return StringUtils.fillIn( solidsChangePatternString, {
-        moreLess: this.solidsIncreased ? moreString : lessString
+        moreLess: moreLessString
       } );
     }
 
@@ -344,7 +358,8 @@ define( require => {
       assert && assert( this._saturationStateChanged, 'saturation state has not changed' );
       return this.solution.isSaturated() ?
              StringUtils.fillIn( saturationReachedAlertString, {
-               solidAmount: this.getCurrentSolidsAmount()
+               solidAmount: this.getCurrentSolidsAmount(),
+               concentration: this.getCurrentConcentrationClause( true )
              } ) :
              StringUtils.fillIn( saturationLostAlertPatternString, {
                concentration: this.getCurrentConcentrationClause( true )
@@ -434,8 +449,11 @@ define( require => {
     else if ( concentrationRounded <= 4 * scaleIncrement ) {
       return 4;
     }
-    else {
+    else if ( concentrationRounded <= 5 * scaleIncrement - .001 ) {
       return 5;
+    }
+    else {
+      return 6;
     }
   };
 

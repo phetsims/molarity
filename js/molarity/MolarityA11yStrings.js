@@ -271,6 +271,9 @@ define( require => {
     soluteAmountAndUnitPattern: {
       value: '{{soluteAmount}} moles'
     },
+    quantitativeSaturatedValueTextPattern: {
+      value: '{{solidsChange}}. {{stillSaturatedClause}}'
+    },
 
     // Qualitative value text strings for both volume and solute amount sliders
     qualitativeSaturatedValueTextPattern: {
@@ -351,21 +354,21 @@ define( require => {
 
     // New saturation state alerts
     atMaxConcentration: {
-      value: 'at max concentration'
+      value: 'at {{concentration}}'
     },
     atMaxConcentrationAlert: {
-      value:  'At max concentration. Solution darkest.'
+      value:  'At {{concentration}}. Solution darkest.'
     },
     saturationReachedAlert: {
-      value: 'Saturated with {{solidAmount}} solids at max concentration'
+      value: 'Saturated with {{solidAmount}} solids at {{concentration}}.'
     },
     saturationLostAlertPattern: {
-      value: 'No longer saturated. Solution lighter, {{concentration}}'
+      value: 'No longer saturated. Solution lighter, {{concentration}}.'
     },
 
     // Saturated solution alert strings
     stillSaturatedAlertPattern: {
-      value: 'Saturated {{withSolids}}.'
+      value: 'Saturated {{withSolids}} {{quantitativeConcentration}}.'
     },
     withSolidsAlertPattern: {
       value: 'with {{solidAmount}} solids'
