@@ -27,7 +27,8 @@ define( require => {
   const concentrationRangePatternString = MolarityA11yStrings.concentrationRangePattern.value;
   const qualitativeConcentrationStatePatternString = MolarityA11yStrings.qualitativeConcentrationStatePattern.value;
   const quantitativeConcentrationStatePatternString = MolarityA11yStrings.quantitativeConcentrationStatePattern.value;
-  const saturationLostAlertPatternString = MolarityA11yStrings.saturationLostAlertPattern.value;
+  const saturationLostQualitativeAlertPatternString = MolarityA11yStrings.saturationLostQualitativeAlertPattern.value;
+  const saturationLostQuantitativeAlertPatternString = MolarityA11yStrings.saturationLostQuantitativeAlertPattern.value;
   const saturationReachedAlertString = MolarityA11yStrings.saturationReachedAlert.value;
   const stillSaturatedAlertPatternString = MolarityA11yStrings.stillSaturatedAlertPattern.value;
   const withSolidsAlertPatternString = MolarityA11yStrings.withSolidsAlertPattern.value;
@@ -356,12 +357,15 @@ define( require => {
      * */
     getSaturationChangedString() {
       assert && assert( this._saturationStateChanged, 'saturation state has not changed' );
+      const saturationLostAlertString = this.useQuantitativeDescriptionsProperty.value ?
+                                        saturationLostQuantitativeAlertPatternString :
+                                        saturationLostQualitativeAlertPatternString;
       return this.solution.isSaturated() ?
              StringUtils.fillIn( saturationReachedAlertString, {
                solidAmount: this.getCurrentSolidsAmount(),
                concentration: this.getCurrentConcentrationClause( true )
              } ) :
-             StringUtils.fillIn( saturationLostAlertPatternString, {
+             StringUtils.fillIn( saturationLostAlertString, {
                concentration: this.getCurrentConcentrationClause( true )
              } );
     }

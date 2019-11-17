@@ -340,10 +340,10 @@ define( require => {
       value: '{{color}} solution, {{concentrationClause}}.'
     },
     soluteChangedSaturatedAlertPattern: {
-      value: '{{color}} solution, saturated with {{solids}} solids, {{concentrationClause}}.'
+      value: '{{color}} solution, saturated with {{solids}} solids{{concentrationClause}}.'
     },
-    soluteChangedQualitativePattern: {
-      value: 'beyond max concentration'
+    soluteChangedQuantitativeConcentrationPattern: {
+      value: ', concentration {{concentration}}'
     },
     noSoluteAlertQuantitative: {
       value: 'Clear solution, pure water at zero moles.'
@@ -362,8 +362,11 @@ define( require => {
     saturationReachedAlert: {
       value: 'Saturated with {{solidAmount}} solids at {{concentration}}.'
     },
-    saturationLostAlertPattern: {
+    saturationLostQualitativeAlertPattern: {
       value: 'No longer saturated. Solution lighter, {{concentration}}.'
+    },
+    saturationLostQuantitativeAlertPattern: {
+      value: 'No longer saturated at {{concentration}}. Solution lighter.'
     },
 
     // Saturated solution alert strings

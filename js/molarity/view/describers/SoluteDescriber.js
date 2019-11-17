@@ -30,9 +30,9 @@ define( require => {
   const noSoluteAlertQuantitativeString = MolarityA11yStrings.noSoluteAlertQuantitative.value;
   const noSoluteAlertQualitativeString = MolarityA11yStrings.noSoluteAlertQualitative.value;
   const quantitativeConcentrationStatePatternString = MolarityA11yStrings.quantitativeConcentrationStatePattern.value;
+  const soluteChangedQuantitativeConcentrationPatternString = MolarityA11yStrings.soluteChangedQuantitativeConcentrationPattern.value;
   const soluteChangedSaturatedAlertPatternString = MolarityA11yStrings.soluteChangedSaturatedAlertPattern.value;
   const soluteChangedUnsaturatedAlertPatternString = MolarityA11yStrings.soluteChangedUnsaturatedAlertPattern.value;
-  const soluteChangedQualitativePatternString = MolarityA11yStrings.soluteChangedQualitativePattern.value;
 
   // color strings
   const redString = MolarityA11yStrings.red.value;
@@ -180,10 +180,9 @@ define( require => {
       if ( this.solution.isSaturated() ) {
         soluteChangedString = soluteChangedSaturatedAlertPatternString;
         concentrationClause = useQuantitativeDescriptionsProperty.value ?
-                              StringUtils.fillIn( quantitativeConcentrationStatePatternString, {
+                              StringUtils.fillIn( soluteChangedQuantitativeConcentrationPatternString, {
                                 concentration: this.concentrationDescriber.getCurrentConcentrationClause()
-                              } ) :
-                              soluteChangedQualitativePatternString;
+                              } ) : '';
       }
       else {
         soluteChangedString = soluteChangedUnsaturatedAlertPatternString;
@@ -191,7 +190,7 @@ define( require => {
                               StringUtils.fillIn( quantitativeConcentrationStatePatternString, {
                                 concentration: this.concentrationDescriber.getCurrentConcentrationClause()
                               } ) :
-                              this.concentrationDescriber.getCurrentConcentrationClause(true);
+                              this.concentrationDescriber.getCurrentConcentrationClause( true );
       }
 
       return StringUtils.fillIn( soluteChangedString, {
