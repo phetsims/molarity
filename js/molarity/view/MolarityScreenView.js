@@ -30,7 +30,6 @@ define( require => {
   const PrecipitateNode = require( 'MOLARITY/molarity/view/PrecipitateNode' );
   const PrecipitateSoundGenerator = require( 'MOLARITY/molarity/view/PrecipitateSoundGenerator' );
   const ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
-  const ResetAllSoundGenerator = require( 'TAMBO/sound-generators/ResetAllSoundGenerator' );
   const SaturatedIndicator = require( 'MOLARITY/molarity/view/SaturatedIndicator' );
   const ScreenView = require( 'JOIST/ScreenView' );
   const Shape = require( 'KITE/Shape' );
@@ -241,11 +240,6 @@ define( require => {
       scale: 1.32,
       tandem: tandem.createTandem( 'resetAllButton' )
     } );
-
-    // Reset All sound generator
-    soundManager.addSoundGenerator( new ResetAllSoundGenerator( model.resetInProgressProperty, {
-      initialOutputLevel: 0.7
-    } ) );
 
     // a11y - heading and accessible order for slider controls section of PDOM
     const solutionControlsNode = new Node( {
