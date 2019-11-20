@@ -133,7 +133,7 @@ define( require => {
       this.sliderUtterance.alert = StringUtils.fillIn( atMaxConcentrationAlertString, {
         concentration: this.concentrationDescriber.getCurrentConcentrationClause( true )
       } );
-      phet.joist.sim.display.utteranceQueue.addToBack( this.sliderUtterance );
+      phet.joist.sim.utteranceQueue.addToBack( this.sliderUtterance );
     }
 
     /**
@@ -145,8 +145,8 @@ define( require => {
       this.saturationUtterance.alert = this.concentrationDescriber.getSaturationChangedString();
 
       // clears the utteranceQueue to remove utterances from previous saturation region, then adds the saturation utterance.
-      phet.joist.sim.display.utteranceQueue.clear();
-      phet.joist.sim.display.utteranceQueue.addToFront( this.saturationUtterance );
+      phet.joist.sim.utteranceQueue.clear();
+      phet.joist.sim.utteranceQueue.addToFront( this.saturationUtterance );
     }
 
     /**
@@ -156,7 +156,7 @@ define( require => {
     alertNoSolute() {
       assert && assert( !this.concentrationDescriber.hasSolute(), 'no solute alert triggered with solute in the beaker' );
       this.sliderUtterance.alert = noSoluteAlertString;
-      phet.joist.sim.display.utteranceQueue.addToBack( this.sliderUtterance );
+      phet.joist.sim.utteranceQueue.addToBack( this.sliderUtterance );
     }
 
     /**
@@ -165,7 +165,7 @@ define( require => {
      */
     alertSoluteChanged() {
       this.soluteUtterance.alert = this.soluteDescriber.getSoluteChangedAlertString( this.useQuantitativeDescriptionsProperty );
-      phet.joist.sim.display.utteranceQueue.addToBack( this.soluteUtterance );
+      phet.joist.sim.utteranceQueue.addToBack( this.soluteUtterance );
     }
 
     /**
@@ -177,7 +177,7 @@ define( require => {
       this.valuesVisibleUtterance.alert = valuesVisibleProperty ?
                                           solutionValuesCheckedAlertString :
                                           solutionValuesUncheckedAlertString;
-      phet.joist.sim.display.utteranceQueue.addToBack( this.valuesVisibleUtterance );
+      phet.joist.sim.utteranceQueue.addToBack( this.valuesVisibleUtterance );
     }
 
     /**
@@ -216,7 +216,7 @@ define( require => {
       }
 
       this.sliderUtterance.alert = alertText;
-      phet.joist.sim.display.utteranceQueue.addToBack( this.sliderUtterance );
+      phet.joist.sim.utteranceQueue.addToBack( this.sliderUtterance );
     }
 
 
@@ -243,7 +243,7 @@ define( require => {
       }
 
       this.sliderUtterance.alert = alertText;
-      phet.joist.sim.display.utteranceQueue.addToBack( this.sliderUtterance );
+      phet.joist.sim.utteranceQueue.addToBack( this.sliderUtterance );
     }
   }
 
