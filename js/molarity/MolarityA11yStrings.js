@@ -39,8 +39,8 @@ define( require => {
     solutionVolume: {
       value: 'Solution Volume'
     },
-    solutionControls: {
-      value: 'Solution Controls'
+    beakerSolutionControls: {
+      value: 'Beaker Solution Controls'
     },
 
     // Help text strings
