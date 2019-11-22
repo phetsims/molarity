@@ -64,9 +64,9 @@ define( require => {
   const checkboxUncheckedSound = require( 'sound!TAMBO/checkbox-unchecked.mp3' );
 
   // a11y strings
+  const beakerSolutionControlsString = MolarityA11yStrings.beakerSolutionControls.value;
   const solutionValuesHelpTextString = MolarityA11yStrings.solutionValuesHelpText.value;
   const soluteAmountNoNewlineString = MolarityA11yStrings.soluteAmount.value;
-  const solutionControlsString = MolarityA11yStrings.solutionControls.value;
   const sliderHelpTextString = MolarityA11yStrings.sliderHelpText.value;
 
   // constants
@@ -245,7 +245,7 @@ define( require => {
     const solutionControlsNode = new Node( {
       tagName: 'div',
       labelTagName: 'h3',
-      labelContent: solutionControlsString,
+      labelContent: beakerSolutionControlsString,
       descriptionContent: sliderHelpTextString
     } );
     solutionControlsNode.accessibleOrder = [ soluteAmountSlider, solutionVolumeSlider ];

@@ -39,8 +39,8 @@ define( require => {
     solutionVolume: {
       value: 'Solution Volume'
     },
-    solutionControls: {
-      value: 'Solution Controls'
+    beakerSolutionControls: {
+      value: 'Beaker Solution Controls'
     },
 
     // Help text strings
@@ -343,7 +343,7 @@ define( require => {
       value: '{{color}} solution, saturated with {{solids}} solids{{concentrationClause}}.'
     },
     soluteChangedQuantitativeConcentrationPattern: {
-      value: ', concentration {{concentration}}'
+      value: ' at {{concentration}}'
     },
     noSoluteAlertQuantitative: {
       value: 'Clear solution, pure water at zero moles.'
