@@ -42,6 +42,7 @@ define( require => {
       super();
 
       // @private
+      this.tagName = 'ul';
       this.solution = solution;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
       this.concentrationDescriber = concentrationDescriber;
@@ -49,26 +50,14 @@ define( require => {
       this.soluteAmountDescriber = soluteAmountDescriber;
       this.volumeDescriber = volumeDescriber;
 
-      // @private - Create the list of beaker descriptions for the PDOM
-      this.beakerDescriptionList = new Node( {
-        tagName: 'ul',
-        labelContent: this.updateBeakerSummaryString()
-      } );
-
-      // @private
+      // @private create the nodes to be used in the description list.
+      this.saturationSummaryContainer = new Node();
+      this.chemicalFormulaSummaryContainer = new Node();
       this.soluteAmountSummaryItem = new Node( { tagName: 'li' } );
       this.saturationSummaryItem = new Node( { tagName: 'li' } );
       this.concentrationSummaryItem = new Node( { tagName: 'li' } );
       this.chemicalFormulaSummaryItem = new Node( { tagName: 'li' } );
       this.concentrationRangeSummaryItem = new Node( { tagName: 'li' } );
-      this.beakerDescriptionList.setChildren( [
-        this.soluteAmountSummaryItem,
-        this.concentrationSummaryItem,
-        this.chemicalFormulaSummaryItem,
-        this.concentrationRangeSummaryItem
-      ] );
-      this.updateBeakerDescriptionList();
-      this.addChild( this.beakerDescriptionList );
 
       Property.multilink( [
           useQuantitativeDescriptionsProperty,
@@ -76,17 +65,26 @@ define( require => {
           solution.soluteAmountProperty,
           solution.concentrationProperty,
           solution.soluteProperty ],
-        () => this.updateBeakerDescriptionList() );
+        () => this.updateBeakerDescription() );
+
+      this.setChildren( [
+        this.soluteAmountSummaryItem,
+        this.saturationSummaryContainer,
+        this.concentrationSummaryItem,
+        this.chemicalFormulaSummaryContainer,
+        this.concentrationRangeSummaryItem
+      ] );
+      this.updateBeakerDescription();
     }
 
     /**
      * updates the entire beaker summary in the PDOM when a model property changes.
      * @private
      */
-    updateBeakerDescriptionList() {
+    updateBeakerDescription() {
 
       // summary string above the list items
-      this.beakerDescriptionList.labelContent = this.updateBeakerSummaryString();
+      this.labelContent = this.updateBeakerSummaryString();
 
       // each method updates a single list item in the description
       this.updateSoluteAmountSummary();
@@ -124,15 +122,8 @@ define( require => {
      * @private
      */
     updateSaturationSummary() {
-      if ( this.solution.isSaturated() ) {
-        this.beakerDescriptionList.canAddChild( this.saturationSummaryItem ) &&
-        this.beakerDescriptionList.insertChild( 1, this.saturationSummaryItem );
-        this.saturationSummaryItem.innerContent = this.concentrationDescriber.getBeakerSaturationString();
-      }
-      else {
-        this.beakerDescriptionList.children.indexOf( this.saturationSummaryItem ) >= 0 &&
-        this.beakerDescriptionList.removeChild( this.saturationSummaryItem );
-      }
+      this.saturationSummaryContainer.children = this.solution.isSaturated() ? [ this.saturationSummaryItem ] : [];
+      this.saturationSummaryItem.innerContent = this.concentrationDescriber.getBeakerSaturationString();
     }
 
     /**
@@ -156,24 +147,23 @@ define( require => {
      */
     updateChemicalFormulaSummary() {
       const isDrinkMix = this.soluteDescriber.getCurrentSolute( true ) === drinkMixString;
-      const containsChemicalFormula = this.beakerDescriptionList.children.indexOf( this.chemicalFormulaSummaryItem ) >= 0;
-
-      // doesn't display the chemical formula if drink mix is selected, otherwise displays as the second-to-last item.
-      // if there is no solute in the beaker, the chemical formula of water is displayed instead.
       if ( !this.concentrationDescriber.hasSolute() ) {
-        this.beakerDescriptionList.canAddChild( this.chemicalFormulaSummaryItem ) &&
-        this.beakerDescriptionList.insertChild( this.beakerDescriptionList.children.length - 1,
-          this.chemicalFormulaSummaryItem );
+
+        // if there is no solute in the beaker, the chemical formula of water is displayed instead.
         this.chemicalFormulaSummaryItem.innerContent = ChemUtils.toSubscript( waterFormulaString );
+        this.chemicalFormulaSummaryContainer.children = [ this.chemicalFormulaSummaryItem ];
+
       }
-      else if ( isDrinkMix ) {
-        containsChemicalFormula && this.beakerDescriptionList.removeChild( this.chemicalFormulaSummaryItem );
+      else if ( !isDrinkMix ) {
+
+        // if there is solute in the beaker and the solute is not drink mix, displays the chemical formula of the solute.
+        this.chemicalFormulaSummaryItem.innerContent = this.soluteDescriber.getBeakerChemicalFormulaString();
+        this.chemicalFormulaSummaryContainer.children = [ this.chemicalFormulaSummaryItem ];
       }
       else {
-        this.beakerDescriptionList.canAddChild( this.chemicalFormulaSummaryItem ) &&
-        this.beakerDescriptionList.insertChild( this.beakerDescriptionList.children.length - 1,
-          this.chemicalFormulaSummaryItem );
-        this.chemicalFormulaSummaryItem.innerContent = this.soluteDescriber.getBeakerChemicalFormulaString();
+
+        // if there is solute in the beaker and the solute is drink mix, no chemical formula is displayed
+        this.chemicalFormulaSummaryContainer.children = [];
       }
     }
 
@@ -185,6 +175,7 @@ define( require => {
       this.concentrationRangeSummaryItem.innerContent = this.concentrationDescriber.getCurrentConcentrationRangeClause();
     }
   }
+
 
   return molarity.register( 'MolarityBeakerDescriptionNode', MolarityBeakerDescriptionNode );
 } );
