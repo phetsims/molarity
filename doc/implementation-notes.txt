@@ -24,7 +24,7 @@ To make this easier, node constructors typically have this structure:
 There are no dynamic pieces to this simulation, and as a result nothing is disposed.
 As a result no listeners need to be unlinked or removed.
 
-## a11y
+## Accessibility
 
 This simulation has be instrumented with Sonification and Interactive Descriptions. While this instrumentation includes
 changes to many sim files, several files are specifically for the purpose of Interactive Descriptions instrumentation:
