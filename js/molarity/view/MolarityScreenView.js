@@ -139,10 +139,10 @@ define( require => {
       valuesVisibleProperty,
       useQuantitativeDescriptionsProperty, {
         tandem: tandem.createTandem( 'soluteAmountSlider' ),
-
-        // a11y
         sliderOptions: {
           trackSize: new Dimension2( SLIDER_TRACK_WIDTH, cylinderSize.height ),
+
+          // a11y
           accessibleName: soluteAmountNoNewlineString,
           a11yCreateAriaValueText: () => soluteAmountDescriber.getSoluteAmountValueText()
         }
@@ -162,10 +162,10 @@ define( require => {
       valuesVisibleProperty,
       useQuantitativeDescriptionsProperty, {
         tandem: tandem.createTandem( 'solutionVolumeSlider' ),
-
-        // a11y
         sliderOptions: {
           trackSize: new Dimension2( SLIDER_TRACK_WIDTH, volumeSliderHeight ),
+
+          // a11y
           accessibleName: solutionVolumeString,
           a11yCreateAriaValueText: () => volumeDescriber.getVolumeValueText()
         }
