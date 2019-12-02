@@ -1,5 +1,5 @@
 {
-  "comment": "# molarity 1.5.0-dev.27 Sun Dec 01 2019 19:27:51 GMT-0500 (EST)",
+  "comment": "# molarity 1.5.0-dev.28 Sun Dec 01 2019 22:19:38 GMT-0500 (EST)",
   "assert": {
     "sha": "a99a9ce9ee0774bf3ef509bf3e31ca7383f67478",
     "branch": "master"
@@ -29,7 +29,7 @@
     "branch": "master"
   },
   "molarity": {
-    "sha": "77935a4f4a9d8f9471ac4d90da887d8ee8519d17",
+    "sha": "a975d91dcc809b5d2f7da6cd2c0b6f11ab7f1992",
     "branch": "master"
   },
   "nitroglycerin": {
