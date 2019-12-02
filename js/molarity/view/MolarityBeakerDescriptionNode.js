@@ -39,10 +39,11 @@ define( require => {
     constructor( solution, useQuantitativeDescriptionsProperty, soluteDescriber, concentrationDescriber,
                  soluteAmountDescriber, volumeDescriber ) {
 
-      super();
+      super( {
+        tagName: 'ul'
+      } );
 
       // @private
-      this.tagName = 'ul';
       this.solution = solution;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
       this.concentrationDescriber = concentrationDescriber;
@@ -50,9 +51,11 @@ define( require => {
       this.soluteAmountDescriber = soluteAmountDescriber;
       this.volumeDescriber = volumeDescriber;
 
-      // @private create the nodes to be used in the description list.
+      // @private - Container Nodes for conditional content. This is to keep children order simple.
       this.saturationSummaryContainer = new Node();
       this.chemicalFormulaSummaryContainer = new Node();
+
+      // @private - Create the Nodes to be used in the description list.
       this.soluteAmountSummaryItem = new Node( { tagName: 'li' } );
       this.saturationSummaryItem = new Node( { tagName: 'li' } );
       this.concentrationSummaryItem = new Node( { tagName: 'li' } );
@@ -115,7 +118,6 @@ define( require => {
       this.soluteAmountSummaryItem.innerContent = this.soluteAmountDescriber.getBeakerSoluteAmountString();
     }
 
-
     /**
      * if the solution is saturated, creates second bullet point - e.g. 'is saturated with a few solids'.
      * Otherwise, it removes that bullet point from the list
@@ -175,7 +177,6 @@ define( require => {
       this.concentrationRangeSummaryItem.innerContent = this.concentrationDescriber.getCurrentConcentrationRangeClause();
     }
   }
-
 
   return molarity.register( 'MolarityBeakerDescriptionNode', MolarityBeakerDescriptionNode );
 } );
