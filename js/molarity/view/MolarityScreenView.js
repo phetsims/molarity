@@ -138,11 +138,11 @@ define( require => {
       unitsMolesString,
       valuesVisibleProperty,
       useQuantitativeDescriptionsProperty, {
-        trackSize: new Dimension2( SLIDER_TRACK_WIDTH, cylinderSize.height ),
         tandem: tandem.createTandem( 'soluteAmountSlider' ),
 
         // a11y
         sliderOptions: {
+          trackSize: new Dimension2( SLIDER_TRACK_WIDTH, cylinderSize.height ),
           accessibleName: soluteAmountNoNewlineString,
           a11yCreateAriaValueText: () => soluteAmountDescriber.getSoluteAmountValueText()
         }
@@ -150,7 +150,8 @@ define( require => {
     );
 
     // slider for controlling volume of solution, sized to match tick marks on the beaker
-    const volumeSliderHeight = ( MolarityConstants.SOLUTION_VOLUME_RANGE.getLength() / MolarityConstants.SOLUTION_VOLUME_RANGE.max ) * cylinderSize.height;
+    const volumeSliderHeight = ( MolarityConstants.SOLUTION_VOLUME_RANGE.getLength() /
+                                 MolarityConstants.SOLUTION_VOLUME_RANGE.max ) * cylinderSize.height;
     const solutionVolumeSlider = new VerticalSlider( solutionVolumeString,
       StringUtils.format( patternParentheses0TextString, litersString ),
       lowString, fullString,
@@ -160,11 +161,11 @@ define( require => {
       unitsLitersString,
       valuesVisibleProperty,
       useQuantitativeDescriptionsProperty, {
-        trackSize: new Dimension2( SLIDER_TRACK_WIDTH, volumeSliderHeight ),
         tandem: tandem.createTandem( 'solutionVolumeSlider' ),
 
         // a11y
         sliderOptions: {
+          trackSize: new Dimension2( SLIDER_TRACK_WIDTH, volumeSliderHeight ),
           accessibleName: solutionVolumeString,
           a11yCreateAriaValueText: () => volumeDescriber.getVolumeValueText()
         }

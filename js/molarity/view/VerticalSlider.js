@@ -55,14 +55,14 @@ define( require => {
                            valuesVisibleProperty, useQuantitativeDescriptionsProperty, options ) {
 
     options = merge( {
-      trackSize: null, // {Dimension2} - where width is the narrow slider width and height is the full height of the slider
       tandem: Tandem.required, // {Tandem}
       sliderOptions: {
         trackFillEnabled: 'black',
         trackStroke: 'rgb( 200, 200, 200 )',
         trackLineWidth: 7,
         trackCornerRadius: 10,
-        thumbSize: new Dimension2( 30, 68 ), // in horizontal orientation!
+        thumbSize: new Dimension2( 68, 30 ),
+        trackSize: new Dimension2( 10, 200 ),
         thumbFill: THUMB_NORMAL_COLOR,
         thumbFillHighlighted: THUMB_HIGHLIGHT_COLOR,
 
@@ -76,7 +76,6 @@ define( require => {
     }, options );
 
     assert && assert( options.sliderOptions.tandem === undefined, 'VerticalSlider sets its own sliderOptions.tandem' );
-    assert && assert( options.sliderOptions.trackSize === undefined, 'VerticalSlider sets its own sliderOptions.trackSize' );
     assert && assert( options.sliderOptions.startDrag === undefined, 'VerticalSlider sets its own sliderOptions.startDrag' );
     assert && assert( options.sliderOptions.endDrag === undefined, 'VerticalSlider sets its own sliderOptions.endDrag' );
 
@@ -84,7 +83,6 @@ define( require => {
     options = merge( {
       sliderOptions: {
         tandem: options.tandem.createTandem( 'sliderNode' ),
-        trackSize: new Dimension2( options.trackSize.height, options.trackSize.width ), // swap dimensions
         startDrag: event => {
           this.draggingPointerType = event.pointer.type;
         },
@@ -143,10 +141,10 @@ define( require => {
     } );
 
     // Update the value display, and position it relative to the track, so it's to the right of the slider thumb.
-    const trackMinY = sliderNode.centerY - ( options.trackSize.height / 2 );
+    const trackMinY = sliderNode.centerY - ( options.sliderOptions.trackSize.width / 2 );
     property.link( function( value ) {
       valueNode.text = StringUtils.format( pattern0Value1UnitsString, Util.toFixed( value, decimalPlaces ), units );
-      valueNode.centerY = trackMinY + Util.linear( range.min, range.max, options.trackSize.height, 0, value );
+      valueNode.centerY = trackMinY + Util.linear( range.min, range.max, options.sliderOptions.trackSize.width, 0, value );
     } );
 
     // switch between quantitative and qualitative display
