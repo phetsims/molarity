@@ -167,7 +167,7 @@ define( require => {
 
           // a11y
           accessibleName: solutionVolumeString,
-          a11yCreateAriaValueText: () => volumeDescriber.getVolumeValueText()
+          a11yCreateAriaValueText: () => volumeDescriber.getVolumeAriaValueText()
         }
       } );
 

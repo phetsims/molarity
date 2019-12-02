@@ -148,7 +148,7 @@ define( require => {
      * @public
      * @returns {string}
      */
-    getVolumeValueText() {
+    getVolumeAriaValueText() {
       return this.useQuantitativeDescriptionsProperty.value ?
              this.getCurrentVolume() :
              this.getVolumeState();
