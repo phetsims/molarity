@@ -1,8 +1,8 @@
 // Copyright 2019, University of Colorado Boulder
 
 /**
- * ConcentrationDescriber is responsible for generating strings about ConcentrationProperty. Also includes alert text
- * for alerts past saturation point, including descriptions about the amount of solids (precipitate) in the beaker.
+ * ConcentrationDescriber is responsible for formulating  strings about Solution.concentrationProperty. This includes
+ * descriptions set in the PDOM, as well as context responses set through UtteranceQueue.
  *
  * @author Michael Kauzmann (PhET Interactive Simulations)
  * @author Taylor Want (PhET Interactive Simulations)
