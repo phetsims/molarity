@@ -10,15 +10,12 @@ define( require => {
   'use strict';
 
   // modules
-  const ArrowKeyNode = require( 'SCENERY_PHET/keyboard/ArrowKeyNode' );
-  const EnterKeyNode = require( 'SCENERY_PHET/keyboard/EnterKeyNode' );
-  const EscapeKeyNode = require( 'SCENERY_PHET/keyboard/EscapeKeyNode' );
   const GeneralKeyboardHelpSection = require( 'SCENERY_PHET/keyboard/help/GeneralKeyboardHelpSection' );
+  const KeyboardHelpIconFactory = require( 'SCENERY_PHET/keyboard/help/KeyboardHelpIconFactory' );
   const KeyboardHelpSection = require( 'SCENERY_PHET/keyboard/help/KeyboardHelpSection' );
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const SliderKeyboardHelpSection = require( 'SCENERY_PHET/keyboard/help/SliderKeyboardHelpSection' );
-  const SpaceKeyNode = require( 'SCENERY_PHET/keyboard/SpaceKeyNode' );
   const TwoColumnKeyboardHelpContent = require( 'SCENERY_PHET/keyboard/help/TwoColumnKeyboardHelpContent' );
 
   // strings
@@ -35,21 +32,6 @@ define( require => {
   const changeChooseDescriptionString = MolarityA11yStrings.changeChooseDescription.value;
   const closeListDescriptionString = MolarityA11yStrings.closeListDescription.value;
 
-  const ICON_CREATOR = {
-    enter: () => {
-      return new EnterKeyNode();
-    },
-    enterOrSpace: () => {
-      return KeyboardHelpSection.iconOrIcon( new EnterKeyNode(), new SpaceKeyNode() );
-    },
-    upOrDown: () => {
-      return KeyboardHelpSection.iconOrIcon( new ArrowKeyNode( 'up' ), new ArrowKeyNode( 'down' ) );
-    },
-    esc: () => {
-      return new EscapeKeyNode();
-    }
-  };
-
   class MolarityKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
     constructor() {
       // general help section
@@ -59,13 +41,14 @@ define( require => {
       const sliderKeyboardHelpSection = new SliderKeyboardHelpSection( { headingString: keyboardSliderHelpHeadingString } );
 
       // change solute help section
-      const step1 = KeyboardHelpSection.labelWithIcon( keyboardPopUpListString, ICON_CREATOR.enterOrSpace(), popUpListDescriptionString );
-      const step2 = KeyboardHelpSection.labelWithIcon( keyboardMoveThroughString, ICON_CREATOR.upOrDown(), moveThroughDescriptionString );
-      const step3 = KeyboardHelpSection.labelWithIcon( keyboardChangeSoluteString, ICON_CREATOR.enter(), changeChooseDescriptionString );
-      const step4 = KeyboardHelpSection.labelWithIcon( keyboardCloseListString, ICON_CREATOR.esc(), closeListDescriptionString );
+      const step1 = KeyboardHelpSection.labelWithIcon( keyboardPopUpListString, KeyboardHelpIconFactory.enterOrSpace(), popUpListDescriptionString );
+      const step2 = KeyboardHelpSection.labelWithIcon( keyboardMoveThroughString, KeyboardHelpIconFactory.upOrDown(), moveThroughDescriptionString );
+      const step3 = KeyboardHelpSection.labelWithIcon( keyboardChangeSoluteString, KeyboardHelpIconFactory.enter(), changeChooseDescriptionString );
+      const step4 = KeyboardHelpSection.labelWithIcon( keyboardCloseListString, KeyboardHelpIconFactory.esc(), closeListDescriptionString );
       const changeSoluteContent = [ step1, step2, step3, step4 ];
-      const changeSoluteHelpSection = new KeyboardHelpSection( keyboardChangeSoluteHelpHeadingString, changeSoluteContent,
-        { a11yContentTagName: 'ol' } );
+      const changeSoluteHelpSection = new KeyboardHelpSection( keyboardChangeSoluteHelpHeadingString, changeSoluteContent, {
+        a11yContentTagName: 'ol'
+      } );
 
       // Layout of all components of the help section created above.
       KeyboardHelpSection.alignHelpSectionIcons( [ generalNavigationHelpSection, changeSoluteHelpSection ] );
