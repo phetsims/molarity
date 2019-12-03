@@ -26,11 +26,15 @@ define( require => {
   const keyboardCloseListString = require( 'string!MOLARITY/keyboard.closeList' );
   const keyboardChangeSoluteHelpHeadingString = require( 'string!MOLARITY/keyboard.changeSoluteHelpHeading' );
 
+  // a11y strings
   // Description strings for list of help commands
   const popUpListDescriptionString = MolarityA11yStrings.popUpListDescription.value;
   const moveThroughDescriptionString = MolarityA11yStrings.moveThroughDescription.value;
   const changeChooseDescriptionString = MolarityA11yStrings.changeChooseDescription.value;
   const closeListDescriptionString = MolarityA11yStrings.closeListDescription.value;
+
+  // constants
+  const labelWithIcon = KeyboardHelpSection.labelWithIcon;
 
   class MolarityKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
     constructor() {
@@ -41,19 +45,19 @@ define( require => {
       const sliderKeyboardHelpSection = new SliderKeyboardHelpSection( { headingString: keyboardSliderHelpHeadingString } );
 
       // change solute help section
-      const step1 = KeyboardHelpSection.labelWithIcon( keyboardPopUpListString, KeyboardHelpIconFactory.enterOrSpace(), popUpListDescriptionString );
-      const step2 = KeyboardHelpSection.labelWithIcon( keyboardMoveThroughString, KeyboardHelpIconFactory.upOrDown(), moveThroughDescriptionString );
-      const step3 = KeyboardHelpSection.labelWithIcon( keyboardChangeSoluteString, KeyboardHelpIconFactory.enter(), changeChooseDescriptionString );
-      const step4 = KeyboardHelpSection.labelWithIcon( keyboardCloseListString, KeyboardHelpIconFactory.esc(), closeListDescriptionString );
+      const step1 = labelWithIcon( keyboardPopUpListString, KeyboardHelpIconFactory.enterOrSpace(), popUpListDescriptionString );
+      const step2 = labelWithIcon( keyboardMoveThroughString, KeyboardHelpIconFactory.upOrDown(), moveThroughDescriptionString );
+      const step3 = labelWithIcon( keyboardChangeSoluteString, KeyboardHelpIconFactory.enter(), changeChooseDescriptionString );
+      const step4 = labelWithIcon( keyboardCloseListString, KeyboardHelpIconFactory.esc(), closeListDescriptionString );
       const changeSoluteContent = [ step1, step2, step3, step4 ];
       const changeSoluteHelpSection = new KeyboardHelpSection( keyboardChangeSoluteHelpHeadingString, changeSoluteContent, {
         a11yContentTagName: 'ol'
       } );
 
       // Layout of all components of the help section created above.
-      KeyboardHelpSection.alignHelpSectionIcons( [ generalNavigationHelpSection, changeSoluteHelpSection ] );
       const leftContent = [ sliderKeyboardHelpSection ];
       const rightContent = [ changeSoluteHelpSection, generalNavigationHelpSection ];
+      KeyboardHelpSection.alignHelpSectionIcons( rightContent );
       super( leftContent, rightContent, { columnSpacing: 35, sectionSpacing: 20 } );
     }
   }
