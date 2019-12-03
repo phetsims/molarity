@@ -182,7 +182,7 @@ define( require => {
 
     /**
      * When qualitative descriptions are being used and SoluteAmountProperty or VolumeProperty changes, creates an alert.
-     * @param {Object} changeStrings - contains multiple strings.
+     * @param {ChangeStrings} changeStrings - contains multiple strings.
      * @param {boolean} quantityChange - true if the quantity has increased, false if quantity has decreased
      * @returns {string} - text of alert to add to back
      * @private

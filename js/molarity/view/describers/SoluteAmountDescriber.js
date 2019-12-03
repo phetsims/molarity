@@ -119,9 +119,16 @@ define( require => {
     }
 
     /**
+     * TODO: add some doc here, see https://github.com/phetsims/molarity/issues/171
+     * @typedef ChangeStrings
+     * @type {Object}
+     * @property {string} colorChangeString
+     * @property {string} quantityChangeString
+     */
+    /**
      * Creates the substrings to describe the change in volume and the resulting change in solution color
      * @public
-     * @returns {Object} - contains two strings.
+     * @returns {ChangeStrings} - contains two strings.
      */
     getSoluteAmountChangeStrings() {
       return {

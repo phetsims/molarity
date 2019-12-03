@@ -112,7 +112,7 @@ define( require => {
 
     /**
      * @param {Solution} solution - from MolarityModel
-     * @param {Property.<boolean>>} useQuantitativeDescriptionsProperty
+     * @param {Property.<boolean>} useQuantitativeDescriptionsProperty
      */
     constructor( solution, useQuantitativeDescriptionsProperty ) {
 
