@@ -69,7 +69,7 @@ define( require => {
         if ( this.concentrationDescriber.isExactlySaturated() ) {
           this.alertMaxConcentration();
         }
-        else if ( this.concentrationDescriber.saturationStateChanged ) {
+        else if ( this.concentrationDescriber.getSaturationStateChanged() ) {
           this.alertNewSaturation();
         }
         else if ( !concentrationDescriber.hasSolute() ) {
@@ -98,7 +98,7 @@ define( require => {
         if ( this.concentrationDescriber.isExactlySaturated() ) {
           this.alertMaxConcentration();
         }
-        else if ( this.concentrationDescriber.saturationStateChanged ) {
+        else if ( this.concentrationDescriber.getSaturationStateChanged() ) {
           this.alertNewSaturation();
         }
         else if ( !concentrationDescriber.hasSolute() ) {
@@ -141,7 +141,6 @@ define( require => {
      * @private
      */
     alertNewSaturation() {
-      assert && assert( this.concentrationDescriber.saturationStateChanged, 'alert triggered when saturation state has not changed' );
       this.saturationUtterance.alert = this.concentrationDescriber.getSaturationChangedString();
 
       // clears the utteranceQueue to remove utterances from previous saturation region, then adds the saturation utterance.
@@ -193,7 +192,7 @@ define( require => {
       let stateInfo = '';
 
       // state info is appended to the alert if the descriptive region has changed for any relevant quantity.
-      if ( quantityChange || this.concentrationDescriber.concentrationRegionChanged ||
+      if ( quantityChange || this.concentrationDescriber.getConcentrationRegionChanged() ||
            this.concentrationDescriber.solidsRegionChanged ) {
         stateInfo = this.concentrationDescriber.getConcentrationState();
       }

@@ -126,10 +126,6 @@ define( require => {
       this.precipitateAmountProperty = solution.precipitateAmountProperty;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
 
-      // @private {number} - the index of the last concentration descriptive region
-      this.concentrationIndex = concentrationToIndex( this.soluteProperty.value.saturatedConcentration,
-        this.concentrationProperty.value );
-
       // @private {boolean} - tracks whether the concentration descriptive region has just changed.
       this.concentrationRegionChanged = false;
 
@@ -147,19 +143,15 @@ define( require => {
       // starts or resets.
       this.solidsIncreased = null;
 
-      // @private {boolean} - tracks whether the solution has just become saturated or unsaturated.
-      this._saturationStateChanged = false;
+      // @private {boolean} - tracks the last saturation state
+      this.lastSaturationState = false;
+
+      // @private {Number} - tracks the last calculated concentration region index.
+      this.lastConcentrationIndex = this.getCurrentConcentrationIndex();
 
       // update fields (documented above) when ConcentrationProperty changes
       this.concentrationProperty.lazyLink( ( newValue, oldValue ) => {
-        const newConcentrationIndex = concentrationToIndex( this.soluteProperty.value.saturatedConcentration,
-          this.concentrationProperty.value );
-        const previousSaturationState = oldValue > this.getCurrentSaturatedConcentration();
-        const newSaturationState = this.solution.isSaturated();
         this.concentrationIncreased = newValue > oldValue;
-        this.concentrationRegionChanged = newConcentrationIndex !== this.concentrationIndex;
-        this.concentrationIndex = newConcentrationIndex;
-        this._saturationStateChanged = newSaturationState !== previousSaturationState;
       } );
 
       // update fields (documented above) when precipitateAmountProperty changes
@@ -175,11 +167,45 @@ define( require => {
     }
 
     /**
-     * Getter for newSaturationState
+     * Calculates the index of the current concentration region using the saturated concentration of the solute and
+     * the current concentration
      * @public
-     * @returns {boolean} - whether or not the solution has been newly saturated or unsaturated
+     * @returns {Number} - index of the current concentration region
      * */
-    get saturationStateChanged() { return this._saturationStateChanged; }
+    getCurrentConcentrationIndex() {
+      return concentrationToIndex( this.soluteProperty.value.saturatedConcentration,
+        this.concentrationProperty.value );
+    }
+
+    /**
+     * Determines if the descriptive region has changed by comparing the old and new concentration indices. Also sets the
+     * lastConcentrationIndex property to the new index if there is a change.
+     * @public
+     * @returns {boolean} - whether or not the concentration region has changed.
+     * */
+    getConcentrationRegionChanged() {
+      const oldIndex = this.lastConcentrationIndex;
+      const newIndex = this.getCurrentConcentrationIndex();
+      if ( oldIndex !== newIndex ) {
+        this.lastConcentrationIndex = newIndex;
+      }
+      return oldIndex !== newIndex;
+    }
+
+    /**
+     * Determines if the saturation state has changed (by the solution going from unsaturated to saturated, or vice versa).
+     * Also sets the lastSaturationState property to the new saturation state if it has changed.
+     * @public
+     * @returns {boolean} - whether or not the saturation state has changed.
+     * */
+    getSaturationStateChanged() {
+      const oldSaturationState = this.lastSaturationState;
+      const newSaturationState = this.solution.isSaturated();
+      if ( oldSaturationState !== newSaturationState ) {
+        this.lastSaturationState = newSaturationState;
+      }
+      return oldSaturationState !== newSaturationState;
+    }
 
     /**
      * Determines if there is solute in the beaker.
