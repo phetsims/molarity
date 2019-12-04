@@ -214,15 +214,6 @@ define( require => {
     }
 
     /**
-     * Determines if there is solute in the beaker.
-     * @returns {boolean}
-     * @public
-     */
-    hasSolute() {
-      return Util.toFixed( this.solution.soluteAmountProperty.value, 3 ) > 0;
-    }
-
-    /**
      * Gets the current value of concentration either quantitatively or quantitatively to plug into descriptions.
      * Qualitative description can be in active or passive voice depending on isPassive parameter.
      * @param {boolean} [isPassive]
@@ -456,7 +447,7 @@ define( require => {
     // Concentration regions are evenly spaced within the region from 0 to max concentration for a given solute except
     // for the lowest region (zero) and the highest region (max concentration) which are single value regions.
     const scaleIncrement = maxConcentration / ( CONCENTRATION_STRINGS.length - 2 );
-    const concentrationRounded = Util.toFixed( concentration, 3 );
+    const concentrationRounded = Util.toFixed( concentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES );
 
     if ( concentrationRounded > maxConcentration - .001 ) {
       return CONCENTRATION_STRINGS.length - 1;

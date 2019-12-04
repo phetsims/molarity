@@ -102,7 +102,7 @@ define( require => {
       } );
 
       // If there is no solute in the beaker, the PDOM descriptions change.
-      if ( !this.concentrationDescriber.hasSolute() ) {
+      if ( !this.solution.hasSolute() ) {
         stateString = stateOfSimNoSolutePatternString;
       }
 

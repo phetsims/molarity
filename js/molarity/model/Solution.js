@@ -94,6 +94,11 @@ define( require => {
     },
 
     // @public
+    hasSolute: function() {
+      return this.concentrationProperty.value > 0;
+    },
+
+    // @public
     getColor: function() {
       if ( this.concentrationProperty.value > 0 ) {
         const solute = this.soluteProperty.get();
