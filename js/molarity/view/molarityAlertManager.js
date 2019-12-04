@@ -30,6 +30,8 @@ define( require => {
   class MolarityAlertManager {
 
     constructor() {
+
+      // @private
       this.initialized = false;
     }
 
