@@ -15,6 +15,7 @@ define( require => {
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const Util = require( 'DOT/Util' );
+  const Solution = require( 'MOLARITY/molarity/model/Solution' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
 
   // a11y strings
@@ -414,14 +415,15 @@ define( require => {
 
   /**
    * Calculates which item to use from the SOLIDS_STRINGS array.
-   * @param {number} precipitateAmount
+   * @param {Solution} solution
    * @param {number} saturatedConcentration
    * @returns {number} - index to pull from SOLIDS_STRINGS array
    */
   const solidsToIndex = ( precipitateAmount, saturatedConcentration ) => {
 
-    // maximum: solute amount max - solute amount it takes to saturate at min volume. Varies with the selected solute.
-    const maxPrecipitateAmount = MolarityConstants.SOLUTE_AMOUNT_RANGE.max - saturatedConcentration * MolarityConstants.SOLUTION_VOLUME_RANGE.min;
+    // maximum precipitates possible for a given solute, which is the solute amount it takes to saturate at min volume.
+    const maxPrecipitateAmount = Solution.computePrecipitateAmount( MolarityConstants.SOLUTION_VOLUME_RANGE.min,
+      MolarityConstants.SOLUTE_AMOUNT_RANGE.max, saturatedConcentration );
 
     // the first region ("a couple of") is double the size of the others, so 1 more region must be
     // added to the length of SOLIDS_STRINGS. See https://github.com/phetsims/molarity/issues/148.
@@ -429,8 +431,8 @@ define( require => {
     const scaleIncrement = maxPrecipitateAmount / numberOfIncrements;
 
     for ( let i = 1; i < numberOfIncrements; i++ ) {
-      if ( precipitateAmount < i * scaleIncrement-.001 ) {
-        return i-1;
+      if ( precipitateAmount < i * scaleIncrement - .001 ) {
+        return i - 1;
       }
     }
     return SOLIDS_STRINGS.length - 1;
