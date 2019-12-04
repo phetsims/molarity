@@ -15,6 +15,7 @@ define( require => {
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const Util = require( 'DOT/Util' );
+  const Solution = require( 'MOLARITY/molarity/model/Solution' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
 
   // a11y strings
@@ -116,18 +117,12 @@ define( require => {
      */
     constructor( solution, useQuantitativeDescriptionsProperty ) {
 
-      // @public (read-only) {boolean} - tracks whether the concentration descriptive region has changed
-      this.concentrationRegionChanged = null;
-
       // @private
       this.solution = solution;
       this.soluteProperty = solution.soluteProperty;
       this.concentrationProperty = solution.concentrationProperty;
       this.precipitateAmountProperty = solution.precipitateAmountProperty;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
-
-      // @private {boolean} - tracks whether the concentration descriptive region has just changed.
-      this.concentrationRegionChanged = false;
 
       // @private {number} - tracks the index of the last descriptive region for solids from SOLIDS_STRINGS array
       this.solidsIndex = solidsToIndex( this.precipitateAmountProperty.value, this.getCurrentSaturatedConcentration() );
@@ -189,7 +184,7 @@ define( require => {
      * @public
      * @returns {boolean} - whether or not the concentration region has changed.
      * */
-    getConcentrationRegionChanged() {
+    concentrationRegionChanged() {
       const oldIndex = this.lastConcentrationIndex;
       const newIndex = this.getCurrentConcentrationIndex();
       if ( oldIndex !== newIndex ) {
@@ -204,22 +199,13 @@ define( require => {
      * @public
      * @returns {boolean} - whether or not the saturation state has changed.
      * */
-    getSaturationStateChanged() {
+    saturationStateChanged() {
       const oldSaturationState = this.lastSaturationState;
       const newSaturationState = this.solution.isSaturated();
       if ( oldSaturationState !== newSaturationState ) {
         this.lastSaturationState = newSaturationState;
       }
       return oldSaturationState !== newSaturationState;
-    }
-
-    /**
-     * Determines if there is solute in the beaker.
-     * @returns {boolean}
-     * @public
-     */
-    hasSolute() {
-      return Util.toFixed( this.solution.soluteAmountProperty.value, 3 ) > 0;
     }
 
     /**
@@ -423,39 +409,27 @@ define( require => {
 
   /**
    * Calculates which item to use from the SOLIDS_STRINGS array.
-   * @param {number} precipitateAmount
+   * @param {Solution} solution
    * @param {number} saturatedConcentration
    * @returns {number} - index to pull from SOLIDS_STRINGS array
    */
   const solidsToIndex = ( precipitateAmount, saturatedConcentration ) => {
 
-    // maximum: solute amount max - solute amount it takes to saturate at min volume. Varies with the selected solute.
-    const maxPrecipitateAmount = MolarityConstants.SOLUTE_AMOUNT_RANGE.max - saturatedConcentration * MolarityConstants.SOLUTION_VOLUME_RANGE.min;
+    // maximum precipitates possible for a given solute, which is the solute amount it takes to saturate at min volume.
+    const maxPrecipitateAmount = Solution.computePrecipitateAmount( MolarityConstants.SOLUTION_VOLUME_RANGE.min,
+      MolarityConstants.SOLUTE_AMOUNT_RANGE.max, saturatedConcentration );
 
-    // there is an unnamed region right after saturation point that doesn't have a description, so 1 more region must be
-    // added to the length of SOLIDS_STRINGS.
+    // the first region ("a couple of") is double the size of the others, so 1 more region must be
+    // added to the length of SOLIDS_STRINGS. See https://github.com/phetsims/molarity/issues/148.
     const numberOfIncrements = SOLIDS_STRINGS.length + 1;
     const scaleIncrement = maxPrecipitateAmount / numberOfIncrements;
 
-    if ( precipitateAmount < scaleIncrement ) {
-      return 0;
+    for ( let i = 1; i < numberOfIncrements; i++ ) {
+      if ( precipitateAmount < i * scaleIncrement - .001 ) {
+        return i - 1;
+      }
     }
-    else if ( precipitateAmount <= 2 * scaleIncrement ) {
-      return 1;
-    }
-    else if ( precipitateAmount <= 3 * scaleIncrement ) {
-      return 2;
-    }
-    else if ( precipitateAmount <= 4 * scaleIncrement ) {
-      return 3;
-    }
-    else if ( precipitateAmount <= 5 * scaleIncrement ) {
-      return 4;
-    }
-    else {
-      assert && assert( precipitateAmount > 5 * scaleIncrement, 'invalid precipitateAmount value' );
-      return 5;
-    }
+    return SOLIDS_STRINGS.length - 1;
   };
 
   /**
@@ -469,27 +443,17 @@ define( require => {
     // Concentration regions are evenly spaced within the region from 0 to max concentration for a given solute except
     // for the lowest region (zero) and the highest region (max concentration) which are single value regions.
     const scaleIncrement = maxConcentration / ( CONCENTRATION_STRINGS.length - 2 );
-    const concentrationRounded = Util.toFixed( concentration, 3 );
-    if ( concentrationRounded < 0.001 ) {
-      return 0;
-    }
-    else if ( concentrationRounded <= scaleIncrement ) {
-      return 1;
-    }
-    else if ( concentrationRounded <= 2 * scaleIncrement ) {
-      return 2;
-    }
-    else if ( concentrationRounded <= 3 * scaleIncrement ) {
-      return 3;
-    }
-    else if ( concentrationRounded <= 4 * scaleIncrement ) {
-      return 4;
-    }
-    else if ( concentrationRounded <= 5 * scaleIncrement - .001 ) {
-      return 5;
+    const concentrationRounded = Util.toFixed( concentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES );
+
+    if ( concentrationRounded > maxConcentration - .001 ) {
+      return CONCENTRATION_STRINGS.length - 1;
     }
     else {
-      return 6;
+      for ( let i = 0; i < CONCENTRATION_STRINGS.length - 1; i++ ) {
+        if ( concentrationRounded <= scaleIncrement * i - .001 ) {
+          return i;
+        }
+      }
     }
   };
 

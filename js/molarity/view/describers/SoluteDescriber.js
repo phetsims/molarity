@@ -139,7 +139,7 @@ define( require => {
      */
     getCurrentColor( isCapitalized = false ) {
       const currentSolute = this.getCurrentSolute( true );
-      if ( !this.concentrationDescriber.hasSolute() ) {
+      if ( !this.solution.hasSolute() ) {
         return isCapitalized ? clearCapitalizedString : clearString;
       }
       switch( currentSolute ) {
@@ -174,7 +174,7 @@ define( require => {
      */
     getSoluteChangedAlertString( useQuantitativeDescriptionsProperty ) {
 
-      if ( !this.concentrationDescriber.hasSolute() ) {
+      if ( !this.solution.hasSolute() ) {
         return useQuantitativeDescriptionsProperty.value ? noSoluteAlertQuantitativeString : noSoluteAlertQualitativeString;
       }
 
@@ -199,7 +199,7 @@ define( require => {
       // necessary to call this method to update concentrationDescriber.lastSaturationState, as the state may have
       // changed when the solute was changed.
       // TODO: is there a better way to do this?
-      this.concentrationDescriber.getSaturationStateChanged();
+      this.concentrationDescriber.saturationStateChanged();
 
       return StringUtils.fillIn( soluteChangedString, {
         color: this.getCurrentColor( true ),

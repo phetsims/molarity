@@ -71,10 +71,10 @@ define( require => {
         if ( this.concentrationDescriber.isExactlySaturated() ) {
           this.alertMaxConcentration();
         }
-        else if ( this.concentrationDescriber.getSaturationStateChanged() ) {
+        else if ( this.concentrationDescriber.saturationStateChanged() ) {
           this.alertNewSaturation();
         }
-        else if ( !concentrationDescriber.hasSolute() ) {
+        else if ( !solution.hasSolute() ) {
           this.alertNoSolute( useQuantitativeDescriptionsProperty );
         }
         else if ( useQuantitativeDescriptionsProperty.value ) {
@@ -94,10 +94,10 @@ define( require => {
         if ( this.concentrationDescriber.isExactlySaturated() ) {
           this.alertMaxConcentration();
         }
-        else if ( this.concentrationDescriber.getSaturationStateChanged() ) {
+        else if ( this.concentrationDescriber.saturationStateChanged() ) {
           this.alertNewSaturation();
         }
-        else if ( !concentrationDescriber.hasSolute() ) {
+        else if ( !solution.hasSolute() ) {
           this.alertNoSolute( useQuantitativeDescriptionsProperty );
         }
         else if ( useQuantitativeDescriptionsProperty.value ) {
@@ -143,7 +143,7 @@ define( require => {
      * @private
      */
     alertNoSolute() {
-      assert && assert( !this.concentrationDescriber.hasSolute(), 'no solute alert triggered with solute in the beaker' );
+      assert && assert( !this.solution.hasSolute(), 'no solute alert triggered with solute in the beaker' );
       this.sliderUtterance.alert = noSoluteAlertString;
       phet.joist.sim.utteranceQueue.addToBack( this.sliderUtterance );
     }
@@ -182,7 +182,7 @@ define( require => {
       let stateInfo = '';
 
       // state info is appended to the alert if the descriptive region has changed for any relevant quantity.
-      if ( quantityChange || this.concentrationDescriber.getConcentrationRegionChanged() ||
+      if ( quantityChange || this.concentrationDescriber.concentrationRegionChanged() ||
            this.concentrationDescriber.solidsRegionChanged ) {
         stateInfo = this.concentrationDescriber.getConcentrationState();
       }
