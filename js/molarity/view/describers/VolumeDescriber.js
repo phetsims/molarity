@@ -1,7 +1,7 @@
 // Copyright 2019, University of Colorado Boulder
 
 /**
- * VolumeDescriber is responsible for generating strings about VolumeProperty.
+ * VolumeDescriber is responsible for generating strings about Solution.volumeProperty.
  *
  * @author Michael Kauzmann (PhET Interactive Simulations)
  * @author Taylor Want (PhET Interactive Simulations)
@@ -16,7 +16,7 @@ define( require => {
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const Util = require( 'DOT/Util' );
 
-  // strings
+  // a11y strings
   const hasVolumePatternString = MolarityA11yStrings.hasVolumePattern.value;
   const colorChangePatternString = MolarityA11yStrings.colorChangePattern.value;
   const qualitativeVolumeStatePatternString = MolarityA11yStrings.qualitativeVolumeStatePattern.value;
@@ -128,6 +128,7 @@ define( require => {
     }
 
     /**
+     * TODO: fix the return typedef of this method just like in SoluteAmountDescriber.js
      * Creates the substrings to describe the change in volume and the resulting change in solution color
      * @public
      * @returns {Object} - contains two strings.
@@ -151,16 +152,9 @@ define( require => {
     getVolumeAriaValueText() {
       return this.useQuantitativeDescriptionsProperty.value ?
              this.getCurrentVolume() :
-             this.getVolumeState();
-    }
-
-    /**
-     * Creates a substring describing the volume state
-     * @public
-     * @returns {string} - something like "Beaker half full"
-     */
-    getVolumeState() {
-      return StringUtils.fillIn( qualitativeVolumeStatePatternString, { volume: this.getCurrentVolume() } );
+             StringUtils.fillIn( qualitativeVolumeStatePatternString, {
+               volume: this.getCurrentVolume()
+             } );
     }
   }
 
