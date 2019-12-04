@@ -1,7 +1,7 @@
 // Copyright 2019, University of Colorado Boulder
 
 /**
- * SoluteAmountDescriber is responsible for generating strings about SoluteAmountProperty.
+ * SoluteAmountDescriber is responsible for generating strings about Solution.soluteAmountProperty.
  *
  * @author Michael Kauzmann (PhET Interactive Simulations)
  * @author Taylor Want (PhET Interactive Simulations)
@@ -9,7 +9,7 @@
 define( require => {
   'use strict';
 
-  // Modules
+  // modules
   const MolarityConstants = require( 'MOLARITY/molarity/MolarityConstants' );
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
@@ -23,7 +23,7 @@ define( require => {
   const colorChangePatternString = MolarityA11yStrings.colorChangePattern.value;
   const qualitativeSoluteAmountStatePatternString = MolarityA11yStrings.qualitativeSoluteAmountStatePattern.value;
 
-  // Solute Amount regions strings
+  // solute amount regions strings
   const aBunchOfString = MolarityA11yStrings.aBunchOf.value;
   const aBunchOfLowercaseString = MolarityA11yStrings.aBunchOfLowercase.value;
   const aLittleString = MolarityA11yStrings.aLittle.value;
@@ -35,19 +35,19 @@ define( require => {
   const maxAmountOfString = MolarityA11yStrings.maxAmountOf.value;
   const maxAmountOfLowercaseString = MolarityA11yStrings.maxAmountOfLowercase.value;
 
-  // Solids regions strings
+  // solids regions strings
   const someString = MolarityA11yStrings.some.value;
   const someLowercaseString = MolarityA11yStrings.someLowercase.value;
   const noString = MolarityA11yStrings.no.value;
   const noLowercaseString = MolarityA11yStrings.noLowercase.value;
 
-  // Change strings
+  // change strings
   const lessCapitalizedString = MolarityA11yStrings.lessCapitalized.value;
   const moreCapitalizedString = MolarityA11yStrings.moreCapitalized.value;
   const lighterString = MolarityA11yStrings.lighter.value;
   const darkerString = MolarityA11yStrings.darker.value;
 
-  // Constants
+  // constants
   const SOLUTE_AMOUNT_STRINGS = [
     noString,
     aLittleString,
