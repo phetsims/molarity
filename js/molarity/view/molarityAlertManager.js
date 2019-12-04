@@ -62,7 +62,7 @@ define( require => {
       this.soluteUtterance = new ActivationUtterance();
       this.valuesVisibleUtterance = new ActivationUtterance();
 
-      solution.soluteAmountProperty.link( () => {
+      solution.soluteAmountProperty.lazyLink( () => {
 
         // If the solution is newly saturated or newly unsaturated, an alert is read out. The text depends on whether
         // descriptions are qualitative or quantitative, and if there is any solute in the beaker.
@@ -79,18 +79,12 @@ define( require => {
           this.alertSliderQuantitative();
         }
         else {
-
-          // concentrationDescriber.concentrationIncreased and concentrationDescriber.solidsIncreased are both null on
-          // initial load or reset of the sim. No alert is read out in this case.
-          if ( this.concentrationDescriber.concentrationIncreased !== null ||
-               this.concentrationDescriber.solidsIncreased !== null ) {
-            this.alertSliderQualitative( soluteAmountDescriber.getSoluteAmountChangeStrings(),
-              soluteAmountDescriber.soluteAmountRegionChanged );
-          }
+          this.alertSliderQualitative( soluteAmountDescriber.getSoluteAmountChangeStrings(),
+            soluteAmountDescriber.soluteAmountRegionChanged );
         }
       } );
 
-      solution.volumeProperty.link( () => {
+      solution.volumeProperty.lazyLink( () => {
 
         // A special alert is read out if the solution is saturated without any solids. If the solution is newly
         // saturated or newly unsaturated, an alert is read out. The text depends on whether descriptions are
@@ -108,13 +102,7 @@ define( require => {
           this.alertSliderQuantitative();
         }
         else {
-
-          // concentrationDescriber.concentrationIncreased and concentrationDescriber.solidsIncreased are both null on
-          // initial load or reset of the sim. No alert is read out in this case.
-          if ( this.concentrationDescriber.concentrationIncreased !== null ||
-               this.concentrationDescriber.solidsIncreased !== null ) {
-            this.alertSliderQualitative( volumeDescriber.getVolumeChangeStrings(), volumeDescriber.volumeRegionChanged );
-          }
+          this.alertSliderQualitative( volumeDescriber.getVolumeChangeStrings(), volumeDescriber.volumeRegionChanged );
         }
       } );
 

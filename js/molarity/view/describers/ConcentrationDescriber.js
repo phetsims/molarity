@@ -129,10 +129,6 @@ define( require => {
       // @private {boolean} - tracks whether the concentration descriptive region has just changed.
       this.concentrationRegionChanged = false;
 
-      // @private {boolean|null} - tracks whether concentration has increased or decreased. null when simulation starts
-      // or resets.
-      this.concentrationIncreased = null;
-
       // @private {number} - tracks the index of the last descriptive region for solids from SOLIDS_STRINGS array
       this.solidsIndex = solidsToIndex( this.precipitateAmountProperty.value, this.getCurrentSaturatedConcentration() );
 
@@ -143,16 +139,14 @@ define( require => {
       // starts or resets.
       this.solidsIncreased = null;
 
+      // @private {Number} - tracks the last value of concentrationProperty
+      this.lastConcentrationValue = this.concentrationProperty.value;
+
       // @private {boolean} - tracks the last saturation state
       this.lastSaturationState = false;
 
       // @private {Number} - tracks the last calculated concentration region index.
       this.lastConcentrationIndex = this.getCurrentConcentrationIndex();
-
-      // update fields (documented above) when ConcentrationProperty changes
-      this.concentrationProperty.lazyLink( ( newValue, oldValue ) => {
-        this.concentrationIncreased = newValue > oldValue;
-      } );
 
       // update fields (documented above) when precipitateAmountProperty changes
       this.precipitateAmountProperty.lazyLink( ( newValue, oldValue ) => {
@@ -175,6 +169,18 @@ define( require => {
     getCurrentConcentrationIndex() {
       return concentrationToIndex( this.soluteProperty.value.saturatedConcentration,
         this.concentrationProperty.value );
+    }
+
+    /**
+     * Determines whether the concentration has increased or decreased.
+     * @private
+     * @returns {boolean} - whether the concentration has increased (True) or decreased (False)
+     * */
+    getConcentrationIncreased() {
+      const oldConcentration = this.lastConcentrationValue;
+      const newConcentration = this.concentrationProperty.value;
+      this.lastConcentrationValue = newConcentration;
+      return newConcentration > oldConcentration;
     }
 
     /**
@@ -330,7 +336,7 @@ define( require => {
      */
     getConcentrationChangeString( isCapitalized = false ) {
       let moreLessString = isCapitalized ? lessCapitalizedString : lessString;
-      if ( this.concentrationIncreased ) {
+      if ( this.getConcentrationIncreased() ) {
         moreLessString = isCapitalized ? moreCapitalizedString : moreString;
       }
       return StringUtils.fillIn( concentrationChangePatternString, {
@@ -345,7 +351,7 @@ define( require => {
      */
     getColorChangeString() {
       return StringUtils.fillIn( colorChangePatternString, {
-        lighterDarker: this.concentrationIncreased ? darkerString : lighterString
+        lighterDarker: this.getConcentrationIncreased() ? darkerString : lighterString
       } );
     }
 
