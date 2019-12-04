@@ -432,30 +432,17 @@ define( require => {
     // maximum: solute amount max - solute amount it takes to saturate at min volume. Varies with the selected solute.
     const maxPrecipitateAmount = MolarityConstants.SOLUTE_AMOUNT_RANGE.max - saturatedConcentration * MolarityConstants.SOLUTION_VOLUME_RANGE.min;
 
-    // there is an unnamed region right after saturation point that doesn't have a description, so 1 more region must be
-    // added to the length of SOLIDS_STRINGS.
+    // the first region ("a couple of") is double the size of the others, so 1 more region must be
+    // added to the length of SOLIDS_STRINGS. See https://github.com/phetsims/molarity/issues/148.
     const numberOfIncrements = SOLIDS_STRINGS.length + 1;
     const scaleIncrement = maxPrecipitateAmount / numberOfIncrements;
 
-    if ( precipitateAmount < scaleIncrement ) {
-      return 0;
+    for ( let i = 1; i < numberOfIncrements; i++ ) {
+      if ( precipitateAmount < i * scaleIncrement-.001 ) {
+        return i-1;
+      }
     }
-    else if ( precipitateAmount <= 2 * scaleIncrement ) {
-      return 1;
-    }
-    else if ( precipitateAmount <= 3 * scaleIncrement ) {
-      return 2;
-    }
-    else if ( precipitateAmount <= 4 * scaleIncrement ) {
-      return 3;
-    }
-    else if ( precipitateAmount <= 5 * scaleIncrement ) {
-      return 4;
-    }
-    else {
-      assert && assert( precipitateAmount > 5 * scaleIncrement, 'invalid precipitateAmount value' );
-      return 5;
-    }
+    return SOLIDS_STRINGS.length - 1;
   };
 
   /**
@@ -470,26 +457,16 @@ define( require => {
     // for the lowest region (zero) and the highest region (max concentration) which are single value regions.
     const scaleIncrement = maxConcentration / ( CONCENTRATION_STRINGS.length - 2 );
     const concentrationRounded = Util.toFixed( concentration, 3 );
-    if ( concentrationRounded < 0.001 ) {
-      return 0;
-    }
-    else if ( concentrationRounded <= scaleIncrement ) {
-      return 1;
-    }
-    else if ( concentrationRounded <= 2 * scaleIncrement ) {
-      return 2;
-    }
-    else if ( concentrationRounded <= 3 * scaleIncrement ) {
-      return 3;
-    }
-    else if ( concentrationRounded <= 4 * scaleIncrement ) {
-      return 4;
-    }
-    else if ( concentrationRounded <= 5 * scaleIncrement - .001 ) {
-      return 5;
+
+    if ( concentrationRounded > maxConcentration - .001 ) {
+      return CONCENTRATION_STRINGS.length - 1;
     }
     else {
-      return 6;
+      for ( let i = 0; i < CONCENTRATION_STRINGS.length - 1; i++ ) {
+        if ( concentrationRounded <= scaleIncrement * i - .001 ) {
+          return i;
+        }
+      }
     }
   };
 
