@@ -43,7 +43,7 @@ define( require => {
 
       super();
 
-      //@private
+      // @private
       this.solution = solution;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
       this.concentrationDescriber = concentrationDescriber;
@@ -65,19 +65,17 @@ define( require => {
         innerContent: screenSummaryControlAreaPatternString
       } ) );
 
-      // Third paragraph of the screen summary -- dynamic depending on the state of the sim.
+      // Third paragraph of the screen summary -- dynamic depending on the state of the sim so keep a reference to it.
       const stateOfSimNode = new Node( {
         tagName: 'p'
       } );
+      this.addChild( stateOfSimNode );
 
       // Fourth paragraph of the screen summary -- static regardless of state of sim, gives the interaction hint
-      const interactionHintNode = new Node( {
+      this.addChild( new Node( {
         tagName: 'p',
         innerContent: stateOfSimInteractionHintString
-      } );
-
-      this.addChild( stateOfSimNode );
-      this.addChild( interactionHintNode );
+      } ) );
 
       // Updates the third paragraph of the screen summary when sim Properties change.
       Property.multilink( [ solution.soluteProperty, solution.volumeProperty, solution.soluteAmountProperty,
