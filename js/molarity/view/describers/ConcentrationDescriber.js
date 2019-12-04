@@ -117,18 +117,12 @@ define( require => {
      */
     constructor( solution, useQuantitativeDescriptionsProperty ) {
 
-      // @public (read-only) {boolean} - tracks whether the concentration descriptive region has changed
-      this.concentrationRegionChanged = null;
-
       // @private
       this.solution = solution;
       this.soluteProperty = solution.soluteProperty;
       this.concentrationProperty = solution.concentrationProperty;
       this.precipitateAmountProperty = solution.precipitateAmountProperty;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
-
-      // @private {boolean} - tracks whether the concentration descriptive region has just changed.
-      this.concentrationRegionChanged = false;
 
       // @private {number} - tracks the index of the last descriptive region for solids from SOLIDS_STRINGS array
       this.solidsIndex = solidsToIndex( this.precipitateAmountProperty.value, this.getCurrentSaturatedConcentration() );
