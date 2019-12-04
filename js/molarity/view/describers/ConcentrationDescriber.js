@@ -205,7 +205,7 @@ define( require => {
      * @public
      * @returns {boolean} - whether or not the saturation state has changed.
      * */
-    getSaturationStateChanged() {
+    saturationStateChanged() {
       const oldSaturationState = this.lastSaturationState;
       const newSaturationState = this.solution.isSaturated();
       if ( oldSaturationState !== newSaturationState ) {

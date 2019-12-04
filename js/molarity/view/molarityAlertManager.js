@@ -69,7 +69,7 @@ define( require => {
         if ( this.concentrationDescriber.isExactlySaturated() ) {
           this.alertMaxConcentration();
         }
-        else if ( this.concentrationDescriber.getSaturationStateChanged() ) {
+        else if ( this.concentrationDescriber.saturationStateChanged() ) {
           this.alertNewSaturation();
         }
         else if ( !solution.hasSolute() ) {
@@ -92,7 +92,7 @@ define( require => {
         if ( this.concentrationDescriber.isExactlySaturated() ) {
           this.alertMaxConcentration();
         }
-        else if ( this.concentrationDescriber.getSaturationStateChanged() ) {
+        else if ( this.concentrationDescriber.saturationStateChanged() ) {
           this.alertNewSaturation();
         }
         else if ( !solution.hasSolute() ) {
