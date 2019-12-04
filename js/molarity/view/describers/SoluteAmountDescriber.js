@@ -144,7 +144,7 @@ define( require => {
     /**
      * Gets the current value of soluteAmount either quantitatively or quantitatively to plug into descriptions.
      * Examples: "3.400 Moles" for quantitative or "A lot of" for qualitative
-     * @param isCapitalized {boolean}
+     * @param isCapitalized {boolean} - ignored if using quantitative descriptions
      * @public
      * @returns {string} - quantitative or qualitative description of current soluteAmount.
      */
@@ -185,8 +185,8 @@ define( require => {
 
 
   /**
-   * Calculates which item to use from the SOLUTE_AMOUNT_STRINGS array. Region cutoff numbers are based on keypress balances,
-   * which are documented here: https://github.com/phetsims/molarity/issues/128
+   * Calculates which item to use from the SOLUTE_AMOUNT_STRINGS array. Region cutoff numbers are based on keypress
+   * balances, which are documented here: https://github.com/phetsims/molarity/issues/128
    * @param {number} soluteAmount
    * @returns {number} - index (integer) to pull from SOLUTE_AMOUNT_STRINGS array.
    */
