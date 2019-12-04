@@ -190,7 +190,7 @@ define( require => {
      * @public
      * @returns {boolean} - whether or not the concentration region has changed.
      * */
-    getConcentrationRegionChanged() {
+    concentrationRegionChanged() {
       const oldIndex = this.lastConcentrationIndex;
       const newIndex = this.getCurrentConcentrationIndex();
       if ( oldIndex !== newIndex ) {

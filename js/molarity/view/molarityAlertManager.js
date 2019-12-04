@@ -180,7 +180,7 @@ define( require => {
       let stateInfo = '';
 
       // state info is appended to the alert if the descriptive region has changed for any relevant quantity.
-      if ( quantityChange || this.concentrationDescriber.getConcentrationRegionChanged() ||
+      if ( quantityChange || this.concentrationDescriber.concentrationRegionChanged() ||
            this.concentrationDescriber.solidsRegionChanged ) {
         stateInfo = this.concentrationDescriber.getConcentrationState();
       }
