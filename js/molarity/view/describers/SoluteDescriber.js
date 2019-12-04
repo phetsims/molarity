@@ -1,7 +1,7 @@
 // Copyright 2019, University of Colorado Boulder
 
 /**
- * SoluteDescriber is responsible for generating descriptions about the solute Property.
+ * SoluteDescriber is responsible for generating descriptions about the Solution.soluteProperty.
  *
  * @author Michael Kauzmann (PhET Interactive Simulations)
  * @author Taylor Want (PhET Interactive Simulations)
@@ -70,7 +70,8 @@ define( require => {
   class SoluteDescriber {
 
     /**
-     * @param {Property.<Solute>} solution.soluteProperty - from Solution model element.
+     * @param {Solution} solution
+     * @param {ConcentrationDescriber} concentrationDescriber
      */
     constructor( solution, concentrationDescriber ) {
 
@@ -172,11 +173,13 @@ define( require => {
      * @returns {string}
      */
     getSoluteChangedAlertString( useQuantitativeDescriptionsProperty ) {
-      let concentrationClause;
-      let soluteChangedString;
+
       if ( !this.concentrationDescriber.hasSolute() ) {
         return useQuantitativeDescriptionsProperty.value ? noSoluteAlertQuantitativeString : noSoluteAlertQualitativeString;
       }
+
+      let concentrationClause;
+      let soluteChangedString;
       if ( this.solution.isSaturated() ) {
         soluteChangedString = soluteChangedSaturatedAlertPatternString;
         concentrationClause = useQuantitativeDescriptionsProperty.value ?
