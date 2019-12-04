@@ -62,14 +62,14 @@ define( require => {
       this.soluteUtterance = new ActivationUtterance();
       this.valuesVisibleUtterance = new ActivationUtterance();
 
-      solution.soluteAmountProperty.link( () => {
+      solution.soluteAmountProperty.lazyLink( () => {
 
         // If the solution is newly saturated or newly unsaturated, an alert is read out. The text depends on whether
         // descriptions are qualitative or quantitative, and if there is any solute in the beaker.
         if ( this.concentrationDescriber.isExactlySaturated() ) {
           this.alertMaxConcentration();
         }
-        else if ( this.concentrationDescriber.saturationStateChanged ) {
+        else if ( this.concentrationDescriber.getSaturationStateChanged() ) {
           this.alertNewSaturation();
         }
         else if ( !concentrationDescriber.hasSolute() ) {
@@ -79,18 +79,12 @@ define( require => {
           this.alertSliderQuantitative();
         }
         else {
-
-          // concentrationDescriber.concentrationIncreased and concentrationDescriber.solidsIncreased are both null on
-          // initial load or reset of the sim. No alert is read out in this case.
-          if ( this.concentrationDescriber.concentrationIncreased !== null ||
-               this.concentrationDescriber.solidsIncreased !== null ) {
-            this.alertSliderQualitative( soluteAmountDescriber.getSoluteAmountChangeStrings(),
-              soluteAmountDescriber.soluteAmountRegionChanged );
-          }
+          this.alertSliderQualitative( soluteAmountDescriber.getSoluteAmountChangeStrings(),
+            soluteAmountDescriber.soluteAmountRegionChanged );
         }
       } );
 
-      solution.volumeProperty.link( () => {
+      solution.volumeProperty.lazyLink( () => {
 
         // A special alert is read out if the solution is saturated without any solids. If the solution is newly
         // saturated or newly unsaturated, an alert is read out. The text depends on whether descriptions are
@@ -98,7 +92,7 @@ define( require => {
         if ( this.concentrationDescriber.isExactlySaturated() ) {
           this.alertMaxConcentration();
         }
-        else if ( this.concentrationDescriber.saturationStateChanged ) {
+        else if ( this.concentrationDescriber.getSaturationStateChanged() ) {
           this.alertNewSaturation();
         }
         else if ( !concentrationDescriber.hasSolute() ) {
@@ -108,13 +102,7 @@ define( require => {
           this.alertSliderQuantitative();
         }
         else {
-
-          // concentrationDescriber.concentrationIncreased and concentrationDescriber.solidsIncreased are both null on
-          // initial load or reset of the sim. No alert is read out in this case.
-          if ( this.concentrationDescriber.concentrationIncreased !== null ||
-               this.concentrationDescriber.solidsIncreased !== null ) {
-            this.alertSliderQualitative( volumeDescriber.getVolumeChangeStrings(), volumeDescriber.volumeRegionChanged );
-          }
+          this.alertSliderQualitative( volumeDescriber.getVolumeChangeStrings(), volumeDescriber.volumeRegionChanged );
         }
       } );
 
@@ -141,7 +129,6 @@ define( require => {
      * @private
      */
     alertNewSaturation() {
-      assert && assert( this.concentrationDescriber.saturationStateChanged, 'alert triggered when saturation state has not changed' );
       this.saturationUtterance.alert = this.concentrationDescriber.getSaturationChangedString();
 
       // clears the utteranceQueue to remove utterances from previous saturation region, then adds the saturation utterance.
@@ -193,7 +180,7 @@ define( require => {
       let stateInfo = '';
 
       // state info is appended to the alert if the descriptive region has changed for any relevant quantity.
-      if ( quantityChange || this.concentrationDescriber.concentrationRegionChanged ||
+      if ( quantityChange || this.concentrationDescriber.getConcentrationRegionChanged() ||
            this.concentrationDescriber.solidsRegionChanged ) {
         stateInfo = this.concentrationDescriber.getConcentrationState();
       }

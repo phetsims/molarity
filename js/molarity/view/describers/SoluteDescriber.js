@@ -196,6 +196,11 @@ define( require => {
                               this.concentrationDescriber.getCurrentConcentrationClause( true );
       }
 
+      // necessary to call this method to update concentrationDescriber.lastSaturationState, as the state may have
+      // changed when the solute was changed.
+      // TODO: is there a better way to do this?
+      this.concentrationDescriber.getSaturationStateChanged();
+
       return StringUtils.fillIn( soluteChangedString, {
         color: this.getCurrentColor( true ),
         solids: this.concentrationDescriber.getCurrentSolidsAmount( false ),
