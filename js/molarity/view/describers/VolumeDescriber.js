@@ -106,6 +106,15 @@ define( require => {
     }
 
     /**
+     * Note: this getter name must be the same as its counterpart in SoluteAmountDescriber
+     * @public
+     * @returns {boolean}
+     */
+    getRegionChanged() {
+      return this.volumeRegionChanged;
+    }
+
+    /**
      * Gets the current value of volume either quantitatively or quantitatively to put into descriptions.
      * @param {boolean} [isActive]
      * @public
@@ -130,10 +139,11 @@ define( require => {
     /**
      * TODO: fix the return typedef of this method just like in SoluteAmountDescriber.js
      * Creates the substrings to describe the change in volume and the resulting change in solution color
+     * This function must have the same name as its counterpart in VolumeDescriber.
      * @public
      * @returns {Object} - contains two strings.
      */
-    getVolumeChangeStrings() {
+    getChangeStrings() {
       return {
         quantityChangeString: StringUtils.fillIn( volumeChangePatternString, {
           moreLess: this.volumeIncreased ? moreCapitalizedString : lessCapitalizedString

@@ -1,7 +1,8 @@
 // Copyright 2019, University of Colorado Boulder
 
 /**
- * MolarityAlertManager is responsible for generating and adding alerts to the utteranceQueue.
+ * MolarityAlertManager is responsible for generating and adding alerts to the utteranceQueue. This file is responsible
+ * for all of the interfacing with utteranceQueue for the whole sim.
  *
  * @author Michael Kauzmann (PhET Interactive Simulations)
  * @author Taylor Want (PhET Interactive Simulations)
@@ -36,6 +37,7 @@ define( require => {
     }
 
     /**
+     * Initialize the alert manager, linking to the needed model Properties.
      * @public
      * @param {Solution} solution - from MolarityModel.
      * @param {Property.<boolean>} useQuantitativeDescriptionsProperty - whether or not to use qualitative or
@@ -64,55 +66,41 @@ define( require => {
       this.soluteUtterance = new ActivationUtterance();
       this.valuesVisibleUtterance = new ActivationUtterance();
 
-      solution.soluteAmountProperty.lazyLink( () => {
-
-        // If the solution is newly saturated or newly unsaturated, an alert is read out. The text depends on whether
-        // descriptions are qualitative or quantitative, and if there is any solute in the beaker.
-        if ( this.concentrationDescriber.isExactlySaturated() ) {
-          this.alertMaxConcentration();
-        }
-        else if ( this.concentrationDescriber.saturationStateChanged() ) {
-          this.alertNewSaturation();
-        }
-        else if ( !solution.hasSolute() ) {
-          this.alertNoSolute( useQuantitativeDescriptionsProperty );
-        }
-        else if ( useQuantitativeDescriptionsProperty.value ) {
-          this.alertSliderQuantitative();
-        }
-        else {
-          this.alertSliderQualitative( soluteAmountDescriber.getSoluteAmountChangeStrings(),
-            soluteAmountDescriber.soluteAmountRegionChanged );
-        }
-      } );
-
-      solution.volumeProperty.lazyLink( () => {
-
-        // A special alert is read out if the solution is saturated without any solids. If the solution is newly
-        // saturated or newly unsaturated, an alert is read out. The text depends on whether descriptions are
-        // qualitative or quantitative, and if there is any solute in the beaker.
-        if ( this.concentrationDescriber.isExactlySaturated() ) {
-          this.alertMaxConcentration();
-        }
-        else if ( this.concentrationDescriber.saturationStateChanged() ) {
-          this.alertNewSaturation();
-        }
-        else if ( !solution.hasSolute() ) {
-          this.alertNoSolute( useQuantitativeDescriptionsProperty );
-        }
-        else if ( useQuantitativeDescriptionsProperty.value ) {
-          this.alertSliderQuantitative();
-        }
-        else {
-          this.alertSliderQualitative( volumeDescriber.getVolumeChangeStrings(), volumeDescriber.volumeRegionChanged );
-        }
-      } );
+      solution.soluteAmountProperty.lazyLink( () => this.alertValueChanged( soluteAmountDescriber ) );
+      solution.volumeProperty.lazyLink( () => this.alertValueChanged( volumeDescriber ) );
 
       // An alert is read out when the solute is changed.
       solution.soluteProperty.lazyLink( () => this.alertSoluteChanged() );
 
       // An alert is read out when the valuesVisibleProperty changes.
       valuesVisibleProperty.lazyLink( newValue => this.alertValuesVisibleChanged( newValue ) );
+    }
+
+    /**
+     * Alert when a user driven (likely from a slider) solution value was changed.
+     * @param {{getChangeStrings:function():ChangeStrings, getRegionChanged:function():boolean}} describer
+     * @private
+     */
+    alertValueChanged( describer ) {
+
+      // A special alert is read out if the solution is saturated without any solids. If the solution is newly
+      // saturated or newly unsaturated, an alert is read out. The text depends on whether descriptions are
+      // qualitative or quantitative, and if there is any solute in the beaker.
+      if ( this.concentrationDescriber.isExactlySaturated() ) {
+        this.alertMaxConcentration();
+      }
+      else if ( this.concentrationDescriber.saturationStateChanged() ) {
+        this.alertNewSaturation();
+      }
+      else if ( !this.solution.hasSolute() ) {
+        this.alertNoSolute( this.useQuantitativeDescriptionsProperty );
+      }
+      else if ( this.useQuantitativeDescriptionsProperty.value ) {
+        this.alertSliderQuantitative();
+      }
+      else {
+        this.alertSliderQualitative( describer.getChangeStrings(), describer.getRegionChanged() );
+      }
     }
 
     /**

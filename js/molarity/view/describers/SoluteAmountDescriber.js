@@ -107,6 +107,15 @@ define( require => {
     }
 
     /**
+     * Note: this getter name must be the same as its counterpart in VolumeDescriber
+     * @public
+     * @returns {boolean}
+     */
+    getRegionChanged() {
+      return this.soluteAmountRegionChanged;
+    }
+
+    /**
      * Creates a string that qualitatively or quantitatively describes the solute amount in the beaker.
      * @public
      * @returns {string} - e.g. 'contains a lot of potassium permanganate" or "contains 3.400 moles of drink mix"
@@ -126,11 +135,12 @@ define( require => {
      * @property {string} quantityChangeString
      */
     /**
-     * Creates the substrings to describe the change in volume and the resulting change in solution color
+     * Creates the substrings to describe the change in volume and the resulting change in solution color.
+     * This function must have the same name as its counterpart in VolumeDescriber.
      * @public
      * @returns {ChangeStrings} - contains two strings.
      */
-    getSoluteAmountChangeStrings() {
+    getChangeStrings() {
       return {
         quantityChangeString: StringUtils.fillIn( soluteAmountChangedPatternString, {
           moreLess: this.soluteAmountIncreased ? moreCapitalizedString : lessCapitalizedString
