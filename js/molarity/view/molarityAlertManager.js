@@ -166,13 +166,6 @@ define( require => {
     alertSliderQualitative( changeStrings, quantityChange ) {
       assert && assert( !this.useQuantitativeDescriptionsProperty.value, 'quantitative descriptions should be used.' );
       let alertText = '';
-      let stateInfo = '';
-
-      // state info is appended to the alert if the descriptive region has changed for any relevant quantity.
-      if ( quantityChange || this.concentrationDescriber.concentrationRegionChanged() ||
-           this.concentrationDescriber.solidsRegionChanged ) {
-        stateInfo = this.concentrationDescriber.getQualitativeConcentrationState();
-      }
 
       // alert text is different based on whether or not the solution is saturated.
       if ( this.solution.isSaturated() ) {
@@ -184,10 +177,15 @@ define( require => {
         } );
       }
       else {
+
+        // state info is appended to the alert if the descriptive region has changed for any relevant quantity.
+        const includeStateInfo = quantityChange || this.concentrationDescriber.concentrationRegionChanged() ||
+                                 this.concentrationDescriber.solidsRegionChanged;
+
         alertText = StringUtils.fillIn( qualitativeSliderAlertPatternString, {
           quantityChange: changeStrings.quantityChangeString,
           colorChange: changeStrings.colorChangeString,
-          stateInfo: stateInfo
+          stateInfo: includeStateInfo ? this.concentrationDescriber.getQualitativeConcentrationState() : ''
         } );
       }
 
