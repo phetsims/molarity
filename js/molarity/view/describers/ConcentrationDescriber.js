@@ -389,27 +389,21 @@ define( require => {
     }
 
     /**
-     * Creates the quantitative and qualitative substrings to describe the concentration state of the solution.
+     * Creates the qualitative substrings to describe the concentration "state" of the solution.
      * @public
      * @returns {string} - examples: "Concentration 0.600 Molar" or "Solution very concentrated".
      * */
-    getConcentrationState() {
-      if ( this.useQuantitativeDescriptionsProperty.value ) {
-        return StringUtils.fillIn( quantitativeConcentrationStatePatternString, {
-          concentration: this.getCurrentConcentrationClause()
-        } );
-      }
-      else {
-        return StringUtils.fillIn( qualitativeConcentrationStatePatternString, {
-          concentration: this.getCurrentConcentrationClause( true )
-        } );
-      }
+    getQualitativeConcentrationState() {
+      assert && assert( !this.useQuantitativeDescriptionsProperty.value, 'qualitative descriptions expected' );
+      return StringUtils.fillIn( qualitativeConcentrationStatePatternString, {
+        concentration: this.getCurrentConcentrationClause( true )
+      } );
     }
   }
 
   /**
    * Calculates which item to use from the SOLIDS_STRINGS array.
-   * @param {Solution} solution
+   * @param {number} precipitateAmount - in moles, see Solution.js
    * @param {number} saturatedConcentration
    * @returns {number} - index to pull from SOLIDS_STRINGS array
    */

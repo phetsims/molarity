@@ -161,7 +161,6 @@ define( require => {
      * When qualitative descriptions are being used and SoluteAmountProperty or VolumeProperty changes, creates an alert.
      * @param {ChangeStrings} changeStrings - contains multiple strings.
      * @param {boolean} quantityChange - true if the quantity has increased, false if quantity has decreased
-     * @returns {string} - text of alert to add to back
      * @private
      */
     alertSliderQualitative( changeStrings, quantityChange ) {
@@ -172,7 +171,7 @@ define( require => {
       // state info is appended to the alert if the descriptive region has changed for any relevant quantity.
       if ( quantityChange || this.concentrationDescriber.concentrationRegionChanged() ||
            this.concentrationDescriber.solidsRegionChanged ) {
-        stateInfo = this.concentrationDescriber.getConcentrationState();
+        stateInfo = this.concentrationDescriber.getQualitativeConcentrationState();
       }
 
       // alert text is different based on whether or not the solution is saturated.
@@ -200,7 +199,6 @@ define( require => {
     /**
      * When quantitative descriptions are used, and SoluteAmountProperty or VolumeProperty changes, creates an alert.
      * @private
-     * @returns {string}
      */
     alertSliderQuantitative() {
       assert && assert( this.useQuantitativeDescriptionsProperty.value, 'qualitative descriptions should be used.' );
