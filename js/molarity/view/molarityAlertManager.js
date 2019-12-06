@@ -193,7 +193,6 @@ define( require => {
       phet.joist.sim.utteranceQueue.addToBack( this.sliderUtterance );
     }
 
-
     /**
      * When quantitative descriptions are used, and SoluteAmountProperty or VolumeProperty changes, creates an alert.
      * @private
