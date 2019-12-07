@@ -280,14 +280,8 @@ define( require => {
      * @returns {string} - example: "a bunch"
      */
     getCurrentSolidsAmount( isCapitalized = true ) {
-      let solidsIndex = this.getCurrentSolidsIndex();
-
-      // for the descriptions, solidsIndex needs to be adjusted to ensure that the first solids region alert is still read out.
-      // see https://github.com/phetsims/molarity/issues/148.
-      solidsIndex !== 0 ? solidsIndex -= 1 : 0;
-      return isCapitalized ?
-             SOLIDS_STRINGS[ solidsIndex ] :
-             SOLIDS_STRINGS_LOWERCASE[ solidsIndex ];
+      const solidsIndex = this.getCurrentSolidsIndex();
+      return isCapitalized ? SOLIDS_STRINGS[ solidsIndex ] : SOLIDS_STRINGS_LOWERCASE[ solidsIndex ];
     }
 
     /**
@@ -438,14 +432,11 @@ define( require => {
     // maximum precipitates possible for a given solute, which is the solute amount it takes to saturate at min volume.
     const maxPrecipitateAmount = Solution.computePrecipitateAmount( MolarityConstants.SOLUTION_VOLUME_RANGE.min,
       MolarityConstants.SOLUTE_AMOUNT_RANGE.max, saturatedConcentration );
-
-    // the first region ("a couple of") is double the size of the others, so 1 more region must be
-    // added to the length of SOLIDS_STRINGS. See https://github.com/phetsims/molarity/issues/148.
-    const numberOfIncrements = SOLIDS_STRINGS.length + 1;
+    const numberOfIncrements = SOLIDS_STRINGS.length;
     const scaleIncrement = maxPrecipitateAmount / numberOfIncrements;
 
-    for ( let i = 1; i < numberOfIncrements; i++ ) {
-      if ( precipitateAmount < i * scaleIncrement - .001 ) {
+    for ( let i = 0; i < numberOfIncrements; i++ ) {
+      if ( precipitateAmount <= i * scaleIncrement - .01 ) {
         return i - 1;
       }
     }
