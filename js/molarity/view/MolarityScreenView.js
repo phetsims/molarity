@@ -96,8 +96,7 @@ define( require => {
     const soluteDescriber = new SoluteDescriber( model.solution, concentrationDescriber );
     const volumeDescriber = new VolumeDescriber( model.solution,
       useQuantitativeDescriptionsProperty );
-    const soluteAmountDescriber = new SoluteAmountDescriber( model.solution, soluteDescriber, concentrationDescriber,
-      useQuantitativeDescriptionsProperty );
+    const soluteAmountDescriber = new SoluteAmountDescriber( model.solution, soluteDescriber, useQuantitativeDescriptionsProperty );
     molarityAlertManager.initialize( model.solution, useQuantitativeDescriptionsProperty,
       concentrationDescriber, soluteAmountDescriber, volumeDescriber, soluteDescriber, valuesVisibleProperty );
 
