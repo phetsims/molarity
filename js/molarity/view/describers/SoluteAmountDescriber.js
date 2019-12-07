@@ -213,6 +213,7 @@ define( require => {
       return 5;
     }
     else {
+      assert && assert( soluteAmount <= MolarityConstants.SOLUTE_AMOUNT_RANGE.max, 'unexpected solute amount provided' );
       return 6;
     }
   };
