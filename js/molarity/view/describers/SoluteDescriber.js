@@ -12,18 +12,10 @@ define( require => {
   // modules
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
+  const MolaritySymbols = require( 'MOLARITY/molarity/MolaritySymbols' );
+  const Water = require( 'MOLARITY/molarity/model/Water' );
+  const StringCasingPair = require( 'SCENERY_PHET/accessibility/StringCasingPair' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-
-  // strings
-  const cobaltChlorideString = require( 'string!MOLARITY/cobaltChloride' );
-  const cobaltIINitrateString = require( 'string!MOLARITY/cobaltIINitrate' );
-  const copperSulfateString = require( 'string!MOLARITY/copperSulfate' );
-  const drinkMixString = require( 'string!MOLARITY/drinkMix' );
-  const goldIIIChlorideString = require( 'string!MOLARITY/goldIIIChloride' );
-  const nickelIIChlorideString = require( 'string!MOLARITY/nickelIIChloride' );
-  const potassiumChromateString = require( 'string!MOLARITY/potassiumChromate' );
-  const potassiumDichromateString = require( 'string!MOLARITY/potassiumDichromate' );
-  const potassiumPermanganateString = require( 'string!MOLARITY/potassiumPermanganate' );
 
   // a11y strings
   const beakerChemicalFormulaPatternString = MolarityA11yStrings.beakerChemicalFormulaPattern.value;
@@ -33,39 +25,6 @@ define( require => {
   const soluteChangedQuantitativeConcentrationPatternString = MolarityA11yStrings.soluteChangedQuantitativeConcentrationPattern.value;
   const soluteChangedSaturatedAlertPatternString = MolarityA11yStrings.soluteChangedSaturatedAlertPattern.value;
   const soluteChangedUnsaturatedAlertPatternString = MolarityA11yStrings.soluteChangedUnsaturatedAlertPattern.value;
-
-  // color strings
-  const redString = MolarityA11yStrings.red.value;
-  const pinkString = MolarityA11yStrings.pink.value;
-  const orangeString = MolarityA11yStrings.orange.value;
-  const goldString = MolarityA11yStrings.gold.value;
-  const yellowString = MolarityA11yStrings.yellow.value;
-  const greenString = MolarityA11yStrings.green.value;
-  const blueString = MolarityA11yStrings.blue.value;
-  const purpleString = MolarityA11yStrings.purple.value;
-  const clearString = MolarityA11yStrings.clear.value;
-
-  // capitalized color strings
-  const redCapitalizedString = MolarityA11yStrings.redCapitalized.value;
-  const pinkCapitalizedString = MolarityA11yStrings.pinkCapitalized.value;
-  const orangeCapitalizedString = MolarityA11yStrings.orangeCapitalized.value;
-  const goldCapitalizedString = MolarityA11yStrings.goldCapitalized.value;
-  const yellowCapitalizedString = MolarityA11yStrings.yellowCapitalized.value;
-  const greenCapitalizedString = MolarityA11yStrings.greenCapitalized.value;
-  const blueCapitalizedString = MolarityA11yStrings.blueCapitalized.value;
-  const purpleCapitalizedString = MolarityA11yStrings.purpleCapitalized.value;
-  const clearCapitalizedString = MolarityA11yStrings.clearCapitalized.value;
-
-  // Lowercase solute name strings
-  const cobaltChlorideLowercaseString = MolarityA11yStrings.cobaltChlorideLowercase.value;
-  const cobaltIINitrateLowercaseString = MolarityA11yStrings.cobaltIINitrateLowercase.value;
-  const copperSulfateLowercaseString = MolarityA11yStrings.copperSulfateLowercase.value;
-  const drinkMixLowercaseString = MolarityA11yStrings.drinkMixLowercase.value;
-  const goldIIIChlorideLowercaseString = MolarityA11yStrings.goldIIIChlorideLowercase.value;
-  const nickelIIChlorideLowercaseString = MolarityA11yStrings.nickelIIChlorideLowercase.value;
-  const potassiumChromateLowercaseString = MolarityA11yStrings.potassiumChromateLowercase.value;
-  const potassiumDichromateLowercaseString = MolarityA11yStrings.potassiumDichromateLowercase.value;
-  const potassiumPermanganateLowercaseString = MolarityA11yStrings.potassiumPermanganateLowercase.value;
 
   class SoluteDescriber {
 
@@ -87,34 +46,8 @@ define( require => {
      * @returns {string}
      */
     getCurrentSolute( isCapitalized = false ) {
-      const soluteName = this.solution.soluteProperty.value.name;
-      if ( isCapitalized ) {
-        return soluteName;
-      }
-      else {
-        switch( soluteName ) {
-          case drinkMixString:
-            return drinkMixLowercaseString;
-          case cobaltIINitrateString:
-            return cobaltIINitrateLowercaseString;
-          case cobaltChlorideString:
-            return cobaltChlorideLowercaseString;
-          case potassiumDichromateString:
-            return potassiumDichromateLowercaseString;
-          case goldIIIChlorideString:
-            return goldIIIChlorideLowercaseString;
-          case potassiumChromateString:
-            return potassiumChromateLowercaseString;
-          case nickelIIChlorideString:
-            return nickelIIChlorideLowercaseString;
-          case copperSulfateString:
-            return copperSulfateLowercaseString;
-          case potassiumPermanganateString:
-            return potassiumPermanganateLowercaseString;
-          default:
-            return '';
-        }
-      }
+      const currentSolute = this.solution.soluteProperty.value;
+      return isCapitalized ? currentSolute.name : currentSolute.lowercaseName;
     }
 
     /**
@@ -123,7 +56,7 @@ define( require => {
      * @returns {string} - e.g. 'chemical formula of potassium permanganate is KMnO4.'
      */
     getBeakerChemicalFormulaString() {
-      assert && assert( this.getCurrentSolute( true ) !== drinkMixString,
+      assert && assert( this.solution.soluteProperty.value.formula !== MolaritySymbols.DRINK_MIX,
         'attempted to generate chemical formula string for drink mix, which has no chemical formula' );
       return StringUtils.fillIn( beakerChemicalFormulaPatternString, {
         chemicalFormula: this.solution.soluteProperty.value.formula,
@@ -138,32 +71,12 @@ define( require => {
      * @returns {string}
      */
     getCurrentColor( isCapitalized = false ) {
-      const currentSolute = this.getCurrentSolute( true );
+      let currentSoluteColorPair = this.solution.soluteProperty.value.colorStringPair;
+      assert && assert( currentSoluteColorPair instanceof StringCasingPair );
       if ( !this.solution.hasSolute() ) {
-        return isCapitalized ? clearCapitalizedString : clearString;
+        currentSoluteColorPair = Water.colorStringPair;
       }
-      switch( currentSolute ) {
-        case drinkMixString:
-          return isCapitalized ? redCapitalizedString : redString;
-        case cobaltIINitrateString:
-          return isCapitalized ? redCapitalizedString : redString;
-        case cobaltChlorideString:
-          return isCapitalized ? pinkCapitalizedString : pinkString;
-        case potassiumDichromateString:
-          return isCapitalized ? orangeCapitalizedString : orangeString;
-        case goldIIIChlorideString:
-          return isCapitalized ? goldCapitalizedString : goldString;
-        case potassiumChromateString:
-          return isCapitalized ? yellowCapitalizedString : yellowString;
-        case nickelIIChlorideString:
-          return isCapitalized ? greenCapitalizedString : greenString;
-        case copperSulfateString:
-          return isCapitalized ? blueCapitalizedString : blueString;
-        case potassiumPermanganateString:
-          return isCapitalized ? purpleCapitalizedString : purpleString;
-        default:
-          return '';
-      }
+      return isCapitalized ? currentSoluteColorPair.capitalized : currentSoluteColorPair.lowercase;
     }
 
     /**

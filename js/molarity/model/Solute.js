@@ -18,15 +18,17 @@ define( require => {
   const SoluteIO = require( 'MOLARITY/molarity/model/SoluteIO' );
 
   /**
-   * @param {string} name
+   * @param {string} name - title case
    * @param {string} formula
    * @param {number} saturatedConcentration M (moles/L)
    * @param {Color} minColor solution color for smallest non-zero concentration
    * @param {Color} maxColor solution color for saturated concentration
+   * @param {string} lowercaseName - for interactive descriptions
+   * @param {StringCasingPair} colorStringPair - lowercase/captialized color strings
    * @param {Object} [options]
    * @constructor
    */
-  function Solute( name, formula, saturatedConcentration, minColor, maxColor, options ) {
+  function Solute( name, formula, saturatedConcentration, minColor, maxColor, lowercaseName, colorStringPair, options ) {
 
     options = merge( {
       particleColor: maxColor, // the solute's color as a particle
@@ -39,6 +41,8 @@ define( require => {
     this.saturatedConcentration = saturatedConcentration;
     this.minColor = minColor;
     this.maxColor = maxColor;
+    this.lowercaseName = lowercaseName;
+    this.colorStringPair = colorStringPair;
     this.particleColor = options.particleColor;
 
     PhetioObject.call( this, options );
