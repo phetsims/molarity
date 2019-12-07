@@ -266,9 +266,9 @@ define( require => {
       // the described max concentration in this clause is the maximum of the displayed concentration range for solutes
       // with a max concentration larger than the displayed concentration range max, and is the solute's actual max
       // concentration if it is less than the displayed concentration range max.
-      const displayedMaxConcentration = this.getCurrentSaturatedConcentration() > MolarityConstants.CONCENTRATION_RANGE.max ?
-                                        MolarityConstants.CONCENTRATION_RANGE.max :
-                                        this.getCurrentSaturatedConcentration();
+      const displayedMaxConcentration = Util.toFixed( Util.clamp( this.getCurrentSaturatedConcentration(),
+        MolarityConstants.CONCENTRATION_RANGE.min, MolarityConstants.CONCENTRATION_RANGE.max ),
+        MolarityConstants.SOLUTE_AMOUNT_DECIMAL_PLACES );
       return StringUtils.fillIn( concentrationRangePatternString, {
         maxConcentration: Util.toFixed( displayedMaxConcentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES )
       } );
