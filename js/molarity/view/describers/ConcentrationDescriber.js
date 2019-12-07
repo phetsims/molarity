@@ -314,18 +314,22 @@ define( require => {
      * @returns {string} - example: "still saturated with a bunch of solids"
      */
     getStillSaturatedClause() {
-      return StringUtils.fillIn( stillSaturatedAlertPatternString, {
 
-        // the solids state information is only given if the region has changed, and if solids amount is not in the
-        // lowest region (which is right after saturation point).
-        withSolids: ( this.solidsRegionChanged() && this.solidsIndex !== 0 ) ?
-                    StringUtils.fillIn( withSolidsAlertPatternString, {
-                      solidAmount: this.getCurrentSolidsAmount( false )
-                    } ) : '',
-        quantitativeConcentration: this.useQuantitativeDescriptionsProperty ?
-                                   StringUtils.fillIn( atMaxConcentrationString, {
-                                     concentration: this.getCurrentConcentrationClause( true )
-                                   } ) : ''
+      // the amount of solids is only given if the region has changed.
+      const withSolidsString = ( this.solidsRegionChanged() && this.solidsIndex !== 0 ) ?
+                               StringUtils.fillIn( withSolidsAlertPatternString, {
+                                 solidAmount: this.getCurrentSolidsAmount( false )
+                               } ) :
+                               '';
+
+      // if quantitative descriptions are being used, the quantitative max concentration is added into the description string.
+      const quantitativeConcentrationString = this.useQuantitativeDescriptionsProperty ?
+                                              StringUtils.fillIn( atMaxConcentrationString, {
+                                                concentration: this.getCurrentConcentrationClause( true )
+                                              } ) : '';
+      return StringUtils.fillIn( stillSaturatedAlertPatternString, {
+        withSolids: withSolidsString,
+        quantitativeConcentration: quantitativeConcentrationString
       } );
     }
 
