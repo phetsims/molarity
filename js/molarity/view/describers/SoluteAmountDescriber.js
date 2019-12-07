@@ -172,25 +172,17 @@ define( require => {
     }
 
     /**
-     * Creates a substring qualitatively describing the soluteAmount state
-     * @public
-     * @returns {string} - something like "a lot of drink mix"
-     */
-    getSoluteAmountState() {
-      assert && assert( !this.useQuantitativeDescriptionsProperty.value, 'descriptions should be quantitative' );
-      return StringUtils.fillIn( qualitativeSoluteAmountStatePatternString, {
-        soluteAmount: this.getCurrentSoluteAmount( false ),
-        solute: this.soluteDescriber.getCurrentSolute()
-      } );
-    }
-
-    /**
      * Generates the aria-value text for the solute amount slider
      * @public
      * @returns {string}
      */
     getSoluteAmountValueText() {
-      return this.useQuantitativeDescriptionsProperty.value ? this.getCurrentSoluteAmount() : this.getSoluteAmountState();
+      return this.useQuantitativeDescriptionsProperty.value ?
+             this.getCurrentSoluteAmount() :
+             StringUtils.fillIn( qualitativeSoluteAmountStatePatternString, {
+               soluteAmount: this.getCurrentSoluteAmount( false ),
+               solute: this.soluteDescriber.getCurrentSolute()
+             } );
     }
   }
 
