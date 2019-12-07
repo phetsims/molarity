@@ -175,22 +175,23 @@ define( require => {
    * @returns {number} - index to pull from VOLUME_STRINGS array.
    */
   const volumeToIndex = volume => {
-    if ( volume <= 0.00125 ) {
+    const normalizedVolume = ( volume - MolarityConstants.SOLUTION_VOLUME_RANGE.min ) / MolarityConstants.SOLUTION_VOLUME_RANGE.max;
+    if ( normalizedVolume <= 0.00125 ) {
       return 0;
     }
-    else if ( volume <= 0.18625 ) {
+    else if ( normalizedVolume <= 0.18625 ) {
       return 1;
     }
-    else if ( volume <= 0.37375 ) {
+    else if ( normalizedVolume <= 0.37375 ) {
       return 2;
     }
-    else if ( volume <= 0.37625 ) {
+    else if ( normalizedVolume <= 0.37625 ) {
       return 3;
     }
-    else if ( volume <= 0.74875 ) {
+    else if ( normalizedVolume <= 0.74875 ) {
       return 4;
     }
-    else if ( volume <= 0.99875 ) {
+    else if ( normalizedVolume <= 0.99875 ) {
       return 5;
     }
     else {
