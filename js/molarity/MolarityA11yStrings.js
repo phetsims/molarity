@@ -19,16 +19,20 @@ define( require => {
       value: 'of'
     },
     more: {
-      value: 'more'
+      capitalized: {
+        value: 'More'
+      },
+      lowercase: {
+        value: 'more'
+      }
     },
     less: {
-      value: 'less'
-    },
-    moreCapitalized: {
-      value: 'More'
-    },
-    lessCapitalized: {
-      value: 'Less'
+      capitalized: {
+        value: 'Less'
+      },
+      lowercase: {
+        value: 'less'
+      }
     },
     solute: {
       value: 'solute'
@@ -200,11 +204,41 @@ define( require => {
 
 
     // Solids regions
-    aCoupleOf: {
-      value: 'a couple of'
-    },
-    aFew: {
-      value: 'a few'
+    solidsRegions: {
+      lowercase: {
+        aCoupleOf: {
+          value: 'a couple of'
+        },
+        aFew: {
+          value: 'a few'
+        },
+        some: {
+          value: 'some'
+        },
+        aBunchOf: {
+          value: 'a bunch of'
+        },
+        aLotOf: {
+          value: 'a lot of'
+        }
+      },
+      capitalized: {
+        aCoupleOf: {
+          value: 'A couple of'
+        },
+        aFew: {
+          value: 'A few'
+        },
+        some: {
+          value: 'Some'
+        },
+        aBunchOf: {
+          value: 'A bunch of'
+        },
+        aLotOf: {
+          value: 'A lot of'
+        }
+      }
     },
 
     // Active concentration regions

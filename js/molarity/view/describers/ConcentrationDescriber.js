@@ -36,7 +36,6 @@ define( require => {
 
   // Concentration region strings
   const solidsChangePatternString = MolarityA11yStrings.solidsChangePattern.value;
-  const someString = MolarityA11yStrings.some.value;
   const zeroConcentrationString = MolarityA11yStrings.zeroConcentration.value;
   const lowConcentrationString = MolarityA11yStrings.lowConcentration.value;
   const slightlyConcentratedString = MolarityA11yStrings.slightlyConcentrated.value;
@@ -54,22 +53,25 @@ define( require => {
   const isHighlyConcentratedString = MolarityA11yStrings.isHighlyConcentrated.value;
   const hasMaxConcentrationString = MolarityA11yStrings.hasMaxConcentration.value;
 
-  // Solids region strings
-  const aBunchOfString = MolarityA11yStrings.aBunchOf.value;
-  const aCoupleOfString = MolarityA11yStrings.aCoupleOf.value;
-  const aFewString = MolarityA11yStrings.aFew.value;
-  const aLotOfString = MolarityA11yStrings.aLotOf.value;
+  // Solids capitalized region strings
+  const aLotOfSolidsString = MolarityA11yStrings.solidsRegions.capitalized.aLotOf.value;
+  const aBunchOfSolidsString = MolarityA11yStrings.solidsRegions.capitalized.aBunchOf.value;
+  const someSolidsString = MolarityA11yStrings.solidsRegions.capitalized.some.value;
+  const aCoupleOfSolidsString = MolarityA11yStrings.solidsRegions.capitalized.aCoupleOf.value;
+  const aFewSolidsString = MolarityA11yStrings.solidsRegions.capitalized.aFew.value;
 
   // Solids lowercase region strings
-  const someLowercaseString = MolarityA11yStrings.someLowercase.value;
-  const aBunchOfLowercaseString = MolarityA11yStrings.aBunchOfLowercase.value;
-  const aLotOfLowercaseString = MolarityA11yStrings.aLotOfLowercase.value;
+  const aLotOfSolidsLowercaseString = MolarityA11yStrings.solidsRegions.lowercase.aLotOf.value;
+  const aBunchOfSolidsLowercaseString = MolarityA11yStrings.solidsRegions.lowercase.aBunchOf.value;
+  const someSolidsLowercaseString = MolarityA11yStrings.solidsRegions.lowercase.some.value;
+  const aCoupleOfSolidsLowercaseString = MolarityA11yStrings.solidsRegions.lowercase.aCoupleOf.value;
+  const aFewSolidsLowercaseString = MolarityA11yStrings.solidsRegions.lowercase.aFew.value;
 
   // Change strings
-  const lessString = MolarityA11yStrings.less.value;
-  const moreString = MolarityA11yStrings.more.value;
-  const lessCapitalizedString = MolarityA11yStrings.lessCapitalized.value;
-  const moreCapitalizedString = MolarityA11yStrings.moreCapitalized.value;
+  const lessCapitalizedString = MolarityA11yStrings.less.capitalized.value;
+  const lessLowercaseString = MolarityA11yStrings.less.lowercase.value;
+  const moreCapitalizedString = MolarityA11yStrings.more.capitalized.value;
+  const moreLowercaseString = MolarityA11yStrings.more.lowercase.value;
   const lighterString = MolarityA11yStrings.lighter.value;
   const darkerString = MolarityA11yStrings.darker.value;
 
@@ -95,18 +97,18 @@ define( require => {
   ];
 
   const SOLIDS_STRINGS = [
-    aCoupleOfString,
-    aFewString,
-    someString,
-    aBunchOfString,
-    aLotOfString
+    aCoupleOfSolidsString,
+    aFewSolidsString,
+    someSolidsString,
+    aBunchOfSolidsString,
+    aLotOfSolidsString
   ];
   const SOLIDS_STRINGS_LOWERCASE = [
-    aCoupleOfString,
-    aFewString,
-    someLowercaseString,
-    aBunchOfLowercaseString,
-    aLotOfLowercaseString
+    aCoupleOfSolidsLowercaseString,
+    aFewSolidsLowercaseString,
+    someSolidsLowercaseString,
+    aBunchOfSolidsLowercaseString,
+    aLotOfSolidsLowercaseString
   ];
 
   class ConcentrationDescriber {
@@ -346,9 +348,9 @@ define( require => {
      * @returns {string} - example: "more concentrated"
      */
     getConcentrationChangeString( isCapitalized = false ) {
-      let moreLessString = isCapitalized ? lessCapitalizedString : lessString;
+      let moreLessString = isCapitalized ? lessCapitalizedString : lessLowercaseString;
       if ( this.concentrationIncreased() ) {
-        moreLessString = isCapitalized ? moreCapitalizedString : moreString;
+        moreLessString = isCapitalized ? moreCapitalizedString : moreLowercaseString;
       }
       return StringUtils.fillIn( concentrationChangePatternString, {
         moreLess: moreLessString
@@ -374,9 +376,9 @@ define( require => {
      */
     getSolidsChangeString( isCapitalized = false ) {
       assert && assert( this.precipitateAmountProperty.value > 0, 'precipitateAmountProperty should be greater than 0' );
-      let moreLessString = isCapitalized ? lessCapitalizedString : lessString;
+      let moreLessString = isCapitalized ? lessCapitalizedString : lessLowercaseString;
       if ( this.solidsIncreased() ) {
-        moreLessString = isCapitalized ? moreCapitalizedString : moreString;
+        moreLessString = isCapitalized ? moreCapitalizedString : moreLowercaseString;
       }
       return StringUtils.fillIn( solidsChangePatternString, {
         moreLess: moreLessString

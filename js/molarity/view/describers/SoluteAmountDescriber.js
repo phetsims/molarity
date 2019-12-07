@@ -42,8 +42,8 @@ define( require => {
   const noLowercaseString = MolarityA11yStrings.noLowercase.value;
 
   // change strings
-  const lessCapitalizedString = MolarityA11yStrings.lessCapitalized.value;
-  const moreCapitalizedString = MolarityA11yStrings.moreCapitalized.value;
+  const lessCapitalizedString = MolarityA11yStrings.less.capitalized.value;
+  const moreCapitalizedString = MolarityA11yStrings.more.capitalized.value;
   const lighterString = MolarityA11yStrings.lighter.value;
   const darkerString = MolarityA11yStrings.darker.value;
 
