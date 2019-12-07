@@ -287,7 +287,7 @@ define( require => {
     /**
      * Gets the qualitative description of the amount of solids in the beaker.
      * @private
-     * @param {boolean} [isCapitalized]
+     * @param [isCapitalized] {boolean} - ignored if using quantitative descriptions
      * @returns {string} - example: "a bunch"
      */
     getCurrentSolidsAmount( isCapitalized = true ) {
@@ -348,7 +348,7 @@ define( require => {
 
     /**
      * Creates a substring to describe how concentration has changed
-     * @param {boolean} [isCapitalized]
+     * @param [isCapitalized] {boolean} - ignored if using quantitative descriptions
      * @public
      * @returns {string} - example: "more concentrated"
      */
@@ -375,7 +375,7 @@ define( require => {
 
     /**
      * Creates a substring to describe the change in the amount of solids
-     * @param {boolean} [isCapitalized]
+     * @param [isCapitalized] {boolean} - ignored if using quantitative descriptions
      * @public
      * @returns {string} - example: "more solids"
      */

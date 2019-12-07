@@ -151,8 +151,8 @@ define( require => {
 
     /**
      * Gets the current value of soluteAmount either quantitatively or quantitatively to plug into descriptions.
-     * Examples: "3.400 Moles" for quantitative or "A lot of" for qualitative
-     * @param isCapitalized {boolean} - ignored if using quantitative descriptions
+     * Examples: "0.800 Moles" for quantitative or "A lot of" for qualitative
+     * @param [isCapitalized] {boolean} - ignored if using quantitative descriptions
      * @public
      * @returns {string} - quantitative or qualitative description of current soluteAmount.
      */

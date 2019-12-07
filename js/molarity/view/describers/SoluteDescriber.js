@@ -42,7 +42,7 @@ define( require => {
     /**
      * Gets the name of the current solute selected.
      * @public
-     * @param {boolean} isCapitalized
+     * @param [isCapitalized] {boolean} - ignored if using quantitative descriptions
      * @returns {string}
      */
     getCurrentSolute( isCapitalized = false ) {
@@ -66,7 +66,7 @@ define( require => {
 
     /**
      * Gets the color of the solution.
-     * @param {boolean}  isCapitalized
+     * @param [isCapitalized] {boolean} - ignored if using quantitative descriptions
      * @public
      * @returns {string}
      */
