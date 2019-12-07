@@ -72,14 +72,12 @@ define( require => {
     /**
      * @param {Solution} solution - from model.
      * @param {SoluteDescriber} soluteDescriber
-     * @param {ConcentrationDescriber} concentrationDescriber
      * @param {Property.<boolean>} useQuantitativeDescriptionsProperty
      */
-    constructor( solution, soluteDescriber, concentrationDescriber, useQuantitativeDescriptionsProperty ) {
+    constructor( solution, soluteDescriber, useQuantitativeDescriptionsProperty ) {
 
       // @private
       this.solution = solution;
-      this.concentrationDescriber = concentrationDescriber;
       this.soluteAmountProperty = solution.soluteAmountProperty;
       this.soluteDescriber = soluteDescriber;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
