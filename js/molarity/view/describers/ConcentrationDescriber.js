@@ -216,7 +216,7 @@ define( require => {
       // for descriptive purposes, the solution will not be described as "not saturated" unless the concentration level
       // is below saturation point. Therefore, the point at which the solution is saturated with no solids will be considered
       // "saturated" for description purposes.
-      const newSaturationState = this.solution.isSaturated() && this.isExactlySaturated();
+      const newSaturationState = this.solution.isSaturated() && this.isSaturatedNoSolids();
       if ( oldSaturationState !== newSaturationState ) {
         this.lastSaturationState = newSaturationState;
       }
@@ -388,7 +388,7 @@ define( require => {
      * @public
      * @returns {boolean}
      */
-    isExactlySaturated() {
+    isSaturatedNoSolids() {
       return ( this.concentrationProperty.value === this.soluteProperty.value.saturatedConcentration &&
                this.solution.precipitateAmountProperty.value === 0 );
     }

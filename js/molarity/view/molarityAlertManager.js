@@ -86,7 +86,7 @@ define( require => {
       // A special alert is read out if the solution is saturated without any solids. If the solution is newly
       // saturated or newly unsaturated, an alert is read out. The text depends on whether descriptions are
       // qualitative or quantitative, and if there is any solute in the beaker.
-      if ( this.concentrationDescriber.isExactlySaturated() ) {
+      if ( this.concentrationDescriber.isSaturatedNoSolids() ) {
         this.alertMaxConcentration();
       }
       else if ( this.concentrationDescriber.saturationStateChanged() ) {
