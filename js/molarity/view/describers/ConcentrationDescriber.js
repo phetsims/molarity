@@ -26,7 +26,7 @@ define( require => {
   const concentrationAndUnitString = MolarityA11yStrings.concentrationAndUnit.value;
   const concentrationChangePatternString = MolarityA11yStrings.concentrationChangePattern.value;
   const concentrationRangePatternString = MolarityA11yStrings.concentrationRangePattern.value;
-  const qualitativeConcentrationStatePatternString = MolarityA11yStrings.qualitativeConcentrationStatePattern.value;
+  const qualitativeConcentrationStateClausePatternString = MolarityA11yStrings.qualitativeConcentrationStateClausePattern.value;
   const quantitativeConcentrationStatePatternString = MolarityA11yStrings.quantitativeConcentrationStatePattern.value;
   const saturationLostQualitativeAlertPatternString = MolarityA11yStrings.saturationLostQualitativeAlertPattern.value;
   const saturationLostQuantitativeAlertPatternString = MolarityA11yStrings.saturationLostQuantitativeAlertPattern.value;
@@ -421,7 +421,7 @@ define( require => {
      * */
     getQualitativeConcentrationState() {
       assert && assert( !this.useQuantitativeDescriptionsProperty.value, 'qualitative descriptions expected' );
-      return StringUtils.fillIn( qualitativeConcentrationStatePatternString, {
+      return StringUtils.fillIn( qualitativeConcentrationStateClausePatternString, {
         concentration: this.getCurrentConcentrationClause( true )
       } );
     }
