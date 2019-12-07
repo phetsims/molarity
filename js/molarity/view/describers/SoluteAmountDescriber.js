@@ -157,9 +157,12 @@ define( require => {
      * @returns {string} - quantitative or qualitative description of current soluteAmount.
      */
     getCurrentSoluteAmount( isCapitalized = true ) {
+      const soluteAmountMin = MolarityConstants.SOLUTE_AMOUNT_RANGE.min;
+      const soluteAmountMax = MolarityConstants.SOLUTE_AMOUNT_RANGE.max;
       if ( this.useQuantitativeDescriptionsProperty.value ) {
         return StringUtils.fillIn( soluteAmountAndUnitPatternString, {
-          soluteAmount: Util.toFixed( Util.clamp( this.soluteAmountProperty.value, 0, 5.0 ), MolarityConstants.SOLUTE_AMOUNT_DECIMAL_PLACES )
+          soluteAmount: Util.toFixed( Util.clamp( this.soluteAmountProperty.value, soluteAmountMin, soluteAmountMax ),
+            MolarityConstants.SOLUTE_AMOUNT_DECIMAL_PLACES )
         } );
       }
       else {
