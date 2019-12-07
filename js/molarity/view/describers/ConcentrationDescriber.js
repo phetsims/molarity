@@ -164,7 +164,12 @@ define( require => {
       return solidsToIndex( this.precipitateAmountProperty.value, this.getCurrentSaturatedConcentration() );
     }
 
-    //TODO: doc
+    /**
+     * Determines if the descriptive region has changed by comparing the old and new solids indices. Also sets the
+     * lastSolidsIndex property to the new index if there is a change.
+     * @public
+     * @returns {boolean} - whether or not the concentration region has changed.
+     * */
     solidsRegionChanged() {
       const oldSolidsIndex = this.lastSolidsIndex;
       const newSolidsIndex = this.getCurrentSolidsIndex();
@@ -172,6 +177,11 @@ define( require => {
       return newSolidsIndex !== oldSolidsIndex;
     }
 
+    /**
+     * Determines whether the amount of solids has increased or decreased.
+     * @private
+     * @returns {boolean}
+     * */
     solidsIncreased() {
       const oldSolidsAmount = this.lastSolidsAmount;
       const newSolidsAmount = this.precipitateAmountProperty.value;
@@ -182,7 +192,7 @@ define( require => {
     /**
      * Determines whether the concentration has increased or decreased.
      * @private
-     * @returns {boolean} - whether the concentration has increased (True) or decreased (False)
+     * @returns {boolean}
      * */
     concentrationIncreased() {
       const oldConcentration = this.lastConcentrationValue;
