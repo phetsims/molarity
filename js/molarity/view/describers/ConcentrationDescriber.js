@@ -218,7 +218,7 @@ define( require => {
       // for descriptive purposes, the solution will not be described as "not saturated" unless the concentration level
       // is below saturation point. Therefore, the point at which the solution is saturated with no solids will be considered
       // "saturated" for description purposes.
-      const newSaturationState = this.solution.isSaturated() && this.isSaturatedNoSolids();
+      const newSaturationState = this.solution.isSaturated();
       if ( oldSaturationState !== newSaturationState ) {
         this.lastSaturationState = newSaturationState;
       }
@@ -401,13 +401,12 @@ define( require => {
      * @returns {string}
      * */
     getSaturationChangedString() {
-      assert && assert( this.saturationStateChanged(), 'saturation state has not changed' );
       const saturationLostAlertString = this.useQuantitativeDescriptionsProperty.value ?
                                         saturationLostQuantitativeAlertPatternString :
                                         saturationLostQualitativeAlertPatternString;
       return this.solution.isSaturated() ?
              StringUtils.fillIn( saturationReachedAlertString, {
-               solidAmount: this.getCurrentSolidsAmount(),
+               solids: this.getCurrentSolidsAmount( false ),
                concentration: this.getCurrentConcentrationClause( true )
              } ) :
              StringUtils.fillIn( saturationLostAlertString, {

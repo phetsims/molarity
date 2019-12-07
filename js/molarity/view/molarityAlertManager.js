@@ -120,9 +120,6 @@ define( require => {
      */
     alertNewSaturation() {
       this.saturationUtterance.alert = this.concentrationDescriber.getSaturationChangedString();
-
-      // clears the utteranceQueue to remove utterances from previous saturation region, then adds the saturation utterance.
-      phet.joist.sim.utteranceQueue.clear();
       phet.joist.sim.utteranceQueue.addToFront( this.saturationUtterance );
     }
 
@@ -160,10 +157,11 @@ define( require => {
     /**
      * When qualitative descriptions are being used and SoluteAmountProperty or VolumeProperty changes, creates an alert.
      * @param {ChangeStrings} changeStrings - contains multiple strings.
-     * @param {boolean} quantityChange - true if the quantity has increased, false if quantity has decreased
+     * @param {boolean} quantityRegionChanged - indicates whether the changed Property (SoluteAmount or Volume) has changed
+     * description regions.
      * @private
      */
-    alertSliderQualitative( changeStrings, quantityChange ) {
+    alertSliderQualitative( changeStrings, quantityRegionChanged ) {
       assert && assert( !this.useQuantitativeDescriptionsProperty.value, 'quantitative descriptions should be used.' );
       let alertText = '';
 
@@ -179,8 +177,7 @@ define( require => {
       else {
 
         // state info is appended to the alert if the descriptive region has changed for any relevant quantity.
-        const includeStateInfo = quantityChange || this.concentrationDescriber.concentrationRegionChanged() ||
-                                 this.concentrationDescriber.solidsRegionChanged;
+        const includeStateInfo = quantityRegionChanged || this.concentrationDescriber.concentrationRegionChanged();
 
         alertText = StringUtils.fillIn( qualitativeSliderAlertPatternString, {
           quantityChange: changeStrings.quantityChangeString,

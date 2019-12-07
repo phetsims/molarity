@@ -394,7 +394,7 @@ define( require => {
       value: 'At {{concentration}}. Solution darkest.'
     },
     saturationReachedAlert: {
-      value: 'Saturated with {{solidAmount}} solids at {{concentration}}.'
+      value: 'Saturated with {{solids}} solids at {{concentration}}.'
     },
     saturationLostQualitativeAlertPattern: {
       value: 'No longer saturated. Solution lighter, {{concentration}}.'
