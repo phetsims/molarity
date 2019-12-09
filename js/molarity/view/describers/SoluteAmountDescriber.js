@@ -194,22 +194,25 @@ define( require => {
    * @returns {number} - index (integer) to pull from SOLUTE_AMOUNT_STRINGS array.
    */
   const soluteAmountToIndex = soluteAmount => {
-    if ( soluteAmount < 0.001 ) {
+
+    // normalize in case the range changes in the future.
+    const normalizedSoluteAmount = ( soluteAmount - MolarityConstants.SOLUTE_AMOUNT_RANGE.min ) / MolarityConstants.SOLUTE_AMOUNT_RANGE.getLength();
+    if ( normalizedSoluteAmount < 0.001 ) {
       return 0;
     }
-    else if ( soluteAmount <= .151 ) {
+    else if ( normalizedSoluteAmount <= .151 ) {
       return 1;
     }
-    else if ( soluteAmount <= .351 ) {
+    else if ( normalizedSoluteAmount <= .351 ) {
       return 2;
     }
-    else if ( soluteAmount <= .601 ) {
+    else if ( normalizedSoluteAmount <= .601 ) {
       return 3;
     }
-    else if ( soluteAmount <= .801 ) {
+    else if ( normalizedSoluteAmount <= .801 ) {
       return 4;
     }
-    else if ( soluteAmount <= .999 ) {
+    else if ( normalizedSoluteAmount <= .999 ) {
       return 5;
     }
     else {

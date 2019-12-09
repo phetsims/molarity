@@ -174,7 +174,7 @@ define( require => {
   const volumeToIndex = volume => {
 
     // normalize in case the range changes in the future.
-    const normalizedVolume = ( volume - MolarityConstants.SOLUTION_VOLUME_RANGE.min ) / MolarityConstants.SOLUTION_VOLUME_RANGE.max;
+    const normalizedVolume = ( volume - MolarityConstants.SOLUTION_VOLUME_RANGE.min ) / MolarityConstants.SOLUTION_VOLUME_RANGE.getLength();
     if ( normalizedVolume <= 0.00125 ) {
       return 0;
     }
