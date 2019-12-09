@@ -143,7 +143,8 @@ define( require => {
 
           // a11y
           accessibleName: soluteAmountNoNewlineString,
-          a11yCreateAriaValueText: () => soluteAmountDescriber.getSoluteAmountValueText()
+          a11yCreateAriaValueText: () => soluteAmountDescriber.getSoluteAmountValueText(),
+          a11yDependencies: [ model.solution.soluteProperty ]
         }
       }
     );
