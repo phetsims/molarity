@@ -94,7 +94,7 @@ define( require => {
     // a11y - initializes describers and alert manager to generate and update all PDOM and alert content.
     const concentrationDescriber = new ConcentrationDescriber( model.solution, useQuantitativeDescriptionsProperty );
     const soluteDescriber = new SoluteDescriber( model.solution, concentrationDescriber );
-    const volumeDescriber = new VolumeDescriber( model.solution,
+    const volumeDescriber = new VolumeDescriber( model.solution.volumeProperty,
       useQuantitativeDescriptionsProperty );
     const soluteAmountDescriber = new SoluteAmountDescriber( model.solution, soluteDescriber, useQuantitativeDescriptionsProperty );
     molarityAlertManager.initialize( model.solution, useQuantitativeDescriptionsProperty,
