@@ -443,12 +443,13 @@ define( require => {
     // maximum precipitates possible for a given solute, which is the solute amount it takes to saturate at min volume.
     const maxPrecipitateAmount = Solution.computePrecipitateAmount( MolarityConstants.SOLUTION_VOLUME_RANGE.min,
       MolarityConstants.SOLUTE_AMOUNT_RANGE.max, saturatedConcentration );
+
     const numberOfIncrements = SOLIDS_STRINGS.length;
     const scaleIncrement = maxPrecipitateAmount / numberOfIncrements;
 
-    for ( let i = 0; i < numberOfIncrements; i++ ) {
-      if ( precipitateAmount <= i * scaleIncrement - .01 ) {
-        return i - 1;
+    for ( let i = 0; i < numberOfIncrements - 1; i++ ) {
+      if ( precipitateAmount <= ( i + 1 ) * scaleIncrement ) {
+        return i;
       }
     }
     return SOLIDS_STRINGS.length - 1;

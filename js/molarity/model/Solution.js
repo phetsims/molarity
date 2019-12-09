@@ -58,7 +58,8 @@ define( require => {
     // @public derive the concentration: M = moles/liter
     this.concentrationProperty = new DerivedProperty( [ this.soluteProperty, this.soluteAmountProperty, this.volumeProperty ],
       function( solute, soluteAmount, volume ) {
-        return Util.toFixedNumber( volume > 0 ? Math.min( solute.saturatedConcentration, soluteAmount / volume ) : 0, MolarityConstants.CONCENTRATION_DECIMAL_PLACES );
+        return Util.toFixedNumber( volume > 0 ? Math.min( solute.saturatedConcentration, soluteAmount / volume ) : 0,
+          MolarityConstants.CONCENTRATION_DECIMAL_PLACES );
       }, {
         tandem: tandem.createTandem( 'concentrationProperty' ),
         units: 'moles/liter',
