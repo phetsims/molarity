@@ -70,21 +70,20 @@ define( require => {
   class SoluteAmountDescriber {
 
     /**
-     * @param {Solution} solution - from model.
+     * @param {Property.<number>} soluteAmountProperty - from model.
      * @param {SoluteDescriber} soluteDescriber
      * @param {Property.<boolean>} useQuantitativeDescriptionsProperty
      */
-    constructor( solution, soluteDescriber, useQuantitativeDescriptionsProperty ) {
+    constructor( soluteAmountProperty, soluteDescriber, useQuantitativeDescriptionsProperty ) {
 
       // @private
-      this.solution = solution;
-      this.soluteAmountProperty = solution.soluteAmountProperty;
+      this.soluteAmountProperty = soluteAmountProperty;
       this.soluteDescriber = soluteDescriber;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
 
       // @private
       // {number} - the index of the descriptive region from SOLUTE_AMOUNT_STRINGS array.
-      this.currentRegion = soluteAmountToIndex( this.solution.soluteAmountProperty.value );
+      this.currentRegion = soluteAmountToIndex( this.soluteAmountProperty.value );
 
       // @private
       // {boolean} - tracks whether the descriptive solute amount region has just changed.
