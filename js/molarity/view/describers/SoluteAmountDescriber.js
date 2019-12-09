@@ -196,7 +196,7 @@ define( require => {
   const soluteAmountToIndex = soluteAmount => {
 
     // normalize in case the range changes in the future.
-    const normalizedSoluteAmount = ( soluteAmount - MolarityConstants.SOLUTE_AMOUNT_RANGE.min ) / MolarityConstants.SOLUTE_AMOUNT_RANGE.getLength();
+    const normalizedSoluteAmount = MolarityConstants.SOLUTE_AMOUNT_RANGE.getNormalizedValue( soluteAmount );
     if ( normalizedSoluteAmount < 0.001 ) {
       return 0;
     }
