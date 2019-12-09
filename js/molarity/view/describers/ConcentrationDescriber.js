@@ -458,7 +458,7 @@ define( require => {
    * Calculates the which item to use from the CONCENTRATION_STRINGS array.
    * @param {number} maxConcentration - the saturation point for the specific solute that is currently selected.
    * @param {number} concentration
-   * @returns {number} index to pull from CONCENTRATION_STRINGS array
+   * @returns {number} index to access a region from CONCENTRATION_STRINGS
    */
   const concentrationToIndex = ( maxConcentration, concentration ) => {
 
