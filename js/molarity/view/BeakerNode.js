@@ -51,11 +51,11 @@ define( require => {
    * @param {number} maxVolume
    * @param {Property.<boolean>} valuesVisibleProperty
    * @param {Tandem} tandem
-   * @param {SoluteDescriber} soluteDescriber - a11y
-   * @param {SoluteAmountDescriber} soluteAmountDescriber - a11y
-   * @param {VolumeDescriber} volumeDescriber - a11y
-   * @param {concentrationDescriber} concentrationDescriber - a11y
-   * @param {Property.<boolean>} useQuantitativeDescriptionsProperty - a11y
+   * @param {SoluteDescriber} soluteDescriber - for interactive descriptions
+   * @param {SoluteAmountDescriber} soluteAmountDescriber - for interactive descriptions
+   * @param {VolumeDescriber} volumeDescriber - for interactive descriptions
+   * @param {concentrationDescriber} concentrationDescriber - for interactive descriptions
+   * @param {Property.<boolean>} useQuantitativeDescriptionsProperty - for interactive descriptions
    * @constructor
    */
   function BeakerNode( solution, maxVolume, valuesVisibleProperty, tandem, soluteDescriber, soluteAmountDescriber,

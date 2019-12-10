@@ -42,10 +42,10 @@ define( require => {
     /**
      * Gets the name of the current solute selected.
      * @public
-     * @param [isCapitalized] {boolean} - ignored if using quantitative descriptions
+     * @param [isCapitalized] {boolean}
      * @returns {string}
      */
-    getCurrentSolute( isCapitalized = false ) {
+    getCurrentSoluteName( isCapitalized = false ) {
       const currentSolute = this.solution.soluteProperty.value;
       return isCapitalized ? currentSolute.name : currentSolute.lowercaseName;
     }
@@ -60,7 +60,7 @@ define( require => {
         'attempted to generate chemical formula string for drink mix, which has no chemical formula' );
       return StringUtils.fillIn( beakerChemicalFormulaPatternString, {
         chemicalFormula: this.solution.soluteProperty.value.formula,
-        solute: this.getCurrentSolute()
+        solute: this.getCurrentSoluteName()
       } );
     }
 

@@ -30,21 +30,20 @@ define( require => {
   class MolarityScreenSummaryNode extends Node {
 
     /**
-     * @param {Solution} solution - from MolarityModel
-     * @param {Array} solutes - from MolarityModel
+     * @param {MolarityModel} model
      * @param {Property.<boolean>} useQuantitativeDescriptionsProperty - tracks whether the values are visible
      * @param {ConcentrationDescriber} concentrationDescriber
      * @param {SoluteAmountDescriber} soluteAmountDescriber
      * @param {SoluteDescriber} soluteDescriber
      * @param {VolumeDescriber} volumeDescriber
      */
-    constructor( solution, solutes, useQuantitativeDescriptionsProperty, concentrationDescriber, soluteAmountDescriber,
+    constructor( model, useQuantitativeDescriptionsProperty, concentrationDescriber, soluteAmountDescriber,
                  soluteDescriber, volumeDescriber ) {
 
       super();
 
       // @private
-      this.solution = solution;
+      this.solution = model.solution;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
       this.concentrationDescriber = concentrationDescriber;
       this.soluteAmountDescriber = soluteAmountDescriber;
@@ -55,7 +54,7 @@ define( require => {
       this.addChild( new Node( {
         tagName: 'p',
         innerContent: StringUtils.fillIn( screenSummaryPlayAreaPatternString, {
-          numberOfSolutes: solutes.length
+          numberOfSolutes: model.solutes.length
         } )
       } ) );
 
@@ -78,8 +77,13 @@ define( require => {
       } ) );
 
       // Updates the third paragraph of the screen summary when sim Properties change.
-      Property.multilink( [ solution.soluteProperty, solution.volumeProperty, solution.soluteAmountProperty,
-        solution.concentrationProperty, useQuantitativeDescriptionsProperty ], () => {
+      Property.multilink( [
+        this.solution.soluteProperty,
+        this.solution.volumeProperty,
+        this.solution.soluteAmountProperty,
+        this.solution.concentrationProperty,
+        useQuantitativeDescriptionsProperty
+      ], () => {
         stateOfSimNode.innerContent = this.getStateOfSimDescription();
       } );
     }
@@ -109,7 +113,7 @@ define( require => {
       return StringUtils.fillIn( stateString, {
         volume: this.volumeDescriber.getCurrentVolume( true ),
         color: this.soluteDescriber.getCurrentColor(),
-        solute: this.soluteDescriber.getCurrentSolute(),
+        solute: this.soluteDescriber.getCurrentSoluteName(),
         soluteAmount: this.soluteAmountDescriber.getCurrentSoluteAmount( false ),
         of: this.useQuantitativeDescriptionsProperty.value ? ofString : '',
         concentrationClause: concentrationPattern,

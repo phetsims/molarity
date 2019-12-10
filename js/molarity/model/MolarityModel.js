@@ -87,36 +87,36 @@ define( require => {
         drinkMixLowercaseString, redStringPair, {
           tandem: tandem.createTandem( 'drinkMix' )
         } ),
-      new Solute( cobaltIINitrateString, MolaritySymbols.COBALT_II_NITRATE, 5.65, new Color( 255, 225, 225 ), Color.RED,
-        cobaltIINitrateLowercaseString, redStringPair, {
+      new Solute( cobaltIINitrateString, MolaritySymbols.COBALT_II_NITRATE, 5.65, new Color( 255, 225, 225 ),
+        Color.RED, cobaltIINitrateLowercaseString, redStringPair, {
           tandem: tandem.createTandem( 'cobaltIINitrate' )
         } ),
-      new Solute( cobaltChlorideString, MolaritySymbols.COBALT_CHLORIDE, 4.35, new Color( 255, 242, 242 ), new Color( 255, 106, 106 ),
-        cobaltChlorideLowercaseString, pinkStringPair, {
+      new Solute( cobaltChlorideString, MolaritySymbols.COBALT_CHLORIDE, 4.35, new Color( 255, 242, 242 ),
+        new Color( 255, 106, 106 ), cobaltChlorideLowercaseString, pinkStringPair, {
           tandem: tandem.createTandem( 'cobaltChloride' )
         } ),
-      new Solute( potassiumDichromateString, MolaritySymbols.POTASSIUM_DICHROMATE, 0.50, new Color( 255, 232, 210 ), new Color( 255, 127, 0 ),
-        potassiumDichromateLowercaseString, orangeStringPair, {
+      new Solute( potassiumDichromateString, MolaritySymbols.POTASSIUM_DICHROMATE, 0.50, new Color( 255, 232, 210 ),
+        new Color( 255, 127, 0 ), potassiumDichromateLowercaseString, orangeStringPair, {
           tandem: tandem.createTandem( 'potassiumDichromate' )
         } ),
-      new Solute( goldIIIChlorideString, MolaritySymbols.GOLD_III_CHLORIDE, 2.25, new Color( 255, 255, 199 ), new Color( 255, 215, 0 ),
-        goldIIIChlorideLowercaseString, goldStringPair, {
+      new Solute( goldIIIChlorideString, MolaritySymbols.GOLD_III_CHLORIDE, 2.25, new Color( 255, 255, 199 ),
+        new Color( 255, 215, 0 ), goldIIIChlorideLowercaseString, goldStringPair, {
           tandem: tandem.createTandem( 'goldIIIChloride' )
         } ),
-      new Solute( potassiumChromateString, MolaritySymbols.POTASSIUM_CHROMATE, 3.35, new Color( 255, 255, 199 ), Color.YELLOW,
-        potassiumChromateLowercaseString, yellowStringPair, {
+      new Solute( potassiumChromateString, MolaritySymbols.POTASSIUM_CHROMATE, 3.35, new Color( 255, 255, 199 ),
+        Color.YELLOW, potassiumChromateLowercaseString, yellowStringPair, {
           tandem: tandem.createTandem( 'potassiumChromate' )
         } ),
-      new Solute( nickelIIChlorideString, MolaritySymbols.NICKEL_II_CHLORIDE, 5.2, new Color( 234, 244, 234 ), new Color( 0, 128, 0 ),
-        nickelIIChlorideLowercaseString, greenStringPair, {
+      new Solute( nickelIIChlorideString, MolaritySymbols.NICKEL_II_CHLORIDE, 5.2, new Color( 234, 244, 234 ),
+        new Color( 0, 128, 0 ), nickelIIChlorideLowercaseString, greenStringPair, {
           tandem: tandem.createTandem( 'nickelIIChloride' )
         } ),
-      new Solute( copperSulfateString, MolaritySymbols.COPPER_SULFATE, 1.40, new Color( 222, 238, 255 ), new Color( 30, 144, 255 ),
-        copperSulfateLowercaseString, blueStringPair, {
+      new Solute( copperSulfateString, MolaritySymbols.COPPER_SULFATE, 1.40, new Color( 222, 238, 255 ),
+        new Color( 30, 144, 255 ), copperSulfateLowercaseString, blueStringPair, {
           tandem: tandem.createTandem( 'copperSulfate' )
         } ),
-      new Solute( potassiumPermanganateString, MolaritySymbols.POTASSIUM_PERMANGANATE, 0.50, new Color( 255, 0, 255 ), new Color( 139, 0, 139 ),
-        potassiumPermanganateLowercaseString, purpleStringPair, {
+      new Solute( potassiumPermanganateString, MolaritySymbols.POTASSIUM_PERMANGANATE, 0.50, new Color( 255, 0, 255 ),
+        new Color( 139, 0, 139 ), potassiumPermanganateLowercaseString, purpleStringPair, {
           tandem: tandem.createTandem( 'potassiumPermanganate' ),
           particleColor: Color.BLACK
         } )

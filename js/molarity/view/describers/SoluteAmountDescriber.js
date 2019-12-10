@@ -70,21 +70,20 @@ define( require => {
   class SoluteAmountDescriber {
 
     /**
-     * @param {Solution} solution - from model.
+     * @param {Property.<number>} soluteAmountProperty - from model.
      * @param {SoluteDescriber} soluteDescriber
      * @param {Property.<boolean>} useQuantitativeDescriptionsProperty
      */
-    constructor( solution, soluteDescriber, useQuantitativeDescriptionsProperty ) {
+    constructor( soluteAmountProperty, soluteDescriber, useQuantitativeDescriptionsProperty ) {
 
       // @private
-      this.solution = solution;
-      this.soluteAmountProperty = solution.soluteAmountProperty;
+      this.soluteAmountProperty = soluteAmountProperty;
       this.soluteDescriber = soluteDescriber;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
 
       // @private
       // {number} - the index of the descriptive region from SOLUTE_AMOUNT_STRINGS array.
-      this.currentRegion = soluteAmountToIndex( this.solution.soluteAmountProperty.value );
+      this.currentRegion = soluteAmountToIndex( this.soluteAmountProperty.value );
 
       // @private
       // {boolean} - tracks whether the descriptive solute amount region has just changed.
@@ -121,7 +120,7 @@ define( require => {
     getBeakerSoluteAmountString() {
       return StringUtils.fillIn( beakerSoluteAmountPatternString, {
         soluteAmount: this.getCurrentSoluteAmount( false ),
-        solute: this.soluteDescriber.getCurrentSolute()
+        solute: this.soluteDescriber.getCurrentSoluteName()
       } );
     }
 
@@ -182,7 +181,7 @@ define( require => {
              this.getCurrentSoluteAmount() :
              StringUtils.fillIn( qualitativeSoluteAmountStatePatternString, {
                soluteAmount: this.getCurrentSoluteAmount( false ),
-               solute: this.soluteDescriber.getCurrentSolute()
+               solute: this.soluteDescriber.getCurrentSoluteName()
              } );
     }
   }
@@ -195,22 +194,25 @@ define( require => {
    * @returns {number} - index (integer) to pull from SOLUTE_AMOUNT_STRINGS array.
    */
   const soluteAmountToIndex = soluteAmount => {
-    if ( soluteAmount < 0.001 ) {
+
+    // normalize in case the range changes in the future.
+    const normalizedSoluteAmount = MolarityConstants.SOLUTE_AMOUNT_RANGE.getNormalizedValue( soluteAmount );
+    if ( normalizedSoluteAmount < 0.001 ) {
       return 0;
     }
-    else if ( soluteAmount <= .151 ) {
+    else if ( normalizedSoluteAmount <= .151 ) {
       return 1;
     }
-    else if ( soluteAmount <= .351 ) {
+    else if ( normalizedSoluteAmount <= .351 ) {
       return 2;
     }
-    else if ( soluteAmount <= .601 ) {
+    else if ( normalizedSoluteAmount <= .601 ) {
       return 3;
     }
-    else if ( soluteAmount <= .801 ) {
+    else if ( normalizedSoluteAmount <= .801 ) {
       return 4;
     }
-    else if ( soluteAmount <= .999 ) {
+    else if ( normalizedSoluteAmount <= .999 ) {
       return 5;
     }
     else {

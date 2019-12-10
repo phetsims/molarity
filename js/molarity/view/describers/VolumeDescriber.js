@@ -71,19 +71,18 @@ define( require => {
   class VolumeDescriber {
 
     /**
-     * @param {Solution} solution - from model
+     * @param {Property.<number>} volumeProperty - the volume of the solution
      * @param {Property.<boolean>} useQuantitativeDescriptionsProperty
      */
-    constructor( solution, useQuantitativeDescriptionsProperty ) {
+    constructor( volumeProperty, useQuantitativeDescriptionsProperty ) {
 
       // @private
-      this.solution = solution;
-      this.volumeProperty = solution.volumeProperty;
+      this.volumeProperty = volumeProperty;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
 
       // @private
       // {number} - the index of the descriptive region from VOLUME_STRINGS array.
-      this.currentRegion = volumeToIndex( this.solution.volumeProperty.value );
+      this.currentRegion = volumeToIndex( this.volumeProperty.value );
 
       // @private
       // {boolean} - tracks whether the descriptive volume region has just changed.
@@ -182,7 +181,7 @@ define( require => {
   const volumeToIndex = volume => {
 
     // normalize in case the range changes in the future.
-    const normalizedVolume = ( volume - MolarityConstants.SOLUTION_VOLUME_RANGE.min ) / MolarityConstants.SOLUTION_VOLUME_RANGE.max;
+    const normalizedVolume = MolarityConstants.SOLUTION_VOLUME_RANGE.getNormalizedValue( volume );
     if ( normalizedVolume <= 0.00125 ) {
       return 0;
     }

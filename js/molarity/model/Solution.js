@@ -23,7 +23,7 @@ define( require => {
   const Util = require( 'DOT/Util' );
 
   /**
-   * @param {Solvent} solvent
+   * @param {{color:ColorDef, formula:string, colorStringPair:StringCasingPair}} solvent
    * @param {Solute} solute
    * @param {number} soluteAmount moles
    * @param {number} volume Liters
@@ -58,7 +58,8 @@ define( require => {
     // @public derive the concentration: M = moles/liter
     this.concentrationProperty = new DerivedProperty( [ this.soluteProperty, this.soluteAmountProperty, this.volumeProperty ],
       function( solute, soluteAmount, volume ) {
-        return Util.toFixedNumber( volume > 0 ? Math.min( solute.saturatedConcentration, soluteAmount / volume ) : 0, MolarityConstants.CONCENTRATION_DECIMAL_PLACES );
+        return Util.toFixedNumber( volume > 0 ? Math.min( solute.saturatedConcentration, soluteAmount / volume ) : 0,
+          MolarityConstants.CONCENTRATION_DECIMAL_PLACES );
       }, {
         tandem: tandem.createTandem( 'concentrationProperty' ),
         units: 'moles/liter',
@@ -81,24 +82,35 @@ define( require => {
 
   return inherit( Object, Solution, {
 
-    // @public
+    /**
+     * @public
+     */
     reset: function() {
       this.soluteProperty.reset();
       this.soluteAmountProperty.reset();
       this.volumeProperty.reset();
     },
 
-    // @public
+    /**
+     * @public
+     * @returns {boolean}
+     */
     isSaturated: function() {
       return this.precipitateAmountProperty.value !== 0;
     },
 
-    // @public
+    /**
+     * @public
+     * @returns {boolean}
+     */
     hasSolute: function() {
       return this.concentrationProperty.value > 0;
     },
 
-    // @public
+    /**
+     * @public
+     * @returns {ColorDef}
+     */
     getColor: function() {
       if ( this.concentrationProperty.value > 0 ) {
         const solute = this.soluteProperty.get();
@@ -111,7 +123,13 @@ define( require => {
     }
   }, {
 
-    // @public @static
+    /**
+     * @public
+     * @param {number} volume
+     * @param {number} soluteAmount
+     * @param {number} saturatedConcentration
+     * @returns {number}
+     */
     computePrecipitateAmount: function( volume, soluteAmount, saturatedConcentration ) {
       return volume > 0 ? Math.max( 0, volume * ( ( soluteAmount / volume ) - saturatedConcentration ) ) : soluteAmount;
     }

@@ -80,32 +80,32 @@ define( require => {
   function MolarityScreenView( model, tandem ) {
     this.model = model;
 
+    // Whether or the not model values are displayed in the visual view
     const valuesVisibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'valuesVisibleProperty' )
     } );
 
-    // Determines whether qualitative or quantitative a11y descriptions are used. Even though it is the same as the
-    // valuesVisibleProperty currently, improves maintainability by not overloading valuesVisibleProperty with
-    // description-specific use-case. For example, we could decide to display quantitative descriptions when not showing
-    // values, but the state of solution is "x," with no refactoring.
+    // Determines whether qualitative or quantitative interactive descriptions are used. Even though it is the same as the
+    // valuesVisibleProperty currently, this improves maintainability by not overloading valuesVisibleProperty with
+    // description-specific use-case (a totally different view). For example, we could decide to display quantitative
+    // descriptions when not showing values, but the state of solution is "x," with no refactoring.
     const useQuantitativeDescriptionsProperty = new DerivedProperty( [ valuesVisibleProperty ],
       currentValuesVisible => currentValuesVisible );
 
     // a11y - initializes describers and alert manager to generate and update all PDOM and alert content.
     const concentrationDescriber = new ConcentrationDescriber( model.solution, useQuantitativeDescriptionsProperty );
     const soluteDescriber = new SoluteDescriber( model.solution, concentrationDescriber );
-    const volumeDescriber = new VolumeDescriber( model.solution,
+    const volumeDescriber = new VolumeDescriber( model.solution.volumeProperty,
       useQuantitativeDescriptionsProperty );
-    const soluteAmountDescriber = new SoluteAmountDescriber( model.solution, soluteDescriber, useQuantitativeDescriptionsProperty );
+    const soluteAmountDescriber = new SoluteAmountDescriber( model.solution.soluteAmountProperty, soluteDescriber, useQuantitativeDescriptionsProperty );
     molarityAlertManager.initialize( model.solution, useQuantitativeDescriptionsProperty,
       concentrationDescriber, soluteAmountDescriber, volumeDescriber, soluteDescriber, valuesVisibleProperty );
 
     ScreenView.call( this, {
       layoutBounds: new Bounds2( 0, 0, 1100, 700 ),
       tandem: tandem,
-      screenSummaryContent: new MolarityScreenSummaryNode( model.solution, model.solutes,
-        useQuantitativeDescriptionsProperty, concentrationDescriber, soluteAmountDescriber, soluteDescriber,
-        volumeDescriber )
+      screenSummaryContent: new MolarityScreenSummaryNode( model, useQuantitativeDescriptionsProperty,
+        concentrationDescriber, soluteAmountDescriber, soluteDescriber, volumeDescriber )
     } );
 
     // beaker, with solution and precipitate inside of it
@@ -143,7 +143,8 @@ define( require => {
 
           // a11y
           accessibleName: soluteAmountNoNewlineString,
-          a11yCreateAriaValueText: () => soluteAmountDescriber.getSoluteAmountValueText()
+          a11yCreateAriaValueText: () => soluteAmountDescriber.getSoluteAmountValueText(),
+          a11yDependencies: [ model.solution.soluteProperty ]
         }
       }
     );

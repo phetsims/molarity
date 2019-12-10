@@ -104,7 +104,7 @@ define( require => {
     updateBeakerSummaryString() {
       const summaryString = !this.solution.hasSolute() ? pureWaterPatternString : beakerDescriptionPatternString;
       return StringUtils.fillIn( summaryString, {
-        solute: !this.solution.hasSolute() ? pureWaterString : this.soluteDescriber.getCurrentSolute(),
+        solute: !this.solution.hasSolute() ? pureWaterString : this.soluteDescriber.getCurrentSoluteName(),
         volume: this.volumeDescriber.getCurrentVolume( true ),
         color: this.soluteDescriber.getCurrentColor()
       } );
@@ -148,7 +148,7 @@ define( require => {
      * @private
      */
     updateChemicalFormulaSummary() {
-      const isDrinkMix = this.soluteDescriber.getCurrentSolute( true ) === drinkMixString;
+      const isDrinkMix = this.soluteDescriber.getCurrentSoluteName( true ) === drinkMixString;
       if ( !this.solution.hasSolute() ) {
 
         // if there is no solute in the beaker, the chemical formula of water is displayed instead.
