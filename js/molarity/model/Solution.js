@@ -23,7 +23,7 @@ define( require => {
   const Util = require( 'DOT/Util' );
 
   /**
-   * @param {Solvent} solvent
+   * @param {{color:ColorDef, formula:string, colorStringPair:StringCasingPair}} solvent
    * @param {Solute} solute
    * @param {number} soluteAmount moles
    * @param {number} volume Liters
@@ -82,24 +82,35 @@ define( require => {
 
   return inherit( Object, Solution, {
 
-    // @public
+    /**
+     * @public
+     */
     reset: function() {
       this.soluteProperty.reset();
       this.soluteAmountProperty.reset();
       this.volumeProperty.reset();
     },
 
-    // @public
+    /**
+     * @public
+     * @returns {boolean}
+     */
     isSaturated: function() {
       return this.precipitateAmountProperty.value !== 0;
     },
 
-    // @public
+    /**
+     * @public
+     * @returns {boolean}
+     */
     hasSolute: function() {
       return this.concentrationProperty.value > 0;
     },
 
-    // @public
+    /**
+     * @public
+     * @returns {ColorDef}
+     */
     getColor: function() {
       if ( this.concentrationProperty.value > 0 ) {
         const solute = this.soluteProperty.get();
@@ -112,7 +123,13 @@ define( require => {
     }
   }, {
 
-    // @public @static
+    /**
+     * @public
+     * @param {number} volume
+     * @param {number} soluteAmount
+     * @param {number} saturatedConcentration
+     * @returns {number}
+     */
     computePrecipitateAmount: function( volume, soluteAmount, saturatedConcentration ) {
       return volume > 0 ? Math.max( 0, volume * ( ( soluteAmount / volume ) - saturatedConcentration ) ) : soluteAmount;
     }
