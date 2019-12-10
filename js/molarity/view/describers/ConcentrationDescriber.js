@@ -358,6 +358,8 @@ define( require => {
      * @returns {string} - example: "more concentrated"
      */
     getConcentrationChangeString( isCapitalized = false ) {
+
+      // TODO: assumption about increased https://github.com/phetsims/molarity/issues/190
       let moreLessString = isCapitalized ? lessCapitalizedString : lessLowercaseString;
       if ( this.concentrationIncreased() ) {
         moreLessString = isCapitalized ? moreCapitalizedString : moreLowercaseString;
