@@ -113,7 +113,7 @@ define( require => {
       return StringUtils.fillIn( stateString, {
         volume: this.volumeDescriber.getCurrentVolume( true ),
         color: this.soluteDescriber.getCurrentColor(),
-        solute: this.soluteDescriber.getCurrentSolute(),
+        solute: this.soluteDescriber.getCurrentSoluteName(),
         soluteAmount: this.soluteAmountDescriber.getCurrentSoluteAmount( false ),
         of: this.useQuantitativeDescriptionsProperty.value ? ofString : '',
         concentrationClause: concentrationPattern,
