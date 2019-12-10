@@ -150,8 +150,7 @@ define( require => {
      * @returns {Number} - index of the current concentration region
      * */
     getCurrentConcentrationIndex() {
-      return concentrationToIndex( this.soluteProperty.value.saturatedConcentration,
-        this.concentrationProperty.value );
+      return concentrationToIndex( this.soluteProperty.value.saturatedConcentration, this.concentrationProperty.value );
     }
 
     /**
@@ -289,7 +288,7 @@ define( require => {
     /**
      * Gets the qualitative description of the amount of solids in the beaker.
      * @private
-     * @param [isCapitalized] {boolean} - ignored if using quantitative descriptions
+     * @param [isCapitalized] {boolean}
      * @returns {string} - example: "a bunch"
      */
     getCurrentSolidsAmount( isCapitalized = true ) {
@@ -338,7 +337,7 @@ define( require => {
                                '';
 
       // if quantitative descriptions are being used, the quantitative max concentration is added into the description string.
-      const quantitativeConcentrationString = this.useQuantitativeDescriptionsProperty ?
+      const quantitativeConcentrationString = this.useQuantitativeDescriptionsProperty.value ?
                                               StringUtils.fillIn( atMaxConcentrationString, {
                                                 concentration: this.getCurrentConcentrationClause( true )
                                               } ) : '';
