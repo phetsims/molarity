@@ -103,9 +103,8 @@ define( require => {
     ScreenView.call( this, {
       layoutBounds: new Bounds2( 0, 0, 1100, 700 ),
       tandem: tandem,
-      screenSummaryContent: new MolarityScreenSummaryNode( model.solution, model.solutes,
-        useQuantitativeDescriptionsProperty, concentrationDescriber, soluteAmountDescriber, soluteDescriber,
-        volumeDescriber )
+      screenSummaryContent: new MolarityScreenSummaryNode( model, useQuantitativeDescriptionsProperty,
+        concentrationDescriber, soluteAmountDescriber, soluteDescriber, volumeDescriber )
     } );
 
     // beaker, with solution and precipitate inside of it
