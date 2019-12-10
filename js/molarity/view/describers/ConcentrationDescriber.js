@@ -225,7 +225,7 @@ define( require => {
     saturationStateChanged() {
       const oldSaturationState = this.lastSaturationState;
 
-      // for descriptive purposes, the solution will not be described as "not saturated" unless the concentration level
+      // For descriptive purposes, the solution will not be described as "not saturated" unless the concentration level
       // is below saturation point. Therefore, the point at which the solution is saturated with no solids will be considered
       // "saturated" for description purposes.
       const newSaturationState = this.solution.isSaturated();
