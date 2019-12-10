@@ -31,7 +31,6 @@ changes to many sim files, several files are specifically for the purpose of Int
 
 * every file in the `molarity/view/describers` directory - these files each track changes to one or two model Properties
 to generate description strings to be used for both PDOM content and aria-live alerts).
-* MolarityA11yStrings.js - contains all of the strings used to build the description strings in the describers.
 * MolarityBeakerDescriptionNode.js - sets the PDOM content that describes the beaker.
 * MolarityScreenSummaryNode.js - sets the PDOM content for the screen summary.
 * MolarityKeyboardHelpContent.js - sets the content and layout for the keyboard help dialogue
