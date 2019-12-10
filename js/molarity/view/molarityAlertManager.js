@@ -34,6 +34,18 @@ define( require => {
 
       // @private
       this.initialized = false;
+
+      // @private - utterances with specific jobs so that duplicates are overwritten in the queue.
+      this.saturationUtterance = new Utterance();
+      this.sliderUtterance = new ValueChangeUtterance();
+      this.soluteUtterance = new ActivationUtterance();
+      this.valuesVisibleUtterance = new ActivationUtterance();
+
+      // @private - set in `initialize` method from parameters
+      this.concentrationDescriber = null;
+      this.soluteDescriber = null;
+      this.solution = null;
+      this.useQuantitativeDescriptionsProperty = null;
     }
 
     /**
@@ -54,17 +66,10 @@ define( require => {
       assert && assert( !this.initialized, 'molarityAlertManager has already been initialized' );
       this.initialized = true;
 
-      // @private
       this.concentrationDescriber = concentrationDescriber;
       this.soluteDescriber = soluteDescriber;
       this.solution = solution;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
-
-      // @private - create utterances
-      this.saturationUtterance = new Utterance();
-      this.sliderUtterance = new ValueChangeUtterance();
-      this.soluteUtterance = new ActivationUtterance();
-      this.valuesVisibleUtterance = new ActivationUtterance();
 
       solution.soluteAmountProperty.lazyLink( () => this.alertValueChanged( soluteAmountDescriber ) );
       solution.volumeProperty.lazyLink( () => this.alertValueChanged( volumeDescriber ) );
