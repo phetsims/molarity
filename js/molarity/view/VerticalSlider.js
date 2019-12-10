@@ -47,7 +47,8 @@ define( require => {
    * @param {number} decimalPlaces
    * @param {string} units
    * @param {Property.<boolean>} valuesVisibleProperty
-   * @param {Property.<boolean>} useQuantitativeDescriptionsProperty -  whether quantitative or qualitative alerts and descriptions are used.
+   * @param {Property.<boolean>} useQuantitativeDescriptionsProperty -  whether quantitative or qualitative alerts and
+   *                                                                    descriptions are used.
    * @param {Object} [options]
    * @constructor
    */

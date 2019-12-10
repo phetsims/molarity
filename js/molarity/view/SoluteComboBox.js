@@ -44,7 +44,9 @@ define( require => {
     constructor( solutes, selectedSoluteProperty, listParent, tandem, options ) {
 
       options = merge( {
-        labelNode: new Text( StringUtils.format( pattern0LabelString, soluteString ), { font: new PhetFont( 22 ) } ), // 'Solute' label
+
+        // 'Solute' label
+        labelNode: new Text( StringUtils.format( pattern0LabelString, soluteString ), { font: new PhetFont( 22 ) } ),
         listPosition: 'above',
         cornerRadius: 8,
         xMargin: 16,
