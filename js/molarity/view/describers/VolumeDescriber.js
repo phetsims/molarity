@@ -134,7 +134,7 @@ define( require => {
     }
 
     /**
-     * TODO: fix the return typedef of this method just like in SoluteAmountDescriber.js
+     * TODO: fix the return typedef of this method just like in SoluteAmountDescriber.js https://github.com/phetsims/molarity/issues/171
      * Creates the substrings to describe the change in volume and the resulting change in solution color
      * This function must have the same name as its counterpart in VolumeDescriber.
      * @public
