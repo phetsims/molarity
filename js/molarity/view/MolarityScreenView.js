@@ -80,14 +80,15 @@ define( require => {
   function MolarityScreenView( model, tandem ) {
     this.model = model;
 
+    // Whether or the not model values are displayed in the visual view
     const valuesVisibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'valuesVisibleProperty' )
     } );
 
-    // Determines whether qualitative or quantitative a11y descriptions are used. Even though it is the same as the
-    // valuesVisibleProperty currently, improves maintainability by not overloading valuesVisibleProperty with
-    // description-specific use-case. For example, we could decide to display quantitative descriptions when not showing
-    // values, but the state of solution is "x," with no refactoring.
+    // Determines whether qualitative or quantitative interactive descriptions are used. Even though it is the same as the
+    // valuesVisibleProperty currently, this improves maintainability by not overloading valuesVisibleProperty with
+    // description-specific use-case (a totally different view). For example, we could decide to display quantitative
+    // descriptions when not showing values, but the state of solution is "x," with no refactoring.
     const useQuantitativeDescriptionsProperty = new DerivedProperty( [ valuesVisibleProperty ],
       currentValuesVisible => currentValuesVisible );
 
