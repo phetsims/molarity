@@ -66,7 +66,7 @@ define( require => {
 
     /**
      * Gets the color of the solution.
-     * @param [isCapitalized] {boolean} - ignored if using quantitative descriptions
+     * @param [isCapitalized] {boolean}
      * @public
      * @returns {string}
      */

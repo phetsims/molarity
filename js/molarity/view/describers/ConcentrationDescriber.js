@@ -353,7 +353,7 @@ define( require => {
 
     /**
      * Creates a substring to describe how concentration has changed
-     * @param [isCapitalized] {boolean} - ignored if using quantitative descriptions
+     * @param [isCapitalized] {boolean}
      * @public
      * @returns {string} - example: "more concentrated"
      */
@@ -383,7 +383,7 @@ define( require => {
 
     /**
      * Creates a substring to describe the change in the amount of solids
-     * @param [isCapitalized] {boolean} - ignored if using quantitative descriptions
+     * @param [isCapitalized] {boolean}
      * @public
      * @returns {string} - example: "more solids"
      */
