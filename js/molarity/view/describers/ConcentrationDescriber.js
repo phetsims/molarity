@@ -150,7 +150,7 @@ define( require => {
      * @returns {Number} - index of the current concentration region
      * */
     getCurrentConcentrationIndex() {
-      return concentrationToIndex( this.soluteProperty.value.saturatedConcentration, this.concentrationProperty.value );
+      return concentrationToIndex( this.concentrationProperty.value, this.soluteProperty.value.saturatedConcentration );
     }
 
     /**
@@ -249,8 +249,7 @@ define( require => {
         } );
       }
       else {
-        const concentration = this.concentrationProperty.value;
-        const index = concentrationToIndex( this.soluteProperty.value.saturatedConcentration, concentration );
+        const index = concentrationToIndex( this.concentrationProperty.value, this.soluteProperty.value.saturatedConcentration );
         return isPassive ? CONCENTRATION_STRINGS[ index ] : ACTIVE_CONCENTRATION_STRINGS[ index ];
       }
     }
@@ -443,21 +442,21 @@ define( require => {
 
   /**
    * Calculates which item to use from the SOLIDS_STRINGS array.
-   * @param {number} precipitateAmount - in moles, see Solution.js
-   * @param {number} saturatedConcentration
+   * @param {number} currentPrecipitateAmount - in moles, see Solution.js
+   * @param {number} saturatedConcentrationForSolute
    * @returns {number} - index to pull from SOLIDS_STRINGS array
    */
-  const solidsToIndex = ( precipitateAmount, saturatedConcentration ) => {
+  const solidsToIndex = ( currentPrecipitateAmount, saturatedConcentrationForSolute ) => {
 
     // maximum precipitates possible for a given solute, which is the solute amount it takes to saturate at min volume.
     const maxPrecipitateAmount = Solution.computePrecipitateAmount( MolarityConstants.SOLUTION_VOLUME_RANGE.min,
-      MolarityConstants.SOLUTE_AMOUNT_RANGE.max, saturatedConcentration );
+      MolarityConstants.SOLUTE_AMOUNT_RANGE.max, saturatedConcentrationForSolute );
 
     const numberOfIncrements = SOLIDS_STRINGS.length;
     const scaleIncrement = maxPrecipitateAmount / numberOfIncrements;
 
     for ( let i = 0; i < numberOfIncrements - 1; i++ ) {
-      if ( precipitateAmount <= ( i + 1 ) * scaleIncrement ) {
+      if ( currentPrecipitateAmount <= ( i + 1 ) * scaleIncrement ) {
         return i;
       }
     }
@@ -466,23 +465,30 @@ define( require => {
 
   /**
    * Calculates the which item to use from the CONCENTRATION_STRINGS array.
-   * @param {number} maxConcentration - the saturation point for the specific solute that is currently selected.
-   * @param {number} concentration
+   * @param {number} currentConcentration
+   * @param {number} saturatedConcentrationForSolute - the saturation point for the specific solute that is currently selected.
    * @returns {number} index to access a region from CONCENTRATION_STRINGS
    */
-  const concentrationToIndex = ( maxConcentration, concentration ) => {
+  const concentrationToIndex = ( currentConcentration, saturatedConcentrationForSolute ) => {
 
-    // Concentration regions are evenly spaced within the region from 0 to max concentration for a given solute except
-    // for the lowest region (zero) and the highest region (max concentration) which are single value regions.
-    const scaleIncrement = maxConcentration / ( CONCENTRATION_STRINGS.length - 2 );
-    const concentrationRounded = Util.toFixed( concentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES );
-
-    if ( concentrationRounded > maxConcentration - .001 ) {
+    // compare against un-rounded concentration since these two are single value regions
+    // Handle single value region cases before iterating through evenly spaced regions.
+    if ( currentConcentration === saturatedConcentrationForSolute ) {
       return CONCENTRATION_STRINGS.length - 1;
     }
+    else if ( currentConcentration === MolarityConstants.CONCENTRATION_RANGE.min ) {
+      return 0;
+    }
     else {
-      for ( let i = 0; i < CONCENTRATION_STRINGS.length - 1; i++ ) {
-        if ( concentrationRounded <= scaleIncrement * i - .001 ) {
+
+      // Concentration regions are evenly spaced within the region from 0 to max concentration for a given solute except
+      // for the lowest region (zero) and the highest region (max concentration) which are single value regions.
+      const scaleIncrement = saturatedConcentrationForSolute / ( CONCENTRATION_STRINGS.length - 2 );
+      const concentrationRounded = Util.toFixed( currentConcentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES );
+
+      // don't count the first and last concentration string
+      for ( let i = 1; i < CONCENTRATION_STRINGS.length - 2; i++ ) {
+        if ( concentrationRounded <= ( i + 1 ) * scaleIncrement ) {
           return i;
         }
       }
