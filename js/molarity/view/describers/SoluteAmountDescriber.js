@@ -126,7 +126,8 @@ define( require => {
     }
 
     /**
-     * TODO: add some doc here, see https://github.com/phetsims/molarity/issues/171
+     * contains two strings, one to describe the slider quantity that changed, and one to describe the color change of
+     * the solute. these strings can be used as component pieces of longer alert strings.
      * @typedef ChangeStrings
      * @type {Object}
      * @property {string} colorChangeString
