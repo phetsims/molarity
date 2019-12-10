@@ -375,6 +375,7 @@ define( require => {
      * @returns {string} - example: "Solution lighter"
      */
     getColorChangeString() {
+      // TODO: assumption about increased https://github.com/phetsims/molarity/issues/190
       return StringUtils.fillIn( colorChangePatternString, {
         lighterDarker: this.concentrationIncreased() ? darkerString : lighterString
       } );
@@ -388,6 +389,7 @@ define( require => {
      */
     getSolidsChangeString( isCapitalized = false ) {
       assert && assert( this.precipitateAmountProperty.value > 0, 'precipitateAmountProperty should be greater than 0' );
+      // TODO: assumption about increased https://github.com/phetsims/molarity/issues/190
       let moreLessString = isCapitalized ? lessCapitalizedString : lessLowercaseString;
       if ( this.solidsIncreased() ) {
         moreLessString = isCapitalized ? moreCapitalizedString : moreLowercaseString;
