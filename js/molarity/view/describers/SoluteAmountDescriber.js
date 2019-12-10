@@ -124,22 +124,17 @@ define( require => {
       } );
     }
 
-    /**
-     * contains two strings, one to describe the slider quantity that changed, and one to describe the color change of
-     * the solute. these strings can be used as component pieces of longer alert strings.
-     * @typedef ChangeStrings
-     * @type {Object}
-     * @property {string} colorChangeString
-     * @property {string} quantityChangeString
-     */
+
     /**
      * Creates the substrings to describe the change in solute amount and the resulting change in solution color.
      * This function must have the same name as its counterpart in VolumeDescriber.
      * @public
-     * @returns {ChangeStrings} - contains two strings.
+     * @returns {StringsFromSliderChange} - contains two strings.
      */
-    getChangeStrings() {
+    getStringsFromSliderChange() {
       return {
+
+        // "quantity" meaning "solute amount" here
         quantityChangeString: StringUtils.fillIn( soluteAmountChangedPatternString, {
           moreLess: this.soluteAmountIncreased ? moreCapitalizedString : lessCapitalizedString
         } ),

@@ -78,7 +78,7 @@ define( require => {
 
     /**
      * Alert when a user driven (likely from a slider) solution value was changed.
-     * @param {{getChangeStrings:function():ChangeStrings, getRegionChanged:function():boolean}} describer
+     * @param {{getStringsFromSliderChange:function():StringsFromSliderChange, getRegionChanged:function():boolean}} describer
      * @private
      */
     alertValueChanged( describer ) {
@@ -99,7 +99,7 @@ define( require => {
         this.alertSliderQuantitative();
       }
       else {
-        this.alertSliderQualitative( describer.getChangeStrings(), describer.getRegionChanged() );
+        this.alertSliderQualitative( describer.getStringsFromSliderChange(), describer.getRegionChanged() );
       }
     }
 
@@ -156,7 +156,7 @@ define( require => {
 
     /**
      * When qualitative descriptions are being used and SoluteAmountProperty or VolumeProperty changes, creates an alert.
-     * @param {ChangeStrings} changeStrings - contains multiple strings.
+     * @param {StringsFromSliderChange} changeStrings - contains multiple strings.
      * @param {boolean} quantityRegionChanged - indicates whether the changed Property (SoluteAmount or Volume) has changed
      * description regions.
      * @private
@@ -215,6 +215,14 @@ define( require => {
       phet.joist.sim.utteranceQueue.addToBack( this.sliderUtterance );
     }
   }
+
+  /**
+   * This contains two strings; these strings can be used as component pieces of longer alert strings.
+   * @typedef StringsFromSliderChange
+   * @type {Object}
+   * @property {string} colorChangeString - describing the color change of the solute
+   * @property {string} quantityChangeString - describing the slider quantity that changed
+   */
 
   return molarity.register( 'molarityAlertManager', new MolarityAlertManager() );
 } );
