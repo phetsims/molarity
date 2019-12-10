@@ -135,11 +135,18 @@ define( require => {
     }
 
     /**
-     * TODO: fix the return typedef of this method just like in SoluteAmountDescriber.js
-     * Creates the substrings to describe the change in volume and the resulting change in solution color
+     * contains two strings, one to describe the slider quantity that changed, and one to describe the color change of
+     * the solute. these strings can be used as component pieces of longer alert strings.
+     * @typedef ChangeStrings
+     * @type {Object}
+     * @property {string} colorChangeString
+     * @property {string} quantityChangeString
+     */
+    /**
+     * Creates the substrings to describe the change in volume and the resulting change in solution color.
      * This function must have the same name as its counterpart in VolumeDescriber.
      * @public
-     * @returns {Object} - contains two strings.
+     * @returns {ChangeStrings} - contains two strings.
      */
     getChangeStrings() {
       return {

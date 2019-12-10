@@ -134,7 +134,7 @@ define( require => {
      * @property {string} quantityChangeString
      */
     /**
-     * Creates the substrings to describe the change in volume and the resulting change in solution color.
+     * Creates the substrings to describe the change in solute amount and the resulting change in solution color.
      * This function must have the same name as its counterpart in VolumeDescriber.
      * @public
      * @returns {ChangeStrings} - contains two strings.
