@@ -238,7 +238,7 @@ define( require => {
     /**
      * Gets the current value of concentration either quantitatively or quantitatively to plug into descriptions.
      * Qualitative description can be in active or passive voice depending on isPassive parameter.
-     * @param {boolean} [isPassive]
+     * @param {boolean} [isPassive] - ignored if using quantitative descriptions
      * @public
      * @returns {string} - description of current concentration (e.g. "1.500 Molar" or "is very concentrated")
      */
