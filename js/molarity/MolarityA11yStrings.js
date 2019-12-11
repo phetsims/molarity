@@ -412,7 +412,7 @@ define( require => {
 
     // Saturated solution alert strings
     stillSaturatedAlertPattern: {
-      value: 'Saturated {{withSolids}} {{quantitativeConcentration}}.'
+      value: 'Saturated {{withSolids}} {{maxConcentration}}.'
     },
     withSolidsAlertPattern: {
       value: 'with {{solidAmount}} solids'

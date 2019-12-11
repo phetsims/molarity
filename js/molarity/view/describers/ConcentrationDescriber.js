@@ -291,8 +291,10 @@ define( require => {
      * @returns {string} - example: "still saturated with a bunch of solids"
      */
     getStillSaturatedClause() {
+      const maxConcentrationString = StringUtils.fillIn( atMaxConcentrationString, {
+        concentration: this.getCurrentConcentrationClause( true )
+      } );
       let withSolidsString = '';
-      let quantitativeConcentrationString = '';
 
       // the amount of solids is only given if the region has changed.
       if ( this.solidsRegionChanged ) {
@@ -301,16 +303,9 @@ define( require => {
         } );
       }
 
-      // if quantitative descriptions are being used, the quantitative max concentration is added into the description string.
-      if ( this.useQuantitativeDescriptionsProperty.value ) {
-        quantitativeConcentrationString = StringUtils.fillIn( atMaxConcentrationString, {
-          concentration: this.getCurrentConcentrationClause( true )
-        } );
-      }
-
       return StringUtils.fillIn( stillSaturatedAlertPatternString, {
         withSolids: withSolidsString,
-        quantitativeConcentration: quantitativeConcentrationString
+        maxConcentration: maxConcentrationString
       } );
     }
 
