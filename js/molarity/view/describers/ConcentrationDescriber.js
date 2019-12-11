@@ -126,21 +126,34 @@ define( require => {
       this.precipitateAmountProperty = solution.precipitateAmountProperty;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
 
+      // @public {boolean|null} - tracks whether the solution has most recently gone from saturated to unsaturated or
+      // vice-versa.
+      this.saturationStateChanged = null;
+
       // @private {number|null} - tracks the index of the last descriptive region for solids from SOLIDS_STRINGS array
       this.lastSolidsIndex = null;
 
-      // @private {number} - tracks whether solids amount has increased or decreased. null when simulation
-      // starts or resets.
-      this.lastSolidsAmount = this.precipitateAmountProperty.value;
+      // @private {boolean|null} - will only be updated and accessed when the precipitateAmountProperty changes, so
+      // while it will be null at some points, it will only be accessed when it holds boolean values (True if precipitateAmount
+      // has increased, False if it has decreased)
+      this.precipitateAmountIncreased = null;
 
       // @private {number} - tracks the last value of concentrationProperty
       this.lastConcentrationValue = this.concentrationProperty.value;
 
-      // @private {boolean} - tracks the last saturation state
-      this.lastSaturationState = false;
-
       // @private {Number} - tracks the last calculated concentration region index.
       this.lastConcentrationIndex = this.getCurrentConcentrationIndex();
+
+      // update fields (documented above) when precipitateAmountProperty changes
+      this.precipitateAmountProperty.lazyLink( ( newValue, oldValue ) => {
+        const newSolidsIndex = solidsToIndex( this.precipitateAmountProperty.value, this.getCurrentSaturatedConcentration() );
+        const previousSaturationState = oldValue !== 0;
+        const newSaturationState = newValue !== 0;
+        this.saturationStateChanged = newSaturationState !== previousSaturationState;
+        this.precipitateAmountIncreased = newValue > oldValue;
+        this.solidsRegionChanged = newSolidsIndex !== this.lastSolidsIndex;
+        this.lastSolidsIndex = newSolidsIndex;
+      } );
     }
 
     /**
@@ -161,31 +174,6 @@ define( require => {
      * */
     getCurrentSolidsIndex() {
       return solidsToIndex( this.precipitateAmountProperty.value, this.getCurrentSaturatedConcentration() );
-    }
-
-    /**
-     * Determines if the descriptive region has changed by comparing the old and new solids indices. Also sets the
-     * lastSolidsIndex property to the new index if there is a change.
-     * @public
-     * @returns {boolean} - whether or not the concentration region has changed.
-     * */
-    solidsRegionChanged() {
-      const oldSolidsIndex = this.lastSolidsIndex;
-      const newSolidsIndex = this.getCurrentSolidsIndex();
-      this.lastSolidsIndex = newSolidsIndex;
-      return newSolidsIndex !== oldSolidsIndex;
-    }
-
-    /**
-     * Determines whether the amount of solids has increased or decreased.
-     * @private
-     * @returns {boolean}
-     * */
-    solidsIncreased() {
-      const oldSolidsAmount = this.lastSolidsAmount;
-      const newSolidsAmount = this.precipitateAmountProperty.value;
-      this.lastSolidsAmount = newSolidsAmount;
-      return newSolidsAmount > oldSolidsAmount;
     }
 
     /**
@@ -213,26 +201,6 @@ define( require => {
         this.lastConcentrationIndex = newIndex;
       }
       return oldIndex !== newIndex;
-    }
-
-    /**
-     * Determines if the saturation state has changed (by the solution going from unsaturated to saturated, or vice versa).
-     * Also sets the lastSaturationState property to the new saturation state if it has changed.
-     * @public
-     * @returns {boolean} - whether or not the saturation state has changed.
-     * */
-    saturationStateChanged() {
-      const oldSaturationState = this.lastSaturationState;
-
-      // TODO: is this correct? https://github.com/phetsims/molarity/issues/196
-      // For descriptive purposes, the solution will not be described as "not saturated" unless the concentration level
-      // is below saturation point. Therefore, the point at which the solution is saturated with no solids will be considered
-      // "saturated" for description purposes.
-      const newSaturationState = this.solution.isSaturated();
-      if ( oldSaturationState !== newSaturationState ) {
-        this.lastSaturationState = newSaturationState;
-      }
-      return oldSaturationState !== newSaturationState;
     }
 
     /**
@@ -332,7 +300,7 @@ define( require => {
       let quantitativeConcentrationString = '';
 
       // the amount of solids is only given if the region has changed.
-      if ( this.solidsRegionChanged() && this.solidsIndex !== 0 ) {
+      if ( this.solidsRegionChanged && this.lastSolidsIndex !== 0 ) {
         withSolidsString = StringUtils.fillIn( withSolidsAlertPatternString, {
           solidAmount: this.getCurrentSolidsAmount( false )
         } );
@@ -392,7 +360,7 @@ define( require => {
       assert && assert( this.solution.isSaturated(), 'precipitateAmountProperty should be greater than 0' );
 
       let moreLessString = isCapitalized ? lessCapitalizedString : lessLowercaseString;
-      if ( this.solidsIncreased() ) {
+      if ( this.precipitateAmountIncreased ) {
         moreLessString = isCapitalized ? moreCapitalizedString : moreLowercaseString;
       }
       return StringUtils.fillIn( solidsChangePatternString, {
