@@ -175,7 +175,6 @@ define( require => {
         alertText = StringUtils.fillIn( qualitativeSaturatedValueTextPatternString, {
           propertyAmountChange: changeStrings.quantityChangeString,
           solidsChange: this.concentrationDescriber.getSolidsChangeString(),
-          colorChange: changeStrings.colorChangeString,
           stillSaturatedClause: this.concentrationDescriber.getStillSaturatedClause()
         } );
       }
