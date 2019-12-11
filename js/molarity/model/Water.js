@@ -16,13 +16,13 @@ define( require => {
   const StringCasingPair = require( 'SCENERY_PHET/accessibility/StringCasingPair' );
 
   // a11y strings
-  const clearCapitalizedString = MolarityA11yStrings.clearCapitalized.value;
-  const clearString = MolarityA11yStrings.clear.value;
+  const clearCapitalizedString = MolarityA11yStrings.soluteColors.capitalized.clear.value;
+  const clearLowercaseString = MolarityA11yStrings.soluteColors.lowercase.clear.value;
 
   const Water = {
     formula: MolaritySymbols.WATER,
     color: new Color( 224, 255, 255 ),
-    colorStringPair: new StringCasingPair( clearString, clearCapitalizedString )
+    colorStringPair: new StringCasingPair( clearLowercaseString, clearCapitalizedString )
   };
 
   molarity.register( 'Water', Water );

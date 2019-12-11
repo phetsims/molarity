@@ -110,50 +110,54 @@ define( require => {
       value: 'chemical formula of {{solute}} is {{chemicalFormula}}'
     },
 
-    // Volume regions
-    full: {
-      value: 'full'
-    },
-    nearlyFull: {
-      value: 'nearly full'
-    },
-    overHalfFull: {
-      value: 'over half full'
-    },
-    halfFull: {
-      value: 'half full'
-    },
-    underHalfFull: {
-      value: 'under half full'
-    },
-    nearlyEmpty: {
-      value: 'nearly empty'
-    },
-    atLowestAmount: {
-      value: 'at lowest amount'
-    },
-
     // Volume active regions
-    isFull: {
-      value: 'is full'
-    },
-    isNearlyFull: {
-      value: 'is nearly full'
-    },
-    isOverHalfFull: {
-      value: 'is over half full'
-    },
-    isHalfFull: {
-      value: 'is half full'
-    },
-    isUnderHalfFull: {
-      value: 'is under half full'
-    },
-    isAtLowestAmount: {
-      value: 'is at lowest amount'
-    },
-    isNearlyEmpty: {
-      value: 'is nearly empty'
+    volumeRegions: {
+      active: {
+        isFull: {
+          value: 'is full'
+        },
+        isNearlyFull: {
+          value: 'is nearly full'
+        },
+        isOverHalfFull: {
+          value: 'is over half full'
+        },
+        isHalfFull: {
+          value: 'is half full'
+        },
+        isUnderHalfFull: {
+          value: 'is under half full'
+        },
+        isAtLowestAmount: {
+          value: 'is at lowest amount'
+        },
+        isNearlyEmpty: {
+          value: 'is nearly empty'
+        }
+      },
+      passive: {
+        full: {
+          value: 'full'
+        },
+        nearlyFull: {
+          value: 'nearly full'
+        },
+        overHalfFull: {
+          value: 'over half full'
+        },
+        halfFull: {
+          value: 'half full'
+        },
+        underHalfFull: {
+          value: 'under half full'
+        },
+        nearlyEmpty: {
+          value: 'nearly empty'
+        },
+        atLowestAmount: {
+          value: 'at lowest amount'
+        }
+      }
     },
 
     // Solute Amount Regions - uppercase
@@ -440,61 +444,65 @@ define( require => {
     },
 
     // capitalized color strings
-    redCapitalized: {
-      value: 'Red'
-    },
-    pinkCapitalized: {
-      value: 'Pink'
-    },
-    orangeCapitalized: {
-      value: 'Orange'
-    },
-    goldCapitalized: {
-      value: 'Gold'
-    },
-    yellowCapitalized: {
-      value: 'Yellow'
-    },
-    greenCapitalized: {
-      value: 'Green'
-    },
-    blueCapitalized: {
-      value: 'Blue'
-    },
-    purpleCapitalized: {
-      value: 'Purple'
-    },
-    clearCapitalized: {
-      value: 'Clear'
-    },
-
-    // color strings
-    red: {
-      value: 'red'
-    },
-    pink: {
-      value: 'pink'
-    },
-    orange: {
-      value: 'orange'
-    },
-    gold: {
-      value: 'gold'
-    },
-    yellow: {
-      value: 'yellow'
-    },
-    green: {
-      value: 'green'
-    },
-    blue: {
-      value: 'blue'
-    },
-    purple: {
-      value: 'purple'
-    },
-    clear: {
-      value: 'clear'
+    soluteColors: {
+      capitalized: {
+        red: {
+          value: 'Red'
+        },
+        pink: {
+          value: 'Pink'
+        },
+        orange: {
+          value: 'Orange'
+        },
+        gold: {
+          value: 'Gold'
+        },
+        yellow: {
+          value: 'Yellow'
+        },
+        green: {
+          value: 'Green'
+        },
+        blue: {
+          value: 'Blue'
+        },
+        purple: {
+          value: 'Purple'
+        },
+        clear: {
+          value: 'Clear'
+        }
+      },
+      lowercase: {
+        red: {
+          value: 'red'
+        },
+        pink: {
+          value: 'pink'
+        },
+        orange: {
+          value: 'orange'
+        },
+        gold: {
+          value: 'gold'
+        },
+        yellow: {
+          value: 'yellow'
+        },
+        green: {
+          value: 'green'
+        },
+        blue: {
+          value: 'blue'
+        },
+        purple: {
+          value: 'purple'
+        },
+        clear: {
+          value: 'clear'
+        }
+      }
     },
 
     // Lowercase solute names
