@@ -103,6 +103,14 @@ define( require => {
      * @public
      * @returns {boolean}
      */
+    atMaxConcentration: function() {
+      return this.soluteAmountProperty.value.saturatedConcentration === this.concentrationProperty.value;
+    },
+
+    /**
+     * @public
+     * @returns {boolean}
+     */
     hasSolute: function() {
       return this.concentrationProperty.value > 0;
     },

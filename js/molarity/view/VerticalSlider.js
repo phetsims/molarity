@@ -71,7 +71,7 @@ define( require => {
         shiftKeyboardStep: Math.pow( 10, decimalPlaces * -1 ),
         appendDescription: true,
         keyboardStep: 0.050,
-        a11yDependencies: [ useQuantitativeDescriptionsProperty ], // aria-valuetext is also updated whenever useQuantitative Descriptions Property changes
+        a11yDependencies: [],
         containerTagName: 'div' // for fixing layout in a11y-view with aria-valuetext
       }
     }, options );
@@ -79,6 +79,12 @@ define( require => {
     assert && assert( options.sliderOptions.tandem === undefined, 'VerticalSlider sets its own sliderOptions.tandem' );
     assert && assert( options.sliderOptions.startDrag === undefined, 'VerticalSlider sets its own sliderOptions.startDrag' );
     assert && assert( options.sliderOptions.endDrag === undefined, 'VerticalSlider sets its own sliderOptions.endDrag' );
+    assert && assert( options.sliderOptions.a11yDependencies.indexOf( useQuantitativeDescriptionsProperty ) === -1,
+      'VerticalSlider adds useQuantitativeDescriptionsProperty as an a11yDependency, no need to add it yourself.' );
+
+    // aria-valuetext is also updated whenever useQuantitative Descriptions Property changes. Push this instead of adding
+    // it as a default to support client passing in their own a11yDependencies.
+    options.sliderOptions.a11yDependencies.push( useQuantitativeDescriptionsProperty );
 
     // options set by VerticalSlider
     options = merge( {

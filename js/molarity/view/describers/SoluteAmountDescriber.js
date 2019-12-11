@@ -124,22 +124,18 @@ define( require => {
       } );
     }
 
-    /**
-     * contains two strings, one to describe the slider quantity that changed, and one to describe the color change of
-     * the solute. these strings can be used as component pieces of longer alert strings.
-     * @typedef ChangeStrings
-     * @type {Object}
-     * @property {string} colorChangeString
-     * @property {string} quantityChangeString
-     */
+
     /**
      * Creates the substrings to describe the change in solute amount and the resulting change in solution color.
-     * This function must have the same name as its counterpart in VolumeDescriber.
+     * This function must have the same name as its counterpart in VolumeDescriber. This function should only be called
+     * as a result of the soluteAmountProperty changing (hence usage of `this.soluteAmountIncreased`.
      * @public
-     * @returns {ChangeStrings} - contains two strings.
+     * @returns {StringsFromSliderChange} - contains two strings.
      */
-    getChangeStrings() {
+    getStringsFromSliderChange() {
       return {
+
+        // "quantity" meaning "solute amount" here
         quantityChangeString: StringUtils.fillIn( soluteAmountChangedPatternString, {
           moreLess: this.soluteAmountIncreased ? moreCapitalizedString : lessCapitalizedString
         } ),
@@ -157,12 +153,13 @@ define( require => {
      * @returns {string} - quantitative or qualitative description of current soluteAmount.
      */
     getCurrentSoluteAmount( isCapitalized = true ) {
-      const soluteAmountMin = MolarityConstants.SOLUTE_AMOUNT_RANGE.min;
-      const soluteAmountMax = MolarityConstants.SOLUTE_AMOUNT_RANGE.max;
       if ( this.useQuantitativeDescriptionsProperty.value ) {
+        const soluteAmountMin = MolarityConstants.SOLUTE_AMOUNT_RANGE.min;
+        const soluteAmountMax = MolarityConstants.SOLUTE_AMOUNT_RANGE.max;
+        const clampedSoluteAmount = Util.clamp( this.soluteAmountProperty.value, soluteAmountMin, soluteAmountMax );
+
         return StringUtils.fillIn( soluteAmountAndUnitPatternString, {
-          soluteAmount: Util.toFixed( Util.clamp( this.soluteAmountProperty.value, soluteAmountMin, soluteAmountMax ),
-            MolarityConstants.SOLUTE_AMOUNT_DECIMAL_PLACES )
+          soluteAmount: Util.toFixed( clampedSoluteAmount, MolarityConstants.SOLUTE_AMOUNT_DECIMAL_PLACES )
         } );
       }
       else {

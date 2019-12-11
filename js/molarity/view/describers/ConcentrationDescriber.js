@@ -150,8 +150,7 @@ define( require => {
      * @returns {Number} - index of the current concentration region
      * */
     getCurrentConcentrationIndex() {
-      return concentrationToIndex( this.soluteProperty.value.saturatedConcentration,
-        this.concentrationProperty.value );
+      return concentrationToIndex( this.concentrationProperty.value, this.soluteProperty.value.saturatedConcentration );
     }
 
     /**
@@ -225,7 +224,8 @@ define( require => {
     saturationStateChanged() {
       const oldSaturationState = this.lastSaturationState;
 
-      // for descriptive purposes, the solution will not be described as "not saturated" unless the concentration level
+      // TODO: is this correct? https://github.com/phetsims/molarity/issues/196
+      // For descriptive purposes, the solution will not be described as "not saturated" unless the concentration level
       // is below saturation point. Therefore, the point at which the solution is saturated with no solids will be considered
       // "saturated" for description purposes.
       const newSaturationState = this.solution.isSaturated();
@@ -250,8 +250,7 @@ define( require => {
         } );
       }
       else {
-        const concentration = this.concentrationProperty.value;
-        const index = concentrationToIndex( this.soluteProperty.value.saturatedConcentration, concentration );
+        const index = concentrationToIndex( this.concentrationProperty.value, this.soluteProperty.value.saturatedConcentration );
         return isPassive ? CONCENTRATION_STRINGS[ index ] : ACTIVE_CONCENTRATION_STRINGS[ index ];
       }
     }
@@ -263,13 +262,15 @@ define( require => {
      */
     getCurrentConcentrationRangeClause() {
 
-      // the described max concentration in this clause is the maximum of the displayed concentration range for solutes
-      // with a max concentration larger than the displayed concentration range max, and is the solute's actual max
-      // concentration if it is less than the displayed concentration range max.
       const concentrationMin = MolarityConstants.CONCENTRATION_RANGE.min;
       const concentrationMax = MolarityConstants.CONCENTRATION_RANGE.max;
-      const displayedMaxConcentration = Util.toFixed( Util.clamp( this.getCurrentSaturatedConcentration(), concentrationMin, concentrationMax ),
-        MolarityConstants.SOLUTE_AMOUNT_DECIMAL_PLACES );
+      const clampedConcentration = Util.clamp( this.getCurrentSaturatedConcentration(), concentrationMin, concentrationMax );
+
+      // The described max concentration in this clause is the maximum of the displayed concentration range for solutes
+      // with a max concentration larger than the displayed concentration range max, and is the solute's actual max
+      // concentration if it is less than the displayed concentration range max.
+      const displayedMaxConcentration = Util.toFixed( clampedConcentration, MolarityConstants.SOLUTE_AMOUNT_DECIMAL_PLACES );
+
       return StringUtils.fillIn( concentrationRangePatternString, {
         maxConcentration: Util.toFixed( displayedMaxConcentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES )
       } );
@@ -287,7 +288,7 @@ define( require => {
     /**
      * Gets the qualitative description of the amount of solids in the beaker.
      * @private
-     * @param [isCapitalized] {boolean} - ignored if using quantitative descriptions
+     * @param [isCapitalized] {boolean}
      * @returns {string} - example: "a bunch"
      */
     getCurrentSolidsAmount( isCapitalized = true ) {
@@ -327,19 +328,23 @@ define( require => {
      * @returns {string} - example: "still saturated with a bunch of solids"
      */
     getStillSaturatedClause() {
+      let withSolidsString = '';
+      let quantitativeConcentrationString = '';
 
       // the amount of solids is only given if the region has changed.
-      const withSolidsString = ( this.solidsRegionChanged() && this.solidsIndex !== 0 ) ?
-                               StringUtils.fillIn( withSolidsAlertPatternString, {
-                                 solidAmount: this.getCurrentSolidsAmount( false )
-                               } ) :
-                               '';
+      if ( this.solidsRegionChanged() && this.solidsIndex !== 0 ) {
+        withSolidsString = StringUtils.fillIn( withSolidsAlertPatternString, {
+          solidAmount: this.getCurrentSolidsAmount( false )
+        } );
+      }
 
       // if quantitative descriptions are being used, the quantitative max concentration is added into the description string.
-      const quantitativeConcentrationString = this.useQuantitativeDescriptionsProperty ?
-                                              StringUtils.fillIn( atMaxConcentrationString, {
-                                                concentration: this.getCurrentConcentrationClause( true )
-                                              } ) : '';
+      if ( this.useQuantitativeDescriptionsProperty.value ) {
+        quantitativeConcentrationString = StringUtils.fillIn( atMaxConcentrationString, {
+          concentration: this.getCurrentConcentrationClause( true )
+        } );
+      }
+
       return StringUtils.fillIn( stillSaturatedAlertPatternString, {
         withSolids: withSolidsString,
         quantitativeConcentration: quantitativeConcentrationString
@@ -348,11 +353,13 @@ define( require => {
 
     /**
      * Creates a substring to describe how concentration has changed
-     * @param [isCapitalized] {boolean} - ignored if using quantitative descriptions
+     * @param [isCapitalized] {boolean}
      * @public
      * @returns {string} - example: "more concentrated"
      */
     getConcentrationChangeString( isCapitalized = false ) {
+      assert && assert( !this.solution.isSaturated(), 'concentration cannot change when saturated' );
+
       let moreLessString = isCapitalized ? lessCapitalizedString : lessLowercaseString;
       if ( this.concentrationIncreased() ) {
         moreLessString = isCapitalized ? moreCapitalizedString : moreLowercaseString;
@@ -368,6 +375,8 @@ define( require => {
      * @returns {string} - example: "Solution lighter"
      */
     getColorChangeString() {
+      assert && assert( !this.solution.isSaturated(), 'color cannot change when saturated' );
+
       return StringUtils.fillIn( colorChangePatternString, {
         lighterDarker: this.concentrationIncreased() ? darkerString : lighterString
       } );
@@ -375,12 +384,13 @@ define( require => {
 
     /**
      * Creates a substring to describe the change in the amount of solids
-     * @param [isCapitalized] {boolean} - ignored if using quantitative descriptions
+     * @param [isCapitalized] {boolean}
      * @public
      * @returns {string} - example: "more solids"
      */
     getSolidsChangeString( isCapitalized = false ) {
-      assert && assert( this.precipitateAmountProperty.value > 0, 'precipitateAmountProperty should be greater than 0' );
+      assert && assert( this.solution.isSaturated(), 'precipitateAmountProperty should be greater than 0' );
+
       let moreLessString = isCapitalized ? lessCapitalizedString : lessLowercaseString;
       if ( this.solidsIncreased() ) {
         moreLessString = isCapitalized ? moreCapitalizedString : moreLowercaseString;
@@ -388,16 +398,6 @@ define( require => {
       return StringUtils.fillIn( solidsChangePatternString, {
         moreLess: moreLessString
       } );
-    }
-
-    /**
-     * determines if the solution is saturated but does not yet have any solids
-     * @public
-     * @returns {boolean}
-     */
-    isSaturatedNoSolids() {
-      return ( this.concentrationProperty.value === this.soluteProperty.value.saturatedConcentration &&
-               this.solution.precipitateAmountProperty.value === 0 );
     }
 
     /**
@@ -434,21 +434,21 @@ define( require => {
 
   /**
    * Calculates which item to use from the SOLIDS_STRINGS array.
-   * @param {number} precipitateAmount - in moles, see Solution.js
-   * @param {number} saturatedConcentration
+   * @param {number} currentPrecipitateAmount - in moles, see Solution.js
+   * @param {number} saturatedConcentrationForSolute -  the saturation point for a specific solute
    * @returns {number} - index to pull from SOLIDS_STRINGS array
    */
-  const solidsToIndex = ( precipitateAmount, saturatedConcentration ) => {
+  const solidsToIndex = ( currentPrecipitateAmount, saturatedConcentrationForSolute ) => {
 
     // maximum precipitates possible for a given solute, which is the solute amount it takes to saturate at min volume.
     const maxPrecipitateAmount = Solution.computePrecipitateAmount( MolarityConstants.SOLUTION_VOLUME_RANGE.min,
-      MolarityConstants.SOLUTE_AMOUNT_RANGE.max, saturatedConcentration );
+      MolarityConstants.SOLUTE_AMOUNT_RANGE.max, saturatedConcentrationForSolute );
 
     const numberOfIncrements = SOLIDS_STRINGS.length;
     const scaleIncrement = maxPrecipitateAmount / numberOfIncrements;
 
     for ( let i = 0; i < numberOfIncrements - 1; i++ ) {
-      if ( precipitateAmount <= ( i + 1 ) * scaleIncrement ) {
+      if ( currentPrecipitateAmount <= ( i + 1 ) * scaleIncrement ) {
         return i;
       }
     }
@@ -457,23 +457,30 @@ define( require => {
 
   /**
    * Calculates the which item to use from the CONCENTRATION_STRINGS array.
-   * @param {number} maxConcentration - the saturation point for the specific solute that is currently selected.
-   * @param {number} concentration
+   * @param {number} currentConcentration
+   * @param {number} saturatedConcentrationForSolute - the saturation point for a specific solute.
    * @returns {number} index to access a region from CONCENTRATION_STRINGS
    */
-  const concentrationToIndex = ( maxConcentration, concentration ) => {
+  const concentrationToIndex = ( currentConcentration, saturatedConcentrationForSolute ) => {
 
-    // Concentration regions are evenly spaced within the region from 0 to max concentration for a given solute except
-    // for the lowest region (zero) and the highest region (max concentration) which are single value regions.
-    const scaleIncrement = maxConcentration / ( CONCENTRATION_STRINGS.length - 2 );
-    const concentrationRounded = Util.toFixed( concentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES );
-
-    if ( concentrationRounded > maxConcentration - .001 ) {
+    // compare against un-rounded concentration since these two are single value regions
+    // Handle single value region cases before iterating through evenly spaced regions.
+    if ( currentConcentration === saturatedConcentrationForSolute ) {
       return CONCENTRATION_STRINGS.length - 1;
     }
+    else if ( currentConcentration === MolarityConstants.CONCENTRATION_RANGE.min ) {
+      return 0;
+    }
     else {
-      for ( let i = 0; i < CONCENTRATION_STRINGS.length - 1; i++ ) {
-        if ( concentrationRounded <= scaleIncrement * i - .001 ) {
+
+      // Concentration regions are evenly spaced within the region from 0 to max concentration for a given solute except
+      // for the lowest region (zero) and the highest region (max concentration) which are single value regions.
+      const scaleIncrement = saturatedConcentrationForSolute / ( CONCENTRATION_STRINGS.length - 2 );
+      const concentrationRounded = Util.toFixed( currentConcentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES );
+
+      // don't count the first and last concentration string
+      for ( let i = 1; i < CONCENTRATION_STRINGS.length - 2; i++ ) {
+        if ( concentrationRounded <= ( i + 1 ) * scaleIncrement ) {
           return i;
         }
       }

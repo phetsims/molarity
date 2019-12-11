@@ -34,6 +34,18 @@ define( require => {
 
       // @private
       this.initialized = false;
+
+      // @private - utterances with specific jobs so that duplicates are overwritten in the queue.
+      this.saturationUtterance = new Utterance();
+      this.sliderUtterance = new ValueChangeUtterance();
+      this.soluteUtterance = new ActivationUtterance();
+      this.valuesVisibleUtterance = new ActivationUtterance();
+
+      // @private - set in `initialize` method from parameters
+      this.concentrationDescriber = null;
+      this.soluteDescriber = null;
+      this.solution = null;
+      this.useQuantitativeDescriptionsProperty = null;
     }
 
     /**
@@ -54,17 +66,10 @@ define( require => {
       assert && assert( !this.initialized, 'molarityAlertManager has already been initialized' );
       this.initialized = true;
 
-      // @private
       this.concentrationDescriber = concentrationDescriber;
       this.soluteDescriber = soluteDescriber;
       this.solution = solution;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
-
-      // @private - create utterances
-      this.saturationUtterance = new Utterance();
-      this.sliderUtterance = new ValueChangeUtterance();
-      this.soluteUtterance = new ActivationUtterance();
-      this.valuesVisibleUtterance = new ActivationUtterance();
 
       solution.soluteAmountProperty.lazyLink( () => this.alertValueChanged( soluteAmountDescriber ) );
       solution.volumeProperty.lazyLink( () => this.alertValueChanged( volumeDescriber ) );
@@ -78,16 +83,16 @@ define( require => {
 
     /**
      * Alert when a user driven (likely from a slider) solution value was changed.
-     * @param {{getChangeStrings:function():ChangeStrings, getRegionChanged:function():boolean}} describer
+     * @param {{getStringsFromSliderChange:function():StringsFromSliderChange, getRegionChanged:function():boolean}} describer
      * @private
      */
     alertValueChanged( describer ) {
 
-      // A special alert is read out if the solution is saturated without any solids. If the solution is newly
-      // saturated or newly unsaturated, an alert is read out. The text depends on whether descriptions are
+      // A special alert is read out if the solution is at max concentration without any precipitate. If the solution
+      // is newly saturated or newly unsaturated, an alert is read out. The text depends on whether descriptions are
       // qualitative or quantitative, and if there is any solute in the beaker.
-      if ( this.concentrationDescriber.isSaturatedNoSolids() ) {
-        this.alertMaxConcentration();
+      if ( !this.solution.isSaturated() && this.solution.atMaxConcentration() ) {
+        this.alertMaxConcentrationNotSaturated();
       }
       else if ( this.concentrationDescriber.saturationStateChanged() ) {
         this.alertNewSaturation();
@@ -99,15 +104,15 @@ define( require => {
         this.alertSliderQuantitative();
       }
       else {
-        this.alertSliderQualitative( describer.getChangeStrings(), describer.getRegionChanged() );
+        this.alertSliderQualitative( describer.getStringsFromSliderChange(), describer.getRegionChanged() );
       }
     }
 
     /**
-     * Alert when the solution is exactly at the saturation point without any solids
+     * Alert when the solution is exactly at the max concentration point without any precipitate
      * @private
      */
-    alertMaxConcentration() {
+    alertMaxConcentrationNotSaturated() {
       this.sliderUtterance.alert = StringUtils.fillIn( atMaxConcentrationAlertString, {
         concentration: this.concentrationDescriber.getCurrentConcentrationClause( true )
       } );
@@ -156,7 +161,7 @@ define( require => {
 
     /**
      * When qualitative descriptions are being used and SoluteAmountProperty or VolumeProperty changes, creates an alert.
-     * @param {ChangeStrings} changeStrings - contains multiple strings.
+     * @param {StringsFromSliderChange} changeStrings - contains multiple strings.
      * @param {boolean} quantityRegionChanged - indicates whether the changed Property (SoluteAmount or Volume) has changed
      * description regions.
      * @private
@@ -170,7 +175,6 @@ define( require => {
         alertText = StringUtils.fillIn( qualitativeSaturatedValueTextPatternString, {
           propertyAmountChange: changeStrings.quantityChangeString,
           solidsChange: this.concentrationDescriber.getSolidsChangeString(),
-          colorChange: changeStrings.colorChangeString,
           stillSaturatedClause: this.concentrationDescriber.getStillSaturatedClause()
         } );
       }
@@ -215,6 +219,14 @@ define( require => {
       phet.joist.sim.utteranceQueue.addToBack( this.sliderUtterance );
     }
   }
+
+  /**
+   * This contains two strings; these strings can be used as component pieces of longer alert strings.
+   * @typedef StringsFromSliderChange
+   * @type {Object}
+   * @property {string} colorChangeString - describing the color change of the solute
+   * @property {string} quantityChangeString - describing the slider quantity that changed
+   */
 
   return molarity.register( 'molarityAlertManager', new MolarityAlertManager() );
 } );
