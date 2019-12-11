@@ -157,51 +157,54 @@ define( require => {
     },
 
     // Solute Amount Regions - uppercase
-    maxAmountOf: {
-      value: 'Max amount of'
+    soluteAmountRegions: {
+      capitalized: {
+        maxAmountOf: {
+          value: 'Max amount of'
+        },
+        aLotOf: {
+          value: 'A lot of'
+        },
+        aBunchOf: {
+          value: 'A bunch of'
+        },
+        some: {
+          value: 'Some'
+        },
+        aLowAmountOf: {
+          value: 'A low amount of'
+        },
+        aLittle: {
+          value: 'A little'
+        },
+        no: {
+          value: 'No'
+        }
+      },
+      lowercase: {
+        maxAmountOf: {
+          value: 'max amount of'
+        },
+        aLotOf: {
+          value: 'a lot of'
+        },
+        aBunchOf: {
+          value: 'a bunch of'
+        },
+        some: {
+          value: 'some'
+        },
+        aLowAmountOf: {
+          value: 'a low amount of'
+        },
+        aLittle: {
+          value: 'a little'
+        },
+        no: {
+          value: 'no'
+        }
+      }
     },
-    aLotOf: {
-      value: 'A lot of'
-    },
-    aBunchOf: {
-      value: 'A bunch of'
-    },
-    some: {
-      value: 'Some'
-    },
-    aLowAmountOf: {
-      value: 'A low amount of'
-    },
-    aLittle: {
-      value: 'A little'
-    },
-    no: {
-      value: 'No'
-    },
-
-    // Solute Amount regions -- lowercase
-    maxAmountOfLowercase: {
-      value: 'max amount of'
-    },
-    aLotOfLowercase: {
-      value: 'a lot of'
-    },
-    aBunchOfLowercase: {
-      value: 'a bunch of'
-    },
-    someLowercase: {
-      value: 'some'
-    },
-    aLowAmountOfLowercase: {
-      value: 'a low amount of'
-    },
-    aLittleLowercase: {
-      value: 'a little'
-    },
-    noLowercase: {
-      value: 'no'
-    },
-
 
     // Solids regions
     solidsRegions: {
