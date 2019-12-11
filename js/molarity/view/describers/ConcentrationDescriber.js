@@ -131,22 +131,44 @@ define( require => {
       this.saturationStateChanged = null;
 
       // @private {number|null} - tracks the index of the last descriptive region for solids from SOLIDS_STRINGS array
-      this.lastSolidsIndex = null;
+      this.lastSolidsIndex = this.getCurrentSolidsIndex();
 
-      // @private {boolean|null} - will only be updated and accessed when the precipitateAmountProperty changes, so
+      // @private {boolean|null} - should only be updated and accessed when the precipitateAmountProperty changes, so
       // while it will be null at some points, it will only be accessed when it holds boolean values (True if precipitateAmount
       // has increased, False if it has decreased)
       this.precipitateAmountIncreased = null;
 
-      // @private {number} - tracks the last value of concentrationProperty
-      this.lastConcentrationValue = this.concentrationProperty.value;
+      // @private {boolean|null} - tracks whether the descriptive regions for the precipitateAmountProperty has changed
+      // (since region changes trigger the different descriptive text in the aria-live alerts).
+      this.solidsRegionChanged = null;
+
+      // @private {boolean|null} - should only be updated and accessed when the concentrationProperty changes, so
+      // while it will be null at some points, it will only be accessed when it holds boolean values (True if concentrationProperty
+      // has increased, False if it has decreased)
+      this.concentrationIncreased = this.concentrationProperty.value;
+
+      // @public {boolean|null} - tracks whether the descriptive regions for concentrationProperty has changed
+      // (since region changes trigger the different descriptive text in the aria-live alerts).
+      this.concentrationRegionChanged = null;
 
       // @private {Number} - tracks the last calculated concentration region index.
       this.lastConcentrationIndex = this.getCurrentConcentrationIndex();
 
+      // update fields (documented above) when concentrationProperty changes
+      this.concentrationProperty.lazyLink( ( newValue, oldValue ) => {
+        const newConcentrationIndex = concentrationToIndex( this.soluteProperty.value.saturatedConcentration,
+          this.concentrationProperty.value );
+        const previousSaturationState = oldValue > this.getCurrentSaturatedConcentration();
+        const newSaturationState = this.solution.isSaturated();
+        this.concentrationIncreased = newValue > oldValue;
+        this.concentrationRegionChanged = newConcentrationIndex !== this.lastConcentrationIndex;
+        this.lastConcentrationIndex = newConcentrationIndex;
+        this.saturationStateChanged = newSaturationState !== previousSaturationState;
+      } );
+
       // update fields (documented above) when precipitateAmountProperty changes
       this.precipitateAmountProperty.lazyLink( ( newValue, oldValue ) => {
-        const newSolidsIndex = solidsToIndex( this.precipitateAmountProperty.value, this.getCurrentSaturatedConcentration() );
+        const newSolidsIndex = this.getCurrentSolidsIndex();
         const previousSaturationState = oldValue !== 0;
         const newSaturationState = newValue !== 0;
         this.saturationStateChanged = newSaturationState !== previousSaturationState;
@@ -174,33 +196,6 @@ define( require => {
      * */
     getCurrentSolidsIndex() {
       return solidsToIndex( this.precipitateAmountProperty.value, this.getCurrentSaturatedConcentration() );
-    }
-
-    /**
-     * Determines whether the concentration has increased or decreased.
-     * @private
-     * @returns {boolean}
-     * */
-    concentrationIncreased() {
-      const oldConcentration = this.lastConcentrationValue;
-      const newConcentration = this.concentrationProperty.value;
-      this.lastConcentrationValue = newConcentration;
-      return newConcentration > oldConcentration;
-    }
-
-    /**
-     * Determines if the descriptive region has changed by comparing the old and new concentration indices. Also sets the
-     * lastConcentrationIndex property to the new index if there is a change.
-     * @public
-     * @returns {boolean} - whether or not the concentration region has changed.
-     * */
-    concentrationRegionChanged() {
-      const oldIndex = this.lastConcentrationIndex;
-      const newIndex = this.getCurrentConcentrationIndex();
-      if ( oldIndex !== newIndex ) {
-        this.lastConcentrationIndex = newIndex;
-      }
-      return oldIndex !== newIndex;
     }
 
     /**
@@ -300,7 +295,7 @@ define( require => {
       let quantitativeConcentrationString = '';
 
       // the amount of solids is only given if the region has changed.
-      if ( this.solidsRegionChanged && this.lastSolidsIndex !== 0 ) {
+      if ( this.solidsRegionChanged ) {
         withSolidsString = StringUtils.fillIn( withSolidsAlertPatternString, {
           solidAmount: this.getCurrentSolidsAmount( false )
         } );
@@ -329,7 +324,7 @@ define( require => {
       assert && assert( !this.solution.isSaturated(), 'concentration cannot change when saturated' );
 
       let moreLessString = isCapitalized ? lessCapitalizedString : lessLowercaseString;
-      if ( this.concentrationIncreased() ) {
+      if ( this.concentrationIncreased ) {
         moreLessString = isCapitalized ? moreCapitalizedString : moreLowercaseString;
       }
       return StringUtils.fillIn( concentrationChangePatternString, {
@@ -346,7 +341,7 @@ define( require => {
       assert && assert( !this.solution.isSaturated(), 'color cannot change when saturated' );
 
       return StringUtils.fillIn( colorChangePatternString, {
-        lighterDarker: this.concentrationIncreased() ? darkerString : lighterString
+        lighterDarker: this.concentrationIncreased ? darkerString : lighterString
       } );
     }
 

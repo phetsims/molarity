@@ -181,7 +181,7 @@ define( require => {
       else {
 
         // state info is appended to the alert if the descriptive region has changed for any relevant quantity.
-        const includeStateInfo = quantityRegionChanged || this.concentrationDescriber.concentrationRegionChanged();
+        const includeStateInfo = quantityRegionChanged || this.concentrationDescriber.concentrationRegionChanged;
 
         alertText = StringUtils.fillIn( qualitativeSliderAlertPatternString, {
           quantityChange: changeStrings.quantityChangeString,
