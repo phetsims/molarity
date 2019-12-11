@@ -127,7 +127,8 @@ define( require => {
 
     /**
      * Creates the substrings to describe the change in solute amount and the resulting change in solution color.
-     * This function must have the same name as its counterpart in VolumeDescriber.
+     * This function must have the same name as its counterpart in VolumeDescriber. This function should only be called
+     * as a result of the soluteAmountProperty changing (hence usage of `this.soluteAmountIncreased`.
      * @public
      * @returns {StringsFromSliderChange} - contains two strings.
      */
