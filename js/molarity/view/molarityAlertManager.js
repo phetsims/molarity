@@ -88,11 +88,11 @@ define( require => {
      */
     alertValueChanged( describer ) {
 
-      // A special alert is read out if the solution is saturated without any solids. If the solution is newly
-      // saturated or newly unsaturated, an alert is read out. The text depends on whether descriptions are
+      // A special alert is read out if the solution is at max concentration without any precipitate. If the solution
+      // is newly saturated or newly unsaturated, an alert is read out. The text depends on whether descriptions are
       // qualitative or quantitative, and if there is any solute in the beaker.
-      if ( this.concentrationDescriber.isSaturatedNoSolids() ) {
-        this.alertMaxConcentration();
+      if ( !this.solution.isSaturated() && this.solution.atMaxConcentration() ) {
+        this.alertMaxConcentrationNotSaturated();
       }
       else if ( this.concentrationDescriber.saturationStateChanged() ) {
         this.alertNewSaturation();
@@ -109,10 +109,10 @@ define( require => {
     }
 
     /**
-     * Alert when the solution is exactly at the saturation point without any solids
+     * Alert when the solution is exactly at the max concentration point without any precipitate
      * @private
      */
-    alertMaxConcentration() {
+    alertMaxConcentrationNotSaturated() {
       this.sliderUtterance.alert = StringUtils.fillIn( atMaxConcentrationAlertString, {
         concentration: this.concentrationDescriber.getCurrentConcentrationClause( true )
       } );
