@@ -435,7 +435,7 @@ define( require => {
   /**
    * Calculates which item to use from the SOLIDS_STRINGS array.
    * @param {number} currentPrecipitateAmount - in moles, see Solution.js
-   * @param {number} saturatedConcentrationForSolute
+   * @param {number} saturatedConcentrationForSolute -  the saturation point for a specific solute
    * @returns {number} - index to pull from SOLIDS_STRINGS array
    */
   const solidsToIndex = ( currentPrecipitateAmount, saturatedConcentrationForSolute ) => {
@@ -458,7 +458,7 @@ define( require => {
   /**
    * Calculates the which item to use from the CONCENTRATION_STRINGS array.
    * @param {number} currentConcentration
-   * @param {number} saturatedConcentrationForSolute - the saturation point for the specific solute that is currently selected.
+   * @param {number} saturatedConcentrationForSolute - the saturation point for a specific solute.
    * @returns {number} index to access a region from CONCENTRATION_STRINGS
    */
   const concentrationToIndex = ( currentConcentration, saturatedConcentrationForSolute ) => {
