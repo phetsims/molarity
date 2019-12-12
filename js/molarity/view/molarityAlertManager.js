@@ -97,7 +97,7 @@ define( require => {
         this.alertMaxConcentrationNotSaturated();
       }
       else if ( this.concentrationDescriber.saturationStateChanged ) {
-        this.alertNewSaturation();
+        this.alertNewlySaturated();
       }
       else if ( !this.solution.hasSolute() ) {
         this.alertNoSolute( this.useQuantitativeDescriptionsProperty );
@@ -125,7 +125,7 @@ define( require => {
      * Alert when the solution is either newly saturated or newly unsaturated.
      * @private
      */
-    alertNewSaturation() {
+    alertNewlySaturated() {
       this.saturationUtterance.alert = this.precipitateAmountDescriber.getSaturationChangedString();
       phet.joist.sim.utteranceQueue.addToFront( this.saturationUtterance );
     }
