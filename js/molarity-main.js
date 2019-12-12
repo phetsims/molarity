@@ -19,7 +19,7 @@ define( require => {
   const molarityTitleString = require( 'string!MOLARITY/molarity.title' );
 
   // constants
-  const tandem = Tandem.rootTandem;
+  const tandem = Tandem.ROOT;
 
   // help content to describe keyboard interactions
   const keyboardHelpContent = new MolarityKeyboardHelpContent();
