@@ -56,7 +56,7 @@ define( require => {
                            valuesVisibleProperty, useQuantitativeDescriptionsProperty, options ) {
 
     options = merge( {
-      tandem: Tandem.required, // {Tandem}
+      tandem: Tandem.REQUIRED, // {Tandem}
       sliderOptions: {
         trackFillEnabled: 'black',
         trackStroke: 'rgb( 200, 200, 200 )',
