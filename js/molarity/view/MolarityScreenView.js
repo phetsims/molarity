@@ -27,6 +27,7 @@ define( require => {
   const MolarityScreenSummaryNode = require( 'MOLARITY/molarity/view/MolarityScreenSummaryNode' );
   const Node = require( 'SCENERY/nodes/Node' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  const PrecipitateAmountDescriber = require( 'MOLARITY/molarity/view/describers/PrecipitateAmountDescriber' );
   const PrecipitateNode = require( 'MOLARITY/molarity/view/PrecipitateNode' );
   const PrecipitateSoundGenerator = require( 'MOLARITY/molarity/view/PrecipitateSoundGenerator' );
   const ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
@@ -94,12 +95,12 @@ define( require => {
 
     // a11y - initializes describers and alert manager to generate and update all PDOM and alert content.
     const concentrationDescriber = new ConcentrationDescriber( model.solution, useQuantitativeDescriptionsProperty );
-    const soluteDescriber = new SoluteDescriber( model.solution, concentrationDescriber );
-    const volumeDescriber = new VolumeDescriber( model.solution.volumeProperty,
-      useQuantitativeDescriptionsProperty );
+    const precipitateAmountDescriber = new PrecipitateAmountDescriber( model.solution, concentrationDescriber, useQuantitativeDescriptionsProperty );
+    const soluteDescriber = new SoluteDescriber( model.solution, concentrationDescriber, precipitateAmountDescriber );
+    const volumeDescriber = new VolumeDescriber( model.solution.volumeProperty, useQuantitativeDescriptionsProperty );
     const soluteAmountDescriber = new SoluteAmountDescriber( model.solution.soluteAmountProperty, soluteDescriber, useQuantitativeDescriptionsProperty );
-    molarityAlertManager.initialize( model.solution, useQuantitativeDescriptionsProperty,
-      concentrationDescriber, soluteAmountDescriber, volumeDescriber, soluteDescriber, valuesVisibleProperty );
+    molarityAlertManager.initialize( model.solution, useQuantitativeDescriptionsProperty, concentrationDescriber,
+      precipitateAmountDescriber, soluteAmountDescriber, volumeDescriber, soluteDescriber, valuesVisibleProperty );
 
     ScreenView.call( this, {
       layoutBounds: new Bounds2( 0, 0, 1100, 700 ),
@@ -111,7 +112,7 @@ define( require => {
     // beaker, with solution and precipitate inside of it
     const beakerNode = new BeakerNode( model.solution, MolarityConstants.SOLUTION_VOLUME_RANGE.max, valuesVisibleProperty,
       tandem.createTandem( 'beakerNode' ), soluteDescriber, soluteAmountDescriber, volumeDescriber,
-      concentrationDescriber, useQuantitativeDescriptionsProperty );
+      concentrationDescriber, precipitateAmountDescriber, useQuantitativeDescriptionsProperty );
 
     const cylinderSize = beakerNode.getCylinderSize();
     const solutionNode = new SolutionNode( cylinderSize, beakerNode.getCylinderEndHeight(), model.solution,

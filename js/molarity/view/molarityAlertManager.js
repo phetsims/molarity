@@ -55,18 +55,20 @@ define( require => {
      * @param {Property.<boolean>} useQuantitativeDescriptionsProperty - whether or not to use qualitative or
      *                                                                   quantitative descriptions.
      * @param {ConcentrationDescriber} concentrationDescriber
+     * @param {PrecipitateAmountDescriber} precipitateAmountDescriber
      * @param {SoluteAmountDescriber} soluteAmountDescriber
      * @param {VolumeDescriber} volumeDescriber
      * @param {SoluteDescriber} soluteDescriber
      * @param {Property.<boolean>} valuesVisibleProperty - toggles display for whether the "solution values" checkbox is
      *                                                     checked.
      */
-    initialize( solution, useQuantitativeDescriptionsProperty, concentrationDescriber, soluteAmountDescriber,
-                volumeDescriber, soluteDescriber, valuesVisibleProperty ) {
+    initialize( solution, useQuantitativeDescriptionsProperty, concentrationDescriber, precipitateAmountDescriber,
+                soluteAmountDescriber, volumeDescriber, soluteDescriber, valuesVisibleProperty ) {
       assert && assert( !this.initialized, 'molarityAlertManager has already been initialized' );
       this.initialized = true;
 
       this.concentrationDescriber = concentrationDescriber;
+      this.precipitateAmountDescriber = precipitateAmountDescriber;
       this.soluteDescriber = soluteDescriber;
       this.solution = solution;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
@@ -124,7 +126,7 @@ define( require => {
      * @private
      */
     alertNewSaturation() {
-      this.saturationUtterance.alert = this.concentrationDescriber.getSaturationChangedString();
+      this.saturationUtterance.alert = this.precipitateAmountDescriber.getSaturationChangedString();
       phet.joist.sim.utteranceQueue.addToFront( this.saturationUtterance );
     }
 
@@ -174,15 +176,14 @@ define( require => {
       if ( this.solution.isSaturated() ) {
         alertText = StringUtils.fillIn( qualitativeSaturatedValueTextPatternString, {
           propertyAmountChange: changeStrings.quantityChangeString,
-          solidsChange: this.concentrationDescriber.getSolidsChangeString(),
-          stillSaturatedClause: this.concentrationDescriber.getStillSaturatedClause()
+          solidsChange: this.precipitateAmountDescriber.getSolidsChangeString(),
+          stillSaturatedClause: this.precipitateAmountDescriber.getStillSaturatedClause()
         } );
       }
       else {
 
         // state info is appended to the alert if the descriptive region has changed for any relevant quantity.
         const includeStateInfo = quantityRegionChanged || this.concentrationDescriber.concentrationRegionChanged;
-
         alertText = StringUtils.fillIn( qualitativeSliderAlertPatternString, {
           quantityChange: changeStrings.quantityChangeString,
           colorChange: changeStrings.colorChangeString,
@@ -203,8 +204,8 @@ define( require => {
       let alertText = '';
       if ( this.solution.isSaturated() ) {
         alertText = StringUtils.fillIn( quantitativeSaturatedValueTextPatternString, {
-          solidsChange: this.concentrationDescriber.getSolidsChangeString( true ),
-          stillSaturatedClause: this.concentrationDescriber.getStillSaturatedClause()
+          solidsChange: this.precipitateAmountDescriber.getSolidsChangeString( true ),
+          stillSaturatedClause: this.precipitateAmountDescriber.getStillSaturatedClause()
         } );
       }
       else {

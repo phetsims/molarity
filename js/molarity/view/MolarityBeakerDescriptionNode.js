@@ -33,11 +33,12 @@ define( require => {
      * @param {Property.<boolean>} useQuantitativeDescriptionsProperty
      * @param {SoluteDescriber} soluteDescriber
      * @param {ConcentrationDescriber} concentrationDescriber
+     * @param {PrecipitateAmountDescriber} precipitateAmountDescriber
      * @param {SoluteAmountDescriber} soluteAmountDescriber
      * @param {VolumeDescriber} volumeDescriber
      */
     constructor( solution, useQuantitativeDescriptionsProperty, soluteDescriber, concentrationDescriber,
-                 soluteAmountDescriber, volumeDescriber ) {
+                 precipitateAmountDescriber, soluteAmountDescriber, volumeDescriber ) {
 
       super( {
         tagName: 'ul'
@@ -47,6 +48,7 @@ define( require => {
       this.solution = solution;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
       this.concentrationDescriber = concentrationDescriber;
+      this.precipitateAmountDescriber = precipitateAmountDescriber;
       this.soluteDescriber = soluteDescriber;
       this.soluteAmountDescriber = soluteAmountDescriber;
       this.volumeDescriber = volumeDescriber;
@@ -125,7 +127,7 @@ define( require => {
      */
     updateSaturationSummary() {
       this.saturationSummaryContainer.children = this.solution.isSaturated() ? [ this.saturationSummaryItem ] : [];
-      this.saturationSummaryItem.innerContent = this.concentrationDescriber.getBeakerSaturationString();
+      this.saturationSummaryItem.innerContent = this.precipitateAmountDescriber.getBeakerSaturationString();
     }
 
     /**

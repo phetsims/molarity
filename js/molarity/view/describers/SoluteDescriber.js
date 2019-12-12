@@ -31,12 +31,14 @@ define( require => {
     /**
      * @param {Solution} solution
      * @param {ConcentrationDescriber} concentrationDescriber
+     * @param {PrecipitateAmountDescriber} precipitateAmountDescriber
      */
-    constructor( solution, concentrationDescriber ) {
+    constructor( solution, concentrationDescriber, precipitateAmountDescriber ) {
 
       // @private
       this.solution = solution;
       this.concentrationDescriber = concentrationDescriber;
+      this.precipitateAmountDescriber = precipitateAmountDescriber;
     }
 
     /**
@@ -111,7 +113,7 @@ define( require => {
 
       return StringUtils.fillIn( soluteChangedString, {
         color: this.getCurrentColor( true ),
-        solids: this.concentrationDescriber.getCurrentSolidsAmount( false ),
+        solids: this.precipitateAmountDescriber.getCurrentSolidsAmount( false ),
         concentrationClause: concentrationClause
       } );
     }
