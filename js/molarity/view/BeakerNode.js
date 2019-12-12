@@ -54,12 +54,13 @@ define( require => {
    * @param {SoluteDescriber} soluteDescriber - for interactive descriptions
    * @param {SoluteAmountDescriber} soluteAmountDescriber - for interactive descriptions
    * @param {VolumeDescriber} volumeDescriber - for interactive descriptions
-   * @param {concentrationDescriber} concentrationDescriber - for interactive descriptions
+   * @param {ConcentrationDescriber} concentrationDescriber - for interactive descriptions
+   * @param {PrecipitateAmountDescriber} precipitateAmountDescriber
    * @param {Property.<boolean>} useQuantitativeDescriptionsProperty - for interactive descriptions
    * @constructor
    */
   function BeakerNode( solution, maxVolume, valuesVisibleProperty, tandem, soluteDescriber, soluteAmountDescriber,
-                       volumeDescriber, concentrationDescriber, useQuantitativeDescriptionsProperty ) {
+                       volumeDescriber, concentrationDescriber, precipitateAmountDescriber, useQuantitativeDescriptionsProperty ) {
 
     Node.call( this, {
       pickable: false,
@@ -172,7 +173,7 @@ define( require => {
 
     // a11y - adds the description node that holds the PDOM summary of the beaker.
     this.addChild( new MolarityBeakerDescriptionNode( solution, useQuantitativeDescriptionsProperty, soluteDescriber,
-      concentrationDescriber, soluteAmountDescriber, volumeDescriber ) );
+      concentrationDescriber, precipitateAmountDescriber, soluteAmountDescriber, volumeDescriber ) );
 
   }
 

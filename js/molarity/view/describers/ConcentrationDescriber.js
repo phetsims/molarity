@@ -15,27 +15,18 @@ define( require => {
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const Util = require( 'DOT/Util' );
-  const Solution = require( 'MOLARITY/molarity/model/Solution' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
 
   // a11y strings
-  const atMaxConcentrationString = MolarityA11yStrings.atMaxConcentration.value;
   const beakerQualitativeConcentrationPatternString = MolarityA11yStrings.beakerQualitativeConcentrationPattern.value;
-  const beakerSaturationPatternString = MolarityA11yStrings.beakerSaturationPattern.value;
   const colorChangePatternString = MolarityA11yStrings.colorChangePattern.value;
   const concentrationAndUnitString = MolarityA11yStrings.concentrationAndUnit.value;
   const concentrationChangePatternString = MolarityA11yStrings.concentrationChangePattern.value;
   const concentrationRangePatternString = MolarityA11yStrings.concentrationRangePattern.value;
   const qualitativeConcentrationStateClausePatternString = MolarityA11yStrings.qualitativeConcentrationStateClausePattern.value;
   const quantitativeConcentrationStatePatternString = MolarityA11yStrings.quantitativeConcentrationStatePattern.value;
-  const saturationLostQualitativeAlertPatternString = MolarityA11yStrings.saturationLostQualitativeAlertPattern.value;
-  const saturationLostQuantitativeAlertPatternString = MolarityA11yStrings.saturationLostQuantitativeAlertPattern.value;
-  const saturationReachedAlertString = MolarityA11yStrings.saturationReachedAlert.value;
-  const stillSaturatedAlertPatternString = MolarityA11yStrings.stillSaturatedAlertPattern.value;
-  const withSolidsAlertPatternString = MolarityA11yStrings.withSolidsAlertPattern.value;
 
   // Concentration region strings
-  const solidsChangePatternString = MolarityA11yStrings.solidsChangePattern.value;
   const zeroConcentrationString = MolarityA11yStrings.zeroConcentration.value;
   const lowConcentrationString = MolarityA11yStrings.lowConcentration.value;
   const slightlyConcentratedString = MolarityA11yStrings.slightlyConcentrated.value;
@@ -52,20 +43,6 @@ define( require => {
   const isVeryConcentratedString = MolarityA11yStrings.isVeryConcentrated.value;
   const isHighlyConcentratedString = MolarityA11yStrings.isHighlyConcentrated.value;
   const hasMaxConcentrationString = MolarityA11yStrings.hasMaxConcentration.value;
-
-  // Solids capitalized region strings
-  const aLotOfSolidsString = MolarityA11yStrings.solidsRegions.capitalized.aLotOf.value;
-  const aBunchOfSolidsString = MolarityA11yStrings.solidsRegions.capitalized.aBunchOf.value;
-  const someSolidsString = MolarityA11yStrings.solidsRegions.capitalized.some.value;
-  const aCoupleOfSolidsString = MolarityA11yStrings.solidsRegions.capitalized.aCoupleOf.value;
-  const aFewSolidsString = MolarityA11yStrings.solidsRegions.capitalized.aFew.value;
-
-  // Solids lowercase region strings
-  const aLotOfSolidsLowercaseString = MolarityA11yStrings.solidsRegions.lowercase.aLotOf.value;
-  const aBunchOfSolidsLowercaseString = MolarityA11yStrings.solidsRegions.lowercase.aBunchOf.value;
-  const someSolidsLowercaseString = MolarityA11yStrings.solidsRegions.lowercase.some.value;
-  const aCoupleOfSolidsLowercaseString = MolarityA11yStrings.solidsRegions.lowercase.aCoupleOf.value;
-  const aFewSolidsLowercaseString = MolarityA11yStrings.solidsRegions.lowercase.aFew.value;
 
   // Change strings
   const lessCapitalizedString = MolarityA11yStrings.less.capitalized.value;
@@ -96,21 +73,6 @@ define( require => {
     maxConcentrationString
   ];
 
-  const SOLIDS_STRINGS = [
-    aCoupleOfSolidsString,
-    aFewSolidsString,
-    someSolidsString,
-    aBunchOfSolidsString,
-    aLotOfSolidsString
-  ];
-  const SOLIDS_STRINGS_LOWERCASE = [
-    aCoupleOfSolidsLowercaseString,
-    aFewSolidsLowercaseString,
-    someSolidsLowercaseString,
-    aBunchOfSolidsLowercaseString,
-    aLotOfSolidsLowercaseString
-  ];
-
   class ConcentrationDescriber {
 
     /**
@@ -129,18 +91,6 @@ define( require => {
       // @public {boolean|null} - tracks whether the solution has most recently gone from saturated to unsaturated or
       // vice-versa.
       this.saturationStateChanged = null;
-
-      // @private {number|null} - tracks the index of the last descriptive region for solids from SOLIDS_STRINGS array
-      this.lastSolidsIndex = this.getCurrentSolidsIndex();
-
-      // @private {boolean|null} - should only be updated and accessed when the precipitateAmountProperty changes, so
-      // while it will be null at some points, it will only be accessed when it holds boolean values (True if precipitateAmount
-      // has increased, False if it has decreased)
-      this.precipitateAmountIncreased = null;
-
-      // @private {boolean|null} - tracks whether the descriptive regions for the precipitateAmountProperty has changed
-      // (since region changes trigger the different descriptive text in the aria-live alerts).
-      this.solidsRegionChanged = null;
 
       // @private {boolean|null} - should only be updated and accessed when the concentrationProperty changes, so
       // while it will be null at some points, it will only be accessed when it holds boolean values (True if concentrationProperty
@@ -166,15 +116,13 @@ define( require => {
         this.saturationStateChanged = newSaturationState !== previousSaturationState;
       } );
 
-      // update fields (documented above) when precipitateAmountProperty changes
+      // update saturationStateChanged field when precipitateAmountProperty changes. This is necessary because
+      // concentrationProperty stops changing once the solution is saturated, which makes the detection of a change in
+      // saturation not possible without also listening to changes in precipitateAmountProperty.
       this.precipitateAmountProperty.lazyLink( ( newValue, oldValue ) => {
-        const newSolidsIndex = this.getCurrentSolidsIndex();
         const previousSaturationState = oldValue !== 0;
         const newSaturationState = newValue !== 0;
         this.saturationStateChanged = newSaturationState !== previousSaturationState;
-        this.precipitateAmountIncreased = newValue > oldValue;
-        this.solidsRegionChanged = newSolidsIndex !== this.lastSolidsIndex;
-        this.lastSolidsIndex = newSolidsIndex;
       } );
     }
 
@@ -186,16 +134,6 @@ define( require => {
      * */
     getCurrentConcentrationIndex() {
       return concentrationToIndex( this.concentrationProperty.value, this.soluteProperty.value.saturatedConcentration );
-    }
-
-    /**
-     * Calculates the index of the current solids region using the precipitateAmountProperty and the saturated concentration
-     * level of the currently selected solute
-     * @public
-     * @returns {Number} - index of the current solids description region
-     * */
-    getCurrentSolidsIndex() {
-      return solidsToIndex( this.precipitateAmountProperty.value, this.getCurrentSaturatedConcentration() );
     }
 
     /**
@@ -249,28 +187,6 @@ define( require => {
     }
 
     /**
-     * Gets the qualitative description of the amount of solids in the beaker.
-     * @private
-     * @param [isCapitalized] {boolean}
-     * @returns {string} - example: "a bunch"
-     */
-    getCurrentSolidsAmount( isCapitalized = true ) {
-      const solidsIndex = this.getCurrentSolidsIndex();
-      return isCapitalized ? SOLIDS_STRINGS[ solidsIndex ] : SOLIDS_STRINGS_LOWERCASE[ solidsIndex ];
-    }
-
-    /**
-     * Creates a string that describes the solids in the beaker
-     * @public
-     * @returns {string} - e.g. "is saturated with a bunch of solids"
-     */
-    getBeakerSaturationString() {
-      return StringUtils.fillIn( beakerSaturationPatternString, {
-        solids: this.getCurrentSolidsAmount( false )
-      } );
-    }
-
-    /**
      * Creates a string that describes the concentration of in the beaker
      * {Property.<boolean>} useQuantitativeDescriptionsProperty
      * @public
@@ -282,30 +198,6 @@ define( require => {
                                   beakerQualitativeConcentrationPatternString;
       return StringUtils.fillIn( concentrationString, {
         concentration: this.getCurrentConcentrationClause()
-      } );
-    }
-
-    /**
-     * Fills in the state info if region has changed and the solution is saturated.
-     * @public
-     * @returns {string} - example: "still saturated with a bunch of solids"
-     */
-    getStillSaturatedClause() {
-      const maxConcentrationString = StringUtils.fillIn( atMaxConcentrationString, {
-        concentration: this.getCurrentConcentrationClause( true )
-      } );
-      let withSolidsString = '';
-
-      // the amount of solids is only given if the region has changed.
-      if ( this.solidsRegionChanged ) {
-        withSolidsString = StringUtils.fillIn( withSolidsAlertPatternString, {
-          solidAmount: this.getCurrentSolidsAmount( false )
-        } );
-      }
-
-      return StringUtils.fillIn( stillSaturatedAlertPatternString, {
-        withSolids: withSolidsString,
-        maxConcentration: maxConcentrationString
       } );
     }
 
@@ -341,43 +233,6 @@ define( require => {
     }
 
     /**
-     * Creates a substring to describe the change in the amount of solids
-     * @param [isCapitalized] {boolean}
-     * @public
-     * @returns {string} - example: "more solids"
-     */
-    getSolidsChangeString( isCapitalized = false ) {
-      assert && assert( this.solution.isSaturated(), 'precipitateAmountProperty should be greater than 0' );
-
-      let moreLessString = isCapitalized ? lessCapitalizedString : lessLowercaseString;
-      if ( this.precipitateAmountIncreased ) {
-        moreLessString = isCapitalized ? moreCapitalizedString : moreLowercaseString;
-      }
-      return StringUtils.fillIn( solidsChangePatternString, {
-        moreLess: moreLessString
-      } );
-    }
-
-    /**
-     * Creates the string to be read out when the solution is either newly saturated or newly unsaturated.
-     * @public
-     * @returns {string}
-     * */
-    getSaturationChangedString() {
-      const saturationLostAlertString = this.useQuantitativeDescriptionsProperty.value ?
-                                        saturationLostQuantitativeAlertPatternString :
-                                        saturationLostQualitativeAlertPatternString;
-      return this.solution.isSaturated() ?
-             StringUtils.fillIn( saturationReachedAlertString, {
-               solids: this.getCurrentSolidsAmount( false ),
-               concentration: this.getCurrentConcentrationClause( true )
-             } ) :
-             StringUtils.fillIn( saturationLostAlertString, {
-               concentration: this.getCurrentConcentrationClause( true )
-             } );
-    }
-
-    /**
      * Creates the qualitative substrings to describe the concentration "state" of the solution.
      * @public
      * @returns {string} - examples: "Concentration 0.600 Molar" or "Solution very concentrated".
@@ -389,29 +244,6 @@ define( require => {
       } );
     }
   }
-
-  /**
-   * Calculates which item to use from the SOLIDS_STRINGS array.
-   * @param {number} currentPrecipitateAmount - in moles, see Solution.js
-   * @param {number} saturatedConcentrationForSolute -  the saturation point for a specific solute
-   * @returns {number} - index to pull from SOLIDS_STRINGS array
-   */
-  const solidsToIndex = ( currentPrecipitateAmount, saturatedConcentrationForSolute ) => {
-
-    // maximum precipitates possible for a given solute, which is the solute amount it takes to saturate at min volume.
-    const maxPrecipitateAmount = Solution.computePrecipitateAmount( MolarityConstants.SOLUTION_VOLUME_RANGE.min,
-      MolarityConstants.SOLUTE_AMOUNT_RANGE.max, saturatedConcentrationForSolute );
-
-    const numberOfIncrements = SOLIDS_STRINGS.length;
-    const scaleIncrement = maxPrecipitateAmount / numberOfIncrements;
-
-    for ( let i = 0; i < numberOfIncrements - 1; i++ ) {
-      if ( currentPrecipitateAmount <= ( i + 1 ) * scaleIncrement ) {
-        return i;
-      }
-    }
-    return SOLIDS_STRINGS.length - 1;
-  };
 
   /**
    * Calculates the which item to use from the CONCENTRATION_STRINGS array.
