@@ -172,7 +172,6 @@ define( require => {
      */
     getPrecipitateAmountChangeString( isCapitalized = false ) {
       assert && assert( this.solution.isSaturated(), 'precipitateAmountProperty should be greater than 0' );
-
       let moreLessString = isCapitalized ? lessCapitalizedString : lessLowercaseString;
       if ( this.precipitateAmountIncreased ) {
         moreLessString = isCapitalized ? moreCapitalizedString : moreLowercaseString;
@@ -188,6 +187,7 @@ define( require => {
      * @returns {string}
      * */
     getSaturationChangedString() {
+      assert && assert( this.concentrationDescriber.saturationValueChanged, 'saturation state has not changed' );
       const saturationLostAlertString = this.useQuantitativeDescriptionsProperty.value ?
                                         saturationLostQuantitativeAlertPatternString :
                                         saturationLostQualitativeAlertPatternString;
