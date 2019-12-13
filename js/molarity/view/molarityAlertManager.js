@@ -132,8 +132,12 @@ define( require => {
      * @private
      */
     alertNewlySaturated() {
+      const utteranceQueue = phet.joist.sim.utteranceQueue;
+      if( utteranceQueue.hasUtterance(this.sliderUtterance)){
+        utteranceQueue.clear();
+      }
       this.saturationUtterance.alert = this.precipitateAmountDescriber.getSaturationChangedString();
-      phet.joist.sim.utteranceQueue.addToFront( this.saturationUtterance );
+      utteranceQueue.addToFront( this.saturationUtterance );
     }
 
     /**
