@@ -48,7 +48,7 @@ define( require => {
   const darkerString = MolarityA11yStrings.darker.value;
 
   // constants
-  const SOLUTE_AMOUNT_STRINGS = [
+  const SOLUTE_AMOUNT_STRINGS_CAPITALIZED = [
     noCapitalizedString,
     aLittleCapitalizedString,
     aLowAmountOfCapitalizedString,
@@ -82,7 +82,7 @@ define( require => {
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
 
       // @private
-      // {number} - the index of the descriptive region from SOLUTE_AMOUNT_STRINGS array.
+      // {number} - the index of the descriptive region from SOLUTE_AMOUNT_STRINGS arrays.
       this.currentRegion = soluteAmountToIndex( this.soluteAmountProperty.value );
 
       // @private
@@ -163,7 +163,7 @@ define( require => {
         } );
       }
       else {
-        return isCapitalized ? SOLUTE_AMOUNT_STRINGS[ soluteAmountToIndex( this.soluteAmountProperty.value ) ] :
+        return isCapitalized ? SOLUTE_AMOUNT_STRINGS_CAPITALIZED[ soluteAmountToIndex( this.soluteAmountProperty.value ) ] :
                SOLUTE_AMOUNT_STRINGS_LOWERCASE[ soluteAmountToIndex( this.soluteAmountProperty.value ) ];
       }
     }
@@ -185,10 +185,10 @@ define( require => {
 
 
   /**
-   * Calculates which item to use from the SOLUTE_AMOUNT_STRINGS array. Region cutoff numbers are based on keypress
+   * Calculates which item to use from the SOLUTE_AMOUNT_STRINGS arrays. Region cutoff numbers are based on keypress
    * balances, which are documented here: https://github.com/phetsims/molarity/issues/128
    * @param {number} soluteAmount
-   * @returns {number} - index (integer) to pull from SOLUTE_AMOUNT_STRINGS array.
+   * @returns {number} - index (integer) to pull from SOLUTE_AMOUNT_STRINGS arrays.
    */
   const soluteAmountToIndex = soluteAmount => {
 

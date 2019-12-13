@@ -187,7 +187,7 @@ define( require => {
 
     /**
      * Gets the saturated concentration level of the currently selected solute.
-     * @private
+     * @public
      * @returns {number}
      */
     getCurrentSaturatedConcentration() {

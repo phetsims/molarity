@@ -48,7 +48,7 @@ define( require => {
   const moreLowercaseString = MolarityA11yStrings.more.lowercase.value;
 
   // constants
-  const SOLIDS_STRINGS = [
+  const SOLIDS_STRINGS_CAPITALIZED = [
     aCoupleOfSolidsCapitalizedString,
     aFewSolidsCapitalizedString,
     someSolidsCapitalizedString,
@@ -120,7 +120,7 @@ define( require => {
      */
     getCurrentSolidsAmount( isCapitalized = false ) {
       const solidsIndex = this.getCurrentSolidsIndex();
-      return isCapitalized ? SOLIDS_STRINGS[ solidsIndex ] : SOLIDS_STRINGS_LOWERCASE[ solidsIndex ];
+      return isCapitalized ? SOLIDS_STRINGS_CAPITALIZED[ solidsIndex ] : SOLIDS_STRINGS_LOWERCASE[ solidsIndex ];
     }
 
     /**
@@ -198,10 +198,10 @@ define( require => {
   }
 
   /**
-   * Calculates which item to use from the SOLIDS_STRINGS array.
+   * Calculates which item to use from the SOLIDS_STRINGS arrays.
    * @param {number} currentPrecipitateAmount - in moles, see Solution.js
    * @param {number} saturatedConcentrationForSolute -  the saturation point for a specific solute
-   * @returns {number} - index to pull from SOLIDS_STRINGS array
+   * @returns {number} - index to pull from SOLIDS_STRINGS arrays
    */
   const solidsToIndex = ( currentPrecipitateAmount, saturatedConcentrationForSolute ) => {
 
@@ -209,7 +209,7 @@ define( require => {
     const maxPrecipitateAmount = Solution.computePrecipitateAmount( MolarityConstants.SOLUTION_VOLUME_RANGE.min,
       MolarityConstants.SOLUTE_AMOUNT_RANGE.max, saturatedConcentrationForSolute );
 
-    const numberOfIncrements = SOLIDS_STRINGS.length;
+    const numberOfIncrements = SOLIDS_STRINGS_CAPITALIZED.length;
     const scaleIncrement = maxPrecipitateAmount / numberOfIncrements;
 
     for ( let i = 0; i < numberOfIncrements - 1; i++ ) {
@@ -217,7 +217,7 @@ define( require => {
         return i;
       }
     }
-    return SOLIDS_STRINGS.length - 1;
+    return SOLIDS_STRINGS_CAPITALIZED.length - 1;
   };
 
   return molarity.register( 'PrecipitateAmountDescriber', PrecipitateAmountDescriber );
