@@ -73,8 +73,8 @@ define( require => {
       this.solution = solution;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
 
-      solution.soluteAmountProperty.lazyLink( () => this.alertValueChanged( soluteAmountDescriber ) );
-      solution.volumeProperty.lazyLink( () => this.alertValueChanged( volumeDescriber ) );
+      solution.soluteAmountProperty.lazyLink( () => this.alertSolutionQuantityChanged( soluteAmountDescriber ) );
+      solution.volumeProperty.lazyLink( () => this.alertSolutionQuantityChanged( volumeDescriber ) );
 
       // An alert is read out when the solute is changed.
       solution.soluteProperty.lazyLink( () => this.alertSoluteChanged() );
@@ -88,23 +88,29 @@ define( require => {
      * @param {{getStringsFromSliderChange:function():StringsFromSliderChange, getRegionChanged:function():boolean}} describer
      * @private
      */
-    alertValueChanged( describer ) {
+    alertSolutionQuantityChanged( describer ) {
 
-      // A special alert is read out if the solution is at max concentration without any precipitate. If the solution
-      // is newly saturated or newly unsaturated, an alert is read out. The text depends on whether descriptions are
-      // qualitative or quantitative, and if there is any solute in the beaker.
+      // A special alert is read out if the solution is at max concentration without any precipitate.
       if ( !this.solution.isSaturated() && this.solution.atMaxConcentration() ) {
         this.alertMaxConcentrationNotSaturated();
       }
+
+      // alert when the solution has just become saturated, or has just become unsaturated.
       else if ( this.concentrationDescriber.saturationStateChanged ) {
         this.alertNewlySaturated();
       }
+
+      // alert when there is no solute in the solution (so the solution is just water)
       else if ( !this.solution.hasSolute() ) {
         this.alertNoSolute( this.useQuantitativeDescriptionsProperty );
       }
+
+      // quantitative alerts (when the 'solution values' checkbox is checked)
       else if ( this.useQuantitativeDescriptionsProperty.value ) {
         this.alertSliderQuantitative();
       }
+
+      // qualitative alerts (when the 'solution values' checkbox is unchecked)
       else {
         this.alertSliderQualitative( describer.getStringsFromSliderChange(), describer.getRegionChanged() );
       }
