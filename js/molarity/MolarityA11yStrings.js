@@ -248,47 +248,54 @@ define( require => {
       }
     },
 
-    // Active concentration regions
-    hasLowConcentration: {
-      value: 'has low concentration'
-    },
-    isSlightlyConcentrated: {
-      value: 'is slightly concentrated'
-    },
-    isNotVeryConcentrated: {
-      value: 'is not very concentrated'
-    },
-    isVeryConcentrated: {
-      value: 'is very concentrated'
-    },
-    isHighlyConcentrated: {
-      value: 'is highly concentrated'
-    },
-    hasMaxConcentration: {
-      value: 'has max concentration'
-    },
-
     // Concentration regions
-    zeroConcentration: {
-      value: 'zero concentration'
-    },
-    lowConcentration: {
-      value: 'low concentration'
-    },
-    slightlyConcentrated: {
-      value: 'slightly concentrated'
-    },
-    notVeryConcentrated: {
-      value: 'not very concentrated'
-    },
-    veryConcentrated: {
-      value: 'very concentrated'
-    },
-    highlyConcentrated: {
-      value: 'highly concentrated'
-    },
-    maxConcentration: {
-      value: 'max concentration'
+    concentrationRegions: {
+      active: {
+        hasZeroConcentration: {
+          value: 'has zero concentration'
+        },
+        hasLowConcentration: {
+          value: 'has low concentration'
+        },
+        isSlightlyConcentrated: {
+          value: 'is slightly concentrated'
+        },
+        isNotVeryConcentrated: {
+          value: 'is not very concentrated'
+        },
+        isVeryConcentrated: {
+          value: 'is very concentrated'
+        },
+        isHighlyConcentrated: {
+          value: 'is highly concentrated'
+        },
+        hasMaxConcentration: {
+          value: 'has max concentration'
+        }
+      },
+      passive: {
+        zeroConcentration: {
+          value: 'zero concentration'
+        },
+        lowConcentration: {
+          value: 'low concentration'
+        },
+        slightlyConcentrated: {
+          value: 'slightly concentrated'
+        },
+        notVeryConcentrated: {
+          value: 'not very concentrated'
+        },
+        veryConcentrated: {
+          value: 'very concentrated'
+        },
+        highlyConcentrated: {
+          value: 'highly concentrated'
+        },
+        maxConcentration: {
+          value: 'max concentration'
+        }
+      }
     },
 
     // saturation states

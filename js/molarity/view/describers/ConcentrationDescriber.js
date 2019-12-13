@@ -27,22 +27,22 @@ define( require => {
   const quantitativeConcentrationStatePatternString = MolarityA11yStrings.quantitativeConcentrationStatePattern.value;
 
   // Concentration region strings
-  const zeroConcentrationString = MolarityA11yStrings.zeroConcentration.value;
-  const lowConcentrationString = MolarityA11yStrings.lowConcentration.value;
-  const slightlyConcentratedString = MolarityA11yStrings.slightlyConcentrated.value;
-  const notVeryConcentratedString = MolarityA11yStrings.notVeryConcentrated.value;
-  const veryConcentratedString = MolarityA11yStrings.veryConcentrated.value;
-  const highlyConcentratedString = MolarityA11yStrings.highlyConcentrated.value;
-  const maxConcentrationString = MolarityA11yStrings.maxConcentration.value;
+  const zeroConcentrationString = MolarityA11yStrings.concentrationRegions.passive.zeroConcentration.value;
+  const lowConcentrationString = MolarityA11yStrings.concentrationRegions.passive.lowConcentration.value;
+  const slightlyConcentratedString = MolarityA11yStrings.concentrationRegions.passive.slightlyConcentrated.value;
+  const notVeryConcentratedString = MolarityA11yStrings.concentrationRegions.passive.notVeryConcentrated.value;
+  const veryConcentratedString = MolarityA11yStrings.concentrationRegions.passive.veryConcentrated.value;
+  const highlyConcentratedString = MolarityA11yStrings.concentrationRegions.passive.highlyConcentrated.value;
+  const maxConcentrationString = MolarityA11yStrings.concentrationRegions.passive.maxConcentration.value;
 
   // Concentration active region strings
-  const hasZeroConcentrationString = MolarityA11yStrings.hasZeroConcentration.value;
-  const hasLowConcentrationString = MolarityA11yStrings.hasLowConcentration.value;
-  const isSlightlyConcentratedString = MolarityA11yStrings.isSlightlyConcentrated.value;
-  const isNotVeryConcentratedString = MolarityA11yStrings.isNotVeryConcentrated.value;
-  const isVeryConcentratedString = MolarityA11yStrings.isVeryConcentrated.value;
-  const isHighlyConcentratedString = MolarityA11yStrings.isHighlyConcentrated.value;
-  const hasMaxConcentrationString = MolarityA11yStrings.hasMaxConcentration.value;
+  const hasZeroConcentrationString = MolarityA11yStrings.concentrationRegions.active.hasZeroConcentration.value;
+  const hasLowConcentrationString = MolarityA11yStrings.concentrationRegions.active.hasLowConcentration.value;
+  const isSlightlyConcentratedString = MolarityA11yStrings.concentrationRegions.active.isSlightlyConcentrated.value;
+  const isNotVeryConcentratedString = MolarityA11yStrings.concentrationRegions.active.isNotVeryConcentrated.value;
+  const isVeryConcentratedString = MolarityA11yStrings.concentrationRegions.active.isVeryConcentrated.value;
+  const isHighlyConcentratedString = MolarityA11yStrings.concentrationRegions.active.isHighlyConcentrated.value;
+  const hasMaxConcentrationString = MolarityA11yStrings.concentrationRegions.active.hasMaxConcentration.value;
 
   // Change strings
   const lessCapitalizedString = MolarityA11yStrings.less.capitalized.value;
@@ -215,7 +215,7 @@ define( require => {
      * @public
      * @returns {string} - example: "more concentrated"
      */
-    getConcentrationChangeString( isCapitalized = false ) {
+    getConcentrationChangeString( isCapitalized = true ) {
       assert && assert( !this.solution.isSaturated(), 'concentration cannot change when saturated' );
 
       let moreLessString = isCapitalized ? lessCapitalizedString : lessLowercaseString;

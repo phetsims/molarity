@@ -28,11 +28,11 @@ define( require => {
   const solidsChangePatternString = MolarityA11yStrings.solidsChangePattern.value;
 
   // Solids capitalized region strings
-  const aLotOfSolidsString = MolarityA11yStrings.solidsRegions.capitalized.aLotOf.value;
-  const aBunchOfSolidsString = MolarityA11yStrings.solidsRegions.capitalized.aBunchOf.value;
-  const someSolidsString = MolarityA11yStrings.solidsRegions.capitalized.some.value;
-  const aCoupleOfSolidsString = MolarityA11yStrings.solidsRegions.capitalized.aCoupleOf.value;
-  const aFewSolidsString = MolarityA11yStrings.solidsRegions.capitalized.aFew.value;
+  const aLotOfSolidsCapitalizedString = MolarityA11yStrings.solidsRegions.capitalized.aLotOf.value;
+  const aBunchOfSolidsCapitalizedString = MolarityA11yStrings.solidsRegions.capitalized.aBunchOf.value;
+  const someSolidsCapitalizedString = MolarityA11yStrings.solidsRegions.capitalized.some.value;
+  const aCoupleOfSolidsCapitalizedString = MolarityA11yStrings.solidsRegions.capitalized.aCoupleOf.value;
+  const aFewSolidsCapitalizedString = MolarityA11yStrings.solidsRegions.capitalized.aFew.value;
 
   // Solids lowercase region strings
   const aLotOfSolidsLowercaseString = MolarityA11yStrings.solidsRegions.lowercase.aLotOf.value;
@@ -43,17 +43,17 @@ define( require => {
 
   // Change strings
   const lessCapitalizedString = MolarityA11yStrings.less.capitalized.value;
-  const lessLowercaseString = MolarityA11yStrings.less.lowercase.value;
   const moreCapitalizedString = MolarityA11yStrings.more.capitalized.value;
+  const lessLowercaseString = MolarityA11yStrings.less.lowercase.value;
   const moreLowercaseString = MolarityA11yStrings.more.lowercase.value;
 
   // constants
   const SOLIDS_STRINGS = [
-    aCoupleOfSolidsString,
-    aFewSolidsString,
-    someSolidsString,
-    aBunchOfSolidsString,
-    aLotOfSolidsString
+    aCoupleOfSolidsCapitalizedString,
+    aFewSolidsCapitalizedString,
+    someSolidsCapitalizedString,
+    aBunchOfSolidsCapitalizedString,
+    aLotOfSolidsCapitalizedString
   ];
   const SOLIDS_STRINGS_LOWERCASE = [
     aCoupleOfSolidsLowercaseString,
@@ -118,7 +118,7 @@ define( require => {
      * @param [isCapitalized] {boolean}
      * @returns {string} - example: "a bunch"
      */
-    getCurrentSolidsAmount( isCapitalized = true ) {
+    getCurrentSolidsAmount( isCapitalized = false ) {
       const solidsIndex = this.getCurrentSolidsIndex();
       return isCapitalized ? SOLIDS_STRINGS[ solidsIndex ] : SOLIDS_STRINGS_LOWERCASE[ solidsIndex ];
     }
@@ -130,7 +130,7 @@ define( require => {
      */
     getBeakerSaturationString() {
       return StringUtils.fillIn( beakerSaturationPatternString, {
-        solids: this.getCurrentSolidsAmount( false )
+        solids: this.getCurrentSolidsAmount()
       } );
     }
 
@@ -149,7 +149,7 @@ define( require => {
       // the amount of solids is only given if the region has changed.
       if ( this.solidsRegionChanged ) {
         withSolidsString = StringUtils.fillIn( withSolidsAlertPatternString, {
-          solidAmount: this.getCurrentSolidsAmount( false )
+          solidAmount: this.getCurrentSolidsAmount()
         } );
       }
 
@@ -188,7 +188,7 @@ define( require => {
                                         saturationLostQualitativeAlertPatternString;
       return this.solution.isSaturated() ?
              StringUtils.fillIn( saturationReachedAlertString, {
-               solids: this.getCurrentSolidsAmount( false ),
+               solids: this.getCurrentSolidsAmount(),
                concentration: this.concentrationDescriber.getCurrentConcentrationClause( true )
              } ) :
              StringUtils.fillIn( saturationLostAlertString, {
