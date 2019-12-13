@@ -113,7 +113,7 @@ define( require => {
 
       return StringUtils.fillIn( soluteChangedString, {
         color: this.getCurrentColor( true ),
-        solids: this.precipitateAmountDescriber.getCurrentSolidsAmount(),
+        solids: this.precipitateAmountDescriber.getCurrentPrecipitateAmountDescription(),
         concentrationClause: concentrationClause
       } );
     }

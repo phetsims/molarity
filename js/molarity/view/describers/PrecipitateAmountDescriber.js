@@ -1,8 +1,10 @@
 // Copyright 2019, University of Colorado Boulder
 
 /**
- * PrecipitateAmountDescriber is responsible for formulating  strings about Solution.precipitateAmountProperty. This includes
- * descriptions set in the PDOM, as well as context responses set through UtteranceQueue.
+ * PrecipitateAmountDescriber is responsible for formulating strings about Solution.precipitateAmountProperty. This includes
+ * descriptions set in the PDOM, as well as context responses set through UtteranceQueue. Note that while these descriptions
+ * relate to the precipitateAmountProperty from the model, the precipitates are referred to as "solids" in the descriptions.
+ * Therefore, while most of the methods still refer to precipitate amount, the strings and string names often refer to "solids" instead.
  *
  * @author Michael Kauzmann (PhET Interactive Simulations)
  * @author Taylor Want (PhET Interactive Simulations)
@@ -27,19 +29,19 @@ define( require => {
   const withSolidsAlertPatternString = MolarityA11yStrings.withSolidsAlertPattern.value;
   const solidsChangePatternString = MolarityA11yStrings.solidsChangePattern.value;
 
-  // Solids capitalized region strings
-  const aLotOfSolidsCapitalizedString = MolarityA11yStrings.solidsRegions.capitalized.aLotOf.value;
-  const aBunchOfSolidsCapitalizedString = MolarityA11yStrings.solidsRegions.capitalized.aBunchOf.value;
-  const someSolidsCapitalizedString = MolarityA11yStrings.solidsRegions.capitalized.some.value;
-  const aCoupleOfSolidsCapitalizedString = MolarityA11yStrings.solidsRegions.capitalized.aCoupleOf.value;
-  const aFewSolidsCapitalizedString = MolarityA11yStrings.solidsRegions.capitalized.aFew.value;
+  // Precipitate Amount capitalized region strings
+  const aLotOfSolidsCapitalizedString = MolarityA11yStrings.precipitateAmountRegions.capitalized.aLotOf.value;
+  const aBunchOfSolidsCapitalizedString = MolarityA11yStrings.precipitateAmountRegions.capitalized.aBunchOf.value;
+  const someSolidsCapitalizedString = MolarityA11yStrings.precipitateAmountRegions.capitalized.some.value;
+  const aCoupleOfSolidsCapitalizedString = MolarityA11yStrings.precipitateAmountRegions.capitalized.aCoupleOf.value;
+  const aFewSolidsCapitalizedString = MolarityA11yStrings.precipitateAmountRegions.capitalized.aFew.value;
 
-  // Solids lowercase region strings
-  const aLotOfSolidsLowercaseString = MolarityA11yStrings.solidsRegions.lowercase.aLotOf.value;
-  const aBunchOfSolidsLowercaseString = MolarityA11yStrings.solidsRegions.lowercase.aBunchOf.value;
-  const someSolidsLowercaseString = MolarityA11yStrings.solidsRegions.lowercase.some.value;
-  const aCoupleOfSolidsLowercaseString = MolarityA11yStrings.solidsRegions.lowercase.aCoupleOf.value;
-  const aFewSolidsLowercaseString = MolarityA11yStrings.solidsRegions.lowercase.aFew.value;
+  // Precipitate Amount lowercase region strings
+  const aLotOfSolidsLowercaseString = MolarityA11yStrings.precipitateAmountRegions.lowercase.aLotOf.value;
+  const aBunchOfSolidsLowercaseString = MolarityA11yStrings.precipitateAmountRegions.lowercase.aBunchOf.value;
+  const someSolidsLowercaseString = MolarityA11yStrings.precipitateAmountRegions.lowercase.some.value;
+  const aCoupleOfSolidsLowercaseString = MolarityA11yStrings.precipitateAmountRegions.lowercase.aCoupleOf.value;
+  const aFewSolidsLowercaseString = MolarityA11yStrings.precipitateAmountRegions.lowercase.aFew.value;
 
   // Change strings
   const lessCapitalizedString = MolarityA11yStrings.less.capitalized.value;
@@ -48,14 +50,14 @@ define( require => {
   const moreLowercaseString = MolarityA11yStrings.more.lowercase.value;
 
   // constants
-  const SOLIDS_STRINGS_CAPITALIZED = [
+  const PRECIPITATE_AMOUNT_STRINGS_CAPITALIZED = [
     aCoupleOfSolidsCapitalizedString,
     aFewSolidsCapitalizedString,
     someSolidsCapitalizedString,
     aBunchOfSolidsCapitalizedString,
     aLotOfSolidsCapitalizedString
   ];
-  const SOLIDS_STRINGS_LOWERCASE = [
+  const PRECIPITATE_AMOUNT_STRINGS_LOWERCASE = [
     aCoupleOfSolidsLowercaseString,
     aFewSolidsLowercaseString,
     someSolidsLowercaseString,
@@ -80,8 +82,9 @@ define( require => {
       this.precipitateAmountProperty = solution.precipitateAmountProperty;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
 
-      // @private {number|null} - tracks the index of the last descriptive region for solids from SOLIDS_STRINGS array
-      this.lastSolidsIndex = this.getCurrentSolidsIndex();
+      // @private {number|null} - tracks the index of the last descriptive region for precipitateAmount from
+      // PRECIPITATE_AMOUNT_STRINGS arrays
+      this.lastPrecipitateAmountIndex = this.getCurrentPrecipitateAmountIndex();
 
       // @private {boolean|null} - should only be updated and accessed when the precipitateAmountProperty changes, so
       // while it will be null at some points, it will only be accessed when it holds boolean values (True if precipitateAmount
@@ -90,53 +93,54 @@ define( require => {
 
       // @private {boolean|null} - tracks whether the descriptive regions for the precipitateAmountProperty has changed
       // (since region changes trigger the different descriptive text in the aria-live alerts).
-      this.solidsRegionChanged = null;
+      this.precipiateAmountRegionChanged = null;
 
       // update fields (documented above) when precipitateAmountProperty changes
       this.precipitateAmountProperty.lazyLink( ( newValue, oldValue ) => {
-        const newSolidsIndex = this.getCurrentSolidsIndex();
+        const newPrecipitateAmountIndex = this.getCurrentPrecipitateAmountIndex();
         this.precipitateAmountIncreased = newValue > oldValue;
-        this.solidsRegionChanged = newSolidsIndex !== this.lastSolidsIndex;
-        this.lastSolidsIndex = newSolidsIndex;
+        this.precipiateAmountRegionChanged = newPrecipitateAmountIndex !== this.lastPrecipitateAmountIndex;
+        this.lastPrecipitateAmountIndex = newPrecipitateAmountIndex;
       } );
     }
 
     /**
-     * Calculates the index of the current solids region using the precipitateAmountProperty and the saturated concentration
-     * level of the currently selected solute
+     * Calculates the index of the current precipitateAmount region using the precipitateAmountProperty and the saturated
+     * concentration level of the currently selected solute
      * @private
-     * @returns {Number} - index of the current solids description region
+     * @returns {Number} - index of the current precipitateAmount description region
      * */
-    getCurrentSolidsIndex() {
-      return solidsToIndex( this.precipitateAmountProperty.value, this.concentrationDescriber.getCurrentSaturatedConcentration() );
+    getCurrentPrecipitateAmountIndex() {
+      return precipitateAmountToIndex( this.precipitateAmountProperty.value, this.concentrationDescriber.getCurrentSaturatedConcentration() );
     }
 
 
     /**
-     * Gets the qualitative description of the amount of solids in the beaker.
+     * Gets the qualitative description of the amount of precipitate in the beaker.
      * @public
      * @param [isCapitalized] {boolean}
      * @returns {string} - example: "a bunch"
      */
-    getCurrentSolidsAmount( isCapitalized = false ) {
-      const solidsIndex = this.getCurrentSolidsIndex();
-      return isCapitalized ? SOLIDS_STRINGS_CAPITALIZED[ solidsIndex ] : SOLIDS_STRINGS_LOWERCASE[ solidsIndex ];
+    getCurrentPrecipitateAmountDescription( isCapitalized = false ) {
+      const precipitateAmountIndex = this.getCurrentPrecipitateAmountIndex();
+      return isCapitalized ? PRECIPITATE_AMOUNT_STRINGS_CAPITALIZED[ precipitateAmountIndex ] :
+             PRECIPITATE_AMOUNT_STRINGS_LOWERCASE[ precipitateAmountIndex ];
     }
 
     /**
-     * Creates a string that describes the solids in the beaker
+     * Creates a string that describes the precipitate amount in the beaker
      * @public
      * @returns {string} - e.g. "is saturated with a bunch of solids"
      */
     getBeakerSaturationString() {
       return StringUtils.fillIn( beakerSaturationPatternString, {
-        solids: this.getCurrentSolidsAmount()
+        solids: this.getCurrentPrecipitateAmountDescription()
       } );
     }
 
 
     /**
-     * Fills in information about the state of the solution (its saturation and the amount of solids) if region has changed
+     * Fills in information about the state of the solution (its saturation and the amount of precipitate) if region has changed
      * and the solution is saturated.
      * @public
      * @returns {string} - example: "still saturated with a bunch of solids"
@@ -147,10 +151,10 @@ define( require => {
       } );
       let withSolidsString = '';
 
-      // the amount of solids is only given if the region has changed.
-      if ( this.solidsRegionChanged ) {
+      // the amount of precipitate is only given if the region has changed.
+      if ( this.precipiateAmountRegionChanged ) {
         withSolidsString = StringUtils.fillIn( withSolidsAlertPatternString, {
-          solidAmount: this.getCurrentSolidsAmount()
+          solidAmount: this.getCurrentPrecipitateAmountDescription()
         } );
       }
 
@@ -161,12 +165,12 @@ define( require => {
     }
 
     /**
-     * Creates a substring to describe the change in the amount of solids
+     * Creates a substring to describe the change in the amount of precipitate
      * @param [isCapitalized] {boolean}
      * @public
      * @returns {string} - example: "more solids"
      */
-    getSolidsChangeString( isCapitalized = false ) {
+    getPrecipitateAmountChangeString( isCapitalized = false ) {
       assert && assert( this.solution.isSaturated(), 'precipitateAmountProperty should be greater than 0' );
 
       let moreLessString = isCapitalized ? lessCapitalizedString : lessLowercaseString;
@@ -189,7 +193,7 @@ define( require => {
                                         saturationLostQualitativeAlertPatternString;
       return this.solution.isSaturated() ?
              StringUtils.fillIn( saturationReachedAlertPatternString, {
-               solids: this.getCurrentSolidsAmount(),
+               solids: this.getCurrentPrecipitateAmountDescription(),
                concentration: this.concentrationDescriber.getCurrentConcentrationClause( true )
              } ) :
              StringUtils.fillIn( saturationLostAlertString, {
@@ -199,18 +203,18 @@ define( require => {
   }
 
   /**
-   * Calculates which item to use from the SOLIDS_STRINGS arrays.
+   * Calculates which item to use from the PRECIPITATE_AMOUNT_STRINGS arrays.
    * @param {number} currentPrecipitateAmount - in moles, see Solution.js
    * @param {number} saturatedConcentrationForSolute -  the saturation point for a specific solute
-   * @returns {number} - index to pull from SOLIDS_STRINGS arrays
+   * @returns {number} - index to pull from PRECIPITATE_AMOUNT_STRINGS arrays
    */
-  const solidsToIndex = ( currentPrecipitateAmount, saturatedConcentrationForSolute ) => {
+  const precipitateAmountToIndex = ( currentPrecipitateAmount, saturatedConcentrationForSolute ) => {
 
     // maximum precipitates possible for a given solute, which is the solute amount it takes to saturate at min volume.
     const maxPrecipitateAmount = Solution.computePrecipitateAmount( MolarityConstants.SOLUTION_VOLUME_RANGE.min,
       MolarityConstants.SOLUTE_AMOUNT_RANGE.max, saturatedConcentrationForSolute );
 
-    const numberOfIncrements = SOLIDS_STRINGS_CAPITALIZED.length;
+    const numberOfIncrements = PRECIPITATE_AMOUNT_STRINGS_CAPITALIZED.length;
     const scaleIncrement = maxPrecipitateAmount / numberOfIncrements;
 
     for ( let i = 0; i < numberOfIncrements - 1; i++ ) {
@@ -218,7 +222,7 @@ define( require => {
         return i;
       }
     }
-    return SOLIDS_STRINGS_CAPITALIZED.length - 1;
+    return PRECIPITATE_AMOUNT_STRINGS_CAPITALIZED.length - 1;
   };
 
   return molarity.register( 'PrecipitateAmountDescriber', PrecipitateAmountDescriber );

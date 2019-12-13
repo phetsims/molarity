@@ -358,8 +358,8 @@ define( require => {
       }
     },
 
-    // Solids regions
-    solidsRegions: {
+    // Precipitate Amount regions
+    precipitateAmountRegions: {
       lowercase: {
         aCoupleOf: {
           value: 'a couple of'

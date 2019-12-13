@@ -189,7 +189,7 @@ define( require => {
       if ( this.solution.isSaturated() ) {
         alertText = StringUtils.fillIn( qualitativeSaturatedValueTextPatternString, {
           propertyAmountChange: changeStrings.quantityChangeString,
-          solidsChange: this.precipitateAmountDescriber.getSolidsChangeString(),
+          solidsChange: this.precipitateAmountDescriber.getPrecipitateAmountChangeString(),
           stillSaturatedClause: this.precipitateAmountDescriber.getStillSaturatedClause()
         } );
       }
@@ -218,7 +218,7 @@ define( require => {
       let alertText = '';
       if ( this.solution.isSaturated() ) {
         alertText = StringUtils.fillIn( quantitativeSaturatedValueTextPatternString, {
-          solidsChange: this.precipitateAmountDescriber.getSolidsChangeString( true ),
+          solidsChange: this.precipitateAmountDescriber.getPrecipitateAmountChangeString( true ),
           stillSaturatedClause: this.precipitateAmountDescriber.getStillSaturatedClause()
         } );
       }
