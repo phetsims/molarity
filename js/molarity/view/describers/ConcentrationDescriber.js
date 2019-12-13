@@ -87,7 +87,7 @@ define( require => {
       this.precipitateAmountProperty = solution.precipitateAmountProperty;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
 
-      // @public {boolean|null} - tracks whether the solution has most recently gone from saturated to unsaturated or
+      // @public (read-only) {boolean|null} - tracks whether the solution has most recently gone from saturated to unsaturated or
       // vice-versa.
       this.saturationValueChanged = null;
 
@@ -99,7 +99,7 @@ define( require => {
       // has increased, False if it has decreased)
       this.concentrationIncreased = this.concentrationProperty.value;
 
-      // @public {boolean|null} - tracks whether the descriptive regions for concentrationProperty has changed
+      // @public (read-only) {boolean|null} - tracks whether the descriptive regions for concentrationProperty has changed
       // (since region changes trigger the different descriptive text in the aria-live alerts).
       this.concentrationRegionChanged = null;
 

@@ -1,10 +1,11 @@
 // Copyright 2019, University of Colorado Boulder
 
 /**
- * PrecipitateAmountDescriber is responsible for formulating strings about Solution.precipitateAmountProperty. This includes
- * descriptions set in the PDOM, as well as context responses set through UtteranceQueue. Note that while these descriptions
- * relate to the precipitateAmountProperty from the model, the precipitates are referred to as "solids" in the descriptions.
- * Therefore, while most of the methods still refer to precipitate amount, the strings and string names often refer to "solids" instead.
+ * PrecipitateAmountDescriber is responsible for formulating strings about Solution.precipitateAmountProperty. This
+ * includes descriptions set in the PDOM, as well as context responses set through UtteranceQueue. Note that while
+ * these descriptions relate to the precipitateAmountProperty from the model, the precipitates are referred to as
+ * "solids" in the descriptions. Therefore, while most of the methods still refer to precipitate amount, the strings
+ * and string names often refer to "solids" instead.
  *
  * @author Michael Kauzmann (PhET Interactive Simulations)
  * @author Taylor Want (PhET Interactive Simulations)
