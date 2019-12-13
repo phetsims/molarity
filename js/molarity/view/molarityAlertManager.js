@@ -133,6 +133,9 @@ define( require => {
      */
     alertNewlySaturated() {
       const utteranceQueue = phet.joist.sim.utteranceQueue;
+
+      // sliderUtterance must be removed from the queue because it is otherwise possible to get stale slider alerts that no
+      // longer make sense with the current saturation state.
       if( utteranceQueue.hasUtterance(this.sliderUtterance)){
         utteranceQueue.clear();
       }
