@@ -92,6 +92,9 @@ define( require => {
       // vice-versa.
       this.saturationStateChanged = null;
 
+      // @private {boolean} - tracks the most recent saturation state of the solution
+      this.lastSaturationState = false;
+
       // @private {boolean|null} - should only be updated and accessed when the concentrationProperty changes, so
       // while it will be null at some points, it will only be accessed when it holds boolean values (True if concentrationProperty
       // has increased, False if it has decreased)
@@ -108,21 +111,26 @@ define( require => {
       this.concentrationProperty.lazyLink( ( newValue, oldValue ) => {
         const newConcentrationIndex = concentrationToIndex( this.soluteProperty.value.saturatedConcentration,
           this.concentrationProperty.value );
-        const previousSaturationState = oldValue > this.getCurrentSaturatedConcentration();
         const newSaturationState = this.solution.isSaturated();
         this.concentrationIncreased = newValue > oldValue;
         this.concentrationRegionChanged = newConcentrationIndex !== this.lastConcentrationIndex;
         this.lastConcentrationIndex = newConcentrationIndex;
-        this.saturationStateChanged = newSaturationState !== previousSaturationState;
+        this.saturationStateChanged = newSaturationState !== this.lastSaturationState;
+        this.lastSaturationState = newSaturationState;
       } );
 
       // update saturationStateChanged field when precipitateAmountProperty changes. This is necessary because
       // concentrationProperty stops changing once the solution is saturated, which makes the detection of a change in
       // saturation not possible without also listening to changes in precipitateAmountProperty.
       this.precipitateAmountProperty.lazyLink( ( newValue, oldValue ) => {
-        const previousSaturationState = oldValue !== 0;
-        const newSaturationState = newValue !== 0;
-        this.saturationStateChanged = newSaturationState !== previousSaturationState;
+
+        // if the max concentration with no precipitates state is reached, it is important that it does not affect the
+        // last tracked saturation state the max concentration alert (the descriptions treat this as an in-between state).
+        // Thus, if the solution is at max concentration without precipitates, the lastSaturationState will remain the same.
+        const newSaturationState = this.solution.atMaxConcentration() && !this.solution.isSaturated() ?
+                                   this.lastSaturationState : newValue > 0;
+        this.saturationStateChanged = newSaturationState !== this.lastSaturationState;
+        this.lastSaturationState = newSaturationState;
       } );
     }
 
