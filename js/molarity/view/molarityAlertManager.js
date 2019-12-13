@@ -19,7 +19,7 @@ define( require => {
   const ValueChangeUtterance = require( 'UTTERANCE_QUEUE/ValueChangeUtterance' );
 
   // a11y strings
-  const atMaxConcentrationAlertString = MolarityA11yStrings.atMaxConcentrationAlert.value;
+  const atMaxConcentrationAlertPatternString = MolarityA11yStrings.atMaxConcentrationAlertPattern.value;
   const noSoluteAlertString = MolarityA11yStrings.noSoluteAlert.value;
   const qualitativeSaturatedValueTextPatternString = MolarityA11yStrings.qualitativeSaturatedValueTextPattern.value;
   const qualitativeSliderAlertPatternString = MolarityA11yStrings.qualitativeSliderAlertPattern.value;
@@ -96,7 +96,7 @@ define( require => {
       }
 
       // alert when the solution has just become saturated, or has just become unsaturated.
-      else if ( this.concentrationDescriber.saturationStateChanged ) {
+      else if ( this.concentrationDescriber.saturationValueChanged ) {
         this.alertNewlySaturated();
       }
 
@@ -121,7 +121,7 @@ define( require => {
      * @private
      */
     alertMaxConcentrationNotSaturated() {
-      this.sliderUtterance.alert = StringUtils.fillIn( atMaxConcentrationAlertString, {
+      this.sliderUtterance.alert = StringUtils.fillIn( atMaxConcentrationAlertPatternString, {
         concentration: this.concentrationDescriber.getCurrentConcentrationClause( true )
       } );
       phet.joist.sim.utteranceQueue.addToBack( this.sliderUtterance );
@@ -195,12 +195,13 @@ define( require => {
       }
       else {
 
-        // state info is appended to the alert if the descriptive region has changed for any relevant quantity.
+        // information about the state of solution (particularly its concentration is appended to the alert if the descriptive
+        // region has changed for any relevant quantity.
         const includeStateInfo = quantityRegionChanged || this.concentrationDescriber.concentrationRegionChanged;
         alertText = StringUtils.fillIn( qualitativeSliderAlertPatternString, {
           quantityChange: changeStrings.quantityChangeString,
           colorChange: changeStrings.colorChangeString,
-          stateInfo: includeStateInfo ? this.concentrationDescriber.getQualitativeConcentrationState() : ''
+          stateInfo: includeStateInfo ? this.concentrationDescriber.getQualitativeConcentrationDescription() : ''
         } );
       }
 

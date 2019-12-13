@@ -18,14 +18,14 @@ define( require => {
   // a11y strings
   const ofString = MolarityA11yStrings.of.value;
   const notSaturatedString = MolarityA11yStrings.notSaturated.value;
-  const qualitativeConcentrationPatternString = MolarityA11yStrings.qualitativeConcentrationPattern.value;
-  const quantitativeConcentrationPatternString = MolarityA11yStrings.quantitativeConcentrationPattern.value;
+  const screenSummaryQualitativeConcentrationPatternString = MolarityA11yStrings.screenSummaryQualitativeConcentrationPattern.value;
+  const screenSummaryQuantitativeConcentrationPatternString = MolarityA11yStrings.screenSummaryQuantitativeConcentrationPattern.value;
   const saturatedString = MolarityA11yStrings.saturated.value;
   const screenSummaryPlayAreaPatternString = MolarityA11yStrings.screenSummaryPlayAreaPattern.value;
   const screenSummaryControlAreaPatternString = MolarityA11yStrings.screenSummaryControlAreaPattern.value;
-  const stateOfSimInteractionHintString = MolarityA11yStrings.stateOfSimInteractionHint.value;
-  const stateOfSimNoSolutePatternString = MolarityA11yStrings.stateOfSimNoSolutePattern.value;
-  const stateOfSimPatternString = MolarityA11yStrings.stateOfSimPattern.value;
+  const simInteractionHintString = MolarityA11yStrings.simInteractionHint.value;
+  const currentStateOfSimNoSolutePatternString = MolarityA11yStrings.currentStateOfSimNoSolutePattern.value;
+  const currentStateOfSimPatternString = MolarityA11yStrings.currentStateOfSimPattern.value;
 
   class MolarityScreenSummaryNode extends Node {
 
@@ -73,7 +73,7 @@ define( require => {
       // Fourth paragraph of the screen summary -- static regardless of state of sim, gives the interaction hint
       this.addChild( new Node( {
         tagName: 'p',
-        innerContent: stateOfSimInteractionHintString
+        innerContent: simInteractionHintString
       } ) );
 
       // Updates the third paragraph of the screen summary when sim Properties change.
@@ -94,20 +94,20 @@ define( require => {
      * descriptions are show, and whether or not there is some solute in the beaker.
      */
     getStateOfSimDescription() {
-      let stateString = stateOfSimPatternString;
+      let stateString = currentStateOfSimPatternString;
 
       // concentrationString will form the base of the concentrationPattern substring (filled in below)
       const concentrationString = this.useQuantitativeDescriptionsProperty.value ?
-                                  quantitativeConcentrationPatternString :
-                                  qualitativeConcentrationPatternString;
+                                  screenSummaryQuantitativeConcentrationPatternString :
+                                  screenSummaryQualitativeConcentrationPatternString;
       const concentrationPattern = StringUtils.fillIn( concentrationString, {
         concentration: this.concentrationDescriber.getCurrentConcentrationClause(),
-        saturatedConcentration: this.solution.isSaturated() ? saturatedString : notSaturatedString
+        isSaturated: this.solution.isSaturated() ? saturatedString : notSaturatedString
       } );
 
       // If there is no solute in the beaker, the PDOM descriptions change.
       if ( !this.solution.hasSolute() ) {
-        stateString = stateOfSimNoSolutePatternString;
+        stateString = currentStateOfSimNoSolutePatternString;
       }
 
       return StringUtils.fillIn( stateString, {

@@ -18,11 +18,10 @@ define( require => {
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
 
   // a11y strings
-  const beakerQualitativeConcentrationPatternString = MolarityA11yStrings.beakerQualitativeConcentrationPattern.value;
   const colorChangePatternString = MolarityA11yStrings.colorChangePattern.value;
   const concentrationAndUnitString = MolarityA11yStrings.concentrationAndUnit.value;
   const concentrationChangePatternString = MolarityA11yStrings.concentrationChangePattern.value;
-  const concentrationRangePatternString = MolarityA11yStrings.concentrationRangePattern.value;
+  const beakerConcentrationRangePatternString = MolarityA11yStrings.beakerConcentrationRangePattern.value;
   const qualitativeConcentrationStateClausePatternString = MolarityA11yStrings.qualitativeConcentrationStateClausePattern.value;
   const quantitativeConcentrationStatePatternString = MolarityA11yStrings.quantitativeConcentrationStatePattern.value;
 
@@ -90,10 +89,10 @@ define( require => {
 
       // @public {boolean|null} - tracks whether the solution has most recently gone from saturated to unsaturated or
       // vice-versa.
-      this.saturationStateChanged = null;
+      this.saturationValueChanged = null;
 
       // @private {boolean} - tracks the most recent saturation state of the solution
-      this.lastSaturationState = false;
+      this.lastSaturationValue = false;
 
       // @private {boolean|null} - should only be updated and accessed when the concentrationProperty changes, so
       // while it will be null at some points, it will only be accessed when it holds boolean values (True if concentrationProperty
@@ -111,26 +110,26 @@ define( require => {
       this.concentrationProperty.lazyLink( ( newValue, oldValue ) => {
         const newConcentrationIndex = concentrationToIndex( this.soluteProperty.value.saturatedConcentration,
           this.concentrationProperty.value );
-        const newSaturationState = this.solution.isSaturated();
+        const newSaturationValue = this.solution.isSaturated();
         this.concentrationIncreased = newValue > oldValue;
         this.concentrationRegionChanged = newConcentrationIndex !== this.lastConcentrationIndex;
         this.lastConcentrationIndex = newConcentrationIndex;
-        this.saturationStateChanged = newSaturationState !== this.lastSaturationState;
-        this.lastSaturationState = newSaturationState;
+        this.saturationValueChanged = newSaturationValue !== this.lastSaturationValue;
+        this.lastSaturationValue = newSaturationValue;
       } );
 
-      // update saturationStateChanged field when precipitateAmountProperty changes. This is necessary because
+      // update saturationValueChanged field when precipitateAmountProperty changes. This is necessary because
       // concentrationProperty stops changing once the solution is saturated, which makes the detection of a change in
       // saturation not possible without also listening to changes in precipitateAmountProperty.
-      this.precipitateAmountProperty.lazyLink( ( newValue, oldValue ) => {
+      this.precipitateAmountProperty.lazyLink( newValue => {
 
-        // if the max concentration with no precipitates state is reached, it is important that it does not affect the
-        // last tracked saturation state the max concentration alert (the descriptions treat this as an in-between state).
-        // Thus, if the solution is at max concentration without precipitates, the lastSaturationState will remain the same.
-        const newSaturationState = this.solution.atMaxConcentration() && !this.solution.isSaturated() ?
-                                   this.lastSaturationState : newValue > 0;
-        this.saturationStateChanged = newSaturationState !== this.lastSaturationState;
-        this.lastSaturationState = newSaturationState;
+        // if the solution is at max concentration with no precipitates, it is important that it does not affect the
+        // last tracked saturation value because the descriptions treat this as an in-between state. Thus, if the solution
+        // is at max concentration without precipitates, the lastSaturationValue will remain the same.
+        const newSaturationValue = this.solution.atMaxConcentration() && !this.solution.isSaturated() ?
+                                   this.lastSaturationValue : newValue > 0;
+        this.saturationValueChanged = newSaturationValue !== this.lastSaturationValue;
+        this.lastSaturationValue = newSaturationValue;
       } );
     }
 
@@ -180,7 +179,7 @@ define( require => {
       // concentration if it is less than the displayed concentration range max.
       const displayedMaxConcentration = Util.toFixed( clampedConcentration, MolarityConstants.SOLUTE_AMOUNT_DECIMAL_PLACES );
 
-      return StringUtils.fillIn( concentrationRangePatternString, {
+      return StringUtils.fillIn( beakerConcentrationRangePatternString, {
         maxConcentration: Util.toFixed( displayedMaxConcentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES )
       } );
     }
@@ -201,12 +200,10 @@ define( require => {
      * @returns {string} - e.g. "concentration 1.400 molar" or "is very concentrated"
      */
     getBeakerConcentrationString( useQuantitativeDescriptionsProperty ) {
-      const concentrationString = useQuantitativeDescriptionsProperty.value ?
-                                  quantitativeConcentrationStatePatternString :
-                                  beakerQualitativeConcentrationPatternString;
-      return StringUtils.fillIn( concentrationString, {
+      const quantitativeString = StringUtils.fillIn( quantitativeConcentrationStatePatternString, {
         concentration: this.getCurrentConcentrationClause()
       } );
+      return useQuantitativeDescriptionsProperty.value ? quantitativeString : this.getCurrentConcentrationClause();
     }
 
     /**
@@ -243,9 +240,9 @@ define( require => {
     /**
      * Creates the qualitative substrings to describe the concentration "state" of the solution.
      * @public
-     * @returns {string} - examples: "Concentration 0.600 Molar" or "Solution very concentrated".
+     * @returns {string} - example: "Solution very concentrated".
      * */
-    getQualitativeConcentrationState() {
+    getQualitativeConcentrationDescription() {
       assert && assert( !this.useQuantitativeDescriptionsProperty.value, 'qualitative descriptions expected' );
       return StringUtils.fillIn( qualitativeConcentrationStateClausePatternString, {
         concentration: this.getCurrentConcentrationClause( true )

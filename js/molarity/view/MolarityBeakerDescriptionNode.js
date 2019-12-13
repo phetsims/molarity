@@ -22,9 +22,9 @@ define( require => {
   // a11y strings
   const beakerDescriptionPatternString = MolarityA11yStrings.beakerDescriptionPattern.value;
   const hasZeroConcentrationString = MolarityA11yStrings.hasZeroConcentration.value;
-  const pureWaterPatternString = MolarityA11yStrings.pureWaterPattern.value;
+  const beakerDescriptionPureWaterPatternString = MolarityA11yStrings.beakerDescriptionPureWaterPattern.value;
   const pureWaterString = MolarityA11yStrings.pureWater.value;
-  const waterFormulaString = MolarityA11yStrings.waterFormula.value;
+  const waterFormulaDescriptionString = MolarityA11yStrings.waterFormulaDescription.value;
 
   class MolarityBeakerDescriptionNode extends Node {
 
@@ -104,7 +104,7 @@ define( require => {
      * @private
      */
     updateBeakerSummaryString() {
-      const summaryString = !this.solution.hasSolute() ? pureWaterPatternString : beakerDescriptionPatternString;
+      const summaryString = !this.solution.hasSolute() ? beakerDescriptionPureWaterPatternString : beakerDescriptionPatternString;
       return StringUtils.fillIn( summaryString, {
         solute: !this.solution.hasSolute() ? pureWaterString : this.soluteDescriber.getCurrentSoluteName(),
         volume: this.volumeDescriber.getCurrentVolume( true ),
@@ -154,7 +154,7 @@ define( require => {
       if ( !this.solution.hasSolute() ) {
 
         // if there is no solute in the beaker, the chemical formula of water is displayed instead.
-        this.chemicalFormulaSummaryItem.innerContent = ChemUtils.toSubscript( waterFormulaString );
+        this.chemicalFormulaSummaryItem.innerContent = ChemUtils.toSubscript( waterFormulaDescriptionString );
         this.chemicalFormulaSummaryContainer.children = [ this.chemicalFormulaSummaryItem ];
 
       }

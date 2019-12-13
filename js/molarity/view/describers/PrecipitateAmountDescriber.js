@@ -18,11 +18,11 @@ define( require => {
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
 
   // a11y strings
-  const atMaxConcentrationString = MolarityA11yStrings.atMaxConcentration.value;
+  const atMaxConcentrationPatternString = MolarityA11yStrings.atMaxConcentrationPattern.value;
   const beakerSaturationPatternString = MolarityA11yStrings.beakerSaturationPattern.value;
   const saturationLostQualitativeAlertPatternString = MolarityA11yStrings.saturationLostQualitativeAlertPattern.value;
   const saturationLostQuantitativeAlertPatternString = MolarityA11yStrings.saturationLostQuantitativeAlertPattern.value;
-  const saturationReachedAlertString = MolarityA11yStrings.saturationReachedAlert.value;
+  const saturationReachedAlertPatternString = MolarityA11yStrings.saturationReachedAlertPattern.value;
   const stillSaturatedAlertPatternString = MolarityA11yStrings.stillSaturatedAlertPattern.value;
   const withSolidsAlertPatternString = MolarityA11yStrings.withSolidsAlertPattern.value;
   const solidsChangePatternString = MolarityA11yStrings.solidsChangePattern.value;
@@ -136,12 +136,13 @@ define( require => {
 
 
     /**
-     * Fills in the state info if region has changed and the solution is saturated.
+     * Fills in information about the state of the solution (its saturation and the amount of solids) if region has changed
+     * and the solution is saturated.
      * @public
      * @returns {string} - example: "still saturated with a bunch of solids"
      */
     getStillSaturatedClause() {
-      const maxConcentrationString = StringUtils.fillIn( atMaxConcentrationString, {
+      const maxConcentrationString = StringUtils.fillIn( atMaxConcentrationPatternString, {
         concentration: this.concentrationDescriber.getCurrentConcentrationClause( true )
       } );
       let withSolidsString = '';
@@ -187,7 +188,7 @@ define( require => {
                                         saturationLostQuantitativeAlertPatternString :
                                         saturationLostQualitativeAlertPatternString;
       return this.solution.isSaturated() ?
-             StringUtils.fillIn( saturationReachedAlertString, {
+             StringUtils.fillIn( saturationReachedAlertPatternString, {
                solids: this.getCurrentSolidsAmount(),
                concentration: this.concentrationDescriber.getCurrentConcentrationClause( true )
              } ) :

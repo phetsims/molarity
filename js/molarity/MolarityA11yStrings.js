@@ -47,7 +47,7 @@ define( require => {
       value: 'Beaker Solution Controls'
     },
 
-    // Help text strings
+    ////////////////////////// HELP TEXT STRINGS ///////////////////////////////
     solutionValuesHelpText: {
       value: 'Explore with values shown.'
     },
@@ -58,29 +58,46 @@ define( require => {
       value: 'Choose a different solute for beaker.'
     },
 
-    // Screen summary strings
+    ///////////////////////// KEYBOARD HELP CONTENT SECTION STRINGS ///////////////////////////////
+    popUpListDescription: {
+      value: 'Pop up list of solutes with Enter or Space keys'
+    },
+    moveThroughDescription: {
+      value: 'Move through solutes with Up and Down arrow keys'
+    },
+    changeChooseDescription: {
+      value: 'Choose solute with Enter key'
+    },
+    closeListDescription: {
+      value: 'Close list without changing with Esc key'
+    },
+
+    ///////////////////////// SCREEN SUMMARY STRINGS ///////////////////////////////
     screenSummaryPlayAreaPattern: {
       value: 'In the Play Area, you find a beaker containing a solution, and a concentration readout. You can change solute amount, solution volume, and choose from nine different solutes to play with the solution in beaker.'
     },
     screenSummaryControlAreaPattern: {
       value: 'In the Control Area there is a checkbox to show exact values for amount of solute (in moles), volume of solution (in liters), and concentration (in molar), and a button to reset the sim.'
     },
-    stateOfSimPattern: {
+    currentStateOfSimPattern: {
       value: 'Currently, beaker {{volume}} of a {{color}} ‬solution containing {{soluteAmount}} {{of}} ‪{{solute}}‬ solute. {{concentrationClause}}.'
     },
-    stateOfSimInteractionHint: {
-      value: 'Play with solution in beaker and observe changes to concentration.'
-    },
-    stateOfSimNoSolutePattern: {
+    currentStateOfSimNoSolutePattern: {
       value: 'Currently, beaker {{volume}} of pure water, and contains no {{solute}} solute.'
     },
-    noSoluteAlert: {
-      value: 'Zero concentration. Solution pure water.'
+    simInteractionHint: {
+      value: 'Play with solution in beaker and observe changes to concentration.'
+    },
+    screenSummaryQuantitativeConcentrationPattern: {
+      value: 'Solution is {{isSaturated}}, and concentration is {{concentration}}'
+    },
+    screenSummaryQualitativeConcentrationPattern: {
+      value: 'Solution is {{isSaturated}} and {{concentration}}'
     },
     pureWater: {
       value: 'pure water'
     },
-    waterFormula: {
+    waterFormulaDescription: {
       value: 'chemical formula of pure water is H2O'
     },
 
@@ -91,11 +108,11 @@ define( require => {
     beakerDescriptionPattern: {
       value: 'Beaker {{volume}} of a {{solute}} solution. The {{color}} solution:'
     },
+    beakerDescriptionPureWaterPattern: {
+      value: 'Beaker {{volume}} of pure water. The {{color}} solution:'
+    },
     hasZeroConcentration: {
       value: 'has zero concentration'
-    },
-    pureWaterPattern: {
-      value: 'Beaker {{volume}} of pure water. The {{color}} solution:'
     },
     beakerSoluteAmountPattern: {
       value: 'contains {{soluteAmount}} {{solute}}'
@@ -103,13 +120,144 @@ define( require => {
     beakerSaturationPattern: {
       value: 'is saturated with {{solids}} solids'
     },
-    beakerQualitativeConcentrationPattern: {
-      value: '{{concentration}}'
-    },
     beakerChemicalFormulaPattern: {
       value: 'chemical formula of {{solute}} is {{chemicalFormula}}'
     },
+    beakerConcentrationRangePattern: {
+      value: 'concentration readout range for this solution 0 to {{maxConcentration}} molar'
+    },
 
+    // saturation states
+    saturated: {
+      value: 'saturated'
+    },
+    notSaturated: {
+      value: 'not saturated'
+    },
+
+    ///////////////////////// VALUE TEXT STRINGS ///////////////////////////////
+    // Quantitative value text strings for both volume and solute amount sliders
+    solutionVolumeAndUnitPattern: {
+      value: '{{volume}} liters'
+    },
+    hasVolumePattern: {
+      value: 'has {{volume}} liters'
+    },
+    soluteAmountAndUnitPattern: {
+      value: '{{soluteAmount}} moles'
+    },
+    quantitativeSaturatedValueTextPattern: {
+      value: '{{solidsChange}}. {{stillSaturatedClause}}'
+    },
+    quantitativeConcentrationStatePattern: {
+      value: 'concentration {{concentration}}'
+    },
+    concentrationAndUnit: {
+      value: '{{concentration}} molar'
+    },
+
+    // Qualitative value text strings for both volume and solute amount sliders
+    qualitativeSaturatedValueTextPattern: {
+      value: '{{propertyAmountChange}}, {{solidsChange}}. {{stillSaturatedClause}}'
+    },
+    qualitativeVolumeStatePattern: {
+      value: 'beaker {{volume}}'
+    },
+    qualitativeSoluteAmountStatePattern: {
+      value: '{{soluteAmount}} {{solute}}'
+    },
+    qualitativeConcentrationStateClausePattern: {
+      value: ', {{concentration}}'
+    },
+
+    ///////////////////////// ALERT STRINGS ///////////////////////////////
+    // No solute alert
+    noSoluteAlert: {
+      value: 'Zero concentration. Solution pure water.'
+    },
+
+    // Slider alert patters
+    quantitativeSliderAlertPattern: {
+      value: '{{concentrationChange}} at {{concentration}}. {{colorChange}}.'
+    },
+    qualitativeSliderAlertPattern: {
+      value: '{{quantityChange}}. {{colorChange}}{{stateInfo}}.'
+    },
+
+    // Quantity change patterns
+    volumeChangePattern: {
+      value: '{{moreLess}} solution'
+    },
+    soluteAmountChangedPattern: {
+      value: '{{moreLess}} solute'
+    },
+    concentrationChangePattern: {
+      value: '{{moreLess}} concentrated'
+    },
+    colorChangePattern: {
+      value: 'Solution {{lighterDarker}}'
+    },
+    lighter: {
+      value: 'lighter'
+    },
+    darker: {
+      value: 'darker'
+    },
+
+    // Solute changed alert string
+    soluteChangedUnsaturatedAlertPattern: {
+      value: '{{color}} solution, {{concentrationClause}}.'
+    },
+    soluteChangedSaturatedAlertPattern: {
+      value: '{{color}} solution, saturated with {{solids}} solids{{concentrationClause}}.'
+    },
+    soluteChangedQuantitativeConcentrationPattern: {
+      value: ' at {{concentration}}'
+    },
+    noSoluteAlertQuantitative: {
+      value: 'Clear solution, pure water at zero moles.'
+    },
+    noSoluteAlertQualitative: {
+      value: 'Clear solution, pure water with no solute.'
+    },
+
+    // New saturation state alerts
+    atMaxConcentrationPattern: {
+      value: 'at {{concentration}}'
+    },
+    atMaxConcentrationAlertPattern: {
+      value: 'At {{concentration}}. Solution darkest.'
+    },
+    saturationReachedAlertPattern: {
+      value: 'Saturated with {{solids}} solids at {{concentration}}.'
+    },
+    saturationLostQualitativeAlertPattern: {
+      value: 'No longer saturated. Solution lighter, {{concentration}}.'
+    },
+    saturationLostQuantitativeAlertPattern: {
+      value: 'No longer saturated at {{concentration}}. Solution lighter.'
+    },
+
+    // Saturated solution alert strings
+    stillSaturatedAlertPattern: {
+      value: 'Saturated {{withSolids}} {{maxConcentration}}.'
+    },
+    withSolidsAlertPattern: {
+      value: 'with {{solidAmount}} solids'
+    },
+    solidsChangePattern: {
+      value: '{{moreLess}} solids'
+    },
+
+    // Alert strings for solution values checkbox
+    solutionValuesCheckedAlert: {
+      value: 'Moles, litres and concentration values shown.'
+    },
+    solutionValuesUncheckedAlert: {
+      value: 'Values hidden.'
+    },
+
+    ////////////////////////// QUALITATIVE VALUE DESCRIPTION REGIONS /////////////////////////
     // Volume active regions
     volumeRegions: {
       active: {
@@ -296,158 +444,6 @@ define( require => {
           value: 'max concentration'
         }
       }
-    },
-
-    // saturation states
-    saturated: {
-      value: 'saturated'
-    },
-    notSaturated: {
-      value: 'not saturated'
-    },
-
-    // Quantitative value text strings for both volume and solute amount sliders
-    quantitativeSliderAlertPattern: {
-      value: '{{concentrationChange}} at {{concentration}}. {{colorChange}}.'
-    },
-    solutionVolumeAndUnitPattern: {
-      value: '{{volume}} liters'
-    },
-    hasVolumePattern: {
-      value: 'has {{volume}} liters'
-    },
-    soluteAmountAndUnitPattern: {
-      value: '{{soluteAmount}} moles'
-    },
-    quantitativeSaturatedValueTextPattern: {
-      value: '{{solidsChange}}. {{stillSaturatedClause}}'
-    },
-
-    // Qualitative value text strings for both volume and solute amount sliders
-    qualitativeSaturatedValueTextPattern: {
-      value: '{{propertyAmountChange}}, {{solidsChange}}. {{stillSaturatedClause}}'
-    },
-    qualitativeSliderAlertPattern: {
-      value: '{{quantityChange}}. {{colorChange}}{{stateInfo}}.'
-    },
-
-    // Qualitative color change strings
-    colorChangePattern: {
-      value: 'Solution {{lighterDarker}}'
-    },
-    lighter: {
-      value: 'lighter'
-    },
-    darker: {
-      value: 'darker'
-    },
-
-    // Qualitative volume value text strings
-    qualitativeVolumeStatePattern: {
-      value: 'beaker {{volume}}'
-    },
-    volumeChangePattern: {
-      value: '{{moreLess}} solution'
-    },
-
-    // Qualitative solute amount value text strings
-    qualitativeSoluteAmountStatePattern: {
-      value: '{{soluteAmount}} {{solute}}'
-    },
-    soluteAmountChangedPattern: {
-      value: '{{moreLess}} solute'
-    },
-
-    // Quantitative concentration value text strings
-    qualitativeConcentrationStateClausePattern: {
-      value: ', {{concentration}}'
-    },
-    quantitativeConcentrationStatePattern: {
-      value: 'concentration {{concentration}}'
-    },
-    quantitativeConcentrationPattern: {
-      value: 'Solution is {{saturatedConcentration}}, and concentration is {{concentration}}'
-    },
-    concentrationAndUnit: {
-      value: '{{concentration}} molar'
-    },
-
-    // Qualitative concentration value text strings
-    qualitativeConcentrationPattern: {
-      value: 'Solution is {{saturatedConcentration}} and {{concentration}}'
-    },
-    concentrationChangePattern: {
-      value: '{{moreLess}} concentrated'
-    },
-    concentrationRangePattern: {
-      value: 'concentration readout range for this solution 0 to {{maxConcentration}} molar'
-    },
-
-    // Solute changed alert string
-    soluteChangedUnsaturatedAlertPattern: {
-      value: '{{color}} solution, {{concentrationClause}}.'
-    },
-    soluteChangedSaturatedAlertPattern: {
-      value: '{{color}} solution, saturated with {{solids}} solids{{concentrationClause}}.'
-    },
-    soluteChangedQuantitativeConcentrationPattern: {
-      value: ' at {{concentration}}'
-    },
-    noSoluteAlertQuantitative: {
-      value: 'Clear solution, pure water at zero moles.'
-    },
-    noSoluteAlertQualitative: {
-      value: 'Clear solution, pure water with no solute.'
-    },
-
-    // New saturation state alerts
-    atMaxConcentration: {
-      value: 'at {{concentration}}'
-    },
-    atMaxConcentrationAlert: {
-      value: 'At {{concentration}}. Solution darkest.'
-    },
-    saturationReachedAlert: {
-      value: 'Saturated with {{solids}} solids at {{concentration}}.'
-    },
-    saturationLostQualitativeAlertPattern: {
-      value: 'No longer saturated. Solution lighter, {{concentration}}.'
-    },
-    saturationLostQuantitativeAlertPattern: {
-      value: 'No longer saturated at {{concentration}}. Solution lighter.'
-    },
-
-    // Saturated solution alert strings
-    stillSaturatedAlertPattern: {
-      value: 'Saturated {{withSolids}} {{maxConcentration}}.'
-    },
-    withSolidsAlertPattern: {
-      value: 'with {{solidAmount}} solids'
-    },
-    solidsChangePattern: {
-      value: '{{moreLess}} solids'
-    },
-
-    // Keyboard help content section strings
-    popUpListDescription: {
-      value: 'Pop up list of solutes with Enter or Space keys'
-    },
-    moveThroughDescription: {
-      value: 'Move through solutes with Up and Down arrow keys'
-    },
-    changeChooseDescription: {
-      value: 'Choose solute with Enter key'
-    },
-    closeListDescription: {
-      value: 'Close list without changing with Esc key'
-    },
-
-    // Alert strings for solution values checkbox
-    solutionValuesCheckedAlert: {
-      value: 'Moles, litres and concentration values shown.'
-    },
-    solutionValuesUncheckedAlert: {
-      value: 'Values hidden.'
     },
 
     // capitalized color strings
