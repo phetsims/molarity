@@ -30,18 +30,18 @@ define( require => {
   const solidsChangePatternString = MolarityA11yStrings.solidsChangePattern.value;
 
   // Precipitate Amount capitalized region strings
-  const aLotOfSolidsCapitalizedString = MolarityA11yStrings.precipitateAmountRegions.capitalized.aLotOf.value;
-  const aBunchOfSolidsCapitalizedString = MolarityA11yStrings.precipitateAmountRegions.capitalized.aBunchOf.value;
-  const someSolidsCapitalizedString = MolarityA11yStrings.precipitateAmountRegions.capitalized.some.value;
-  const aCoupleOfSolidsCapitalizedString = MolarityA11yStrings.precipitateAmountRegions.capitalized.aCoupleOf.value;
-  const aFewSolidsCapitalizedString = MolarityA11yStrings.precipitateAmountRegions.capitalized.aFew.value;
+  const precipitateAmountRegionsCapitalizedALotOfString = MolarityA11yStrings.precipitateAmountRegions.capitalized.aLotOf.value;
+  const precipitateAmountRegionsCapitalizedABunchOfString = MolarityA11yStrings.precipitateAmountRegions.capitalized.aBunchOf.value;
+  const precipitateAmountRegionsCapitalizedSomeString = MolarityA11yStrings.precipitateAmountRegions.capitalized.some.value;
+  const precipitateAmountRegionsCapitalizedACoupleOfString = MolarityA11yStrings.precipitateAmountRegions.capitalized.aCoupleOf.value;
+  const precipitateAmountRegionsCapitalizedAFewString = MolarityA11yStrings.precipitateAmountRegions.capitalized.aFew.value;
 
   // Precipitate Amount lowercase region strings
-  const aLotOfSolidsLowercaseString = MolarityA11yStrings.precipitateAmountRegions.lowercase.aLotOf.value;
-  const aBunchOfSolidsLowercaseString = MolarityA11yStrings.precipitateAmountRegions.lowercase.aBunchOf.value;
-  const someSolidsLowercaseString = MolarityA11yStrings.precipitateAmountRegions.lowercase.some.value;
-  const aCoupleOfSolidsLowercaseString = MolarityA11yStrings.precipitateAmountRegions.lowercase.aCoupleOf.value;
-  const aFewSolidsLowercaseString = MolarityA11yStrings.precipitateAmountRegions.lowercase.aFew.value;
+  const precipitateAmountRegionsLowercaseALotOfString = MolarityA11yStrings.precipitateAmountRegions.lowercase.aLotOf.value;
+  const precipitateAmountRegionsLowercaseABunchOfString = MolarityA11yStrings.precipitateAmountRegions.lowercase.aBunchOf.value;
+  const precipitateAmountRegionsLowercaseSomeString = MolarityA11yStrings.precipitateAmountRegions.lowercase.some.value;
+  const precipitateAmountRegionsLowercaseACoupleOfString = MolarityA11yStrings.precipitateAmountRegions.lowercase.aCoupleOf.value;
+  const precipitateAmountRegionsLowercaseAFewString = MolarityA11yStrings.precipitateAmountRegions.lowercase.aFew.value;
 
   // Change strings
   const lessCapitalizedString = MolarityA11yStrings.less.capitalized.value;
@@ -51,18 +51,18 @@ define( require => {
 
   // constants
   const PRECIPITATE_AMOUNT_STRINGS_CAPITALIZED = [
-    aCoupleOfSolidsCapitalizedString,
-    aFewSolidsCapitalizedString,
-    someSolidsCapitalizedString,
-    aBunchOfSolidsCapitalizedString,
-    aLotOfSolidsCapitalizedString
+    precipitateAmountRegionsCapitalizedACoupleOfString,
+    precipitateAmountRegionsCapitalizedAFewString,
+    precipitateAmountRegionsCapitalizedSomeString,
+    precipitateAmountRegionsCapitalizedABunchOfString,
+    precipitateAmountRegionsCapitalizedALotOfString
   ];
   const PRECIPITATE_AMOUNT_STRINGS_LOWERCASE = [
-    aCoupleOfSolidsLowercaseString,
-    aFewSolidsLowercaseString,
-    someSolidsLowercaseString,
-    aBunchOfSolidsLowercaseString,
-    aLotOfSolidsLowercaseString
+    precipitateAmountRegionsLowercaseACoupleOfString,
+    precipitateAmountRegionsLowercaseAFewString,
+    precipitateAmountRegionsLowercaseSomeString,
+    precipitateAmountRegionsLowercaseABunchOfString,
+    precipitateAmountRegionsLowercaseALotOfString
   ];
 
   class PrecipitateAmountDescriber {

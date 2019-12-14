@@ -34,24 +34,24 @@ define( require => {
 
   // a11y strings
   // color strings
-  const redLowercaseString = MolarityA11yStrings.soluteColors.lowercase.red.value;
-  const pinkLowercaseString = MolarityA11yStrings.soluteColors.lowercase.pink.value;
-  const orangeLowercaseString = MolarityA11yStrings.soluteColors.lowercase.orange.value;
-  const goldLowercaseString = MolarityA11yStrings.soluteColors.lowercase.gold.value;
-  const yellowLowercaseString = MolarityA11yStrings.soluteColors.lowercase.yellow.value;
-  const greenLowercaseString = MolarityA11yStrings.soluteColors.lowercase.green.value;
-  const blueLowercaseString = MolarityA11yStrings.soluteColors.lowercase.blue.value;
-  const purpleLowercaseString = MolarityA11yStrings.soluteColors.lowercase.purple.value;
+  const soluteColorsLowercaseRedString = MolarityA11yStrings.soluteColors.lowercase.red.value;
+  const soluteColorsLowercasePinkString = MolarityA11yStrings.soluteColors.lowercase.pink.value;
+  const soluteColorsLowercaseOrangeString = MolarityA11yStrings.soluteColors.lowercase.orange.value;
+  const soluteColorsLowercaseGoldString = MolarityA11yStrings.soluteColors.lowercase.gold.value;
+  const soluteColorsLowercaseYellowString = MolarityA11yStrings.soluteColors.lowercase.yellow.value;
+  const soluteColorsLowercaseGreenString = MolarityA11yStrings.soluteColors.lowercase.green.value;
+  const soluteColorsLowercaseBlueString = MolarityA11yStrings.soluteColors.lowercase.blue.value;
+  const soluteColorsLowercasePurpleString = MolarityA11yStrings.soluteColors.lowercase.purple.value;
 
   // capitalized color strings
-  const redCapitalizedString = MolarityA11yStrings.soluteColors.capitalized.red.value;
-  const pinkCapitalizedString = MolarityA11yStrings.soluteColors.capitalized.pink.value;
-  const orangeCapitalizedString = MolarityA11yStrings.soluteColors.capitalized.orange.value;
-  const goldCapitalizedString = MolarityA11yStrings.soluteColors.capitalized.gold.value;
-  const yellowCapitalizedString = MolarityA11yStrings.soluteColors.capitalized.yellow.value;
-  const greenCapitalizedString = MolarityA11yStrings.soluteColors.capitalized.green.value;
-  const purpleCapitalizedString = MolarityA11yStrings.soluteColors.capitalized.purple.value;
-  const blueCapitalizedString = MolarityA11yStrings.soluteColors.capitalized.blue.value;
+  const soluteColorsCapitalizedRedString = MolarityA11yStrings.soluteColors.capitalized.red.value;
+  const soluteColorsCapitalizedPinkString = MolarityA11yStrings.soluteColors.capitalized.pink.value;
+  const soluteColorsCapitalizedOrangeString = MolarityA11yStrings.soluteColors.capitalized.orange.value;
+  const soluteColorsCapitalizedGoldString = MolarityA11yStrings.soluteColors.capitalized.gold.value;
+  const soluteColorsCapitalizedYellowString = MolarityA11yStrings.soluteColors.capitalized.yellow.value;
+  const soluteColorsCapitalizedGreenString = MolarityA11yStrings.soluteColors.capitalized.green.value;
+  const soluteColorsCapitalizedPurpleString = MolarityA11yStrings.soluteColors.capitalized.purple.value;
+  const soluteColorsCapitalizedBlueString = MolarityA11yStrings.soluteColors.capitalized.blue.value;
 
   // Lowercase solute name strings
   const cobaltChlorideLowercaseString = MolarityA11yStrings.cobaltChlorideLowercase.value;
@@ -65,14 +65,14 @@ define( require => {
   const potassiumPermanganateLowercaseString = MolarityA11yStrings.potassiumPermanganateLowercase.value;
 
   // constants
-  const blueStringPair = new StringCasingPair( blueLowercaseString, blueCapitalizedString );
-  const redStringPair = new StringCasingPair( redLowercaseString, redCapitalizedString );
-  const pinkStringPair = new StringCasingPair( pinkLowercaseString, pinkCapitalizedString );
-  const orangeStringPair = new StringCasingPair( orangeLowercaseString, orangeCapitalizedString );
-  const goldStringPair = new StringCasingPair( goldLowercaseString, goldCapitalizedString );
-  const yellowStringPair = new StringCasingPair( yellowLowercaseString, yellowCapitalizedString );
-  const greenStringPair = new StringCasingPair( greenLowercaseString, greenCapitalizedString );
-  const purpleStringPair = new StringCasingPair( purpleLowercaseString, purpleCapitalizedString );
+  const blueStringPair = new StringCasingPair( soluteColorsLowercaseBlueString, soluteColorsCapitalizedBlueString );
+  const redStringPair = new StringCasingPair( soluteColorsLowercaseRedString, soluteColorsCapitalizedRedString );
+  const pinkStringPair = new StringCasingPair( soluteColorsLowercasePinkString, soluteColorsCapitalizedPinkString );
+  const orangeStringPair = new StringCasingPair( soluteColorsLowercaseOrangeString, soluteColorsCapitalizedOrangeString );
+  const goldStringPair = new StringCasingPair( soluteColorsLowercaseGoldString, soluteColorsCapitalizedGoldString );
+  const yellowStringPair = new StringCasingPair( soluteColorsLowercaseYellowString, soluteColorsCapitalizedYellowString );
+  const greenStringPair = new StringCasingPair( soluteColorsLowercaseGreenString, soluteColorsCapitalizedGreenString );
+  const purpleStringPair = new StringCasingPair( soluteColorsLowercasePurpleString, soluteColorsCapitalizedPurpleString );
 
   /**
    * @param {Tandem} tandem
