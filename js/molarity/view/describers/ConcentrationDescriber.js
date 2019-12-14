@@ -26,22 +26,22 @@ define( require => {
   const quantitativeConcentrationStatePatternString = MolarityA11yStrings.quantitativeConcentrationStatePattern.value;
 
   // Concentration region strings
-  const zeroConcentrationString = MolarityA11yStrings.concentrationRegions.passive.zeroConcentration.value;
-  const lowConcentrationString = MolarityA11yStrings.concentrationRegions.passive.lowConcentration.value;
-  const slightlyConcentratedString = MolarityA11yStrings.concentrationRegions.passive.slightlyConcentrated.value;
-  const notVeryConcentratedString = MolarityA11yStrings.concentrationRegions.passive.notVeryConcentrated.value;
-  const veryConcentratedString = MolarityA11yStrings.concentrationRegions.passive.veryConcentrated.value;
-  const highlyConcentratedString = MolarityA11yStrings.concentrationRegions.passive.highlyConcentrated.value;
-  const maxConcentrationString = MolarityA11yStrings.concentrationRegions.passive.maxConcentration.value;
+  const concentrationRegionsPassiveZeroConcentrationString = MolarityA11yStrings.concentrationRegions.passive.zeroConcentration.value;
+  const concentrationRegionsPassiveLowConcentrationString = MolarityA11yStrings.concentrationRegions.passive.lowConcentration.value;
+  const concentrationRegionsPassiveSlightlyConcentratedString = MolarityA11yStrings.concentrationRegions.passive.slightlyConcentrated.value;
+  const concentrationRegionsPassiveNotVeryConcentratedString = MolarityA11yStrings.concentrationRegions.passive.notVeryConcentrated.value;
+  const concentrationRegionsPassiveVeryConcentratedString = MolarityA11yStrings.concentrationRegions.passive.veryConcentrated.value;
+  const concentrationRegionsPassiveHighlyConcentratedString = MolarityA11yStrings.concentrationRegions.passive.highlyConcentrated.value;
+  const concentrationRegionsPassiveMaxConcentrationString = MolarityA11yStrings.concentrationRegions.passive.maxConcentration.value;
 
   // Concentration active region strings
-  const hasZeroConcentrationString = MolarityA11yStrings.concentrationRegions.active.hasZeroConcentration.value;
-  const hasLowConcentrationString = MolarityA11yStrings.concentrationRegions.active.hasLowConcentration.value;
-  const isSlightlyConcentratedString = MolarityA11yStrings.concentrationRegions.active.isSlightlyConcentrated.value;
-  const isNotVeryConcentratedString = MolarityA11yStrings.concentrationRegions.active.isNotVeryConcentrated.value;
-  const isVeryConcentratedString = MolarityA11yStrings.concentrationRegions.active.isVeryConcentrated.value;
-  const isHighlyConcentratedString = MolarityA11yStrings.concentrationRegions.active.isHighlyConcentrated.value;
-  const hasMaxConcentrationString = MolarityA11yStrings.concentrationRegions.active.hasMaxConcentration.value;
+  const concentrationRegionsActiveHasZeroConcentrationString = MolarityA11yStrings.concentrationRegions.active.hasZeroConcentration.value;
+  const concentrationRegionsActiveHasLowConcentrationString = MolarityA11yStrings.concentrationRegions.active.hasLowConcentration.value;
+  const concentrationRegionsActiveIsSlightlyConcentratedString = MolarityA11yStrings.concentrationRegions.active.isSlightlyConcentrated.value;
+  const concentrationRegionsActiveIsNotVeryConcentratedString = MolarityA11yStrings.concentrationRegions.active.isNotVeryConcentrated.value;
+  const concentrationRegionsActiveIsVeryConcentratedString = MolarityA11yStrings.concentrationRegions.active.isVeryConcentrated.value;
+  const concentrationRegionsActiveIsHighlyConcentratedString = MolarityA11yStrings.concentrationRegions.active.isHighlyConcentrated.value;
+  const concentrationRegionsActiveHasMaxConcentrationString = MolarityA11yStrings.concentrationRegions.active.hasMaxConcentration.value;
 
   // Change strings
   const lessCapitalizedString = MolarityA11yStrings.less.capitalized.value;
@@ -53,23 +53,23 @@ define( require => {
 
   // constants
   const ACTIVE_CONCENTRATION_STRINGS = [
-    hasZeroConcentrationString,
-    hasLowConcentrationString,
-    isSlightlyConcentratedString,
-    isNotVeryConcentratedString,
-    isVeryConcentratedString,
-    isHighlyConcentratedString,
-    hasMaxConcentrationString
+    concentrationRegionsActiveHasZeroConcentrationString,
+    concentrationRegionsActiveHasLowConcentrationString,
+    concentrationRegionsActiveIsSlightlyConcentratedString,
+    concentrationRegionsActiveIsNotVeryConcentratedString,
+    concentrationRegionsActiveIsVeryConcentratedString,
+    concentrationRegionsActiveIsHighlyConcentratedString,
+    concentrationRegionsActiveHasMaxConcentrationString
   ];
 
   const CONCENTRATION_STRINGS = [
-    zeroConcentrationString,
-    lowConcentrationString,
-    slightlyConcentratedString,
-    notVeryConcentratedString,
-    veryConcentratedString,
-    highlyConcentratedString,
-    maxConcentrationString
+    concentrationRegionsPassiveZeroConcentrationString,
+    concentrationRegionsPassiveLowConcentrationString,
+    concentrationRegionsPassiveSlightlyConcentratedString,
+    concentrationRegionsPassiveNotVeryConcentratedString,
+    concentrationRegionsPassiveVeryConcentratedString,
+    concentrationRegionsPassiveHighlyConcentratedString,
+    concentrationRegionsPassiveMaxConcentrationString
   ];
 
   class ConcentrationDescriber {
