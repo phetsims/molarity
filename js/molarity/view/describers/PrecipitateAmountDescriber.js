@@ -1,10 +1,11 @@
 // Copyright 2019, University of Colorado Boulder
 
 /**
- * PrecipitateAmountDescriber is responsible for formulating strings about Solution.precipitateAmountProperty. This includes
- * descriptions set in the PDOM, as well as context responses set through UtteranceQueue. Note that while these descriptions
- * relate to the precipitateAmountProperty from the model, the precipitates are referred to as "solids" in the descriptions.
- * Therefore, while most of the methods still refer to precipitate amount, the strings and string names often refer to "solids" instead.
+ * PrecipitateAmountDescriber is responsible for formulating strings about Solution.precipitateAmountProperty. This
+ * includes descriptions set in the PDOM, as well as context responses set through UtteranceQueue. Note that while
+ * these descriptions relate to the precipitateAmountProperty from the model, the precipitates are referred to as
+ * "solids" in the descriptions. Therefore, while most of the methods still refer to precipitate amount, the strings
+ * and string names often refer to "solids" instead.
  *
  * @author Michael Kauzmann (PhET Interactive Simulations)
  * @author Taylor Want (PhET Interactive Simulations)
@@ -203,10 +204,10 @@ define( require => {
   }
 
   /**
-   * Calculates which item to use from the PRECIPITATE_AMOUNT_STRINGS arrays.
+   * Calculates which item to use from the precipitate amount regions string arrays.
    * @param {number} currentPrecipitateAmount - in moles, see Solution.js
    * @param {number} saturatedConcentrationForSolute -  the saturation point for a specific solute
-   * @returns {number} - index to pull from PRECIPITATE_AMOUNT_STRINGS arrays
+   * @returns {number} - index to pull from precipitate amount regions string arrays
    */
   const precipitateAmountToIndex = ( currentPrecipitateAmount, saturatedConcentrationForSolute ) => {
 
