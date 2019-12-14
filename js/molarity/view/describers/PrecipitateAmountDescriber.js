@@ -204,10 +204,10 @@ define( require => {
   }
 
   /**
-   * Calculates which item to use from the PRECIPITATE_AMOUNT_STRINGS arrays.
+   * Calculates which item to use from the precipitate amount regions string arrays.
    * @param {number} currentPrecipitateAmount - in moles, see Solution.js
    * @param {number} saturatedConcentrationForSolute -  the saturation point for a specific solute
-   * @returns {number} - index to pull from PRECIPITATE_AMOUNT_STRINGS arrays
+   * @returns {number} - index to pull from precipitate amount regions string arrays
    */
   const precipitateAmountToIndex = ( currentPrecipitateAmount, saturatedConcentrationForSolute ) => {
 
