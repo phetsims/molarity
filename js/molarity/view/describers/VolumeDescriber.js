@@ -24,22 +24,22 @@ define( require => {
   const volumeChangePatternString = MolarityA11yStrings.volumeChangePattern.value;
 
   // volume regions strings
-  const fullString = MolarityA11yStrings.volumeRegions.passive.full.value;
-  const halfFullString = MolarityA11yStrings.volumeRegions.passive.halfFull.value;
-  const nearlyEmptyString = MolarityA11yStrings.volumeRegions.passive.nearlyEmpty.value;
-  const nearlyFullString = MolarityA11yStrings.volumeRegions.passive.nearlyFull.value;
-  const overHalfFullString = MolarityA11yStrings.volumeRegions.passive.overHalfFull.value;
-  const underHalfFullString = MolarityA11yStrings.volumeRegions.passive.underHalfFull.value;
-  const atLowestAmountString = MolarityA11yStrings.volumeRegions.passive.atLowestAmount.value;
+  const volumeRegionsPassiveFullString = MolarityA11yStrings.volumeRegions.passive.full.value;
+  const volumeRegionsPassiveHalfFullString = MolarityA11yStrings.volumeRegions.passive.halfFull.value;
+  const volumeRegionsPassiveNearlyEmptyString = MolarityA11yStrings.volumeRegions.passive.nearlyEmpty.value;
+  const volumeRegionsPassiveNearlyFullString = MolarityA11yStrings.volumeRegions.passive.nearlyFull.value;
+  const volumeRegionsPassiveOverHalfFullString = MolarityA11yStrings.volumeRegions.passive.overHalfFull.value;
+  const volumeRegionsPassiveUnderHalfFullString = MolarityA11yStrings.volumeRegions.passive.underHalfFull.value;
+  const volumeRegionsPassiveAtLowestAmountString = MolarityA11yStrings.volumeRegions.passive.atLowestAmount.value;
 
   // volume active regions strings
-  const isFullString = MolarityA11yStrings.volumeRegions.active.isFull.value;
-  const isNearlyFullString = MolarityA11yStrings.volumeRegions.active.isNearlyFull.value;
-  const isOverHalfFullString = MolarityA11yStrings.volumeRegions.active.isOverHalfFull.value;
-  const isHalfFullString = MolarityA11yStrings.volumeRegions.active.isHalfFull.value;
-  const isUnderHalfFullString = MolarityA11yStrings.volumeRegions.active.isUnderHalfFull.value;
-  const isAtLowestAmountString = MolarityA11yStrings.volumeRegions.active.isAtLowestAmount.value;
-  const isNearlyEmptyString = MolarityA11yStrings.volumeRegions.active.isNearlyEmpty.value;
+  const volumeRegionsActiveIsFullString = MolarityA11yStrings.volumeRegions.active.isFull.value;
+  const volumeRegionsActiveIsNearlyFullString = MolarityA11yStrings.volumeRegions.active.isNearlyFull.value;
+  const volumeRegionsActiveIsOverHalfFullString = MolarityA11yStrings.volumeRegions.active.isOverHalfFull.value;
+  const volumeRegionsActiveIsHalfFullString = MolarityA11yStrings.volumeRegions.active.isHalfFull.value;
+  const volumeRegionsActiveIsUnderHalfFullString = MolarityA11yStrings.volumeRegions.active.isUnderHalfFull.value;
+  const volumeRegionsActiveIsAtLowestAmountString = MolarityA11yStrings.volumeRegions.active.isAtLowestAmount.value;
+  const volumeRegionsActiveIsNearlyEmptyString = MolarityA11yStrings.volumeRegions.active.isNearlyEmpty.value;
 
   // change strings
   const lessCapitalizedString = MolarityA11yStrings.less.capitalized.value;
@@ -49,23 +49,23 @@ define( require => {
 
   // constants
   const VOLUME_STRINGS = [
-    atLowestAmountString,
-    nearlyEmptyString,
-    underHalfFullString,
-    halfFullString,
-    overHalfFullString,
-    nearlyFullString,
-    fullString
+    volumeRegionsPassiveAtLowestAmountString,
+    volumeRegionsPassiveNearlyEmptyString,
+    volumeRegionsPassiveUnderHalfFullString,
+    volumeRegionsPassiveHalfFullString,
+    volumeRegionsPassiveOverHalfFullString,
+    volumeRegionsPassiveNearlyFullString,
+    volumeRegionsPassiveFullString
   ];
 
   const VOLUME_ACTIVE_STRINGS = [
-    isAtLowestAmountString,
-    isNearlyEmptyString,
-    isUnderHalfFullString,
-    isHalfFullString,
-    isOverHalfFullString,
-    isNearlyFullString,
-    isFullString
+    volumeRegionsActiveIsAtLowestAmountString,
+    volumeRegionsActiveIsNearlyEmptyString,
+    volumeRegionsActiveIsUnderHalfFullString,
+    volumeRegionsActiveIsHalfFullString,
+    volumeRegionsActiveIsOverHalfFullString,
+    volumeRegionsActiveIsNearlyFullString,
+    volumeRegionsActiveIsFullString
   ];
 
   class VolumeDescriber {
