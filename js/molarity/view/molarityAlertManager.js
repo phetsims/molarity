@@ -137,7 +137,7 @@ define( require => {
       // sliderUtterance must be removed from the queue because it is otherwise possible to get stale slider alerts that no
       // longer make sense with the current saturation state.
       if ( utteranceQueue.hasUtterance( this.sliderUtterance ) ) {
-        utteranceQueue.clear();
+        utteranceQueue.removeUtterance( this.sliderUtterance );
       }
       this.saturationUtterance.alert = this.precipitateAmountDescriber.getSaturationChangedString();
       utteranceQueue.addToFront( this.saturationUtterance );
