@@ -82,7 +82,7 @@ define( require => {
 
       // @private
       // {number} - the index of the descriptive region from VOLUME_STRINGS array.
-      this.currentRegion = volumeToIndex( this.volumeProperty.value );
+      let currentRegion = volumeToIndex( this.volumeProperty.value );
 
       // @private
       // {boolean} - tracks whether the descriptive volume region has just changed.
@@ -93,11 +93,11 @@ define( require => {
       this.volumeIncreased = null;
 
       this.volumeProperty.link( ( newValue, oldValue ) => {
-        assert && oldValue && assert( this.currentRegion === volumeToIndex( oldValue ),
+        assert && oldValue && assert( currentRegion === volumeToIndex( oldValue ),
           'current volume region not tracking the previous region as expected' );
-        const oldRegion = this.currentRegion;
-        this.currentRegion = volumeToIndex( newValue );
-        this.volumeRegionChanged = this.currentRegion !== oldRegion;
+        const oldRegion = currentRegion;
+        currentRegion = volumeToIndex( newValue );
+        this.volumeRegionChanged = currentRegion !== oldRegion;
         this.volumeIncreased = newValue > oldValue;
       } );
     }

@@ -78,14 +78,12 @@ define( require => {
       // @private
       this.solution = solution;
       this.concentrationDescriber = concentrationDescriber;
-      this.soluteProperty = solution.soluteProperty;
-      this.concentrationProperty = solution.concentrationProperty;
       this.precipitateAmountProperty = solution.precipitateAmountProperty;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
 
       // @private {number|null} - tracks the index of the last descriptive region for precipitateAmount from
       // PRECIPITATE_AMOUNT_STRINGS arrays
-      this.lastPrecipitateAmountIndex = this.getCurrentPrecipitateAmountIndex();
+      let lastPrecipitateAmountIndex = this.getCurrentPrecipitateAmountIndex();
 
       // @private {boolean|null} - should only be updated and accessed when the precipitateAmountProperty changes, so
       // while it will be null at some points, it will only be accessed when it holds boolean values (True if precipitateAmount
@@ -100,8 +98,8 @@ define( require => {
       this.precipitateAmountProperty.lazyLink( ( newValue, oldValue ) => {
         const newPrecipitateAmountIndex = this.getCurrentPrecipitateAmountIndex();
         this.precipitateAmountIncreased = newValue > oldValue;
-        this.precipiateAmountRegionChanged = newPrecipitateAmountIndex !== this.lastPrecipitateAmountIndex;
-        this.lastPrecipitateAmountIndex = newPrecipitateAmountIndex;
+        this.precipiateAmountRegionChanged = newPrecipitateAmountIndex !== lastPrecipitateAmountIndex;
+        lastPrecipitateAmountIndex = newPrecipitateAmountIndex;
       } );
     }
 

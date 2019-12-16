@@ -84,7 +84,7 @@ define( require => {
       this.solution = solution;
       this.soluteProperty = solution.soluteProperty;
       this.concentrationProperty = solution.concentrationProperty;
-      this.precipitateAmountProperty = solution.precipitateAmountProperty;
+      const precipitateAmountProperty = solution.precipitateAmountProperty;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
 
       // @public (read-only) {boolean|null} - tracks whether the solution has most recently gone from saturated to unsaturated or
@@ -92,7 +92,7 @@ define( require => {
       this.saturationValueChanged = null;
 
       // @private {boolean} - tracks the most recent saturation state of the solution
-      this.lastSaturationValue = false;
+      let lastSaturationValue = false;
 
       // @private {boolean|null} - should only be updated and accessed when the concentrationProperty changes, so
       // while it will be null at some points, it will only be accessed when it holds boolean values (True if concentrationProperty
@@ -104,7 +104,7 @@ define( require => {
       this.concentrationRegionChanged = null;
 
       // @private {Number} - tracks the last calculated concentration region index.
-      this.lastConcentrationIndex = this.getCurrentConcentrationIndex();
+      let lastConcentrationIndex = this.getCurrentConcentrationIndex();
 
       // update fields (documented above) when concentrationProperty changes
       this.concentrationProperty.lazyLink( ( newValue, oldValue ) => {
@@ -112,24 +112,24 @@ define( require => {
           this.concentrationProperty.value );
         const newSaturationValue = this.solution.isSaturated();
         this.concentrationIncreased = newValue > oldValue;
-        this.concentrationRegionChanged = newConcentrationIndex !== this.lastConcentrationIndex;
-        this.lastConcentrationIndex = newConcentrationIndex;
-        this.saturationValueChanged = newSaturationValue !== this.lastSaturationValue;
-        this.lastSaturationValue = newSaturationValue;
+        this.concentrationRegionChanged = newConcentrationIndex !== lastConcentrationIndex;
+        lastConcentrationIndex = newConcentrationIndex;
+        this.saturationValueChanged = newSaturationValue !== lastSaturationValue;
+        lastSaturationValue = newSaturationValue;
       } );
 
       // update saturationValueChanged field when precipitateAmountProperty changes. This is necessary because
       // concentrationProperty stops changing once the solution is saturated, which makes the detection of a change in
       // saturation not possible without also listening to changes in precipitateAmountProperty.
-      this.precipitateAmountProperty.lazyLink( newValue => {
+      precipitateAmountProperty.lazyLink( newValue => {
 
         // if the solution is at max concentration with no precipitates, it is important that it does not affect the
         // last tracked saturation value because the descriptions treat this as an in-between state. Thus, if the solution
         // is at max concentration without precipitates, the lastSaturationValue will remain the same.
         const newSaturationValue = this.solution.atMaxConcentration() && !this.solution.isSaturated() ?
-                                   this.lastSaturationValue : newValue > 0;
-        this.saturationValueChanged = newSaturationValue !== this.lastSaturationValue;
-        this.lastSaturationValue = newSaturationValue;
+                                   lastSaturationValue : newValue > 0;
+        this.saturationValueChanged = newSaturationValue !== lastSaturationValue;
+        lastSaturationValue = newSaturationValue;
       } );
     }
 

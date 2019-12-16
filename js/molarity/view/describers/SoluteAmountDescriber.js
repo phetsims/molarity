@@ -83,7 +83,7 @@ define( require => {
 
       // @private
       // {number} - the index of the descriptive region from SOLUTE_AMOUNT_STRINGS arrays.
-      this.currentRegion = soluteAmountToIndex( this.soluteAmountProperty.value );
+      let currentRegion = soluteAmountToIndex( this.soluteAmountProperty.value );
 
       // @private
       // {boolean} - tracks whether the descriptive solute amount region has just changed.
@@ -94,11 +94,11 @@ define( require => {
       this.soluteAmountIncreased = null;
 
       this.soluteAmountProperty.link( ( newValue, oldValue ) => {
-        assert && oldValue && assert( this.currentRegion === soluteAmountToIndex( oldValue ),
+        assert && oldValue && assert( currentRegion === soluteAmountToIndex( oldValue ),
           'current solute amount region not tracking the previous region as expected' );
-        const oldRegion = this.currentRegion;
-        this.currentRegion = soluteAmountToIndex( newValue );
-        this.soluteAmountRegionChanged = this.currentRegion !== oldRegion;
+        const oldRegion = currentRegion;
+        currentRegion = soluteAmountToIndex( newValue );
+        this.soluteAmountRegionChanged = currentRegion !== oldRegion;
         this.soluteAmountIncreased = newValue > oldValue;
       } );
     }
