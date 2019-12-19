@@ -95,9 +95,9 @@ define( require => {
       let lastSaturationValue = false;
 
       // @private {boolean|null} - should only be updated and accessed when the concentrationProperty changes, so
-      // while it will be null at some points, it will only be accessed when it holds boolean values (True if concentrationProperty
+      // while it will be null on initialization, it will only be accessed when it holds boolean values (True if concentrationProperty
       // has increased, False if it has decreased)
-      this.concentrationIncreased = this.concentrationProperty.value;
+      this.concentrationIncreased = null;
 
       // @public (read-only) {boolean|null} - tracks whether the descriptive regions for concentrationProperty has changed
       // (since region changes trigger the different descriptive text in the aria-live alerts).
@@ -111,6 +111,8 @@ define( require => {
         const newConcentrationIndex = concentrationToIndex( this.soluteProperty.value.saturatedConcentration,
           this.concentrationProperty.value );
         const newSaturationValue = this.solution.isSaturated();
+
+        // newValue will never be equal to oldValue, since this is updated within a Property link.
         this.concentrationIncreased = newValue > oldValue;
         this.concentrationRegionChanged = newConcentrationIndex !== lastConcentrationIndex;
         lastConcentrationIndex = newConcentrationIndex;
