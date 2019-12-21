@@ -237,6 +237,9 @@ define( require => {
     saturationLostQuantitativeAlertPattern: {
       value: 'No longer saturated at {{concentration}}. Solution lighter.'
     },
+    saturationLostNoSoluteAlert: {
+      value: 'No longer saturated. Zero concentration. Solution pure water.'
+    },
 
     // Saturated solution alert strings
     stillSaturatedAlertPattern: {

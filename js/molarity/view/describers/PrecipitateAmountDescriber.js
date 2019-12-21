@@ -23,6 +23,7 @@ define( require => {
   // a11y strings
   const atMaxConcentrationPatternString = MolarityA11yStrings.atMaxConcentrationPattern.value;
   const beakerSaturationPatternString = MolarityA11yStrings.beakerSaturationPattern.value;
+  const saturationLostNoSoluteAlertString = MolarityA11yStrings.saturationLostNoSoluteAlert.value;
   const saturationLostQualitativeAlertPatternString = MolarityA11yStrings.saturationLostQualitativeAlertPattern.value;
   const saturationLostQuantitativeAlertPatternString = MolarityA11yStrings.saturationLostQuantitativeAlertPattern.value;
   const saturationReachedAlertPatternString = MolarityA11yStrings.saturationReachedAlertPattern.value;
@@ -190,14 +191,26 @@ define( require => {
       const saturationLostAlertString = this.useQuantitativeDescriptionsProperty.value ?
                                         saturationLostQuantitativeAlertPatternString :
                                         saturationLostQualitativeAlertPatternString;
-      return this.solution.isSaturated() ?
-             StringUtils.fillIn( saturationReachedAlertPatternString, {
-               solids: this.getCurrentPrecipitateAmountDescription(),
-               concentration: this.concentrationDescriber.getCurrentConcentrationClause( true )
-             } ) :
-             StringUtils.fillIn( saturationLostAlertString, {
-               concentration: this.concentrationDescriber.getCurrentConcentrationClause( true )
-             } );
+
+      // alerts are different based on whether the solution is newly saturated or newly unsaturated.
+      if ( this.solution.isSaturated() ) {
+
+        // newly saturated alert
+        return StringUtils.fillIn( saturationReachedAlertPatternString, {
+          solids: this.getCurrentPrecipitateAmountDescription(),
+          concentration: this.concentrationDescriber.getCurrentConcentrationClause( true )
+        } );
+      }
+      else {
+
+        // newly unsaturated alerts -- there is a special case where the solution goes from saturated to zero solute, which
+        // is handled with the condition !this.solution.hasSolute().
+        return !this.solution.hasSolute() ?
+               saturationLostNoSoluteAlertString :
+               StringUtils.fillIn( saturationLostAlertString, {
+                 concentration: this.concentrationDescriber.getCurrentConcentrationClause( true )
+               } );
+      }
     }
   }
 
