@@ -148,10 +148,10 @@ define( require => {
     } );
 
     // Update the value display, and position it relative to the track, so it's to the right of the slider thumb.
-    const trackMinY = sliderNode.centerY - ( options.sliderOptions.trackSize.width / 2 );
+    const trackMinY = sliderNode.centerY - ( options.sliderOptions.trackSize.height / 2 );
     property.link( function( value ) {
       valueNode.text = StringUtils.format( pattern0Value1UnitsString, Util.toFixed( value, decimalPlaces ), units );
-      valueNode.centerY = trackMinY + Util.linear( range.min, range.max, options.sliderOptions.trackSize.width, 0, value );
+      valueNode.centerY = trackMinY + Util.linear( range.min, range.max, options.sliderOptions.trackSize.height, 0, value );
     } );
 
     // switch between quantitative and qualitative display
