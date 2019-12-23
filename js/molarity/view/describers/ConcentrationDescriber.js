@@ -123,15 +123,11 @@ define( require => {
       // update saturationValueChanged field when precipitateAmountProperty changes. This is necessary because
       // concentrationProperty stops changing once the solution is saturated, which makes the detection of a change in
       // saturation not possible without also listening to changes in precipitateAmountProperty.
-      precipitateAmountProperty.lazyLink( newValue => {
-
-        // if the solution is at max concentration with no precipitates, it is important that it does not affect the
-        // last tracked saturation value because the descriptions treat this as an in-between state. Thus, if the solution
-        // is at max concentration without precipitates, the lastSaturationValue will remain the same.
-        const newSaturationValue = newValue > 0;
+      precipitateAmountProperty.lazyLink( () => {
+        const newSaturationValue = this.solution.isSaturated();
         this.saturationValueChanged = newSaturationValue !== lastSaturationValue;
         lastSaturationValue = newSaturationValue;
-      } );
+      } )
     }
 
     /**
