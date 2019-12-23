@@ -128,8 +128,7 @@ define( require => {
         // if the solution is at max concentration with no precipitates, it is important that it does not affect the
         // last tracked saturation value because the descriptions treat this as an in-between state. Thus, if the solution
         // is at max concentration without precipitates, the lastSaturationValue will remain the same.
-        const newSaturationValue = this.solution.atMaxConcentration() && !this.solution.isSaturated() ?
-                                   lastSaturationValue : newValue > 0;
+        const newSaturationValue = newValue > 0;
         this.saturationValueChanged = newSaturationValue !== lastSaturationValue;
         lastSaturationValue = newSaturationValue;
       } );
