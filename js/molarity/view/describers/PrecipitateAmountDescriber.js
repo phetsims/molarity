@@ -205,11 +205,19 @@ define( require => {
 
         // newly unsaturated alerts -- there is a special case where the solution goes from saturated to zero solute, which
         // is handled with the condition !this.solution.hasSolute().
-        return !this.solution.hasSolute() ?
-               saturationLostNoSoluteAlertString :
-               StringUtils.fillIn( saturationLostAlertString, {
-                 concentration: this.concentrationDescriber.getCurrentConcentrationClause( true )
-               } );
+        if ( !this.solution.hasSolute() ) {
+
+          // Because monitoring a concentrationDescriber.saturationValueChanged is updated by links to concentrationProperty
+          // and precipitateAmountProperty,if there is no solute in the beaker, concentrationDescriber.saturationValueChanged
+          // will not be updated, and must therefore be manually updated.
+          this.concentrationDescriber.saturationValueChanged = false;
+          return saturationLostNoSoluteAlertString;
+        }
+        else {
+          return StringUtils.fillIn( saturationLostAlertString, {
+            concentration: this.concentrationDescriber.getCurrentConcentrationClause( true )
+          } );
+        }
       }
     }
   }
