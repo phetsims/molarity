@@ -86,7 +86,7 @@ define( require => {
       const precipitateAmountProperty = solution.precipitateAmountProperty;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
 
-      // @public (read-only) {boolean|null} - tracks whether the solution has most recently gone from saturated to unsaturated or
+      // @public {boolean|null} - tracks whether the solution has most recently gone from saturated to unsaturated or
       // vice-versa.
       this.saturationValueChanged = null;
 
