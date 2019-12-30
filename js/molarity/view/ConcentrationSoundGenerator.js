@@ -82,7 +82,7 @@ define( require => {
         // don't play if saturated - other sounds are used in that case
         if ( !solution.precipitateAmountProperty.value > 0 ) {
 
-          // determine if the sound was caused by an a11y-related action, such as kayboard manipulation
+          // determine if the sound was caused by an a11y-related action, such as keyboard manipulation
           const changeDueToA11yAction = soluteAmountSlider.draggingPointerType === 'a11y' ||
                                         solutionVolumeSlider.draggingPointerType === 'a11y';
 
