@@ -15,7 +15,7 @@ define( require => {
   const molarity = require( 'MOLARITY/molarity' );
   const Node = require( 'SCENERY/nodes/Node' );
   const Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
   const Vector2 = require( 'DOT/Vector2' );
 
   // constants
@@ -48,7 +48,7 @@ define( require => {
       this.addChild( particleNodes[ i ] );
     }
     if ( DEBUG_OUTPUT ) {
-      console.log( 'PrecipitateNode: ' + Util.toFixed( maxPrecipitateAmount, 4 ) + ' mol => ' + maxParticles + ' particles (max)' );
+      console.log( 'PrecipitateNode: ' + Utils.toFixed( maxPrecipitateAmount, 4 ) + ' mol => ' + maxParticles + ' particles (max)' );
     }
 
     // Change color of all particles to match the solute, change position so it doesn't look predictable
@@ -70,7 +70,7 @@ define( require => {
         particleNodes[ i ].visible = ( i < numberOfParticles );
       }
       if ( DEBUG_OUTPUT ) {
-        console.log( 'PrecipitateNode: ' + Util.toFixed( precipitateAmount, 4 ) + ' mol => ' + numberOfParticles + ' particles' );
+        console.log( 'PrecipitateNode: ' + Utils.toFixed( precipitateAmount, 4 ) + ' mol => ' + numberOfParticles + ' particles' );
       }
     } );
   }

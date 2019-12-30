@@ -25,7 +25,7 @@ define( require => {
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const Tandem = require( 'TANDEM/Tandem' );
   const Text = require( 'SCENERY/nodes/Text' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
   const VSlider = require( 'SUN/VSlider' );
 
   // strings
@@ -111,11 +111,11 @@ define( require => {
       tandem: options.tandem.createTandem( 'subtitleNode' )
     } );
 
-    const minNode = new DualLabelNode( Util.toFixed( range.min, range.min === 0 ? 0 : MolarityConstants.RANGE_DECIMAL_PLACES ),
+    const minNode = new DualLabelNode( Utils.toFixed( range.min, range.min === 0 ? 0 : MolarityConstants.RANGE_DECIMAL_PLACES ),
       minLabel, valuesVisibleProperty, RANGE_FONT, options.tandem.createTandem( 'minNode' ),
       { maxWidth: MAX_TEXT_WIDTH } );
 
-    const maxNode = new DualLabelNode( Util.toFixed( range.max, MolarityConstants.RANGE_DECIMAL_PLACES ),
+    const maxNode = new DualLabelNode( Utils.toFixed( range.max, MolarityConstants.RANGE_DECIMAL_PLACES ),
       maxLabel, valuesVisibleProperty, RANGE_FONT, options.tandem.createTandem( 'maxNode' ),
       { maxWidth: MAX_TEXT_WIDTH } );
 
@@ -150,8 +150,8 @@ define( require => {
     // Update the value display, and position it relative to the track, so it's to the right of the slider thumb.
     const trackMinY = sliderNode.centerY - ( options.sliderOptions.trackSize.height / 2 );
     property.link( function( value ) {
-      valueNode.text = StringUtils.format( pattern0Value1UnitsString, Util.toFixed( value, decimalPlaces ), units );
-      valueNode.centerY = trackMinY + Util.linear( range.min, range.max, options.sliderOptions.trackSize.height, 0, value );
+      valueNode.text = StringUtils.format( pattern0Value1UnitsString, Utils.toFixed( value, decimalPlaces ), units );
+      valueNode.centerY = trackMinY + Utils.linear( range.min, range.max, options.sliderOptions.trackSize.height, 0, value );
     } );
 
     // switch between quantitative and qualitative display
