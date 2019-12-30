@@ -22,7 +22,6 @@ define( require => {
   const InvertedBooleanProperty = require( 'TAMBO/InvertedBooleanProperty' );
   const MolarityConstants = require( 'MOLARITY/molarity/MolarityConstants' );
   const molarity = require( 'MOLARITY/molarity' );
-  const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const molarityAlertManager = require( 'MOLARITY/molarity/view/molarityAlertManager' );
   const MolarityScreenSummaryNode = require( 'MOLARITY/molarity/view/MolarityScreenSummaryNode' );
   const Node = require( 'SCENERY/nodes/Node' );
@@ -65,10 +64,10 @@ define( require => {
   const checkboxUncheckedSound = require( 'sound!TAMBO/checkbox-unchecked.mp3' );
 
   // a11y strings
-  const beakerSolutionControlsString = MolarityA11yStrings.beakerSolutionControls.value;
-  const solutionValuesHelpTextString = MolarityA11yStrings.solutionValuesHelpText.value;
-  const soluteAmountNoNewlineString = MolarityA11yStrings.soluteAmount.value;
-  const sliderHelpTextString = MolarityA11yStrings.sliderHelpText.value;
+  const beakerSolutionControlsString = require( 'string!MOLARITY/a11y.beakerSolutionControls' );
+  const solutionValuesHelpTextString = require( 'string!MOLARITY/a11y.solutionValuesHelpText' );
+  const soluteAmountNoNewlineString = require( 'string!MOLARITY/a11y.soluteAmountNoNewline' );
+  const sliderHelpTextString = require( 'string!MOLARITY/a11y.sliderHelpText' );
 
   // constants
   const SLIDER_TRACK_WIDTH = 12;

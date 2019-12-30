@@ -11,20 +11,20 @@ define( require => {
 
   // modules
   const molarity = require( 'MOLARITY/molarity' );
-  const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const MolaritySymbols = require( 'MOLARITY/molarity/MolaritySymbols' );
   const Water = require( 'MOLARITY/molarity/model/Water' );
   const StringCasingPair = require( 'SCENERY_PHET/accessibility/StringCasingPair' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
 
   // a11y strings
-  const beakerChemicalFormulaPatternString = MolarityA11yStrings.beakerChemicalFormulaPattern.value;
-  const noSoluteAlertQuantitativeString = MolarityA11yStrings.noSoluteAlertQuantitative.value;
-  const noSoluteAlertQualitativeString = MolarityA11yStrings.noSoluteAlertQualitative.value;
-  const quantitativeConcentrationStatePatternString = MolarityA11yStrings.quantitativeConcentrationStatePattern.value;
-  const soluteChangedQuantitativeConcentrationPatternString = MolarityA11yStrings.soluteChangedQuantitativeConcentrationPattern.value;
-  const soluteChangedSaturatedAlertPatternString = MolarityA11yStrings.soluteChangedSaturatedAlertPattern.value;
-  const soluteChangedUnsaturatedAlertPatternString = MolarityA11yStrings.soluteChangedUnsaturatedAlertPattern.value;
+  const beakerChemicalFormulaPatternString = require( 'string!MOLARITY/a11y.beakerChemicalFormulaPattern' );
+  const noSoluteAlertQuantitativeString = require( 'string!MOLARITY/a11y.noSoluteAlertQuantitative' );
+  const noSoluteAlertQualitativeString = require( 'string!MOLARITY/a11y.noSoluteAlertQualitative' );
+  const quantitativeConcentrationStatePatternString = require( 'string!MOLARITY/a11y.quantitativeConcentrationStatePattern' );
+  const soluteChangedQuantitativeConcentrationPatternString = require( 'string!MOLARITY/a11y.soluteChangedQuantitativeConcentrationPattern' );
+  const soluteChangedQualitativeConcentrationPatternString = require( 'string!MOLARITY/a11y.soluteChangedQualitativeConcentrationPattern' );
+  const soluteChangedSaturatedAlertPatternString = require( 'string!MOLARITY/a11y.soluteChangedSaturatedAlertPattern' );
+  const soluteChangedUnsaturatedAlertPatternString = require( 'string!MOLARITY/a11y.soluteChangedUnsaturatedAlertPattern' );
 
   class SoluteDescriber {
 
@@ -100,7 +100,9 @@ define( require => {
         concentrationClause = useQuantitativeDescriptionsProperty.value ?
                               StringUtils.fillIn( soluteChangedQuantitativeConcentrationPatternString, {
                                 concentration: this.concentrationDescriber.getCurrentConcentrationClause()
-                              } ) : '';
+
+                                // this qualitative description is to support the no trailing/leading space assertion, but could be simplifilied if that ever changes
+                              } ) : soluteChangedQualitativeConcentrationPatternString;
       }
       else {
         soluteChangedString = soluteChangedUnsaturatedAlertPatternString;

@@ -12,40 +12,39 @@ define( require => {
   // modules
   const MolarityConstants = require( 'MOLARITY/molarity/MolarityConstants' );
   const molarity = require( 'MOLARITY/molarity' );
-  const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const Util = require( 'DOT/Util' );
 
   // a11y strings
-  const hasVolumePatternString = MolarityA11yStrings.hasVolumePattern.value;
-  const colorChangePatternString = MolarityA11yStrings.colorChangePattern.value;
-  const qualitativeVolumeStatePatternString = MolarityA11yStrings.qualitativeVolumeStatePattern.value;
-  const solutionVolumeAndUnitPatternString = MolarityA11yStrings.solutionVolumeAndUnitPattern.value;
-  const volumeChangePatternString = MolarityA11yStrings.volumeChangePattern.value;
+  const hasVolumePatternString = require( 'string!MOLARITY/a11y.hasVolumePattern' );
+  const colorChangePatternString = require( 'string!MOLARITY/a11y.colorChangePattern' );
+  const qualitativeVolumeStatePatternString = require( 'string!MOLARITY/a11y.qualitativeVolumeStatePattern' );
+  const solutionVolumeAndUnitPatternString = require( 'string!MOLARITY/a11y.solutionVolumeAndUnitPattern' );
+  const volumeChangePatternString = require( 'string!MOLARITY/a11y.volumeChangePattern' );
 
   // volume regions strings
-  const volumeRegionsPassiveFullString = MolarityA11yStrings.volumeRegions.passive.full.value;
-  const volumeRegionsPassiveHalfFullString = MolarityA11yStrings.volumeRegions.passive.halfFull.value;
-  const volumeRegionsPassiveNearlyEmptyString = MolarityA11yStrings.volumeRegions.passive.nearlyEmpty.value;
-  const volumeRegionsPassiveNearlyFullString = MolarityA11yStrings.volumeRegions.passive.nearlyFull.value;
-  const volumeRegionsPassiveOverHalfFullString = MolarityA11yStrings.volumeRegions.passive.overHalfFull.value;
-  const volumeRegionsPassiveUnderHalfFullString = MolarityA11yStrings.volumeRegions.passive.underHalfFull.value;
-  const volumeRegionsPassiveAtLowestAmountString = MolarityA11yStrings.volumeRegions.passive.atLowestAmount.value;
+  const volumeRegionsPassiveFullString = require( 'string!MOLARITY/a11y.volumeRegions.passive.full' );
+  const volumeRegionsPassiveHalfFullString = require( 'string!MOLARITY/a11y.volumeRegions.passive.halfFull' );
+  const volumeRegionsPassiveNearlyEmptyString = require( 'string!MOLARITY/a11y.volumeRegions.passive.nearlyEmpty' );
+  const volumeRegionsPassiveNearlyFullString = require( 'string!MOLARITY/a11y.volumeRegions.passive.nearlyFull' );
+  const volumeRegionsPassiveOverHalfFullString = require( 'string!MOLARITY/a11y.volumeRegions.passive.overHalfFull' );
+  const volumeRegionsPassiveUnderHalfFullString = require( 'string!MOLARITY/a11y.volumeRegions.passive.underHalfFull' );
+  const volumeRegionsPassiveAtLowestAmountString = require( 'string!MOLARITY/a11y.volumeRegions.passive.atLowestAmount' );
 
   // volume active regions strings
-  const volumeRegionsActiveIsFullString = MolarityA11yStrings.volumeRegions.active.isFull.value;
-  const volumeRegionsActiveIsNearlyFullString = MolarityA11yStrings.volumeRegions.active.isNearlyFull.value;
-  const volumeRegionsActiveIsOverHalfFullString = MolarityA11yStrings.volumeRegions.active.isOverHalfFull.value;
-  const volumeRegionsActiveIsHalfFullString = MolarityA11yStrings.volumeRegions.active.isHalfFull.value;
-  const volumeRegionsActiveIsUnderHalfFullString = MolarityA11yStrings.volumeRegions.active.isUnderHalfFull.value;
-  const volumeRegionsActiveIsAtLowestAmountString = MolarityA11yStrings.volumeRegions.active.isAtLowestAmount.value;
-  const volumeRegionsActiveIsNearlyEmptyString = MolarityA11yStrings.volumeRegions.active.isNearlyEmpty.value;
+  const volumeRegionsActiveIsFullString = require( 'string!MOLARITY/a11y.volumeRegions.active.isFull' );
+  const volumeRegionsActiveIsNearlyFullString = require( 'string!MOLARITY/a11y.volumeRegions.active.isNearlyFull' );
+  const volumeRegionsActiveIsOverHalfFullString = require( 'string!MOLARITY/a11y.volumeRegions.active.isOverHalfFull' );
+  const volumeRegionsActiveIsHalfFullString = require( 'string!MOLARITY/a11y.volumeRegions.active.isHalfFull' );
+  const volumeRegionsActiveIsUnderHalfFullString = require( 'string!MOLARITY/a11y.volumeRegions.active.isUnderHalfFull' );
+  const volumeRegionsActiveIsAtLowestAmountString = require( 'string!MOLARITY/a11y.volumeRegions.active.isAtLowestAmount' );
+  const volumeRegionsActiveIsNearlyEmptyString = require( 'string!MOLARITY/a11y.volumeRegions.active.isNearlyEmpty' );
 
   // change strings
-  const lessCapitalizedString = MolarityA11yStrings.less.capitalized.value;
-  const moreCapitalizedString = MolarityA11yStrings.more.capitalized.value;
-  const lighterString = MolarityA11yStrings.lighter.value;
-  const darkerString = MolarityA11yStrings.darker.value;
+  const lessCapitalizedString = require( 'string!MOLARITY/a11y.less.capitalized' );
+  const moreCapitalizedString = require( 'string!MOLARITY/a11y.more.capitalized' );
+  const lighterString = require( 'string!MOLARITY/a11y.lighter' );
+  const darkerString = require( 'string!MOLARITY/a11y.darker' );
 
   // constants
   const VOLUME_STRINGS = [

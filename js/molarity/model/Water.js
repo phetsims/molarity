@@ -11,18 +11,17 @@ define( require => {
   // modules
   const Color = require( 'SCENERY/util/Color' );
   const molarity = require( 'MOLARITY/molarity' );
-  const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const MolaritySymbols = require( 'MOLARITY/molarity/MolaritySymbols' );
   const StringCasingPair = require( 'SCENERY_PHET/accessibility/StringCasingPair' );
 
   // a11y strings
-  const capitalizedClearString = MolarityA11yStrings.soluteColors.capitalized.clear.value;
-  const lowercaseClearString = MolarityA11yStrings.soluteColors.lowercase.clear.value;
+  const soluteColorsCapitalizedClearString = require( 'string!MOLARITY/a11y.soluteColors.capitalized.clear' );
+  const soluteColorsLowercaseClearString = require( 'string!MOLARITY/a11y.soluteColors.lowercase.clear' );
 
   const Water = {
     formula: MolaritySymbols.WATER,
     color: new Color( 224, 255, 255 ),
-    colorStringPair: new StringCasingPair( lowercaseClearString, capitalizedClearString )
+    colorStringPair: new StringCasingPair( soluteColorsLowercaseClearString, soluteColorsCapitalizedClearString )
   };
 
   molarity.register( 'Water', Water );
