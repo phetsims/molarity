@@ -13,7 +13,6 @@ define( require => {
   const Color = require( 'SCENERY/util/Color' );
   const inherit = require( 'PHET_CORE/inherit' );
   const molarity = require( 'MOLARITY/molarity' );
-  const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const MolarityConstants = require( 'MOLARITY/molarity/MolarityConstants' );
   const MolaritySymbols = require( 'MOLARITY/molarity/MolaritySymbols' );
   const Solute = require( 'MOLARITY/molarity/model/Solute' );
@@ -34,35 +33,35 @@ define( require => {
 
   // a11y strings
   // color strings
-  const soluteColorsLowercaseRedString = MolarityA11yStrings.soluteColors.lowercase.red.value;
-  const soluteColorsLowercasePinkString = MolarityA11yStrings.soluteColors.lowercase.pink.value;
-  const soluteColorsLowercaseOrangeString = MolarityA11yStrings.soluteColors.lowercase.orange.value;
-  const soluteColorsLowercaseGoldString = MolarityA11yStrings.soluteColors.lowercase.gold.value;
-  const soluteColorsLowercaseYellowString = MolarityA11yStrings.soluteColors.lowercase.yellow.value;
-  const soluteColorsLowercaseGreenString = MolarityA11yStrings.soluteColors.lowercase.green.value;
-  const soluteColorsLowercaseBlueString = MolarityA11yStrings.soluteColors.lowercase.blue.value;
-  const soluteColorsLowercasePurpleString = MolarityA11yStrings.soluteColors.lowercase.purple.value;
+  const soluteColorsLowercaseRedString = require( 'string!MOLARITY/a11y.soluteColors.lowercase.red' );
+  const soluteColorsLowercasePinkString = require( 'string!MOLARITY/a11y.soluteColors.lowercase.pink' );
+  const soluteColorsLowercaseOrangeString = require( 'string!MOLARITY/a11y.soluteColors.lowercase.orange' );
+  const soluteColorsLowercaseGoldString = require( 'string!MOLARITY/a11y.soluteColors.lowercase.gold' );
+  const soluteColorsLowercaseYellowString = require( 'string!MOLARITY/a11y.soluteColors.lowercase.yellow' );
+  const soluteColorsLowercaseGreenString = require( 'string!MOLARITY/a11y.soluteColors.lowercase.green' );
+  const soluteColorsLowercaseBlueString = require( 'string!MOLARITY/a11y.soluteColors.lowercase.blue' );
+  const soluteColorsLowercasePurpleString = require( 'string!MOLARITY/a11y.soluteColors.lowercase.purple' );
 
   // capitalized color strings
-  const soluteColorsCapitalizedRedString = MolarityA11yStrings.soluteColors.capitalized.red.value;
-  const soluteColorsCapitalizedPinkString = MolarityA11yStrings.soluteColors.capitalized.pink.value;
-  const soluteColorsCapitalizedOrangeString = MolarityA11yStrings.soluteColors.capitalized.orange.value;
-  const soluteColorsCapitalizedGoldString = MolarityA11yStrings.soluteColors.capitalized.gold.value;
-  const soluteColorsCapitalizedYellowString = MolarityA11yStrings.soluteColors.capitalized.yellow.value;
-  const soluteColorsCapitalizedGreenString = MolarityA11yStrings.soluteColors.capitalized.green.value;
-  const soluteColorsCapitalizedPurpleString = MolarityA11yStrings.soluteColors.capitalized.purple.value;
-  const soluteColorsCapitalizedBlueString = MolarityA11yStrings.soluteColors.capitalized.blue.value;
+  const soluteColorsCapitalizedRedString = require( 'string!MOLARITY/a11y.soluteColors.capitalized.red' );
+  const soluteColorsCapitalizedPinkString = require( 'string!MOLARITY/a11y.soluteColors.capitalized.pink' );
+  const soluteColorsCapitalizedOrangeString = require( 'string!MOLARITY/a11y.soluteColors.capitalized.orange' );
+  const soluteColorsCapitalizedGoldString = require( 'string!MOLARITY/a11y.soluteColors.capitalized.gold' );
+  const soluteColorsCapitalizedYellowString = require( 'string!MOLARITY/a11y.soluteColors.capitalized.yellow' );
+  const soluteColorsCapitalizedGreenString = require( 'string!MOLARITY/a11y.soluteColors.capitalized.green' );
+  const soluteColorsCapitalizedPurpleString = require( 'string!MOLARITY/a11y.soluteColors.capitalized.purple' );
+  const soluteColorsCapitalizedBlueString = require( 'string!MOLARITY/a11y.soluteColors.capitalized.blue' );
 
   // Lowercase solute name strings
-  const cobaltChlorideLowercaseString = MolarityA11yStrings.cobaltChlorideLowercase.value;
-  const cobaltIINitrateLowercaseString = MolarityA11yStrings.cobaltIINitrateLowercase.value;
-  const copperSulfateLowercaseString = MolarityA11yStrings.copperSulfateLowercase.value;
-  const drinkMixLowercaseString = MolarityA11yStrings.drinkMixLowercase.value;
-  const goldIIIChlorideLowercaseString = MolarityA11yStrings.goldIIIChlorideLowercase.value;
-  const nickelIIChlorideLowercaseString = MolarityA11yStrings.nickelIIChlorideLowercase.value;
-  const potassiumChromateLowercaseString = MolarityA11yStrings.potassiumChromateLowercase.value;
-  const potassiumDichromateLowercaseString = MolarityA11yStrings.potassiumDichromateLowercase.value;
-  const potassiumPermanganateLowercaseString = MolarityA11yStrings.potassiumPermanganateLowercase.value;
+  const cobaltChlorideLowercaseString = require( 'string!MOLARITY/a11y.cobaltChlorideLowercase' );
+  const cobaltIINitrateLowercaseString = require( 'string!MOLARITY/a11y.cobaltIINitrateLowercase' );
+  const copperSulfateLowercaseString = require( 'string!MOLARITY/a11y.copperSulfateLowercase' );
+  const drinkMixLowercaseString = require( 'string!MOLARITY/a11y.drinkMixLowercase' );
+  const goldIIIChlorideLowercaseString = require( 'string!MOLARITY/a11y.goldIIIChlorideLowercase' );
+  const nickelIIChlorideLowercaseString = require( 'string!MOLARITY/a11y.nickelIIChlorideLowercase' );
+  const potassiumChromateLowercaseString = require( 'string!MOLARITY/a11y.potassiumChromateLowercase' );
+  const potassiumDichromateLowercaseString = require( 'string!MOLARITY/a11y.potassiumDichromateLowercase' );
+  const potassiumPermanganateLowercaseString = require( 'string!MOLARITY/a11y.potassiumPermanganateLowercase' );
 
   // constants
   const blueStringPair = new StringCasingPair( soluteColorsLowercaseBlueString, soluteColorsCapitalizedBlueString );

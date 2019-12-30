@@ -14,7 +14,6 @@ define( require => {
   const KeyboardHelpIconFactory = require( 'SCENERY_PHET/keyboard/help/KeyboardHelpIconFactory' );
   const KeyboardHelpSection = require( 'SCENERY_PHET/keyboard/help/KeyboardHelpSection' );
   const molarity = require( 'MOLARITY/molarity' );
-  const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const SliderKeyboardHelpSection = require( 'SCENERY_PHET/keyboard/help/SliderKeyboardHelpSection' );
   const TwoColumnKeyboardHelpContent = require( 'SCENERY_PHET/keyboard/help/TwoColumnKeyboardHelpContent' );
 
@@ -28,10 +27,10 @@ define( require => {
 
   // a11y strings
   // Description strings for list of help commands
-  const popUpListDescriptionString = MolarityA11yStrings.popUpListDescription.value;
-  const moveThroughDescriptionString = MolarityA11yStrings.moveThroughDescription.value;
-  const changeChooseDescriptionString = MolarityA11yStrings.changeChooseDescription.value;
-  const closeListDescriptionString = MolarityA11yStrings.closeListDescription.value;
+  const popUpListDescriptionString = require( 'string!MOLARITY/a11y.popUpListDescription' );
+  const moveThroughDescriptionString = require( 'string!MOLARITY/a11y.moveThroughDescription' );
+  const changeChooseDescriptionString = require( 'string!MOLARITY/a11y.changeChooseDescription' );
+  const closeListDescriptionString = require( 'string!MOLARITY/a11y.closeListDescription' );
 
   // constants
   const labelWithIcon = KeyboardHelpSection.labelWithIcon;

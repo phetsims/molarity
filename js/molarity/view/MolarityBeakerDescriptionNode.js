@@ -11,7 +11,6 @@ define( require => {
   // modules
   const ChemUtils = require( 'NITROGLYCERIN/ChemUtils' );
   const molarity = require( 'MOLARITY/molarity' );
-  const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const Node = require( 'SCENERY/nodes/Node' );
   const Property = require( 'AXON/Property' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
@@ -20,11 +19,11 @@ define( require => {
   const drinkMixString = require( 'string!MOLARITY/drinkMix' );
 
   // a11y strings
-  const beakerDescriptionPatternString = MolarityA11yStrings.beakerDescriptionPattern.value;
-  const hasZeroConcentrationString = MolarityA11yStrings.hasZeroConcentration.value;
-  const beakerDescriptionPureWaterPatternString = MolarityA11yStrings.beakerDescriptionPureWaterPattern.value;
-  const pureWaterString = MolarityA11yStrings.pureWater.value;
-  const waterFormulaDescriptionString = MolarityA11yStrings.waterFormulaDescription.value;
+  const beakerDescriptionPatternString = require( 'string!MOLARITY/a11y.beakerDescriptionPattern' );
+  const hasZeroConcentrationString = require( 'string!MOLARITY/a11y.hasZeroConcentration' );
+  const beakerDescriptionPureWaterPatternString = require( 'string!MOLARITY/a11y.beakerDescriptionPureWaterPattern' );
+  const pureWaterString = require( 'string!MOLARITY/a11y.pureWater' );
+  const waterFormulaDescriptionString = require( 'string!MOLARITY/a11y.waterFormulaDescription' );
 
   class MolarityBeakerDescriptionNode extends Node {
 

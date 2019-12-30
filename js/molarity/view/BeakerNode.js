@@ -17,7 +17,6 @@ define( require => {
   const Color = require( 'SCENERY/util/Color' );
   const inherit = require( 'PHET_CORE/inherit' );
   const molarity = require( 'MOLARITY/molarity' );
-  const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const MolarityBeakerDescriptionNode = require( 'MOLARITY/molarity/view/MolarityBeakerDescriptionNode' );
   const Node = require( 'SCENERY/nodes/Node' );
   const Path = require( 'SCENERY/nodes/Path' );
@@ -34,7 +33,7 @@ define( require => {
   const unitsLitersString = require( 'string!MOLARITY/units.liters' );
 
   // a11y strings
-  const beakerHeaderString = MolarityA11yStrings.beakerHeader.value;
+  const beakerHeaderString = require( 'string!MOLARITY/a11y.beakerHeader' );
 
   // constants
   const DEBUG_SHAPES = false;

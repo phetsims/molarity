@@ -12,40 +12,39 @@ define( require => {
   // modules
   const MolarityConstants = require( 'MOLARITY/molarity/MolarityConstants' );
   const molarity = require( 'MOLARITY/molarity' );
-  const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const Utils = require( 'DOT/Utils' );
 
   // a11y strings
-  const beakerSoluteAmountPatternString = MolarityA11yStrings.beakerSoluteAmountPattern.value;
-  const soluteAmountAndUnitPatternString = MolarityA11yStrings.soluteAmountAndUnitPattern.value;
-  const soluteAmountChangedPatternString = MolarityA11yStrings.soluteAmountChangedPattern.value;
-  const colorChangePatternString = MolarityA11yStrings.colorChangePattern.value;
-  const qualitativeSoluteAmountStatePatternString = MolarityA11yStrings.qualitativeSoluteAmountStatePattern.value;
+  const beakerSoluteAmountPatternString = require( 'string!MOLARITY/a11y.beakerSoluteAmountPattern' );
+  const soluteAmountAndUnitPatternString = require( 'string!MOLARITY/a11y.soluteAmountAndUnitPattern' );
+  const soluteAmountChangedPatternString = require( 'string!MOLARITY/a11y.soluteAmountChangedPattern' );
+  const colorChangePatternString = require( 'string!MOLARITY/a11y.colorChangePattern' );
+  const qualitativeSoluteAmountStatePatternString = require( 'string!MOLARITY/a11y.qualitativeSoluteAmountStatePattern' );
 
   // solute amount regions capitalized strings
-  const soluteAmountRegionsCapitalizedNoString = MolarityA11yStrings.soluteAmountRegions.capitalized.no.value;
-  const soluteAmountRegionsCapitalizedALowAmountOfString = MolarityA11yStrings.soluteAmountRegions.capitalized.aLowAmountOf.value;
-  const soluteAmountRegionsCapitalizedALittleString = MolarityA11yStrings.soluteAmountRegions.capitalized.aLittle.value;
-  const soluteAmountRegionsCapitalizedSomeString = MolarityA11yStrings.soluteAmountRegions.capitalized.some.value;
-  const soluteAmountRegionsCapitalizedALotOfString = MolarityA11yStrings.soluteAmountRegions.capitalized.aLotOf.value;
-  const soluteAmountRegionsCapitalizedABunchOfString = MolarityA11yStrings.soluteAmountRegions.capitalized.aBunchOf.value;
-  const soluteAmountRegionsCapitalizedMaxAmountOfString = MolarityA11yStrings.soluteAmountRegions.capitalized.maxAmountOf.value;
+  const soluteAmountRegionsCapitalizedNoString = require( 'string!MOLARITY/a11y.soluteAmountRegions.capitalized.no' );
+  const soluteAmountRegionsCapitalizedALowAmountOfString = require( 'string!MOLARITY/a11y.soluteAmountRegions.capitalized.aLowAmountOf' );
+  const soluteAmountRegionsCapitalizedALittleString = require( 'string!MOLARITY/a11y.soluteAmountRegions.capitalized.aLittle' );
+  const soluteAmountRegionsCapitalizedSomeString = require( 'string!MOLARITY/a11y.soluteAmountRegions.capitalized.some' );
+  const soluteAmountRegionsCapitalizedALotOfString = require( 'string!MOLARITY/a11y.soluteAmountRegions.capitalized.aLotOf' );
+  const soluteAmountRegionsCapitalizedABunchOfString = require( 'string!MOLARITY/a11y.soluteAmountRegions.capitalized.aBunchOf' );
+  const soluteAmountRegionsCapitalizedMaxAmountOfString = require( 'string!MOLARITY/a11y.soluteAmountRegions.capitalized.maxAmountOf' );
 
   // solute amount regions capitalized strings
-  const soluteAmountRegionsLowercaseNoString = MolarityA11yStrings.soluteAmountRegions.lowercase.no.value;
-  const soluteAmountRegionsLowercaseALowAmountOfString = MolarityA11yStrings.soluteAmountRegions.lowercase.aLowAmountOf.value;
-  const soluteAmountRegionsLowercaseALittleString = MolarityA11yStrings.soluteAmountRegions.lowercase.aLittle.value;
-  const soluteAmountRegionsLowercaseSomeString = MolarityA11yStrings.soluteAmountRegions.lowercase.some.value;
-  const soluteAmountRegionsLowercaseALotOfString = MolarityA11yStrings.soluteAmountRegions.lowercase.aLotOf.value;
-  const soluteAmountRegionsLowercaseABunchOfString = MolarityA11yStrings.soluteAmountRegions.lowercase.aBunchOf.value;
-  const soluteAmountRegionsLowercaseNaxAmountOfString = MolarityA11yStrings.soluteAmountRegions.lowercase.maxAmountOf.value;
+  const soluteAmountRegionsLowercaseNoString = require( 'string!MOLARITY/a11y.soluteAmountRegions.lowercase.no' );
+  const soluteAmountRegionsLowercaseALowAmountOfString = require( 'string!MOLARITY/a11y.soluteAmountRegions.lowercase.aLowAmountOf' );
+  const soluteAmountRegionsLowercaseALittleString = require( 'string!MOLARITY/a11y.soluteAmountRegions.lowercase.aLittle' );
+  const soluteAmountRegionsLowercaseSomeString = require( 'string!MOLARITY/a11y.soluteAmountRegions.lowercase.some' );
+  const soluteAmountRegionsLowercaseALotOfString = require( 'string!MOLARITY/a11y.soluteAmountRegions.lowercase.aLotOf' );
+  const soluteAmountRegionsLowercaseABunchOfString = require( 'string!MOLARITY/a11y.soluteAmountRegions.lowercase.aBunchOf' );
+  const soluteAmountRegionsLowercaseMaxAmountOfString = require( 'string!MOLARITY/a11y.soluteAmountRegions.lowercase.maxAmountOf' );
 
   // change strings
-  const lessCapitalizedString = MolarityA11yStrings.less.capitalized.value;
-  const moreCapitalizedString = MolarityA11yStrings.more.capitalized.value;
-  const lighterString = MolarityA11yStrings.lighter.value;
-  const darkerString = MolarityA11yStrings.darker.value;
+  const lessCapitalizedString = require( 'string!MOLARITY/a11y.less.capitalized' );
+  const moreCapitalizedString = require( 'string!MOLARITY/a11y.more.capitalized' );
+  const lighterString = require( 'string!MOLARITY/a11y.lighter' );
+  const darkerString = require( 'string!MOLARITY/a11y.darker' );
 
   // constants
   const SOLUTE_AMOUNT_STRINGS_CAPITALIZED = [
@@ -64,7 +63,7 @@ define( require => {
     soluteAmountRegionsLowercaseSomeString,
     soluteAmountRegionsLowercaseABunchOfString,
     soluteAmountRegionsLowercaseALotOfString,
-    soluteAmountRegionsLowercaseNaxAmountOfString
+    soluteAmountRegionsLowercaseMaxAmountOfString
   ];
 
   class SoluteAmountDescriber {

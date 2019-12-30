@@ -14,7 +14,6 @@ define( require => {
   const HBox = require( 'SCENERY/nodes/HBox' );
   const merge = require( 'PHET_CORE/merge' );
   const molarity = require( 'MOLARITY/molarity' );
-  const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
   const Rectangle = require( 'SCENERY/nodes/Rectangle' );
   const SoundClip = require( 'TAMBO/sound-generators/SoundClip' );
@@ -27,7 +26,7 @@ define( require => {
   const soluteString = require( 'string!MOLARITY/solute' );
 
   // a11y strings
-  const soluteComboBoxHelpTextString = MolarityA11yStrings.soluteComboBoxHelpText.value;
+  const soluteComboBoxHelpTextString = require( 'string!MOLARITY/a11y.soluteComboBoxHelpText' );
 
   // sounds
   const comboBoxOpenSound = require( 'sound!TAMBO/combo-box-open.mp3' );

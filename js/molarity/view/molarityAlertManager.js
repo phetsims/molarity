@@ -13,20 +13,19 @@ define( require => {
   // modules
   const ActivationUtterance = require( 'UTTERANCE_QUEUE/ActivationUtterance' );
   const molarity = require( 'MOLARITY/molarity' );
-  const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const Utterance = require( 'UTTERANCE_QUEUE/Utterance' );
   const ValueChangeUtterance = require( 'UTTERANCE_QUEUE/ValueChangeUtterance' );
 
   // a11y strings
-  const atMaxConcentrationAlertPatternString = MolarityA11yStrings.atMaxConcentrationAlertPattern.value;
-  const noSoluteAlertString = MolarityA11yStrings.noSoluteAlert.value;
-  const qualitativeSaturatedValueTextPatternString = MolarityA11yStrings.qualitativeSaturatedValueTextPattern.value;
-  const qualitativeSliderAlertPatternString = MolarityA11yStrings.qualitativeSliderAlertPattern.value;
-  const quantitativeSaturatedValueTextPatternString = MolarityA11yStrings.quantitativeSaturatedValueTextPattern.value;
-  const quantitativeSliderAlertPatternString = MolarityA11yStrings.quantitativeSliderAlertPattern.value;
-  const solutionValuesCheckedAlertString = MolarityA11yStrings.solutionValuesCheckedAlert.value;
-  const solutionValuesUncheckedAlertString = MolarityA11yStrings.solutionValuesUncheckedAlert.value;
+  const atMaxConcentrationAlertPatternString = require( 'string!MOLARITY/a11y.atMaxConcentrationAlertPattern' );
+  const noSoluteAlertString = require( 'string!MOLARITY/a11y.noSoluteAlert' );
+  const qualitativeSaturatedValueTextPatternString = require( 'string!MOLARITY/a11y.qualitativeSaturatedValueTextPattern' );
+  const qualitativeSliderAlertPatternString = require( 'string!MOLARITY/a11y.qualitativeSliderAlertPattern' );
+  const quantitativeSaturatedValueTextPatternString = require( 'string!MOLARITY/a11y.quantitativeSaturatedValueTextPattern' );
+  const quantitativeSliderAlertPatternString = require( 'string!MOLARITY/a11y.quantitativeSliderAlertPattern' );
+  const solutionValuesCheckedAlertString = require( 'string!MOLARITY/a11y.solutionValuesCheckedAlert' );
+  const solutionValuesUncheckedAlertString = require( 'string!MOLARITY/a11y.solutionValuesUncheckedAlert' );
 
   class MolarityAlertManager {
 

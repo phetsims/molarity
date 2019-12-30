@@ -13,43 +13,42 @@ define( require => {
   // modules
   const MolarityConstants = require( 'MOLARITY/molarity/MolarityConstants' );
   const molarity = require( 'MOLARITY/molarity' );
-  const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const Utils = require( 'DOT/Utils' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
 
   // a11y strings
-  const colorChangePatternString = MolarityA11yStrings.colorChangePattern.value;
-  const concentrationAndUnitString = MolarityA11yStrings.concentrationAndUnit.value;
-  const concentrationChangePatternString = MolarityA11yStrings.concentrationChangePattern.value;
-  const beakerConcentrationRangePatternString = MolarityA11yStrings.beakerConcentrationRangePattern.value;
-  const qualitativeConcentrationStateClausePatternString = MolarityA11yStrings.qualitativeConcentrationStateClausePattern.value;
-  const quantitativeConcentrationStatePatternString = MolarityA11yStrings.quantitativeConcentrationStatePattern.value;
+  const colorChangePatternString = require( 'string!MOLARITY/a11y.colorChangePattern' );
+  const concentrationAndUnitString = require( 'string!MOLARITY/a11y.concentrationAndUnit' );
+  const concentrationChangePatternString = require( 'string!MOLARITY/a11y.concentrationChangePattern' );
+  const beakerConcentrationRangePatternString = require( 'string!MOLARITY/a11y.beakerConcentrationRangePattern' );
+  const qualitativeConcentrationStateClausePatternString = require( 'string!MOLARITY/a11y.qualitativeConcentrationStateClausePattern' );
+  const quantitativeConcentrationStatePatternString = require( 'string!MOLARITY/a11y.quantitativeConcentrationStatePattern' );
 
   // Concentration region strings
-  const concentrationRegionsPassiveZeroConcentrationString = MolarityA11yStrings.concentrationRegions.passive.zeroConcentration.value;
-  const concentrationRegionsPassiveLowConcentrationString = MolarityA11yStrings.concentrationRegions.passive.lowConcentration.value;
-  const concentrationRegionsPassiveSlightlyConcentratedString = MolarityA11yStrings.concentrationRegions.passive.slightlyConcentrated.value;
-  const concentrationRegionsPassiveNotVeryConcentratedString = MolarityA11yStrings.concentrationRegions.passive.notVeryConcentrated.value;
-  const concentrationRegionsPassiveVeryConcentratedString = MolarityA11yStrings.concentrationRegions.passive.veryConcentrated.value;
-  const concentrationRegionsPassiveHighlyConcentratedString = MolarityA11yStrings.concentrationRegions.passive.highlyConcentrated.value;
-  const concentrationRegionsPassiveMaxConcentrationString = MolarityA11yStrings.concentrationRegions.passive.maxConcentration.value;
+  const concentrationRegionsPassiveZeroConcentrationString = require( 'string!MOLARITY/a11y.concentrationRegions.passive.zeroConcentration' );
+  const concentrationRegionsPassiveLowConcentrationString = require( 'string!MOLARITY/a11y.concentrationRegions.passive.lowConcentration' );
+  const concentrationRegionsPassiveSlightlyConcentratedString = require( 'string!MOLARITY/a11y.concentrationRegions.passive.slightlyConcentrated' );
+  const concentrationRegionsPassiveNotVeryConcentratedString = require( 'string!MOLARITY/a11y.concentrationRegions.passive.notVeryConcentrated' );
+  const concentrationRegionsPassiveVeryConcentratedString = require( 'string!MOLARITY/a11y.concentrationRegions.passive.veryConcentrated' );
+  const concentrationRegionsPassiveHighlyConcentratedString = require( 'string!MOLARITY/a11y.concentrationRegions.passive.highlyConcentrated' );
+  const concentrationRegionsPassiveMaxConcentrationString = require( 'string!MOLARITY/a11y.concentrationRegions.passive.maxConcentration' );
 
   // Concentration active region strings
-  const concentrationRegionsActiveHasZeroConcentrationString = MolarityA11yStrings.concentrationRegions.active.hasZeroConcentration.value;
-  const concentrationRegionsActiveHasLowConcentrationString = MolarityA11yStrings.concentrationRegions.active.hasLowConcentration.value;
-  const concentrationRegionsActiveIsSlightlyConcentratedString = MolarityA11yStrings.concentrationRegions.active.isSlightlyConcentrated.value;
-  const concentrationRegionsActiveIsNotVeryConcentratedString = MolarityA11yStrings.concentrationRegions.active.isNotVeryConcentrated.value;
-  const concentrationRegionsActiveIsVeryConcentratedString = MolarityA11yStrings.concentrationRegions.active.isVeryConcentrated.value;
-  const concentrationRegionsActiveIsHighlyConcentratedString = MolarityA11yStrings.concentrationRegions.active.isHighlyConcentrated.value;
-  const concentrationRegionsActiveHasMaxConcentrationString = MolarityA11yStrings.concentrationRegions.active.hasMaxConcentration.value;
+  const concentrationRegionsActiveHasZeroConcentrationString = require( 'string!MOLARITY/a11y.concentrationRegions.active.hasZeroConcentration' );
+  const concentrationRegionsActiveHasLowConcentrationString = require( 'string!MOLARITY/a11y.concentrationRegions.active.hasLowConcentration' );
+  const concentrationRegionsActiveIsSlightlyConcentratedString = require( 'string!MOLARITY/a11y.concentrationRegions.active.isSlightlyConcentrated' );
+  const concentrationRegionsActiveIsNotVeryConcentratedString = require( 'string!MOLARITY/a11y.concentrationRegions.active.isNotVeryConcentrated' );
+  const concentrationRegionsActiveIsVeryConcentratedString = require( 'string!MOLARITY/a11y.concentrationRegions.active.isVeryConcentrated' );
+  const concentrationRegionsActiveIsHighlyConcentratedString = require( 'string!MOLARITY/a11y.concentrationRegions.active.isHighlyConcentrated' );
+  const concentrationRegionsActiveHasMaxConcentrationString = require( 'string!MOLARITY/a11y.concentrationRegions.active.hasMaxConcentration' );
 
   // Change strings
-  const lessCapitalizedString = MolarityA11yStrings.less.capitalized.value;
-  const lessLowercaseString = MolarityA11yStrings.less.lowercase.value;
-  const moreCapitalizedString = MolarityA11yStrings.more.capitalized.value;
-  const moreLowercaseString = MolarityA11yStrings.more.lowercase.value;
-  const lighterString = MolarityA11yStrings.lighter.value;
-  const darkerString = MolarityA11yStrings.darker.value;
+  const lessCapitalizedString = require( 'string!MOLARITY/a11y.less.capitalized' );
+  const lessLowercaseString = require( 'string!MOLARITY/a11y.less.lowercase' );
+  const moreCapitalizedString = require( 'string!MOLARITY/a11y.more.capitalized' );
+  const moreLowercaseString = require( 'string!MOLARITY/a11y.more.lowercase' );
+  const lighterString = require( 'string!MOLARITY/a11y.lighter' );
+  const darkerString = require( 'string!MOLARITY/a11y.darker' );
 
   // constants
   const ACTIVE_CONCENTRATION_STRINGS = [

@@ -10,22 +10,21 @@ define( require => {
 
   // modules
   const molarity = require( 'MOLARITY/molarity' );
-  const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const Node = require( 'SCENERY/nodes/Node' );
   const Property = require( 'AXON/Property' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
 
   // a11y strings
-  const ofString = MolarityA11yStrings.of.value;
-  const notSaturatedString = MolarityA11yStrings.notSaturated.value;
-  const screenSummaryQualitativeConcentrationPatternString = MolarityA11yStrings.screenSummaryQualitativeConcentrationPattern.value;
-  const screenSummaryQuantitativeConcentrationPatternString = MolarityA11yStrings.screenSummaryQuantitativeConcentrationPattern.value;
-  const saturatedString = MolarityA11yStrings.saturated.value;
-  const screenSummaryPlayAreaPatternString = MolarityA11yStrings.screenSummaryPlayAreaPattern.value;
-  const screenSummaryControlAreaPatternString = MolarityA11yStrings.screenSummaryControlAreaPattern.value;
-  const simInteractionHintString = MolarityA11yStrings.simInteractionHint.value;
-  const currentStateOfSimNoSolutePatternString = MolarityA11yStrings.currentStateOfSimNoSolutePattern.value;
-  const currentStateOfSimPatternString = MolarityA11yStrings.currentStateOfSimPattern.value;
+  const ofString = require( 'string!MOLARITY/a11y.of' );
+  const notSaturatedString = require( 'string!MOLARITY/a11y.notSaturated' );
+  const screenSummaryQualitativeConcentrationPatternString = require( 'string!MOLARITY/a11y.screenSummaryQualitativeConcentrationPattern' );
+  const screenSummaryQuantitativeConcentrationPatternString = require( 'string!MOLARITY/a11y.screenSummaryQuantitativeConcentrationPattern' );
+  const saturatedString = require( 'string!MOLARITY/a11y.saturated' );
+  const screenSummaryPlayAreaPatternString = require( 'string!MOLARITY/a11y.screenSummaryPlayAreaPattern' );
+  const screenSummaryControlAreaPatternString = require( 'string!MOLARITY/a11y.screenSummaryControlAreaPattern' );
+  const simInteractionHintString = require( 'string!MOLARITY/a11y.simInteractionHint' );
+  const currentStateOfSimNoSolutePatternString = require( 'string!MOLARITY/a11y.currentStateOfSimNoSolutePattern' );
+  const currentStateOfSimPatternString = require( 'string!MOLARITY/a11y.currentStateOfSimPattern' );
 
   class MolarityScreenSummaryNode extends Node {
 
