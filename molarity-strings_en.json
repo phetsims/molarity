@@ -145,142 +145,146 @@
     "soluteComboBoxHelpText": {
       "value": "Choose a different solute for beaker."
     },
-    "_comment1":  "///////////////////////// KEYBOARD HELP CONTENT SECTION STRINGS ///////////////////////////////",
-    "popUpListDescription": {
-      "value": "Pop up list of solutes with Enter or Space keys"
+    "helpContent": {
+      "popUpListDescription": {
+        "value": "Pop up list of solutes with Enter or Space keys"
+      },
+      "moveThroughDescription": {
+        "value": "Move through solutes with Up and Down arrow keys"
+      },
+      "changeChooseDescription": {
+        "value": "Choose solute with Enter key"
+      },
+      "closeListDescription": {
+        "value": "Close list without changing with Esc key"
+      }
     },
-    "moveThroughDescription": {
-      "value": "Move through solutes with Up and Down arrow keys"
+    "screenSummary": {
+      "playAreaPattern": {
+        "value": "In the Play Area, you find a beaker containing a solution, and a concentration readout. You can change solute amount, solution volume, and choose from nine different solutes to play with the solution in beaker."
+      },
+      "controlAreaPattern": {
+        "value": "In the Control Area there is a checkbox to show exact values for amount of solute (in moles), volume of solution (in liters), and concentration (in molar), and a button to reset the sim."
+      },
+      "currentStateOfSimPattern": {
+        "value": "Currently, beaker {{volume}} of a {{color}} ‬solution containing {{soluteAmount}} {{of}} ‪{{solute}}‬ solute. {{concentrationClause}}."
+      },
+      "currentStateOfSimNoSolutePattern": {
+        "value": "Currently, beaker {{volume}} of pure water, and contains no {{solute}} solute."
+      },
+      "simInteractionHint": {
+        "value": "Play with solution in beaker and observe changes to concentration."
+      },
+      "quantitativeConcentrationPattern": {
+        "value": "Solution is {{isSaturated}}, and concentration is {{concentration}}"
+      },
+      "qualitativeConcentrationPattern": {
+        "value": "Solution is {{isSaturated}} and {{concentration}}"
+      }
     },
-    "changeChooseDescription": {
-      "value": "Choose solute with Enter key"
+    "beaker": {
+      "pureWater": {
+        "value": "pure water"
+      },
+      "waterFormulaDescription": {
+        "value": "chemical formula of pure water is H2O"
+      },
+      "header": {
+        "value": "Beaker"
+      },
+      "descriptionPattern": {
+        "value": "Beaker {{volume}} of a {{solute}} solution. The {{color}} solution:"
+      },
+      "descriptionPureWaterPattern": {
+        "value": "Beaker {{volume}} of pure water. The {{color}} solution:"
+      },
+      "hasZeroConcentration": {
+        "value": "has zero concentration"
+      },
+      "soluteAmountPattern": {
+        "value": "contains {{soluteAmount}} {{solute}}"
+      },
+      "saturationPattern": {
+        "value": "is saturated with {{solids}} solids"
+      },
+      "chemicalFormulaPattern": {
+        "value": "chemical formula of {{solute}} is {{chemicalFormula}}"
+      },
+      "concentrationRangePattern": {
+        "value": "concentration readout range for this solution 0 to {{maxConcentration}} molar"
+      }
     },
-    "closeListDescription": {
-      "value": "Close list without changing with Esc key"
-    },
-    "_comment2":  "///////////////////////// SCREEN SUMMARY STRINGS ///////////////////////////////",
-    "screenSummaryPlayAreaPattern": {
-      "value": "In the Play Area, you find a beaker containing a solution, and a concentration readout. You can change solute amount, solution volume, and choose from nine different solutes to play with the solution in beaker."
-    },
-    "screenSummaryControlAreaPattern": {
-      "value": "In the Control Area there is a checkbox to show exact values for amount of solute (in moles), volume of solution (in liters), and concentration (in molar), and a button to reset the sim."
-    },
-    "currentStateOfSimPattern": {
-      "value": "Currently, beaker {{volume}} of a {{color}} ‬solution containing {{soluteAmount}} {{of}} ‪{{solute}}‬ solute. {{concentrationClause}}."
-    },
-    "currentStateOfSimNoSolutePattern": {
-      "value": "Currently, beaker {{volume}} of pure water, and contains no {{solute}} solute."
-    },
-    "simInteractionHint": {
-      "value": "Play with solution in beaker and observe changes to concentration."
-    },
-    "screenSummaryQuantitativeConcentrationPattern": {
-      "value": "Solution is {{isSaturated}}, and concentration is {{concentration}}"
-    },
-    "screenSummaryQualitativeConcentrationPattern": {
-      "value": "Solution is {{isSaturated}} and {{concentration}}"
-    },
-    "pureWater": {
-      "value": "pure water"
-    },
-    "waterFormulaDescription": {
-      "value": "chemical formula of pure water is H2O"
-    },
-    "_comment3":  "// Beaker description strings",
-    "beakerHeader": {
-      "value": "Beaker"
-    },
-    "beakerDescriptionPattern": {
-      "value": "Beaker {{volume}} of a {{solute}} solution. The {{color}} solution:"
-    },
-    "beakerDescriptionPureWaterPattern": {
-      "value": "Beaker {{volume}} of pure water. The {{color}} solution:"
-    },
-    "hasZeroConcentration": {
-      "value": "has zero concentration"
-    },
-    "beakerSoluteAmountPattern": {
-      "value": "contains {{soluteAmount}} {{solute}}"
-    },
-    "beakerSaturationPattern": {
-      "value": "is saturated with {{solids}} solids"
-    },
-    "beakerChemicalFormulaPattern": {
-      "value": "chemical formula of {{solute}} is {{chemicalFormula}}"
-    },
-    "beakerConcentrationRangePattern": {
-      "value": "concentration readout range for this solution 0 to {{maxConcentration}} molar"
-    },
-    "_comment4":  "// saturation states",
     "saturated": {
       "value": "saturated"
     },
     "notSaturated": {
       "value": "not saturated"
     },
-    "_comment5":  "///////////////////////// VALUE TEXT STRINGS ///////////////////////////////,    // Quantitative value text strings for both volume and solute amount sliders",
-    "solutionVolumeAndUnitPattern": {
-      "value": "{{volume}} liters"
+    "quantitative": {
+      "_comment": "for aria-valuetext and alerts",
+      "solutionVolumeAndUnitPattern": {
+        "value": "{{volume}} liters"
+      },
+      "hasVolumePattern": {
+        "value": "has {{volume}} liters"
+      },
+      "soluteAmountAndUnitPattern": {
+        "value": "{{soluteAmount}} moles"
+      },
+      "saturatedValueTextPattern": {
+        "value": "{{solidsChange}}. {{stillSaturatedClause}}"
+      },
+      "concentrationStatePattern": {
+        "value": "concentration {{concentration}}"
+      },
+      "concentrationAndUnit": {
+        "value": "{{concentration}} molar"
+      },
+      "sliderAlertPattern": {
+        "value": "{{concentrationChange}} at {{concentration}}. {{colorChange}}."
+      }
     },
-    "hasVolumePattern": {
-      "value": "has {{volume}} liters"
+    "qualitative": {
+      "_comment": "for aria-valuetext and alerts",
+      "saturatedValueTextPattern": {
+        "value": "{{propertyAmountChange}}, {{solidsChange}}. {{stillSaturatedClause}}"
+      },
+      "volumeStatePattern": {
+        "value": "beaker {{volume}}"
+      },
+      "soluteAmountStatePattern": {
+        "value": "{{soluteAmount}} {{solute}}"
+      },
+      "concentrationStateClausePattern": {
+        "value": ", {{concentration}}"
+      },
+      "sliderAlertPattern": {
+        "value": "{{quantityChange}}. {{colorChange}}{{stateInfo}}."
+      }
     },
-    "soluteAmountAndUnitPattern": {
-      "value": "{{soluteAmount}} moles"
-    },
-    "quantitativeSaturatedValueTextPattern": {
-      "value": "{{solidsChange}}. {{stillSaturatedClause}}"
-    },
-    "quantitativeConcentrationStatePattern": {
-      "value": "concentration {{concentration}}"
-    },
-    "concentrationAndUnit": {
-      "value": "{{concentration}} molar"
-    },
-    "_comment5":  "// Qualitative value text strings for both volume and solute amount sliders",
-    "qualitativeSaturatedValueTextPattern": {
-      "value": "{{propertyAmountChange}}, {{solidsChange}}. {{stillSaturatedClause}}"
-    },
-    "qualitativeVolumeStatePattern": {
-      "value": "beaker {{volume}}"
-    },
-    "qualitativeSoluteAmountStatePattern": {
-      "value": "{{soluteAmount}} {{solute}}"
-    },
-    "qualitativeConcentrationStateClausePattern": {
-      "value": ", {{concentration}}"
-    },
-    "_comment6":  "    ///////////////////////// ALERT STRINGS ///////////////////////////////    // No solute alert",
     "noSoluteAlert": {
       "value": "Zero concentration. Solution pure water."
     },
-    "_comment7":  "// Slider alert patters",
-    "quantitativeSliderAlertPattern": {
-      "value": "{{concentrationChange}} at {{concentration}}. {{colorChange}}."
+    "quantityChange": {
+      "volumeChangePattern": {
+        "value": "{{moreLess}} solution"
+      },
+      "soluteAmountChangedPattern": {
+        "value": "{{moreLess}} solute"
+      },
+      "concentrationChangePattern": {
+        "value": "{{moreLess}} concentrated"
+      },
+      "colorChangePattern": {
+        "value": "Solution {{lighterDarker}}"
+      },
+      "lighter": {
+        "value": "lighter"
+      },
+      "darker": {
+        "value": "darker"
+      }
     },
-    "qualitativeSliderAlertPattern": {
-      "value": "{{quantityChange}}. {{colorChange}}{{stateInfo}}."
-    },
-    "_comment7":  "// Quantity change patterns",
-    "volumeChangePattern": {
-      "value": "{{moreLess}} solution"
-    },
-    "soluteAmountChangedPattern": {
-      "value": "{{moreLess}} solute"
-    },
-    "concentrationChangePattern": {
-      "value": "{{moreLess}} concentrated"
-    },
-    "colorChangePattern": {
-      "value": "Solution {{lighterDarker}}"
-    },
-    "lighter": {
-      "value": "lighter"
-    },
-    "darker": {
-      "value": "darker"
-    },
-    "_comment7":  "// Solute changed alert string",
     "soluteChangedUnsaturatedAlertPattern": {
       "value": "{{color}} solution, {{concentrationClause}}."
     },
@@ -299,7 +303,6 @@
     "noSoluteAlertQualitative": {
       "value": "Clear solution, pure water with no solute."
     },
-    "_comment7":  " // New saturation state alerts",
     "atMaxConcentrationPattern": {
       "value": "at {{concentration}}"
     },
@@ -315,7 +318,6 @@
     "saturationLostQuantitativeAlertPattern": {
       "value": "No longer saturated at {{concentration}}. Solution lighter."
     },
-    "_comment7":  "  // Saturated solution alert strings",
     "stillSaturatedAlertPattern": {
       "value": "Saturated {{withSolids}} {{maxConcentration}}."
     },

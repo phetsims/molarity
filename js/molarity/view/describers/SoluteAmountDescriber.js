@@ -16,11 +16,11 @@ define( require => {
   const Util = require( 'DOT/Util' );
 
   // a11y strings
-  const beakerSoluteAmountPatternString = require( 'string!MOLARITY/a11y.beakerSoluteAmountPattern' );
-  const soluteAmountAndUnitPatternString = require( 'string!MOLARITY/a11y.soluteAmountAndUnitPattern' );
-  const soluteAmountChangedPatternString = require( 'string!MOLARITY/a11y.soluteAmountChangedPattern' );
-  const colorChangePatternString = require( 'string!MOLARITY/a11y.colorChangePattern' );
-  const qualitativeSoluteAmountStatePatternString = require( 'string!MOLARITY/a11y.qualitativeSoluteAmountStatePattern' );
+  const beakerSoluteAmountPatternString = require( 'string!MOLARITY/a11y.beaker.soluteAmountPattern' );
+  const quantitativeSoluteAmountAndUnitPatternString = require( 'string!MOLARITY/a11y.quantitative.soluteAmountAndUnitPattern' );
+  const quantityChangeSoluteAmountChangedPatternString = require( 'string!MOLARITY/a11y.quantityChange.soluteAmountChangedPattern' );
+  const quantityChangeColorChangePatternString = require( 'string!MOLARITY/a11y.quantityChange.colorChangePattern' );
+  const qualitativeSoluteAmountStatePatternString = require( 'string!MOLARITY/a11y.qualitative.soluteAmountStatePattern' );
 
   // solute amount regions capitalized strings
   const soluteAmountRegionsCapitalizedNoString = require( 'string!MOLARITY/a11y.soluteAmountRegions.capitalized.no' );
@@ -43,8 +43,8 @@ define( require => {
   // change strings
   const lessCapitalizedString = require( 'string!MOLARITY/a11y.less.capitalized' );
   const moreCapitalizedString = require( 'string!MOLARITY/a11y.more.capitalized' );
-  const lighterString = require( 'string!MOLARITY/a11y.lighter' );
-  const darkerString = require( 'string!MOLARITY/a11y.darker' );
+  const quantityChangeLighterString = require( 'string!MOLARITY/a11y.quantityChange.lighter' );
+  const quantityChangeDarkerString = require( 'string!MOLARITY/a11y.quantityChange.darker' );
 
   // constants
   const SOLUTE_AMOUNT_STRINGS_CAPITALIZED = [
@@ -135,11 +135,11 @@ define( require => {
       return {
 
         // "quantity" meaning "solute amount" here
-        quantityChangeString: StringUtils.fillIn( soluteAmountChangedPatternString, {
+        quantityChangeString: StringUtils.fillIn( quantityChangeSoluteAmountChangedPatternString, {
           moreLess: this.soluteAmountIncreased ? moreCapitalizedString : lessCapitalizedString
         } ),
-        colorChangeString: StringUtils.fillIn( colorChangePatternString, {
-          lighterDarker: this.soluteAmountIncreased ? darkerString : lighterString
+        colorChangeString: StringUtils.fillIn( quantityChangeColorChangePatternString, {
+          lighterDarker: this.soluteAmountIncreased ? quantityChangeDarkerString : quantityChangeLighterString
         } )
       };
     }
@@ -157,7 +157,7 @@ define( require => {
         const soluteAmountMax = MolarityConstants.SOLUTE_AMOUNT_RANGE.max;
         const clampedSoluteAmount = Util.clamp( this.soluteAmountProperty.value, soluteAmountMin, soluteAmountMax );
 
-        return StringUtils.fillIn( soluteAmountAndUnitPatternString, {
+        return StringUtils.fillIn( quantitativeSoluteAmountAndUnitPatternString, {
           soluteAmount: Util.toFixed( clampedSoluteAmount, MolarityConstants.SOLUTE_AMOUNT_DECIMAL_PLACES )
         } );
       }
