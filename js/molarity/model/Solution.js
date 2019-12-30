@@ -20,7 +20,7 @@ define( require => {
   const Property = require( 'AXON/Property' );
   const PropertyIO = require( 'AXON/PropertyIO' );
   const SoluteIO = require( 'MOLARITY/molarity/model/SoluteIO' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
 
   /**
    * @param {{color:ColorDef, formula:string, colorStringPair:StringCasingPair}} solvent
@@ -58,7 +58,7 @@ define( require => {
     // @public derive the concentration: M = moles/liter
     this.concentrationProperty = new DerivedProperty( [ this.soluteProperty, this.soluteAmountProperty, this.volumeProperty ],
       function( solute, soluteAmount, volume ) {
-        return Util.toFixedNumber( volume > 0 ? Math.min( solute.saturatedConcentration, soluteAmount / volume ) : 0,
+        return Utils.toFixedNumber( volume > 0 ? Math.min( solute.saturatedConcentration, soluteAmount / volume ) : 0,
           MolarityConstants.CONCENTRATION_DECIMAL_PLACES );
       }, {
         tandem: tandem.createTandem( 'concentrationProperty' ),
@@ -122,7 +122,7 @@ define( require => {
     getColor: function() {
       if ( this.concentrationProperty.value > 0 ) {
         const solute = this.soluteProperty.get();
-        const colorScale = Util.linear( 0, solute.saturatedConcentration, 0, 1, this.concentrationProperty.value );
+        const colorScale = Utils.linear( 0, solute.saturatedConcentration, 0, 1, this.concentrationProperty.value );
         return Color.interpolateRGBA( solute.minColor, solute.maxColor, colorScale );
       }
       else {

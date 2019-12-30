@@ -26,7 +26,7 @@ define( require => {
   const Shape = require( 'KITE/Shape' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const Text = require( 'SCENERY/nodes/Text' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
   const Vector2 = require( 'DOT/Vector2' );
 
   // strings
@@ -80,7 +80,7 @@ define( require => {
     // inside bottom line
     const bottomShape = new Shape().ellipticalArc( cylinderSize.width / 2, cylinderSize.height,
       cylinderSize.width / 2, cylinderEndHeight / 2,
-      0, Util.toRadians( 0 ), Util.toRadians( 180 ), true );
+      0, Utils.toRadians( 0 ), Utils.toRadians( 180 ), true );
     const bottomNode = new Path( bottomShape, {
       stroke: new Color( 150, 150, 150, 100 ),
       lineWidth: 2,
@@ -104,7 +104,7 @@ define( require => {
     this.addChild( labelNode );
 
     // tick marks, arcs that wrap around the edge of the beaker's cylinder
-    const numberOfTicks = Util.roundSymmetric( maxVolume / MINOR_TICK_SPACING );
+    const numberOfTicks = Utils.roundSymmetric( maxVolume / MINOR_TICK_SPACING );
     const bottomY = cylinderSize.height; // don't use bounds or position will be off because of stroke width
     const deltaY = cylinderSize.height / numberOfTicks;
 
@@ -124,7 +124,7 @@ define( require => {
       if ( i % MINOR_TICKS_PER_MAJOR_TICK === 0 ) {
 
         // major tick mark
-        tickMarkShape = new Shape().ellipticalArc( cylinderSize.width / 2, y, cylinderSize.width / 2, cylinderEndHeight / 2, 0, Util.toRadians( 165 ), Util.toRadians( 135 ), true );
+        tickMarkShape = new Shape().ellipticalArc( cylinderSize.width / 2, y, cylinderSize.width / 2, cylinderEndHeight / 2, 0, Utils.toRadians( 165 ), Utils.toRadians( 135 ), true );
         tickMarkNode = new Path( tickMarkShape, {
           stroke: TICK_COLOR,
           lineWidth: 2,
@@ -150,7 +150,7 @@ define( require => {
       else {
 
         // minor tick mark, no label
-        tickMarkShape = new Shape().ellipticalArc( cylinderSize.width / 2, y, cylinderSize.width / 2, cylinderEndHeight / 2, 0, Util.toRadians( 165 ), Util.toRadians( 150 ), true );
+        tickMarkShape = new Shape().ellipticalArc( cylinderSize.width / 2, y, cylinderSize.width / 2, cylinderEndHeight / 2, 0, Utils.toRadians( 165 ), Utils.toRadians( 150 ), true );
         tickMarkNode = new Path( tickMarkShape, {
           stroke: TICK_COLOR,
           lineWidth: 2,

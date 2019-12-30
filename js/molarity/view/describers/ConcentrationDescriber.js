@@ -14,7 +14,7 @@ define( require => {
   const MolarityConstants = require( 'MOLARITY/molarity/MolarityConstants' );
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
 
   // a11y strings
@@ -151,7 +151,7 @@ define( require => {
       const concentration = this.concentrationProperty.value;
       if ( this.useQuantitativeDescriptionsProperty.value ) {
         return StringUtils.fillIn( concentrationAndUnitString, {
-          concentration: Util.toFixed( concentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES )
+          concentration: Utils.toFixed( concentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES )
         } );
       }
       else {
@@ -169,15 +169,15 @@ define( require => {
 
       const concentrationMin = MolarityConstants.CONCENTRATION_RANGE.min;
       const concentrationMax = MolarityConstants.CONCENTRATION_RANGE.max;
-      const clampedConcentration = Util.clamp( this.getCurrentSaturatedConcentration(), concentrationMin, concentrationMax );
+      const clampedConcentration = Utils.clamp( this.getCurrentSaturatedConcentration(), concentrationMin, concentrationMax );
 
       // The described max concentration in this clause is the maximum of the displayed concentration range for solutes
       // with a max concentration larger than the displayed concentration range max, and is the solute's actual max
       // concentration if it is less than the displayed concentration range max.
-      const displayedMaxConcentration = Util.toFixed( clampedConcentration, MolarityConstants.SOLUTE_AMOUNT_DECIMAL_PLACES );
+      const displayedMaxConcentration = Utils.toFixed( clampedConcentration, MolarityConstants.SOLUTE_AMOUNT_DECIMAL_PLACES );
 
       return StringUtils.fillIn( beakerConcentrationRangePatternString, {
-        maxConcentration: Util.toFixed( displayedMaxConcentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES )
+        maxConcentration: Utils.toFixed( displayedMaxConcentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES )
       } );
     }
 
@@ -268,7 +268,7 @@ define( require => {
       // Concentration regions are evenly spaced within the region from 0 to max concentration for a given solute except
       // for the lowest region (zero) and the highest region (max concentration) which are single value regions.
       const scaleIncrement = saturatedConcentrationForSolute / ( CONCENTRATION_STRINGS.length - 2 );
-      const concentrationRounded = Util.toFixed( currentConcentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES );
+      const concentrationRounded = Utils.toFixed( currentConcentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES );
 
       // don't count the first and last concentration string
       for ( let i = 1; i < CONCENTRATION_STRINGS.length - 2; i++ ) {

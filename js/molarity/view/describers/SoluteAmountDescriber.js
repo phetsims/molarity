@@ -14,7 +14,7 @@ define( require => {
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
 
   // a11y strings
   const beakerSoluteAmountPatternString = MolarityA11yStrings.beakerSoluteAmountPattern.value;
@@ -156,10 +156,10 @@ define( require => {
       if ( this.useQuantitativeDescriptionsProperty.value ) {
         const soluteAmountMin = MolarityConstants.SOLUTE_AMOUNT_RANGE.min;
         const soluteAmountMax = MolarityConstants.SOLUTE_AMOUNT_RANGE.max;
-        const clampedSoluteAmount = Util.clamp( this.soluteAmountProperty.value, soluteAmountMin, soluteAmountMax );
+        const clampedSoluteAmount = Utils.clamp( this.soluteAmountProperty.value, soluteAmountMin, soluteAmountMax );
 
         return StringUtils.fillIn( soluteAmountAndUnitPatternString, {
-          soluteAmount: Util.toFixed( clampedSoluteAmount, MolarityConstants.SOLUTE_AMOUNT_DECIMAL_PLACES )
+          soluteAmount: Utils.toFixed( clampedSoluteAmount, MolarityConstants.SOLUTE_AMOUNT_DECIMAL_PLACES )
         } );
       }
       else {

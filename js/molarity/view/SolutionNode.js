@@ -19,7 +19,7 @@ define( require => {
   const Path = require( 'SCENERY/nodes/Path' );
   const Rectangle = require( 'SCENERY/nodes/Rectangle' );
   const Shape = require( 'KITE/Shape' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
 
   // constants
   const DEBUG_ORIGIN = false;
@@ -75,7 +75,7 @@ define( require => {
     solution.soluteProperty.link( updateColor );
 
     const updateShape = function() {
-      const height = Util.linear( 0, maxVolume, 0, cylinderSize.height, solution.volumeProperty.get() );
+      const height = Utils.linear( 0, maxVolume, 0, cylinderSize.height, solution.volumeProperty.get() );
       topNode.visible = bottomNode.visible = middleNode.visible = ( height > 0 );
       if ( height > 0 ) {
         middleNode.setRect( 0, cylinderSize.height - height, cylinderSize.width, height );

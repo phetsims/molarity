@@ -14,7 +14,7 @@ define( require => {
   const molarity = require( 'MOLARITY/molarity' );
   const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
 
   // a11y strings
   const hasVolumePatternString = MolarityA11yStrings.hasVolumePattern.value;
@@ -122,7 +122,7 @@ define( require => {
       if ( this.useQuantitativeDescriptionsProperty.value ) {
         const quantitativeString = isActive ? hasVolumePatternString : solutionVolumeAndUnitPatternString;
         return StringUtils.fillIn( quantitativeString, {
-          volume: Util.toFixed( this.volumeProperty.value, MolarityConstants.SOLUTION_VOLUME_DECIMAL_PLACES )
+          volume: Utils.toFixed( this.volumeProperty.value, MolarityConstants.SOLUTION_VOLUME_DECIMAL_PLACES )
         } );
       }
       else if ( isActive ) {

@@ -28,7 +28,7 @@ define( require => {
   const Shape = require( 'KITE/Shape' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const Text = require( 'SCENERY/nodes/Text' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
 
   // strings
   const highString = require( 'string!MOLARITY/high' );
@@ -80,11 +80,11 @@ define( require => {
       tandem: tandem.createTandem( 'subtitleNode' )
     } );
 
-    const maxNode = new DualLabelNode( Util.toFixed( concentrationRange.max, MolarityConstants.RANGE_DECIMAL_PLACES ),
+    const maxNode = new DualLabelNode( Utils.toFixed( concentrationRange.max, MolarityConstants.RANGE_DECIMAL_PLACES ),
       highString, valuesVisibleProperty, RANGE_FONT, tandem.createTandem( 'maxNode' ),
       { maxWidth: maxTextWidth } );
 
-    const minNode = new DualLabelNode( Util.toFixed( concentrationRange.min,
+    const minNode = new DualLabelNode( Utils.toFixed( concentrationRange.min,
       concentrationRange.min === 0 ? 0 : MolarityConstants.RANGE_DECIMAL_PLACES ), zeroString,
       valuesVisibleProperty, RANGE_FONT, tandem.createTandem( 'minNode' ),
       { maxWidth: maxTextWidth } );
@@ -196,11 +196,11 @@ define( require => {
     const update = function( concentration ) {
 
       // update the arrow
-      self.arrowNode.y = barSize.height - Util.linear( concentrationRange.min, concentrationRange.max, 0, barSize.height, concentration );
+      self.arrowNode.y = barSize.height - Utils.linear( concentrationRange.min, concentrationRange.max, 0, barSize.height, concentration );
       self.arrowNode.fill = solution.getColor();
 
       // update the value
-      valueNode.text = StringUtils.format( pattern0Value1UnitsString, Util.toFixed( concentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES ), unitsMolarityString );
+      valueNode.text = StringUtils.format( pattern0Value1UnitsString, Utils.toFixed( concentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES ), unitsMolarityString );
       valueNode.left = self.arrowNode.right + 5;
       valueNode.centerY = self.arrowNode.centerY;
     };
