@@ -101,7 +101,7 @@ define( require => {
     } );
 
     const pointerNode = new PointerNode( solution, concentrationRange, barSize, valuesVisibleProperty,
-      tandem.createTandem( 'pointerNode') );
+      tandem.createTandem( 'pointerNode' ) );
 
     // rendering order
     this.addChild( titleNode );
@@ -168,12 +168,12 @@ define( require => {
     const y = 0;
     const arrowShape = new Shape()
       .moveTo( x, y )
-      .lineTo( x + ARROW_HEAD_HEIGHT, y - (ARROW_HEAD_WIDTH / 2) )
-      .lineTo( x + ARROW_HEAD_HEIGHT, y - (ARROW_TAIL_WIDTH / 2) )
-      .lineTo( x + ARROW_LENGTH, y - (ARROW_TAIL_WIDTH / 2) )
-      .lineTo( x + ARROW_LENGTH, y + (ARROW_TAIL_WIDTH / 2) )
-      .lineTo( x + ARROW_HEAD_HEIGHT, y + (ARROW_TAIL_WIDTH / 2) )
-      .lineTo( x + ARROW_HEAD_HEIGHT, y + (ARROW_HEAD_WIDTH / 2) )
+      .lineTo( x + ARROW_HEAD_HEIGHT, y - ( ARROW_HEAD_WIDTH / 2 ) )
+      .lineTo( x + ARROW_HEAD_HEIGHT, y - ( ARROW_TAIL_WIDTH / 2 ) )
+      .lineTo( x + ARROW_LENGTH, y - ( ARROW_TAIL_WIDTH / 2 ) )
+      .lineTo( x + ARROW_LENGTH, y + ( ARROW_TAIL_WIDTH / 2 ) )
+      .lineTo( x + ARROW_HEAD_HEIGHT, y + ( ARROW_TAIL_WIDTH / 2 ) )
+      .lineTo( x + ARROW_HEAD_HEIGHT, y + ( ARROW_HEAD_WIDTH / 2 ) )
       .close();
 
     // @private

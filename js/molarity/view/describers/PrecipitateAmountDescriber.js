@@ -16,39 +16,38 @@ define( require => {
   // modules
   const MolarityConstants = require( 'MOLARITY/molarity/MolarityConstants' );
   const molarity = require( 'MOLARITY/molarity' );
-  const MolarityA11yStrings = require( 'MOLARITY/molarity/MolarityA11yStrings' );
   const Solution = require( 'MOLARITY/molarity/model/Solution' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
 
   // a11y strings
-  const atMaxConcentrationPatternString = MolarityA11yStrings.atMaxConcentrationPattern.value;
-  const beakerSaturationPatternString = MolarityA11yStrings.beakerSaturationPattern.value;
-  const saturationLostQualitativeAlertPatternString = MolarityA11yStrings.saturationLostQualitativeAlertPattern.value;
-  const saturationLostQuantitativeAlertPatternString = MolarityA11yStrings.saturationLostQuantitativeAlertPattern.value;
-  const saturationReachedAlertPatternString = MolarityA11yStrings.saturationReachedAlertPattern.value;
-  const stillSaturatedAlertPatternString = MolarityA11yStrings.stillSaturatedAlertPattern.value;
-  const withSolidsAlertPatternString = MolarityA11yStrings.withSolidsAlertPattern.value;
-  const solidsChangePatternString = MolarityA11yStrings.solidsChangePattern.value;
+  const atMaxConcentrationPatternString = require( 'string!MOLARITY/a11y.atMaxConcentrationPattern' );
+  const beakerSaturationPatternString = require( 'string!MOLARITY/a11y.beakerSaturationPattern' );
+  const saturationLostQualitativeAlertPatternString = require( 'string!MOLARITY/a11y.saturationLostQualitativeAlertPattern' );
+  const saturationLostQuantitativeAlertPatternString = require( 'string!MOLARITY/a11y.saturationLostQuantitativeAlertPattern' );
+  const saturationReachedAlertPatternString = require( 'string!MOLARITY/a11y.saturationReachedAlertPattern' );
+  const stillSaturatedAlertPatternString = require( 'string!MOLARITY/a11y.stillSaturatedAlertPattern' );
+  const withSolidsAlertPatternString = require( 'string!MOLARITY/a11y.withSolidsAlertPattern' );
+  const solidsChangePatternString = require( 'string!MOLARITY/a11y.solidsChangePattern' );
 
   // Precipitate Amount capitalized region strings
-  const precipitateAmountRegionsCapitalizedALotOfString = MolarityA11yStrings.precipitateAmountRegions.capitalized.aLotOf.value;
-  const precipitateAmountRegionsCapitalizedABunchOfString = MolarityA11yStrings.precipitateAmountRegions.capitalized.aBunchOf.value;
-  const precipitateAmountRegionsCapitalizedSomeString = MolarityA11yStrings.precipitateAmountRegions.capitalized.some.value;
-  const precipitateAmountRegionsCapitalizedACoupleOfString = MolarityA11yStrings.precipitateAmountRegions.capitalized.aCoupleOf.value;
-  const precipitateAmountRegionsCapitalizedAFewString = MolarityA11yStrings.precipitateAmountRegions.capitalized.aFew.value;
+  const precipitateAmountRegionsCapitalizedALotOfString = require( 'string!MOLARITY/a11y.precipitateAmountRegions.capitalized.aLotOf' );
+  const precipitateAmountRegionsCapitalizedABunchOfString = require( 'string!MOLARITY/a11y.precipitateAmountRegions.capitalized.aBunchOf' );
+  const precipitateAmountRegionsCapitalizedSomeString = require( 'string!MOLARITY/a11y.precipitateAmountRegions.capitalized.some' );
+  const precipitateAmountRegionsCapitalizedACoupleOfString = require( 'string!MOLARITY/a11y.precipitateAmountRegions.capitalized.aCoupleOf' );
+  const precipitateAmountRegionsCapitalizedAFewString = require( 'string!MOLARITY/a11y.precipitateAmountRegions.capitalized.aFew' );
 
   // Precipitate Amount lowercase region strings
-  const precipitateAmountRegionsLowercaseALotOfString = MolarityA11yStrings.precipitateAmountRegions.lowercase.aLotOf.value;
-  const precipitateAmountRegionsLowercaseABunchOfString = MolarityA11yStrings.precipitateAmountRegions.lowercase.aBunchOf.value;
-  const precipitateAmountRegionsLowercaseSomeString = MolarityA11yStrings.precipitateAmountRegions.lowercase.some.value;
-  const precipitateAmountRegionsLowercaseACoupleOfString = MolarityA11yStrings.precipitateAmountRegions.lowercase.aCoupleOf.value;
-  const precipitateAmountRegionsLowercaseAFewString = MolarityA11yStrings.precipitateAmountRegions.lowercase.aFew.value;
+  const precipitateAmountRegionsLowercaseALotOfString = require( 'string!MOLARITY/a11y.precipitateAmountRegions.lowercase.aLotOf' );
+  const precipitateAmountRegionsLowercaseABunchOfString = require( 'string!MOLARITY/a11y.precipitateAmountRegions.lowercase.aBunchOf' );
+  const precipitateAmountRegionsLowercaseSomeString = require( 'string!MOLARITY/a11y.precipitateAmountRegions.lowercase.some' );
+  const precipitateAmountRegionsLowercaseACoupleOfString = require( 'string!MOLARITY/a11y.precipitateAmountRegions.lowercase.aCoupleOf' );
+  const precipitateAmountRegionsLowercaseAFewString = require( 'string!MOLARITY/a11y.precipitateAmountRegions.lowercase.aFew' );
 
   // Change strings
-  const lessCapitalizedString = MolarityA11yStrings.less.capitalized.value;
-  const moreCapitalizedString = MolarityA11yStrings.more.capitalized.value;
-  const lessLowercaseString = MolarityA11yStrings.less.lowercase.value;
-  const moreLowercaseString = MolarityA11yStrings.more.lowercase.value;
+  const lessCapitalizedString = require( 'string!MOLARITY/a11y.less.capitalized' );
+  const moreCapitalizedString = require( 'string!MOLARITY/a11y.more.capitalized' );
+  const lessLowercaseString = require( 'string!MOLARITY/a11y.less.lowercase' );
+  const moreLowercaseString = require( 'string!MOLARITY/a11y.more.lowercase' );
 
   // constants
   const PRECIPITATE_AMOUNT_STRINGS_CAPITALIZED = [
