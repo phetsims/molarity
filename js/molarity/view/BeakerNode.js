@@ -33,7 +33,7 @@ define( require => {
   const unitsLitersString = require( 'string!MOLARITY/units.liters' );
 
   // a11y strings
-  const beakerHeaderString = require( 'string!MOLARITY/a11y.beakerHeader' );
+  const beakerHeaderString = require( 'string!MOLARITY/a11y.beaker.header' );
 
   // constants
   const DEBUG_SHAPES = false;

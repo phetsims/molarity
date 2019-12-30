@@ -20,10 +20,10 @@ define( require => {
   // a11y strings
   const atMaxConcentrationAlertPatternString = require( 'string!MOLARITY/a11y.atMaxConcentrationAlertPattern' );
   const noSoluteAlertString = require( 'string!MOLARITY/a11y.noSoluteAlert' );
-  const qualitativeSaturatedValueTextPatternString = require( 'string!MOLARITY/a11y.qualitativeSaturatedValueTextPattern' );
-  const qualitativeSliderAlertPatternString = require( 'string!MOLARITY/a11y.qualitativeSliderAlertPattern' );
-  const quantitativeSaturatedValueTextPatternString = require( 'string!MOLARITY/a11y.quantitativeSaturatedValueTextPattern' );
-  const quantitativeSliderAlertPatternString = require( 'string!MOLARITY/a11y.quantitativeSliderAlertPattern' );
+  const qualitativeSaturatedValueTextPatternString = require( 'string!MOLARITY/a11y.qualitative.saturatedValueTextPattern' );
+  const qualitativeSliderAlertPatternString = require( 'string!MOLARITY/a11y.qualitative.sliderAlertPattern' );
+  const quantitativeSaturatedValueTextPatternString = require( 'string!MOLARITY/a11y.quantitative.saturatedValueTextPattern' );
+  const quantitativeSliderAlertPatternString = require( 'string!MOLARITY/a11y.quantitative.sliderAlertPattern' );
   const solutionValuesCheckedAlertString = require( 'string!MOLARITY/a11y.solutionValuesCheckedAlert' );
   const solutionValuesUncheckedAlertString = require( 'string!MOLARITY/a11y.solutionValuesUncheckedAlert' );
 

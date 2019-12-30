@@ -16,11 +16,11 @@ define( require => {
   const Utils = require( 'DOT/Utils' );
 
   // a11y strings
-  const hasVolumePatternString = require( 'string!MOLARITY/a11y.hasVolumePattern' );
-  const colorChangePatternString = require( 'string!MOLARITY/a11y.colorChangePattern' );
-  const qualitativeVolumeStatePatternString = require( 'string!MOLARITY/a11y.qualitativeVolumeStatePattern' );
-  const solutionVolumeAndUnitPatternString = require( 'string!MOLARITY/a11y.solutionVolumeAndUnitPattern' );
-  const volumeChangePatternString = require( 'string!MOLARITY/a11y.volumeChangePattern' );
+  const quantitativeHasVolumePatternString = require( 'string!MOLARITY/a11y.quantitative.hasVolumePattern' );
+  const quantityChangeColorChangePatternString = require( 'string!MOLARITY/a11y.quantityChange.colorChangePattern' );
+  const qualitativeVolumeStatePatternString = require( 'string!MOLARITY/a11y.qualitative.volumeStatePattern' );
+  const quantitativeSolutionVolumeAndUnitPatternString = require( 'string!MOLARITY/a11y.quantitative.solutionVolumeAndUnitPattern' );
+  const quantityChangeVolumeChangePatternString = require( 'string!MOLARITY/a11y.quantityChange.volumeChangePattern' );
 
   // volume regions strings
   const volumeRegionsPassiveFullString = require( 'string!MOLARITY/a11y.volumeRegions.passive.full' );
@@ -43,8 +43,8 @@ define( require => {
   // change strings
   const lessCapitalizedString = require( 'string!MOLARITY/a11y.less.capitalized' );
   const moreCapitalizedString = require( 'string!MOLARITY/a11y.more.capitalized' );
-  const lighterString = require( 'string!MOLARITY/a11y.lighter' );
-  const darkerString = require( 'string!MOLARITY/a11y.darker' );
+  const quantityChangeLighterString = require( 'string!MOLARITY/a11y.quantityChange.lighter' );
+  const quantityChangeDarkerString = require( 'string!MOLARITY/a11y.quantityChange.darker' );
 
   // constants
   const VOLUME_STRINGS = [
@@ -119,7 +119,7 @@ define( require => {
     getCurrentVolume( isActive = false ) {
       const volumeIndex = volumeToIndex( this.volumeProperty.value );
       if ( this.useQuantitativeDescriptionsProperty.value ) {
-        const quantitativeString = isActive ? hasVolumePatternString : solutionVolumeAndUnitPatternString;
+        const quantitativeString = isActive ? quantitativeHasVolumePatternString : quantitativeSolutionVolumeAndUnitPatternString;
         return StringUtils.fillIn( quantitativeString, {
           volume: Utils.toFixed( this.volumeProperty.value, MolarityConstants.SOLUTION_VOLUME_DECIMAL_PLACES )
         } );
@@ -143,11 +143,11 @@ define( require => {
       return {
 
         // "quantity" meaning "volume" here
-        quantityChangeString: StringUtils.fillIn( volumeChangePatternString, {
+        quantityChangeString: StringUtils.fillIn( quantityChangeVolumeChangePatternString, {
           moreLess: this.volumeIncreased ? moreCapitalizedString : lessCapitalizedString
         } ),
-        colorChangeString: StringUtils.fillIn( colorChangePatternString, {
-          lighterDarker: this.volumeIncreased ? lighterString : darkerString
+        colorChangeString: StringUtils.fillIn( quantityChangeColorChangePatternString, {
+          lighterDarker: this.volumeIncreased ? quantityChangeLighterString : quantityChangeDarkerString
         } )
       };
     }

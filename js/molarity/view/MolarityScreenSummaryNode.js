@@ -17,14 +17,14 @@ define( require => {
   // a11y strings
   const ofString = require( 'string!MOLARITY/a11y.of' );
   const notSaturatedString = require( 'string!MOLARITY/a11y.notSaturated' );
-  const screenSummaryQualitativeConcentrationPatternString = require( 'string!MOLARITY/a11y.screenSummaryQualitativeConcentrationPattern' );
-  const screenSummaryQuantitativeConcentrationPatternString = require( 'string!MOLARITY/a11y.screenSummaryQuantitativeConcentrationPattern' );
+  const screenSummaryQualitativeConcentrationPatternString = require( 'string!MOLARITY/a11y.screenSummary.qualitativeConcentrationPattern' );
+  const screenSummaryQuantitativeConcentrationPatternString = require( 'string!MOLARITY/a11y.screenSummary.quantitativeConcentrationPattern' );
   const saturatedString = require( 'string!MOLARITY/a11y.saturated' );
-  const screenSummaryPlayAreaPatternString = require( 'string!MOLARITY/a11y.screenSummaryPlayAreaPattern' );
-  const screenSummaryControlAreaPatternString = require( 'string!MOLARITY/a11y.screenSummaryControlAreaPattern' );
-  const simInteractionHintString = require( 'string!MOLARITY/a11y.simInteractionHint' );
-  const currentStateOfSimNoSolutePatternString = require( 'string!MOLARITY/a11y.currentStateOfSimNoSolutePattern' );
-  const currentStateOfSimPatternString = require( 'string!MOLARITY/a11y.currentStateOfSimPattern' );
+  const screenSummaryPlayAreaPatternString = require( 'string!MOLARITY/a11y.screenSummary.playAreaPattern' );
+  const screenSummaryControlAreaPatternString = require( 'string!MOLARITY/a11y.screenSummary.controlAreaPattern' );
+  const screenSummarySimInteractionHintString = require( 'string!MOLARITY/a11y.screenSummary.simInteractionHint' );
+  const screenSummaryCurrentStateOfSimNoSolutePatternString = require( 'string!MOLARITY/a11y.screenSummary.currentStateOfSimNoSolutePattern' );
+  const screenSummaryCurrentStateOfSimPatternString = require( 'string!MOLARITY/a11y.screenSummary.currentStateOfSimPattern' );
 
   class MolarityScreenSummaryNode extends Node {
 
@@ -72,7 +72,7 @@ define( require => {
       // Fourth paragraph of the screen summary -- static regardless of state of sim, gives the interaction hint
       this.addChild( new Node( {
         tagName: 'p',
-        innerContent: simInteractionHintString
+        innerContent: screenSummarySimInteractionHintString
       } ) );
 
       // Updates the third paragraph of the screen summary when sim Properties change.
@@ -93,7 +93,7 @@ define( require => {
      * descriptions are show, and whether or not there is some solute in the beaker.
      */
     getStateOfSimDescription() {
-      let stateString = currentStateOfSimPatternString;
+      let stateString = screenSummaryCurrentStateOfSimPatternString;
 
       // concentrationString will form the base of the concentrationPattern substring (filled in below)
       const concentrationString = this.useQuantitativeDescriptionsProperty.value ?
@@ -106,7 +106,7 @@ define( require => {
 
       // If there is no solute in the beaker, the PDOM descriptions change.
       if ( !this.solution.hasSolute() ) {
-        stateString = currentStateOfSimNoSolutePatternString;
+        stateString = screenSummaryCurrentStateOfSimNoSolutePatternString;
       }
 
       return StringUtils.fillIn( stateString, {

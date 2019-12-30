@@ -17,12 +17,12 @@ define( require => {
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
 
   // a11y strings
-  const colorChangePatternString = require( 'string!MOLARITY/a11y.colorChangePattern' );
-  const concentrationAndUnitString = require( 'string!MOLARITY/a11y.concentrationAndUnit' );
-  const concentrationChangePatternString = require( 'string!MOLARITY/a11y.concentrationChangePattern' );
-  const beakerConcentrationRangePatternString = require( 'string!MOLARITY/a11y.beakerConcentrationRangePattern' );
-  const qualitativeConcentrationStateClausePatternString = require( 'string!MOLARITY/a11y.qualitativeConcentrationStateClausePattern' );
-  const quantitativeConcentrationStatePatternString = require( 'string!MOLARITY/a11y.quantitativeConcentrationStatePattern' );
+  const quantityChangeColorChangePatternString = require( 'string!MOLARITY/a11y.quantityChange.colorChangePattern' );
+  const quantitativeConcentrationAndUnitString = require( 'string!MOLARITY/a11y.quantitative.concentrationAndUnit' );
+  const quantityChangeConcentrationChangePatternString = require( 'string!MOLARITY/a11y.quantityChange.concentrationChangePattern' );
+  const beakerConcentrationRangePatternString = require( 'string!MOLARITY/a11y.beaker.concentrationRangePattern' );
+  const qualitativeConcentrationStateClausePatternString = require( 'string!MOLARITY/a11y.qualitative.concentrationStateClausePattern' );
+  const quantitativeConcentrationStatePatternString = require( 'string!MOLARITY/a11y.quantitative.concentrationStatePattern' );
 
   // Concentration region strings
   const concentrationRegionsPassiveZeroConcentrationString = require( 'string!MOLARITY/a11y.concentrationRegions.passive.zeroConcentration' );
@@ -47,8 +47,8 @@ define( require => {
   const lessLowercaseString = require( 'string!MOLARITY/a11y.less.lowercase' );
   const moreCapitalizedString = require( 'string!MOLARITY/a11y.more.capitalized' );
   const moreLowercaseString = require( 'string!MOLARITY/a11y.more.lowercase' );
-  const lighterString = require( 'string!MOLARITY/a11y.lighter' );
-  const darkerString = require( 'string!MOLARITY/a11y.darker' );
+  const quantityChangeLighterString = require( 'string!MOLARITY/a11y.quantityChange.lighter' );
+  const quantityChangeDarkerString = require( 'string!MOLARITY/a11y.quantityChange.darker' );
 
   // constants
   const ACTIVE_CONCENTRATION_STRINGS = [
@@ -149,7 +149,7 @@ define( require => {
     getCurrentConcentrationClause( isPassive = false ) {
       const concentration = this.concentrationProperty.value;
       if ( this.useQuantitativeDescriptionsProperty.value ) {
-        return StringUtils.fillIn( concentrationAndUnitString, {
+        return StringUtils.fillIn( quantitativeConcentrationAndUnitString, {
           concentration: Utils.toFixed( concentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES )
         } );
       }
@@ -215,7 +215,7 @@ define( require => {
       if ( this.concentrationIncreased ) {
         moreLessString = isCapitalized ? moreCapitalizedString : moreLowercaseString;
       }
-      return StringUtils.fillIn( concentrationChangePatternString, {
+      return StringUtils.fillIn( quantityChangeConcentrationChangePatternString, {
         moreLess: moreLessString
       } );
     }
@@ -228,8 +228,8 @@ define( require => {
     getColorChangeString() {
       assert && assert( !this.solution.isSaturated(), 'color cannot change when saturated' );
 
-      return StringUtils.fillIn( colorChangePatternString, {
-        lighterDarker: this.concentrationIncreased ? darkerString : lighterString
+      return StringUtils.fillIn( quantityChangeColorChangePatternString, {
+        lighterDarker: this.concentrationIncreased ? quantityChangeDarkerString : quantityChangeLighterString
       } );
     }
 

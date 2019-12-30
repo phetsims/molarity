@@ -17,10 +17,10 @@ define( require => {
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
 
   // a11y strings
-  const beakerChemicalFormulaPatternString = require( 'string!MOLARITY/a11y.beakerChemicalFormulaPattern' );
+  const beakerChemicalFormulaPatternString = require( 'string!MOLARITY/a11y.beaker.chemicalFormulaPattern' );
   const noSoluteAlertQuantitativeString = require( 'string!MOLARITY/a11y.noSoluteAlertQuantitative' );
   const noSoluteAlertQualitativeString = require( 'string!MOLARITY/a11y.noSoluteAlertQualitative' );
-  const quantitativeConcentrationStatePatternString = require( 'string!MOLARITY/a11y.quantitativeConcentrationStatePattern' );
+  const quantitativeConcentrationStatePatternString = require( 'string!MOLARITY/a11y.quantitative.concentrationStatePattern' );
   const soluteChangedQuantitativeConcentrationPatternString = require( 'string!MOLARITY/a11y.soluteChangedQuantitativeConcentrationPattern' );
   const soluteChangedQualitativeConcentrationPatternString = require( 'string!MOLARITY/a11y.soluteChangedQualitativeConcentrationPattern' );
   const soluteChangedSaturatedAlertPatternString = require( 'string!MOLARITY/a11y.soluteChangedSaturatedAlertPattern' );

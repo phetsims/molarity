@@ -19,11 +19,11 @@ define( require => {
   const drinkMixString = require( 'string!MOLARITY/drinkMix' );
 
   // a11y strings
-  const beakerDescriptionPatternString = require( 'string!MOLARITY/a11y.beakerDescriptionPattern' );
-  const hasZeroConcentrationString = require( 'string!MOLARITY/a11y.hasZeroConcentration' );
-  const beakerDescriptionPureWaterPatternString = require( 'string!MOLARITY/a11y.beakerDescriptionPureWaterPattern' );
-  const pureWaterString = require( 'string!MOLARITY/a11y.pureWater' );
-  const waterFormulaDescriptionString = require( 'string!MOLARITY/a11y.waterFormulaDescription' );
+  const beakerDescriptionPatternString = require( 'string!MOLARITY/a11y.beaker.descriptionPattern' );
+  const beakerHasZeroConcentrationString = require( 'string!MOLARITY/a11y.beaker.hasZeroConcentration' );
+  const beakerDescriptionPureWaterPatternString = require( 'string!MOLARITY/a11y.beaker.descriptionPureWaterPattern' );
+  const beakerPureWaterString = require( 'string!MOLARITY/a11y.beaker.pureWater' );
+  const beakerWaterFormulaDescriptionString = require( 'string!MOLARITY/a11y.beaker.waterFormulaDescription' );
 
   class MolarityBeakerDescriptionNode extends Node {
 
@@ -105,7 +105,7 @@ define( require => {
     updateBeakerSummaryString() {
       const summaryString = !this.solution.hasSolute() ? beakerDescriptionPureWaterPatternString : beakerDescriptionPatternString;
       return StringUtils.fillIn( summaryString, {
-        solute: !this.solution.hasSolute() ? pureWaterString : this.soluteDescriber.getCurrentSoluteName(),
+        solute: !this.solution.hasSolute() ? beakerPureWaterString : this.soluteDescriber.getCurrentSoluteName(),
         volume: this.volumeDescriber.getCurrentVolume( true ),
         color: this.soluteDescriber.getCurrentColor()
       } );
@@ -135,7 +135,7 @@ define( require => {
      */
     updateConcentrationSummary() {
       if ( !this.solution.hasSolute() ) {
-        this.concentrationSummaryItem.innerContent = hasZeroConcentrationString;
+        this.concentrationSummaryItem.innerContent = beakerHasZeroConcentrationString;
       }
       else {
         this.concentrationSummaryItem.innerContent = this.concentrationDescriber.getBeakerConcentrationString(
@@ -153,7 +153,7 @@ define( require => {
       if ( !this.solution.hasSolute() ) {
 
         // if there is no solute in the beaker, the chemical formula of water is displayed instead.
-        this.chemicalFormulaSummaryItem.innerContent = ChemUtils.toSubscript( waterFormulaDescriptionString );
+        this.chemicalFormulaSummaryItem.innerContent = ChemUtils.toSubscript( beakerWaterFormulaDescriptionString );
         this.chemicalFormulaSummaryContainer.children = [ this.chemicalFormulaSummaryItem ];
 
       }

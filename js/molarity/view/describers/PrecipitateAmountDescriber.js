@@ -21,7 +21,7 @@ define( require => {
 
   // a11y strings
   const atMaxConcentrationPatternString = require( 'string!MOLARITY/a11y.atMaxConcentrationPattern' );
-  const beakerSaturationPatternString = require( 'string!MOLARITY/a11y.beakerSaturationPattern' );
+  const beakerSaturationPatternString = require( 'string!MOLARITY/a11y.beaker.saturationPattern' );
   const saturationLostNoSoluteAlertString = require( 'string!MOLARITY/a11y.saturationLostNoSoluteAlert' );
   const saturationLostQualitativeAlertPatternString = require( 'string!MOLARITY/a11y.saturationLostQualitativeAlertPattern' );
   const saturationLostQuantitativeAlertPatternString = require( 'string!MOLARITY/a11y.saturationLostQuantitativeAlertPattern' );

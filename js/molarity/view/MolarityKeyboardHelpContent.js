@@ -27,10 +27,10 @@ define( require => {
 
   // a11y strings
   // Description strings for list of help commands
-  const popUpListDescriptionString = require( 'string!MOLARITY/a11y.popUpListDescription' );
-  const moveThroughDescriptionString = require( 'string!MOLARITY/a11y.moveThroughDescription' );
-  const changeChooseDescriptionString = require( 'string!MOLARITY/a11y.changeChooseDescription' );
-  const closeListDescriptionString = require( 'string!MOLARITY/a11y.closeListDescription' );
+  const helpContentPopUpListDescriptionString = require( 'string!MOLARITY/a11y.helpContent.popUpListDescription' );
+  const helpContentMoveThroughDescriptionString = require( 'string!MOLARITY/a11y.helpContent.moveThroughDescription' );
+  const helpContentChangeChooseDescriptionString = require( 'string!MOLARITY/a11y.helpContent.changeChooseDescription' );
+  const helpContentCloseListDescriptionString = require( 'string!MOLARITY/a11y.helpContent.closeListDescription' );
 
   // constants
   const labelWithIcon = KeyboardHelpSection.labelWithIcon;
@@ -44,10 +44,10 @@ define( require => {
       const sliderKeyboardHelpSection = new SliderKeyboardHelpSection( { headingString: keyboardSliderHelpHeadingString } );
 
       // change solute help section
-      const step1 = labelWithIcon( keyboardPopUpListString, KeyboardHelpIconFactory.enterOrSpace(), popUpListDescriptionString );
-      const step2 = labelWithIcon( keyboardMoveThroughString, KeyboardHelpIconFactory.upOrDown(), moveThroughDescriptionString );
-      const step3 = labelWithIcon( keyboardChangeSoluteString, KeyboardHelpIconFactory.enter(), changeChooseDescriptionString );
-      const step4 = labelWithIcon( keyboardCloseListString, KeyboardHelpIconFactory.esc(), closeListDescriptionString );
+      const step1 = labelWithIcon( keyboardPopUpListString, KeyboardHelpIconFactory.enterOrSpace(), helpContentPopUpListDescriptionString );
+      const step2 = labelWithIcon( keyboardMoveThroughString, KeyboardHelpIconFactory.upOrDown(), helpContentMoveThroughDescriptionString );
+      const step3 = labelWithIcon( keyboardChangeSoluteString, KeyboardHelpIconFactory.enter(), helpContentChangeChooseDescriptionString );
+      const step4 = labelWithIcon( keyboardCloseListString, KeyboardHelpIconFactory.esc(), helpContentCloseListDescriptionString );
       const changeSoluteContent = [ step1, step2, step3, step4 ];
       const changeSoluteHelpSection = new KeyboardHelpSection( keyboardChangeSoluteHelpHeadingString, changeSoluteContent, {
         a11yContentTagName: 'ol'
