@@ -136,7 +136,7 @@ define( require => {
       MolarityConstants.SOLUTE_AMOUNT_DECIMAL_PLACES,
       unitsMolesString,
       valuesVisibleProperty,
-      useQuantitativeDescriptionsProperty, {
+      useQuantitativeDescriptionsProperty, molarityAlertManager, soluteAmountDescriber, {
         tandem: tandem.createTandem( 'soluteAmountSlider' ),
         sliderOptions: {
           trackSize: new Dimension2( SLIDER_TRACK_WIDTH, cylinderSize.height ),
@@ -160,7 +160,7 @@ define( require => {
       MolarityConstants.SOLUTION_VOLUME_DECIMAL_PLACES,
       unitsLitersString,
       valuesVisibleProperty,
-      useQuantitativeDescriptionsProperty, {
+      useQuantitativeDescriptionsProperty, molarityAlertManager, volumeDescriber, {
         tandem: tandem.createTandem( 'solutionVolumeSlider' ),
         sliderOptions: {
           trackSize: new Dimension2( SLIDER_TRACK_WIDTH, volumeSliderHeight ),

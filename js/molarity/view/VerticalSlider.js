@@ -49,11 +49,14 @@ define( require => {
    * @param {Property.<boolean>} valuesVisibleProperty
    * @param {Property.<boolean>} useQuantitativeDescriptionsProperty -  whether quantitative or qualitative alerts and
    *                                                                    descriptions are used.
+   * @param {MolarityAlertManager} alertManager
+   * @param {Object} describer - an interactive descriptions describer, used by alert manager, see
+   *                             MolarityAlertManager.alertSolutionQuantityChanged for usage
    * @param {Object} [options]
    * @constructor
    */
   function VerticalSlider( title, subtitle, minLabel, maxLabel, property, range, decimalPlaces, units,
-                           valuesVisibleProperty, useQuantitativeDescriptionsProperty, options ) {
+                           valuesVisibleProperty, useQuantitativeDescriptionsProperty, alertManager, describer, options ) {
 
     options = merge( {
       tandem: Tandem.REQUIRED, // {Tandem}
@@ -95,6 +98,7 @@ define( require => {
         },
         endDrag: () => {
           this.draggingPointerType = null;
+          alertManager.alertSolutionQuantityChanged( describer );
         }
       }
     }, options );

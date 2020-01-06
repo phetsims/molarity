@@ -72,9 +72,6 @@ define( require => {
       this.solution = solution;
       this.useQuantitativeDescriptionsProperty = useQuantitativeDescriptionsProperty;
 
-      solution.soluteAmountProperty.lazyLink( () => this.alertSolutionQuantityChanged( soluteAmountDescriber ) );
-      solution.volumeProperty.lazyLink( () => this.alertSolutionQuantityChanged( volumeDescriber ) );
-
       // An alert is read out when the solute is changed.
       solution.soluteProperty.lazyLink( () => this.alertSoluteChanged() );
 
