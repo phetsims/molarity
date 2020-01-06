@@ -50,8 +50,7 @@ define( require => {
    * @param {Property.<boolean>} useQuantitativeDescriptionsProperty -  whether quantitative or qualitative alerts and
    *                                                                    descriptions are used.
    * @param {MolarityAlertManager} alertManager
-   * @param {Object} describer - an interactive descriptions describer, used by alert manager, see
-   *                             MolarityAlertManager.alertSolutionQuantityChanged for usage
+   * @param {SolutionQuantityDescriber} describer
    * @param {Object} [options]
    * @constructor
    */

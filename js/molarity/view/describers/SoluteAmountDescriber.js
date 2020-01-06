@@ -13,6 +13,7 @@ define( require => {
   const MolarityConstants = require( 'MOLARITY/molarity/MolarityConstants' );
   const molarity = require( 'MOLARITY/molarity' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  const SolutionQuantityDescriber = require( 'MOLARITY/molarity/view/describers/SolutionQuantityDescriber' );
   const Utils = require( 'DOT/Utils' );
 
   // a11y strings
@@ -66,7 +67,7 @@ define( require => {
     soluteAmountRegionsLowercaseMaxAmountOfString
   ];
 
-  class SoluteAmountDescriber {
+  class SoluteAmountDescriber extends SolutionQuantityDescriber {
 
     /**
      * @param {Property.<number>} soluteAmountProperty - from model.
@@ -74,6 +75,7 @@ define( require => {
      * @param {Property.<boolean>} useQuantitativeDescriptionsProperty
      */
     constructor( soluteAmountProperty, soluteDescriber, useQuantitativeDescriptionsProperty ) {
+      super();
 
       // @private
       this.soluteAmountProperty = soluteAmountProperty;
@@ -106,6 +108,7 @@ define( require => {
      * Note: this getter name must be the same as its counterpart in VolumeDescriber
      * @public
      * @returns {boolean}
+     * @override
      */
     getRegionChanged() {
       return this.soluteAmountRegionChanged;
@@ -130,6 +133,7 @@ define( require => {
      * as a result of the soluteAmountProperty changing (hence usage of `this.soluteAmountIncreased`.
      * @public
      * @returns {StringsFromSliderChange} - contains two strings.
+     * @override
      */
     getStringsFromSliderChange() {
       return {

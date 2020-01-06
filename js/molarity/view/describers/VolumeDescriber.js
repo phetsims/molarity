@@ -14,6 +14,7 @@ define( require => {
   const molarity = require( 'MOLARITY/molarity' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const Utils = require( 'DOT/Utils' );
+  const SolutionQuantityDescriber = require( 'MOLARITY/molarity/view/describers/SolutionQuantityDescriber' );
 
   // a11y strings
   const quantitativeHasVolumePatternString = require( 'string!MOLARITY/a11y.quantitative.hasVolumePattern' );
@@ -67,13 +68,14 @@ define( require => {
     volumeRegionsActiveIsFullString
   ];
 
-  class VolumeDescriber {
+  class VolumeDescriber extends SolutionQuantityDescriber {
 
     /**
      * @param {Property.<number>} volumeProperty - the volume of the solution
      * @param {Property.<boolean>} useQuantitativeDescriptionsProperty
      */
     constructor( volumeProperty, useQuantitativeDescriptionsProperty ) {
+      super();
 
       // @private
       this.volumeProperty = volumeProperty;
@@ -105,6 +107,7 @@ define( require => {
      * Note: this getter name must be the same as its counterpart in SoluteAmountDescriber
      * @public
      * @returns {boolean}
+     * @override
      */
     getRegionChanged() {
       return this.volumeRegionChanged;
@@ -138,6 +141,7 @@ define( require => {
      * as a result of the volumeProperty changing (hence usage of `this.volumeIncreased`.
      * @public
      * @returns {StringsFromSliderChange} - contains two strings.
+     * @override
      */
     getStringsFromSliderChange() {
       return {
