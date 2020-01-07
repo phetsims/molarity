@@ -1,4 +1,4 @@
-// Copyright 2019, University of Colorado Boulder
+// Copyright 2020, University of Colorado Boulder
 
 /**
  * Abstract base class to describers that describe quantities that change about the slider. Each of these values are

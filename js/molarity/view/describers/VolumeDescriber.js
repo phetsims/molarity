@@ -1,4 +1,4 @@
-// Copyright 2019, University of Colorado Boulder
+// Copyright 2019-2020, University of Colorado Boulder
 
 /**
  * VolumeDescriber is responsible for generating strings about Solution.volumeProperty.
