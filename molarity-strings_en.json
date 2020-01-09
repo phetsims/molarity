@@ -398,11 +398,11 @@
         "some": {
           "value": "Some"
         },
-        "aLowAmountOf": {
-          "value": "A low amount of"
-        },
         "aLittle": {
           "value": "A little"
+        },
+        "aTinyBitOf": {
+          "value": "A tiny bit of"
         },
         "no": {
           "value": "No"
@@ -421,8 +421,8 @@
         "some": {
           "value": "some"
         },
-        "aLowAmountOf": {
-          "value": "a low amount of"
+        "aTinyBitOf": {
+          "value": "a tiny bit of"
         },
         "aLittle": {
           "value": "a little"

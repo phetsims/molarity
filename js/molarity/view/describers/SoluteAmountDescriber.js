@@ -25,7 +25,7 @@ define( require => {
 
   // solute amount regions capitalized strings
   const soluteAmountRegionsCapitalizedNoString = require( 'string!MOLARITY/a11y.soluteAmountRegions.capitalized.no' );
-  const soluteAmountRegionsCapitalizedALowAmountOfString = require( 'string!MOLARITY/a11y.soluteAmountRegions.capitalized.aLowAmountOf' );
+  const soluteAmountRegionsCapitalizedATinyBitOfString = require( 'string!MOLARITY/a11y.soluteAmountRegions.capitalized.aTinyBitOf' );
   const soluteAmountRegionsCapitalizedALittleString = require( 'string!MOLARITY/a11y.soluteAmountRegions.capitalized.aLittle' );
   const soluteAmountRegionsCapitalizedSomeString = require( 'string!MOLARITY/a11y.soluteAmountRegions.capitalized.some' );
   const soluteAmountRegionsCapitalizedALotOfString = require( 'string!MOLARITY/a11y.soluteAmountRegions.capitalized.aLotOf' );
@@ -34,7 +34,7 @@ define( require => {
 
   // solute amount regions capitalized strings
   const soluteAmountRegionsLowercaseNoString = require( 'string!MOLARITY/a11y.soluteAmountRegions.lowercase.no' );
-  const soluteAmountRegionsLowercaseALowAmountOfString = require( 'string!MOLARITY/a11y.soluteAmountRegions.lowercase.aLowAmountOf' );
+  const soluteAmountRegionsLowercaseATinyBitOfString = require( 'string!MOLARITY/a11y.soluteAmountRegions.lowercase.aTinyBitOf' );
   const soluteAmountRegionsLowercaseALittleString = require( 'string!MOLARITY/a11y.soluteAmountRegions.lowercase.aLittle' );
   const soluteAmountRegionsLowercaseSomeString = require( 'string!MOLARITY/a11y.soluteAmountRegions.lowercase.some' );
   const soluteAmountRegionsLowercaseALotOfString = require( 'string!MOLARITY/a11y.soluteAmountRegions.lowercase.aLotOf' );
@@ -50,8 +50,8 @@ define( require => {
   // constants
   const SOLUTE_AMOUNT_STRINGS_CAPITALIZED = [
     soluteAmountRegionsCapitalizedNoString,
+    soluteAmountRegionsCapitalizedATinyBitOfString,
     soluteAmountRegionsCapitalizedALittleString,
-    soluteAmountRegionsCapitalizedALowAmountOfString,
     soluteAmountRegionsCapitalizedSomeString,
     soluteAmountRegionsCapitalizedABunchOfString,
     soluteAmountRegionsCapitalizedALotOfString,
@@ -59,8 +59,8 @@ define( require => {
   ];
   const SOLUTE_AMOUNT_STRINGS_LOWERCASE = [
     soluteAmountRegionsLowercaseNoString,
+    soluteAmountRegionsLowercaseATinyBitOfString,
     soluteAmountRegionsLowercaseALittleString,
-    soluteAmountRegionsLowercaseALowAmountOfString,
     soluteAmountRegionsLowercaseSomeString,
     soluteAmountRegionsLowercaseABunchOfString,
     soluteAmountRegionsLowercaseALotOfString,
