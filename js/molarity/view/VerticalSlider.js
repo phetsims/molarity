@@ -89,7 +89,7 @@ define( require => {
 
     // model values are constrained to the number of decimal places supported by the slider so that resultant molarity
     // values are calculated without discrepancies due to precision
-    options.sliderOptions.constrainValue = value => Utils.toFixedNumber( value, decimalPlaces );
+    options.sliderOptions.constrainValue = value => Util.toFixedNumber( value, decimalPlaces );
 
     // options set by VerticalSlider
     options = merge( {

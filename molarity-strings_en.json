@@ -382,51 +382,26 @@
       }
     },
     "soluteAmountRegions": {
-      "capitalized": {
-        "maxAmountOf": {
-          "value": "Max amount of"
-        },
-        "aLotOf": {
-          "value": "A lot of"
-        },
-        "aBunchOf": {
-          "value": "A bunch of"
-        },
-        "some": {
-          "value": "Some"
-        },
-        "aLowAmountOf": {
-          "value": "A low amount of"
-        },
-        "aLittle": {
-          "value": "A little"
-        },
-        "no": {
-          "value": "No"
-        }
+      "maxAmountOf": {
+        "value": "max amount of"
       },
-      "lowercase": {
-        "maxAmountOf": {
-          "value": "max amount of"
-        },
-        "aLotOf": {
-          "value": "a lot of"
-        },
-        "aBunchOf": {
-          "value": "a bunch of"
-        },
-        "some": {
-          "value": "some"
-        },
-        "aLowAmountOf": {
-          "value": "a low amount of"
-        },
-        "aLittle": {
-          "value": "a little"
-        },
-        "no": {
-          "value": "no"
-        }
+      "aLotOf": {
+        "value": "a lot of"
+      },
+      "aBunchOf": {
+        "value": "a bunch of"
+      },
+      "some": {
+        "value": "some"
+      },
+      "aTinyBitOf": {
+        "value": "a tiny bit of"
+      },
+      "aLittle": {
+        "value": "a little"
+      },
+      "no": {
+        "value": "no"
       }
     },
     "precipitateAmountRegions": {
