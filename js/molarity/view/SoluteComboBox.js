@@ -29,7 +29,7 @@ define( require => {
   const soluteComboBoxHelpTextString = require( 'string!MOLARITY/a11y.soluteComboBoxHelpText' );
 
   // sounds
-  const comboBoxOpenSound = require( 'sound!TAMBO/combo-box-open.mp3' );
+  const generalOpenSound = require( 'sound!TAMBO/general-open.mp3' );
 
   class SoluteComboBox extends ComboBox {
     /**
@@ -66,7 +66,7 @@ define( require => {
       super( items, selectedSoluteProperty, listParent, options );
 
       // sound generation
-      const comboBoxOpenSoundClip = new SoundClip( comboBoxOpenSound, { initialOutputLevel: 0.3 } );
+      const comboBoxOpenSoundClip = new SoundClip( generalOpenSound, { initialOutputLevel: 0.3 } );
       soundManager.addSoundGenerator( comboBoxOpenSoundClip );
 
       // play a sound when the list box opens
