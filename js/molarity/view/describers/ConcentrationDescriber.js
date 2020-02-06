@@ -126,7 +126,7 @@ define( require => {
         const newSaturationValue = this.solution.isSaturated();
         this.saturationValueChanged = newSaturationValue !== lastSaturationValue;
         lastSaturationValue = newSaturationValue;
-      } )
+      } );
     }
 
     /**
