@@ -1,5 +1,5 @@
 {
-  "comment": "# molarity 1.5.0-rc.2 Thu Feb 06 2020 11:26:08 GMT-0500 (Eastern Standard Time)",
+  "comment": "# molarity 1.5.0-rc.3 Thu Feb 06 2020 11:44:58 GMT-0500 (Eastern Standard Time)",
   "assert": {
     "sha": "a99a9ce9ee0774bf3ef509bf3e31ca7383f67478",
     "branch": "HEAD"
@@ -14,7 +14,7 @@
   },
   "chipper": {
     "sha": "4f9bfb9be461887aa86557fc1354c7f41bdbea31",
-    "branch": "molarity-1.5"
+    "branch": "HEAD"
   },
   "dot": {
     "sha": "71813bd3f5eaab8431b9e8a39299089eb59c1e55",
@@ -22,14 +22,14 @@
   },
   "joist": {
     "sha": "56d322f68c9010d063b5ef3e7ab9fb8d88c9d3c8",
-    "branch": "molarity-1.5"
+    "branch": "HEAD"
   },
   "kite": {
     "sha": "5fa41ae6611a57a185bcdbd6f77fc362e64d8765",
     "branch": "HEAD"
   },
   "molarity": {
-    "sha": "343ff6aefa6d78104f813f4ee98ab137f7483501",
+    "sha": "7bbf492fa6580addb3ea08747ded2b2f95b2c314",
     "branch": "1.5"
   },
   "nitroglycerin": {
@@ -38,7 +38,7 @@
   },
   "phet-core": {
     "sha": "a4c5cb6c10189f447b068ee96c6f4137ba19540e",
-    "branch": "molarity-1.5"
+    "branch": "HEAD"
   },
   "phet-io": {
     "sha": "4f92d8c58353d014772a061d38ac7bb002822c83",
@@ -50,7 +50,7 @@
   },
   "phetcommon": {
     "sha": "4581402ada21a7a0c7fdb6d5feb1edb499e98ecd",
-    "branch": "molarity-1.5"
+    "branch": "HEAD"
   },
   "phetmarks": {
     "sha": "d980cbe70dd3ca75f217024abd81e91feba83681",
@@ -62,7 +62,7 @@
   },
   "scenery": {
     "sha": "6e85950ad019e55d67dce196fc93ad5c5bd0d810",
-    "branch": "molarity-1.5"
+    "branch": "HEAD"
   },
   "scenery-phet": {
     "sha": "b9063d86699d6f3c8ee86d6c15a6ceb3f11fefc8",
@@ -74,7 +74,7 @@
   },
   "sun": {
     "sha": "c9ec79ddb95813f9fbe77af183e470afeb9591f0",
-    "branch": "molarity-1.5"
+    "branch": "HEAD"
   },
   "tambo": {
     "sha": "87e52df88083be4bdd47122b5d3dc59e90d0ea2d",
@@ -86,6 +86,6 @@
   },
   "utterance-queue": {
     "sha": "c34ba2c315a9befb3204662e7a76094319b9f055",
-    "branch": "molarity-1.5"
+    "branch": "HEAD"
   }
 }
