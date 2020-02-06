@@ -1,5 +1,5 @@
 {
-  "comment": "# molarity 1.5.0-rc.2 Mon Dec 30 2019 12:47:04 GMT-0900 (Alaskan Standard Time)",
+  "comment": "# molarity 1.5.0-rc.2 Thu Feb 06 2020 11:26:08 GMT-0500 (Eastern Standard Time)",
   "assert": {
     "sha": "a99a9ce9ee0774bf3ef509bf3e31ca7383f67478",
     "branch": "HEAD"
@@ -13,23 +13,23 @@
     "branch": "HEAD"
   },
   "chipper": {
-    "sha": "35fc4b620a8507daa2c8925bbbcb4ad106db7570",
-    "branch": "HEAD"
+    "sha": "4f9bfb9be461887aa86557fc1354c7f41bdbea31",
+    "branch": "molarity-1.5"
   },
   "dot": {
     "sha": "71813bd3f5eaab8431b9e8a39299089eb59c1e55",
     "branch": "HEAD"
   },
   "joist": {
-    "sha": "d95daf0fd7f6c31c110ec1f7c0ac1c1f02a41358",
-    "branch": "HEAD"
+    "sha": "56d322f68c9010d063b5ef3e7ab9fb8d88c9d3c8",
+    "branch": "molarity-1.5"
   },
   "kite": {
     "sha": "5fa41ae6611a57a185bcdbd6f77fc362e64d8765",
     "branch": "HEAD"
   },
   "molarity": {
-    "sha": "05c69d00074c217415f935a0359df5b6bbabef11",
+    "sha": "343ff6aefa6d78104f813f4ee98ab137f7483501",
     "branch": "1.5"
   },
   "nitroglycerin": {
@@ -37,8 +37,8 @@
     "branch": "HEAD"
   },
   "phet-core": {
-    "sha": "c21e6a64bad88157a57d65efc74357544b851fa1",
-    "branch": "HEAD"
+    "sha": "a4c5cb6c10189f447b068ee96c6f4137ba19540e",
+    "branch": "molarity-1.5"
   },
   "phet-io": {
     "sha": "4f92d8c58353d014772a061d38ac7bb002822c83",
@@ -49,8 +49,8 @@
     "branch": "HEAD"
   },
   "phetcommon": {
-    "sha": "abada0fc29899be241cee1f49f5fbb6602ec1731",
-    "branch": "HEAD"
+    "sha": "4581402ada21a7a0c7fdb6d5feb1edb499e98ecd",
+    "branch": "molarity-1.5"
   },
   "phetmarks": {
     "sha": "d980cbe70dd3ca75f217024abd81e91feba83681",
@@ -61,8 +61,8 @@
     "branch": "HEAD"
   },
   "scenery": {
-    "sha": "e938783e56c4175a2b327a18632945b6b991670e",
-    "branch": "HEAD"
+    "sha": "6e85950ad019e55d67dce196fc93ad5c5bd0d810",
+    "branch": "molarity-1.5"
   },
   "scenery-phet": {
     "sha": "b9063d86699d6f3c8ee86d6c15a6ceb3f11fefc8",
@@ -73,8 +73,8 @@
     "branch": "HEAD"
   },
   "sun": {
-    "sha": "feeb7e630edad57ac62bbf9571de58f082ab27d4",
-    "branch": "HEAD"
+    "sha": "c9ec79ddb95813f9fbe77af183e470afeb9591f0",
+    "branch": "molarity-1.5"
   },
   "tambo": {
     "sha": "87e52df88083be4bdd47122b5d3dc59e90d0ea2d",
@@ -85,7 +85,7 @@
     "branch": "HEAD"
   },
   "utterance-queue": {
-    "sha": "e539f67d40a4ff17081562d91aeb8f1f5c062a0e",
-    "branch": "HEAD"
+    "sha": "c34ba2c315a9befb3204662e7a76094319b9f055",
+    "branch": "molarity-1.5"
   }
 }
