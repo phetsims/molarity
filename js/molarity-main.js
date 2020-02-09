@@ -27,9 +27,10 @@ define( require => {
   const options = {
     credits: {
       leadDesign: 'Julia Chamberlain',
-      softwareDevelopment: 'Chris Malley (PixelZoom, Inc.)',
-      team: 'Kelly Lancaster, Robert Parson, Kathy Perkins',
-      qualityAssurance: 'Steele Dalton, Alex Dornan, Ethan Johnson, Elise Morgan, Oliver Orejola, Bryan Yoelin'
+      softwareDevelopment: 'Chris Malley (PixelZoom, Inc.), John Blanco, Michael Kauzmann, Taylor Want',
+      team: 'Kelly Lancaster, Emily B. Moore, Matthew Moore, Robert Parson, Kathy Perkins, Taliesin Smith',
+      soundDesign: 'Ashton Morris',
+      qualityAssurance: 'Jaspe Arias, Logan Bray, Steele Dalton, Alex Dornan, Ethan Johnson, Elise Morgan, Liam Mulhall, Oliver Orejola, Kathryn Woessner, Bryan Yoelin'
     },
     keyboardHelpNode: keyboardHelpContent,
     accessibility: true
