@@ -30,7 +30,7 @@ define( require => {
       softwareDevelopment: 'Chris Malley (PixelZoom, Inc.), John Blanco, Michael Kauzmann, Taylor Want',
       team: 'Kelly Lancaster, Emily B. Moore, Matthew Moore, Robert Parson, Kathy Perkins, Taliesin Smith',
       soundDesign: 'Ashton Morris',
-      qualityAssurance: 'Jaspe Arias, Logan Bray, Steele Dalton, Alex Dornan, Ethan Johnson, Elise Morgan, Liam Mulhall, Oliver Orejola, Kathryn Woessner, Bryan Yoelin'
+      qualityAssurance: 'Jaspe Arias, Logan Bray, Steele Dalton, Alex Dornan, Ethan Johnson, Megan Lai, Elise Morgan, Liam Mulhall, Oliver Orejola, Jacob Romero, Kathryn Woessner, Bryan Yoelin'
     },
     keyboardHelpNode: keyboardHelpContent,
     accessibility: true
