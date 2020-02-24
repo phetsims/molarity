@@ -32,7 +32,7 @@ define( require => {
 
   // strings
   const highString = require( 'string!MOLARITY/high' );
-  const molarityString = require( 'string!MOLARITY/molarity' );
+  const molarityLabelString = require( 'string!MOLARITY/molarity.label' );
   const pattern0Value1UnitsString = require( 'string!MOLARITY/pattern.0value.1units' );
   const patternParentheses0TextString = require( 'string!MOLARITY/pattern.parentheses.0text' );
   const solutionConcentrationString = require( 'string!MOLARITY/solutionConcentration' );
@@ -74,7 +74,7 @@ define( require => {
       tandem: tandem.createTandem( 'titleNode' )
     } );
 
-    const subtitleNode = new Text( StringUtils.format( patternParentheses0TextString, molarityString ), {
+    const subtitleNode = new Text( StringUtils.format( patternParentheses0TextString, molarityLabelString ), {
       font: SUBTITLE_FONT,
       maxWidth: maxTextWidth,
       tandem: tandem.createTandem( 'subtitleNode' )
