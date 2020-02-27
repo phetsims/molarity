@@ -5,107 +5,103 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const ComboBox = require( 'SUN/ComboBox' );
-  const ComboBoxItem = require( 'SUN/ComboBoxItem' );
-  const HBox = require( 'SCENERY/nodes/HBox' );
-  const merge = require( 'PHET_CORE/merge' );
-  const molarity = require( 'MOLARITY/molarity' );
-  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  const Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  const SoundClip = require( 'TAMBO/sound-generators/SoundClip' );
-  const soundManager = require( 'TAMBO/soundManager' );
-  const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  const Text = require( 'SCENERY/nodes/Text' );
+import merge from '../../../../phet-core/js/merge.js';
+import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
+import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
+import HBox from '../../../../scenery/js/nodes/HBox.js';
+import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
+import Text from '../../../../scenery/js/nodes/Text.js';
+import ComboBox from '../../../../sun/js/ComboBox.js';
+import ComboBoxItem from '../../../../sun/js/ComboBoxItem.js';
+import SoundClip from '../../../../tambo/js/sound-generators/SoundClip.js';
+import soundManager from '../../../../tambo/js/soundManager.js';
+import generalOpenSound from '../../../../tambo/sounds/general-open_mp3.js';
+import molarityStrings from '../../molarity-strings.js';
+import molarity from '../../molarity.js';
 
-  // strings
-  const pattern0LabelString = require( 'string!MOLARITY/pattern.0label' );
-  const soluteString = require( 'string!MOLARITY/solute' );
+const pattern0LabelString = molarityStrings.pattern[ '0label' ];
+const soluteString = molarityStrings.solute;
 
-  // a11y strings
-  const soluteComboBoxHelpTextString = require( 'string!MOLARITY/a11y.soluteComboBoxHelpText' );
+// a11y strings
+const soluteComboBoxHelpTextString = molarityStrings.a11y.soluteComboBoxHelpText;
 
-  // sounds
-  const generalOpenSound = require( 'sound!TAMBO/general-open.mp3' );
+// sounds
 
-  class SoluteComboBox extends ComboBox {
-    /**
-     * @param {Solute[]} solutes
-     * @param {Property.<Solute>} selectedSoluteProperty
-     * @param {Node} listParent parent node for the popup list
-     * @param {Tandem} tandem
-     * @param {Object} [options]
-     * @constructor
-     */
-    constructor( solutes, selectedSoluteProperty, listParent, tandem, options ) {
-
-      options = merge( {
-
-        // 'Solute' label
-        labelNode: new Text( StringUtils.format( pattern0LabelString, soluteString ), { font: new PhetFont( 22 ) } ),
-        listPosition: 'above',
-        cornerRadius: 8,
-        xMargin: 16,
-        yMargin: 16,
-        highlightFill: 'rgb( 218, 255, 255 )',
-
-        // a11y
-        accessibleName: soluteString,
-        helpText: soluteComboBoxHelpTextString
-      }, options );
-
-      assert && assert( !options.tandem, 'tandem is a required constructor parameter' );
-      options.tandem = tandem;
-
-      // {ComboBoxItem[]}
-      const items = solutes.map( createItem );
-
-      super( items, selectedSoluteProperty, listParent, options );
-
-      // sound generation
-      const comboBoxOpenSoundClip = new SoundClip( generalOpenSound, { initialOutputLevel: 0.3 } );
-      soundManager.addSoundGenerator( comboBoxOpenSoundClip );
-
-      // play a sound when the list box opens
-      this.listBox.on( 'visibility', () => {
-        if ( this.listBox.visible ) {
-          comboBoxOpenSoundClip.play();
-        }
-      } );
-    }
-  }
-
-  molarity.register( 'SoluteComboBox', SoluteComboBox );
-
+class SoluteComboBox extends ComboBox {
   /**
-   * Creates an item for the combo box.
-   * @param {Solute} solute
-   * @returns {ComboBoxItem}
+   * @param {Solute[]} solutes
+   * @param {Property.<Solute>} selectedSoluteProperty
+   * @param {Node} listParent parent node for the popup list
+   * @param {Tandem} tandem
+   * @param {Object} [options]
+   * @constructor
    */
-  const createItem = function( solute ) {
+  constructor( solutes, selectedSoluteProperty, listParent, tandem, options ) {
 
-    const colorNode = new Rectangle( 0, 0, 20, 20, {
-      fill: solute.maxColor,
-      stroke: solute.maxColor.darkerColor()
+    options = merge( {
+
+      // 'Solute' label
+      labelNode: new Text( StringUtils.format( pattern0LabelString, soluteString ), { font: new PhetFont( 22 ) } ),
+      listPosition: 'above',
+      cornerRadius: 8,
+      xMargin: 16,
+      yMargin: 16,
+      highlightFill: 'rgb( 218, 255, 255 )',
+
+      // a11y
+      accessibleName: soluteString,
+      helpText: soluteComboBoxHelpTextString
+    }, options );
+
+    assert && assert( !options.tandem, 'tandem is a required constructor parameter' );
+    options.tandem = tandem;
+
+    // {ComboBoxItem[]}
+    const items = solutes.map( createItem );
+
+    super( items, selectedSoluteProperty, listParent, options );
+
+    // sound generation
+    const comboBoxOpenSoundClip = new SoundClip( generalOpenSound, { initialOutputLevel: 0.3 } );
+    soundManager.addSoundGenerator( comboBoxOpenSoundClip );
+
+    // play a sound when the list box opens
+    this.listBox.on( 'visibility', () => {
+      if ( this.listBox.visible ) {
+        comboBoxOpenSoundClip.play();
+      }
     } );
+  }
+}
 
-    const textNode = new Text( solute.name, {
-      font: new PhetFont( 20 )
-    } );
+molarity.register( 'SoluteComboBox', SoluteComboBox );
 
-    const hBox = new HBox( {
-      spacing: 5,
-      children: [ colorNode, textNode ]
-    } );
+/**
+ * Creates an item for the combo box.
+ * @param {Solute} solute
+ * @returns {ComboBoxItem}
+ */
+const createItem = function( solute ) {
 
-    return new ComboBoxItem( hBox, solute, {
-      tandemName: solute.tandem.name,
-      a11yLabel: solute.name
-    } );
-  };
+  const colorNode = new Rectangle( 0, 0, 20, 20, {
+    fill: solute.maxColor,
+    stroke: solute.maxColor.darkerColor()
+  } );
 
-  return SoluteComboBox;
-} );
+  const textNode = new Text( solute.name, {
+    font: new PhetFont( 20 )
+  } );
+
+  const hBox = new HBox( {
+    spacing: 5,
+    children: [ colorNode, textNode ]
+  } );
+
+  return new ComboBoxItem( hBox, solute, {
+    tandemName: solute.tandem.name,
+    a11yLabel: solute.name
+  } );
+};
+
+export default SoluteComboBox;

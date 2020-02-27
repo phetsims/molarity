@@ -6,30 +6,27 @@
  *
  * @author Michael Kauzmann (PhET Interactive Simulations)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const molarity = require( 'MOLARITY/molarity' );
+import molarity from '../../../molarity.js';
 
-  class SolutionQuantityDescriber {
+class SolutionQuantityDescriber {
 
-    /**
-     * @abstract
-     * @public
-     */
-    getRegionChanged() {
-      throw new Error( 'override expected' );
-    }
-
-    /**
-     * @abstract
-     * @public
-     */
-    getStringsFromSliderChange() {
-      throw new Error( 'override expected' );
-    }
+  /**
+   * @abstract
+   * @public
+   */
+  getRegionChanged() {
+    throw new Error( 'override expected' );
   }
 
-  return molarity.register( 'SolutionQuantityDescriber', SolutionQuantityDescriber );
-} );
+  /**
+   * @abstract
+   * @public
+   */
+  getStringsFromSliderChange() {
+    throw new Error( 'override expected' );
+  }
+}
+
+molarity.register( 'SolutionQuantityDescriber', SolutionQuantityDescriber );
+export default SolutionQuantityDescriber;

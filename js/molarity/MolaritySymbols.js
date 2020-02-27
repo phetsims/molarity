@@ -5,34 +5,30 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const ChemUtils = require( 'NITROGLYCERIN/ChemUtils' );
-  const molarity = require( 'MOLARITY/molarity' );
+import ChemUtils from '../../../nitroglycerin/js/ChemUtils.js';
+import molarityStrings from '../molarity-strings.js';
+import molarity from '../molarity.js';
 
-  // strings
-  const drinkMixString = require( 'string!MOLARITY/drinkMix' );
+const drinkMixString = molarityStrings.drinkMix;
 
-  // constants
-  const toSubscript = ChemUtils.toSubscript;
+// constants
+const toSubscript = ChemUtils.toSubscript;
 
-  const MolaritySymbols = {
-    COBALT_II_NITRATE: toSubscript( 'Co(NO3)2' ),
-    COBALT_CHLORIDE: toSubscript( 'CoCl2' ),
-    COPPER_SULFATE: toSubscript( 'CuSO4' ),
-    DRINK_MIX: drinkMixString,
-    GOLD_III_CHLORIDE: toSubscript( 'AuCl3' ),
-    NICKEL_II_CHLORIDE: toSubscript( 'NiCl2' ),
-    POTASSIUM_CHROMATE: toSubscript( 'K2CrO4' ),
-    POTASSIUM_DICHROMATE: toSubscript( 'K2Cr2O7' ),
-    POTASSIUM_PERMANGANATE: toSubscript( 'KMnO4' ),
-    WATER: toSubscript( 'H2O' ),
-    CITRIC_ACID: toSubscript( 'C6H8O7' )
-  };
+const MolaritySymbols = {
+  COBALT_II_NITRATE: toSubscript( 'Co(NO3)2' ),
+  COBALT_CHLORIDE: toSubscript( 'CoCl2' ),
+  COPPER_SULFATE: toSubscript( 'CuSO4' ),
+  DRINK_MIX: drinkMixString,
+  GOLD_III_CHLORIDE: toSubscript( 'AuCl3' ),
+  NICKEL_II_CHLORIDE: toSubscript( 'NiCl2' ),
+  POTASSIUM_CHROMATE: toSubscript( 'K2CrO4' ),
+  POTASSIUM_DICHROMATE: toSubscript( 'K2Cr2O7' ),
+  POTASSIUM_PERMANGANATE: toSubscript( 'KMnO4' ),
+  WATER: toSubscript( 'H2O' ),
+  CITRIC_ACID: toSubscript( 'C6H8O7' )
+};
 
-  molarity.register( 'MolaritySymbols', MolaritySymbols );
+molarity.register( 'MolaritySymbols', MolaritySymbols );
 
-  return MolaritySymbols;
-} );
+export default MolaritySymbols;

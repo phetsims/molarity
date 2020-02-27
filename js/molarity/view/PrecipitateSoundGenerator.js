@@ -5,109 +5,106 @@
  *
  * @author John Blanco (PhET Interactive Simulations)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const BinMapper = require( 'TAMBO/BinMapper' );
-  const merge = require( 'PHET_CORE/merge' );
-  const molarity = require( 'MOLARITY/molarity' );
-  const Range = require( 'DOT/Range' );
-  const SoundClip = require( 'TAMBO/sound-generators/SoundClip' );
+import Range from '../../../../dot/js/Range.js';
+import merge from '../../../../phet-core/js/merge.js';
+import BinMapper from '../../../../tambo/js/BinMapper.js';
+import SoundClip from '../../../../tambo/js/sound-generators/SoundClip.js';
+import precipitateSound from '../../../sounds/precipitate_mp3.js';
+import molarity from '../../molarity.js';
 
-  // sounds
-  const precipitateSound = require( 'sound!MOLARITY/precipitate.mp3' );
+// sounds
 
-  // constants
-  const ONE_OCTAVE_NOTE_MULTIPLIERS = [ 1, 1.122, 1.260, 1.414, 1.587, 1.782 ]; // whole tone scale
-  const NUM_OCTAVES = 2;
-  const NOTE_SPAN = 4; // span of notes to choose from for a given precipitate level
-  const NUM_BINS = 50;
+// constants
+const ONE_OCTAVE_NOTE_MULTIPLIERS = [ 1, 1.122, 1.260, 1.414, 1.587, 1.782 ]; // whole tone scale
+const NUM_OCTAVES = 2;
+const NOTE_SPAN = 4; // span of notes to choose from for a given precipitate level
+const NUM_BINS = 50;
 
-  // create an array with several octaves of frequency multipliers to use for generating variations of the base sound
-  const FREQUENCY_MULTIPLIERS = [];
-  _.times( NUM_OCTAVES, outerIndex => {
-    const scale = Math.pow( 2, ( 1 - NUM_OCTAVES ) / 2 + outerIndex );
-    ONE_OCTAVE_NOTE_MULTIPLIERS.forEach( multiplier => {
-      FREQUENCY_MULTIPLIERS.push( multiplier * scale );
-    } );
+// create an array with several octaves of frequency multipliers to use for generating variations of the base sound
+const FREQUENCY_MULTIPLIERS = [];
+_.times( NUM_OCTAVES, outerIndex => {
+  const scale = Math.pow( 2, ( 1 - NUM_OCTAVES ) / 2 + outerIndex );
+  ONE_OCTAVE_NOTE_MULTIPLIERS.forEach( multiplier => {
+    FREQUENCY_MULTIPLIERS.push( multiplier * scale );
   } );
+} );
 
-  class PrecipitateSoundGenerator extends SoundClip {
+class PrecipitateSoundGenerator extends SoundClip {
 
-    /**
-     * @param {Property.<number>} precipitateAmountProperty
-     * @param {VerticalSlider} soluteAmountSlider - slider that controls the amount of solute
-     * @param {VerticalSlider} solutionVolumeSlider - slider that controls the volume of the solution
-     * @param {Object} [options]
-     */
-    constructor( precipitateAmountProperty, soluteAmountSlider, solutionVolumeSlider, options ) {
+  /**
+   * @param {Property.<number>} precipitateAmountProperty
+   * @param {VerticalSlider} soluteAmountSlider - slider that controls the amount of solute
+   * @param {VerticalSlider} solutionVolumeSlider - slider that controls the volume of the solution
+   * @param {Object} [options]
+   */
+  constructor( precipitateAmountProperty, soluteAmountSlider, solutionVolumeSlider, options ) {
 
-      super( precipitateSound, merge( {
-        initialOutputLevel: 0.5,
-        rateChangesAffectPlayingSounds: false
-      }, options ) );
+    super( precipitateSound, merge( {
+      initialOutputLevel: 0.5,
+      rateChangesAffectPlayingSounds: false
+    }, options ) );
 
-      // @private {number} - keeps track of previous played sound so that we never play it twice in a row
-      this.previousMultiplierIndex = -1;
+    // @private {number} - keeps track of previous played sound so that we never play it twice in a row
+    this.previousMultiplierIndex = -1;
 
-      // create a "bin mapper" to map the precipitate amount into a fixed set of bins
-      const precipitateAmountBinMapper = new BinMapper( new Range( 0, 1 ), NUM_BINS );
+    // create a "bin mapper" to map the precipitate amount into a fixed set of bins
+    const precipitateAmountBinMapper = new BinMapper( new Range( 0, 1 ), NUM_BINS );
 
-      // monitor the precipitate level and play sounds as it changes
-      precipitateAmountProperty.lazyLink( ( precipitateAmount, previousPrecipitateAmount ) => {
+    // monitor the precipitate level and play sounds as it changes
+    precipitateAmountProperty.lazyLink( ( precipitateAmount, previousPrecipitateAmount ) => {
 
-        // is the change was due to an a11y-caused event, a sound should be played on every change
-        const changeDueToA11yAction = soluteAmountSlider.draggingPointerType === 'a11y' ||
-                                      solutionVolumeSlider.draggingPointerType === 'a11y';
+      // is the change was due to an a11y-caused event, a sound should be played on every change
+      const changeDueToA11yAction = soluteAmountSlider.draggingPointerType === 'a11y' ||
+                                    solutionVolumeSlider.draggingPointerType === 'a11y';
 
-        // Check if a sound should be played regardless of the change amount, generally because of changes made through
-        // keyboard interaction.
-        if ( changeDueToA11yAction ) {
+      // Check if a sound should be played regardless of the change amount, generally because of changes made through
+      // keyboard interaction.
+      if ( changeDueToA11yAction ) {
 
-          // for fine changes, play one sound, for larger ones, play two
-          const changeAmount = Math.abs( previousPrecipitateAmount - precipitateAmount );
+        // for fine changes, play one sound, for larger ones, play two
+        const changeAmount = Math.abs( previousPrecipitateAmount - precipitateAmount );
+        this.playPrecipitateSound( precipitateAmount );
+        if ( changeAmount > 0.04 ) {
+          this.playPrecipitateSound( precipitateAmount, 0.1 );
+        }
+      }
+
+      // Otherwise only play if the change was initiated by the user changing the solute amount or solution volume
+      else if ( soluteAmountSlider.draggingPointerType !== null ||
+                solutionVolumeSlider.draggingPointerType !== null ) {
+
+        // otherwise only play if the bin changed or we hit are un-hit one of the rails
+        const oldBin = precipitateAmountBinMapper.mapToBin( previousPrecipitateAmount );
+        const newBin = precipitateAmountBinMapper.mapToBin( precipitateAmount );
+        if ( newBin !== oldBin ||
+             precipitateAmount > 0 && previousPrecipitateAmount === 0 ||
+             precipitateAmount === 0 && previousPrecipitateAmount > 0 ) {
           this.playPrecipitateSound( precipitateAmount );
-          if ( changeAmount > 0.04 ) {
-            this.playPrecipitateSound( precipitateAmount, 0.1 );
-          }
         }
-
-        // Otherwise only play if the change was initiated by the user changing the solute amount or solution volume
-        else if ( soluteAmountSlider.draggingPointerType !== null ||
-                  solutionVolumeSlider.draggingPointerType !== null ) {
-
-          // otherwise only play if the bin changed or we hit are un-hit one of the rails
-          const oldBin = precipitateAmountBinMapper.mapToBin( previousPrecipitateAmount );
-          const newBin = precipitateAmountBinMapper.mapToBin( precipitateAmount );
-          if ( newBin !== oldBin ||
-               precipitateAmount > 0 && previousPrecipitateAmount === 0 ||
-               precipitateAmount === 0 && previousPrecipitateAmount > 0 ) {
-            this.playPrecipitateSound( precipitateAmount );
-          }
-        }
-      } );
-    }
-
-    /**
-     * play the precipitate sound based on the provided precipitate amount
-     * @private
-     */
-    playPrecipitateSound( precipitateAmount ) {
-      const lowestIndex = Math.floor( ( 1 - precipitateAmount ) * ( FREQUENCY_MULTIPLIERS.length - NOTE_SPAN ) );
-
-      // choose the note index, but make sure it's not the same as the last one
-      let multiplierIndex;
-      do {
-        multiplierIndex = lowestIndex + Math.floor( phet.joist.random.nextDouble() * NOTE_SPAN );
-      } while ( multiplierIndex === this.previousMultiplierIndex );
-
-      // set the playback rate and play the sound
-      this.setPlaybackRate( FREQUENCY_MULTIPLIERS[ multiplierIndex ] );
-      this.play();
-      this.previousMultiplierIndex = multiplierIndex;
-    }
+      }
+    } );
   }
 
-  return molarity.register( 'PrecipitateSoundGenerator', PrecipitateSoundGenerator );
-} );
+  /**
+   * play the precipitate sound based on the provided precipitate amount
+   * @private
+   */
+  playPrecipitateSound( precipitateAmount ) {
+    const lowestIndex = Math.floor( ( 1 - precipitateAmount ) * ( FREQUENCY_MULTIPLIERS.length - NOTE_SPAN ) );
+
+    // choose the note index, but make sure it's not the same as the last one
+    let multiplierIndex;
+    do {
+      multiplierIndex = lowestIndex + Math.floor( phet.joist.random.nextDouble() * NOTE_SPAN );
+    } while ( multiplierIndex === this.previousMultiplierIndex );
+
+    // set the playback rate and play the sound
+    this.setPlaybackRate( FREQUENCY_MULTIPLIERS[ multiplierIndex ] );
+    this.play();
+    this.previousMultiplierIndex = multiplierIndex;
+  }
+}
+
+molarity.register( 'PrecipitateSoundGenerator', PrecipitateSoundGenerator );
+export default PrecipitateSoundGenerator;

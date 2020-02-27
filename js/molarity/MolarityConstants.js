@@ -5,45 +5,41 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const molarity = require( 'MOLARITY/molarity' );
-  const Range = require( 'DOT/Range' );
-  const RangeWithValue = require( 'DOT/RangeWithValue' );
+import Range from '../../../dot/js/Range.js';
+import RangeWithValue from '../../../dot/js/RangeWithValue.js';
+import molarity from '../molarity.js';
 
-  // constants
-  const SOLUTE_AMOUNT_RANGE = new RangeWithValue( 0, 1, 0.5 ); // moles
-  const SOLUTION_VOLUME_RANGE = new RangeWithValue( 0.2, 1, 0.5 ); // liters
+// constants
+const SOLUTE_AMOUNT_RANGE = new RangeWithValue( 0, 1, 0.5 ); // moles
+const SOLUTION_VOLUME_RANGE = new RangeWithValue( 0.2, 1, 0.5 ); // liters
 
-  const MolarityConstants = {
+const MolarityConstants = {
 
-    // moles
-    SOLUTE_AMOUNT_RANGE: SOLUTE_AMOUNT_RANGE,
+  // moles
+  SOLUTE_AMOUNT_RANGE: SOLUTE_AMOUNT_RANGE,
 
-    // liters
-    SOLUTION_VOLUME_RANGE: SOLUTION_VOLUME_RANGE,
+  // liters
+  SOLUTION_VOLUME_RANGE: SOLUTION_VOLUME_RANGE,
 
-    // M
-    CONCENTRATION_RANGE: new Range(
-      SOLUTE_AMOUNT_RANGE.min / SOLUTION_VOLUME_RANGE.max,
-      SOLUTE_AMOUNT_RANGE.max / SOLUTION_VOLUME_RANGE.min ),
+  // M
+  CONCENTRATION_RANGE: new Range(
+    SOLUTE_AMOUNT_RANGE.min / SOLUTION_VOLUME_RANGE.max,
+    SOLUTE_AMOUNT_RANGE.max / SOLUTION_VOLUME_RANGE.min ),
 
-    // decimal places for solute amount, used in view
-    SOLUTE_AMOUNT_DECIMAL_PLACES: 3,
+  // decimal places for solute amount, used in view
+  SOLUTE_AMOUNT_DECIMAL_PLACES: 3,
 
-    // decimal places for solution volume, used in view
-    SOLUTION_VOLUME_DECIMAL_PLACES: 3,
+  // decimal places for solution volume, used in view
+  SOLUTION_VOLUME_DECIMAL_PLACES: 3,
 
-    // decimal places for concentration, used in both model and view
-    CONCENTRATION_DECIMAL_PLACES: 3,
+  // decimal places for concentration, used in both model and view
+  CONCENTRATION_DECIMAL_PLACES: 3,
 
-    // decimal places for all min/max range values in the view
-    RANGE_DECIMAL_PLACES: 1
-  };
+  // decimal places for all min/max range values in the view
+  RANGE_DECIMAL_PLACES: 1
+};
 
-  molarity.register( 'MolarityConstants', MolarityConstants );
+molarity.register( 'MolarityConstants', MolarityConstants );
 
-  return MolarityConstants;
-} );
+export default MolarityConstants;

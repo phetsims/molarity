@@ -5,66 +5,63 @@
  *
  * @author John Blanco (PhET Interactive Simulations)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const molarity = require( 'MOLARITY/molarity' );
-  const MultiClip = require( 'TAMBO/sound-generators/MultiClip' );
+import MultiClip from '../../../../tambo/js/sound-generators/MultiClip.js';
+import compoundWLowPassFilter001Sound from '../../../sounds/compound-w-low-pass-filter-001_mp3.js';
+import compoundWLowPassFilter002Sound from '../../../sounds/compound-w-low-pass-filter-002_mp3.js';
+import compoundWLowPassFilter003Sound from '../../../sounds/compound-w-low-pass-filter-003_mp3.js';
+import compoundWLowPassFilter004Sound from '../../../sounds/compound-w-low-pass-filter-004_mp3.js';
+import compoundWLowPassFilter005Sound from '../../../sounds/compound-w-low-pass-filter-005_mp3.js';
+import compoundWLowPassFilter006Sound from '../../../sounds/compound-w-low-pass-filter-006_mp3.js';
+import compoundWLowPassFilter007Sound from '../../../sounds/compound-w-low-pass-filter-007_mp3.js';
+import compoundWLowPassFilter008Sound from '../../../sounds/compound-w-low-pass-filter-008_mp3.js';
+import compoundWLowPassFilter009Sound from '../../../sounds/compound-w-low-pass-filter-009_mp3.js';
+import molarity from '../../molarity.js';
 
-  // sounds
-  const compoundWLowPassFilter001Sound = require( 'sound!MOLARITY/compound-w-low-pass-filter-001.mp3' );
-  const compoundWLowPassFilter002Sound = require( 'sound!MOLARITY/compound-w-low-pass-filter-002.mp3' );
-  const compoundWLowPassFilter003Sound = require( 'sound!MOLARITY/compound-w-low-pass-filter-003.mp3' );
-  const compoundWLowPassFilter004Sound = require( 'sound!MOLARITY/compound-w-low-pass-filter-004.mp3' );
-  const compoundWLowPassFilter005Sound = require( 'sound!MOLARITY/compound-w-low-pass-filter-005.mp3' );
-  const compoundWLowPassFilter006Sound = require( 'sound!MOLARITY/compound-w-low-pass-filter-006.mp3' );
-  const compoundWLowPassFilter007Sound = require( 'sound!MOLARITY/compound-w-low-pass-filter-007.mp3' );
-  const compoundWLowPassFilter008Sound = require( 'sound!MOLARITY/compound-w-low-pass-filter-008.mp3' );
-  const compoundWLowPassFilter009Sound = require( 'sound!MOLARITY/compound-w-low-pass-filter-009.mp3' );
+// sounds
 
-  // sounds
-  const selectionSounds = [
-    compoundWLowPassFilter001Sound,
-    compoundWLowPassFilter002Sound,
-    compoundWLowPassFilter003Sound,
-    compoundWLowPassFilter004Sound,
-    compoundWLowPassFilter005Sound,
-    compoundWLowPassFilter006Sound,
-    compoundWLowPassFilter007Sound,
-    compoundWLowPassFilter008Sound,
-    compoundWLowPassFilter009Sound
-  ];
+// sounds
+const selectionSounds = [
+  compoundWLowPassFilter001Sound,
+  compoundWLowPassFilter002Sound,
+  compoundWLowPassFilter003Sound,
+  compoundWLowPassFilter004Sound,
+  compoundWLowPassFilter005Sound,
+  compoundWLowPassFilter006Sound,
+  compoundWLowPassFilter007Sound,
+  compoundWLowPassFilter008Sound,
+  compoundWLowPassFilter009Sound
+];
 
-  class SoluteSelectionSoundGenerator extends MultiClip {
+class SoluteSelectionSoundGenerator extends MultiClip {
 
-    /**
-     * @param {Property.<Solute>} soluteProperty
-     * @param {Solute[]} solutes - a list of the values that soluteProperty can take on
-     * @param {Property.<boolean>} resetInProgressProperty - indicates when a reset is happening, used to mute sounds
-     * @param {Object} [options]
-     */
-    constructor( soluteProperty, solutes, resetInProgressProperty, options ) {
+  /**
+   * @param {Property.<Solute>} soluteProperty
+   * @param {Solute[]} solutes - a list of the values that soluteProperty can take on
+   * @param {Property.<boolean>} resetInProgressProperty - indicates when a reset is happening, used to mute sounds
+   * @param {Object} [options]
+   */
+  constructor( soluteProperty, solutes, resetInProgressProperty, options ) {
 
-      // the number of solutes needs to match the number of available sounds
-      assert && assert( solutes.length === selectionSounds.length, 'the number of solutes must match the number of selection sounds' );
+    // the number of solutes needs to match the number of available sounds
+    assert && assert( solutes.length === selectionSounds.length, 'the number of solutes must match the number of selection sounds' );
 
-      // map the solutes to the sounds
-      const soluteToSoundInfoMap = new Map();
-      solutes.forEach( ( solute, index ) => {
-        soluteToSoundInfoMap.set( solute, selectionSounds[ index ] );
-      } );
-      super( soluteToSoundInfoMap, options );
+    // map the solutes to the sounds
+    const soluteToSoundInfoMap = new Map();
+    solutes.forEach( ( solute, index ) => {
+      soluteToSoundInfoMap.set( solute, selectionSounds[ index ] );
+    } );
+    super( soluteToSoundInfoMap, options );
 
-      // play a sound when the solute change unless a reset is in progress
-      soluteProperty.lazyLink( solute => {
+    // play a sound when the solute change unless a reset is in progress
+    soluteProperty.lazyLink( solute => {
 
-        if ( !resetInProgressProperty.value ) {
-          this.playAssociatedSound( solute );
-        }
-      } );
-    }
+      if ( !resetInProgressProperty.value ) {
+        this.playAssociatedSound( solute );
+      }
+    } );
   }
+}
 
-  return molarity.register( 'SoluteSelectionSoundGenerator', SoluteSelectionSoundGenerator );
-} );
+molarity.register( 'SoluteSelectionSoundGenerator', SoluteSelectionSoundGenerator );
+export default SoluteSelectionSoundGenerator;

@@ -5,34 +5,31 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const inherit = require( 'PHET_CORE/inherit' );
-  const molarity = require( 'MOLARITY/molarity' );
-  const MolarityModel = require( 'MOLARITY/molarity/model/MolarityModel' );
-  const MolarityScreenView = require( 'MOLARITY/molarity/view/MolarityScreenView' );
-  const Screen = require( 'JOIST/Screen' );
+import Screen from '../../../joist/js/Screen.js';
+import inherit from '../../../phet-core/js/inherit.js';
+import molarity from '../molarity.js';
+import MolarityModel from './model/MolarityModel.js';
+import MolarityScreenView from './view/MolarityScreenView.js';
 
-  /**
-   * @param {Tandem} tandem
-   * @constructor
-   */
-  function MolarityScreen( tandem ) {
+/**
+ * @param {Tandem} tandem
+ * @constructor
+ */
+function MolarityScreen( tandem ) {
 
-    const options = {
-      tandem: tandem
-    };
+  const options = {
+    tandem: tandem
+  };
 
-    Screen.call( this,
-      function() { return new MolarityModel( tandem.createTandem( 'model' ) ); },
-      function( model ) { return new MolarityScreenView( model, tandem.createTandem( 'view' ) ); },
-      options
-    );
-  }
+  Screen.call( this,
+    function() { return new MolarityModel( tandem.createTandem( 'model' ) ); },
+    function( model ) { return new MolarityScreenView( model, tandem.createTandem( 'view' ) ); },
+    options
+  );
+}
 
-  molarity.register( 'MolarityScreen', MolarityScreen );
+molarity.register( 'MolarityScreen', MolarityScreen );
 
-  return inherit( Screen, MolarityScreen );
-} );
+inherit( Screen, MolarityScreen );
+export default MolarityScreen;

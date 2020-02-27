@@ -5,26 +5,23 @@
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const Color = require( 'SCENERY/util/Color' );
-  const molarity = require( 'MOLARITY/molarity' );
-  const MolaritySymbols = require( 'MOLARITY/molarity/MolaritySymbols' );
-  const StringCasingPair = require( 'SCENERY_PHET/accessibility/StringCasingPair' );
+import StringCasingPair from '../../../../scenery-phet/js/accessibility/StringCasingPair.js';
+import Color from '../../../../scenery/js/util/Color.js';
+import molarityStrings from '../../molarity-strings.js';
+import molarity from '../../molarity.js';
+import MolaritySymbols from '../MolaritySymbols.js';
 
-  // a11y strings
-  const soluteColorsCapitalizedClearString = require( 'string!MOLARITY/a11y.soluteColors.capitalized.clear' );
-  const soluteColorsLowercaseClearString = require( 'string!MOLARITY/a11y.soluteColors.lowercase.clear' );
+// a11y strings
+const soluteColorsCapitalizedClearString = molarityStrings.a11y.soluteColors.capitalized.clear;
+const soluteColorsLowercaseClearString = molarityStrings.a11y.soluteColors.lowercase.clear;
 
-  const Water = {
-    formula: MolaritySymbols.WATER,
-    color: new Color( 224, 255, 255 ),
-    colorStringPair: new StringCasingPair( soluteColorsLowercaseClearString, soluteColorsCapitalizedClearString )
-  };
+const Water = {
+  formula: MolaritySymbols.WATER,
+  color: new Color( 224, 255, 255 ),
+  colorStringPair: new StringCasingPair( soluteColorsLowercaseClearString, soluteColorsCapitalizedClearString )
+};
 
-  molarity.register( 'Water', Water );
+molarity.register( 'Water', Water );
 
-  return Water;
-} );
+export default Water;
