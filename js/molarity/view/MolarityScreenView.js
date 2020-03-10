@@ -19,11 +19,7 @@ import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
-import InvertedBooleanProperty from '../../../../tambo/js/InvertedBooleanProperty.js';
-import SoundClip from '../../../../tambo/js/sound-generators/SoundClip.js';
 import soundManager from '../../../../tambo/js/soundManager.js';
-import checkboxCheckedSound from '../../../../tambo/sounds/checkbox-checked_mp3.js';
-import checkboxUncheckedSound from '../../../../tambo/sounds/checkbox-unchecked_mp3.js';
 import molarityStrings from '../../molarity-strings.js';
 import molarity from '../../molarity.js';
 import MolarityConstants from '../MolarityConstants.js';
@@ -212,22 +208,6 @@ function MolarityScreenView( model, tandem ) {
     helpText: solutionValuesHelpTextString
   } );
   solutionValuesCheckbox.touchArea = Shape.rectangle( solutionValuesCheckbox.left, solutionValuesCheckbox.top - 15, solutionValuesCheckbox.width + 5, solutionValuesCheckbox.height + 30 );
-
-  // sound generator for check box
-  const uncheckedClip = new SoundClip( checkboxUncheckedSound, {
-    enableControlProperties: [ new InvertedBooleanProperty( model.resetInProgressProperty ) ]
-  } );
-  soundManager.addSoundGenerator( uncheckedClip );
-  const checkedClip = new SoundClip( checkboxCheckedSound );
-  soundManager.addSoundGenerator( checkedClip );
-  valuesVisibleProperty.lazyLink( value => {
-    if ( value ) {
-      checkedClip.play();
-    }
-    else {
-      uncheckedClip.play();
-    }
-  } );
 
   // Reset All button
   const resetAllButton = new ResetAllButton( {
