@@ -25,7 +25,7 @@ const beakerWaterFormulaDescriptionString = molarityStrings.a11y.beaker.waterFor
 class MolarityBeakerDescriptionNode extends Node {
 
   /**
-   * @param {Solution} solution - from MolarityModel
+   * @param {MacroSolution} solution - from MolarityModel
    * @param {Property.<boolean>} useQuantitativeDescriptionsProperty
    * @param {SoluteDescriber} soluteDescriber
    * @param {ConcentrationDescriber} concentrationDescriber

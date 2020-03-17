@@ -21,7 +21,7 @@ const PARTICLE_LENGTH = 5; // particles are square, this is the length of one si
 const PARTICLES_PER_MOLE = 200; // number of particles to show per mol of saturation
 
 /**
- * @param {Solution} solution
+ * @param {MacroSolution} solution
  * @param {Dimension2} cylinderSize
  * @param {number} cylinderEndHeight
  * @param {number} maxPrecipitateAmount moles

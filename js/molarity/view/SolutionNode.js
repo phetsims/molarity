@@ -24,7 +24,7 @@ const DEBUG_ORIGIN = false;
 /**
  * @param {Dimension2} cylinderSize
  * @param {number} cylinderEndHeight
- * @param {Solution} solution
+ * @param {MacroSolution} solution
  * @param {number} maxVolume - liters
  * @param {Tandem} tandem
  * @constructor

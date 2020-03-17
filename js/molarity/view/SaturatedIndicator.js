@@ -18,7 +18,7 @@ import molarity from '../../molarity.js';
 const saturatedString = molarityStrings.saturated;
 
 /**
- * @param {Solution} solution
+ * @param {MacroSolution} solution
  * @param {Tandem} tandem
  * @constructor
  */

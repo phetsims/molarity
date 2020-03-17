@@ -27,7 +27,7 @@ const soluteChangedUnsaturatedAlertPatternString = molarityStrings.a11y.soluteCh
 class SoluteDescriber {
 
   /**
-   * @param {Solution} solution
+   * @param {MacroSolution} solution
    * @param {ConcentrationDescriber} concentrationDescriber
    * @param {PrecipitateAmountDescriber} precipitateAmountDescriber
    */

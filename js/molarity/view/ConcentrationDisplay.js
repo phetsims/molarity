@@ -47,7 +47,7 @@ const ARROW_HEAD_WIDTH = 0.7 * ARROW_LENGTH;
 const ARROW_TAIL_WIDTH = 0.4 * ARROW_LENGTH;
 
 /**
- * @param {Solution} solution
+ * @param {MacroSolution} solution
  * @param {Range} concentrationRange
  * @param {Property.<boolean>} valuesVisibleProperty
  * @param {Dimension2} barSize
@@ -145,7 +145,7 @@ function ConcentrationDisplay( solution, concentrationRange, valuesVisibleProper
 molarity.register( 'ConcentrationDisplay', ConcentrationDisplay );
 
 /**
- * @param {Solution} solution
+ * @param {MacroSolution} solution
  * @param {Range} concentrationRange
  * @param {Dimension2} barSize
  * @param {Property.<boolean>} valuesVisibleProperty
