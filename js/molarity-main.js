@@ -29,8 +29,7 @@ const options = {
     soundDesign: 'Ashton Morris',
     qualityAssurance: 'Jaspe Arias, Logan Bray, Steele Dalton, Alex Dornan, Ethan Johnson, Megan Lai, Elise Morgan, Liam Mulhall, Oliver Orejola, Jacob Romero, Kathryn Woessner, Bryan Yoelin'
   },
-  keyboardHelpNode: keyboardHelpContent,
-  accessibility: true
+  keyboardHelpNode: keyboardHelpContent
 };
 
 SimLauncher.launch( function() {
