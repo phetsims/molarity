@@ -72,7 +72,7 @@ const CONCENTRATION_STRINGS = [
 class ConcentrationDescriber {
 
   /**
-   * @param {Solution} solution - from MolarityModel
+   * @param {MacroSolution} solution - from MolarityModel
    * @param {Property.<boolean>} useQuantitativeDescriptionsProperty
    */
   constructor( solution, useQuantitativeDescriptionsProperty ) {

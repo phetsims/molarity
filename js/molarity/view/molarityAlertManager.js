@@ -48,7 +48,7 @@ class MolarityAlertManager {
   /**
    * Initialize the alert manager, linking to the needed model Properties.
    * @public
-   * @param {Solution} solution - from MolarityModel.
+   * @param {MacroSolution} solution - from MolarityModel.
    * @param {Property.<boolean>} useQuantitativeDescriptionsProperty - whether or not to use qualitative or
    *                                                                   quantitative descriptions.
    * @param {ConcentrationDescriber} concentrationDescriber

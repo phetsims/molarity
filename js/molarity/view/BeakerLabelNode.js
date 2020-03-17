@@ -25,7 +25,7 @@ const LABEL_SIZE = new Dimension2( 180, 80 );
 const LABEL_FONT = new PhetFont( { size: 28, weight: 'bold' } );
 
 /**
- * @param {Solution} solution
+ * @param {MacroSolution} solution
  * @param {Tandem} tandem
  * @constructor
  */

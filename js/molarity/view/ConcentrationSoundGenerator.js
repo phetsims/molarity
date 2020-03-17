@@ -24,7 +24,7 @@ const ZERO_CONCENTRATION_PLAYBACK_RATE = 2; // about 2 octaves above the nominal
 class ConcentrationSoundGenerator extends SoundGenerator {
 
   /**
-   * @param {Solution} solution - model of the solution
+   * @param {MacroSolution} solution - model of the solution
    * @param {VerticalSlider} soluteAmountSlider - slider that controls the amount of solute
    * @param {VerticalSlider} solutionVolumeSlider - slider that controls the volume of the solution
    * @param {Property.<boolean>} resetInProgressProperty - indicates when a reset is happening, used to mute sounds

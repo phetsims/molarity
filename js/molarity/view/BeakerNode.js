@@ -43,7 +43,7 @@ const TICK_LABEL_COLOR = Color.DARK_GRAY;
 const TICK_LABEL_X_SPACING = 8;
 
 /**
- * @param {Solution} solution
+ * @param {MacroSolution} solution
  * @param {number} maxVolume
  * @param {Property.<boolean>} valuesVisibleProperty
  * @param {Tandem} tandem
