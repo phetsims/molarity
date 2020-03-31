@@ -12,7 +12,7 @@ import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
-import molarityStrings from '../../molarity-strings.js';
+import molarityStrings from '../../molarityStrings.js';
 import molarity from '../../molarity.js';
 
 const saturatedString = molarityStrings.saturated;

@@ -20,7 +20,7 @@ import Path from '../../../../scenery/js/nodes/Path.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import Color from '../../../../scenery/js/util/Color.js';
-import molarityStrings from '../../molarity-strings.js';
+import molarityStrings from '../../molarityStrings.js';
 import molarity from '../../molarity.js';
 import BeakerImageNode from './BeakerImageNode.js';
 import BeakerLabelNode from './BeakerLabelNode.js';

@@ -20,7 +20,7 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import soundManager from '../../../../tambo/js/soundManager.js';
-import molarityStrings from '../../molarity-strings.js';
+import molarityStrings from '../../molarityStrings.js';
 import molarity from '../../molarity.js';
 import MolarityConstants from '../MolarityConstants.js';
 import BeakerNode from './BeakerNode.js';

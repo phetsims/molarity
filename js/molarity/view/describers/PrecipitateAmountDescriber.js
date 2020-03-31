@@ -12,7 +12,7 @@
  */
 
 import StringUtils from '../../../../../phetcommon/js/util/StringUtils.js';
-import molarityStrings from '../../../molarity-strings.js';
+import molarityStrings from '../../../molarityStrings.js';
 import molarity from '../../../molarity.js';
 import Solution from '../../model/Solution.js';
 import MolarityConstants from '../../MolarityConstants.js';

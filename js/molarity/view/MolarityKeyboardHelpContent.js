@@ -12,7 +12,7 @@ import KeyboardHelpIconFactory from '../../../../scenery-phet/js/keyboard/help/K
 import KeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSection.js';
 import SliderKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/SliderKeyboardHelpSection.js';
 import TwoColumnKeyboardHelpContent from '../../../../scenery-phet/js/keyboard/help/TwoColumnKeyboardHelpContent.js';
-import molarityStrings from '../../molarity-strings.js';
+import molarityStrings from '../../molarityStrings.js';
 import molarity from '../../molarity.js';
 
 const keyboardSliderHelpHeadingString = molarityStrings.keyboard.sliderHelpHeading;

@@ -10,7 +10,7 @@ import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import inherit from '../../../../phet-core/js/inherit.js';
 import StringCasingPair from '../../../../scenery-phet/js/accessibility/StringCasingPair.js';
 import Color from '../../../../scenery/js/util/Color.js';
-import molarityStrings from '../../molarity-strings.js';
+import molarityStrings from '../../molarityStrings.js';
 import molarity from '../../molarity.js';
 import MolarityConstants from '../MolarityConstants.js';
 import MolaritySymbols from '../MolaritySymbols.js';

@@ -9,7 +9,7 @@
 import Sim from '../../joist/js/Sim.js';
 import SimLauncher from '../../joist/js/SimLauncher.js';
 import Tandem from '../../tandem/js/Tandem.js';
-import molarityStrings from './molarity-strings.js';
+import molarityStrings from './molarityStrings.js';
 import MolarityScreen from './molarity/MolarityScreen.js';
 import MolarityKeyboardHelpContent from './molarity/view/MolarityKeyboardHelpContent.js';
 

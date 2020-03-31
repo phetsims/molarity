@@ -10,7 +10,7 @@
 
 import Utils from '../../../../../dot/js/Utils.js';
 import StringUtils from '../../../../../phetcommon/js/util/StringUtils.js';
-import molarityStrings from '../../../molarity-strings.js';
+import molarityStrings from '../../../molarityStrings.js';
 import molarity from '../../../molarity.js';
 import MolarityConstants from '../../MolarityConstants.js';
 

@@ -17,7 +17,7 @@ import ComboBoxItem from '../../../../sun/js/ComboBoxItem.js';
 import SoundClip from '../../../../tambo/js/sound-generators/SoundClip.js';
 import soundManager from '../../../../tambo/js/soundManager.js';
 import generalOpenSound from '../../../../tambo/sounds/general-open_mp3.js';
-import molarityStrings from '../../molarity-strings.js';
+import molarityStrings from '../../molarityStrings.js';
 import molarity from '../../molarity.js';
 
 const pattern0LabelString = molarityStrings.pattern[ '0label' ];

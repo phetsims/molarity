@@ -12,7 +12,7 @@ import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import ActivationUtterance from '../../../../utterance-queue/js/ActivationUtterance.js';
 import Utterance from '../../../../utterance-queue/js/Utterance.js';
 import ValueChangeUtterance from '../../../../utterance-queue/js/ValueChangeUtterance.js';
-import molarityStrings from '../../molarity-strings.js';
+import molarityStrings from '../../molarityStrings.js';
 import molarity from '../../molarity.js';
 
 // a11y strings
