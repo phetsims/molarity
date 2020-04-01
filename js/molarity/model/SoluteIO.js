@@ -11,7 +11,7 @@ import ReferenceIO from '../../../../tandem/js/types/ReferenceIO.js';
 import molarity from '../../molarity.js';
 
 // Objects are statically created, use reference equality to look up instances for toStateObject/fromStateObject
-class SoluteIO extends ReferenceIO {}
+class SoluteIO extends ReferenceIO( ObjectIO ) {}
 
 SoluteIO.documentation = 'The solute for the sim';
 SoluteIO.validator = { isValidValue: v => v instanceof phet.molarity.Solute }; //TODO #51 replace global with require?
