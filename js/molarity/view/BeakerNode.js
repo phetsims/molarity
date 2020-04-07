@@ -166,7 +166,7 @@ function BeakerNode( solution, maxVolume, valuesVisibleProperty, tandem, soluteD
     tickLabelsParent.visible = visible;
   } );
 
-  // a11y - adds the description node that holds the PDOM summary of the beaker.
+  // pdom - adds the description node that holds the PDOM summary of the beaker.
   this.addChild( new MolarityBeakerDescriptionNode( solution, useQuantitativeDescriptionsProperty, soluteDescriber,
     concentrationDescriber, precipitateAmountDescriber, soluteAmountDescriber, volumeDescriber ) );
 

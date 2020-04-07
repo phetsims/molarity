@@ -66,7 +66,7 @@ function VerticalSlider( title, subtitle, minLabel, maxLabel, property, range, d
       thumbFill: THUMB_NORMAL_COLOR,
       thumbFillHighlighted: THUMB_HIGHLIGHT_COLOR,
 
-      // a11y
+      // pdom
       shiftKeyboardStep: Math.pow( 10, decimalPlaces * -1 ),
       appendDescription: true,
       keyboardStep: 0.050,

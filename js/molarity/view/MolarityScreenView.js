@@ -84,7 +84,7 @@ function MolarityScreenView( model, tandem ) {
   const useQuantitativeDescriptionsProperty = new DerivedProperty( [ valuesVisibleProperty ],
     currentValuesVisible => currentValuesVisible );
 
-  // a11y - initializes describers and alert manager to generate and update all PDOM and alert content.
+  // pdom - initializes describers and alert manager to generate and update all PDOM and alert content.
   const concentrationDescriber = new ConcentrationDescriber( model.solution, useQuantitativeDescriptionsProperty );
   const precipitateAmountDescriber = new PrecipitateAmountDescriber( model.solution, concentrationDescriber, useQuantitativeDescriptionsProperty );
   const soluteDescriber = new SoluteDescriber( model.solution, concentrationDescriber, precipitateAmountDescriber );
@@ -133,7 +133,7 @@ function MolarityScreenView( model, tandem ) {
       sliderOptions: {
         trackSize: new Dimension2( SLIDER_TRACK_WIDTH, cylinderSize.height ),
 
-        // a11y
+        // pdom
         accessibleName: soluteAmountNoNewlineString,
         a11yCreateAriaValueText: () => soluteAmountDescriber.getSoluteAmountValueText(),
         a11yDependencies: [ model.solution.soluteProperty ]
@@ -157,7 +157,7 @@ function MolarityScreenView( model, tandem ) {
       sliderOptions: {
         trackSize: new Dimension2( SLIDER_TRACK_WIDTH, volumeSliderHeight ),
 
-        // a11y
+        // pdom
         accessibleName: solutionVolumeString,
         a11yCreateAriaValueText: () => volumeDescriber.getVolumeAriaValueText()
       }
@@ -202,7 +202,7 @@ function MolarityScreenView( model, tandem ) {
     maxWidth: 175,
     tandem: tandem.createTandem( 'solutionValuesCheckbox' ),
 
-    // a11y
+    // pdom
     accessibleName: showValuesString,
     helpText: solutionValuesHelpTextString
   } );
@@ -218,7 +218,7 @@ function MolarityScreenView( model, tandem ) {
     tandem: tandem.createTandem( 'resetAllButton' )
   } );
 
-  // a11y - heading and accessible order for slider controls section of PDOM
+  // pdom - heading and accessible order for slider controls section of PDOM
   const solutionControlsNode = new Node( {
     tagName: 'div',
     labelTagName: 'h3',
@@ -227,7 +227,7 @@ function MolarityScreenView( model, tandem ) {
   } );
   solutionControlsNode.accessibleOrder = [ soluteAmountSlider, solutionVolumeSlider ];
 
-  // a11y - heading and accessible order for play area section of PDOM
+  // pdom - heading and accessible order for play area section of PDOM
   this.pdomPlayAreaNode.accessibleOrder = [
     beakerNode,
     solutionControlsNode,
@@ -235,7 +235,7 @@ function MolarityScreenView( model, tandem ) {
     soluteComboBoxListParent
   ];
 
-  // a11y - contains PDOM heading for Control Area, and orders the PDOM for included elements
+  // pdom - contains PDOM heading for Control Area, and orders the PDOM for included elements
   this.pdomControlAreaNode.accessibleOrder = [
     solutionValuesCheckbox,
     resetAllButton

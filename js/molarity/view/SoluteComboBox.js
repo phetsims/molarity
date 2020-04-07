@@ -48,7 +48,7 @@ class SoluteComboBox extends ComboBox {
       yMargin: 16,
       highlightFill: 'rgb( 218, 255, 255 )',
 
-      // a11y
+      // pdom
       accessibleName: soluteString,
       helpText: soluteComboBoxHelpTextString
     }, options );
