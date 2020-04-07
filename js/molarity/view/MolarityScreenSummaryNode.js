@@ -12,7 +12,6 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import molarityStrings from '../../molarityStrings.js';
 import molarity from '../../molarity.js';
 
-// a11y strings
 const ofString = molarityStrings.a11y.of;
 const notSaturatedString = molarityStrings.a11y.notSaturated;
 const screenSummaryQualitativeConcentrationPatternString = molarityStrings.a11y.screenSummary.qualitativeConcentrationPattern;

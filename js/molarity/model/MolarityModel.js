@@ -28,7 +28,6 @@ const potassiumChromateString = molarityStrings.potassiumChromate;
 const potassiumDichromateString = molarityStrings.potassiumDichromate;
 const potassiumPermanganateString = molarityStrings.potassiumPermanganate;
 
-// a11y strings
 // color strings
 const soluteColorsLowercaseRedString = molarityStrings.a11y.soluteColors.lowercase.red;
 const soluteColorsLowercasePinkString = molarityStrings.a11y.soluteColors.lowercase.pink;

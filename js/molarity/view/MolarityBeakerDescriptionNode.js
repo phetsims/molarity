@@ -15,7 +15,6 @@ import molarity from '../../molarity.js';
 
 const drinkMixString = molarityStrings.drinkMix;
 
-// a11y strings
 const beakerDescriptionPatternString = molarityStrings.a11y.beaker.descriptionPattern;
 const beakerHasZeroConcentrationString = molarityStrings.a11y.beaker.hasZeroConcentration;
 const beakerDescriptionPureWaterPatternString = molarityStrings.a11y.beaker.descriptionPureWaterPattern;

@@ -22,7 +22,6 @@ const keyboardMoveThroughString = molarityStrings.keyboard.moveThrough;
 const keyboardCloseListString = molarityStrings.keyboard.closeList;
 const keyboardChangeSoluteHelpHeadingString = molarityStrings.keyboard.changeSoluteHelpHeading;
 
-// a11y strings
 // Description strings for list of help commands
 const helpContentPopUpListDescriptionString = molarityStrings.a11y.helpContent.popUpListDescription;
 const helpContentMoveThroughDescriptionString = molarityStrings.a11y.helpContent.moveThroughDescription;

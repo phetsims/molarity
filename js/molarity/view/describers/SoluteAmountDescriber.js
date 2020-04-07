@@ -14,7 +14,6 @@ import molarity from '../../../molarity.js';
 import MolarityConstants from '../../MolarityConstants.js';
 import SolutionQuantityDescriber from './SolutionQuantityDescriber.js';
 
-// a11y strings
 const beakerSoluteAmountPatternString = molarityStrings.a11y.beaker.soluteAmountPattern;
 const quantitativeSoluteAmountAndUnitPatternString = molarityStrings.a11y.quantitative.soluteAmountAndUnitPattern;
 const quantityChangeSoluteAmountChangedPatternString = molarityStrings.a11y.quantityChange.soluteAmountChangedPattern;

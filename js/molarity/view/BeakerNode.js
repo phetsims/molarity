@@ -29,7 +29,6 @@ import MolarityBeakerDescriptionNode from './MolarityBeakerDescriptionNode.js';
 const pattern0Value1UnitsString = molarityStrings.pattern[ '0value' ][ '1units' ];
 const unitsLitersString = molarityStrings.units.liters;
 
-// a11y strings
 const beakerHeaderString = molarityStrings.a11y.beaker.header;
 
 // constants

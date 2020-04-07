@@ -23,7 +23,6 @@ import molarity from '../../molarity.js';
 const pattern0LabelString = molarityStrings.pattern[ '0label' ];
 const soluteString = molarityStrings.solute;
 
-// a11y strings
 const soluteComboBoxHelpTextString = molarityStrings.a11y.soluteComboBoxHelpText;
 
 // sounds

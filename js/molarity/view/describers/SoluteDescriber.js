@@ -14,7 +14,6 @@ import molarity from '../../../molarity.js';
 import Water from '../../model/Water.js';
 import MolaritySymbols from '../../MolaritySymbols.js';
 
-// a11y strings
 const beakerChemicalFormulaPatternString = molarityStrings.a11y.beaker.chemicalFormulaPattern;
 const noSoluteAlertQuantitativeString = molarityStrings.a11y.noSoluteAlertQuantitative;
 const noSoluteAlertQualitativeString = molarityStrings.a11y.noSoluteAlertQualitative;

@@ -15,7 +15,6 @@ import ValueChangeUtterance from '../../../../utterance-queue/js/ValueChangeUtte
 import molarityStrings from '../../molarityStrings.js';
 import molarity from '../../molarity.js';
 
-// a11y strings
 const atMaxConcentrationAlertPatternString = molarityStrings.a11y.atMaxConcentrationAlertPattern;
 const noSoluteAlertString = molarityStrings.a11y.noSoluteAlert;
 const qualitativeSaturatedValueTextPatternString = molarityStrings.a11y.qualitative.saturatedValueTextPattern;

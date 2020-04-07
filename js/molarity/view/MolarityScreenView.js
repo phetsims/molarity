@@ -56,7 +56,6 @@ const unitsMolesString = molarityStrings.units.moles;
 
 // sounds
 
-// a11y strings
 const beakerSolutionControlsString = molarityStrings.a11y.beakerSolutionControls;
 const solutionValuesHelpTextString = molarityStrings.a11y.solutionValuesHelpText;
 const soluteAmountNoNewlineString = molarityStrings.a11y.soluteAmountNoNewline;

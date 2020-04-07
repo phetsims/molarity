@@ -14,7 +14,6 @@ import molarity from '../../../molarity.js';
 import MolarityConstants from '../../MolarityConstants.js';
 import SolutionQuantityDescriber from './SolutionQuantityDescriber.js';
 
-// a11y strings
 const quantitativeHasVolumePatternString = molarityStrings.a11y.quantitative.hasVolumePattern;
 const quantityChangeColorChangePatternString = molarityStrings.a11y.quantityChange.colorChangePattern;
 const qualitativeVolumeStatePatternString = molarityStrings.a11y.qualitative.volumeStatePattern;

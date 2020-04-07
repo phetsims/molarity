@@ -12,7 +12,6 @@ import molarityStrings from '../../molarityStrings.js';
 import molarity from '../../molarity.js';
 import MolaritySymbols from '../MolaritySymbols.js';
 
-// a11y strings
 const soluteColorsCapitalizedClearString = molarityStrings.a11y.soluteColors.capitalized.clear;
 const soluteColorsLowercaseClearString = molarityStrings.a11y.soluteColors.lowercase.clear;
 

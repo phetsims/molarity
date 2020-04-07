@@ -17,7 +17,6 @@ import molarity from '../../../molarity.js';
 import Solution from '../../model/Solution.js';
 import MolarityConstants from '../../MolarityConstants.js';
 
-// a11y strings
 const atMaxConcentrationPatternString = molarityStrings.a11y.atMaxConcentrationPattern;
 const beakerSaturationPatternString = molarityStrings.a11y.beaker.saturationPattern;
 const saturationLostNoSoluteAlertString = molarityStrings.a11y.saturationLostNoSoluteAlert;

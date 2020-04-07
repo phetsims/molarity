@@ -14,7 +14,6 @@ import molarityStrings from '../../../molarityStrings.js';
 import molarity from '../../../molarity.js';
 import MolarityConstants from '../../MolarityConstants.js';
 
-// a11y strings
 const quantityChangeColorChangePatternString = molarityStrings.a11y.quantityChange.colorChangePattern;
 const quantitativeConcentrationAndUnitString = molarityStrings.a11y.quantitative.concentrationAndUnit;
 const quantityChangeConcentrationChangePatternString = molarityStrings.a11y.quantityChange.concentrationChangePattern;
