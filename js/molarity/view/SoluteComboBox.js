@@ -66,7 +66,7 @@ class SoluteComboBox extends ComboBox {
     soundManager.addSoundGenerator( comboBoxOpenSoundClip );
 
     // play a sound when the list box opens
-    this.listBox.on( 'visibility', () => {
+    this.listBox.visibleProperty.lazyLink( () => {
       if ( this.listBox.visible ) {
         comboBoxOpenSoundClip.play();
       }
