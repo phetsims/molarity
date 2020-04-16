@@ -40,7 +40,7 @@ class MolarityKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
     const sliderKeyboardHelpSection = new SliderKeyboardHelpSection( { headingString: keyboardSliderHelpHeadingString } );
 
     // change solute help section
-    const step1 = labelWithIcon( keyboardPopUpListString, KeyboardHelpIconFactory.enterOrSpace(), helpContentPopUpListDescriptionString );
+    const step1 = labelWithIcon( keyboardPopUpListString, KeyboardHelpIconFactory.spaceOrEnter(), helpContentPopUpListDescriptionString );
     const step2 = labelWithIcon( keyboardMoveThroughString, KeyboardHelpIconFactory.upOrDown(), helpContentMoveThroughDescriptionString );
     const step3 = labelWithIcon( keyboardChangeSoluteString, KeyboardHelpIconFactory.enter(), helpContentChangeChooseDescriptionString );
     const step4 = labelWithIcon( keyboardCloseListString, KeyboardHelpIconFactory.esc(), helpContentCloseListDescriptionString );

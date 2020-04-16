@@ -147,7 +147,7 @@
     },
     "helpContent": {
       "popUpListDescription": {
-        "value": "Pop up list of solutes with Enter or Space keys"
+        "value": "Pop up list of solutes with Space or Enter keys"
       },
       "moveThroughDescription": {
         "value": "Move through solutes with Up and Down arrow keys"
