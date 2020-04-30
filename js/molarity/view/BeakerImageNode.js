@@ -38,7 +38,7 @@ function BeakerImageNode( tandem, options ) {
 
 molarity.register( 'BeakerImageNode', BeakerImageNode );
 
-export default inherit( Image, BeakerImageNode, {
+inherit( Image, BeakerImageNode, {
 
   // @public Gets the cylinder dimensions.
   getCylinderSize: function() {
@@ -57,3 +57,5 @@ export default inherit( Image, BeakerImageNode, {
     return this.localToParentPoint( CYLINDER_END_FOREGROUND ).y - this.localToParentPoint( CYLINDER_END_BACKGROUND ).y;
   }
 } );
+
+export default BeakerImageNode;

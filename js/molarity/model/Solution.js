@@ -77,7 +77,7 @@ function Solution( solvent, solute, soluteAmount, volume, tandem ) {
 
 molarity.register( 'Solution', Solution );
 
-export default inherit( Object, Solution, {
+inherit( Object, Solution, {
 
   /**
    * @public
@@ -139,3 +139,5 @@ export default inherit( Object, Solution, {
     return volume > 0 ? Math.max( 0, volume * ( ( soluteAmount / volume ) - saturatedConcentration ) ) : soluteAmount;
   }
 } );
+
+export default Solution;

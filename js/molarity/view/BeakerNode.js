@@ -174,7 +174,7 @@ function BeakerNode( solution, maxVolume, valuesVisibleProperty, tandem, soluteD
 
 molarity.register( 'BeakerNode', BeakerNode );
 
-export default inherit( Node, BeakerNode, {
+inherit( Node, BeakerNode, {
 
   // @public
   getCylinderSize: function() {
@@ -186,3 +186,5 @@ export default inherit( Node, BeakerNode, {
     return this.beakerImageNode.getCylinderEndHeight();
   }
 } );
+
+export default BeakerNode;
