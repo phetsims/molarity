@@ -235,5 +235,7 @@ class MolarityAlertManager {
  * @property {string} colorChangeString - describing the color change of the solute
  * @property {string} quantityChangeString - describing the slider quantity that changed
  */
+const molarityAlertManager = new MolarityAlertManager();
 
-export default molarity.register( 'molarityAlertManager', new MolarityAlertManager() );
+molarity.register( 'molarityAlertManager', molarityAlertManager );
+export default molarityAlertManager;
