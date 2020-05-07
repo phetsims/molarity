@@ -7,7 +7,7 @@
  */
 
 import Sim from '../../joist/js/Sim.js';
-import SimLauncher from '../../joist/js/SimLauncher.js';
+import simLauncher from '../../joist/js/simLauncher.js';
 import Tandem from '../../tandem/js/Tandem.js';
 import molarityStrings from './molarityStrings.js';
 import MolarityScreen from './molarity/MolarityScreen.js';
@@ -32,7 +32,7 @@ const options = {
   keyboardHelpNode: keyboardHelpContent
 };
 
-SimLauncher.launch( function() {
+simLauncher.launch( function() {
   const screens = [ new MolarityScreen( tandem.createTandem( 'molarityScreen' ) ) ];
   const sim = new Sim( molarityTitleString, screens, options );
   sim.start();
