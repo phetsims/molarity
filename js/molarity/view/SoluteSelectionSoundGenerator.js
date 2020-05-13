@@ -47,11 +47,11 @@ class SoluteSelectionSoundGenerator extends MultiClip {
     assert && assert( solutes.length === selectionSounds.length, 'the number of solutes must match the number of selection sounds' );
 
     // map the solutes to the sounds
-    const soluteToSoundInfoMap = new Map();
+    const soluteToSoundMap = new Map();
     solutes.forEach( ( solute, index ) => {
-      soluteToSoundInfoMap.set( solute, selectionSounds[ index ] );
+      soluteToSoundMap.set( solute, selectionSounds[ index ] );
     } );
-    super( soluteToSoundInfoMap, options );
+    super( soluteToSoundMap, options );
 
     // play a sound when the solute change unless a reset is in progress
     soluteProperty.lazyLink( solute => {
