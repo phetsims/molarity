@@ -20,8 +20,8 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import soundManager from '../../../../tambo/js/soundManager.js';
-import molarityStrings from '../../molarityStrings.js';
 import molarity from '../../molarity.js';
+import molarityStrings from '../../molarityStrings.js';
 import MolarityConstants from '../MolarityConstants.js';
 import BeakerNode from './BeakerNode.js';
 import ConcentrationDisplay from './ConcentrationDisplay.js';
@@ -241,7 +241,7 @@ function MolarityScreenView( model, tandem ) {
     resetAllButton
   ];
 
-  // layout for things that don't have a location in the model
+  // layout for things that don't have a position in the model
   {
     soluteAmountSlider.left = 0;
     soluteAmountSlider.top = 0;

@@ -5,7 +5,7 @@
  * The display can be switched between quantitative and qualitative.
  * The bar is colored using a gradient that corresponds to the solute's color.
  * A pointer to the right of the bar indicates the concentration on the scale.
- * The pointer is color corresponds to its location on the bar.
+ * The pointer is color corresponds to its position on the bar.
  * Origin is at the upper-left corner of the bar.
  *
  * @author Chris Malley (PixelZoom, Inc.)
@@ -23,8 +23,8 @@ import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import Color from '../../../../scenery/js/util/Color.js';
 import LinearGradient from '../../../../scenery/js/util/LinearGradient.js';
-import molarityStrings from '../../molarityStrings.js';
 import molarity from '../../molarity.js';
+import molarityStrings from '../../molarityStrings.js';
 import MolarityConstants from '../MolarityConstants.js';
 import DualLabelNode from './DualLabelNode.js';
 
