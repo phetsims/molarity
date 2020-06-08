@@ -14,8 +14,6 @@ import noSoluteSound from '../../../sounds/soft-no-solute-v2_mp3.js';
 import molarity from '../../molarity.js';
 import MolarityConstants from '../MolarityConstants.js';
 
-// sounds
-
 // constants
 const NUM_SOLUTE_BINS = 13; // empirically determined to produce sounds as frequently as needed but not TOO frequently
 const NUM_VOLUME_BINS = 10; // empirically determined to produce sounds as frequently as needed but not TOO frequently

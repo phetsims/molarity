@@ -25,8 +25,6 @@ const soluteString = molarityStrings.solute;
 
 const soluteComboBoxHelpTextString = molarityStrings.a11y.soluteComboBoxHelpText;
 
-// sounds
-
 class SoluteComboBox extends ComboBox {
   /**
    * @param {Solute[]} solutes

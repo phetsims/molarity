@@ -19,8 +19,6 @@ import compoundWLowPassFilter009Sound from '../../../sounds/compound-w-low-pass-
 import molarity from '../../molarity.js';
 
 // sounds
-
-// sounds
 const selectionSounds = [
   compoundWLowPassFilter001Sound,
   compoundWLowPassFilter002Sound,

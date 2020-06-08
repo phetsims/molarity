@@ -54,8 +54,7 @@ const solutionVolumeString = molarityStrings.solutionVolume;
 const unitsLitersString = molarityStrings.units.liters;
 const unitsMolesString = molarityStrings.units.moles;
 
-// sounds
-
+// strings
 const beakerSolutionControlsString = molarityStrings.a11y.beakerSolutionControls;
 const solutionValuesHelpTextString = molarityStrings.a11y.solutionValuesHelpText;
 const soluteAmountNoNewlineString = molarityStrings.a11y.soluteAmountNoNewline;

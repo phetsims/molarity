@@ -13,8 +13,6 @@ import SoundClip from '../../../../tambo/js/sound-generators/SoundClip.js';
 import precipitateSound from '../../../sounds/precipitate_mp3.js';
 import molarity from '../../molarity.js';
 
-// sounds
-
 // constants
 const ONE_OCTAVE_NOTE_MULTIPLIERS = [ 1, 1.122, 1.260, 1.414, 1.587, 1.782 ]; // whole tone scale
 const NUM_OCTAVES = 2;
