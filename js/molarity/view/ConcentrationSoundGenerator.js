@@ -33,18 +33,18 @@ class ConcentrationSoundGenerator extends SoundGenerator {
 
     // sound clip that is played when the concentration is above zero (pitch is varied as a function of concentration)
     const nonZeroConcentrationSoundClip = new SoundClip( marimbaSound, { rateChangesAffectPlayingSounds: false } );
-    nonZeroConcentrationSoundClip.connect( this.masterGainNode );
+    nonZeroConcentrationSoundClip.connect( this.soundSourceDestination );
 
     // sound clip that is played when the solute amount transitions to zero
     const transitionToZeroConcentrationSoundClip = new SoundClip( marimbaSound, {
       initialOutputLevel: 1.5, // higher than nominal, seems to work to make it more pronounced
       initialPlaybackRate: ZERO_CONCENTRATION_PLAYBACK_RATE
     } );
-    transitionToZeroConcentrationSoundClip.connect( this.masterGainNode );
+    transitionToZeroConcentrationSoundClip.connect( this.soundSourceDestination );
 
     // sound clip that is played when the solution level is changed when the concentration is zero
     const atZeroConcentrationSoundClip = new SoundClip( noSoluteSound, { initialOutputLevel: 0.6 } );
-    atZeroConcentrationSoundClip.connect( this.masterGainNode );
+    atZeroConcentrationSoundClip.connect( this.soundSourceDestination );
 
     // keep track of the concentration value each time sound is played
     let concentrationAtLastSoundProduction = solution.concentrationProperty.value;
