@@ -14,11 +14,9 @@ import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import ComboBox from '../../../../sun/js/ComboBox.js';
 import ComboBoxItem from '../../../../sun/js/ComboBoxItem.js';
-import SoundClip from '../../../../tambo/js/sound-generators/SoundClip.js';
-import soundManager from '../../../../tambo/js/soundManager.js';
-import generalOpenSound from '../../../../tambo/sounds/general-open_mp3.js';
-import molarityStrings from '../../molarityStrings.js';
+import Playable from '../../../../tambo/js/Playable.js';
 import molarity from '../../molarity.js';
+import molarityStrings from '../../molarityStrings.js';
 
 const pattern0LabelString = molarityStrings.pattern[ '0label' ];
 const soluteString = molarityStrings.solute;
@@ -46,6 +44,9 @@ class SoluteComboBox extends ComboBox {
       yMargin: 16,
       highlightFill: 'rgb( 218, 255, 255 )',
 
+      // turn off default sound for combo box close, since the sim does a unique sound for this
+      closedSoundPlayer: Playable.NO_SOUND,
+
       // pdom
       accessibleName: soluteString,
       helpText: soluteComboBoxHelpTextString
@@ -58,17 +59,6 @@ class SoluteComboBox extends ComboBox {
     const items = solutes.map( createItem );
 
     super( items, selectedSoluteProperty, listParent, options );
-
-    // sound generation
-    const comboBoxOpenSoundClip = new SoundClip( generalOpenSound, { initialOutputLevel: 0.3 } );
-    soundManager.addSoundGenerator( comboBoxOpenSoundClip );
-
-    // play a sound when the list box opens
-    this.listBox.visibleProperty.lazyLink( () => {
-      if ( this.listBox.visible ) {
-        comboBoxOpenSoundClip.play();
-      }
-    } );
   }
 }
 
