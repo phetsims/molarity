@@ -45,7 +45,7 @@ class SoluteComboBox extends ComboBox {
       highlightFill: 'rgb( 218, 255, 255 )',
 
       // turn off default sound for combo box close, since the sim does a unique sound for this
-      closedSoundPlayer: Playable.NO_SOUND,
+      selectionChangedSoundPlayer: Playable.NO_SOUND,
 
       // pdom
       accessibleName: soluteString,
