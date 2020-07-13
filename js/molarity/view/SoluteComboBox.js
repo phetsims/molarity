@@ -44,9 +44,6 @@ class SoluteComboBox extends ComboBox {
       yMargin: 16,
       highlightFill: 'rgb( 218, 255, 255 )',
 
-      // turn off default sound for combo box close, since the sim does a unique sound for this
-      selectionChangedSoundPlayer: Playable.NO_SOUND,
-
       // pdom
       accessibleName: soluteString,
       helpText: soluteComboBoxHelpTextString
@@ -86,6 +83,7 @@ const createItem = function( solute ) {
   } );
 
   return new ComboBoxItem( hBox, solute, {
+    soundPlayer: Playable.NO_SOUND, // sound generation for selection is done elsewhere
     tandemName: solute.tandem.name,
     a11yLabel: solute.name
   } );
