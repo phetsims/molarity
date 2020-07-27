@@ -7,28 +7,28 @@
  */
 
 import MultiClip from '../../../../tambo/js/sound-generators/MultiClip.js';
-import compoundWLowPassFilter001Sound from '../../../sounds/compound-w-low-pass-filter-001_mp3.js';
-import compoundWLowPassFilter002Sound from '../../../sounds/compound-w-low-pass-filter-002_mp3.js';
-import compoundWLowPassFilter003Sound from '../../../sounds/compound-w-low-pass-filter-003_mp3.js';
-import compoundWLowPassFilter004Sound from '../../../sounds/compound-w-low-pass-filter-004_mp3.js';
-import compoundWLowPassFilter005Sound from '../../../sounds/compound-w-low-pass-filter-005_mp3.js';
-import compoundWLowPassFilter006Sound from '../../../sounds/compound-w-low-pass-filter-006_mp3.js';
-import compoundWLowPassFilter007Sound from '../../../sounds/compound-w-low-pass-filter-007_mp3.js';
-import compoundWLowPassFilter008Sound from '../../../sounds/compound-w-low-pass-filter-008_mp3.js';
-import compoundWLowPassFilter009Sound from '../../../sounds/compound-w-low-pass-filter-009_mp3.js';
+import soluteSelection001Sound from '../../../../tambo/sounds/selection-arpeggio-001_mp3.js';
+import soluteSelection002Sound from '../../../../tambo/sounds/selection-arpeggio-002_mp3.js';
+import soluteSelection003Sound from '../../../../tambo/sounds/selection-arpeggio-003_mp3.js';
+import soluteSelection004Sound from '../../../../tambo/sounds/selection-arpeggio-004_mp3.js';
+import soluteSelection005Sound from '../../../../tambo/sounds/selection-arpeggio-005_mp3.js';
+import soluteSelection006Sound from '../../../../tambo/sounds/selection-arpeggio-006_mp3.js';
+import soluteSelection007Sound from '../../../../tambo/sounds/selection-arpeggio-007_mp3.js';
+import soluteSelection008Sound from '../../../../tambo/sounds/selection-arpeggio-008_mp3.js';
+import soluteSelection009Sound from '../../../../tambo/sounds/selection-arpeggio-009_mp3.js';
 import molarity from '../../molarity.js';
 
 // sounds
 const selectionSounds = [
-  compoundWLowPassFilter001Sound,
-  compoundWLowPassFilter002Sound,
-  compoundWLowPassFilter003Sound,
-  compoundWLowPassFilter004Sound,
-  compoundWLowPassFilter005Sound,
-  compoundWLowPassFilter006Sound,
-  compoundWLowPassFilter007Sound,
-  compoundWLowPassFilter008Sound,
-  compoundWLowPassFilter009Sound
+  soluteSelection001Sound,
+  soluteSelection002Sound,
+  soluteSelection003Sound,
+  soluteSelection004Sound,
+  soluteSelection005Sound,
+  soluteSelection006Sound,
+  soluteSelection007Sound,
+  soluteSelection008Sound,
+  soluteSelection009Sound
 ];
 
 class SoluteSelectionSoundGenerator extends MultiClip {
