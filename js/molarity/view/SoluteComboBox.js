@@ -84,7 +84,7 @@ const createItem = function( solute ) {
 
   return new ComboBoxItem( hBox, solute, {
     soundPlayer: Playable.NO_SOUND, // sound generation for selection is done elsewhere
-    tandemName: solute.tandem.name,
+    tandemName: solute.tandem.name + 'Item',
     a11yLabel: solute.name
   } );
 };
