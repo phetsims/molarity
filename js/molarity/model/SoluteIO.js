@@ -1,7 +1,7 @@
 // Copyright 2017-2020, University of Colorado Boulder
 
 /**
- * IO type for Solute
+ * IO Type for Solute
  *
  * @author Chris Malley (PixelZoom, Inc.)
  */
