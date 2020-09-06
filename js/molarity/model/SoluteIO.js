@@ -16,7 +16,7 @@ class SoluteIO extends ReferenceIO( ObjectIO ) {}
 SoluteIO.documentation = 'The solute for the sim';
 SoluteIO.validator = { isValidValue: v => v instanceof phet.molarity.Solute }; //TODO #51 replace global with require?
 SoluteIO.typeName = 'SoluteIO';
-ObjectIO.validateSubtype( SoluteIO );
+ObjectIO.validateIOType( SoluteIO );
 
 molarity.register( 'SoluteIO', SoluteIO );
 export default SoluteIO;
