@@ -6,17 +6,16 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import ObjectIO from '../../../../tandem/js/types/ObjectIO.js';
+import IOType from '../../../../tandem/js/types/IOType.js';
 import ReferenceIO from '../../../../tandem/js/types/ReferenceIO.js';
 import molarity from '../../molarity.js';
 
 // Objects are statically created, use reference equality to look up instances for toStateObject/fromStateObject
-class SoluteIO extends ReferenceIO( ObjectIO ) {}
-
-SoluteIO.documentation = 'The solute for the sim';
-SoluteIO.validator = { isValidValue: v => v instanceof phet.molarity.Solute }; //TODO #51 replace global with require?
-SoluteIO.typeName = 'SoluteIO';
-ObjectIO.validateIOType( SoluteIO );
+const SoluteIO = new IOType( 'SoluteIO', {
+  isValidValue: v => v instanceof phet.molarity.Solute,
+  documentation: 'The solute for the sim',
+  supertype: ReferenceIO( IOType.ObjectIO )
+} );
 
 molarity.register( 'SoluteIO', SoluteIO );
 export default SoluteIO;
