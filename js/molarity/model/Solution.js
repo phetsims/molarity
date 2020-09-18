@@ -7,7 +7,6 @@
  */
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import DerivedPropertyIO from '../../../../axon/js/DerivedPropertyIO.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import PropertyIO from '../../../../axon/js/PropertyIO.js';
@@ -61,7 +60,7 @@ function Solution( solvent, solute, soluteAmount, volume, tandem ) {
       tandem: tandem.createTandem( 'concentrationProperty' ),
       units: 'moles/liter',
       // no range, since this is derived
-      phetioType: DerivedPropertyIO( NumberIO )
+      phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
     } );
 
   // @public derive the amount of precipitate
@@ -71,7 +70,7 @@ function Solution( solvent, solute, soluteAmount, volume, tandem ) {
     }, {
       tandem: tandem.createTandem( 'precipitateAmountProperty' ),
       units: 'moles',
-      phetioType: DerivedPropertyIO( NumberIO )
+      phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
     } );
 }
 

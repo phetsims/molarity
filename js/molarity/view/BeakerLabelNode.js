@@ -8,7 +8,6 @@
  */
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import DerivedPropertyIO from '../../../../axon/js/DerivedPropertyIO.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import inherit from '../../../../phet-core/js/inherit.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
@@ -63,7 +62,7 @@ function BeakerLabelNode( solution, tandem ) {
       return label;
     }, {
       tandem: tandem.createTandem( 'beakerLabelProperty' ),
-      phetioType: DerivedPropertyIO( StringIO )
+      phetioType: DerivedProperty.DerivedPropertyIO( StringIO )
     } );
 
   // update the label
