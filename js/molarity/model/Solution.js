@@ -9,7 +9,6 @@
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Property from '../../../../axon/js/Property.js';
-import PropertyIO from '../../../../axon/js/PropertyIO.js';
 import Utils from '../../../../dot/js/Utils.js';
 import inherit from '../../../../phet-core/js/inherit.js';
 import Color from '../../../../scenery/js/util/Color.js';
@@ -34,7 +33,7 @@ function Solution( solvent, solute, soluteAmount, volume, tandem ) {
   // @public
   this.soluteProperty = new Property( solute, {
     tandem: tandem.createTandem( 'soluteProperty' ),
-    phetioType: PropertyIO( SoluteIO )
+    phetioType: Property.PropertyIO( SoluteIO )
   } );
 
   // @public
