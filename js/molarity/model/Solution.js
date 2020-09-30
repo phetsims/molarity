@@ -15,7 +15,7 @@ import Color from '../../../../scenery/js/util/Color.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import molarity from '../../molarity.js';
 import MolarityConstants from '../MolarityConstants.js';
-import SoluteIO from './SoluteIO.js';
+import Solute from './Solute.js';
 
 /**
  * @param {{color:ColorDef, formula:string, colorStringPair:StringCasingPair}} solvent
@@ -33,7 +33,7 @@ function Solution( solvent, solute, soluteAmount, volume, tandem ) {
   // @public
   this.soluteProperty = new Property( solute, {
     tandem: tandem.createTandem( 'soluteProperty' ),
-    phetioType: Property.PropertyIO( SoluteIO )
+    phetioType: Property.PropertyIO( Solute.SoluteIO )
   } );
 
   // @public

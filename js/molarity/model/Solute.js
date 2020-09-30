@@ -11,8 +11,9 @@
 import inherit from '../../../../phet-core/js/inherit.js';
 import merge from '../../../../phet-core/js/merge.js';
 import PhetioObject from '../../../../tandem/js/PhetioObject.js';
+import IOType from '../../../../tandem/js/types/IOType.js';
+import ReferenceIO from '../../../../tandem/js/types/ReferenceIO.js';
 import molarity from '../../molarity.js';
-import SoluteIO from './SoluteIO.js';
 
 /**
  * @param {string} name - title case
@@ -29,7 +30,7 @@ function Solute( name, formula, saturatedConcentration, minColor, maxColor, lowe
 
   options = merge( {
     particleColor: maxColor, // the solute's color as a particle
-    phetioType: SoluteIO
+    phetioType: Solute.SoluteIO
   }, options );
 
   // @public
@@ -48,4 +49,11 @@ function Solute( name, formula, saturatedConcentration, minColor, maxColor, lowe
 molarity.register( 'Solute', Solute );
 
 inherit( PhetioObject, Solute );
+
+Solute.SoluteIO = new IOType( 'SoluteIO', {
+  valueType: Solute,
+  documentation: 'The solute for the sim',
+  supertype: ReferenceIO( IOType.ObjectIO )
+} );
+
 export default Solute;
