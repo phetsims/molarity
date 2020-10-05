@@ -9,17 +9,13 @@
 import Sim from '../../joist/js/Sim.js';
 import simLauncher from '../../joist/js/simLauncher.js';
 import Tandem from '../../tandem/js/Tandem.js';
-import molarityStrings from './molarityStrings.js';
 import MolarityScreen from './molarity/MolarityScreen.js';
-import MolarityKeyboardHelpContent from './molarity/view/MolarityKeyboardHelpContent.js';
+import molarityStrings from './molarityStrings.js';
 
 const molarityTitleString = molarityStrings.molarity.title;
 
 // constants
 const tandem = Tandem.ROOT;
-
-// help content to describe keyboard interactions
-const keyboardHelpContent = new MolarityKeyboardHelpContent();
 
 const options = {
   credits: {
@@ -29,7 +25,8 @@ const options = {
     soundDesign: 'Ashton Morris',
     qualityAssurance: 'Jaspe Arias, Logan Bray, Steele Dalton, Alex Dornan, Ethan Johnson, Megan Lai, Elise Morgan, Liam Mulhall, Oliver Orejola, Jacob Romero, Kathryn Woessner, Bryan Yoelin'
   },
-  keyboardHelpNode: keyboardHelpContent
+  hasKeyboardHelpContent: true
+
 };
 
 simLauncher.launch( function() {
