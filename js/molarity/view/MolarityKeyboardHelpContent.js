@@ -12,8 +12,8 @@ import KeyboardHelpIconFactory from '../../../../scenery-phet/js/keyboard/help/K
 import KeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSection.js';
 import SliderKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/SliderKeyboardHelpSection.js';
 import TwoColumnKeyboardHelpContent from '../../../../scenery-phet/js/keyboard/help/TwoColumnKeyboardHelpContent.js';
-import molarityStrings from '../../molarityStrings.js';
 import molarity from '../../molarity.js';
+import molarityStrings from '../../molarityStrings.js';
 
 const keyboardSliderHelpHeadingString = molarityStrings.keyboard.sliderHelpHeading;
 const keyboardPopUpListString = molarityStrings.keyboard.popUpList;
@@ -33,8 +33,11 @@ const labelWithIcon = KeyboardHelpSection.labelWithIcon;
 
 class MolarityKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
   constructor() {
+
     // general help section
-    const generalNavigationHelpSection = new GeneralKeyboardHelpSection();
+    const generalNavigationHelpSection = new GeneralKeyboardHelpSection( {
+      withCheckboxContent: true
+    } );
 
     // slider controls help section
     const sliderKeyboardHelpSection = new SliderKeyboardHelpSection( { headingString: keyboardSliderHelpHeadingString } );
