@@ -147,16 +147,16 @@
     },
     "helpContent": {
       "popUpListDescription": {
-        "value": "Pop up list of solutes with Space or Enter keys"
+        "value": "Pop up list of solutes with Space or Enter keys."
       },
       "moveThroughDescription": {
-        "value": "Move through solutes with Up and Down arrow keys"
+        "value": "Move through solutes with Up and Down arrow keys."
       },
       "changeChooseDescription": {
-        "value": "Choose solute with Enter key"
+        "value": "Choose solute with Enter key."
       },
       "closeListDescription": {
-        "value": "Close list without changing with Esc key"
+        "value": "Close list without changing with Escape key."
       }
     },
     "screenSummary": {
