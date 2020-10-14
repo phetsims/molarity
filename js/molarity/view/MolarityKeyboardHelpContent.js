@@ -12,6 +12,7 @@ import KeyboardHelpIconFactory from '../../../../scenery-phet/js/keyboard/help/K
 import KeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSection.js';
 import SliderKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/SliderKeyboardHelpSection.js';
 import TwoColumnKeyboardHelpContent from '../../../../scenery-phet/js/keyboard/help/TwoColumnKeyboardHelpContent.js';
+import TextKeyNode from '../../../../scenery-phet/js/keyboard/TextKeyNode.js';
 import molarity from '../../molarity.js';
 import molarityStrings from '../../molarityStrings.js';
 
@@ -45,8 +46,8 @@ class MolarityKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
     // change solute help section
     const step1 = labelWithIcon( keyboardPopUpListString, KeyboardHelpIconFactory.spaceOrEnter(), helpContentPopUpListDescriptionString );
     const step2 = labelWithIcon( keyboardMoveThroughString, KeyboardHelpIconFactory.upOrDown(), helpContentMoveThroughDescriptionString );
-    const step3 = labelWithIcon( keyboardChangeSoluteString, KeyboardHelpIconFactory.enter(), helpContentChangeChooseDescriptionString );
-    const step4 = labelWithIcon( keyboardCloseListString, KeyboardHelpIconFactory.esc(), helpContentCloseListDescriptionString );
+    const step3 = labelWithIcon( keyboardChangeSoluteString, TextKeyNode.enter(), helpContentChangeChooseDescriptionString );
+    const step4 = labelWithIcon( keyboardCloseListString, TextKeyNode.esc(), helpContentCloseListDescriptionString );
     const changeSoluteContent = [ step1, step2, step3, step4 ];
     const changeSoluteHelpSection = new KeyboardHelpSection( keyboardChangeSoluteHelpHeadingString, changeSoluteContent, {
       a11yContentTagName: 'ol'
