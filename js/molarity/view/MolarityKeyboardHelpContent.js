@@ -29,7 +29,7 @@ class MolarityKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
     const sliderKeyboardHelpSection = new SliderKeyboardHelpSection( { headingString: keyboardSliderHelpHeadingString } );
 
     const changeSoluteHelpSection = new ComboBoxKeyboardHelpSection( molarityStrings.solute, {
-      heading: molarityStrings.changeSoluteHelpHeading,
+      headingString: molarityStrings.keyboard.changeSoluteHelpHeading,
       thingAsLowerCasePlural: molarityStrings.solutes,
       thingAsLowerCaseSingular: molarityStrings.soluteLowercase
     } );
