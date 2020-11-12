@@ -208,7 +208,7 @@ class MolarityScreenView extends ScreenView {
 
     // Reset All button
     const resetAllButton = new ResetAllButton( {
-      listener: function() {
+      listener: () => {
         valuesVisibleProperty.reset();
         model.reset();
       },

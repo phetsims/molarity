@@ -10,111 +10,103 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import Utils from '../../../../dot/js/Utils.js';
-import inherit from '../../../../phet-core/js/inherit.js';
 import Color from '../../../../scenery/js/util/Color.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import molarity from '../../molarity.js';
 import MolarityConstants from '../MolarityConstants.js';
 import Solute from './Solute.js';
 
-/**
- * @param {{color:ColorDef, formula:string, colorStringPair:StringCasingPair}} solvent
- * @param {Solute} solute
- * @param {number} soluteAmount moles
- * @param {number} volume Liters
- * @param {Tandem} tandem
- * @constructor
- */
-function Solution( solvent, solute, soluteAmount, volume, tandem ) {
+class Solution {
+  /**
+   * @param {{color:ColorDef, formula:string, colorStringPair:StringCasingPair}} solvent
+   * @param {Solute} solute
+   * @param {number} soluteAmount moles
+   * @param {number} volume Liters
+   * @param {Tandem} tandem
+   */
+  constructor( solvent, solute, soluteAmount, volume, tandem ) {
 
-  // @public
-  this.solvent = solvent;
+    // @public
+    this.solvent = solvent;
 
-  // @public
-  this.soluteProperty = new Property( solute, {
-    tandem: tandem.createTandem( 'soluteProperty' ),
-    phetioType: Property.PropertyIO( Solute.SoluteIO )
-  } );
-
-  // @public
-  this.soluteAmountProperty = new NumberProperty( soluteAmount, {
-    tandem: tandem.createTandem( 'soluteAmountProperty' ),
-    units: 'moles',
-    range: MolarityConstants.SOLUTE_AMOUNT_RANGE
-  } );
-
-  // @public
-  this.volumeProperty = new NumberProperty( volume, {
-    tandem: tandem.createTandem( 'volumeProperty' ),
-    units: 'liters',
-    range: MolarityConstants.SOLUTION_VOLUME_RANGE
-  } );
-
-  // @public derive the concentration: M = moles/liter
-  this.concentrationProperty = new DerivedProperty( [ this.soluteProperty, this.soluteAmountProperty, this.volumeProperty ],
-    function( solute, soluteAmount, volume ) {
-      return Utils.toFixedNumber( volume > 0 ? Math.min( solute.saturatedConcentration, soluteAmount / volume ) : 0,
-        MolarityConstants.CONCENTRATION_DECIMAL_PLACES );
-    }, {
-      tandem: tandem.createTandem( 'concentrationProperty' ),
-      units: 'moles/liter',
-      // no range, since this is derived
-      phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
+    // @public
+    this.soluteProperty = new Property( solute, {
+      tandem: tandem.createTandem( 'soluteProperty' ),
+      phetioType: Property.PropertyIO( Solute.SoluteIO )
     } );
 
-  // @public derive the amount of precipitate
-  this.precipitateAmountProperty = new DerivedProperty( [ this.soluteProperty, this.soluteAmountProperty, this.volumeProperty ],
-    function( solute, soluteAmount, volume ) {
-      return Solution.computePrecipitateAmount( volume, soluteAmount, solute.saturatedConcentration );
-    }, {
-      tandem: tandem.createTandem( 'precipitateAmountProperty' ),
+    // @public
+    this.soluteAmountProperty = new NumberProperty( soluteAmount, {
+      tandem: tandem.createTandem( 'soluteAmountProperty' ),
       units: 'moles',
-      phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
+      range: MolarityConstants.SOLUTE_AMOUNT_RANGE
     } );
-}
 
-molarity.register( 'Solution', Solution );
+    // @public
+    this.volumeProperty = new NumberProperty( volume, {
+      tandem: tandem.createTandem( 'volumeProperty' ),
+      units: 'liters',
+      range: MolarityConstants.SOLUTION_VOLUME_RANGE
+    } );
 
-inherit( Object, Solution, {
+    // @public derive the concentration: M = moles/liter
+    this.concentrationProperty = new DerivedProperty( [ this.soluteProperty, this.soluteAmountProperty, this.volumeProperty ],
+      ( solute, soluteAmount, volume ) => Utils.toFixedNumber( volume > 0 ? Math.min( solute.saturatedConcentration, soluteAmount / volume ) : 0,
+        MolarityConstants.CONCENTRATION_DECIMAL_PLACES ), {
+        tandem: tandem.createTandem( 'concentrationProperty' ),
+        units: 'moles/liter',
+        // no range, since this is derived
+        phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
+      } );
+
+    // @public derive the amount of precipitate
+    this.precipitateAmountProperty = new DerivedProperty( [ this.soluteProperty, this.soluteAmountProperty, this.volumeProperty ],
+      ( solute, soluteAmount, volume ) => Solution.computePrecipitateAmount( volume, soluteAmount, solute.saturatedConcentration ), {
+        tandem: tandem.createTandem( 'precipitateAmountProperty' ),
+        units: 'moles',
+        phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
+      } );
+  }
+
 
   /**
    * @public
    */
-  reset: function() {
+  reset() {
     this.soluteProperty.reset();
     this.soluteAmountProperty.reset();
     this.volumeProperty.reset();
-  },
+  }
 
   /**
    * @public
    * @returns {boolean}
    */
-  isSaturated: function() {
+  isSaturated() {
     return this.precipitateAmountProperty.value !== 0;
-  },
+  }
 
   /**
    * @public
    * @returns {boolean}
    */
-  atMaxConcentration: function() {
+  atMaxConcentration() {
     return this.soluteProperty.value.saturatedConcentration === this.concentrationProperty.value;
-  },
+  }
 
   /**
    * @public
    * @returns {boolean}
    */
-  hasSolute: function() {
+  hasSolute() {
     return this.concentrationProperty.value > 0;
-  },
+  }
 
   /**
    * @public
    * @returns {ColorDef}
    */
-  getColor: function() {
+  getColor() {
     if ( this.concentrationProperty.value > 0 ) {
       const solute = this.soluteProperty.get();
       const colorScale = Utils.linear( 0, solute.saturatedConcentration, 0, 1, this.concentrationProperty.value );
@@ -124,7 +116,6 @@ inherit( Object, Solution, {
       return this.solvent.color;
     }
   }
-}, {
 
   /**
    * @public
@@ -133,9 +124,11 @@ inherit( Object, Solution, {
    * @param {number} saturatedConcentration
    * @returns {number}
    */
-  computePrecipitateAmount: function( volume, soluteAmount, saturatedConcentration ) {
+  static computePrecipitateAmount( volume, soluteAmount, saturatedConcentration ) {
     return volume > 0 ? Math.max( 0, volume * ( ( soluteAmount / volume ) - saturatedConcentration ) ) : soluteAmount;
   }
-} );
+}
+
+molarity.register( 'Solution', Solution );
 
 export default Solution;

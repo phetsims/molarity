@@ -66,7 +66,7 @@ molarity.register( 'SoluteComboBox', SoluteComboBox );
  * @param {Solute} solute
  * @returns {ComboBoxItem}
  */
-const createItem = function( solute ) {
+const createItem = solute => {
 
   const colorNode = new Rectangle( 0, 0, 20, 20, {
     fill: solute.maxColor,

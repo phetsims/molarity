@@ -25,8 +25,8 @@ class MolarityScreen extends Screen {
     };
 
     super(
-      function() { return new MolarityModel( tandem.createTandem( 'model' ) ); },
-      function( model ) { return new MolarityScreenView( model, tandem.createTandem( 'view' ) ); },
+      () => new MolarityModel( tandem.createTandem( 'model' ) ),
+      model => new MolarityScreenView( model, tandem.createTandem( 'view' ) ),
       options
     );
   }

@@ -29,7 +29,7 @@ const options = {
 
 };
 
-simLauncher.launch( function() {
+simLauncher.launch( () => {
   const screens = [ new MolarityScreen( tandem.createTandem( 'molarityScreen' ) ) ];
   const sim = new Sim( molarityTitleString, screens, options );
   sim.start();
