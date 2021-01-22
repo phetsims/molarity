@@ -8,6 +8,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
+import dotRandom from '../../../../dot/js/dotRandom.js';
 import Utils from '../../../../dot/js/Utils.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
@@ -39,7 +40,7 @@ class PrecipitateNode extends Node {
     const particleNodes = [];
     for ( let i = 0; i < maxParticles; i++ ) {
       particleNodes[ i ] = new Rectangle( 0, 0, PARTICLE_LENGTH, PARTICLE_LENGTH, {
-        rotation: phet.joist.random.nextDouble() * 2 * Math.PI
+        rotation: dotRandom.nextDouble() * 2 * Math.PI
       } );
       this.addChild( particleNodes[ i ] );
     }
@@ -87,7 +88,7 @@ var getNumberOfParticles = precipitateAmount => {
 var getRandomOffset = ( particleWidth, particleHeight, cylinderSize, cylinderEndHeight ) => {
   const xMargin = particleWidth;
   const yMargin = particleHeight;
-  const angle = phet.joist.random.nextDouble() * 2 * Math.PI;
+  const angle = dotRandom.nextDouble() * 2 * Math.PI;
   const p = getRandomPointInsideEllipse( angle, cylinderSize.width - ( 2 * xMargin ), cylinderEndHeight - ( 2 * yMargin ) );
   const x = ( cylinderSize.width / 2 ) + p.x;
   const y = cylinderSize.height - p.y - ( yMargin / 2 );
@@ -99,8 +100,8 @@ var getRandomPointInsideEllipse = ( theta, width, height ) => {
 
   // Generate a random point inside a circle of radius 1.
   // Since circle area is a function of radius^2, taking sqrt provides a uniform distribution.
-  const x = Math.sqrt( phet.joist.random.nextDouble() ) * Math.cos( theta );
-  const y = Math.sqrt( phet.joist.random.nextDouble() ) * Math.sin( theta );
+  const x = Math.sqrt( dotRandom.nextDouble() ) * Math.cos( theta );
+  const y = Math.sqrt( dotRandom.nextDouble() ) * Math.sin( theta );
 
   // Scale x and y to the dimensions of the ellipse
   return new Vector2( x * width / 2, y * height / 2 );

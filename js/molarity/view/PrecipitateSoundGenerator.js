@@ -6,6 +6,7 @@
  * @author John Blanco (PhET Interactive Simulations)
  */
 
+import dotRandom from '../../../../dot/js/dotRandom.js';
 import Range from '../../../../dot/js/Range.js';
 import merge from '../../../../phet-core/js/merge.js';
 import BinMapper from '../../../../tambo/js/BinMapper.js';
@@ -94,7 +95,7 @@ class PrecipitateSoundGenerator extends SoundClip {
     // choose the note index, but make sure it's not the same as the last one
     let multiplierIndex;
     do {
-      multiplierIndex = lowestIndex + Math.floor( phet.joist.random.nextDouble() * NOTE_SPAN );
+      multiplierIndex = lowestIndex + Math.floor( dotRandom.nextDouble() * NOTE_SPAN );
     } while ( multiplierIndex === this.previousMultiplierIndex );
 
     // set the playback rate and play the sound
