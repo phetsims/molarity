@@ -109,7 +109,6 @@ class BeakerNode extends Node {
     let tickLabel;
     let tickLabelNode;
 
-    const tickMarkNodeGroupTandem = tandem.createGroupTandem( 'tickMarkNode' );
     const tickLabelNodeGroupTandem = tandem.createGroupTandem( 'tickLabelNode' );
 
     for ( let i = 1; i <= numberOfTicks; i++ ) {
@@ -120,8 +119,7 @@ class BeakerNode extends Node {
         tickMarkShape = new Shape().ellipticalArc( cylinderSize.width / 2, y, cylinderSize.width / 2, cylinderEndHeight / 2, 0, Utils.toRadians( 165 ), Utils.toRadians( 135 ), true );
         tickMarkNode = new Path( tickMarkShape, {
           stroke: TICK_COLOR,
-          lineWidth: 2,
-          tandem: tickMarkNodeGroupTandem.createNextTandem()
+          lineWidth: 2
         } );
         tickMarksParent.addChild( tickMarkNode );
 
@@ -146,8 +144,7 @@ class BeakerNode extends Node {
         tickMarkShape = new Shape().ellipticalArc( cylinderSize.width / 2, y, cylinderSize.width / 2, cylinderEndHeight / 2, 0, Utils.toRadians( 165 ), Utils.toRadians( 150 ), true );
         tickMarkNode = new Path( tickMarkShape, {
           stroke: TICK_COLOR,
-          lineWidth: 2,
-          tandem: tickMarkNodeGroupTandem.createNextTandem()
+          lineWidth: 2
         } );
         tickMarksParent.addChild( tickMarkNode );
       }
