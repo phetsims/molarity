@@ -26,8 +26,8 @@ As a result no listeners need to be unlinked or removed.
 
 ## Accessibility
 
-This simulation has be instrumented with Sonification and Interactive Descriptions. While this instrumentation includes
-changes to many sim files, several files are specifically for the purpose of Interactive Descriptions instrumentation:
+This simulation has be instrumented with Sonification and Interactive Description. While this instrumentation includes
+changes to many sim files, several files are specifically for the purpose of Interactive Description instrumentation:
 
 * every file in the `molarity/view/describers` directory - these files each track changes to one or two model Properties
 to generate description strings to be used for both PDOM content and aria-live alerts).

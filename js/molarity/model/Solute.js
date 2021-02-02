@@ -21,7 +21,7 @@ class Solute extends PhetioObject {
    * @param {number} saturatedConcentration M (moles/L)
    * @param {Color} minColor solution color for smallest non-zero concentration
    * @param {Color} maxColor solution color for saturated concentration
-   * @param {string} lowercaseName - for interactive descriptions
+   * @param {string} lowercaseName - for interactive description
    * @param {StringCasingPair} colorStringPair - lowercase/captialized color strings
    * @param {Object} [options]
    */

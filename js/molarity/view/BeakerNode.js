@@ -46,12 +46,12 @@ class BeakerNode extends Node {
    * @param {number} maxVolume
    * @param {Property.<boolean>} valuesVisibleProperty
    * @param {Tandem} tandem
-   * @param {SoluteDescriber} soluteDescriber - for interactive descriptions
-   * @param {SoluteAmountDescriber} soluteAmountDescriber - for interactive descriptions
-   * @param {VolumeDescriber} volumeDescriber - for interactive descriptions
-   * @param {ConcentrationDescriber} concentrationDescriber - for interactive descriptions
+   * @param {SoluteDescriber} soluteDescriber - for interactive description
+   * @param {SoluteAmountDescriber} soluteAmountDescriber - for interactive description
+   * @param {VolumeDescriber} volumeDescriber - for interactive description
+   * @param {ConcentrationDescriber} concentrationDescriber - for interactive description
    * @param {PrecipitateAmountDescriber} precipitateAmountDescriber
-   * @param {Property.<boolean>} useQuantitativeDescriptionsProperty - for interactive descriptions
+   * @param {Property.<boolean>} useQuantitativeDescriptionsProperty - for interactive description
    */
   constructor( solution, maxVolume, valuesVisibleProperty, tandem, soluteDescriber, soluteAmountDescriber, volumeDescriber, concentrationDescriber, precipitateAmountDescriber, useQuantitativeDescriptionsProperty ) {
 

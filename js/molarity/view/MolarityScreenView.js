@@ -75,7 +75,7 @@ class MolarityScreenView extends ScreenView {
       tandem: tandem.createTandem( 'valuesVisibleProperty' )
     } );
 
-    // Determines whether qualitative or quantitative interactive descriptions are used. Even though it is the same as the
+    // Determines whether qualitative or quantitative interactive description is used. Even though it is the same as the
     // valuesVisibleProperty currently, this improves maintainability by not overloading valuesVisibleProperty with
     // description-specific use-case (a totally different view). For example, we could decide to display quantitative
     // descriptions when not showing values, but the state of solution is "x," with no refactoring.
