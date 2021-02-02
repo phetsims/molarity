@@ -223,10 +223,10 @@ class MolarityScreenView extends ScreenView {
       labelContent: beakerSolutionControlsString,
       descriptionContent: sliderHelpTextString
     } );
-    solutionControlsNode.accessibleOrder = [ soluteAmountSlider, solutionVolumeSlider ];
+    solutionControlsNode.pdomOrder = [ soluteAmountSlider, solutionVolumeSlider ];
 
     // pdom - heading and accessible order for play area section of PDOM
-    this.pdomPlayAreaNode.accessibleOrder = [
+    this.pdomPlayAreaNode.pdomOrder = [
       beakerNode,
       solutionControlsNode,
       soluteComboBox,
@@ -234,7 +234,7 @@ class MolarityScreenView extends ScreenView {
     ];
 
     // pdom - contains PDOM heading for Control Area, and orders the PDOM for included elements
-    this.pdomControlAreaNode.accessibleOrder = [
+    this.pdomControlAreaNode.pdomOrder = [
       solutionValuesCheckbox,
       resetAllButton
     ];
