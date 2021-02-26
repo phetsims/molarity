@@ -125,7 +125,7 @@ class VolumeDescriber extends SolutionQuantityDescriber {
       } );
     }
     else if ( isActive ) {
-      return VOLUME_ACTIVE_STRINGS [ volumeIndex ];
+      return VOLUME_ACTIVE_STRINGS[ volumeIndex ];
     }
     else {
       return VOLUME_STRINGS[ volumeIndex ];
