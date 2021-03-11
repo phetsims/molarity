@@ -179,19 +179,19 @@ const soluteAmountToIndex = soluteAmount => {
   if ( normalizedSoluteAmount < 0.001 ) {
     return 0;
   }
-  else if ( normalizedSoluteAmount <= .151 ) {
+  else if ( normalizedSoluteAmount <= 0.151 ) {
     return 1;
   }
-  else if ( normalizedSoluteAmount <= .351 ) {
+  else if ( normalizedSoluteAmount <= 0.351 ) {
     return 2;
   }
-  else if ( normalizedSoluteAmount <= .601 ) {
+  else if ( normalizedSoluteAmount <= 0.601 ) {
     return 3;
   }
-  else if ( normalizedSoluteAmount <= .801 ) {
+  else if ( normalizedSoluteAmount <= 0.801 ) {
     return 4;
   }
-  else if ( normalizedSoluteAmount <= .999 ) {
+  else if ( normalizedSoluteAmount <= 0.999 ) {
     return 5;
   }
   else {
