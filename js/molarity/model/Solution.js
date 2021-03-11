@@ -38,14 +38,14 @@ class Solution {
     // @public
     this.soluteAmountProperty = new NumberProperty( soluteAmount, {
       tandem: tandem.createTandem( 'soluteAmountProperty' ),
-      units: 'moles',
+      units: 'mol',
       range: MolarityConstants.SOLUTE_AMOUNT_RANGE
     } );
 
     // @public
     this.volumeProperty = new NumberProperty( volume, {
       tandem: tandem.createTandem( 'volumeProperty' ),
-      units: 'liters',
+      units: 'L',
       range: MolarityConstants.SOLUTION_VOLUME_RANGE
     } );
 
@@ -54,7 +54,7 @@ class Solution {
       ( solute, soluteAmount, volume ) => Utils.toFixedNumber( volume > 0 ? Math.min( solute.saturatedConcentration, soluteAmount / volume ) : 0,
         MolarityConstants.CONCENTRATION_DECIMAL_PLACES ), {
         tandem: tandem.createTandem( 'concentrationProperty' ),
-        units: 'moles/liter',
+        units: 'mol/L',
         // no range, since this is derived
         phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
       } );
@@ -63,7 +63,7 @@ class Solution {
     this.precipitateAmountProperty = new DerivedProperty( [ this.soluteProperty, this.soluteAmountProperty, this.volumeProperty ],
       ( solute, soluteAmount, volume ) => Solution.computePrecipitateAmount( volume, soluteAmount, solute.saturatedConcentration ), {
         tandem: tandem.createTandem( 'precipitateAmountProperty' ),
-        units: 'moles',
+        units: 'mol',
         phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
       } );
   }
