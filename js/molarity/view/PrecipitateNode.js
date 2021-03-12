@@ -76,7 +76,7 @@ class PrecipitateNode extends Node {
 molarity.register( 'PrecipitateNode', PrecipitateNode );
 
 // Gets the number of particles that corresponds to some precipitate amount.
-var getNumberOfParticles = precipitateAmount => {
+const getNumberOfParticles = precipitateAmount => {
   let numberOfParticles = Math.floor( PARTICLES_PER_MOLE * precipitateAmount );
   if ( numberOfParticles === 0 && precipitateAmount > 0 ) {
     numberOfParticles = 1;
@@ -85,7 +85,7 @@ var getNumberOfParticles = precipitateAmount => {
 };
 
 // Gets a random offset for a particle on the bottom of the beaker (which is an ellipse).
-var getRandomOffset = ( particleWidth, particleHeight, cylinderSize, cylinderEndHeight ) => {
+const getRandomOffset = ( particleWidth, particleHeight, cylinderSize, cylinderEndHeight ) => {
   const xMargin = particleWidth;
   const yMargin = particleHeight;
   const angle = dotRandom.nextDouble() * 2 * Math.PI;
@@ -96,7 +96,7 @@ var getRandomOffset = ( particleWidth, particleHeight, cylinderSize, cylinderEnd
 };
 
 // Gets a random point inside an ellipse, with origin at its center.
-var getRandomPointInsideEllipse = ( theta, width, height ) => {
+const getRandomPointInsideEllipse = ( theta, width, height ) => {
 
   // Generate a random point inside a circle of radius 1.
   // Since circle area is a function of radius^2, taking sqrt provides a uniform distribution.
