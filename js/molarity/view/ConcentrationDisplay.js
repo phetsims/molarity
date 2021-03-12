@@ -129,7 +129,7 @@ class ConcentrationDisplay extends Node {
       const concentrationScale = Math.min( 1, solute.saturatedConcentration / concentrationRange.max );
       const y = barSize.height - ( barSize.height * concentrationScale );
       if ( y < 0 ) {
-        console.log( 'solute.saturatedConcentration=' + solute.saturatedConcentration + ' concentrationRange.max=' + concentrationRange.max );
+        console.log( `solute.saturatedConcentration=${solute.saturatedConcentration} concentrationRange.max=${concentrationRange.max}` );
       }
       barNode.fill = new LinearGradient( 0, y, 0, barSize.height )
         .addColorStop( 0, solute.maxColor )

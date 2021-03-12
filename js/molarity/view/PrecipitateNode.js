@@ -45,7 +45,7 @@ class PrecipitateNode extends Node {
       this.addChild( particleNodes[ i ] );
     }
     if ( DEBUG_OUTPUT ) {
-      console.log( 'PrecipitateNode: ' + Utils.toFixed( maxPrecipitateAmount, 4 ) + ' mol => ' + maxParticles + ' particles (max)' );
+      console.log( `PrecipitateNode: ${Utils.toFixed( maxPrecipitateAmount, 4 )} mol => ${maxParticles} particles (max)` );
     }
 
     // Change color of all particles to match the solute, change position so it doesn't look predictable
@@ -67,7 +67,7 @@ class PrecipitateNode extends Node {
         particleNodes[ i ].visible = ( i < numberOfParticles );
       }
       if ( DEBUG_OUTPUT ) {
-        console.log( 'PrecipitateNode: ' + Utils.toFixed( precipitateAmount, 4 ) + ' mol => ' + numberOfParticles + ' particles' );
+        console.log( `PrecipitateNode: ${Utils.toFixed( precipitateAmount, 4 )} mol => ${numberOfParticles} particles` );
       }
     } );
   }
