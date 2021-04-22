@@ -1,5 +1,5 @@
 {
-  "comment": "# molarity 1.4.12 Fri Oct 25 2019 17:40:12 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# molarity 1.4.12 Thu Apr 22 2021 14:54:28 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "HEAD"
@@ -13,8 +13,8 @@
     "branch": "HEAD"
   },
   "chipper": {
-    "sha": "c9538ccad45d69351cc4164c262c8d4d68b3f631",
-    "branch": "HEAD"
+    "sha": "f1ca5ca0a02db058d27e1be4737fd7fcbc3e13a7",
+    "branch": "molarity-1.4"
   },
   "dot": {
     "sha": "49561319ef6e86bf82c4f33d5296288896750ebc",
@@ -29,7 +29,7 @@
     "branch": "HEAD"
   },
   "molarity": {
-    "sha": "70563b7584b63db042211546f145ab0f5d242098",
+    "sha": "61bde0b0cb038b6f2a86bd8ccc7420ffae1388d1",
     "branch": "1.4"
   },
   "nitroglycerin": {
@@ -61,8 +61,8 @@
     "branch": "HEAD"
   },
   "scenery": {
-    "sha": "77eb3ed7766d5a4bf51a7275d14e7a70bfe5a12e",
-    "branch": "HEAD"
+    "sha": "7e006622743995fd1d0b806b62a5cd4b3d30e48e",
+    "branch": "molarity-1.4"
   },
   "scenery-phet": {
     "sha": "01777f4bff8efddd17b8d58a5ca6befc071fd7f9",
