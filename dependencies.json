@@ -1,5 +1,5 @@
 {
-  "comment": "# molarity 1.5.2 Mon Mar 08 2021 14:56:45 GMT-0500 (Eastern Standard Time)",
+  "comment": "# molarity 1.5.2 Thu Apr 22 2021 14:59:25 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "a99a9ce9ee0774bf3ef509bf3e31ca7383f67478",
     "branch": "HEAD"
@@ -29,7 +29,7 @@
     "branch": "HEAD"
   },
   "molarity": {
-    "sha": "86bd2680199e4c6ee3afdf3b9e45707c0c8d7e8b",
+    "sha": "2907bbbfdade24b56a588af554795877120fb42e",
     "branch": "1.5"
   },
   "nitroglycerin": {
@@ -54,15 +54,15 @@
   },
   "phetmarks": {
     "sha": "e90716ee815a37eb13fa8a7c3a477160adf50b1d",
-    "branch": "molarity-1.5"
+    "branch": "HEAD"
   },
   "query-string-machine": {
     "sha": "587799159ed3083fa707e05bf2da99e7c05ca24a",
     "branch": "HEAD"
   },
   "scenery": {
-    "sha": "f8bf1c9308d22bb1d2301e28d83b846f0f2d96de",
-    "branch": "HEAD"
+    "sha": "ac7605ad487ec31ef280d66d055a7361c03de8bf",
+    "branch": "molarity-1.5"
   },
   "scenery-phet": {
     "sha": "b9063d86699d6f3c8ee86d6c15a6ceb3f11fefc8",
