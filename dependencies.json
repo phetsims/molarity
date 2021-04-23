@@ -1,5 +1,5 @@
 {
-  "comment": "# molarity 1.4.12 Thu Apr 22 2021 14:54:28 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# molarity 1.4.13-rc.1 Fri Apr 23 2021 14:29:10 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "HEAD"
@@ -14,7 +14,7 @@
   },
   "chipper": {
     "sha": "f1ca5ca0a02db058d27e1be4737fd7fcbc3e13a7",
-    "branch": "molarity-1.4"
+    "branch": "HEAD"
   },
   "dot": {
     "sha": "49561319ef6e86bf82c4f33d5296288896750ebc",
@@ -29,7 +29,7 @@
     "branch": "HEAD"
   },
   "molarity": {
-    "sha": "61bde0b0cb038b6f2a86bd8ccc7420ffae1388d1",
+    "sha": "e07998cd575aa1e93974a1b1ba0c32c476466b67",
     "branch": "1.4"
   },
   "nitroglycerin": {
@@ -62,7 +62,7 @@
   },
   "scenery": {
     "sha": "7e006622743995fd1d0b806b62a5cd4b3d30e48e",
-    "branch": "molarity-1.4"
+    "branch": "HEAD"
   },
   "scenery-phet": {
     "sha": "01777f4bff8efddd17b8d58a5ca6befc071fd7f9",
