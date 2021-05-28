@@ -29,7 +29,8 @@ class Solute extends PhetioObject {
 
     options = merge( {
       particleColor: maxColor, // the solute's color as a particle
-      phetioType: Solute.SoluteIO
+      phetioType: Solute.SoluteIO,
+      phetioState: false // because SoluteIO extends ReferenceIO
     }, options );
 
     super( options );
