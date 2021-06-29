@@ -273,6 +273,7 @@ const concentrationToIndex = ( currentConcentration, saturatedConcentrationForSo
       }
     }
   }
+  throw new Error( 'Corresponding item not found for concentration: ' + currentConcentration );
 };
 
 molarity.register( 'ConcentrationDescriber', ConcentrationDescriber );
