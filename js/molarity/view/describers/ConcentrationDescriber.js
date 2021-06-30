@@ -249,6 +249,7 @@ class ConcentrationDescriber {
  * @param {number} saturatedConcentrationForSolute - the saturation point for a specific solute.
  * @returns {number} index to access a region from CONCENTRATION_STRINGS
  */
+// eslint-disable-next-line consistent-return
 const concentrationToIndex = ( currentConcentration, saturatedConcentrationForSolute ) => {
 
   // compare against un-rounded concentration since these two are single value regions
