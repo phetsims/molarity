@@ -10,8 +10,8 @@
 
 import Utils from '../../../../../dot/js/Utils.js';
 import StringUtils from '../../../../../phetcommon/js/util/StringUtils.js';
-import molarityStrings from '../../../molarityStrings.js';
 import molarity from '../../../molarity.js';
+import molarityStrings from '../../../molarityStrings.js';
 import MolarityConstants from '../../MolarityConstants.js';
 
 const quantityChangeColorChangePatternString = molarityStrings.a11y.quantityChange.colorChangePattern;
@@ -104,8 +104,8 @@ class ConcentrationDescriber {
 
     // update fields (documented above) when concentrationProperty changes
     this.concentrationProperty.lazyLink( ( newValue, oldValue ) => {
-      const newConcentrationIndex = concentrationToIndex( this.soluteProperty.value.saturatedConcentration,
-        this.concentrationProperty.value );
+      const newConcentrationIndex = concentrationToIndex( this.concentrationProperty.value,
+        this.soluteProperty.value.saturatedConcentration );
       const newSaturationValue = this.solution.isSaturated();
 
       // newValue will never be equal to oldValue, since this is updated within a Property link.
@@ -249,8 +249,8 @@ class ConcentrationDescriber {
  * @param {number} saturatedConcentrationForSolute - the saturation point for a specific solute.
  * @returns {number} index to access a region from CONCENTRATION_STRINGS
  */
-// eslint-disable-next-line consistent-return
 const concentrationToIndex = ( currentConcentration, saturatedConcentrationForSolute ) => {
+  assert && assert( currentConcentration <= saturatedConcentrationForSolute, 'concentration cannot be higher than saturatedConcentration' );
 
   // compare against un-rounded concentration since these two are single value regions
   // Handle single value region cases before iterating through evenly spaced regions.
@@ -265,7 +265,7 @@ const concentrationToIndex = ( currentConcentration, saturatedConcentrationForSo
     // Concentration regions are evenly spaced within the region from 0 to max concentration for a given solute except
     // for the lowest region (zero) and the highest region (max concentration) which are single value regions.
     const scaleIncrement = saturatedConcentrationForSolute / ( CONCENTRATION_STRINGS.length - 2 );
-    const concentrationRounded = Utils.toFixed( currentConcentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES );
+    const concentrationRounded = Utils.toFixedNumber( currentConcentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES );
 
     // don't count the first and last concentration string
     for ( let i = 1; i < CONCENTRATION_STRINGS.length - 2; i++ ) {
@@ -274,6 +274,8 @@ const concentrationToIndex = ( currentConcentration, saturatedConcentrationForSo
       }
     }
   }
+  assert && assert( false, 'unexpected concentration' );
+  return -1;
 };
 
 molarity.register( 'ConcentrationDescriber', ConcentrationDescriber );
