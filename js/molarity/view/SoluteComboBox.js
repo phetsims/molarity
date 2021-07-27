@@ -14,7 +14,7 @@ import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import ComboBox from '../../../../sun/js/ComboBox.js';
 import ComboBoxItem from '../../../../sun/js/ComboBoxItem.js';
-import Playable from '../../../../tambo/js/Playable.js';
+import SoundPlayer from '../../../../tambo/js/SoundPlayer.js';
 import molarity from '../../molarity.js';
 import molarityStrings from '../../molarityStrings.js';
 
@@ -83,7 +83,7 @@ const createItem = solute => {
   } );
 
   return new ComboBoxItem( hBox, solute, {
-    soundPlayer: Playable.NO_SOUND, // sound generation for selection is done elsewhere
+    soundPlayer: SoundPlayer.NO_SOUND, // sound generation for selection is done elsewhere
     tandemName: `${solute.tandem.name}Item`,
     a11yLabel: solute.name
   } );
