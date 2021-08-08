@@ -12,8 +12,8 @@ import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import ActivationUtterance from '../../../../utterance-queue/js/ActivationUtterance.js';
 import Utterance from '../../../../utterance-queue/js/Utterance.js';
 import ValueChangeUtterance from '../../../../utterance-queue/js/ValueChangeUtterance.js';
-import molarityStrings from '../../molarityStrings.js';
 import molarity from '../../molarity.js';
+import molarityStrings from '../../molarityStrings.js';
 
 const atMaxConcentrationAlertPatternString = molarityStrings.a11y.atMaxConcentrationAlertPattern;
 const noSoluteAlertString = molarityStrings.a11y.noSoluteAlert;
@@ -130,7 +130,9 @@ class MolarityAlertManager {
     // sliderUtterance must be removed from the queue because it is otherwise possible to get stale slider alerts that no
     // longer make sense with the current saturation state.
     if ( utteranceQueue.hasUtterance( this.sliderUtterance ) ) {
-      utteranceQueue.removeUtterance( this.sliderUtterance );
+      utteranceQueue.removeUtterance( this.sliderUtterance, {
+        assertExists: false
+      } );
     }
     this.saturationUtterance.alert = this.precipitateAmountDescriber.getSaturationChangedString();
     utteranceQueue.addToFront( this.saturationUtterance );
