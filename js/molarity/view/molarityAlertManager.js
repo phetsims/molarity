@@ -1,4 +1,4 @@
-// Copyright 2019-2020, University of Colorado Boulder
+// Copyright 2019-2021, University of Colorado Boulder
 
 /**
  * MolarityAlertManager is responsible for generating and adding alerts to the utteranceQueue. This file is responsible
