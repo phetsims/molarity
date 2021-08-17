@@ -34,5 +34,5 @@ to generate description strings to be used for both PDOM content and aria-live a
 * MolarityBeakerDescriptionNode.js - sets the PDOM content that describes the beaker.
 * MolarityScreenSummaryNode.js - sets the PDOM content for the screen summary.
 * MolarityKeyboardHelpContent.js - sets the content and layout for the keyboard help dialogue
-* molarityAlertManager.js - responsible for triggering aria-live alerts as the sim changes. In general, it is not
+* MolarityAlertManager.js - responsible for triggering aria-live alerts as the sim changes. In general, it is not
 responsible for generating the strings for these alerts (as most of this work is handled by the describers).

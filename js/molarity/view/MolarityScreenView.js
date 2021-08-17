@@ -30,7 +30,7 @@ import PrecipitateAmountDescriber from './describers/PrecipitateAmountDescriber.
 import SoluteAmountDescriber from './describers/SoluteAmountDescriber.js';
 import SoluteDescriber from './describers/SoluteDescriber.js';
 import VolumeDescriber from './describers/VolumeDescriber.js';
-import molarityAlertManager from './molarityAlertManager.js';
+import MolarityAlertManager from './MolarityAlertManager.js';
 import MolarityScreenSummaryNode from './MolarityScreenSummaryNode.js';
 import PrecipitateNode from './PrecipitateNode.js';
 import PrecipitateSoundGenerator from './PrecipitateSoundGenerator.js';
@@ -88,8 +88,6 @@ class MolarityScreenView extends ScreenView {
     const soluteDescriber = new SoluteDescriber( model.solution, concentrationDescriber, precipitateAmountDescriber );
     const volumeDescriber = new VolumeDescriber( model.solution.volumeProperty, useQuantitativeDescriptionsProperty );
     const soluteAmountDescriber = new SoluteAmountDescriber( model.solution.soluteAmountProperty, soluteDescriber, useQuantitativeDescriptionsProperty );
-    molarityAlertManager.initialize( model.solution, useQuantitativeDescriptionsProperty, concentrationDescriber,
-      precipitateAmountDescriber, soluteAmountDescriber, volumeDescriber, soluteDescriber, valuesVisibleProperty );
 
     super( {
       layoutBounds: new Bounds2( 0, 0, 1100, 700 ),
@@ -97,6 +95,9 @@ class MolarityScreenView extends ScreenView {
       screenSummaryContent: new MolarityScreenSummaryNode( model, useQuantitativeDescriptionsProperty,
         concentrationDescriber, soluteAmountDescriber, soluteDescriber, volumeDescriber )
     } );
+
+    const molarityAlertManager = new MolarityAlertManager( this, model.solution, useQuantitativeDescriptionsProperty, concentrationDescriber,
+      precipitateAmountDescriber, soluteAmountDescriber, volumeDescriber, soluteDescriber, valuesVisibleProperty );
 
     // beaker, with solution and precipitate inside of it
     const beakerNode = new BeakerNode( model.solution, MolarityConstants.SOLUTION_VOLUME_RANGE.max, valuesVisibleProperty,

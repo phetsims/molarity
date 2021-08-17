@@ -9,6 +9,7 @@
  */
 
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
+import AlertManager from '../../../../scenery-phet/js/accessibility/describers/AlertManager.js';
 import ActivationUtterance from '../../../../utterance-queue/js/ActivationUtterance.js';
 import Utterance from '../../../../utterance-queue/js/Utterance.js';
 import ValueChangeUtterance from '../../../../utterance-queue/js/ValueChangeUtterance.js';
@@ -24,29 +25,11 @@ const quantitativeSliderAlertPatternString = molarityStrings.a11y.quantitative.s
 const solutionValuesCheckedAlertString = molarityStrings.a11y.solutionValuesCheckedAlert;
 const solutionValuesUncheckedAlertString = molarityStrings.a11y.solutionValuesUncheckedAlert;
 
-class MolarityAlertManager {
-
-  constructor() {
-
-    // @private
-    this.initialized = false;
-
-    // @private - utterances with specific jobs so that duplicates are overwritten in the queue.
-    this.saturationUtterance = new Utterance();
-    this.sliderUtterance = new ValueChangeUtterance();
-    this.soluteUtterance = new ActivationUtterance();
-    this.valuesVisibleUtterance = new ActivationUtterance();
-
-    // @private - set in `initialize` method from parameters
-    this.concentrationDescriber = null;
-    this.soluteDescriber = null;
-    this.solution = null;
-    this.useQuantitativeDescriptionsProperty = null;
-  }
+class MolarityAlertManager extends AlertManager {
 
   /**
    * Initialize the alert manager, linking to the needed model Properties.
-   * @public
+   * @param {Node} node
    * @param {MacroSolution} solution - from MolarityModel.
    * @param {Property.<boolean>} useQuantitativeDescriptionsProperty - whether or not to use qualitative or
    *                                                                   quantitative descriptions.
@@ -57,12 +40,19 @@ class MolarityAlertManager {
    * @param {SoluteDescriber} soluteDescriber
    * @param {Property.<boolean>} valuesVisibleProperty - toggles display for whether the "solution values" checkbox is
    *                                                     checked.
+   * @public
    */
-  initialize( solution, useQuantitativeDescriptionsProperty, concentrationDescriber, precipitateAmountDescriber,
-              soluteAmountDescriber, volumeDescriber, soluteDescriber, valuesVisibleProperty ) {
-    assert && assert( !this.initialized, 'molarityAlertManager has already been initialized' );
-    this.initialized = true;
+  constructor( node, solution, useQuantitativeDescriptionsProperty, concentrationDescriber, precipitateAmountDescriber,
+               soluteAmountDescriber, volumeDescriber, soluteDescriber, valuesVisibleProperty ) {
+    super( node );
 
+    // @private - utterances with specific jobs so that duplicates are overwritten in the queue.
+    this.saturationUtterance = new Utterance();
+    this.sliderUtterance = new ValueChangeUtterance();
+    this.soluteUtterance = new ActivationUtterance();
+    this.valuesVisibleUtterance = new ActivationUtterance();
+
+    // @private
     this.concentrationDescriber = concentrationDescriber;
     this.precipitateAmountDescriber = precipitateAmountDescriber;
     this.soluteDescriber = soluteDescriber;
@@ -117,7 +107,7 @@ class MolarityAlertManager {
     this.sliderUtterance.alert = StringUtils.fillIn( atMaxConcentrationAlertPatternString, {
       concentration: this.concentrationDescriber.getCurrentConcentrationClause( true )
     } );
-    phet.joist.sim.utteranceQueue.addToBack( this.sliderUtterance );
+    this.alertDescriptionUtterance( this.sliderUtterance );
   }
 
   /**
@@ -125,17 +115,18 @@ class MolarityAlertManager {
    * @private
    */
   alertNewlySaturated() {
-    const utteranceQueue = phet.joist.sim.utteranceQueue;
+    this.forEachUtteranceQueue( utteranceQueue => {
 
-    // sliderUtterance must be removed from the queue because it is otherwise possible to get stale slider alerts that no
-    // longer make sense with the current saturation state.
-    if ( utteranceQueue.hasUtterance( this.sliderUtterance ) ) {
-      utteranceQueue.removeUtterance( this.sliderUtterance, {
-        assertExists: false
-      } );
-    }
-    this.saturationUtterance.alert = this.precipitateAmountDescriber.getSaturationChangedString();
-    utteranceQueue.addToFront( this.saturationUtterance );
+      // sliderUtterance must be removed from the queue because it is otherwise possible to get stale slider alerts that no
+      // longer make sense with the current saturation state.
+      if ( utteranceQueue.hasUtterance( this.sliderUtterance ) ) {
+        utteranceQueue.removeUtterance( this.sliderUtterance, {
+          assertExists: false
+        } );
+      }
+      this.saturationUtterance.alert = this.precipitateAmountDescriber.getSaturationChangedString();
+      utteranceQueue.addToFront( this.saturationUtterance );
+    } );
   }
 
   /**
@@ -145,7 +136,7 @@ class MolarityAlertManager {
   alertNoSolute() {
     assert && assert( !this.solution.hasSolute(), 'no solute alert triggered with solute in the beaker' );
     this.sliderUtterance.alert = noSoluteAlertString;
-    phet.joist.sim.utteranceQueue.addToBack( this.sliderUtterance );
+    this.alertDescriptionUtterance( this.sliderUtterance );
   }
 
   /**
@@ -154,7 +145,7 @@ class MolarityAlertManager {
    */
   alertSoluteChanged() {
     this.soluteUtterance.alert = this.soluteDescriber.getSoluteChangedAlertString( this.useQuantitativeDescriptionsProperty );
-    phet.joist.sim.utteranceQueue.addToBack( this.soluteUtterance );
+    this.alertDescriptionUtterance( this.soluteUtterance );
   }
 
   /**
@@ -166,7 +157,7 @@ class MolarityAlertManager {
     this.valuesVisibleUtterance.alert = valuesVisibleProperty ?
                                         solutionValuesCheckedAlertString :
                                         solutionValuesUncheckedAlertString;
-    phet.joist.sim.utteranceQueue.addToBack( this.valuesVisibleUtterance );
+    this.alertDescriptionUtterance( this.valuesVisibleUtterance );
   }
 
   /**
@@ -201,7 +192,7 @@ class MolarityAlertManager {
     }
 
     this.sliderUtterance.alert = alertText;
-    phet.joist.sim.utteranceQueue.addToBack( this.sliderUtterance );
+    this.alertDescriptionUtterance( this.sliderUtterance );
   }
 
   /**
@@ -226,7 +217,7 @@ class MolarityAlertManager {
     }
 
     this.sliderUtterance.alert = alertText;
-    phet.joist.sim.utteranceQueue.addToBack( this.sliderUtterance );
+    this.alertDescriptionUtterance( this.sliderUtterance );
   }
 }
 
@@ -237,7 +228,6 @@ class MolarityAlertManager {
  * @property {string} colorChangeString - describing the color change of the solute
  * @property {string} quantityChangeString - describing the slider quantity that changed
  */
-const molarityAlertManager = new MolarityAlertManager();
 
-molarity.register( 'molarityAlertManager', molarityAlertManager );
-export default molarityAlertManager;
+molarity.register( 'MolarityAlertManager', MolarityAlertManager );
+export default MolarityAlertManager;
