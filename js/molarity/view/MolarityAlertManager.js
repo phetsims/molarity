@@ -9,7 +9,7 @@
  */
 
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
-import AlertManager from '../../../../scenery-phet/js/accessibility/describers/AlertManager.js';
+import Alerter from '../../../../scenery-phet/js/accessibility/describers/Alerter.js';
 import ActivationUtterance from '../../../../utterance-queue/js/ActivationUtterance.js';
 import Utterance from '../../../../utterance-queue/js/Utterance.js';
 import ValueChangeUtterance from '../../../../utterance-queue/js/ValueChangeUtterance.js';
@@ -25,7 +25,7 @@ const quantitativeSliderAlertPatternString = molarityStrings.a11y.quantitative.s
 const solutionValuesCheckedAlertString = molarityStrings.a11y.solutionValuesCheckedAlert;
 const solutionValuesUncheckedAlertString = molarityStrings.a11y.solutionValuesUncheckedAlert;
 
-class MolarityAlertManager extends AlertManager {
+class MolarityAlertManager extends Alerter {
 
   /**
    * Initialize the alert manager, linking to the needed model Properties.
