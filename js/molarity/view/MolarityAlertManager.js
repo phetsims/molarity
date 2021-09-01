@@ -44,7 +44,9 @@ class MolarityAlertManager extends Alerter {
    */
   constructor( node, solution, useQuantitativeDescriptionsProperty, concentrationDescriber, precipitateAmountDescriber,
                soluteAmountDescriber, volumeDescriber, soluteDescriber, valuesVisibleProperty ) {
-    super( node );
+    super( {
+      descriptionAlertNode: node
+    } );
 
     // @private - utterances with specific jobs so that duplicates are overwritten in the queue.
     this.saturationUtterance = new Utterance();
