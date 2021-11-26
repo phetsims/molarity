@@ -7,7 +7,7 @@
  */
 
 import StringCasingPair from '../../../../scenery-phet/js/accessibility/StringCasingPair.js';
-import Color from '../../../../scenery/js/util/Color.js';
+import { Color } from '../../../../scenery/js/imports.js';
 import molarityStrings from '../../molarityStrings.js';
 import molarity from '../../molarity.js';
 import MolaritySymbols from '../MolaritySymbols.js';
