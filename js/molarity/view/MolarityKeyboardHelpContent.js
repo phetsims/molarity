@@ -10,7 +10,7 @@
 import ComboBoxKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/ComboBoxKeyboardHelpSection.js';
 import BasicActionsKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/BasicActionsKeyboardHelpSection.js';
 import KeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSection.js';
-import SliderKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/SliderKeyboardHelpSection.js';
+import SliderControlsKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/SliderControlsKeyboardHelpSection.js';
 import TwoColumnKeyboardHelpContent from '../../../../scenery-phet/js/keyboard/help/TwoColumnKeyboardHelpContent.js';
 import molarity from '../../molarity.js';
 import molarityStrings from '../../molarityStrings.js';
@@ -26,7 +26,7 @@ class MolarityKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
     } );
 
     // slider controls help section
-    const sliderKeyboardHelpSection = new SliderKeyboardHelpSection( { headingString: keyboardSliderHelpHeadingString } );
+    const sliderControlsKeyboardHelpSection = new SliderControlsKeyboardHelpSection( { headingString: keyboardSliderHelpHeadingString } );
 
     const changeSoluteHelpSection = new ComboBoxKeyboardHelpSection( molarityStrings.solute, {
       headingString: molarityStrings.keyboard.changeSoluteHelpHeading,
@@ -35,7 +35,7 @@ class MolarityKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
     } );
 
     // Layout of all components of the help section created above.
-    const leftContent = [ sliderKeyboardHelpSection ];
+    const leftContent = [ sliderControlsKeyboardHelpSection ];
     const rightContent = [ changeSoluteHelpSection, basicActionsHelpSection ];
     KeyboardHelpSection.alignHelpSectionIcons( rightContent );
     super( leftContent, rightContent, { columnSpacing: 35, sectionSpacing: 20 } );
