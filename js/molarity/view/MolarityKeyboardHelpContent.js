@@ -8,7 +8,7 @@
  */
 
 import ComboBoxKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/ComboBoxKeyboardHelpSection.js';
-import GeneralKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/GeneralKeyboardHelpSection.js';
+import BasicActionsKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/BasicActionsKeyboardHelpSection.js';
 import KeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSection.js';
 import SliderKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/SliderKeyboardHelpSection.js';
 import TwoColumnKeyboardHelpContent from '../../../../scenery-phet/js/keyboard/help/TwoColumnKeyboardHelpContent.js';
@@ -21,7 +21,7 @@ class MolarityKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
   constructor() {
 
     // general help section
-    const generalNavigationHelpSection = new GeneralKeyboardHelpSection( {
+    const basicActionsHelpSection = new BasicActionsKeyboardHelpSection( {
       withCheckboxContent: true
     } );
 
@@ -36,7 +36,7 @@ class MolarityKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
 
     // Layout of all components of the help section created above.
     const leftContent = [ sliderKeyboardHelpSection ];
-    const rightContent = [ changeSoluteHelpSection, generalNavigationHelpSection ];
+    const rightContent = [ changeSoluteHelpSection, basicActionsHelpSection ];
     KeyboardHelpSection.alignHelpSectionIcons( rightContent );
     super( leftContent, rightContent, { columnSpacing: 35, sectionSpacing: 20 } );
   }
