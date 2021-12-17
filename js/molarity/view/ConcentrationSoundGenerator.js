@@ -10,7 +10,7 @@ import BinMapper from '../../../../tambo/js/BinMapper.js';
 import SoundClip from '../../../../tambo/js/sound-generators/SoundClip.js';
 import SoundGenerator from '../../../../tambo/js/sound-generators/SoundGenerator.js';
 import marimbaSound from '../../../../tambo/sounds/bright-marimba_mp3.js';
-import noSoluteSound from '../../../sounds/soft-no-solute-v2_mp3.js';
+import noSoluteSound from '../../../sounds/softNoSolute_v2_mp3.js';
 import molarity from '../../molarity.js';
 import MolarityConstants from '../MolarityConstants.js';
 

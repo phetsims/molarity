@@ -12,7 +12,7 @@
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import { Image } from '../../../../scenery/js/imports.js';
-import beakerImage from '../../../images/beaker_png.js';
+import beaker_png from '../../../images/beaker_png.js';
 import molarity from '../../molarity.js';
 
 // points of interest in the image file
@@ -32,7 +32,7 @@ class BeakerImageNode extends Image {
     assert && assert( !options.tandem, 'tandem is passed via constructor parameter' );
     options.tandem = tandem;
 
-    super( beakerImage, options );
+    super( beaker_png, options );
   }
 
   // @public Gets the cylinder dimensions.
