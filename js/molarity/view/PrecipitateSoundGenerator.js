@@ -11,7 +11,7 @@ import Range from '../../../../dot/js/Range.js';
 import merge from '../../../../phet-core/js/merge.js';
 import BinMapper from '../../../../tambo/js/BinMapper.js';
 import SoundClip from '../../../../tambo/js/sound-generators/SoundClip.js';
-import precipitateSound from '../../../sounds/precipitate_mp3.js';
+import precipitate_mp3 from '../../../sounds/precipitate_mp3.js';
 import molarity from '../../molarity.js';
 
 // constants
@@ -39,7 +39,7 @@ class PrecipitateSoundGenerator extends SoundClip {
    */
   constructor( precipitateAmountProperty, soluteAmountSlider, solutionVolumeSlider, options ) {
 
-    super( precipitateSound, merge( {
+    super( precipitate_mp3, merge( {
       initialOutputLevel: 0.5,
       rateChangesAffectPlayingSounds: false
     }, options ) );

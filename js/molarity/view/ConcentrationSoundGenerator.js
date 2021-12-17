@@ -9,8 +9,8 @@
 import BinMapper from '../../../../tambo/js/BinMapper.js';
 import SoundClip from '../../../../tambo/js/sound-generators/SoundClip.js';
 import SoundGenerator from '../../../../tambo/js/sound-generators/SoundGenerator.js';
-import marimbaSound from '../../../../tambo/sounds/bright-marimba_mp3.js';
-import noSoluteSound from '../../../sounds/softNoSolute_v2_mp3.js';
+import brightMarimba_mp3 from '../../../../tambo/sounds/bright-marimba_mp3.js';
+import softNoSolute_v2_mp3 from '../../../sounds/softNoSolute_v2_mp3.js';
 import molarity from '../../molarity.js';
 import MolarityConstants from '../MolarityConstants.js';
 
@@ -32,18 +32,18 @@ class ConcentrationSoundGenerator extends SoundGenerator {
     super( options );
 
     // sound clip that is played when the concentration is above zero (pitch is varied as a function of concentration)
-    const nonZeroConcentrationSoundClip = new SoundClip( marimbaSound, { rateChangesAffectPlayingSounds: false } );
+    const nonZeroConcentrationSoundClip = new SoundClip( brightMarimba_mp3, { rateChangesAffectPlayingSounds: false } );
     nonZeroConcentrationSoundClip.connect( this.soundSourceDestination );
 
     // sound clip that is played when the solute amount transitions to zero
-    const transitionToZeroConcentrationSoundClip = new SoundClip( marimbaSound, {
+    const transitionToZeroConcentrationSoundClip = new SoundClip( brightMarimba_mp3, {
       initialOutputLevel: 1.5, // higher than nominal, seems to work to make it more pronounced
       initialPlaybackRate: ZERO_CONCENTRATION_PLAYBACK_RATE
     } );
     transitionToZeroConcentrationSoundClip.connect( this.soundSourceDestination );
 
     // sound clip that is played when the solution level is changed when the concentration is zero
-    const atZeroConcentrationSoundClip = new SoundClip( noSoluteSound, { initialOutputLevel: 0.6 } );
+    const atZeroConcentrationSoundClip = new SoundClip( softNoSolute_v2_mp3, { initialOutputLevel: 0.6 } );
     atZeroConcentrationSoundClip.connect( this.soundSourceDestination );
 
     // keep track of the concentration value each time sound is played
