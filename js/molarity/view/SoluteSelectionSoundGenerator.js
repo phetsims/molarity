@@ -7,15 +7,15 @@
  */
 
 import MultiClip from '../../../../tambo/js/sound-generators/MultiClip.js';
-import selectionArpeggio001_mp3 from '../../../../tambo/sounds/selection-arpeggio-001_mp3.js';
-import selectionArpeggio002_mp3 from '../../../../tambo/sounds/selection-arpeggio-002_mp3.js';
-import selectionArpeggio003_mp3 from '../../../../tambo/sounds/selection-arpeggio-003_mp3.js';
-import selectionArpeggio004_mp3 from '../../../../tambo/sounds/selection-arpeggio-004_mp3.js';
-import selectionArpeggio005_mp3 from '../../../../tambo/sounds/selection-arpeggio-005_mp3.js';
-import selectionArpeggio006_mp3 from '../../../../tambo/sounds/selection-arpeggio-006_mp3.js';
-import selectionArpeggio007_mp3 from '../../../../tambo/sounds/selection-arpeggio-007_mp3.js';
-import selectionArpeggio008_mp3 from '../../../../tambo/sounds/selection-arpeggio-008_mp3.js';
-import selectionArpeggio009_mp3 from '../../../../tambo/sounds/selection-arpeggio-009_mp3.js';
+import selectionArpeggio001_mp3 from '../../../../tambo/sounds/selectionArpeggio001_mp3.js';
+import selectionArpeggio002_mp3 from '../../../../tambo/sounds/selectionArpeggio002_mp3.js';
+import selectionArpeggio003_mp3 from '../../../../tambo/sounds/selectionArpeggio003_mp3.js';
+import selectionArpeggio004_mp3 from '../../../../tambo/sounds/selectionArpeggio004_mp3.js';
+import selectionArpeggio005_mp3 from '../../../../tambo/sounds/selectionArpeggio005_mp3.js';
+import selectionArpeggio006_mp3 from '../../../../tambo/sounds/selectionArpeggio006_mp3.js';
+import selectionArpeggio007_mp3 from '../../../../tambo/sounds/selectionArpeggio007_mp3.js';
+import selectionArpeggio008_mp3 from '../../../../tambo/sounds/selectionArpeggio008_mp3.js';
+import selectionArpeggio009_mp3 from '../../../../tambo/sounds/selectionArpeggio009_mp3.js';
 import molarity from '../../molarity.js';
 
 // sounds
