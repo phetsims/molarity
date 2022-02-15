@@ -28,7 +28,7 @@ class MolarityKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
     // slider controls help section
     const sliderControlsKeyboardHelpSection = new SliderControlsKeyboardHelpSection( { headingString: keyboardSliderHelpHeadingString } );
 
-    const changeSoluteHelpSection = new ComboBoxKeyboardHelpSection( molarityStrings.solute, {
+    const changeSoluteHelpSection = new ComboBoxKeyboardHelpSection( {
       headingString: molarityStrings.keyboard.changeSoluteHelpHeading,
       thingAsLowerCasePlural: molarityStrings.solutes,
       thingAsLowerCaseSingular: molarityStrings.soluteLowercase
