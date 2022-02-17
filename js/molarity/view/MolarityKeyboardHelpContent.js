@@ -7,7 +7,7 @@
  * @author Michael Kauzmann (PhET Interactive Simulations)
  */
 
-import MenuKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/MenuKeyboardHelpSection.js';
+import ComboBoxKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/ComboBoxKeyboardHelpSection.js';
 import BasicActionsKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/BasicActionsKeyboardHelpSection.js';
 import KeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSection.js';
 import SliderControlsKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/SliderControlsKeyboardHelpSection.js';
@@ -28,7 +28,7 @@ class MolarityKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
     // slider controls help section
     const sliderControlsKeyboardHelpSection = new SliderControlsKeyboardHelpSection( { headingString: keyboardSliderHelpHeadingString } );
 
-    const changeSoluteHelpSection = new MenuKeyboardHelpSection( {
+    const changeSoluteHelpSection = new ComboBoxKeyboardHelpSection( {
       headingString: molarityStrings.keyboard.changeSoluteHelpHeading,
       thingAsLowerCasePlural: molarityStrings.solutes,
       thingAsLowerCaseSingular: molarityStrings.soluteLowercase
