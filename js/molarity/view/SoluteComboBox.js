@@ -46,7 +46,11 @@ class SoluteComboBox extends ComboBox {
 
       // pdom
       accessibleName: soluteString,
-      helpText: soluteComboBoxHelpTextString
+      helpText: soluteComboBoxHelpTextString,
+
+      // voicing in Comboox:
+      comboBoxVoicingNameResponsePattern: molarityStrings.a11y.soluteValuePattern,
+      comboBoxVoicingHintResponse: soluteComboBoxHelpTextString
     }, options );
 
     assert && assert( !options.tandem, 'tandem is a required constructor parameter' );

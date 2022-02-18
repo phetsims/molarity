@@ -66,6 +66,7 @@ type StringsType = {
       'lowercase': string
     },
     'soluteAmountNoNewline': string,
+    'soluteValuePattern': string,
     'beakerSolutionControls': string,
     'solutionValuesHelpText': string,
     'sliderHelpText': string,

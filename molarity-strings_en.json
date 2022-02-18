@@ -127,6 +127,9 @@
     "soluteAmountNoNewline": {
       "value": "Solute Amount"
     },
+    "soluteValuePattern": {
+      "value": "Solute: {{value}}"
+    },
     "beakerSolutionControls": {
       "value": "Beaker Solution Controls"
     },

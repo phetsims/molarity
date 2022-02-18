@@ -8,6 +8,7 @@
 
 import Sim from '../../joist/js/Sim.js';
 import simLauncher from '../../joist/js/simLauncher.js';
+import PreferencesConfiguration from '../../joist/js/preferences/PreferencesConfiguration.js';
 import Tandem from '../../tandem/js/Tandem.js';
 import MolarityScreen from './molarity/MolarityScreen.js';
 import molarityStrings from './molarityStrings.js';
@@ -25,7 +26,8 @@ const options = {
     soundDesign: 'Ashton Morris',
     qualityAssurance: 'Jaspe Arias, Logan Bray, Steele Dalton, Alex Dornan, Ethan Johnson, Megan Lai, Elise Morgan, Liam Mulhall, Oliver Orejola, Jacob Romero, Kathryn Woessner, Bryan Yoelin'
   },
-  hasKeyboardHelpContent: true
+  hasKeyboardHelpContent: true,
+  preferencesConfiguration: new PreferencesConfiguration()
 
 };
 

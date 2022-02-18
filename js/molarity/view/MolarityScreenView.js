@@ -115,7 +115,10 @@ class MolarityScreenView extends ScreenView {
     const soluteComboBoxListParent = new Node();
     const soluteComboBox = new SoluteComboBox( model.solutes, model.solution.soluteProperty, soluteComboBoxListParent,
       tandem.createTandem( 'soluteComboBox' ), {
-        maxWidth: 500
+        maxWidth: 500,
+
+        // ComboBox voicing
+        comboBoxVoicingContextResponse: () => soluteDescriber.getSoluteChangedAlertString( useQuantitativeDescriptionsProperty )
       } );
 
     // slider for controlling amount of solute
