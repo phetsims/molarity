@@ -15,10 +15,9 @@ import merge from '../../../../phet-core/js/merge.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import MultiLineText from '../../../../scenery-phet/js/MultiLineText.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { Node } from '../../../../scenery/js/imports.js';
-import { Text } from '../../../../scenery/js/imports.js';
-import { Color } from '../../../../scenery/js/imports.js';
+import { Color, Node, Text } from '../../../../scenery/js/imports.js';
 import VSlider from '../../../../sun/js/VSlider.js';
+import ValueChangeSoundGenerator from '../../../../tambo/js/sound-generators/ValueChangeSoundGenerator.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import molarity from '../../molarity.js';
 import molarityStrings from '../../molarityStrings.js';
@@ -64,6 +63,9 @@ class VerticalSlider extends Node {
         trackSize: new Dimension2( 10, 200 ),
         thumbFill: THUMB_NORMAL_COLOR,
         thumbFillHighlighted: THUMB_HIGHLIGHT_COLOR,
+
+        // Turn off default sound generation, since this does its own.
+        soundGenerator: ValueChangeSoundGenerator.NO_SOUND,
 
         // pdom
         shiftKeyboardStep: Math.pow( 10, decimalPlaces * -1 ),
