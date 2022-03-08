@@ -17,7 +17,6 @@ import MultiLineText from '../../../../scenery-phet/js/MultiLineText.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { Color, Node, Text } from '../../../../scenery/js/imports.js';
 import VSlider from '../../../../sun/js/VSlider.js';
-import ValueChangeSoundGenerator from '../../../../tambo/js/sound-generators/ValueChangeSoundGenerator.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import molarity from '../../molarity.js';
 import molarityStrings from '../../molarityStrings.js';
@@ -65,7 +64,7 @@ class VerticalSlider extends Node {
         thumbFillHighlighted: THUMB_HIGHLIGHT_COLOR,
 
         // Turn off default sound generation, since this does its own.
-        soundGenerator: ValueChangeSoundGenerator.NO_SOUND,
+        soundGenerator: null,
 
         // pdom
         shiftKeyboardStep: Math.pow( 10, decimalPlaces * -1 ),
