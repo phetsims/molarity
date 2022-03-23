@@ -78,8 +78,8 @@ class ConcentrationSoundGenerator extends SoundGenerator {
       if ( !solution.precipitateAmountProperty.value > 0 ) {
 
         // determine if the sound was caused by an a11y-related action, such as keyboard manipulation
-        const changeDueToA11yAction = soluteAmountSlider.draggingPointerType === 'a11y' ||
-                                      solutionVolumeSlider.draggingPointerType === 'a11y';
+        const changeDueToA11yAction = soluteAmountSlider.draggingPointerType === 'pdom' ||
+                                      solutionVolumeSlider.draggingPointerType === 'pdom';
 
         // map the solute amount value to bins
         const previousBin = soluteAmountBinMapper.mapToBin( previousSoluteAmount );
@@ -105,8 +105,8 @@ class ConcentrationSoundGenerator extends SoundGenerator {
       if ( !solution.precipitateAmountProperty.value > 0 ) {
 
         // determine if the sound was caused by an a11y-related action, such as kayboard manipulation
-        const changeDueToA11yAction = soluteAmountSlider.draggingPointerType === 'a11y' ||
-                                      solutionVolumeSlider.draggingPointerType === 'a11y';
+        const changeDueToA11yAction = soluteAmountSlider.draggingPointerType === 'pdom' ||
+                                      solutionVolumeSlider.draggingPointerType === 'pdom';
 
         // map the solution volume value to bins
         const previousBin = volumeBinMapper.mapToBin( previousVolume );
