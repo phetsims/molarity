@@ -53,9 +53,9 @@ class PrecipitateSoundGenerator extends SoundClip {
     // monitor the precipitate level and play sounds as it changes
     precipitateAmountProperty.lazyLink( ( precipitateAmount, previousPrecipitateAmount ) => {
 
-      // is the change was due to an a11y-caused event, a sound should be played on every change
-      const changeDueToA11yAction = soluteAmountSlider.draggingPointerType === 'a11y' ||
-                                    solutionVolumeSlider.draggingPointerType === 'a11y';
+      // if the change was due to an pdom-caused event, a sound should be played on every change
+      const changeDueToA11yAction = soluteAmountSlider.draggingPointerType === 'pdom' ||
+                                    solutionVolumeSlider.draggingPointerType === 'pdom';
 
       // Check if a sound should be played regardless of the change amount, generally because of changes made through
       // keyboard interaction.
