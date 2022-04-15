@@ -9,12 +9,10 @@
 import merge from '../../../../phet-core/js/merge.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { HBox } from '../../../../scenery/js/imports.js';
-import { Rectangle } from '../../../../scenery/js/imports.js';
-import { Text } from '../../../../scenery/js/imports.js';
+import { HBox, Rectangle, Text } from '../../../../scenery/js/imports.js';
 import ComboBox from '../../../../sun/js/ComboBox.js';
 import ComboBoxItem from '../../../../sun/js/ComboBoxItem.js';
-import SoundPlayer from '../../../../tambo/js/SoundPlayer.js';
+import nullSoundPlayer from '../../../../tambo/js/shared-sound-players/nullSoundPlayer.js';
 import molarity from '../../molarity.js';
 import molarityStrings from '../../molarityStrings.js';
 
@@ -87,7 +85,7 @@ const createItem = solute => {
   } );
 
   return new ComboBoxItem( hBox, solute, {
-    soundPlayer: SoundPlayer.NO_SOUND, // sound generation for selection is done elsewhere
+    soundPlayer: nullSoundPlayer, // sound generation for selection is done elsewhere
     tandemName: `${solute.tandem.name}Item`,
     a11yLabel: solute.name
   } );
