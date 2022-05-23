@@ -6,7 +6,7 @@
  * @author Taylor Want (PhET Interactive Simulations)
  */
 
-import Property from '../../../../axon/js/Property.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import { Node } from '../../../../scenery/js/imports.js';
 import molarityStrings from '../../molarityStrings.js';
@@ -73,7 +73,7 @@ class MolarityScreenSummaryNode extends Node {
     } ) );
 
     // Updates the third paragraph of the screen summary when sim Properties change.
-    Property.multilink( [
+    Multilink.multilink( [
       this.solution.soluteProperty,
       this.solution.volumeProperty,
       this.solution.soluteAmountProperty,

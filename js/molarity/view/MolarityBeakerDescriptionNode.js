@@ -6,7 +6,7 @@
  * @author Michael Kauzmann (PhET Interactive Simulations)
  */
 
-import Property from '../../../../axon/js/Property.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 import ChemUtils from '../../../../nitroglycerin/js/ChemUtils.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import { Node } from '../../../../scenery/js/imports.js';
@@ -59,7 +59,7 @@ class MolarityBeakerDescriptionNode extends Node {
     this.chemicalFormulaSummaryItem = new Node( { tagName: 'li' } );
     this.concentrationRangeSummaryItem = new Node( { tagName: 'li' } );
 
-    Property.multilink( [
+    Multilink.multilink( [
         useQuantitativeDescriptionsProperty,
         solution.volumeProperty,
         solution.soluteAmountProperty,
