@@ -200,7 +200,7 @@ class MolarityScreenView extends ScreenView {
       font: new PhetFont( 22 ),
       tandem: tandem.createTandem( 'solutionValuesText' )
     } );
-    const solutionValuesCheckbox = new Checkbox( solutionValuesLabel, valuesVisibleProperty, {
+    const solutionValuesCheckbox = new Checkbox( valuesVisibleProperty, solutionValuesLabel, {
       maxWidth: 175,
       tandem: tandem.createTandem( 'solutionValuesCheckbox' ),
 
