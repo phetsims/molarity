@@ -22,15 +22,16 @@ const soluteString = molarityStrings.solute;
 const soluteComboBoxHelpTextString = molarityStrings.a11y.soluteComboBoxHelpText;
 
 class SoluteComboBox extends ComboBox {
+
   /**
-   * @param {Solute[]} solutes
    * @param {Property.<Solute>} selectedSoluteProperty
+   * @param {Solute[]} solutes
    * @param {Node} listParent parent node for the popup list
    * @param {Tandem} tandem
    * @param {Object} [options]
    * @constructor
    */
-  constructor( solutes, selectedSoluteProperty, listParent, tandem, options ) {
+  constructor( selectedSoluteProperty, solutes, listParent, tandem, options ) {
 
     options = merge( {
 
@@ -57,7 +58,7 @@ class SoluteComboBox extends ComboBox {
     // {ComboBoxItem[]}
     const items = solutes.map( createItem );
 
-    super( items, selectedSoluteProperty, listParent, options );
+    super( selectedSoluteProperty, items, listParent, options );
   }
 }
 
