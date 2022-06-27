@@ -11,7 +11,6 @@ import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { HBox, Rectangle, Text } from '../../../../scenery/js/imports.js';
 import ComboBox from '../../../../sun/js/ComboBox.js';
-import ComboBoxItem from '../../../../sun/js/ComboBoxItem.js';
 import nullSoundPlayer from '../../../../tambo/js/shared-sound-players/nullSoundPlayer.js';
 import molarity from '../../molarity.js';
 import molarityStrings from '../../molarityStrings.js';
@@ -85,11 +84,13 @@ const createItem = solute => {
     children: [ colorNode, textNode ]
   } );
 
-  return new ComboBoxItem( hBox, solute, {
+  return {
+    value: solute,
+    node: hBox,
     soundPlayer: nullSoundPlayer, // sound generation for selection is done elsewhere
-    tandemName: `${solute.tandem.name}Item`,
+    tandemName: `${solute.tandem.name}${ComboBox.ITEM_TANDEM_NAME_SUFFIX}`,
     a11yLabel: solute.name
-  } );
+  };
 };
 
 export default SoluteComboBox;
