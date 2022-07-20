@@ -8,9 +8,7 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import { Node } from '../../../../scenery/js/imports.js';
-import { Rectangle } from '../../../../scenery/js/imports.js';
-import { Text } from '../../../../scenery/js/imports.js';
+import { Node, Rectangle, Text } from '../../../../scenery/js/imports.js';
 import molarity from '../../molarity.js';
 
 // constants

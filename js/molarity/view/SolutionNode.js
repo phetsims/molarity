@@ -10,11 +10,7 @@
 
 import Utils from '../../../../dot/js/Utils.js';
 import { Shape } from '../../../../kite/js/imports.js';
-import { Circle } from '../../../../scenery/js/imports.js';
-import { Node } from '../../../../scenery/js/imports.js';
-import { Path } from '../../../../scenery/js/imports.js';
-import { Rectangle } from '../../../../scenery/js/imports.js';
-import { Color } from '../../../../scenery/js/imports.js';
+import { Circle, Color, Node, Path, Rectangle } from '../../../../scenery/js/imports.js';
 import molarity from '../../molarity.js';
 
 // constants

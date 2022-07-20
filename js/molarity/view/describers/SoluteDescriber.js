@@ -9,8 +9,8 @@
 
 import StringUtils from '../../../../../phetcommon/js/util/StringUtils.js';
 import StringCasingPair from '../../../../../scenery-phet/js/accessibility/StringCasingPair.js';
-import molarityStrings from '../../../molarityStrings.js';
 import molarity from '../../../molarity.js';
+import molarityStrings from '../../../molarityStrings.js';
 import Water from '../../model/Water.js';
 import MolaritySymbols from '../../MolaritySymbols.js';
 
