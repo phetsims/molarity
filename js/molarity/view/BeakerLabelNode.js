@@ -58,7 +58,7 @@ class BeakerLabelNode extends Node {
         return label;
       }, {
         tandem: tandem.createTandem( 'beakerLabelProperty' ),
-        phetioType: DerivedProperty.DerivedPropertyIO( StringIO )
+        phetioValueType: StringIO
       } );
 
     // update the label

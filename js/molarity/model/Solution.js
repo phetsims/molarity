@@ -32,7 +32,7 @@ class Solution {
     // @public
     this.soluteProperty = new Property( solute, {
       tandem: tandem.createTandem( 'soluteProperty' ),
-      phetioType: Property.PropertyIO( Solute.SoluteIO )
+      phetioValueType: Solute.SoluteIO
     } );
 
     // @public
@@ -56,7 +56,7 @@ class Solution {
         tandem: tandem.createTandem( 'concentrationProperty' ),
         units: 'mol/L',
         // no range, since this is derived
-        phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
+        phetioValueType: NumberIO
       } );
 
     // @public derive the amount of precipitate
@@ -64,7 +64,7 @@ class Solution {
       ( solute, soluteAmount, volume ) => Solution.computePrecipitateAmount( volume, soluteAmount, solute.saturatedConcentration ), {
         tandem: tandem.createTandem( 'precipitateAmountProperty' ),
         units: 'mol',
-        phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
+        phetioValueType: NumberIO
       } );
   }
 
