@@ -93,7 +93,7 @@ class VerticalSlider extends Node {
     // options set by VerticalSlider
     options = merge( {
       sliderOptions: {
-        tandem: options.tandem.createTandem( 'sliderNode' ),
+        tandem: options.tandem.createTandem( 'slider' ),
         startDrag: event => {
           this.draggingPointerType = event.pointer.type;
         },
