@@ -12,7 +12,7 @@ import Tandem from '../../tandem/js/Tandem.js';
 import MolarityScreen from './molarity/MolarityScreen.js';
 import molarityStrings from './molarityStrings.js';
 
-const molarityTitleString = molarityStrings.molarity.title;
+const molarityTitleStringProperty = molarityStrings.molarity.titleStringProperty;
 
 // constants
 const tandem = Tandem.ROOT;
@@ -30,6 +30,6 @@ const options = {
 
 simLauncher.launch( () => {
   const screens = [ new MolarityScreen( tandem.createTandem( 'molarityScreen' ) ) ];
-  const sim = new Sim( molarityTitleString, screens, options );
+  const sim = new Sim( molarityTitleStringProperty, screens, options );
   sim.start();
 } );
