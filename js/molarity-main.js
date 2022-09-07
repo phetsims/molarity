@@ -10,9 +10,9 @@ import Sim from '../../joist/js/Sim.js';
 import simLauncher from '../../joist/js/simLauncher.js';
 import Tandem from '../../tandem/js/Tandem.js';
 import MolarityScreen from './molarity/MolarityScreen.js';
-import molarityStrings from './molarityStrings.js';
+import MolarityStrings from './MolarityStrings.js';
 
-const molarityTitleStringProperty = molarityStrings.molarity.titleStringProperty;
+const molarityTitleStringProperty = MolarityStrings.molarity.titleStringProperty;
 
 // constants
 const tandem = Tandem.ROOT;

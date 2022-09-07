@@ -19,7 +19,7 @@ import { Node, Text } from '../../../../scenery/js/imports.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import soundManager from '../../../../tambo/js/soundManager.js';
 import molarity from '../../molarity.js';
-import molarityStrings from '../../molarityStrings.js';
+import MolarityStrings from '../../MolarityStrings.js';
 import MolarityConstants from '../MolarityConstants.js';
 import BeakerNode from './BeakerNode.js';
 import ConcentrationDisplay from './ConcentrationDisplay.js';
@@ -39,24 +39,24 @@ import SoluteSelectionSoundGenerator from './SoluteSelectionSoundGenerator.js';
 import SolutionNode from './SolutionNode.js';
 import VerticalSlider from './VerticalSlider.js';
 
-const fullString = molarityStrings.full;
-const litersString = molarityStrings.liters;
-const lotsString = molarityStrings.lots;
-const lowString = molarityStrings.low;
-const molesString = molarityStrings.moles;
-const noneString = molarityStrings.none;
-const patternParentheses0TextString = molarityStrings.pattern.parentheses[ '0text' ];
-const showValuesString = molarityStrings.showValues;
-const soluteAmountString = molarityStrings.soluteAmount;
-const solutionVolumeString = molarityStrings.solutionVolume;
-const unitsLitersString = molarityStrings.units.liters;
-const unitsMolesString = molarityStrings.units.moles;
+const fullString = MolarityStrings.full;
+const litersString = MolarityStrings.liters;
+const lotsString = MolarityStrings.lots;
+const lowString = MolarityStrings.low;
+const molesString = MolarityStrings.moles;
+const noneString = MolarityStrings.none;
+const patternParentheses0TextString = MolarityStrings.pattern.parentheses[ '0text' ];
+const showValuesString = MolarityStrings.showValues;
+const soluteAmountString = MolarityStrings.soluteAmount;
+const solutionVolumeString = MolarityStrings.solutionVolume;
+const unitsLitersString = MolarityStrings.units.liters;
+const unitsMolesString = MolarityStrings.units.moles;
 
 // strings
-const beakerSolutionControlsString = molarityStrings.a11y.beakerSolutionControls;
-const solutionValuesHelpTextString = molarityStrings.a11y.solutionValuesHelpText;
-const soluteAmountNoNewlineString = molarityStrings.a11y.soluteAmountNoNewline;
-const sliderHelpTextString = molarityStrings.a11y.sliderHelpText;
+const beakerSolutionControlsString = MolarityStrings.a11y.beakerSolutionControls;
+const solutionValuesHelpTextString = MolarityStrings.a11y.solutionValuesHelpText;
+const soluteAmountNoNewlineString = MolarityStrings.a11y.soluteAmountNoNewline;
+const sliderHelpTextString = MolarityStrings.a11y.sliderHelpText;
 
 // constants
 const SLIDER_TRACK_WIDTH = 12;

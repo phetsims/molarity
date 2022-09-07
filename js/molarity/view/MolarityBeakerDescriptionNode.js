@@ -11,15 +11,15 @@ import ChemUtils from '../../../../nitroglycerin/js/ChemUtils.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import { Node } from '../../../../scenery/js/imports.js';
 import molarity from '../../molarity.js';
-import molarityStrings from '../../molarityStrings.js';
+import MolarityStrings from '../../MolarityStrings.js';
 
-const drinkMixString = molarityStrings.drinkMix;
+const drinkMixString = MolarityStrings.drinkMix;
 
-const beakerDescriptionPatternString = molarityStrings.a11y.beaker.descriptionPattern;
-const beakerHasZeroConcentrationString = molarityStrings.a11y.beaker.hasZeroConcentration;
-const beakerDescriptionPureWaterPatternString = molarityStrings.a11y.beaker.descriptionPureWaterPattern;
-const beakerPureWaterString = molarityStrings.a11y.beaker.pureWater;
-const beakerWaterFormulaDescriptionString = molarityStrings.a11y.beaker.waterFormulaDescription;
+const beakerDescriptionPatternString = MolarityStrings.a11y.beaker.descriptionPattern;
+const beakerHasZeroConcentrationString = MolarityStrings.a11y.beaker.hasZeroConcentration;
+const beakerDescriptionPureWaterPatternString = MolarityStrings.a11y.beaker.descriptionPureWaterPattern;
+const beakerPureWaterString = MolarityStrings.a11y.beaker.pureWater;
+const beakerWaterFormulaDescriptionString = MolarityStrings.a11y.beaker.waterFormulaDescription;
 
 class MolarityBeakerDescriptionNode extends Node {
 

@@ -18,17 +18,17 @@ import MultiLineText from '../../../../scenery-phet/js/MultiLineText.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { Color, LinearGradient, Node, Path, Rectangle, Text } from '../../../../scenery/js/imports.js';
 import molarity from '../../molarity.js';
-import molarityStrings from '../../molarityStrings.js';
+import MolarityStrings from '../../MolarityStrings.js';
 import MolarityConstants from '../MolarityConstants.js';
 import DualLabelNode from './DualLabelNode.js';
 
-const highString = molarityStrings.high;
-const molarityLabelString = molarityStrings.molarity.label;
-const pattern0Value1UnitsString = molarityStrings.pattern[ '0value' ][ '1units' ];
-const patternParentheses0TextString = molarityStrings.pattern.parentheses[ '0text' ];
-const solutionConcentrationString = molarityStrings.solutionConcentration;
-const unitsMolarityString = molarityStrings.units.molarity;
-const zeroString = molarityStrings.zero;
+const highString = MolarityStrings.high;
+const molarityLabelString = MolarityStrings.molarity.label;
+const pattern0Value1UnitsString = MolarityStrings.pattern[ '0value' ][ '1units' ];
+const patternParentheses0TextString = MolarityStrings.pattern.parentheses[ '0text' ];
+const solutionConcentrationString = MolarityStrings.solutionConcentration;
+const unitsMolarityString = MolarityStrings.units.molarity;
+const zeroString = MolarityStrings.zero;
 
 // constants
 const TITLE_FONT = new PhetFont( { size: 24, weight: 'bold' } );

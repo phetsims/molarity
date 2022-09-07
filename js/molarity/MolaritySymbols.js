@@ -8,9 +8,9 @@
 
 import ChemUtils from '../../../nitroglycerin/js/ChemUtils.js';
 import molarity from '../molarity.js';
-import molarityStrings from '../molarityStrings.js';
+import MolarityStrings from '../MolarityStrings.js';
 
-const drinkMixString = molarityStrings.drinkMix;
+const drinkMixString = MolarityStrings.drinkMix;
 
 // constants
 const toSubscript = ChemUtils.toSubscript;

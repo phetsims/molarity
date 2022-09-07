@@ -13,12 +13,12 @@ import { HBox, Rectangle, Text } from '../../../../scenery/js/imports.js';
 import ComboBox from '../../../../sun/js/ComboBox.js';
 import nullSoundPlayer from '../../../../tambo/js/shared-sound-players/nullSoundPlayer.js';
 import molarity from '../../molarity.js';
-import molarityStrings from '../../molarityStrings.js';
+import MolarityStrings from '../../MolarityStrings.js';
 
-const pattern0LabelString = molarityStrings.pattern[ '0label' ];
-const soluteString = molarityStrings.solute;
+const pattern0LabelString = MolarityStrings.pattern[ '0label' ];
+const soluteString = MolarityStrings.solute;
 
-const soluteComboBoxHelpTextString = molarityStrings.a11y.soluteComboBoxHelpText;
+const soluteComboBoxHelpTextString = MolarityStrings.a11y.soluteComboBoxHelpText;
 
 class SoluteComboBox extends ComboBox {
 
@@ -47,7 +47,7 @@ class SoluteComboBox extends ComboBox {
       helpText: soluteComboBoxHelpTextString,
 
       // voicing in Comboox:
-      comboBoxVoicingNameResponsePattern: molarityStrings.a11y.soluteValuePattern,
+      comboBoxVoicingNameResponsePattern: MolarityStrings.a11y.soluteValuePattern,
       comboBoxVoicingHintResponse: soluteComboBoxHelpTextString
     }, options );
 

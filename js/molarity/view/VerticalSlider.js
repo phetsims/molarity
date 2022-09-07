@@ -19,11 +19,11 @@ import { Color, Node, Text } from '../../../../scenery/js/imports.js';
 import VSlider from '../../../../sun/js/VSlider.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import molarity from '../../molarity.js';
-import molarityStrings from '../../molarityStrings.js';
+import MolarityStrings from '../../MolarityStrings.js';
 import MolarityConstants from '../MolarityConstants.js';
 import DualLabelNode from './DualLabelNode.js';
 
-const pattern0Value1UnitsString = molarityStrings.pattern[ '0value' ][ '1units' ];
+const pattern0Value1UnitsString = MolarityStrings.pattern[ '0value' ][ '1units' ];
 
 // constants
 const RANGE_FONT = new PhetFont( 20 );

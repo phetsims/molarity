@@ -10,18 +10,18 @@
 import StringUtils from '../../../../../phetcommon/js/util/StringUtils.js';
 import StringCasingPair from '../../../../../scenery-phet/js/accessibility/StringCasingPair.js';
 import molarity from '../../../molarity.js';
-import molarityStrings from '../../../molarityStrings.js';
+import MolarityStrings from '../../../MolarityStrings.js';
 import Water from '../../model/Water.js';
 import MolaritySymbols from '../../MolaritySymbols.js';
 
-const beakerChemicalFormulaPatternString = molarityStrings.a11y.beaker.chemicalFormulaPattern;
-const noSoluteAlertQuantitativeString = molarityStrings.a11y.noSoluteAlertQuantitative;
-const noSoluteAlertQualitativeString = molarityStrings.a11y.noSoluteAlertQualitative;
-const quantitativeConcentrationStatePatternString = molarityStrings.a11y.quantitative.concentrationStatePattern;
-const soluteChangedQuantitativeConcentrationPatternString = molarityStrings.a11y.soluteChangedQuantitativeConcentrationPattern;
-const soluteChangedQualitativeConcentrationPatternString = molarityStrings.a11y.soluteChangedQualitativeConcentrationPattern;
-const soluteChangedSaturatedAlertPatternString = molarityStrings.a11y.soluteChangedSaturatedAlertPattern;
-const soluteChangedUnsaturatedAlertPatternString = molarityStrings.a11y.soluteChangedUnsaturatedAlertPattern;
+const beakerChemicalFormulaPatternString = MolarityStrings.a11y.beaker.chemicalFormulaPattern;
+const noSoluteAlertQuantitativeString = MolarityStrings.a11y.noSoluteAlertQuantitative;
+const noSoluteAlertQualitativeString = MolarityStrings.a11y.noSoluteAlertQualitative;
+const quantitativeConcentrationStatePatternString = MolarityStrings.a11y.quantitative.concentrationStatePattern;
+const soluteChangedQuantitativeConcentrationPatternString = MolarityStrings.a11y.soluteChangedQuantitativeConcentrationPattern;
+const soluteChangedQualitativeConcentrationPatternString = MolarityStrings.a11y.soluteChangedQualitativeConcentrationPattern;
+const soluteChangedSaturatedAlertPatternString = MolarityStrings.a11y.soluteChangedSaturatedAlertPattern;
+const soluteChangedUnsaturatedAlertPatternString = MolarityStrings.a11y.soluteChangedUnsaturatedAlertPattern;
 
 class SoluteDescriber {
 

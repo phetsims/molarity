@@ -10,18 +10,18 @@ import Multilink from '../../../../axon/js/Multilink.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import { Node } from '../../../../scenery/js/imports.js';
 import molarity from '../../molarity.js';
-import molarityStrings from '../../molarityStrings.js';
+import MolarityStrings from '../../MolarityStrings.js';
 
-const ofString = molarityStrings.a11y.of;
-const notSaturatedString = molarityStrings.a11y.notSaturated;
-const screenSummaryQualitativeConcentrationPatternString = molarityStrings.a11y.screenSummary.qualitativeConcentrationPattern;
-const screenSummaryQuantitativeConcentrationPatternString = molarityStrings.a11y.screenSummary.quantitativeConcentrationPattern;
-const saturatedString = molarityStrings.a11y.saturated;
-const screenSummaryPlayAreaPatternString = molarityStrings.a11y.screenSummary.playAreaPattern;
-const screenSummaryControlAreaPatternString = molarityStrings.a11y.screenSummary.controlAreaPattern;
-const screenSummarySimInteractionHintString = molarityStrings.a11y.screenSummary.simInteractionHint;
-const screenSummaryCurrentStateOfSimNoSolutePatternString = molarityStrings.a11y.screenSummary.currentStateOfSimNoSolutePattern;
-const screenSummaryCurrentStateOfSimPatternString = molarityStrings.a11y.screenSummary.currentStateOfSimPattern;
+const ofString = MolarityStrings.a11y.of;
+const notSaturatedString = MolarityStrings.a11y.notSaturated;
+const screenSummaryQualitativeConcentrationPatternString = MolarityStrings.a11y.screenSummary.qualitativeConcentrationPattern;
+const screenSummaryQuantitativeConcentrationPatternString = MolarityStrings.a11y.screenSummary.quantitativeConcentrationPattern;
+const saturatedString = MolarityStrings.a11y.saturated;
+const screenSummaryPlayAreaPatternString = MolarityStrings.a11y.screenSummary.playAreaPattern;
+const screenSummaryControlAreaPatternString = MolarityStrings.a11y.screenSummary.controlAreaPattern;
+const screenSummarySimInteractionHintString = MolarityStrings.a11y.screenSummary.simInteractionHint;
+const screenSummaryCurrentStateOfSimNoSolutePatternString = MolarityStrings.a11y.screenSummary.currentStateOfSimNoSolutePattern;
+const screenSummaryCurrentStateOfSimPatternString = MolarityStrings.a11y.screenSummary.currentStateOfSimPattern;
 
 class MolarityScreenSummaryNode extends Node {
 

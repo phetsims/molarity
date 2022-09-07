@@ -10,30 +10,30 @@
 import Utils from '../../../../../dot/js/Utils.js';
 import StringUtils from '../../../../../phetcommon/js/util/StringUtils.js';
 import molarity from '../../../molarity.js';
-import molarityStrings from '../../../molarityStrings.js';
+import MolarityStrings from '../../../MolarityStrings.js';
 import MolarityConstants from '../../MolarityConstants.js';
 import SolutionQuantityDescriber from './SolutionQuantityDescriber.js';
 
-const beakerSoluteAmountPatternString = molarityStrings.a11y.beaker.soluteAmountPattern;
-const quantitativeSoluteAmountAndUnitPatternString = molarityStrings.a11y.quantitative.soluteAmountAndUnitPattern;
-const quantityChangeSoluteAmountChangedPatternString = molarityStrings.a11y.quantityChange.soluteAmountChangedPattern;
-const quantityChangeColorChangePatternString = molarityStrings.a11y.quantityChange.colorChangePattern;
-const qualitativeSoluteAmountStatePatternString = molarityStrings.a11y.qualitative.soluteAmountStatePattern;
+const beakerSoluteAmountPatternString = MolarityStrings.a11y.beaker.soluteAmountPattern;
+const quantitativeSoluteAmountAndUnitPatternString = MolarityStrings.a11y.quantitative.soluteAmountAndUnitPattern;
+const quantityChangeSoluteAmountChangedPatternString = MolarityStrings.a11y.quantityChange.soluteAmountChangedPattern;
+const quantityChangeColorChangePatternString = MolarityStrings.a11y.quantityChange.colorChangePattern;
+const qualitativeSoluteAmountStatePatternString = MolarityStrings.a11y.qualitative.soluteAmountStatePattern;
 
 // solute amount regions capitalized strings
-const soluteAmountRegionsNoString = molarityStrings.a11y.soluteAmountRegions.no;
-const soluteAmountRegionsATinyBitOfString = molarityStrings.a11y.soluteAmountRegions.aTinyBitOf;
-const soluteAmountRegionsALittleString = molarityStrings.a11y.soluteAmountRegions.aLittle;
-const soluteAmountRegionsSomeString = molarityStrings.a11y.soluteAmountRegions.some;
-const soluteAmountRegionsALotOfString = molarityStrings.a11y.soluteAmountRegions.aLotOf;
-const soluteAmountRegionsABunchOfString = molarityStrings.a11y.soluteAmountRegions.aBunchOf;
-const soluteAmountRegionsMaxAmountOfString = molarityStrings.a11y.soluteAmountRegions.maxAmountOf;
+const soluteAmountRegionsNoString = MolarityStrings.a11y.soluteAmountRegions.no;
+const soluteAmountRegionsATinyBitOfString = MolarityStrings.a11y.soluteAmountRegions.aTinyBitOf;
+const soluteAmountRegionsALittleString = MolarityStrings.a11y.soluteAmountRegions.aLittle;
+const soluteAmountRegionsSomeString = MolarityStrings.a11y.soluteAmountRegions.some;
+const soluteAmountRegionsALotOfString = MolarityStrings.a11y.soluteAmountRegions.aLotOf;
+const soluteAmountRegionsABunchOfString = MolarityStrings.a11y.soluteAmountRegions.aBunchOf;
+const soluteAmountRegionsMaxAmountOfString = MolarityStrings.a11y.soluteAmountRegions.maxAmountOf;
 
 // change strings
-const lessCapitalizedString = molarityStrings.a11y.less.capitalized;
-const moreCapitalizedString = molarityStrings.a11y.more.capitalized;
-const quantityChangeLighterString = molarityStrings.a11y.quantityChange.lighter;
-const quantityChangeDarkerString = molarityStrings.a11y.quantityChange.darker;
+const lessCapitalizedString = MolarityStrings.a11y.less.capitalized;
+const moreCapitalizedString = MolarityStrings.a11y.more.capitalized;
+const quantityChangeLighterString = MolarityStrings.a11y.quantityChange.lighter;
+const quantityChangeDarkerString = MolarityStrings.a11y.quantityChange.darker;
 
 // constants
 const SOLUTE_AMOUNT_STRINGS = [

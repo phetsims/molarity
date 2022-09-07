@@ -411,8 +411,8 @@ type StringsType = {
   }
 };
 
-const molarityStrings = getStringModule( 'MOLARITY' ) as StringsType;
+const MolarityStrings = getStringModule( 'MOLARITY' ) as StringsType;
 
-molarity.register( 'molarityStrings', molarityStrings );
+molarity.register( 'MolarityStrings', MolarityStrings );
 
-export default molarityStrings;
+export default MolarityStrings;

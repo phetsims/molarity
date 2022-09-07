@@ -13,39 +13,39 @@
 
 import StringUtils from '../../../../../phetcommon/js/util/StringUtils.js';
 import molarity from '../../../molarity.js';
-import molarityStrings from '../../../molarityStrings.js';
+import MolarityStrings from '../../../MolarityStrings.js';
 import Solution from '../../model/Solution.js';
 import MolarityConstants from '../../MolarityConstants.js';
 
-const atMaxConcentrationPatternString = molarityStrings.a11y.atMaxConcentrationPattern;
-const beakerSaturationPatternString = molarityStrings.a11y.beaker.saturationPattern;
-const saturationLostNoSoluteAlertString = molarityStrings.a11y.saturationLostNoSoluteAlert;
-const saturationLostQualitativeAlertPatternString = molarityStrings.a11y.saturationLostQualitativeAlertPattern;
-const saturationLostQuantitativeAlertPatternString = molarityStrings.a11y.saturationLostQuantitativeAlertPattern;
-const saturationReachedAlertPatternString = molarityStrings.a11y.saturationReachedAlertPattern;
-const stillSaturatedAlertPatternString = molarityStrings.a11y.stillSaturatedAlertPattern;
-const withSolidsAlertPatternString = molarityStrings.a11y.withSolidsAlertPattern;
-const solidsChangePatternString = molarityStrings.a11y.solidsChangePattern;
+const atMaxConcentrationPatternString = MolarityStrings.a11y.atMaxConcentrationPattern;
+const beakerSaturationPatternString = MolarityStrings.a11y.beaker.saturationPattern;
+const saturationLostNoSoluteAlertString = MolarityStrings.a11y.saturationLostNoSoluteAlert;
+const saturationLostQualitativeAlertPatternString = MolarityStrings.a11y.saturationLostQualitativeAlertPattern;
+const saturationLostQuantitativeAlertPatternString = MolarityStrings.a11y.saturationLostQuantitativeAlertPattern;
+const saturationReachedAlertPatternString = MolarityStrings.a11y.saturationReachedAlertPattern;
+const stillSaturatedAlertPatternString = MolarityStrings.a11y.stillSaturatedAlertPattern;
+const withSolidsAlertPatternString = MolarityStrings.a11y.withSolidsAlertPattern;
+const solidsChangePatternString = MolarityStrings.a11y.solidsChangePattern;
 
 // Precipitate Amount capitalized region strings
-const precipitateAmountRegionsCapitalizedALotOfString = molarityStrings.a11y.precipitateAmountRegions.capitalized.aLotOf;
-const precipitateAmountRegionsCapitalizedABunchOfString = molarityStrings.a11y.precipitateAmountRegions.capitalized.aBunchOf;
-const precipitateAmountRegionsCapitalizedSomeString = molarityStrings.a11y.precipitateAmountRegions.capitalized.some;
-const precipitateAmountRegionsCapitalizedACoupleOfString = molarityStrings.a11y.precipitateAmountRegions.capitalized.aCoupleOf;
-const precipitateAmountRegionsCapitalizedAFewString = molarityStrings.a11y.precipitateAmountRegions.capitalized.aFew;
+const precipitateAmountRegionsCapitalizedALotOfString = MolarityStrings.a11y.precipitateAmountRegions.capitalized.aLotOf;
+const precipitateAmountRegionsCapitalizedABunchOfString = MolarityStrings.a11y.precipitateAmountRegions.capitalized.aBunchOf;
+const precipitateAmountRegionsCapitalizedSomeString = MolarityStrings.a11y.precipitateAmountRegions.capitalized.some;
+const precipitateAmountRegionsCapitalizedACoupleOfString = MolarityStrings.a11y.precipitateAmountRegions.capitalized.aCoupleOf;
+const precipitateAmountRegionsCapitalizedAFewString = MolarityStrings.a11y.precipitateAmountRegions.capitalized.aFew;
 
 // Precipitate Amount lowercase region strings
-const precipitateAmountRegionsLowercaseALotOfString = molarityStrings.a11y.precipitateAmountRegions.lowercase.aLotOf;
-const precipitateAmountRegionsLowercaseABunchOfString = molarityStrings.a11y.precipitateAmountRegions.lowercase.aBunchOf;
-const precipitateAmountRegionsLowercaseSomeString = molarityStrings.a11y.precipitateAmountRegions.lowercase.some;
-const precipitateAmountRegionsLowercaseACoupleOfString = molarityStrings.a11y.precipitateAmountRegions.lowercase.aCoupleOf;
-const precipitateAmountRegionsLowercaseAFewString = molarityStrings.a11y.precipitateAmountRegions.lowercase.aFew;
+const precipitateAmountRegionsLowercaseALotOfString = MolarityStrings.a11y.precipitateAmountRegions.lowercase.aLotOf;
+const precipitateAmountRegionsLowercaseABunchOfString = MolarityStrings.a11y.precipitateAmountRegions.lowercase.aBunchOf;
+const precipitateAmountRegionsLowercaseSomeString = MolarityStrings.a11y.precipitateAmountRegions.lowercase.some;
+const precipitateAmountRegionsLowercaseACoupleOfString = MolarityStrings.a11y.precipitateAmountRegions.lowercase.aCoupleOf;
+const precipitateAmountRegionsLowercaseAFewString = MolarityStrings.a11y.precipitateAmountRegions.lowercase.aFew;
 
 // Change strings
-const lessCapitalizedString = molarityStrings.a11y.less.capitalized;
-const moreCapitalizedString = molarityStrings.a11y.more.capitalized;
-const lessLowercaseString = molarityStrings.a11y.less.lowercase;
-const moreLowercaseString = molarityStrings.a11y.more.lowercase;
+const lessCapitalizedString = MolarityStrings.a11y.less.capitalized;
+const moreCapitalizedString = MolarityStrings.a11y.more.capitalized;
+const lessLowercaseString = MolarityStrings.a11y.less.lowercase;
+const moreLowercaseString = MolarityStrings.a11y.more.lowercase;
 
 // constants
 const PRECIPITATE_AMOUNT_STRINGS_CAPITALIZED = [

@@ -10,39 +10,39 @@
 import Utils from '../../../../../dot/js/Utils.js';
 import StringUtils from '../../../../../phetcommon/js/util/StringUtils.js';
 import molarity from '../../../molarity.js';
-import molarityStrings from '../../../molarityStrings.js';
+import MolarityStrings from '../../../MolarityStrings.js';
 import MolarityConstants from '../../MolarityConstants.js';
 import SolutionQuantityDescriber from './SolutionQuantityDescriber.js';
 
-const quantitativeHasVolumePatternString = molarityStrings.a11y.quantitative.hasVolumePattern;
-const quantityChangeColorChangePatternString = molarityStrings.a11y.quantityChange.colorChangePattern;
-const qualitativeVolumeStatePatternString = molarityStrings.a11y.qualitative.volumeStatePattern;
-const quantitativeSolutionVolumeAndUnitPatternString = molarityStrings.a11y.quantitative.solutionVolumeAndUnitPattern;
-const quantityChangeVolumeChangePatternString = molarityStrings.a11y.quantityChange.volumeChangePattern;
+const quantitativeHasVolumePatternString = MolarityStrings.a11y.quantitative.hasVolumePattern;
+const quantityChangeColorChangePatternString = MolarityStrings.a11y.quantityChange.colorChangePattern;
+const qualitativeVolumeStatePatternString = MolarityStrings.a11y.qualitative.volumeStatePattern;
+const quantitativeSolutionVolumeAndUnitPatternString = MolarityStrings.a11y.quantitative.solutionVolumeAndUnitPattern;
+const quantityChangeVolumeChangePatternString = MolarityStrings.a11y.quantityChange.volumeChangePattern;
 
 // volume regions strings
-const volumeRegionsPassiveFullString = molarityStrings.a11y.volumeRegions.passive.full;
-const volumeRegionsPassiveHalfFullString = molarityStrings.a11y.volumeRegions.passive.halfFull;
-const volumeRegionsPassiveNearlyEmptyString = molarityStrings.a11y.volumeRegions.passive.nearlyEmpty;
-const volumeRegionsPassiveNearlyFullString = molarityStrings.a11y.volumeRegions.passive.nearlyFull;
-const volumeRegionsPassiveOverHalfFullString = molarityStrings.a11y.volumeRegions.passive.overHalfFull;
-const volumeRegionsPassiveUnderHalfFullString = molarityStrings.a11y.volumeRegions.passive.underHalfFull;
-const volumeRegionsPassiveAtLowestAmountString = molarityStrings.a11y.volumeRegions.passive.atLowestAmount;
+const volumeRegionsPassiveFullString = MolarityStrings.a11y.volumeRegions.passive.full;
+const volumeRegionsPassiveHalfFullString = MolarityStrings.a11y.volumeRegions.passive.halfFull;
+const volumeRegionsPassiveNearlyEmptyString = MolarityStrings.a11y.volumeRegions.passive.nearlyEmpty;
+const volumeRegionsPassiveNearlyFullString = MolarityStrings.a11y.volumeRegions.passive.nearlyFull;
+const volumeRegionsPassiveOverHalfFullString = MolarityStrings.a11y.volumeRegions.passive.overHalfFull;
+const volumeRegionsPassiveUnderHalfFullString = MolarityStrings.a11y.volumeRegions.passive.underHalfFull;
+const volumeRegionsPassiveAtLowestAmountString = MolarityStrings.a11y.volumeRegions.passive.atLowestAmount;
 
 // volume active regions strings
-const volumeRegionsActiveIsFullString = molarityStrings.a11y.volumeRegions.active.isFull;
-const volumeRegionsActiveIsNearlyFullString = molarityStrings.a11y.volumeRegions.active.isNearlyFull;
-const volumeRegionsActiveIsOverHalfFullString = molarityStrings.a11y.volumeRegions.active.isOverHalfFull;
-const volumeRegionsActiveIsHalfFullString = molarityStrings.a11y.volumeRegions.active.isHalfFull;
-const volumeRegionsActiveIsUnderHalfFullString = molarityStrings.a11y.volumeRegions.active.isUnderHalfFull;
-const volumeRegionsActiveIsAtLowestAmountString = molarityStrings.a11y.volumeRegions.active.isAtLowestAmount;
-const volumeRegionsActiveIsNearlyEmptyString = molarityStrings.a11y.volumeRegions.active.isNearlyEmpty;
+const volumeRegionsActiveIsFullString = MolarityStrings.a11y.volumeRegions.active.isFull;
+const volumeRegionsActiveIsNearlyFullString = MolarityStrings.a11y.volumeRegions.active.isNearlyFull;
+const volumeRegionsActiveIsOverHalfFullString = MolarityStrings.a11y.volumeRegions.active.isOverHalfFull;
+const volumeRegionsActiveIsHalfFullString = MolarityStrings.a11y.volumeRegions.active.isHalfFull;
+const volumeRegionsActiveIsUnderHalfFullString = MolarityStrings.a11y.volumeRegions.active.isUnderHalfFull;
+const volumeRegionsActiveIsAtLowestAmountString = MolarityStrings.a11y.volumeRegions.active.isAtLowestAmount;
+const volumeRegionsActiveIsNearlyEmptyString = MolarityStrings.a11y.volumeRegions.active.isNearlyEmpty;
 
 // change strings
-const lessCapitalizedString = molarityStrings.a11y.less.capitalized;
-const moreCapitalizedString = molarityStrings.a11y.more.capitalized;
-const quantityChangeLighterString = molarityStrings.a11y.quantityChange.lighter;
-const quantityChangeDarkerString = molarityStrings.a11y.quantityChange.darker;
+const lessCapitalizedString = MolarityStrings.a11y.less.capitalized;
+const moreCapitalizedString = MolarityStrings.a11y.more.capitalized;
+const quantityChangeLighterString = MolarityStrings.a11y.quantityChange.lighter;
+const quantityChangeDarkerString = MolarityStrings.a11y.quantityChange.darker;
 
 // constants
 const VOLUME_STRINGS = [

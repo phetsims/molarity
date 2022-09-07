@@ -15,15 +15,15 @@ import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { Circle, Color, Node, Path, Rectangle, Text } from '../../../../scenery/js/imports.js';
 import molarity from '../../molarity.js';
-import molarityStrings from '../../molarityStrings.js';
+import MolarityStrings from '../../MolarityStrings.js';
 import BeakerImageNode from './BeakerImageNode.js';
 import BeakerLabelNode from './BeakerLabelNode.js';
 import MolarityBeakerDescriptionNode from './MolarityBeakerDescriptionNode.js';
 
-const pattern0Value1UnitsString = molarityStrings.pattern[ '0value' ][ '1units' ];
-const unitsLitersString = molarityStrings.units.liters;
+const pattern0Value1UnitsString = MolarityStrings.pattern[ '0value' ][ '1units' ];
+const unitsLitersString = MolarityStrings.units.liters;
 
-const beakerHeaderString = molarityStrings.a11y.beaker.header;
+const beakerHeaderString = MolarityStrings.a11y.beaker.header;
 
 // constants
 const DEBUG_SHAPES = false;

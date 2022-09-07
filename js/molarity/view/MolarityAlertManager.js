@@ -14,16 +14,16 @@ import ActivationUtterance from '../../../../utterance-queue/js/ActivationUttera
 import Utterance from '../../../../utterance-queue/js/Utterance.js';
 import ValueChangeUtterance from '../../../../utterance-queue/js/ValueChangeUtterance.js';
 import molarity from '../../molarity.js';
-import molarityStrings from '../../molarityStrings.js';
+import MolarityStrings from '../../MolarityStrings.js';
 
-const atMaxConcentrationAlertPatternString = molarityStrings.a11y.atMaxConcentrationAlertPattern;
-const noSoluteAlertString = molarityStrings.a11y.noSoluteAlert;
-const qualitativeSaturatedValueTextPatternString = molarityStrings.a11y.qualitative.saturatedValueTextPattern;
-const qualitativeSliderAlertPatternString = molarityStrings.a11y.qualitative.sliderAlertPattern;
-const quantitativeSaturatedValueTextPatternString = molarityStrings.a11y.quantitative.saturatedValueTextPattern;
-const quantitativeSliderAlertPatternString = molarityStrings.a11y.quantitative.sliderAlertPattern;
-const solutionValuesCheckedAlertString = molarityStrings.a11y.solutionValuesCheckedAlert;
-const solutionValuesUncheckedAlertString = molarityStrings.a11y.solutionValuesUncheckedAlert;
+const atMaxConcentrationAlertPatternString = MolarityStrings.a11y.atMaxConcentrationAlertPattern;
+const noSoluteAlertString = MolarityStrings.a11y.noSoluteAlert;
+const qualitativeSaturatedValueTextPatternString = MolarityStrings.a11y.qualitative.saturatedValueTextPattern;
+const qualitativeSliderAlertPatternString = MolarityStrings.a11y.qualitative.sliderAlertPattern;
+const quantitativeSaturatedValueTextPatternString = MolarityStrings.a11y.quantitative.saturatedValueTextPattern;
+const quantitativeSliderAlertPatternString = MolarityStrings.a11y.quantitative.sliderAlertPattern;
+const solutionValuesCheckedAlertString = MolarityStrings.a11y.solutionValuesCheckedAlert;
+const solutionValuesUncheckedAlertString = MolarityStrings.a11y.solutionValuesUncheckedAlert;
 
 class MolarityAlertManager extends Alerter {
 

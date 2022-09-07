@@ -10,9 +10,9 @@
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { Node, Rectangle, Text } from '../../../../scenery/js/imports.js';
 import molarity from '../../molarity.js';
-import molarityStrings from '../../molarityStrings.js';
+import MolarityStrings from '../../MolarityStrings.js';
 
-const saturatedString = molarityStrings.saturated;
+const saturatedString = MolarityStrings.saturated;
 
 class SaturatedIndicator extends Node {
   /**

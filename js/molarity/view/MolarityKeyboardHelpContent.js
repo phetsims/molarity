@@ -13,9 +13,9 @@ import KeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/Keybo
 import SliderControlsKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/SliderControlsKeyboardHelpSection.js';
 import TwoColumnKeyboardHelpContent from '../../../../scenery-phet/js/keyboard/help/TwoColumnKeyboardHelpContent.js';
 import molarity from '../../molarity.js';
-import molarityStrings from '../../molarityStrings.js';
+import MolarityStrings from '../../MolarityStrings.js';
 
-const keyboardSliderHelpHeadingString = molarityStrings.keyboard.sliderHelpHeading;
+const keyboardSliderHelpHeadingString = MolarityStrings.keyboard.sliderHelpHeading;
 
 class MolarityKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
   constructor() {
@@ -29,9 +29,9 @@ class MolarityKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
     const sliderControlsKeyboardHelpSection = new SliderControlsKeyboardHelpSection( { headingString: keyboardSliderHelpHeadingString } );
 
     const changeSoluteHelpSection = new ComboBoxKeyboardHelpSection( {
-      headingString: molarityStrings.keyboard.changeSoluteHelpHeading,
-      thingAsLowerCasePlural: molarityStrings.solutes,
-      thingAsLowerCaseSingular: molarityStrings.soluteLowercase
+      headingString: MolarityStrings.keyboard.changeSoluteHelpHeading,
+      thingAsLowerCasePlural: MolarityStrings.solutes,
+      thingAsLowerCaseSingular: MolarityStrings.soluteLowercase
     } );
 
     // Layout of all components of the help section created above.

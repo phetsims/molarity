@@ -11,41 +11,41 @@
 import Utils from '../../../../../dot/js/Utils.js';
 import StringUtils from '../../../../../phetcommon/js/util/StringUtils.js';
 import molarity from '../../../molarity.js';
-import molarityStrings from '../../../molarityStrings.js';
+import MolarityStrings from '../../../MolarityStrings.js';
 import MolarityConstants from '../../MolarityConstants.js';
 
-const quantityChangeColorChangePatternString = molarityStrings.a11y.quantityChange.colorChangePattern;
-const quantitativeConcentrationAndUnitString = molarityStrings.a11y.quantitative.concentrationAndUnit;
-const quantityChangeConcentrationChangePatternString = molarityStrings.a11y.quantityChange.concentrationChangePattern;
-const beakerConcentrationRangePatternString = molarityStrings.a11y.beaker.concentrationRangePattern;
-const qualitativeConcentrationStateClausePatternString = molarityStrings.a11y.qualitative.concentrationStateClausePattern;
-const quantitativeConcentrationStatePatternString = molarityStrings.a11y.quantitative.concentrationStatePattern;
+const quantityChangeColorChangePatternString = MolarityStrings.a11y.quantityChange.colorChangePattern;
+const quantitativeConcentrationAndUnitString = MolarityStrings.a11y.quantitative.concentrationAndUnit;
+const quantityChangeConcentrationChangePatternString = MolarityStrings.a11y.quantityChange.concentrationChangePattern;
+const beakerConcentrationRangePatternString = MolarityStrings.a11y.beaker.concentrationRangePattern;
+const qualitativeConcentrationStateClausePatternString = MolarityStrings.a11y.qualitative.concentrationStateClausePattern;
+const quantitativeConcentrationStatePatternString = MolarityStrings.a11y.quantitative.concentrationStatePattern;
 
 // Concentration region strings
-const concentrationRegionsPassiveZeroConcentrationString = molarityStrings.a11y.concentrationRegions.passive.zeroConcentration;
-const concentrationRegionsPassiveLowConcentrationString = molarityStrings.a11y.concentrationRegions.passive.lowConcentration;
-const concentrationRegionsPassiveSlightlyConcentratedString = molarityStrings.a11y.concentrationRegions.passive.slightlyConcentrated;
-const concentrationRegionsPassiveNotVeryConcentratedString = molarityStrings.a11y.concentrationRegions.passive.notVeryConcentrated;
-const concentrationRegionsPassiveVeryConcentratedString = molarityStrings.a11y.concentrationRegions.passive.veryConcentrated;
-const concentrationRegionsPassiveHighlyConcentratedString = molarityStrings.a11y.concentrationRegions.passive.highlyConcentrated;
-const concentrationRegionsPassiveMaxConcentrationString = molarityStrings.a11y.concentrationRegions.passive.maxConcentration;
+const concentrationRegionsPassiveZeroConcentrationString = MolarityStrings.a11y.concentrationRegions.passive.zeroConcentration;
+const concentrationRegionsPassiveLowConcentrationString = MolarityStrings.a11y.concentrationRegions.passive.lowConcentration;
+const concentrationRegionsPassiveSlightlyConcentratedString = MolarityStrings.a11y.concentrationRegions.passive.slightlyConcentrated;
+const concentrationRegionsPassiveNotVeryConcentratedString = MolarityStrings.a11y.concentrationRegions.passive.notVeryConcentrated;
+const concentrationRegionsPassiveVeryConcentratedString = MolarityStrings.a11y.concentrationRegions.passive.veryConcentrated;
+const concentrationRegionsPassiveHighlyConcentratedString = MolarityStrings.a11y.concentrationRegions.passive.highlyConcentrated;
+const concentrationRegionsPassiveMaxConcentrationString = MolarityStrings.a11y.concentrationRegions.passive.maxConcentration;
 
 // Concentration active region strings
-const concentrationRegionsActiveHasZeroConcentrationString = molarityStrings.a11y.concentrationRegions.active.hasZeroConcentration;
-const concentrationRegionsActiveHasLowConcentrationString = molarityStrings.a11y.concentrationRegions.active.hasLowConcentration;
-const concentrationRegionsActiveIsSlightlyConcentratedString = molarityStrings.a11y.concentrationRegions.active.isSlightlyConcentrated;
-const concentrationRegionsActiveIsNotVeryConcentratedString = molarityStrings.a11y.concentrationRegions.active.isNotVeryConcentrated;
-const concentrationRegionsActiveIsVeryConcentratedString = molarityStrings.a11y.concentrationRegions.active.isVeryConcentrated;
-const concentrationRegionsActiveIsHighlyConcentratedString = molarityStrings.a11y.concentrationRegions.active.isHighlyConcentrated;
-const concentrationRegionsActiveHasMaxConcentrationString = molarityStrings.a11y.concentrationRegions.active.hasMaxConcentration;
+const concentrationRegionsActiveHasZeroConcentrationString = MolarityStrings.a11y.concentrationRegions.active.hasZeroConcentration;
+const concentrationRegionsActiveHasLowConcentrationString = MolarityStrings.a11y.concentrationRegions.active.hasLowConcentration;
+const concentrationRegionsActiveIsSlightlyConcentratedString = MolarityStrings.a11y.concentrationRegions.active.isSlightlyConcentrated;
+const concentrationRegionsActiveIsNotVeryConcentratedString = MolarityStrings.a11y.concentrationRegions.active.isNotVeryConcentrated;
+const concentrationRegionsActiveIsVeryConcentratedString = MolarityStrings.a11y.concentrationRegions.active.isVeryConcentrated;
+const concentrationRegionsActiveIsHighlyConcentratedString = MolarityStrings.a11y.concentrationRegions.active.isHighlyConcentrated;
+const concentrationRegionsActiveHasMaxConcentrationString = MolarityStrings.a11y.concentrationRegions.active.hasMaxConcentration;
 
 // Change strings
-const lessCapitalizedString = molarityStrings.a11y.less.capitalized;
-const lessLowercaseString = molarityStrings.a11y.less.lowercase;
-const moreCapitalizedString = molarityStrings.a11y.more.capitalized;
-const moreLowercaseString = molarityStrings.a11y.more.lowercase;
-const quantityChangeLighterString = molarityStrings.a11y.quantityChange.lighter;
-const quantityChangeDarkerString = molarityStrings.a11y.quantityChange.darker;
+const lessCapitalizedString = MolarityStrings.a11y.less.capitalized;
+const lessLowercaseString = MolarityStrings.a11y.less.lowercase;
+const moreCapitalizedString = MolarityStrings.a11y.more.capitalized;
+const moreLowercaseString = MolarityStrings.a11y.more.lowercase;
+const quantityChangeLighterString = MolarityStrings.a11y.quantityChange.lighter;
+const quantityChangeDarkerString = MolarityStrings.a11y.quantityChange.darker;
 
 // constants
 const ACTIVE_CONCENTRATION_STRINGS = [

@@ -10,53 +10,53 @@ import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import StringCasingPair from '../../../../scenery-phet/js/accessibility/StringCasingPair.js';
 import { Color } from '../../../../scenery/js/imports.js';
 import molarity from '../../molarity.js';
-import molarityStrings from '../../molarityStrings.js';
+import MolarityStrings from '../../MolarityStrings.js';
 import MolarityConstants from '../MolarityConstants.js';
 import MolaritySymbols from '../MolaritySymbols.js';
 import Solute from './Solute.js';
 import Solution from './Solution.js';
 import Water from './Water.js';
 
-const cobaltChlorideString = molarityStrings.cobaltChloride;
-const cobaltIINitrateString = molarityStrings.cobaltIINitrate;
-const copperSulfateString = molarityStrings.copperSulfate;
-const drinkMixString = molarityStrings.drinkMix;
-const goldIIIChlorideString = molarityStrings.goldIIIChloride;
-const nickelIIChlorideString = molarityStrings.nickelIIChloride;
-const potassiumChromateString = molarityStrings.potassiumChromate;
-const potassiumDichromateString = molarityStrings.potassiumDichromate;
-const potassiumPermanganateString = molarityStrings.potassiumPermanganate;
+const cobaltChlorideString = MolarityStrings.cobaltChloride;
+const cobaltIINitrateString = MolarityStrings.cobaltIINitrate;
+const copperSulfateString = MolarityStrings.copperSulfate;
+const drinkMixString = MolarityStrings.drinkMix;
+const goldIIIChlorideString = MolarityStrings.goldIIIChloride;
+const nickelIIChlorideString = MolarityStrings.nickelIIChloride;
+const potassiumChromateString = MolarityStrings.potassiumChromate;
+const potassiumDichromateString = MolarityStrings.potassiumDichromate;
+const potassiumPermanganateString = MolarityStrings.potassiumPermanganate;
 
 // color strings
-const soluteColorsLowercaseRedString = molarityStrings.a11y.soluteColors.lowercase.red;
-const soluteColorsLowercasePinkString = molarityStrings.a11y.soluteColors.lowercase.pink;
-const soluteColorsLowercaseOrangeString = molarityStrings.a11y.soluteColors.lowercase.orange;
-const soluteColorsLowercaseGoldString = molarityStrings.a11y.soluteColors.lowercase.gold;
-const soluteColorsLowercaseYellowString = molarityStrings.a11y.soluteColors.lowercase.yellow;
-const soluteColorsLowercaseGreenString = molarityStrings.a11y.soluteColors.lowercase.green;
-const soluteColorsLowercaseBlueString = molarityStrings.a11y.soluteColors.lowercase.blue;
-const soluteColorsLowercasePurpleString = molarityStrings.a11y.soluteColors.lowercase.purple;
+const soluteColorsLowercaseRedString = MolarityStrings.a11y.soluteColors.lowercase.red;
+const soluteColorsLowercasePinkString = MolarityStrings.a11y.soluteColors.lowercase.pink;
+const soluteColorsLowercaseOrangeString = MolarityStrings.a11y.soluteColors.lowercase.orange;
+const soluteColorsLowercaseGoldString = MolarityStrings.a11y.soluteColors.lowercase.gold;
+const soluteColorsLowercaseYellowString = MolarityStrings.a11y.soluteColors.lowercase.yellow;
+const soluteColorsLowercaseGreenString = MolarityStrings.a11y.soluteColors.lowercase.green;
+const soluteColorsLowercaseBlueString = MolarityStrings.a11y.soluteColors.lowercase.blue;
+const soluteColorsLowercasePurpleString = MolarityStrings.a11y.soluteColors.lowercase.purple;
 
 // capitalized color strings
-const soluteColorsCapitalizedRedString = molarityStrings.a11y.soluteColors.capitalized.red;
-const soluteColorsCapitalizedPinkString = molarityStrings.a11y.soluteColors.capitalized.pink;
-const soluteColorsCapitalizedOrangeString = molarityStrings.a11y.soluteColors.capitalized.orange;
-const soluteColorsCapitalizedGoldString = molarityStrings.a11y.soluteColors.capitalized.gold;
-const soluteColorsCapitalizedYellowString = molarityStrings.a11y.soluteColors.capitalized.yellow;
-const soluteColorsCapitalizedGreenString = molarityStrings.a11y.soluteColors.capitalized.green;
-const soluteColorsCapitalizedPurpleString = molarityStrings.a11y.soluteColors.capitalized.purple;
-const soluteColorsCapitalizedBlueString = molarityStrings.a11y.soluteColors.capitalized.blue;
+const soluteColorsCapitalizedRedString = MolarityStrings.a11y.soluteColors.capitalized.red;
+const soluteColorsCapitalizedPinkString = MolarityStrings.a11y.soluteColors.capitalized.pink;
+const soluteColorsCapitalizedOrangeString = MolarityStrings.a11y.soluteColors.capitalized.orange;
+const soluteColorsCapitalizedGoldString = MolarityStrings.a11y.soluteColors.capitalized.gold;
+const soluteColorsCapitalizedYellowString = MolarityStrings.a11y.soluteColors.capitalized.yellow;
+const soluteColorsCapitalizedGreenString = MolarityStrings.a11y.soluteColors.capitalized.green;
+const soluteColorsCapitalizedPurpleString = MolarityStrings.a11y.soluteColors.capitalized.purple;
+const soluteColorsCapitalizedBlueString = MolarityStrings.a11y.soluteColors.capitalized.blue;
 
 // Lowercase solute name strings
-const cobaltChlorideLowercaseString = molarityStrings.a11y.cobaltChlorideLowercase;
-const cobaltIINitrateLowercaseString = molarityStrings.a11y.cobaltIINitrateLowercase;
-const copperSulfateLowercaseString = molarityStrings.a11y.copperSulfateLowercase;
-const drinkMixLowercaseString = molarityStrings.a11y.drinkMixLowercase;
-const goldIIIChlorideLowercaseString = molarityStrings.a11y.goldIIIChlorideLowercase;
-const nickelIIChlorideLowercaseString = molarityStrings.a11y.nickelIIChlorideLowercase;
-const potassiumChromateLowercaseString = molarityStrings.a11y.potassiumChromateLowercase;
-const potassiumDichromateLowercaseString = molarityStrings.a11y.potassiumDichromateLowercase;
-const potassiumPermanganateLowercaseString = molarityStrings.a11y.potassiumPermanganateLowercase;
+const cobaltChlorideLowercaseString = MolarityStrings.a11y.cobaltChlorideLowercase;
+const cobaltIINitrateLowercaseString = MolarityStrings.a11y.cobaltIINitrateLowercase;
+const copperSulfateLowercaseString = MolarityStrings.a11y.copperSulfateLowercase;
+const drinkMixLowercaseString = MolarityStrings.a11y.drinkMixLowercase;
+const goldIIIChlorideLowercaseString = MolarityStrings.a11y.goldIIIChlorideLowercase;
+const nickelIIChlorideLowercaseString = MolarityStrings.a11y.nickelIIChlorideLowercase;
+const potassiumChromateLowercaseString = MolarityStrings.a11y.potassiumChromateLowercase;
+const potassiumDichromateLowercaseString = MolarityStrings.a11y.potassiumDichromateLowercase;
+const potassiumPermanganateLowercaseString = MolarityStrings.a11y.potassiumPermanganateLowercase;
 
 // constants
 const blueStringPair = new StringCasingPair( soluteColorsLowercaseBlueString, soluteColorsCapitalizedBlueString );
