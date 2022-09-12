@@ -31,7 +31,7 @@ class BeakerLabelNode extends Node {
     const textNode = new RichText( '?', {
       font: LABEL_FONT,
       maxWidth: 0.9 * LABEL_SIZE.width,
-      tandem: tandem.createTandem( 'textNode' )
+      tandem: tandem.createTandem( 'text' )
     } );
 
     const backgroundNode = new Rectangle( -LABEL_SIZE.width / 2, 0, LABEL_SIZE.width, LABEL_SIZE.height, 10, 10, {

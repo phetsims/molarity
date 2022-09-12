@@ -101,10 +101,10 @@ class BeakerNode extends Node {
     let tickMarkShape;
     let tickMarkNode;
     let tickLabelIndex;
-    let tickLabel;
-    let tickLabelNode;
+    let tickLabelString;
+    let tickLabelText;
 
-    const tickLabelNodeGroupTandem = tandem.createGroupTandem( 'tickLabelNode' );
+    const tickLabelNodeGroupTandem = tandem.createTandem( 'tickLabels' );
 
     for ( let i = 1; i <= numberOfTicks; i++ ) {
       y = bottomY - ( i * deltaY );
@@ -121,16 +121,16 @@ class BeakerNode extends Node {
         // major tick label
         tickLabelIndex = ( i / MINOR_TICKS_PER_MAJOR_TICK ) - 1;
         if ( tickLabelIndex < MAJOR_TICK_LABELS.length ) {
-          tickLabel = StringUtils.format( pattern0Value1UnitsString, MAJOR_TICK_LABELS[ tickLabelIndex ], unitsLitersString );
-          tickLabelNode = new Text( tickLabel, {
+          tickLabelString = StringUtils.format( pattern0Value1UnitsString, MAJOR_TICK_LABELS[ tickLabelIndex ], unitsLitersString );
+          tickLabelText = new Text( tickLabelString, {
             font: TICK_LABEL_FONT,
             stroke: TICK_LABEL_COLOR,
             maxWidth: 100,
-            tandem: tickLabelNodeGroupTandem.createNextTandem()
+            tandem: tickLabelNodeGroupTandem.createTandem( `${i}Text` )
           } );
-          tickLabelsParent.addChild( tickLabelNode );
-          tickLabelNode.left = tickMarkNode.right + TICK_LABEL_X_SPACING;
-          tickLabelNode.centerY = tickMarkNode.bottom;
+          tickLabelsParent.addChild( tickLabelText );
+          tickLabelText.left = tickMarkNode.right + TICK_LABEL_X_SPACING;
+          tickLabelText.centerY = tickMarkNode.bottom;
         }
       }
       else {

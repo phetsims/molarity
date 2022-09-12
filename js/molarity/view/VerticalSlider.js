@@ -104,16 +104,16 @@ class VerticalSlider extends Node {
       }
     }, options );
 
-    const titleNode = new MultiLineText( title, {
+    const titleText = new MultiLineText( title, {
       font: new PhetFont( { size: 24, weight: 'bold' } ),
       maxWidth: MAX_TEXT_WIDTH,
-      tandem: options.tandem.createTandem( 'titleNode' )
+      tandem: options.tandem.createTandem( 'titleText' )
     } );
 
-    const subtitleNode = new Text( subtitle, {
+    const subtitleText = new Text( subtitle, {
       font: new PhetFont( 22 ),
       maxWidth: MAX_TEXT_WIDTH,
-      tandem: options.tandem.createTandem( 'subtitleNode' )
+      tandem: options.tandem.createTandem( 'subtitleText' )
     } );
 
     const minNode = new DualLabelNode( Utils.toFixed( range.min, range.min === 0 ? 0 : MolarityConstants.RANGE_DECIMAL_PLACES ),
@@ -126,10 +126,10 @@ class VerticalSlider extends Node {
 
     const sliderNode = new VSlider( property, range, options.sliderOptions );
 
-    const valueNode = new Text( '?', {
+    const valueText = new Text( '?', {
       font: new PhetFont( 20 ),
       maxWidth: 90, // constrain for i18n, determined empirically
-      tandem: options.tandem.createTandem( 'valueNode' )
+      tandem: options.tandem.createTandem( 'valueText' )
     } );
 
     // layout
@@ -138,14 +138,14 @@ class VerticalSlider extends Node {
     maxNode.bottom = sliderNode.top;
     minNode.centerX = maxNode.centerX;
     minNode.top = sliderNode.bottom;
-    subtitleNode.centerX = centerX;
-    subtitleNode.bottom = maxNode.top - 5;
-    titleNode.centerX = centerX;
-    titleNode.bottom = subtitleNode.top - 5;
-    valueNode.left = sliderNode.right + 5;
+    subtitleText.centerX = centerX;
+    subtitleText.bottom = maxNode.top - 5;
+    titleText.centerX = centerX;
+    titleText.bottom = subtitleText.top - 5;
+    valueText.left = sliderNode.right + 5;
 
     super( {
-      children: [ titleNode, subtitleNode, minNode, maxNode, sliderNode, valueNode ],
+      children: [ titleText, subtitleText, minNode, maxNode, sliderNode, valueText ],
       tandem: options.tandem
     } );
 
@@ -155,13 +155,13 @@ class VerticalSlider extends Node {
     // Update the value display, and position it relative to the track, so it's to the right of the slider thumb.
     const trackMinY = sliderNode.centerY - ( options.sliderOptions.trackSize.height / 2 );
     property.link( value => {
-      valueNode.text = StringUtils.format( pattern0Value1UnitsString, Utils.toFixed( value, decimalPlaces ), units );
-      valueNode.centerY = trackMinY + Utils.linear( range.min, range.max, options.sliderOptions.trackSize.height, 0, value );
+      valueText.text = StringUtils.format( pattern0Value1UnitsString, Utils.toFixed( value, decimalPlaces ), units );
+      valueText.centerY = trackMinY + Utils.linear( range.min, range.max, options.sliderOptions.trackSize.height, 0, value );
     } );
 
     // switch between quantitative and qualitative display
     valuesVisibleProperty.link( visible => {
-      valueNode.setVisible( visible );
+      valueText.setVisible( visible );
     } );
   }
 }

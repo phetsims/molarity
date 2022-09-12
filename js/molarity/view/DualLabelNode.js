@@ -27,18 +27,18 @@ class DualLabelNode extends Node {
 
     super();
 
-    const quantitativeNode = new Text( quantitativeValue, {
+    const quantitativeText = new Text( quantitativeValue, {
       font: font,
-      tandem: tandem.createTandem( 'quantitativeNode' )
+      tandem: tandem.createTandem( 'quantitativeText' )
     } );
-    this.addChild( quantitativeNode );
+    this.addChild( quantitativeText );
 
-    const qualitativeNode = new Text( qualitativeValue, {
+    const qualitativeText = new Text( qualitativeValue, {
       font: font,
-      center: quantitativeNode.center,
-      tandem: tandem.createTandem( 'qualitativeNode' )
+      center: quantitativeText.center,
+      tandem: tandem.createTandem( 'qualitativeText' )
     } );
-    this.addChild( qualitativeNode );
+    this.addChild( qualitativeText );
 
     // add an invisible rectangle so that bounds don't change
     const boundsNode = new Rectangle( this.left, this.top, this.width, this.height );
@@ -49,8 +49,8 @@ class DualLabelNode extends Node {
 
     // switch between qualitative and quantitative
     isQuantitativeProperty.link( isQuantitative => {
-      quantitativeNode.setVisible( isQuantitative );
-      qualitativeNode.setVisible( !isQuantitative );
+      quantitativeText.setVisible( isQuantitative );
+      qualitativeText.setVisible( !isQuantitative );
     } );
 
     this.mutate( options );

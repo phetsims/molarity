@@ -58,17 +58,17 @@ class ConcentrationDisplay extends Node {
     // nodes
     const maxTextWidth = 175; // constrain width for i18n, determined empirically
 
-    const titleNode = new MultiLineText( solutionConcentrationString, {
+    const titleText = new MultiLineText( solutionConcentrationString, {
       align: 'center',
       font: TITLE_FONT,
       maxWidth: maxTextWidth,
-      tandem: tandem.createTandem( 'titleNode' )
+      tandem: tandem.createTandem( 'titleText' )
     } );
 
-    const subtitleNode = new Text( StringUtils.format( patternParentheses0TextString, molarityLabelString ), {
+    const subtitleText = new Text( StringUtils.format( patternParentheses0TextString, molarityLabelString ), {
       font: SUBTITLE_FONT,
       maxWidth: maxTextWidth,
-      tandem: tandem.createTandem( 'subtitleNode' )
+      tandem: tandem.createTandem( 'subtitleText' )
     } );
 
     const maxNode = new DualLabelNode( Utils.toFixed( concentrationRange.max, MolarityConstants.RANGE_DECIMAL_PLACES ),
@@ -95,8 +95,8 @@ class ConcentrationDisplay extends Node {
       tandem.createTandem( 'pointerNode' ) );
 
     // rendering order
-    this.addChild( titleNode );
-    this.addChild( subtitleNode );
+    this.addChild( titleText );
+    this.addChild( subtitleText );
     this.addChild( maxNode );
     this.addChild( minNode );
     this.addChild( barNode );
@@ -112,10 +112,10 @@ class ConcentrationDisplay extends Node {
     maxNode.bottom = barNode.top - 5;
     minNode.centerX = barNode.centerX;
     minNode.top = barNode.bottom + 5;
-    subtitleNode.centerX = barNode.centerX;
-    subtitleNode.bottom = maxNode.top - 8;
-    titleNode.centerX = barNode.centerX;
-    titleNode.bottom = subtitleNode.top - 5;
+    subtitleText.centerX = barNode.centerX;
+    subtitleText.bottom = maxNode.top - 8;
+    titleText.centerX = barNode.centerX;
+    titleText.bottom = subtitleText.top - 5;
 
     // when the solute changes...
     solution.soluteProperty.link( solute => {
@@ -151,10 +151,10 @@ class PointerNode extends Node {
 
     super( { tandem: tandem } );
 
-    const valueNode = new Text( '?', {
+    const valueText = new Text( '?', {
       font: VALUE_FONT,
       maxWidth: 75,
-      tandem: tandem.createTandem( 'valueNode' )
+      tandem: tandem.createTandem( 'valueText' )
     } );
 
     const x = barSize.width;
@@ -176,12 +176,12 @@ class PointerNode extends Node {
     } );
 
     // rendering order
-    this.addChild( valueNode );
+    this.addChild( valueText );
     this.addChild( this.arrowNode );
 
     // show/hide value
     valuesVisibleProperty.link( visible => {
-      valueNode.setVisible( visible );
+      valueText.setVisible( visible );
     } );
 
     // when the concentration or solute changes...
@@ -192,9 +192,9 @@ class PointerNode extends Node {
       this.arrowNode.fill = solution.getColor();
 
       // update the value
-      valueNode.text = StringUtils.format( pattern0Value1UnitsString, Utils.toFixed( concentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES ), unitsMolarityString );
-      valueNode.left = this.arrowNode.right + 5;
-      valueNode.centerY = this.arrowNode.centerY;
+      valueText.text = StringUtils.format( pattern0Value1UnitsString, Utils.toFixed( concentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES ), unitsMolarityString );
+      valueText.left = this.arrowNode.right + 5;
+      valueText.centerY = this.arrowNode.centerY;
     };
     solution.concentrationProperty.link( concentration => {
       update( concentration );

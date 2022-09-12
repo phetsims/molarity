@@ -26,7 +26,7 @@ class SaturatedIndicator extends Node {
     const textNode = new Text( saturatedString, {
       font: new PhetFont( 22 ),
       maxWidth: 200,
-      tandem: tandem.createTandem( 'textNode' )
+      tandem: tandem.createTandem( 'text' )
     } );
 
     // translucent light-gray background, so this shows up on all solution colors
