@@ -21,7 +21,7 @@ class MolarityScreen extends Screen {
 
     const options = {
       tandem: tandem,
-      keyboardHelpNode: new MolarityKeyboardHelpContent()
+      createKeyboardHelpNode: () => new MolarityKeyboardHelpContent()
     };
 
     super(
