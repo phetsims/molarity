@@ -24,8 +24,7 @@ const options = {
     team: 'Kelly Lancaster, Emily B. Moore, Matthew Moore, Robert Parson, Kathy Perkins, Taliesin Smith, Brianna Tomlinson',
     soundDesign: 'Ashton Morris',
     qualityAssurance: 'Jaspe Arias, Logan Bray, Steele Dalton, Alex Dornan, Ethan Johnson, Megan Lai, Elise Morgan, Liam Mulhall, Oliver Orejola, Jacob Romero, Kathryn Woessner, Bryan Yoelin'
-  },
-  hasKeyboardHelpContent: true
+  }
 };
 
 simLauncher.launch( () => {
