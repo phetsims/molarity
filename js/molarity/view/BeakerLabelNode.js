@@ -63,7 +63,7 @@ class BeakerLabelNode extends Node {
 
     // update the label
     beakerLabelProperty.link( label => {
-      textNode.text = label;
+      textNode.string = label;
       // center formula in background
       textNode.centerX = backgroundNode.centerX;
       textNode.centerY = backgroundNode.centerY;
