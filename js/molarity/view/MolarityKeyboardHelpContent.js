@@ -15,7 +15,7 @@ import TwoColumnKeyboardHelpContent from '../../../../scenery-phet/js/keyboard/h
 import molarity from '../../molarity.js';
 import MolarityStrings from '../../MolarityStrings.js';
 
-const keyboardSliderHelpHeadingString = MolarityStrings.keyboard.sliderHelpHeading;
+const keyboardSliderHelpHeadingString = MolarityStrings.keyboard.sliderHelpHeadingStringProperty;
 
 class MolarityKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
   constructor() {
@@ -26,7 +26,9 @@ class MolarityKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
     } );
 
     // slider controls help section
-    const sliderControlsKeyboardHelpSection = new SliderControlsKeyboardHelpSection( { headingString: keyboardSliderHelpHeadingString } );
+    const sliderControlsKeyboardHelpSection = new SliderControlsKeyboardHelpSection( {
+      headingStringProperty: keyboardSliderHelpHeadingString
+    } );
 
     const changeSoluteHelpSection = new ComboBoxKeyboardHelpSection( {
       headingString: MolarityStrings.keyboard.changeSoluteHelpHeading,
