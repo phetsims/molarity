@@ -29,7 +29,7 @@
     "branch": "HEAD"
   },
   "molarity": {
-    "sha": "8251f03df68258e29c44b6c8977a43bd553886fb",
+    "sha": "ded597b739c760d879e26e94bc0810a457cd73bc",
     "branch": "1.5"
   },
   "nitroglycerin": {
@@ -61,7 +61,7 @@
     "branch": "HEAD"
   },
   "scenery": {
-    "sha": "bf542e5f9b6a47045ff6526fd0ed11c656bdaf54",
+    "sha": "ba18b0b22477cf72b39a9ebf002a5d455682ebe1",
     "branch": "HEAD"
   },
   "scenery-phet": {
