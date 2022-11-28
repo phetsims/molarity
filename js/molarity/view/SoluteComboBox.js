@@ -89,7 +89,7 @@ const createItem = solute => {
     node: hBox,
     soundPlayer: nullSoundPlayer, // sound generation for selection is done elsewhere
     tandemName: `${solute.tandem.name}${ComboBox.ITEM_TANDEM_NAME_SUFFIX}`,
-    a11yLabel: solute.name
+    a11yName: solute.name
   };
 };
 
