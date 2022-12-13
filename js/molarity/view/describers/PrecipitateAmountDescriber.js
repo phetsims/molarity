@@ -27,14 +27,14 @@ const stillSaturatedAlertPatternString = MolarityStrings.a11y.stillSaturatedAler
 const withSolidsAlertPatternString = MolarityStrings.a11y.withSolidsAlertPattern;
 const solidsChangePatternString = MolarityStrings.a11y.solidsChangePattern;
 
-// Precipitate Amount capitalized region strings
+// PrecipitateParticles Amount capitalized region strings
 const precipitateAmountRegionsCapitalizedALotOfString = MolarityStrings.a11y.precipitateAmountRegions.capitalized.aLotOf;
 const precipitateAmountRegionsCapitalizedABunchOfString = MolarityStrings.a11y.precipitateAmountRegions.capitalized.aBunchOf;
 const precipitateAmountRegionsCapitalizedSomeString = MolarityStrings.a11y.precipitateAmountRegions.capitalized.some;
 const precipitateAmountRegionsCapitalizedACoupleOfString = MolarityStrings.a11y.precipitateAmountRegions.capitalized.aCoupleOf;
 const precipitateAmountRegionsCapitalizedAFewString = MolarityStrings.a11y.precipitateAmountRegions.capitalized.aFew;
 
-// Precipitate Amount lowercase region strings
+// PrecipitateParticles Amount lowercase region strings
 const precipitateAmountRegionsLowercaseALotOfString = MolarityStrings.a11y.precipitateAmountRegions.lowercase.aLotOf;
 const precipitateAmountRegionsLowercaseABunchOfString = MolarityStrings.a11y.precipitateAmountRegions.lowercase.aBunchOf;
 const precipitateAmountRegionsLowercaseSomeString = MolarityStrings.a11y.precipitateAmountRegions.lowercase.some;
