@@ -1,5 +1,5 @@
 {
-  "comment": "# molarity 1.5.7 Wed Dec 14 2022 11:17:45 GMT-0700 (Mountain Standard Time)",
+  "comment": "# molarity 1.5.8-rc.1 Wed Dec 14 2022 21:19:05 GMT-0700 (Mountain Standard Time)",
   "assert": {
     "sha": "a99a9ce9ee0774bf3ef509bf3e31ca7383f67478",
     "branch": "HEAD"
@@ -29,7 +29,7 @@
     "branch": "HEAD"
   },
   "molarity": {
-    "sha": "3f8aa7f28ad5f3fd509c3310273da3c6828e2115",
+    "sha": "b7fff3ba04645d4fdfb9f2f322f1e9ad5c93c3b0",
     "branch": "1.5"
   },
   "nitroglycerin": {
