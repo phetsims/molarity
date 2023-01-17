@@ -20,7 +20,7 @@ const soluteString = MolarityStrings.solute;
 
 const soluteComboBoxHelpTextString = MolarityStrings.a11y.soluteComboBoxHelpText;
 
-class SoluteComboBox extends ComboBox {
+class SoluteControl extends HBox {
 
   /**
    * @param {Property.<Solute>} selectedSoluteProperty
@@ -33,35 +33,40 @@ class SoluteComboBox extends ComboBox {
   constructor( selectedSoluteProperty, solutes, listParent, tandem, options ) {
 
     options = merge( {
+      spacing: 10,
 
-      // 'Solute' label
-      labelNode: new Text( StringUtils.format( pattern0LabelString, soluteString ), { font: new PhetFont( 22 ) } ),
-      listPosition: 'above',
-      cornerRadius: 8,
-      xMargin: 16,
-      yMargin: 16,
-      highlightFill: 'rgb( 218, 255, 255 )',
+      comboBoxOptions: {
+        listPosition: 'above',
+        cornerRadius: 8,
+        xMargin: 16,
+        yMargin: 16,
+        highlightFill: 'rgb( 218, 255, 255 )',
 
-      // pdom
-      accessibleName: soluteString,
-      helpText: soluteComboBoxHelpTextString,
+        // pdom
+        accessibleName: soluteString,
+        helpText: soluteComboBoxHelpTextString,
 
-      // voicing in Comboox:
-      comboBoxVoicingNameResponsePattern: MolarityStrings.a11y.soluteValuePattern,
-      comboBoxVoicingHintResponse: soluteComboBoxHelpTextString
+        // voicing in Comboox:
+        comboBoxVoicingNameResponsePattern: MolarityStrings.a11y.soluteValuePattern,
+        comboBoxVoicingHintResponse: soluteComboBoxHelpTextString
+      }
     }, options );
 
     assert && assert( !options.tandem, 'tandem is a required constructor parameter' );
-    options.tandem = tandem;
+    options.comboBoxOptions.tandem = tandem;
 
-    // {ComboBoxItem[]}
-    const items = solutes.map( createItem );
+    options.children = [
+      // 'Solute' label
+      new Text( StringUtils.format( pattern0LabelString, soluteString ), { font: new PhetFont( 22 ) } ),
 
-    super( selectedSoluteProperty, items, listParent, options );
+      new ComboBox( selectedSoluteProperty, solutes.map( createItem ), listParent, options.comboBoxOptions )
+    ];
+
+    super( options );
   }
 }
 
-molarity.register( 'SoluteComboBox', SoluteComboBox );
+molarity.register( 'SoluteControl', SoluteControl );
 
 /**
  * Creates an item for the combo box.
@@ -93,4 +98,4 @@ const createItem = solute => {
   };
 };
 
-export default SoluteComboBox;
+export default SoluteControl;

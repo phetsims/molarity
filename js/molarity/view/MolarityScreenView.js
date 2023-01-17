@@ -34,7 +34,7 @@ import MolarityScreenSummaryNode from './MolarityScreenSummaryNode.js';
 import PrecipitateNode from './PrecipitateNode.js';
 import PrecipitateSoundGenerator from './PrecipitateSoundGenerator.js';
 import SaturatedIndicator from './SaturatedIndicator.js';
-import SoluteComboBox from './SoluteComboBox.js';
+import SoluteControl from './SoluteControl.js';
 import SoluteSelectionSoundGenerator from './SoluteSelectionSoundGenerator.js';
 import SolutionNode from './SolutionNode.js';
 import VerticalSlider from './VerticalSlider.js';
@@ -112,7 +112,7 @@ class MolarityScreenView extends ScreenView {
 
     // solute control
     const soluteComboBoxListParent = new Node();
-    const soluteComboBox = new SoluteComboBox( model.solution.soluteProperty, model.solutes, soluteComboBoxListParent, tandem.createTandem( 'soluteComboBox' ), {
+    const soluteComboBox = new SoluteControl( model.solution.soluteProperty, model.solutes, soluteComboBoxListParent, tandem.createTandem( 'soluteComboBox' ), {
       maxWidth: 500,
 
       // ComboBox voicing
