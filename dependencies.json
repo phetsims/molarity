@@ -29,7 +29,7 @@
     "branch": "HEAD"
   },
   "molarity": {
-    "sha": "df731f79d59870925615df70c969cf668f55e838",
+    "sha": "4b1baf0434a02361700cb5d0649f3180fcc26bb6",
     "branch": "1.4"
   },
   "nitroglycerin": {
@@ -49,7 +49,7 @@
     "branch": "HEAD"
   },
   "phetcommon": {
-    "sha": "cbb884d92de19e69a5035d81777c5c440ed2f99b",
+    "sha": "cac8c335ff856e54d54d531654b6143679db670e",
     "branch": "HEAD"
   },
   "phetmarks": {
