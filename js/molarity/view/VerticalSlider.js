@@ -155,7 +155,7 @@ class VerticalSlider extends Node {
     // Update the value display, and position it relative to the track, so it's to the right of the slider thumb.
     const trackMinY = sliderNode.centerY - ( options.sliderOptions.trackSize.height / 2 );
     property.link( value => {
-      valueText.text = StringUtils.format( pattern0Value1UnitsString, Utils.toFixed( value, decimalPlaces ), units );
+      valueText.string = StringUtils.format( pattern0Value1UnitsString, Utils.toFixed( value, decimalPlaces ), units );
       valueText.centerY = trackMinY + Utils.linear( range.min, range.max, options.sliderOptions.trackSize.height, 0, value );
     } );
 

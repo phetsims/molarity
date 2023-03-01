@@ -192,7 +192,7 @@ class PointerNode extends Node {
       this.arrowNode.fill = solution.getColor();
 
       // update the value
-      valueText.text = StringUtils.format( pattern0Value1UnitsString, Utils.toFixed( concentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES ), unitsMolarityString );
+      valueText.string = StringUtils.format( pattern0Value1UnitsString, Utils.toFixed( concentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES ), unitsMolarityString );
       valueText.left = this.arrowNode.right + 5;
       valueText.centerY = this.arrowNode.centerY;
     };
