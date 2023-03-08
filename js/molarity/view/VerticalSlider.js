@@ -13,9 +13,8 @@ import Dimension2 from '../../../../dot/js/Dimension2.js';
 import Utils from '../../../../dot/js/Utils.js';
 import merge from '../../../../phet-core/js/merge.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
-import MultiLineText from '../../../../scenery-phet/js/MultiLineText.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { Color, Node, Text } from '../../../../scenery/js/imports.js';
+import { Color, Node, RichText, Text } from '../../../../scenery/js/imports.js';
 import VSlider from '../../../../sun/js/VSlider.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import molarity from '../../molarity.js';
@@ -104,7 +103,9 @@ class VerticalSlider extends Node {
       }
     }, options );
 
-    const titleText = new MultiLineText( title, {
+    const titleText = new RichText( title, {
+      replaceNewlines: true,
+      align: 'center',
       font: new PhetFont( { size: 24, weight: 'bold' } ),
       maxWidth: MAX_TEXT_WIDTH,
       tandem: options.tandem.createTandem( 'titleText' )

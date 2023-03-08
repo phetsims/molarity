@@ -14,9 +14,8 @@
 import Utils from '../../../../dot/js/Utils.js';
 import { Shape } from '../../../../kite/js/imports.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
-import MultiLineText from '../../../../scenery-phet/js/MultiLineText.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { Color, LinearGradient, Node, Path, Rectangle, Text } from '../../../../scenery/js/imports.js';
+import { Color, LinearGradient, Node, Path, Rectangle, RichText, Text } from '../../../../scenery/js/imports.js';
 import molarity from '../../molarity.js';
 import MolarityStrings from '../../MolarityStrings.js';
 import MolarityConstants from '../MolarityConstants.js';
@@ -58,7 +57,8 @@ class ConcentrationDisplay extends Node {
     // nodes
     const maxTextWidth = 175; // constrain width for i18n, determined empirically
 
-    const titleText = new MultiLineText( solutionConcentrationString, {
+    const titleText = new RichText( solutionConcentrationString, {
+      replaceNewlines: true,
       align: 'center',
       font: TITLE_FONT,
       maxWidth: maxTextWidth,
