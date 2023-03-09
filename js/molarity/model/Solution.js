@@ -32,6 +32,7 @@ class Solution {
     // @public
     this.soluteProperty = new Property( solute, {
       tandem: tandem.createTandem( 'soluteProperty' ),
+      hasListenerOrderDependencies: true,
       phetioValueType: Solute.SoluteIO
     } );
 
