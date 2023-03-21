@@ -32,6 +32,8 @@ class Solution {
     // @public
     this.soluteProperty = new Property( solute, {
       tandem: tandem.createTandem( 'soluteProperty' ),
+
+      // The description (view) in this sim needs to fire listeners after model listeners update this Property, see https://github.com/phetsims/molarity/issues/189
       hasListenerOrderDependencies: true,
       phetioValueType: Solute.SoluteIO
     } );
