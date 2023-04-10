@@ -84,14 +84,12 @@ const createItem = solute => {
     font: new PhetFont( 20 )
   } );
 
-  const hBox = new HBox( {
-    spacing: 5,
-    children: [ colorNode, textNode ]
-  } );
-
   return {
     value: solute,
-    node: hBox,
+    createNode: () => new HBox( {
+      spacing: 5,
+      children: [ colorNode, textNode ]
+    } ),
     soundPlayer: nullSoundPlayer, // sound generation for selection is done elsewhere
     tandemName: `${solute.tandem.name}${ComboBox.ITEM_TANDEM_NAME_SUFFIX}`,
     a11yName: solute.name
