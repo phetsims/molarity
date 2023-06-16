@@ -7,11 +7,10 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { Color, Node, Rectangle, RichText } from '../../../../scenery/js/imports.js';
-import StringIO from '../../../../tandem/js/types/StringIO.js';
 import molarity from '../../molarity.js';
 import MolaritySymbols from '../MolaritySymbols.js';
 
@@ -43,7 +42,7 @@ class BeakerLabelNode extends Node {
     this.addChild( textNode );
 
     // label on the beaker
-    const beakerLabelProperty = new DerivedProperty( [ solution.soluteProperty, solution.volumeProperty, solution.concentrationProperty ],
+    const beakerLabelProperty = new DerivedStringProperty( [ solution.soluteProperty, solution.volumeProperty, solution.concentrationProperty ],
       ( solute, volume, concentration ) => {
         let label;
         if ( volume === 0 ) {
@@ -57,8 +56,7 @@ class BeakerLabelNode extends Node {
         }
         return label;
       }, {
-        tandem: tandem.createTandem( 'beakerLabelProperty' ),
-        phetioValueType: StringIO
+        tandem: tandem.createTandem( 'beakerLabelStringProperty' )
       } );
 
     // update the label
