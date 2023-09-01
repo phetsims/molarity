@@ -27,7 +27,7 @@ class BeakerLabelNode extends Node {
 
     super( { tandem: tandem } );
 
-    const textNode = new RichText( '?', {
+    const text = new RichText( '?', {
       font: LABEL_FONT,
       maxWidth: 0.9 * LABEL_SIZE.width,
       tandem: tandem.createTandem( 'text' )
@@ -39,10 +39,10 @@ class BeakerLabelNode extends Node {
     } );
 
     this.addChild( backgroundNode );
-    this.addChild( textNode );
+    this.addChild( text );
 
     // label on the beaker
-    const beakerLabelProperty = new DerivedStringProperty( [ solution.soluteProperty, solution.volumeProperty, solution.concentrationProperty ],
+    const beakerLabelStringProperty = new DerivedStringProperty( [ solution.soluteProperty, solution.volumeProperty, solution.concentrationProperty ],
       ( solute, volume, concentration ) => {
         let label;
         if ( volume === 0 ) {
@@ -60,11 +60,11 @@ class BeakerLabelNode extends Node {
       } );
 
     // update the label
-    beakerLabelProperty.link( label => {
-      textNode.string = label;
+    beakerLabelStringProperty.link( label => {
+      text.string = label;
       // center formula in background
-      textNode.centerX = backgroundNode.centerX;
-      textNode.centerY = backgroundNode.centerY;
+      text.centerX = backgroundNode.centerX;
+      text.centerY = backgroundNode.centerY;
     } );
   }
 }

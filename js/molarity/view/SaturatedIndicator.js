@@ -23,24 +23,24 @@ class SaturatedIndicator extends Node {
 
     super( { tandem: tandem } );
 
-    const textNode = new Text( saturatedString, {
+    const text = new Text( saturatedString, {
       font: new PhetFont( 22 ),
       maxWidth: 200,
       tandem: tandem.createTandem( 'text' )
     } );
 
     // translucent light-gray background, so this shows up on all solution colors
-    const backgroundNode = new Rectangle( 0, 0, 1.2 * textNode.width, 1.2 * textNode.height, 8, 8, {
+    const backgroundNode = new Rectangle( 0, 0, 1.2 * text.width, 1.2 * text.height, 8, 8, {
       fill: 'rgba( 240, 240, 240, 0.6 )',
       tandem: tandem.createTandem( 'backgroundNode' )
     } );
 
     // rendering order
     this.addChild( backgroundNode );
-    this.addChild( textNode );
+    this.addChild( text );
 
     // layout
-    textNode.center = backgroundNode.center;
+    text.center = backgroundNode.center;
 
     // make this node visible when the solution is saturated
     solution.precipitateAmountProperty.link( () => {
