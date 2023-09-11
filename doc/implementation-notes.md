@@ -2,11 +2,11 @@ Implementation notes for 'Molarity' sim
 
 This sim uses phet.axon.Property throughout the model and view for storage of properties and notification of changes.
 
-Since spatial units (distance, size, location) have no relevance to the model, there is no model-view transform.
-The model uses the view coordinate frame, where positive x is to the right, and positive y is down.
+Since spatial units (distance, size, location) have no relevance to the model, there is no model-view transform. The
+model uses the view coordinate frame, where positive x is to the right, and positive y is down.
 
-I find that I frequently need to change the rendering order and layout of nodes.
-To make this easier, node constructors typically have this structure:
+I find that I frequently need to change the rendering order and layout of nodes. To make this easier, node constructors
+typically have this structure:
 
     function MyNode(...) {
 
@@ -21,8 +21,8 @@ To make this easier, node constructors typically have this structure:
 
 ## Disposal
 
-There are no dynamic pieces to this simulation, and as a result nothing is disposed.
-As a result no listeners need to be unlinked or removed.
+There are no dynamic pieces to this simulation, and as a result nothing is disposed. As a result no listeners need to be
+unlinked or removed.
 
 ## Accessibility
 
