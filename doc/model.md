@@ -4,10 +4,9 @@ The basic equation for Molarity is:
 
 M = mol/L
 
-A chemical solution is a solute dissolved in a solvent.
-The solvent in this sim is pure water.
-The solutes are shown in the Solutes combo box.
-Adding solute to solution beyond its saturated concentration results in formation of a precipitate.
+A chemical solution is a solute dissolved in a solvent. The solvent in this sim is pure water. The solutes are shown in
+the Solutes combo box. Adding solute to solution beyond its saturated concentration results in formation of a
+precipitate.
 
 Concentration of a solution is:
 
