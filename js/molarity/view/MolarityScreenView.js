@@ -89,6 +89,10 @@ class MolarityScreenView extends ScreenView {
     const soluteAmountDescriber = new SoluteAmountDescriber( model.solution.soluteAmountProperty, soluteDescriber, useQuantitativeDescriptionsProperty );
 
     super( {
+
+      // A PhET wide decision was made to not update custom layout bounds even if they do not match the
+      // default layout bounds in ScreenView. Do not change these bounds as changes could break or disturb
+      // any phet-io instrumention. https://github.com/phetsims/phet-io/issues/1939
       layoutBounds: new Bounds2( 0, 0, 1100, 700 ),
       tandem: tandem,
       screenSummaryContent: new MolarityScreenSummaryNode( model, useQuantitativeDescriptionsProperty,
