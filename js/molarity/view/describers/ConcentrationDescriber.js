@@ -170,10 +170,10 @@ class ConcentrationDescriber {
     // The described max concentration in this clause is the maximum of the displayed concentration range for solutes
     // with a max concentration larger than the displayed concentration range max, and is the solute's actual max
     // concentration if it is less than the displayed concentration range max.
-    const displayedMaxConcentration = Utils.toFixed( clampedConcentration, MolarityConstants.SOLUTE_AMOUNT_DECIMAL_PLACES );
+    const displayedMaxConcentration = Utils.toFixed( clampedConcentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES );
 
     return StringUtils.fillIn( beakerConcentrationRangePatternString, {
-      maxConcentration: Utils.toFixed( displayedMaxConcentration, MolarityConstants.CONCENTRATION_DECIMAL_PLACES )
+      maxConcentration: displayedMaxConcentration
     } );
   }
 
