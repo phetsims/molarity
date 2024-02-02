@@ -53,7 +53,7 @@ class PrecipitateSoundGenerator extends SoundClip {
     // monitor the precipitate level and play sounds as it changes
     precipitateAmountProperty.lazyLink( ( precipitateAmount, previousPrecipitateAmount ) => {
 
-      // if the change was due to an pdom-caused event, a sound should be played on every change
+      // if the change was due to a pdom-caused event, a sound should be played on every change
       const changeDueToA11yAction = soluteAmountSlider.draggingPointerType === 'pdom' ||
                                     solutionVolumeSlider.draggingPointerType === 'pdom';
 
