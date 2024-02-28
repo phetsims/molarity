@@ -91,7 +91,7 @@ const createItem = solute => {
       children: [ colorNode, textNode ]
     } ),
     soundPlayer: nullSoundPlayer, // sound generation for selection is done elsewhere
-    tandemName: `${solute.tandem.name}${ComboBox.ITEM_TANDEM_NAME_SUFFIX}`,
+    tandemName: `${solute.tandem.name}Item`,
     a11yName: solute.name
   };
 };
