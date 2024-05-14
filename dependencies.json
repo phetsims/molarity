@@ -13,7 +13,7 @@
     "branch": "HEAD"
   },
   "chipper": {
-    "sha": "2365b1cff9fd692b1f4f9e8cba882ca43b7f0935",
+    "sha": "c52349893d52b02eff550ba0d19ab7abb0f532ed",
     "branch": "HEAD"
   },
   "dot": {
@@ -29,7 +29,7 @@
     "branch": "HEAD"
   },
   "molarity": {
-    "sha": "f07635c6091d80286f696ecd0f6559b9f7a46bcb",
+    "sha": "6ad3198fbe38f3df46b21a493c181ad616710a7a",
     "branch": "1.5"
   },
   "nitroglycerin": {
