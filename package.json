@@ -37,7 +37,7 @@
         ],
         "parserOptions": {
           "project": [
-            "../molarity/tsconfig.json"
+            "../chipper/tsconfig/eslint-all/tsconfig.json"
           ]
         }
       }
