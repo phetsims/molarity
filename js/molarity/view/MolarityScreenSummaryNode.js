@@ -11,6 +11,7 @@ import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import { Node } from '../../../../scenery/js/imports.js';
 import molarity from '../../molarity.js';
 import MolarityStrings from '../../MolarityStrings.js';
+import ScreenSummaryContent from '../../../../joist/js/ScreenSummaryContent.js';
 
 const ofString = MolarityStrings.a11y.of;
 const notSaturatedString = MolarityStrings.a11y.notSaturated;
@@ -23,7 +24,7 @@ const screenSummarySimInteractionHintString = MolarityStrings.a11y.screenSummary
 const screenSummaryCurrentStateOfSimNoSolutePatternString = MolarityStrings.a11y.screenSummary.currentStateOfSimNoSolutePattern;
 const screenSummaryCurrentStateOfSimPatternString = MolarityStrings.a11y.screenSummary.currentStateOfSimPattern;
 
-class MolarityScreenSummaryNode extends Node {
+class MolarityScreenSummaryNode extends ScreenSummaryContent {
 
   /**
    * @param {MolarityModel} model
@@ -36,7 +37,16 @@ class MolarityScreenSummaryNode extends Node {
   constructor( model, useQuantitativeDescriptionsProperty, concentrationDescriber, soluteAmountDescriber,
                soluteDescriber, volumeDescriber ) {
 
-    super();
+    super( [
+
+      // First paragraph of the screen summary -- static regardless of state of sim, describes the play area
+      StringUtils.fillIn( screenSummaryPlayAreaPatternString, {
+        numberOfSolutes: model.solutes.length
+      } ),
+
+      // Second paragraph of the screen summary -- static regardless of state of sim, describes the control area
+      screenSummaryControlAreaPatternString
+    ] );
 
     // @private
     this.solution = model.solution;
@@ -45,20 +55,6 @@ class MolarityScreenSummaryNode extends Node {
     this.soluteAmountDescriber = soluteAmountDescriber;
     this.soluteDescriber = soluteDescriber;
     this.volumeDescriber = volumeDescriber;
-
-    // First paragraph of the screen summary -- static regardless of state of sim, describes the play area
-    this.addChild( new Node( {
-      tagName: 'p',
-      innerContent: StringUtils.fillIn( screenSummaryPlayAreaPatternString, {
-        numberOfSolutes: model.solutes.length
-      } )
-    } ) );
-
-    // Second paragraph of the screen summary -- static regardless of state of sim, describes the control area
-    this.addChild( new Node( {
-      tagName: 'p',
-      innerContent: screenSummaryControlAreaPatternString
-    } ) );
 
     // Third paragraph of the screen summary -- dynamic depending on the state of the sim so keep a reference to it.
     const stateOfSimNode = new Node( {
