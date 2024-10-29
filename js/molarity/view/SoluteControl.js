@@ -92,7 +92,7 @@ const createItem = solute => {
     } ),
     soundPlayer: nullSoundPlayer, // sound generation for selection is done elsewhere
     tandemName: `${solute.tandem.name}Item`,
-    a11yName: solute.name
+    accessibleName: solute.name
   };
 };
 
