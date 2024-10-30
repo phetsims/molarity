@@ -69,8 +69,7 @@ class VerticalSlider extends Node {
         shiftKeyboardStep: Math.pow( 10, decimalPlaces * -1 ),
         appendDescription: true,
         keyboardStep: 0.050,
-        pdomDependencies: [],
-        containerTagName: 'div' // for fixing layout in a11y-view with aria-valuetext
+        pdomDependencies: []
       }
     }, options );
 
