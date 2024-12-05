@@ -71,7 +71,8 @@ class MolarityScreenView extends ScreenView {
 
     // Whether or the not model values are displayed in the visual view
     const valuesVisibleProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'valuesVisibleProperty' )
+      tandem: tandem.createTandem( 'valuesVisibleProperty' ),
+      phetioFeatured: true
     } );
 
     // Determines whether qualitative or quantitative interactive description is used. Even though it is the same as the
