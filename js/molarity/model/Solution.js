@@ -35,7 +35,8 @@ class Solution {
 
       // The description (view) in this sim needs to fire listeners after model listeners update this Property, see https://github.com/phetsims/molarity/issues/189
       hasListenerOrderDependencies: true,
-      phetioValueType: Solute.SoluteIO
+      phetioValueType: Solute.SoluteIO,
+      phetioFeatured: true
     } );
 
     // @public
