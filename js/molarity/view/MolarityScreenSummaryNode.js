@@ -37,16 +37,18 @@ class MolarityScreenSummaryNode extends ScreenSummaryContent {
   constructor( model, useQuantitativeDescriptionsProperty, concentrationDescriber, soluteAmountDescriber,
                soluteDescriber, volumeDescriber ) {
 
-    super( [
+    super( {
+      additionalContent: [
 
-      // First paragraph of the screen summary -- static regardless of state of sim, describes the play area
-      StringUtils.fillIn( screenSummaryPlayAreaPatternString, {
-        numberOfSolutes: model.solutes.length
-      } ),
+        // First paragraph of the screen summary -- static regardless of state of sim, describes the play area
+        StringUtils.fillIn( screenSummaryPlayAreaPatternString, {
+          numberOfSolutes: model.solutes.length
+        } ),
 
-      // Second paragraph of the screen summary -- static regardless of state of sim, describes the control area
-      screenSummaryControlAreaPatternString
-    ] );
+        // Second paragraph of the screen summary -- static regardless of state of sim, describes the control area
+        screenSummaryControlAreaPatternString
+      ]
+    } );
 
     // @private
     this.solution = model.solution;
