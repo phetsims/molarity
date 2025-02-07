@@ -10,7 +10,10 @@
 import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { Color, Node, Rectangle, RichText } from '../../../../scenery/js/imports.js';
+import Node from '../../../../scenery/js/nodes/Node.js';
+import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
+import RichText from '../../../../scenery/js/nodes/RichText.js';
+import Color from '../../../../scenery/js/util/Color.js';
 import molarity from '../../molarity.js';
 import MolaritySymbols from '../MolaritySymbols.js';
 

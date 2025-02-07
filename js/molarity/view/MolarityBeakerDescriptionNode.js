@@ -9,7 +9,7 @@
 import Multilink from '../../../../axon/js/Multilink.js';
 import ChemUtils from '../../../../nitroglycerin/js/ChemUtils.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
-import { Node } from '../../../../scenery/js/imports.js';
+import Node from '../../../../scenery/js/nodes/Node.js';
 import molarity from '../../molarity.js';
 import MolarityStrings from '../../MolarityStrings.js';
 

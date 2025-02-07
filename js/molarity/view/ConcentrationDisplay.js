@@ -12,10 +12,16 @@
  */
 
 import Utils from '../../../../dot/js/Utils.js';
-import { Shape } from '../../../../kite/js/imports.js';
+import Shape from '../../../../kite/js/Shape.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { Color, LinearGradient, Node, Path, Rectangle, RichText, Text } from '../../../../scenery/js/imports.js';
+import Node from '../../../../scenery/js/nodes/Node.js';
+import Path from '../../../../scenery/js/nodes/Path.js';
+import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
+import RichText from '../../../../scenery/js/nodes/RichText.js';
+import Text from '../../../../scenery/js/nodes/Text.js';
+import Color from '../../../../scenery/js/util/Color.js';
+import LinearGradient from '../../../../scenery/js/util/LinearGradient.js';
 import molarity from '../../molarity.js';
 import MolarityStrings from '../../MolarityStrings.js';
 import MolarityConstants from '../MolarityConstants.js';

@@ -9,8 +9,12 @@
  */
 
 import Utils from '../../../../dot/js/Utils.js';
-import { Shape } from '../../../../kite/js/imports.js';
-import { Circle, Color, Node, Path, Rectangle } from '../../../../scenery/js/imports.js';
+import Shape from '../../../../kite/js/Shape.js';
+import Circle from '../../../../scenery/js/nodes/Circle.js';
+import Node from '../../../../scenery/js/nodes/Node.js';
+import Path from '../../../../scenery/js/nodes/Path.js';
+import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
+import Color from '../../../../scenery/js/util/Color.js';
 import molarity from '../../molarity.js';
 
 // constants
