@@ -210,7 +210,7 @@ class MolarityScreenView extends ScreenView {
 
       // pdom
       accessibleName: showValuesString,
-      helpText: solutionValuesHelpTextString
+      accessibleHelpText: solutionValuesHelpTextString
     } );
     solutionValuesCheckbox.touchArea = Shape.rectangle( solutionValuesCheckbox.left, solutionValuesCheckbox.top - 15, solutionValuesCheckbox.width + 5, solutionValuesCheckbox.height + 30 );
 

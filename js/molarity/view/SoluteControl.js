@@ -46,7 +46,7 @@ class SoluteControl extends HBox {
 
         // pdom
         accessibleName: soluteString,
-        helpText: soluteComboBoxHelpTextString,
+        accessibleHelpText: soluteComboBoxHelpTextString,
 
         // voicing in Comboox:
         comboBoxVoicingNameResponsePattern: MolarityStrings.a11y.soluteValuePattern,
