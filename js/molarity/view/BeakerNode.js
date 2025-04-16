@@ -58,9 +58,7 @@ class BeakerNode extends Node {
     super( {
       pickable: false,
       tandem: tandem,
-      tagName: 'div',
-      labelTagName: 'h3',
-      labelContent: beakerHeaderString
+      accessibleHeading: beakerHeaderString
     } );
 
     // @private the glass beaker
