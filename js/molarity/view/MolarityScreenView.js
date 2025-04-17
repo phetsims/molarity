@@ -226,10 +226,8 @@ class MolarityScreenView extends ScreenView {
 
     // pdom - heading and accessible order for slider controls section of PDOM
     const solutionControlsNode = new Node( {
-      tagName: 'div',
-      labelTagName: 'h3',
-      labelContent: beakerSolutionControlsString,
-      descriptionContent: sliderHelpTextString
+      accessibleHeading: beakerSolutionControlsString,
+      accessibleParagraph: sliderHelpTextString
     } );
     solutionControlsNode.pdomOrder = [ soluteAmountSlider, solutionVolumeSlider ];
 
