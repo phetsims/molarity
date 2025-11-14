@@ -141,7 +141,7 @@ class MolarityScreenView extends ScreenView {
 
           // pdom
           accessibleName: soluteAmountNoNewlineString,
-          pdomCreateAriaValueText: () => soluteAmountDescriber.getSoluteAmountValueText(),
+          createAriaValueText: () => soluteAmountDescriber.getSoluteAmountValueText(),
           descriptionDependencies: [ model.solution.soluteProperty ]
         }
       }
@@ -165,7 +165,7 @@ class MolarityScreenView extends ScreenView {
 
           // pdom
           accessibleName: solutionVolumeString,
-          pdomCreateAriaValueText: () => volumeDescriber.getVolumeAriaValueText()
+          createAriaValueText: () => volumeDescriber.getVolumeAriaValueText()
         }
       } );
 
