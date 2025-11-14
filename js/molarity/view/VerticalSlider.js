@@ -72,7 +72,7 @@ class VerticalSlider extends Node {
         shiftKeyboardStep: Math.pow( 10, decimalPlaces * -1 ),
         appendDescription: true,
         keyboardStep: 0.050,
-        pdomDependencies: []
+        descriptionDependencies: []
       }
     }, options );
 
@@ -80,12 +80,12 @@ class VerticalSlider extends Node {
     assert && assert( options.sliderOptions.startDrag === undefined, 'VerticalSlider sets its own sliderOptions.startDrag' );
     assert && assert( options.sliderOptions.endDrag === undefined, 'VerticalSlider sets its own sliderOptions.endDrag' );
     assert && assert( options.constrainValue === undefined, 'VerticalSlider sets its own constrainValue' );
-    assert && assert( options.sliderOptions.pdomDependencies.indexOf( useQuantitativeDescriptionsProperty ) === -1,
+    assert && assert( options.sliderOptions.descriptionDependencies.indexOf( useQuantitativeDescriptionsProperty ) === -1,
       'VerticalSlider adds useQuantitativeDescriptionsProperty as an a11yDependency, no need to add it yourself.' );
 
     // aria-valuetext is also updated whenever useQuantitative Descriptions Property changes. Push this instead of adding
-    // it as a default to support client passing in their own pdomDependencies.
-    options.sliderOptions.pdomDependencies.push( useQuantitativeDescriptionsProperty );
+    // it as a default to support client passing in their own descriptionDependencies.
+    options.sliderOptions.descriptionDependencies.push( useQuantitativeDescriptionsProperty );
 
     // model values are constrained to the number of decimal places supported by the slider so that resultant molarity
     // values are calculated without discrepancies due to precision
