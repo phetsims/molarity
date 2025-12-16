@@ -109,7 +109,7 @@ class MolarityAlertManager extends Alerter {
     this.sliderUtterance.alert = StringUtils.fillIn( atMaxConcentrationAlertPatternString, {
       concentration: this.concentrationDescriber.getCurrentConcentrationClause( true )
     } );
-    this.addAccessibleResponse( this.sliderUtterance );
+    this.addAccessibleContextResponse( this.sliderUtterance );
   }
 
   /**
@@ -136,7 +136,7 @@ class MolarityAlertManager extends Alerter {
   alertNoSolute() {
     assert && assert( !this.solution.hasSolute(), 'no solute alert triggered with solute in the beaker' );
     this.sliderUtterance.alert = noSoluteAlertString;
-    this.addAccessibleResponse( this.sliderUtterance );
+    this.addAccessibleContextResponse( this.sliderUtterance );
   }
 
   /**
@@ -145,7 +145,7 @@ class MolarityAlertManager extends Alerter {
    */
   alertSoluteChanged() {
     this.soluteUtterance.alert = this.soluteDescriber.getSoluteChangedAlertString( this.useQuantitativeDescriptionsProperty );
-    this.addAccessibleResponse( this.soluteUtterance );
+    this.addAccessibleContextResponse( this.soluteUtterance );
   }
 
   /**
@@ -157,7 +157,7 @@ class MolarityAlertManager extends Alerter {
     this.valuesVisibleUtterance.alert = valuesVisibleProperty ?
                                         solutionValuesCheckedAlertString :
                                         solutionValuesUncheckedAlertString;
-    this.addAccessibleResponse( this.valuesVisibleUtterance );
+    this.addAccessibleContextResponse( this.valuesVisibleUtterance );
   }
 
   /**
@@ -192,7 +192,7 @@ class MolarityAlertManager extends Alerter {
     }
 
     this.sliderUtterance.alert = alertText;
-    this.addAccessibleResponse( this.sliderUtterance );
+    this.addAccessibleContextResponse( this.sliderUtterance );
   }
 
   /**
@@ -217,7 +217,7 @@ class MolarityAlertManager extends Alerter {
     }
 
     this.sliderUtterance.alert = alertText;
-    this.addAccessibleResponse( this.sliderUtterance );
+    this.addAccessibleContextResponse( this.sliderUtterance );
   }
 }
 
