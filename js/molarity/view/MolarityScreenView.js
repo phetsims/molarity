@@ -15,6 +15,7 @@ import Shape from '../../../../kite/js/Shape.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
+import ParallelDOM from '../../../../scenery/js/accessibility/pdom/ParallelDOM.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
@@ -227,7 +228,8 @@ class MolarityScreenView extends ScreenView {
     // pdom - heading and accessible order for slider controls section of PDOM
     const solutionControlsNode = new Node( {
       accessibleHeading: beakerSolutionControlsString,
-      accessibleParagraph: sliderHelpTextString
+      accessibleHelpText: sliderHelpTextString,
+      accessibleHelpTextBehavior: ParallelDOM.HELP_TEXT_BEFORE_CONTENT
     } );
     solutionControlsNode.pdomOrder = [ soluteAmountSlider, solutionVolumeSlider ];
 
