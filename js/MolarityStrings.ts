@@ -416,4 +416,6 @@ type StringsType = {
 
 const MolarityStrings = getStringModule( 'MOLARITY' ) as StringsType;
 
+molarity.register( 'MolarityStrings', MolarityStrings );
+
 export default MolarityStrings;
