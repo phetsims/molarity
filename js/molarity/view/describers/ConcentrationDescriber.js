@@ -10,7 +10,6 @@
 
 import Utils from '../../../../../dot/js/Utils.js';
 import StringUtils from '../../../../../phetcommon/js/util/StringUtils.js';
-import molarity from '../../../molarity.js';
 import MolarityStrings from '../../../MolarityStrings.js';
 import MolarityConstants from '../../MolarityConstants.js';
 
@@ -278,5 +277,4 @@ const concentrationToIndex = ( currentConcentration, saturatedConcentrationForSo
   return -1;
 };
 
-molarity.register( 'ConcentrationDescriber', ConcentrationDescriber );
 export default ConcentrationDescriber;

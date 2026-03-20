@@ -10,7 +10,6 @@ import Multilink from '../../../../axon/js/Multilink.js';
 import ScreenSummaryContent from '../../../../joist/js/ScreenSummaryContent.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
-import molarity from '../../molarity.js';
 import MolarityStrings from '../../MolarityStrings.js';
 
 const ofString = MolarityStrings.a11y.of;
@@ -116,5 +115,4 @@ class MolarityScreenSummaryNode extends ScreenSummaryContent {
   }
 }
 
-molarity.register( 'MolarityScreenSummaryNode', MolarityScreenSummaryNode );
 export default MolarityScreenSummaryNode;

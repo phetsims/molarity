@@ -13,7 +13,6 @@ import Alerter from '../../../../scenery-phet/js/accessibility/describers/Alerte
 import ActivationUtterance from '../../../../utterance-queue/js/ActivationUtterance.js';
 import Utterance from '../../../../utterance-queue/js/Utterance.js';
 import ValueChangeUtterance from '../../../../utterance-queue/js/ValueChangeUtterance.js';
-import molarity from '../../molarity.js';
 import MolarityStrings from '../../MolarityStrings.js';
 
 const atMaxConcentrationAlertPatternString = MolarityStrings.a11y.atMaxConcentrationAlertPattern;
@@ -229,5 +228,4 @@ class MolarityAlertManager extends Alerter {
  * @property {string} quantityChangeString - describing the slider quantity that changed
  */
 
-molarity.register( 'MolarityAlertManager', MolarityAlertManager );
 export default MolarityAlertManager;

@@ -12,7 +12,6 @@ import ComboBoxKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/he
 import KeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/KeyboardHelpSection.js';
 import SliderControlsKeyboardHelpSection from '../../../../scenery-phet/js/keyboard/help/SliderControlsKeyboardHelpSection.js';
 import TwoColumnKeyboardHelpContent from '../../../../scenery-phet/js/keyboard/help/TwoColumnKeyboardHelpContent.js';
-import molarity from '../../molarity.js';
 import MolarityStrings from '../../MolarityStrings.js';
 
 const keyboardSliderHelpHeadingString = MolarityStrings.keyboard.sliderHelpHeadingStringProperty;
@@ -44,5 +43,4 @@ class MolarityKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
   }
 }
 
-molarity.register( 'MolarityKeyboardHelpContent', MolarityKeyboardHelpContent );
 export default MolarityKeyboardHelpContent;

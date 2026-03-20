@@ -7,7 +7,6 @@
  */
 
 import Screen from '../../../joist/js/Screen.js';
-import molarity from '../molarity.js';
 import MolarityModel from './model/MolarityModel.js';
 import MolarityKeyboardHelpContent from './view/MolarityKeyboardHelpContent.js';
 import MolarityScreenView from './view/MolarityScreenView.js';
@@ -32,5 +31,4 @@ class MolarityScreen extends Screen {
   }
 }
 
-molarity.register( 'MolarityScreen', MolarityScreen );
 export default MolarityScreen;

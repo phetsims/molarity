@@ -19,7 +19,6 @@ import Path from '../../../../scenery/js/nodes/Path.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import Color from '../../../../scenery/js/util/Color.js';
-import molarity from '../../molarity.js';
 import MolarityStrings from '../../MolarityStrings.js';
 import BeakerImageNode from './BeakerImageNode.js';
 import BeakerLabelNode from './BeakerLabelNode.js';
@@ -175,7 +174,5 @@ class BeakerNode extends Node {
     return this.beakerImageNode.getCylinderEndHeight();
   }
 }
-
-molarity.register( 'BeakerNode', BeakerNode );
 
 export default BeakerNode;

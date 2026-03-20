@@ -7,7 +7,6 @@
  */
 
 import ChemUtils from '../../../nitroglycerin/js/ChemUtils.js';
-import molarity from '../molarity.js';
 import MolarityStrings from '../MolarityStrings.js';
 
 const drinkMixString = MolarityStrings.drinkMix;
@@ -28,7 +27,5 @@ const MolaritySymbols = {
   WATER: toSubscript( 'H2O' ),
   CITRIC_ACID: toSubscript( 'C6H8O7' )
 };
-
-molarity.register( 'MolaritySymbols', MolaritySymbols );
 
 export default MolaritySymbols;

@@ -12,7 +12,6 @@
  */
 
 import StringUtils from '../../../../../phetcommon/js/util/StringUtils.js';
-import molarity from '../../../molarity.js';
 import MolarityStrings from '../../../MolarityStrings.js';
 import Solution from '../../model/Solution.js';
 import MolarityConstants from '../../MolarityConstants.js';
@@ -241,5 +240,4 @@ const precipitateAmountToIndex = ( currentPrecipitateAmount, saturatedConcentrat
   return PRECIPITATE_AMOUNT_STRINGS_CAPITALIZED.length - 1;
 };
 
-molarity.register( 'PrecipitateAmountDescriber', PrecipitateAmountDescriber );
 export default PrecipitateAmountDescriber;

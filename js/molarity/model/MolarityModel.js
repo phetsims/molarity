@@ -9,7 +9,6 @@
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import StringCasingPair from '../../../../scenery-phet/js/accessibility/StringCasingPair.js';
 import Color from '../../../../scenery/js/util/Color.js';
-import molarity from '../../molarity.js';
 import MolarityStrings from '../../MolarityStrings.js';
 import MolarityConstants from '../MolarityConstants.js';
 import MolaritySymbols from '../MolaritySymbols.js';
@@ -140,7 +139,5 @@ class MolarityModel {
     this.resetInProgressProperty.set( false );
   }
 }
-
-molarity.register( 'MolarityModel', MolarityModel );
 
 export default MolarityModel;

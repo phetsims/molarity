@@ -15,7 +15,6 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Color from '../../../../scenery/js/util/Color.js';
-import molarity from '../../molarity.js';
 
 // constants
 const DEBUG_ORIGIN = false;
@@ -82,7 +81,5 @@ class SolutionNode extends Node {
     solution.volumeProperty.link( updateShape );
   }
 }
-
-molarity.register( 'SolutionNode', SolutionNode );
 
 export default SolutionNode;

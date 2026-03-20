@@ -16,7 +16,6 @@ import selectionArpeggio006_mp3 from '../../../../tambo/sounds/selectionArpeggio
 import selectionArpeggio007_mp3 from '../../../../tambo/sounds/selectionArpeggio007_mp3.js';
 import selectionArpeggio008_mp3 from '../../../../tambo/sounds/selectionArpeggio008_mp3.js';
 import selectionArpeggio009_mp3 from '../../../../tambo/sounds/selectionArpeggio009_mp3.js';
-import molarity from '../../molarity.js';
 
 // sounds
 const selectionSounds = [
@@ -61,5 +60,4 @@ class SoluteSelectionSoundGenerator extends MultiClip {
   }
 }
 
-molarity.register( 'SoluteSelectionSoundGenerator', SoluteSelectionSoundGenerator );
 export default SoluteSelectionSoundGenerator;

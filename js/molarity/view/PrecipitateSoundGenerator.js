@@ -12,7 +12,6 @@ import merge from '../../../../phet-core/js/merge.js';
 import BinMapper from '../../../../tambo/js/BinMapper.js';
 import SoundClip from '../../../../tambo/js/sound-generators/SoundClip.js';
 import precipitate_mp3 from '../../../sounds/precipitate_mp3.js';
-import molarity from '../../molarity.js';
 
 // constants
 const ONE_OCTAVE_NOTE_MULTIPLIERS = [ 1, 1.122, 1.260, 1.414, 1.587, 1.782 ]; // whole tone scale
@@ -105,5 +104,4 @@ class PrecipitateSoundGenerator extends SoundClip {
   }
 }
 
-molarity.register( 'PrecipitateSoundGenerator', PrecipitateSoundGenerator );
 export default PrecipitateSoundGenerator;

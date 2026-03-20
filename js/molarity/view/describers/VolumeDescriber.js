@@ -9,7 +9,6 @@
 
 import Utils from '../../../../../dot/js/Utils.js';
 import StringUtils from '../../../../../phetcommon/js/util/StringUtils.js';
-import molarity from '../../../molarity.js';
 import MolarityStrings from '../../../MolarityStrings.js';
 import MolarityConstants from '../../MolarityConstants.js';
 import SolutionQuantityDescriber from './SolutionQuantityDescriber.js';
@@ -201,5 +200,4 @@ const volumeToIndex = volume => {
   }
 };
 
-molarity.register( 'VolumeDescriber', VolumeDescriber );
 export default VolumeDescriber;

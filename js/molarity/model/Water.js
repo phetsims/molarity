@@ -8,7 +8,6 @@
 
 import StringCasingPair from '../../../../scenery-phet/js/accessibility/StringCasingPair.js';
 import Color from '../../../../scenery/js/util/Color.js';
-import molarity from '../../molarity.js';
 import MolarityStrings from '../../MolarityStrings.js';
 import MolaritySymbols from '../MolaritySymbols.js';
 
@@ -20,7 +19,5 @@ const Water = {
   color: new Color( 224, 255, 255 ),
   colorStringPair: new StringCasingPair( soluteColorsLowercaseClearString, soluteColorsCapitalizedClearString )
 };
-
-molarity.register( 'Water', Water );
 
 export default Water;

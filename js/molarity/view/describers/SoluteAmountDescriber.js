@@ -9,7 +9,6 @@
 
 import Utils from '../../../../../dot/js/Utils.js';
 import StringUtils from '../../../../../phetcommon/js/util/StringUtils.js';
-import molarity from '../../../molarity.js';
 import MolarityStrings from '../../../MolarityStrings.js';
 import MolarityConstants from '../../MolarityConstants.js';
 import SolutionQuantityDescriber from './SolutionQuantityDescriber.js';
@@ -200,5 +199,4 @@ const soluteAmountToIndex = soluteAmount => {
   }
 };
 
-molarity.register( 'SoluteAmountDescriber', SoluteAmountDescriber );
 export default SoluteAmountDescriber;

@@ -13,7 +13,6 @@ import Dimension2 from '../../../../dot/js/Dimension2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Image from '../../../../scenery/js/nodes/Image.js';
 import beaker_png from '../../../images/beaker_png.js';
-import molarity from '../../molarity.js';
 
 // points of interest in the image file
 const CYLINDER_UPPER_LEFT = new Vector2( 98, 192 );
@@ -53,5 +52,4 @@ class BeakerImageNode extends Image {
   }
 }
 
-molarity.register( 'BeakerImageNode', BeakerImageNode );
 export default BeakerImageNode;

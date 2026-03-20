@@ -7,8 +7,6 @@
  * @author Michael Kauzmann (PhET Interactive Simulations)
  */
 
-import molarity from '../../../molarity.js';
-
 class SolutionQuantityDescriber {
 
   /**
@@ -28,5 +26,4 @@ class SolutionQuantityDescriber {
   }
 }
 
-molarity.register( 'SolutionQuantityDescriber', SolutionQuantityDescriber );
 export default SolutionQuantityDescriber;

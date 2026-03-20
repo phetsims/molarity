@@ -22,7 +22,6 @@ import RichText from '../../../../scenery/js/nodes/RichText.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import Color from '../../../../scenery/js/util/Color.js';
 import LinearGradient from '../../../../scenery/js/util/LinearGradient.js';
-import molarity from '../../molarity.js';
 import MolarityStrings from '../../MolarityStrings.js';
 import MolarityConstants from '../MolarityConstants.js';
 import DualLabelNode from './DualLabelNode.js';
@@ -142,8 +141,6 @@ class ConcentrationDisplay extends Node {
     } );
   }
 }
-
-molarity.register( 'ConcentrationDisplay', ConcentrationDisplay );
 
 class PointerNode extends Node {
   /**

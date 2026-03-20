@@ -12,7 +12,6 @@ import Property from '../../../../axon/js/Property.js';
 import Utils from '../../../../dot/js/Utils.js';
 import Color from '../../../../scenery/js/util/Color.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
-import molarity from '../../molarity.js';
 import MolarityConstants from '../MolarityConstants.js';
 import Solute from './Solute.js';
 
@@ -132,7 +131,5 @@ class Solution {
     return volume > 0 ? Math.max( 0, volume * ( ( soluteAmount / volume ) - saturatedConcentration ) ) : soluteAmount;
   }
 }
-
-molarity.register( 'Solution', Solution );
 
 export default Solution;

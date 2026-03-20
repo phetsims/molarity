@@ -8,7 +8,6 @@
 
 import Range from '../../../dot/js/Range.js';
 import RangeWithValue from '../../../dot/js/RangeWithValue.js';
-import molarity from '../molarity.js';
 
 // constants
 const SOLUTE_AMOUNT_RANGE = new RangeWithValue( 0, 1, 0.5 ); // moles
@@ -39,7 +38,5 @@ const MolarityConstants = {
   // decimal places for all min/max range values in the view
   RANGE_DECIMAL_PLACES: 1
 };
-
-molarity.register( 'MolarityConstants', MolarityConstants );
 
 export default MolarityConstants;

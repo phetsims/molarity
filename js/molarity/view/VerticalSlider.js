@@ -20,7 +20,6 @@ import Text from '../../../../scenery/js/nodes/Text.js';
 import Color from '../../../../scenery/js/util/Color.js';
 import VSlider from '../../../../sun/js/VSlider.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import molarity from '../../molarity.js';
 import MolarityStrings from '../../MolarityStrings.js';
 import MolarityConstants from '../MolarityConstants.js';
 import DualLabelNode from './DualLabelNode.js';
@@ -168,7 +167,5 @@ class VerticalSlider extends Node {
     } );
   }
 }
-
-molarity.register( 'VerticalSlider', VerticalSlider );
 
 export default VerticalSlider;

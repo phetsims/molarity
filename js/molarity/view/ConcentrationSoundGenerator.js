@@ -11,7 +11,6 @@ import SoundClip from '../../../../tambo/js/sound-generators/SoundClip.js';
 import SoundGenerator from '../../../../tambo/js/sound-generators/SoundGenerator.js';
 import brightMarimba_mp3 from '../../../../tambo/sounds/brightMarimba_mp3.js';
 import softNoSolute_v2_mp3 from '../../../sounds/softNoSolute_v2_mp3.js';
-import molarity from '../../molarity.js';
 import MolarityConstants from '../MolarityConstants.js';
 
 // constants
@@ -124,5 +123,4 @@ class ConcentrationSoundGenerator extends SoundGenerator {
   }
 }
 
-molarity.register( 'ConcentrationSoundGenerator', ConcentrationSoundGenerator );
 export default ConcentrationSoundGenerator;

@@ -12,7 +12,6 @@ import merge from '../../../../phet-core/js/merge.js';
 import PhetioObject from '../../../../tandem/js/PhetioObject.js';
 import IOType from '../../../../tandem/js/types/IOType.js';
 import ReferenceIO from '../../../../tandem/js/types/ReferenceIO.js';
-import molarity from '../../molarity.js';
 
 class Solute extends PhetioObject {
   /**
@@ -46,8 +45,6 @@ class Solute extends PhetioObject {
     this.particleColor = options.particleColor;
   }
 }
-
-molarity.register( 'Solute', Solute );
 
 Solute.SoluteIO = new IOType( 'SoluteIO', {
   valueType: Solute,

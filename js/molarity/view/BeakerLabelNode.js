@@ -14,7 +14,6 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import RichText from '../../../../scenery/js/nodes/RichText.js';
 import Color from '../../../../scenery/js/util/Color.js';
-import molarity from '../../molarity.js';
 import MolaritySymbols from '../MolaritySymbols.js';
 
 // constants
@@ -71,7 +70,5 @@ class BeakerLabelNode extends Node {
     } );
   }
 }
-
-molarity.register( 'BeakerLabelNode', BeakerLabelNode );
 
 export default BeakerLabelNode;

@@ -13,7 +13,6 @@ import Utils from '../../../../dot/js/Utils.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
-import molarity from '../../molarity.js';
 
 // constants
 const DEBUG_OUTPUT = false;
@@ -72,8 +71,6 @@ class PrecipitateNode extends Node {
     } );
   }
 }
-
-molarity.register( 'PrecipitateNode', PrecipitateNode );
 
 // Gets the number of particles that corresponds to some precipitate amount.
 const getNumberOfParticles = precipitateAmount => {

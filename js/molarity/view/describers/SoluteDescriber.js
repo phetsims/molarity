@@ -9,7 +9,6 @@
 
 import StringUtils from '../../../../../phetcommon/js/util/StringUtils.js';
 import StringCasingPair from '../../../../../scenery-phet/js/accessibility/StringCasingPair.js';
-import molarity from '../../../molarity.js';
 import MolarityStrings from '../../../MolarityStrings.js';
 import Water from '../../model/Water.js';
 import MolaritySymbols from '../../MolaritySymbols.js';
@@ -118,5 +117,4 @@ class SoluteDescriber {
   }
 }
 
-molarity.register( 'SoluteDescriber', SoluteDescriber );
 export default SoluteDescriber;

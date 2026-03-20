@@ -14,7 +14,6 @@ import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import ComboBox from '../../../../sun/js/ComboBox.js';
 import nullSoundPlayer from '../../../../tambo/js/nullSoundPlayer.js';
-import molarity from '../../molarity.js';
 import MolarityStrings from '../../MolarityStrings.js';
 
 const pattern0LabelString = MolarityStrings.pattern[ '0label' ];
@@ -67,8 +66,6 @@ class SoluteControl extends HBox {
     super( options );
   }
 }
-
-molarity.register( 'SoluteControl', SoluteControl );
 
 /**
  * Creates an item for the combo box.
