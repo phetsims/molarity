@@ -1,4 +1,4 @@
-// Copyright 2019-2022, University of Colorado Boulder
+// Copyright 2019-2026, University of Colorado Boulder
 
 /**
  * SoluteAmountDescriber is responsible for generating strings about Solution.soluteAmountProperty.
